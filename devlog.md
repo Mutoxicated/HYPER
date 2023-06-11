@@ -1,6 +1,6 @@
 # Devlog
 
-This is a log of my entire devlopment process of Over v2.
+This is a log of my entire devlopment process of HYPER.
 
 ### Day 1
 

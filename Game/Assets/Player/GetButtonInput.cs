@@ -21,4 +21,9 @@ public class ButtonInput
     {
         return !lastFrame && currentFrame;
     }
+
+    public bool GetInput()
+    {
+        return currentFrame;
+    }
 }

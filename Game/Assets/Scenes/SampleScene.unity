@@ -158,10 +158,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 744932091}
-  walkSpeed: 64.8
-  slideSpeed: 10
+  walkSpeed: 68.2
+  slideSpeed: 14
   slamSpeed: 12
-  dashSpeed: 0
+  dashSpeed: 25
   gravityForce: 20.95
   jumpForce: 18.2
   airMultiplier: 0.231
@@ -631,6 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 744932090}
+  lerpSpeed: 0
 --- !u!1 &1301619111
 GameObject:
   m_ObjectHideFlags: 0

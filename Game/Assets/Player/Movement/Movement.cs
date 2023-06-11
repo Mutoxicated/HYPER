@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MovementState
+{
+    SLIDING,
+    SLAMMING,
+    DASHING,
+    WALKING
+}
+
 public class Movement : MonoBehaviour
 {
-    [HideInInspector]
-    public enum MovementState
-    {
-        SLIDING,
-        SLAMMING,
-        DASHING,
-        WALKING
-    }
-
     [SerializeField] private Rigidbody rb;
     [Header("Speeds")]
     [SerializeField, Range(40f,85f)] private float walkSpeed;
@@ -28,10 +27,14 @@ public class Movement : MonoBehaviour
     [HideInInspector] public MovementState movementState = MovementState.WALKING;
     private Vector3 moveDirection = Vector3.zero;
     private ButtonInput jumpInput = new ButtonInput("Jump");
+    private ButtonInput dashInput = new ButtonInput("Dash");
+    private ButtonInput slideInput = new ButtonInput("Slide");
 
+    private Vector3 slideDirection = Vector3.zero;
     private ContactPoint point;
     private bool airborne = true;
     private bool crouchReleased = true;
+    private bool uponSlide;
 
     private void Move()
     {
@@ -51,30 +54,69 @@ public class Movement : MonoBehaviour
         }
         else if (movementState == MovementState.SLIDING)
         {
-            MoveHelper.Slide(rb, moveDirection.normalized, slideSpeed);
+            if (uponSlide && moveDirection != Vector3.zero)
+            {
+                slideDirection = moveDirection.normalized;
+                uponSlide = false;
+            }
+            else if (uponSlide && moveDirection == Vector3.zero)
+            {
+                slideDirection = transform.forward;
+                uponSlide = false;
+            }
+            MoveHelper.Slide(rb, slideDirection, slideSpeed);
         }
         else if (movementState == MovementState.SLAMMING)
         {
             MoveHelper.GroundSlam(rb, slamSpeed);
+        }else if (movementState == MovementState.DASHING)
+        {
+            if (moveDirection != Vector3.zero)
+            {
+                MoveHelper.Dash(rb, moveDirection.normalized, dashSpeed);
+            }
+            else
+            {
+                MoveHelper.Dash(rb, transform.forward, dashSpeed);
+            }
+            movementState = MovementState.WALKING;
         }
         rb.AddForce(Vector3.up * -gravityForce, ForceMode.Acceleration);
     }
 
-    private void Update()
+    //input system has problems? put everything in the same update method
+    private void FixedUpdate() 
     {
         jumpInput.Update();
+        dashInput.Update();
+        slideInput.Update();
+        Move();
         if (jumpInput.GetInputDown() && !airborne)
         {
             MoveHelper.Jump(rb, point.normal, jumpForce);
+            movementState = MovementState.WALKING;
+            crouchReleased = false;
+            return;
         }
         //Debug.Log(movementState);
-        if (Input.GetButton("Slide"))
+        if (dashInput.GetInputDown())
+        {
+            movementState = MovementState.DASHING;
+            crouchReleased = false;
+            return;
+        }
+
+        if (slideInput.GetInputDown())
+        {
+            uponSlide = true;
+        }
+        if (slideInput.GetInput())
         {
             if (!airborne && crouchReleased)
             {
                 movementState = MovementState.SLIDING;
             }
-            if (airborne)
+            if (airborne && crouchReleased)
             {
                 movementState = MovementState.SLAMMING;
                 crouchReleased = false;
@@ -91,22 +133,15 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() => Move();
-
     private void OnCollisionStay(Collision collision)
     {
-        point = collision.GetContact(0);
+        point = collision.contacts[0];
         airborne = false;
         rb.drag = 5f;
         if (movementState == MovementState.SLAMMING)
         {
             movementState = MovementState.WALKING;
         }
-    }
-
-    private void OnCollisionEnter()
-    {
-       
     }
 
     private void OnCollisionExit()
