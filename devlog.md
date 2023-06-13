@@ -2,11 +2,11 @@
 
 This is a log of my entire devlopment process of HYPER.
 
-### Day 1
+## Day 1
 
 Day 1 is as simple and dry as it can get. Creating the repository, project and just analyzing the concept.
 
-### Day 2
+## Day 2
 
 Made the groundworks of the player today: movement, camera look, all that.
 Movement is almost done.
@@ -16,7 +16,7 @@ Not only that, but certain items are categorized in different **classes**.
 Classes can be synergized to create **synergized classes**.
 Haven't thought a lot about the classes, so I'll think about them more on the following days.
 
-### Day 3
+## Day 3
 
 Completed the movement. 
 You can slide, jump, wall jump, ground slam, dash and, of course, walk.
@@ -26,14 +26,14 @@ Of course, there will be the Arena, where you fight enemies in waves, but once t
 The Shop is where you buy your upgrades. The upgrades are categorized in certain classes.
 There are starter classes, synergized classes and HYPER-classes. Starter classes are what you start with, synergized classes can only be crafted with two starter classes.
 
-**STARTER CLASSES:**
+### **STARTER CLASSES:**
 
 1. INSANER (dps)
 2. WARRIOR (defense)
 3. MAGICIAN (magic)
 4. SUMMONER (summoning stuff)
 
-**SYNERGIZED CLASSES:**
+### **SYNERGIZED CLASSES:**
 
 1. JUGGERNAUT = INSANER + WARRIOR 
 2. WIZARD = INSANER + MAGICIAN 
@@ -42,13 +42,13 @@ There are starter classes, synergized classes and HYPER-classes. Starter classes
 5. SIGMA TRAINER = WARRIOR + SUMMONER
 6. BETA TRAINER = MAGICIAN + SUMMONER
 
-**HYPER-CLASSES:**
+### **HYPER-CLASSES:**
 
 idk :p
 
 That's it for today.
 
-### Day 4
+## Day 4
 
 So today I did a little bit of both analyzing gameplay and working on the game mechanics.
 I made a quick weapon model in blender and put it together in Unity.
@@ -72,3 +72,16 @@ I'm not gonna tell you the HYPER classes right now, but once they are done I wil
 Forgot to mention but HYPER classes can be crafted with synergized classes and any starter class.
 
 But yeah that's it for today I'm kinda tired. 
+
+## Day 5
+
+Couldn't do anything to the game today for a few private reasons, but I did think about an important part of the whole structure of the game: the **Upgrade System**.
+Here's how the Weapon System and the Upgrade System co-operate together:
+
+The Weapon System contains Weapon stats and Weapon info. Weapon stats include stuff like bullet damage, fire rate, etc.
+Meanwhile, Weapon Info includes members and methods like OnShoot(), current bullet pool, etc.
+The Upgrade System has two types of Upgrades: Modifiers and Addifiers.
+Modifiers modify the Weapon Stats, while Addifiers use stuff from Weapon Info to add stuff.
+There's also the Upgrades class, which creates the Upgrades upon start-up and collects them in an array.
+I'm still not too sure about this though, so expect things to change a lot.
+I'm already thinking of making them scriptable objects... idk, anyway yeah that's it for today.
