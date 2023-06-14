@@ -3,23 +3,13 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public struct Modifier
+public class Upgrade : MonoBehaviour
 {
-    public float fireRateMult;
-    public float damageMult;
+    public Class @class;
+    public Class.type classType;
 
-
-    public GameObject bonusCosmetic;
-}
-
-public class Upgrade 
-{
-    Modifier modifier;
-    Class @class;
-
-    public Upgrade(Modifier modifier, Class @class)
+    private void Start()
     {
-        this.modifier = modifier;
-        this.@class = @class;
+        @class._type = classType;
     }
 }

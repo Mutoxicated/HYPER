@@ -32,33 +32,33 @@ public class Class
         HEKATE
     }
 
-    public enum classType 
+    public enum type 
     {
-        STARTER,
-        SYNERGIZED,
-        HYPER
+        StarterClass,
+        SynergizedClass,
+        HyperClass
     }
 
     public StarterClass starterClass;
     public SynergizedClass synergizedClass;
     public HyperClass hyperClass;
-    public classType type;
+    public type _type;
 
-    public Class(StarterClass starterClass, classType type)
+    public Class(StarterClass starterClass, type type)
     {
         this.starterClass = starterClass;
-        this.type = type;
+        this._type = type;
     }
 
-    public Class(SynergizedClass synergizedClass, classType type)
+    public Class(SynergizedClass synergizedClass, type type)
     {
         this.synergizedClass = synergizedClass;
-        this.type = type;
+        this._type = type;
     }
 
-    public Class(HyperClass hyperClass, classType type)
+    public Class(HyperClass hyperClass, type type)
     {
         this.hyperClass = hyperClass;
-        this.type = type;
+        this._type = type;
     }
 }

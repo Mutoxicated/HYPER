@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum MovementState
 {
     SLIDING,
     SLAMMING,
-    DASHING,
-    WALKING
+    WALKING,
+    LOCKED
 }
 
 public class Movement : MonoBehaviour
@@ -34,10 +35,28 @@ public class Movement : MonoBehaviour
     private ContactPoint point;
     private bool airborne = true;
     private bool crouchReleased = true;
+
+    public UnityEvent OnDash = new UnityEvent();
     private bool uponSlide;
 
     private void Move()
     {
+        if (movementState != MovementState.LOCKED)
+        {
+            rb.AddForce(Vector3.up * -gravityForce, ForceMode.Acceleration);
+        }
+        else 
+        {
+            var durationExceeded = Abilities.Lock(rb, 40);
+            Debug.Log("LOCKED");
+            if (durationExceeded)
+            {
+                //Debug.Log("UNLOCKED");
+                movementState = MovementState.WALKING;
+            }
+            return;
+        }
+        //walking
         if (movementState == MovementState.WALKING)
         {
             float moveX = Input.GetAxis("Horizontal") * walkSpeed;
@@ -51,8 +70,11 @@ public class Movement : MonoBehaviour
                 rb.AddForce(moveDirection, ForceMode.Force);
             else
                 rb.AddForce(moveDirection * airMultiplier, ForceMode.Force);
+
+            return;
         }
-        else if (movementState == MovementState.SLIDING)
+        //sliding
+        if (movementState == MovementState.SLIDING)
         {
             if (uponSlide && moveDirection != Vector3.zero)
             {
@@ -64,24 +86,15 @@ public class Movement : MonoBehaviour
                 slideDirection = transform.forward;
                 uponSlide = false;
             }
-            MoveHelper.Slide(rb, slideDirection, slideSpeed);
+            Abilities.Slide(rb, slideDirection, slideSpeed);
+
+            return;
         }
-        else if (movementState == MovementState.SLAMMING)
+        //slamming
+        if (movementState == MovementState.SLAMMING)
         {
-            MoveHelper.GroundSlam(rb, slamSpeed);
-        }else if (movementState == MovementState.DASHING)
-        {
-            if (moveDirection != Vector3.zero)
-            {
-                MoveHelper.Dash(rb, moveDirection.normalized, dashSpeed);
-            }
-            else
-            {
-                MoveHelper.Dash(rb, transform.forward, dashSpeed);
-            }
-            movementState = MovementState.WALKING;
+            Abilities.GroundSlam(rb, slamSpeed);
         }
-        rb.AddForce(Vector3.up * -gravityForce, ForceMode.Acceleration);
     }
 
     //input system has problems? put everything in the same update method
@@ -91,17 +104,34 @@ public class Movement : MonoBehaviour
         dashInput.Update();
         slideInput.Update();
         Move();
-        if (jumpInput.GetInputDown() && !airborne)
+        if (jumpInput.GetInputDown())
         {
-            MoveHelper.Jump(rb, point.normal, jumpForce);
-            movementState = MovementState.WALKING;
-            crouchReleased = false;
+            if (!airborne)
+            {
+                Abilities.Jump(rb, point.normal, jumpForce);
+                movementState = MovementState.WALKING;
+                crouchReleased = false;
+            }
+            else
+            {
+                movementState = MovementState.LOCKED;
+                Debug.Log("HAPPNED");
+            }
             return;
         }
-        //Debug.Log(movementState);
+
         if (dashInput.GetInputDown())
         {
-            movementState = MovementState.DASHING;
+            if (moveDirection != Vector3.zero)
+            {
+                Abilities.Dash(rb, moveDirection.normalized, dashSpeed);
+            }
+            else
+            {
+                Abilities.Dash(rb, transform.forward, dashSpeed);
+            }
+            OnDash.Invoke();
+            movementState = MovementState.WALKING;
             crouchReleased = false;
             return;
         }
@@ -127,7 +157,7 @@ public class Movement : MonoBehaviour
         {
             crouchReleased = true;
         }
-        if (movementState != MovementState.SLAMMING)
+        if (movementState != MovementState.SLAMMING && movementState != MovementState.LOCKED)
         {
             movementState = MovementState.WALKING;
         }

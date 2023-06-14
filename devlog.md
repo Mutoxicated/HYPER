@@ -85,3 +85,18 @@ Modifiers modify the Weapon Stats, while Addifiers use stuff from Weapon Info to
 There's also the Upgrades class, which creates the Upgrades upon start-up and collects them in an array.
 I'm still not too sure about this though, so expect things to change a lot.
 I'm already thinking of making them scriptable objects... idk, anyway yeah that's it for today.
+
+## Day 6
+
+Added a new ability to the movement: lock.
+You can lock yourself midair for a brief moment. Very cool imo.
+I made a lot of changes in the upgrade system, realized scriptable objects don't really work well with what i'm trying to do, so instead i will just make each upgrade a prefab.
+But yeah all around I just did some small refactoring and semi-implemented the upgrade system. It's really tough though because I have to make it versatile enough that it would satisfy my creativity.
+
+
+A good example to what I am trying to do here is the Unity's Particle System. It has modules, that do different stuff and you can enable and disable them.
+Unfortunately I don't think I can do the same thing the Particle System did, so I'm going for a different solutions.
+I came up with different behaviours that upgrades will have in their prefabs.
+There are Player, Bullet and Weapon behaviours. 
+
+Anyway's I'm tired as hell so i'm just gonna buh bye.
