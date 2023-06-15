@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GunShooter : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class GunShooter : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [Space]
     [Header("Gun Settings")]
-    [SerializeField, Range(500f,4000f)] private float fireRate;//in milliseconds
+    [SerializeField, Range(400f,2000f)] public float fireRate;//in milliseconds
     [SerializeField] private Vector3 recoilPosition;
     [SerializeField] private Quaternion recoilRotation;
     [SerializeField] private float lerpSpeed;
@@ -35,9 +36,12 @@ public class GunShooter : MonoBehaviour
     private ButtonInput fireInput = new ButtonInput("Fire1");
 
     public delegate void Methods(Vector3 pos, Quaternion rotation);
-
     private Methods[] shootMethods;
     private int index;
+
+    [HideInInspector] public float fireRateMod = 1f;
+    [HideInInspector] public Queue<GameObject> bulletQueue = new Queue<GameObject>();
+    [HideInInspector] public UnityEvent OnShootEvent = new UnityEvent();
 
     private void Recoil()
     {
@@ -50,7 +54,6 @@ public class GunShooter : MonoBehaviour
         Recoil();
         readyToShoot = false;
         stopwatch.Start();
-        UnityEngine.Debug.Log("Shoot");
     }
 
     //rotation point from firepoint to the crosshair
@@ -63,20 +66,19 @@ public class GunShooter : MonoBehaviour
 
     private void SpawnBullet(Vector3 pos, Quaternion rotation)
     {
-        WeaponInfo.OnShootEvent.Invoke();
         ShootState();
-        if (WeaponInfo.bulletQueue.Count == 0 || WeaponInfo.bulletQueue.Peek().activeSelf)
+        if (bulletQueue.Count == 0 || bulletQueue.Peek().activeSelf)
         {
-            var instance = Instantiate(WeaponInfo.bulletPrefab, pos, rotation);
-            WeaponInfo.bulletQueue.Enqueue(instance);
+            var instance = Instantiate(bulletPrefab, pos, rotation);
+            bulletQueue.Enqueue(instance);
         }
         else// reuse a bullet
         {
-            var instance = WeaponInfo.bulletQueue.Dequeue();
+            var instance = bulletQueue.Dequeue();
             instance.transform.position = pos;
             instance.transform.rotation = rotation;
             instance.SetActive(true);
-            WeaponInfo.bulletQueue.Enqueue(instance);
+            bulletQueue.Enqueue(instance);
         }
     }
     private void Single(Vector3 pos, Quaternion rotation)
@@ -105,12 +107,6 @@ public class GunShooter : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        WeaponInfo.fireRate = fireRate;
-        WeaponInfo.bulletPrefab = bulletPrefab;
-    }
-
     private void Start()
     {
         shootMethods = new Methods[] { Single, Double, Triple };
@@ -124,6 +120,7 @@ public class GunShooter : MonoBehaviour
         fireInput.Update();
         if (fireInput.GetInputDown() && readyToShoot)
         {
+            OnShootEvent.Invoke();
             shootMethods[index](firepoint.position,firepoint.rotation);
         }
 
@@ -132,7 +129,7 @@ public class GunShooter : MonoBehaviour
 
         if (!stopwatch.IsRunning)
             return;
-        if (stopwatch.ElapsedMilliseconds > fireRate*WeaponInfo.fireRateMod)
+        if (stopwatch.ElapsedMilliseconds > fireRate*fireRateMod)
         {
             readyToShoot = true;
             stopwatch.Reset();

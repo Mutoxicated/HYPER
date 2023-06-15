@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GunController : MonoBehaviour
 {
     [SerializeField] private Rigidbody playerRB;
+    [SerializeField] private GunShooter shooter;
 
     [Header("Thresholds")]
     [SerializeField] private float xThreshold;
@@ -17,6 +19,14 @@ public class GunController : MonoBehaviour
 
     private float move_x, move_z;
     private Vector3 point = Vector3.zero;
+    private Transform gunScrew;
+    private float angle = 0f;
+
+    private void Start()
+    {
+        gunScrew = transform.GetChild(0);
+        shooter.OnShootEvent.AddListener(RotateScrew);
+    }
 
     private void Update()
     {
@@ -31,5 +41,15 @@ public class GunController : MonoBehaviour
         point.y = Mathf.Clamp(-playerRB.velocity.normalized.y, -yThreshold, yThreshold);
         point.z = move_z;
         transform.localPosition = Vector3.Lerp(transform.localPosition, point, Time.fixedDeltaTime * snapiness);
+
+        gunScrew.localRotation = Quaternion.Lerp(
+            gunScrew.localRotation, 
+            Quaternion.AngleAxis(angle, new Vector3(0f, 0f, 1f)), 
+            Time.fixedDeltaTime * (shooter.fireRate * shooter.fireRateMod / 90f));
+    }
+
+    private void RotateScrew()
+    {
+        angle += 90f;
     }
 }

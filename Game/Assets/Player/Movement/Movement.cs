@@ -26,17 +26,17 @@ public class Movement : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float airMultiplier;
 
     [HideInInspector] public MovementState movementState = MovementState.WALKING;
+    [HideInInspector] public UnityEvent OnDash = new UnityEvent();
     private Vector3 moveDirection = Vector3.zero;
+    private Vector3 slideDirection = Vector3.zero;
+
     private ButtonInput jumpInput = new ButtonInput("Jump");
     private ButtonInput dashInput = new ButtonInput("Dash");
     private ButtonInput slideInput = new ButtonInput("Slide");
 
-    private Vector3 slideDirection = Vector3.zero;
     private ContactPoint point;
     private bool airborne = true;
     private bool crouchReleased = true;
-
-    public UnityEvent OnDash = new UnityEvent();
     private bool uponSlide;
 
     private void Move()
@@ -47,8 +47,7 @@ public class Movement : MonoBehaviour
         }
         else 
         {
-            var durationExceeded = Abilities.Lock(rb, 40);
-            Debug.Log("LOCKED");
+            bool durationExceeded = Abilities.Lock(rb, 40);
             if (durationExceeded)
             {
                 //Debug.Log("UNLOCKED");
@@ -95,6 +94,11 @@ public class Movement : MonoBehaviour
         {
             Abilities.GroundSlam(rb, slamSpeed);
         }
+    }
+
+    private void Start()
+    {
+        movementState = MovementState.WALKING;
     }
 
     //input system has problems? put everything in the same update method
