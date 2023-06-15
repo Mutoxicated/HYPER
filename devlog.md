@@ -100,3 +100,9 @@ I came up with different behaviours that upgrades will have in their prefabs.
 There are Player, Bullet and Weapon behaviours. 
 
 Anyway's I'm tired as hell so i'm just gonna buh bye.
+
+## Day 7
+
+Not a lot, just improving movement, getting rid of the static WeaponInfo class, because i just didnt have a great feeling about it, also created actual prefabs for the gun parts.
+Also, i made the gun screw rotate 90 degrees when you shoot, looks very cool imo.
+Again, didn't do anything crazy yet because I'm planning on thinking out the upgrades and shit, so yeah. There will be like 28 upgrades absolute minimum, so there's a lot to come up with.
