@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour
         }
         else 
         {
-            bool durationExceeded = Abilities.Lock(rb, 40);
+            bool durationExceeded = MoveAbilities.Lock(rb, 40);
             if (durationExceeded)
             {
                 //Debug.Log("UNLOCKED");
@@ -85,14 +85,14 @@ public class Movement : MonoBehaviour
                 slideDirection = transform.forward;
                 uponSlide = false;
             }
-            Abilities.Slide(rb, slideDirection, slideSpeed);
+            MoveAbilities.Slide(rb, slideDirection, slideSpeed);
 
             return;
         }
         //slamming
         if (movementState == MovementState.SLAMMING)
         {
-            Abilities.GroundSlam(rb, slamSpeed);
+            MoveAbilities.GroundSlam(rb, slamSpeed);
         }
     }
 
@@ -112,7 +112,7 @@ public class Movement : MonoBehaviour
         {
             if (!airborne)
             {
-                Abilities.Jump(rb, point.normal, jumpForce);
+                MoveAbilities.Jump(rb, point.normal, jumpForce);
                 movementState = MovementState.WALKING;
                 crouchReleased = false;
             }
@@ -128,11 +128,11 @@ public class Movement : MonoBehaviour
         {
             if (moveDirection != Vector3.zero)
             {
-                Abilities.Dash(rb, moveDirection.normalized, dashSpeed);
+                MoveAbilities.Dash(rb, moveDirection.normalized, dashSpeed);
             }
             else
             {
-                Abilities.Dash(rb, transform.forward, dashSpeed);
+                MoveAbilities.Dash(rb, transform.forward, dashSpeed);
             }
             OnDash.Invoke();
             movementState = MovementState.WALKING;

@@ -106,3 +106,61 @@ Anyway's I'm tired as hell so i'm just gonna buh bye.
 Not a lot, just improving movement, getting rid of the static WeaponInfo class, because i just didnt have a great feeling about it, also created actual prefabs for the gun parts.
 Also, i made the gun screw rotate 90 degrees when you shoot, looks very cool imo.
 Again, didn't do anything crazy yet because I'm planning on thinking out the upgrades and shit, so yeah. There will be like 28 upgrades absolute minimum, so there's a lot to come up with.
+
+## Day 8
+
+Slow but steady progress.
+That's all I gotta say.
+Been focusing on some other projects lately.
+Still devoted to making changes every day even if it's gonna be small.
+
+Anyway i came up with the last few HYPER classes and some upgrades so yeah.
+**Here's the complete list of classes:**
+
+### STARTER CLASSES:
+
+1. INSANER (dps)
+2. WARRIOR (defense)
+3. MAGICIAN (magic)
+4. SUMMONER (summoning stuff)
+
+### SYNERGIZED CLASSES:
+
+1. JUGGERNAUT = INSANER + WARRIOR 
+2. WIZARD = INSANER + MAGICIAN 
+3. ELEMENTOR = WARRIOR + MAGICIAN 
+4. ALPHA TRAINER = INSANER + SUMMONER
+5. SIGMA TRAINER = WARRIOR + SUMMONER
+6. BETA TRAINER = MAGICIAN + SUMMONER
+
+### HYPER-CLASSES:
+
+(16 items max on all)
+SC means Starter Class
+
+ZEUS = SC + PENETRATOR + WIZARD
+DIONE = SC + PENETRATOR + ELEMENTOR
+ARTEMIS = SC + PENETRATOR + ALPHA TRAINER
+AVATAR = SC + PENETRATOR + SIGMA TRAINER
+HEKATE = SC + PENETRATOR + BETA TRAINER
+
+LIZZARD = SC + WIZARD + ELEMENTOR
+XENIA = SC + WIZARD + ALPHA TRAINER
+GRINDER = SC + WIZARD + SIGMA TRAINER
+MOONER = SC + WIZARD + BETA TRAINER
+
+MENTOR = SC + ELEMENTOR + ALPHA TRAINER
+BALLER = SC + ELEMENTOR + SIGMA TRAINER
+HEPHAESTUS = SC + ELEMENTOR + BETA TRAINER
+
+KAPPA TRAINER = SC + ALPHA TRAINER + SIGMA TRAINER
+INTER TRAINER = SC + ALPHA TRAINER + BETA TRAINER
+
+LAMBDA TRAINER = SC + BETA TRAINER + SIGMA TRAINER
+
+### A LITTLE BIT ABOUT ITEMS...
+
+There are probably gonna be MINIMUM 28 upgrades and MAXIMUM 56.
+The upgrades' class type(s) will overlap with each other to add more complexity and replayability.
+Upgrades can modify or add to the player, the gun, or the bullets the gun shoots.
+That's it lol.

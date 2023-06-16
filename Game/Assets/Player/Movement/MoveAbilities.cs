@@ -4,7 +4,7 @@ using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Abilities
+public static class MoveAbilities
 {
     private static int t;
 

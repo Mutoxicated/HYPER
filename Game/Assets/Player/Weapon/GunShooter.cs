@@ -43,6 +43,12 @@ public class GunShooter : MonoBehaviour
     [HideInInspector] public Queue<GameObject> bulletQueue = new Queue<GameObject>();
     [HideInInspector] public UnityEvent OnShootEvent = new UnityEvent();
 
+    public delegate void extraShootMethods(Vector3 pos, Quaternion rotation);
+    public List<extraShootMethods> shootAbilities;
+    private ButtonInput fire2Input = new ButtonInput("Fire2");
+
+    private Scroll scrollWheel = new Scroll(0, 0);
+
     private void Recoil()
     {
         weaponHolder.localPosition += recoilPosition;
@@ -118,10 +124,22 @@ public class GunShooter : MonoBehaviour
     private void Update()
     {
         fireInput.Update();
+        fire2Input.Update();
         if (fireInput.GetInputDown() && readyToShoot)
         {
             OnShootEvent.Invoke();
             shootMethods[index](firepoint.position,firepoint.rotation);
+        }else if (fire2Input.GetInputDown() && shootAbilities.Count > 0)
+        {
+            shootAbilities[scrollWheel.index](firepoint.position,firepoint.rotation);
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            scrollWheel.Increase();
+        }else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            scrollWheel.Decrease();
         }
 
         weaponHolder.localPosition = Vector3.Lerp(weaponHolder.localPosition, defaultPos, Time.deltaTime*lerpSpeed);
