@@ -175,4 +175,7 @@ Tomorrow I will try to make the arena better and also try to make the first few 
 I have an idea about how the player will transition from the arena to the shop. Initially, I had the idea of just making a vault door that would open and close if the round ended or you went inside the arena.
 But now I think I'll just make like a tower thing in the middle of the arena that will have a minecraft beam shoot up at the sky, and once you complete the round, the beam will become white ig and will teleport you to the shop once you touch it. In the shop there will be a similar beam that you can also touch to got to the arena for the next round.
 
-Anyway yeah things are going smoothly right now :)
+Also i made a custom skybox, which i will have to make more high quality cuz it sucks rn. Anyway yeah things are going smoothly right now :)
+
+Here's a preview of the arena btw:
+![image](https://github.com/Mutoxicated/HYPER/assets/96009711/e7b7db7d-87fc-4d5e-8a04-163d987a8e67)
