@@ -18,7 +18,7 @@ public class CameraInteractive : MonoBehaviour
 
     private void Update()
     {
-        if (movement.movementState == MovementState.SLIDING && transform.localPosition.y == 0f)
+        if (movement.movementState == MovementState.SLIDING)
         {
             transform.localPosition = slidePos;
             return;

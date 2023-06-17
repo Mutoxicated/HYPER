@@ -47,7 +47,7 @@ public class GunShooter : MonoBehaviour
     public List<extraShootMethods> shootAbilities;
     private ButtonInput fire2Input = new ButtonInput("Fire2");
 
-    private Scroll scrollWheel = new Scroll(0, 0);
+    private Scroll scrollWheel = new Scroll(0, 5);
 
     private void Recoil()
     {
@@ -141,7 +141,7 @@ public class GunShooter : MonoBehaviour
         {
             scrollWheel.Decrease();
         }
-
+        
         weaponHolder.localPosition = Vector3.Lerp(weaponHolder.localPosition, defaultPos, Time.deltaTime*lerpSpeed);
         weaponHolder.localRotation = Quaternion.Lerp(weaponHolder.localRotation, defaultRot, Time.deltaTime * lerpSpeed);
 

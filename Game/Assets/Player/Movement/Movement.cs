@@ -119,7 +119,6 @@ public class Movement : MonoBehaviour
             else
             {
                 movementState = MovementState.LOCKED;
-                Debug.Log("HAPPNED");
             }
             return;
         }
@@ -172,7 +171,7 @@ public class Movement : MonoBehaviour
         point = collision.contacts[0];
         airborne = false;
         rb.drag = 5f;
-        if (movementState == MovementState.SLAMMING)
+        if (movementState == MovementState.SLAMMING || movementState == MovementState.LOCKED)
         {
             movementState = MovementState.WALKING;
         }

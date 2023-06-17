@@ -164,3 +164,15 @@ There are probably gonna be MINIMUM 28 upgrades and MAXIMUM 56.
 The upgrades' class type(s) will overlap with each other to add more complexity and replayability.
 Upgrades can modify or add to the player, the gun, or the bullets the gun shoots.
 That's it lol.
+
+## Day 9 
+
+I did a bunch of stuff today! I made the base for the arena, i messed a bit with the graphisc (which resulted in some unfortunate circumstances) and i also fixed some more stuff with the movement.
+Pretty happy with everything right now :)
+
+Tomorrow I will try to make the arena better and also try to make the first few enemies. I have no idea how I will do it, these enemies will probably require AI and stuff...
+
+I have an idea about how the player will transition from the arena to the shop. Initially, I had the idea of just making a vault door that would open and close if the round ended or you went inside the arena.
+But now I think I'll just make like a tower thing in the middle of the arena that will have a minecraft beam shoot up at the sky, and once you complete the round, the beam will become white ig and will teleport you to the shop once you touch it. In the shop there will be a similar beam that you can also touch to got to the arena for the next round.
+
+Anyway yeah things are going smoothly right now :)

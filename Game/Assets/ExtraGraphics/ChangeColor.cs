@@ -11,6 +11,12 @@ public class ChangeColor : MonoBehaviour
     private void Start()
     {
         Material mat = GetComponent<Renderer>().materials[1];
-        mat.SetColor("_WireframeBackColour", color);
+        mat?.SetColor("_WireframeBackColour", color);
+    }
+
+    private void OnValidate()
+    {
+        Material mat = GetComponent<Renderer>().sharedMaterials[1];
+        mat?.SetColor("_WireframeBackColour", color);
     }
 }
