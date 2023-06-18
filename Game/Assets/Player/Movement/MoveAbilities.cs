@@ -10,6 +10,8 @@ public static class MoveAbilities
 
     public static void Jump(Rigidbody rb, Vector3 pointNormal, float jumpForce)
     {
+        if (pointNormal.y != 1f)
+            rb.velocity = Vector3.zero;
         pointNormal.y = 1f;
         rb.AddForce(pointNormal.normalized * jumpForce, ForceMode.Impulse);
     }

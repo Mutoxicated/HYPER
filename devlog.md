@@ -179,3 +179,12 @@ Also i made a custom skybox, which i will have to make more high quality cuz it 
 
 Here's a preview of the arena btw:
 ![image](https://github.com/Mutoxicated/HYPER/assets/96009711/e7b7db7d-87fc-4d5e-8a04-163d987a8e67)
+
+## Day 10
+
+Not a lot today, was focusing on other projects. I thought this was gonna be the day that I can relax but NOPE. 
+
+Felt a little bit bad that I didn't do anything today so I actually tried to do a few stuff. So I wanted to kind of finish the movement once and for all, so i implemented the dash cooldown and the jump limit.
+I also kinda played a bit with the particle system to do some effects for when the bullets collide, so yeah. That's pretty much everything I did today. 
+
+Tomorrow I'll actually get to making the first enemy, and also start decorating the Arena with stuff, should be fun.

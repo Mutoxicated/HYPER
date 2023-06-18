@@ -13,31 +13,36 @@ public enum MovementState
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
     [Header("Speeds")]
     [SerializeField, Range(40f,85f)] private float walkSpeed;
-    [SerializeField] private float slideSpeed;
-    [SerializeField] private float slamSpeed;
-    [SerializeField] private float dashSpeed;
+    [SerializeField, Range(12f,24f)] private float slideSpeed = 19f;
+    [SerializeField, Range(12f, 24f)] private float slamSpeed = 16f;
+    [SerializeField, Range(18f, 30f)] private float dashSpeed = 25f;
 
     [Header("Forces")]
     [SerializeField,Range(15f,30f)] private float gravityForce;
     [SerializeField, Range(15f, 40f)] private float jumpForce;
     [SerializeField, Range(0f, 1f)] private float airMultiplier;
 
+    [Header("Misc")]
+    [SerializeField] private StaminaControl stamina;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private int maxJumps;
+
     [HideInInspector] public MovementState movementState = MovementState.WALKING;
     [HideInInspector] public UnityEvent OnDash = new UnityEvent();
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 slideDirection = Vector3.zero;
+    private ContactPoint point;
 
     private ButtonInput jumpInput = new ButtonInput("Jump");
     private ButtonInput dashInput = new ButtonInput("Dash");
     private ButtonInput slideInput = new ButtonInput("Slide");
 
-    private ContactPoint point;
     private bool airborne = true;
     private bool crouchReleased = true;
     private bool uponSlide;
+    private int currentJumps = 0;
 
     private void Move()
     {
@@ -108,8 +113,9 @@ public class Movement : MonoBehaviour
         dashInput.Update();
         slideInput.Update();
         Move();
-        if (jumpInput.GetInputDown())
+        if (jumpInput.GetInputDown() && currentJumps <= maxJumps)
         {
+            currentJumps++;
             if (!airborne)
             {
                 MoveAbilities.Jump(rb, point.normal, jumpForce);
@@ -123,7 +129,7 @@ public class Movement : MonoBehaviour
             return;
         }
 
-        if (dashInput.GetInputDown())
+        if (dashInput.GetInputDown() && stamina.GetCurrentStamina() > 100f)
         {
             if (moveDirection != Vector3.zero)
             {
@@ -133,6 +139,7 @@ public class Movement : MonoBehaviour
             {
                 MoveAbilities.Dash(rb, transform.forward, dashSpeed);
             }
+            stamina.ReduceStamina(100f);
             OnDash.Invoke();
             movementState = MovementState.WALKING;
             crouchReleased = false;
@@ -174,6 +181,10 @@ public class Movement : MonoBehaviour
         if (movementState == MovementState.SLAMMING || movementState == MovementState.LOCKED)
         {
             movementState = MovementState.WALKING;
+        }
+        if (point.normal == Vector3.up)
+        {
+            currentJumps = 0;
         }
     }
 
