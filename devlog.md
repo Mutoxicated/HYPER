@@ -184,3 +184,9 @@ Felt a little bit bad that I didn't do anything today so I actually tried to do 
 I also kinda played a bit with the particle system to do some effects for when the bullets collide, so yeah. That's pretty much everything I did today. 
 
 Tomorrow I'll actually get to making the first enemy, and also start decorating the Arena with stuff, should be fun.
+
+## Day 11
+
+Didn't even open Unity today :/ Lately my sleep schedule hasn't been the best, but I will try to improve it in the following days.
+
+Sorry.
