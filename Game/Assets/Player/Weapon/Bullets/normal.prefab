@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 775047400170272233}
   m_Layer: 6
   m_Name: normal
-  m_TagString: Untagged
+  m_TagString: bullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,3 +130,4 @@ MonoBehaviour:
   rb: {fileID: 1549946323395533653}
   speed: 38
   particlePrefab: {fileID: 3545220589067606805, guid: 6d5913b428758ba469ed17214f365d7b, type: 3}
+  lifetime: 400

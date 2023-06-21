@@ -10,13 +10,15 @@ public class ChangeColor : MonoBehaviour
     [SerializeField] private Color color;
     private void Start()
     {
-        Material mat = GetComponent<Renderer>().materials[1];
+        Material[] mats = GetComponent<Renderer>().sharedMaterials;
+        Material mat = mats[mats.Length-1];
         mat?.SetColor("_WireframeBackColour", color);
     }
 
     private void OnValidate()
     {
-        Material mat = GetComponent<Renderer>().sharedMaterials[1];
+        Material[] mats = GetComponent<Renderer>().sharedMaterials;
+        Material mat = mats[mats.Length - 1];
         mat?.SetColor("_WireframeBackColour", color);
     }
 }

@@ -190,3 +190,11 @@ Tomorrow I'll actually get to making the first enemy, and also start decorating 
 Didn't even open Unity today :/ Lately my sleep schedule hasn't been the best, but I will try to improve it in the following days.
 
 Sorry.
+
+## Day 13
+
+Didn't have time yesterday to commit, but hey im back.
+I made a quite some stuff today that were kind of a pain to do...
+I made the first enemy, and made him shoot missiles that will break into pieces if you shoot them.
+Also made the gun have a shoot sound effect so yeah lol.
+That's it i gotta do some other stuff right now so yeah, cya.

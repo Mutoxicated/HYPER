@@ -1,5 +1,5 @@
 // Shader targeted for low end devices. Single Pass Forward Rendering.
-Shader "Wireframe"
+Shader "TriWireframe"
 {
     // Keep properties of StandardSpecular shader for upgrade reasons.
     Properties
@@ -72,15 +72,6 @@ Shader "Wireframe"
                 float edgeLengthZ = length(IN[0].vertex - IN[1].vertex);
                 float3 modifier = float3(0.0, 0.0, 0.0);
                 // We're fine using if statments it's a trivial function.
-                if ((edgeLengthX > edgeLengthY) && (edgeLengthX > edgeLengthZ)) {
-                    modifier = float3(1.0, 0.0, 0.0);
-                }
-                else if ((edgeLengthY > edgeLengthX) && (edgeLengthY > edgeLengthZ)) {
-                    modifier = float3(0.0, 1.0, 0.0);
-                }
-                else if ((edgeLengthZ > edgeLengthX) && (edgeLengthZ > edgeLengthY)) {
-                    modifier = float3(0.0, 0.0, 1.0);
-                }
 
                 g2f o;
                 o.pos = UnityObjectToClipPos(IN[0].vertex);

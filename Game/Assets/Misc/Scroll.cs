@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scroll : MonoBehaviour
+public class Scroll 
 {
     public int index;
     private int maxIndex;
