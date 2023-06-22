@@ -198,3 +198,31 @@ I made a quite some stuff today that were kind of a pain to do...
 I made the first enemy, and made him shoot missiles that will break into pieces if you shoot them.
 Also made the gun have a shoot sound effect so yeah lol.
 That's it i gotta do some other stuff right now so yeah, cya.
+
+## Day 14
+
+Sorry but I've been busy with irl stuff. I'm still extremely commited to this so I still tried doing some progress even though I can't code atm.
+
+So I've analyzed the gameplay more, so now basically there is gonna be this mechanic that will basically let you gain back lost health. 
+So basically, when you kill a lot of enemies in quick succession, you get a bionus depending on how many you killed. This bonus gives a boost to your stats and you gain back some health.
+Kills that are not caused from your weapon do not count.
+
+I think this will lead to some interesting dynamics! Can't wait to implement it as well as all the other enemies and upgrades and the shop and... a billion more stuff. 
+It's overwhelming but I always like to step back, regain my footing, breathe, focus and think that it's all gonna go fine :)
+
+I've been writing all the upgrades btw, I finished the starter class items, but I'll give the full list once I'm done with them.
+In the meanwhile here's a little bit about the synergized classes:
+
+Penetrator has a lot of high dps and high defense stuff, but he doesn't have any health or backup to help him out when he needs it the most.
+
+Wizard has high dps and has a lot of variety of attacks, but he can be very vulnerable without proper handling of his techniques.
+
+Elementor has good defense and attacks, but he relies a lot on being precise and focusing.
+
+Alpha trainer has good backup and dps, but can be left vulnerable very quickly if you aren’t careful enough.
+
+Sigma trainer has good defense and backup, but he’s not very equipped.
+
+Beta trainer has good backup with good attacks that mostly cover him, but his lack of defense leaves him very vulnerable at the beginning.
+
+Aight buh bye :p
