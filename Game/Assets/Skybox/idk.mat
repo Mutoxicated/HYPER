@@ -7,12 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
-  m_Shader: {fileID: 103, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: idk
+  m_Shader: {fileID: 108, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _MAPPING_LATITUDE_LONGITUDE_LAYOUT
-  - _SUNDISK_SIMPLE
+  - _SUNDISK_HIGH_QUALITY
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -22,6 +22,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BackTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -38,12 +42,24 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DownTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
+    - _FrontTex:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LeftTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: da5dfa47c2e9b944e864bd797b0c05ae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -58,18 +74,26 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RightTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Tex:
         m_Texture: {fileID: 8900000, guid: 3e3a485dfe7909d46bf77a43f0d6c8cf, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _UpTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AtmosphereThickness: 3.94
+    - _AtmosphereThickness: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Exposure: 0.34
+    - _Exposure: 0.74
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -81,12 +105,12 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Rotation: 0
+    - _Rotation: 124
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _SunDisk: 1
-    - _SunSize: 0
+    - _SunDisk: 2
+    - _SunSize: 0.04
     - _SunSizeConvergence: 5
     - _UVSec: 0
     - _ZWrite: 1
@@ -95,5 +119,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.36899996, g: 0.34899998, b: 0.34099993, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _Tint: {r: 0.4292453, g: 1, b: 0.98340523, a: 0.5}
+    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []

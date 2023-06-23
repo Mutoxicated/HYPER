@@ -226,3 +226,7 @@ Sigma trainer has good defense and backup, but he’s not very equipped.
 Beta trainer has good backup with good attacks that mostly cover him, but his lack of defense leaves him very vulnerable at the beginning.
 
 Aight buh bye :p
+
+## Day 15
+
+Changed the skybox, much better now.
