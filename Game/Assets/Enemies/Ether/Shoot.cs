@@ -8,7 +8,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     private int time;
 
-    private void Update()
+    private void FixedUpdate()
     {
         time++;
         if (time > shootInterval)

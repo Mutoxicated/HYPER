@@ -9,9 +9,19 @@ public class RotateRandomly : MonoBehaviour
     private Quaternion toRotation;
     private int time;
 
+    private void Start()
+    {
+        toRotation = Random.rotation;
+    }
+
     private void Update()
     {
         time++;
+        if (rotationInterval < 0)
+        {
+            transform.Rotate(toRotation.eulerAngles*Time.deltaTime* lerpSpeed, Space.Self);
+            return;
+        }
         if (time >= rotationInterval)
         {
             toRotation = Random.rotation;

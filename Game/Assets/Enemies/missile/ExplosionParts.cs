@@ -13,7 +13,6 @@ public class ExplosionParts : MonoBehaviour
     [SerializeField,Range(0.005f,0.05f)] private float rate;
 
     private bool exploding = false;
-    private int index = 0;
     private float t = 1f;
 
     private void Start()
@@ -24,24 +23,23 @@ public class ExplosionParts : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!exploding)
             return;
         t -= rate;
-        if (t <= 0f)
-        {
-            Destroy(gameObject);
-        }
         foreach (var mat in materials)
         {
             mat.SetColor("_Color", color.Evaluate(t));
+        }
+        if (t <= 0f)
+        {
+            Destroy(gameObject);
         }
     }
 
     public void ExplodeParts(Vector3 explosionPoint)
     {
-        Debug.Log("ha");
         foreach (var part in parts)
         {
             var direction = part.transform.position - explosionPoint;

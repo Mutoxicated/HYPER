@@ -11,7 +11,9 @@ public class GunShooter : MonoBehaviour
     {
         SINGLE,
         DOUBLE,
-        TRIPLE
+        TRIPLE,
+        QUADRUPLE,
+        QUINTUPLE
     }
 
     [SerializeField] private Transform firepoint;
@@ -84,6 +86,7 @@ public class GunShooter : MonoBehaviour
         if (bulletQueue.Count == 0 || bulletQueue.Peek().activeSelf)
         {
             var instance = Instantiate(bulletPrefab, pos, rotation);
+            instance.GetComponent<IPassInfo>().PassInfo(new object[] { weaponType });
             bulletQueue.Enqueue(instance);
         }
         else// reuse a bullet
@@ -123,9 +126,31 @@ public class GunShooter : MonoBehaviour
         }
     }
 
+    private void Quadruple(Vector3 pos, Quaternion rotation)
+    {
+        rotation *= Quaternion.Euler(new Vector3(0f, -7.5f, 0f));
+        for (int i = 0; i < 4; i++)
+        {
+            rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
+            SpawnBullet(pos, rotation);
+            rotation *= Quaternion.Euler(new Vector3(0f, 4.6875f, 0f));//3.75f-7.5f
+        }
+    }
+
+    private void Quintuple(Vector3 pos, Quaternion rotation)
+    {
+        rotation *= Quaternion.Euler(new Vector3(0f, -10f, 0f));
+        for (int i = 0; i < 5; i++)
+        {
+            rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
+            SpawnBullet(pos, rotation);
+            rotation *= Quaternion.Euler(new Vector3(0f, 5f, 0f));
+        }
+    }
+
     private void Start()
     {
-        shootMethods = new Methods[] { Single, Double, Triple };
+        shootMethods = new Methods[] { Single, Double, Triple, Quadruple, Quintuple };
         defaultPos = transform.localPosition;
         defaultRot = transform.localRotation;
         index = (int)weaponType;
@@ -135,11 +160,12 @@ public class GunShooter : MonoBehaviour
     {
         fireInput.Update();
         fire2Input.Update();
-        if (fireInput.GetInputDown() && readyToShoot)
+        if (fireInput.GetInput() && readyToShoot)
         {
             OnShootEvent.Invoke();
-            shootMethods[index](firepoint.position,GetAccurateRotation());
-        }else if (fire2Input.GetInputDown() && shootAbilities.Count > 0)
+            shootMethods[index](firepoint.position, GetAccurateRotation());
+        }
+        if (fire2Input.GetInputDown() && shootAbilities.Count > 0)
         {
             shootAbilities[scrollWheel.index](firepoint.position,firepoint.parent.transform.rotation);
         }

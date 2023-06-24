@@ -204,7 +204,7 @@ That's it i gotta do some other stuff right now so yeah, cya.
 Sorry but I've been busy with irl stuff. I'm still extremely commited to this so I still tried doing some progress even though I can't code atm.
 
 So I've analyzed the gameplay more, so now basically there is gonna be this mechanic that will basically let you gain back lost health. 
-So basically, when you kill a lot of enemies in quick succession, you get a bionus depending on how many you killed. This bonus gives a boost to your stats and you gain back some health.
+So basically, when you kill a lot of enemies in quick succession, you get a bonus depending on how many you killed. This bonus gives a boost to your stats and you gain back some health.
 Kills that are not caused from your weapon do not count.
 
 I think this will lead to some interesting dynamics! Can't wait to implement it as well as all the other enemies and upgrades and the shop and... a billion more stuff. 
@@ -230,3 +230,27 @@ Aight buh bye :p
 ## Day 15
 
 Changed the skybox, much better now.
+
+## Day 16
+
+Pretty happy with what all I've done today. I refactored the enemy code, practically finished the first enemy, and set up some stuff for the futures enemies, which will definitely speed up the development process quite a bit. I added the a lil pedastol thing that will have a beam that expands to infinity at the center. This beam will act as a means of teleporting to the shop after the round ends. The same beam will exist in the shop to teleport you to the arena. 
+
+I also made the missile homing, so yeah that's neat.
+
+All in all I just did some really important-for-the-future enemy stuff. 
+
+I'm planning on adding a melee attack, and another movement mechanic tomorrow. I'm also planning to start making the shop in the following days. I'm probably gonna do UI wayyy later. Prolly like in the middle to the end of the next month. Anyway yeah I'm pretty satisfied with what I've done today so yeah cya tomorrow :>
+
+### OH I FORGOT TO MENTION...
+
+I've thought of something, so at the start of each run, you will be asked to choose an "echelon". Echelons determine a lot of stuff, including: your bullets per shot, your passive item pool, and what active/class items will be excluded from the whole item pool. These echelons serve the purpose of reinforcing the idea of already having a build in mind. You cannot change your echelon during the run.
+
+**The echelons are as follows:**
+
+1. SINGULARITY: You can only shoot 1 bullet.
+2. DOUBLE-STANDARD: You can only shoot 2 bullets. All their bullet stats split in half.
+3. CERBERUS: You can only shoot 3 bullets. All bullet stats equally shared.
+4. TETRAHEAD: You can only shoot 4 bullets. All bullet stats equally shared.
+5. CINCOS: You can only shoot 5 bullets. All bullet stats equally shared.
+
+Aight now buh bye.

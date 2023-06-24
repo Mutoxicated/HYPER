@@ -113,7 +113,7 @@ public class Movement : MonoBehaviour
         dashInput.Update();
         slideInput.Update();
         Move();
-        if (jumpInput.GetInputDown() && currentJumps <= maxJumps)
+        if (jumpInput.GetInputDown() && currentJumps < maxJumps)
         {
             currentJumps++;
             if (!airborne)

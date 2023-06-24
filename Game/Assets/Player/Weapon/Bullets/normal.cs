@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class normal : MonoBehaviour
+public class normal : MonoBehaviour, IPassInfo
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
     [SerializeField] private GameObject particlePrefab;
     [SerializeField] private int lifetime;
+    [SerializeField] private int damage;
+    private int weaponType;
     private int time;
+
+    public void PassInfo(object[] info)
+    {
+        weaponType = (int)info[0]+1;
+        damage = damage/weaponType;//damage is equally shared with all of the bullets
+    }
 
     private void OnEnable()
     {
@@ -32,9 +41,10 @@ public class normal : MonoBehaviour
         time = 0;
     }
 
-    private void OnCollisionEnter()
+    private void OnCollisionEnter(Collision collision)
     {
         Recycle();
+        collision.gameObject.GetComponent<IDamagebale>()?.TakeDamage(damage, gameObject);
     }
 
     private void OnCollisionStay(Collision collision)
