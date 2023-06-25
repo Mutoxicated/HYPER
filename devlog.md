@@ -254,3 +254,15 @@ I've thought of something, so at the start of each run, you will be asked to cho
 5. CINCOS: You can only shoot 5 bullets. All bullet stats equally shared.
 
 Aight now buh bye.
+
+## Day 17
+
+I'm tired. Not because of game development I just had a rough but fun day lol. So here is what I did today:
+
+I fixed some shader stuff, not completely, but mostly. I added the new movement mechanic I was talking about and I also added an glass amphitheatre-type roof over the the arena to make sure that the player doesn't escape. I completely finished the first enemy, which is called "Ether". It's a floating icosphere that shoots a missile at your direction. Shooting the missiles cause them to break into pieces (cool). Also I don't know if I said this already, but I made the beam in the middle that That's it lol.
+
+I have a very modular system for the enemies, which is probably what I will also do for the upgrades. I'm going to do the shop tomorrow though and I will also try to completely fix all the shader problems (there's only one, actually, at least I think so..).
+
+Anyway yeah it was pretty fun today, haven't put much thought into anything lately but I feel better when I don't overthink it.
+
+Anyway I will go to sleep soon so cya.

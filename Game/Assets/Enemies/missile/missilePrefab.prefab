@@ -153,11 +153,11 @@ GameObject:
   - component: {fileID: 7925885973348083060}
   - component: {fileID: -1273607849755214524}
   - component: {fileID: 8531172904988872309}
-  - component: {fileID: 3933613278806789271}
   - component: {fileID: 3868235556858948661}
   - component: {fileID: 6044119978656008813}
   - component: {fileID: 2449012977333359559}
   - component: {fileID: 1884146861060504680}
+  - component: {fileID: 369120974516187859}
   m_Layer: 9
   m_Name: missilePrefab
   m_TagString: Untagged
@@ -242,7 +242,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -261,19 +261,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   immunityStart: 50
---- !u!135 &3933613278806789271
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8574461424792126625}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.6
-  m_Center: {x: 0, y: 0, z: 0.83418393}
 --- !u!114 &3868235556858948661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,8 +274,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -1273607849755214524}
-  speed: 7.96
-  lerpSpeed: 1.247
+  speed: 12.57
+  lerpSpeed: 1.288
+  axisMultiplier: {x: 1, y: 0.5, z: 1}
 --- !u!114 &6044119978656008813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec49d9c4ce02264d9b41063ae7d62c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpSpeed: 1
+  axisMultiplier: {x: 1, y: 1, z: 1}
+  lerpSpeed: 1.3
 --- !u!114 &2449012977333359559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +400,20 @@ MonoBehaviour:
   - {fileID: 8574461424792126625}
   particleUponCollision: {fileID: 2803386318374101593, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
   detachChildren: 0
+--- !u!136 &369120974516187859
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574461424792126625}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.8
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.8}
 --- !u!1001 &8806472374529037364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -546,6 +549,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: missile_pars (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1150079941207378798, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -647,6 +654,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &1390964955721856221 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1622583708696878871, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -682,6 +691,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &3033329674328009767 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3445725735252068333, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -717,6 +728,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &5462423871886075961 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3600824050160122893, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -752,6 +765,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &7446038211682924735 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7105699747339408245, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -787,6 +802,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &7530071832808614212 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7874843458544632464, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -822,6 +839,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &7600648722030318572 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1390541675863787480, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -857,6 +876,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &8062682726806358434 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1572522421584436630, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -892,6 +913,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &8175055592188070165 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 812194156174171425, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -927,6 +950,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &8485688158312193882 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1150079941207378798, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -962,6 +987,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &8529860094849217083 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8334199837992131057, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -997,6 +1024,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1
 --- !u!1 &8572520692935108965 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}
@@ -1027,7 +1056,8 @@ MonoBehaviour:
   - {fileID: 7182809597890339463}
   - {fileID: 6871193617036577265}
   - {fileID: 1648830007108328294}
-  speed: 9
+  speedMin: 5
+  speedMax: 12
   color:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0.9529412, a: 0}
@@ -1098,3 +1128,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationInterval: -1
   lerpSpeed: 0.8
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomRotation: 1

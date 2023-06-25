@@ -30,17 +30,13 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
-        move_x = Mathf.Clamp(Input.GetAxisRaw("Vertical")* xMultiplier, -xThreshold, xThreshold);
-        move_z = Mathf.Clamp(Input.GetAxisRaw("Horizontal")* zMultiplier, -zThreshold, zThreshold);
-    }
-
-    private void FixedUpdate()
-    {
+        move_x = Mathf.Clamp(Input.GetAxisRaw("Vertical") * xMultiplier, -xThreshold, xThreshold);
+        move_z = Mathf.Clamp(Input.GetAxisRaw("Horizontal") * zMultiplier, -zThreshold, zThreshold);
         //point = new Vector3(-move_x, Mathf.Clamp(-playerRB.velocity.normalized.y, -yThreshold, yThreshold), -move_z);
         point.x = -move_x;
         point.y = Mathf.Clamp(-playerRB.velocity.normalized.y, -yThreshold, yThreshold);
         point.z = move_z;
-        transform.localPosition = Vector3.Lerp(transform.localPosition, point, Time.fixedDeltaTime * snapiness);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, point, Time.deltaTime * snapiness);
 
         gunScrew.localRotation = Quaternion.Lerp(
             gunScrew.localRotation, 

@@ -4,11 +4,19 @@ using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public static class MoveAbilities
+public class MoveAbilities
 {
-    private static int t;
+    private int t;
+    private Rigidbody rb;
+    private float bounceSpeed;
+    private Vector3 bounceDirection;
 
-    public static void Jump(Rigidbody rb, Vector3 pointNormal, float jumpForce)
+    public MoveAbilities(Rigidbody rb)
+    {
+        this.rb = rb;
+    }
+
+    public void Jump(Vector3 pointNormal, float jumpForce)
     {
         if (pointNormal.y != 1f)
             rb.velocity = Vector3.zero;
@@ -16,30 +24,51 @@ public static class MoveAbilities
         rb.AddForce(pointNormal.normalized * jumpForce, ForceMode.Impulse);
     }
 
-    public static void Slide(Rigidbody rb, Vector3 direction, float slideSpeed)
+    public void Slide(Vector3 direction, float slideSpeed)
     {
         direction.y = 0f;
         rb.velocity = direction * slideSpeed;
     }
 
-    public static void GroundSlam(Rigidbody rb, float slamSpeed)
+    public void GroundSlam(float slamSpeed)
     {
         rb.velocity = Vector3.down * slamSpeed;
     }
 
-    public static void Dash(Rigidbody rb, Vector3 direction, float dashSpeed)
+    public void Dash(Vector3 direction, float dashSpeed)
     {
         rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
     }
 
-    public static bool Lock(Rigidbody rb, int duration)
+    public bool Lock(int duration)
     {
         t++;
+        rb.drag = 5f;
         if (t > duration)
         {
+            rb.drag = 2f;
             t = 0;
             return true;
         }
         return false;
+    }
+
+    public void LaunchIn(ContactPoint point, float launchSpeed)
+    {
+        bounceSpeed = launchSpeed;
+        bounceDirection = (point.point - rb.position).normalized * bounceSpeed;
+        rb.velocity = bounceDirection;
+        rb.drag = 0f;
+    }
+
+    public void Bounce(ContactPoint point)
+    {
+        bounceDirection = Vector3.Reflect(bounceDirection, point.normal).normalized * bounceSpeed;
+        rb.velocity = bounceDirection;
+    }
+
+    public Vector3 GetBounceDir()
+    {
+        return bounceDirection;
     }
 }

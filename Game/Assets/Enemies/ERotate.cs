@@ -2,22 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateRandomly : MonoBehaviour
+public class ERotate : MonoBehaviour
 {
     [SerializeField] private int rotationInterval;
     [SerializeField, Range(0.2f,20f)] private float lerpSpeed;
-    private Quaternion toRotation;
+    [SerializeField] private Quaternion toRotation;
+    [SerializeField] private bool randomRotation = true;
     private int time;
 
     private void Start()
     {
-        toRotation = Random.rotation;
+        if (randomRotation)
+        {
+            toRotation = Random.rotation;
+        }
     }
 
     private void Update()
     {
         time++;
-        if (rotationInterval < 0)
+        if (rotationInterval < 0 || !randomRotation)
         {
             transform.Rotate(toRotation.eulerAngles*Time.deltaTime* lerpSpeed, Space.Self);
             return;

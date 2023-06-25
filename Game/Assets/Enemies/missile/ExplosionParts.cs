@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ExplosionParts : MonoBehaviour
@@ -8,7 +7,8 @@ public class ExplosionParts : MonoBehaviour
     [SerializeField] private Rigidbody[] parts;
     private List<Material> materials = new List<Material>();
 
-    [SerializeField] private float speed;
+    [SerializeField] private float speedMin;
+    [SerializeField] private float speedMax;
     [SerializeField] private Gradient color;
     [SerializeField,Range(0.005f,0.05f)] private float rate;
 
@@ -44,7 +44,7 @@ public class ExplosionParts : MonoBehaviour
         {
             var direction = part.transform.position - explosionPoint;
             part.gameObject.SetActive(true);
-            part.AddForce(direction * speed, ForceMode.Impulse);
+            part.AddForce(direction * Random.Range(speedMin,speedMax), ForceMode.Impulse);
         }
         exploding = true;
     }

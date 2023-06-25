@@ -1,5 +1,5 @@
 // Shader targeted for low end devices. Single Pass Forward Rendering.
-Shader "TriWireframe"
+Shader "Custom/TriWireframe"
 {
     // Keep properties of StandardSpecular shader for upgrade reasons.
     Properties
@@ -12,13 +12,13 @@ Shader "TriWireframe"
 
         SubShader
     {
-        Tags { "RenderType" = "Opaque" "Queue" = "Transparent"}
-        LOD 300
+        Tags { "Queue" = "Transparent"}
+        LOD 30
         Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
-            ZWrite[_ZWrite]
+            ZWrite On
             Cull Back
             // Removes the front facing triangles, this enables us to create the wireframe for those behind.
             CGPROGRAM

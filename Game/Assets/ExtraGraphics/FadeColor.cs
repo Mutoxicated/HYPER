@@ -11,7 +11,7 @@ public class FadeColor : MonoBehaviour
     private Material mat;
     private const float tau = Mathf.PI * 2f;
     private float angle = tau;
-    [SerializeField, Range(tau / 180f, tau / 500f)] private float rate;
+    [SerializeField, Range(tau / 180f, tau / 1800f)] private float rate;
 
     void Start()
     {
