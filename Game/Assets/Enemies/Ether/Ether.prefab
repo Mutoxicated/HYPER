@@ -278,6 +278,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   HP: 400
+  rate: 0.023
   hitReaction: 1
   enableHealthBar: 0
 --- !u!64 &1934212863612445911

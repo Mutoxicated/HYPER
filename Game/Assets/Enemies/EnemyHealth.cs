@@ -21,6 +21,7 @@ public class EnemyHealth : MonoBehaviour, IDamagebale
     [SerializeField] private Gradient healthBarGradient;
     [SerializeField] private Gradient enemyHitGradient;
     [SerializeField] private int HP;
+    [SerializeField,Range(0.005f,0.5f)] private float rate = 0.05f;
 
     [SerializeField] private HitReaction hitReaction;
     [SerializeField] private bool enableHealthBar;

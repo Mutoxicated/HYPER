@@ -43,7 +43,7 @@ public class MoveAbilities
     public bool Lock(int duration)
     {
         t++;
-        rb.drag = 5f;
+        rb.drag = 3f;
         if (t > duration)
         {
             rb.drag = 2f;
