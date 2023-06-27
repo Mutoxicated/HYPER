@@ -57,7 +57,7 @@ public class EnemyHealth : MonoBehaviour, IDamagebale
 
     private void Update()
     {
-        t = Mathf.Clamp01(t - 0.05f);
+        t = Mathf.Clamp01(t - rate);
     
         if (hitReaction == HitReaction.BOTH)
         {

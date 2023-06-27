@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 6044119978656008813}
   - component: {fileID: 2449012977333359559}
   - component: {fileID: 1884146861060504680}
-  - component: {fileID: 968905376916399621}
+  - component: {fileID: 4563216888529265468}
   m_Layer: 9
   m_Name: missilePrefab
   m_TagString: Untagged
@@ -401,8 +401,8 @@ MonoBehaviour:
   - {fileID: 8574461424792126625}
   particleUponCollision: {fileID: 2803386318374101593, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
   detachChildren: 0
---- !u!136 &968905376916399621
-CapsuleCollider:
+--- !u!65 &4563216888529265468
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -411,10 +411,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.7}
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 1.2, z: 1.2}
+  m_Center: {x: 0, y: 0, z: 0.83418393}
 --- !u!1001 &8806472374529037364
 PrefabInstance:
   m_ObjectHideFlags: 0

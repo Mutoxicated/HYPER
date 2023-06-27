@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Melee : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private int punchDamage;
     [SerializeField] private float punchRange;
+    [SerializeField] private float punchDelay;
 
     private ButtonInput meleeInput = new ButtonInput("Melee");
-    private Vector3 center;
     private Camera cam;
     private bool once = true;
+    private bool block = false;
+    private int t;
 
     private void Punch()
     {
@@ -29,20 +32,31 @@ public class Melee : MonoBehaviour
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         meleeInput.Update();
         if (meleeInput.GetInputDown() && animator.GetCurrentAnimatorStateInfo(0).IsName("Nun") && once)//nun is idle btw
         {
-            Punch();
             once = false;
             animator.SetBool("punch", true);
+            block = false;
             return;
         }else if (animator.GetNextAnimatorStateInfo(0).IsName("Nun"))
         {
             once = true;
             animator.SetBool("punch", false);
         }
-
+        if (block)
+            return;
+        if (animator.GetBool("punch"))
+        {
+            t++;
+            if (t >= punchDelay)
+            {
+                t = 0;
+                Punch();
+                block = true;
+            }
+        }
     }
 }

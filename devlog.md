@@ -272,3 +272,7 @@ Anyway I will go to sleep soon so cya.
 Added the melee attack I was talking about, I was thinking of making it a punch, but it turned out to be more if a karate attack lmao. I like it, was pretty fun making it and animating it. Learned about rigging models as well today. Other than that I also tried to fix an issue with the shaders but I realized it was an issue with unity... So basically, Unity doesn't write to the depth buffer for materials that are on the "Transparent" queue, and my shader is using the "Transparent" queue to create the quad wireframe look. This means that anything the shader draws on the screen has no depth concept to it, meaning wireframes will be on top of wireframes no matter what. I think you can understand why this is bad. Apparently calculating the depth of transparent objects is very expensive... so Unity just doesn't, if I were to try and fix the issue, I would have to use completely custom shaders, and possibly custom render components... Imo I'm not gonna bother doing that, not because I'm bored (well maybe a bit) but because I don't think I'll have enough time to make those changes. I can't forget that it's a 3 month challenge. 
 
 Anyway yeah that was a big paragraph lol, I'm gonna go now.
+
+## Day 19
+
+Didn't progress on the project today, I took a day off.
