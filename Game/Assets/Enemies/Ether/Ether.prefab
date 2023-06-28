@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: faaa325337eda674eb7d833191ce2384, type: 2}
+  - {fileID: 2100000, guid: 93b8e28894b5eff4aa3b23f6cb9b0001, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -178,7 +178,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 93b8e28894b5eff4aa3b23f6cb9b0001, type: 2}
-  - {fileID: 2100000, guid: 91f6b3e5c4616d8468a92d28a1751d0f, type: 2}
+  - {fileID: 2100000, guid: faaa325337eda674eb7d833191ce2384, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   HP: 400
-  rate: 0.023
+  rate: 2
   hitReaction: 1
   enableHealthBar: 0
 --- !u!64 &1934212863612445911
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d690bfb50e7204da1c3461d76aab03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootInterval: 140
+  shootInterval: 2
   bulletPrefab: {fileID: 8574461424792126625, guid: af413e6d89772d8419e76972c965b5cd, type: 3}
 --- !u!1001 &5585410069360270865
 PrefabInstance:

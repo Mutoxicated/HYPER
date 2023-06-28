@@ -21,7 +21,7 @@ public class FadeColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        angle += rate;
+        angle += rate * Time.deltaTime;
         float rawSineWave = Mathf.Sin(angle);
 
         mat.SetColor("_WireframeBackColour", gradient.Evaluate(rawSineWave));

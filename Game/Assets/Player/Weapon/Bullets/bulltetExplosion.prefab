@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 241840411081186783}
   - component: {fileID: 36567826120348176}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: bulltetExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

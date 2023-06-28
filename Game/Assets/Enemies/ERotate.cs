@@ -8,7 +8,7 @@ public class ERotate : MonoBehaviour
     [SerializeField, Range(0.2f,20f)] private float lerpSpeed;
     [SerializeField] private Quaternion toRotation;
     [SerializeField] private bool randomRotation = true;
-    private int time;
+    private float time;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class ERotate : MonoBehaviour
 
     private void Update()
     {
-        time++;
+        time += Time.deltaTime;
         if (rotationInterval < 0 || !randomRotation)
         {
             transform.Rotate(toRotation.eulerAngles*Time.deltaTime* lerpSpeed, Space.Self);

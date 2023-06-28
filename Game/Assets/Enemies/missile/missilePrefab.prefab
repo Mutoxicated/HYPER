@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 6044119978656008813}
   - component: {fileID: 2449012977333359559}
   - component: {fileID: 1884146861060504680}
-  - component: {fileID: 4563216888529265468}
+  - component: {fileID: 1949877454724251180}
   m_Layer: 9
   m_Name: missilePrefab
   m_TagString: Untagged
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d3aeccbc837844a8593d6e02cbff78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immunityStart: 50
+  immunityStart: 0.1
 --- !u!114 &3868235556858948661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,8 +401,9 @@ MonoBehaviour:
   - {fileID: 8574461424792126625}
   particleUponCollision: {fileID: 2803386318374101593, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
   detachChildren: 0
---- !u!65 &4563216888529265468
-BoxCollider:
+  damage: 100
+--- !u!64 &1949877454724251180
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -411,9 +412,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2, y: 1.2, z: 1.2}
-  m_Center: {x: 0, y: 0, z: 0.83418393}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3613567641014311022, guid: d52d55559e3b12048868eadeaeee2f48, type: 3}
 --- !u!1001 &8806472374529037364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1087,7 +1089,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 3
-  rate: 0.02
+  rate: 1.208
 --- !u!4 &9060229294170928095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2a7e271f342e6a46bd15d6ff485b1bf, type: 3}

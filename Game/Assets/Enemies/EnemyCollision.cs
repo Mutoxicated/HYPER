@@ -7,6 +7,7 @@ public class EnemyCollision : MonoBehaviour
     [SerializeField] private GameObject[] ObjectsToDestroy;
     [SerializeField] private GameObject particleUponCollision;
     [SerializeField] private bool detachChildren;
+    [SerializeField] private int damage;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -16,6 +17,8 @@ public class EnemyCollision : MonoBehaviour
             Instantiate(particleUponCollision, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
         Detach();
         DestroyStuff();
+        if (damage > 0)
+            collision.gameObject.GetComponent<IDamagebale>()?.TakeDamage(damage, gameObject);
     }
 
     private void DestroyStuff()

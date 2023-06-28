@@ -11,7 +11,7 @@ public class normal : MonoBehaviour, IPassInfo
     [SerializeField] private int lifetime;
     [SerializeField] private int damage;
     private int weaponType;
-    private int time;
+    private float time;
 
     public void PassInfo(object[] info)
     {
@@ -26,7 +26,7 @@ public class normal : MonoBehaviour, IPassInfo
 
     private void Update()
     {
-        time++;
+        time += Time.deltaTime;
         if (time >= lifetime)
         {
             gameObject.SetActive(false);

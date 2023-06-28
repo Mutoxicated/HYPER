@@ -13,6 +13,7 @@ public class staminaComms : MonoBehaviour
     private bool full = true;
     private float remainder;
     private bool activate;
+    private float lerp;
 
     //im sorry this is a compact mess
     //idk wtf happened i was prolly high and shit
@@ -67,7 +68,7 @@ public class staminaComms : MonoBehaviour
         minScale = new Vector3(0f,1f,1f);
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (full)
             return;
@@ -76,18 +77,22 @@ public class staminaComms : MonoBehaviour
             return;
         if (chargeBack)
         {
-            t = t + 0.5f;
+            t += 0.75f*Time.deltaTime;
         }
         if (t > 100f)
             t = 100f;
 
-        //charge back
-        //t += 0.01f;
-        if (chargeBack)
-            transform.localScale = Vector3.Lerp(minScale, maxScale, t / 100f);
+        if (t == 0f)
+            lerp = 0f;
         else
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(maxScale.x * t / 100f,transform.localScale.y, transform.localScale.z), Time.deltaTime*10f);
-        //Debug.Log(gameObject.name);
+            lerp = t / 100f;
+
+        //charge back
+        if (chargeBack)
+            transform.localScale = Vector3.Lerp(minScale, maxScale, lerp);
+        else
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(maxScale.x * lerp, transform.localScale.y, transform.localScale.z), Time.deltaTime*10f);
+        
         if (transform.localScale == maxScale)
         {
             full = true;
@@ -96,7 +101,7 @@ public class staminaComms : MonoBehaviour
                 nextNeighbor.ActivateChargeback();
             activate = false;
         }
-        if (transform.localScale == new Vector3(maxScale.x * t / 100f, transform.localScale.y, transform.localScale.z))
+        if (transform.localScale == new Vector3(maxScale.x * lerp, transform.localScale.y, transform.localScale.z))
         {
             if (previousNeighbor != null)
             {

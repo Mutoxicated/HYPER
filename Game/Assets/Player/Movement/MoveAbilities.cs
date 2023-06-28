@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MoveAbilities
 {
-    private int t;
+    private float t;
     private Rigidbody rb;
     private float bounceSpeed;
     private Vector3 bounceDirection;
@@ -40,9 +40,9 @@ public class MoveAbilities
         rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
     }
 
-    public bool Lock(int duration)
+    public bool Lock(float duration)
     {
-        t++;
+        t += Time.fixedDeltaTime;
         rb.drag = 3f;
         if (t > duration)
         {

@@ -55,7 +55,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Pwanch
-  m_Speed: 1.05
+  m_Speed: 0.92
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8675224787932629227}

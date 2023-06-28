@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
         }
         else 
         {
-            bool durationExceeded = ability.Lock(40);
+            bool durationExceeded = ability.Lock(1f);
             if (durationExceeded)
             {
                 //Debug.Log("UNLOCKED");
@@ -83,8 +83,8 @@ public class Movement : MonoBehaviour
         //walking
         if (movementState == MovementState.WALKING)
         {
-            moveX = Input.GetAxis("Horizontal") * walkSpeed;
-            moveZ = Input.GetAxis("Vertical") * walkSpeed;
+            moveX = Input.GetAxisRaw("Horizontal") * walkSpeed;
+            moveZ = Input.GetAxisRaw("Vertical") * walkSpeed;
 
             Vector3 flatForward = transform.forward;
             flatForward.y = 0f;
@@ -127,17 +127,16 @@ public class Movement : MonoBehaviour
         movementState = MovementState.WALKING;
     }
 
-    //input system has problems? put everything in the same update method
-    private void FixedUpdate() 
+    private void Update()
     {
         jumpInput.Update();
         dashInput.Update();
         slideInput.Update();
         launchInput.Update();
-        Move();
-        if (launchInput.GetInputDown() && airborne)
+        if (launchInput.GetInputDown() && airborne && movementState != MovementState.BOUNCING)
         {
             movementState = MovementState.BOUNCING;
+            stamina.ReduceStamina(100f);
             ability.LaunchIn(point, launchForce);
             return;
         }
@@ -152,6 +151,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
+                stamina.ReduceStamina(50f);
                 movementState = MovementState.LOCKED;
             }
             return;
@@ -168,6 +168,7 @@ public class Movement : MonoBehaviour
             }
             stamina.ReduceStamina(100f);
             movementState = MovementState.WALKING;
+            rb.drag = 2f;
             crouchReleased = false;
             return;
         }
@@ -203,6 +204,9 @@ public class Movement : MonoBehaviour
         movementState = MovementState.WALKING;
     }
 
+    // used to be this comment said something really stupid
+    private void FixedUpdate() => Move();
+    
     private void OnCollisionEnter(Collision collision)
     {
         point = collision.GetContact(0);

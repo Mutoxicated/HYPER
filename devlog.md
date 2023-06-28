@@ -276,3 +276,21 @@ Anyway yeah that was a big paragraph lol, I'm gonna go now.
 ## Day 19
 
 Didn't progress on the project today, I took a day off.
+
+## Day 20
+
+Painful day, but I'm so happy I got some really important things done.
+
+The punch melee attack is done, implemented the sceen shake, and implemented player health bar. And also one thing that I'll mention in the end.
+
+I pretty much put screen shake and some particle effects and debris upon punching an object/enemy. I like how the screen shake turned out, you just put in the strength of the shake, number of times you want it to happen, and the interval of each shake, simple. The player health system was the turning point, it was pretty painful to implement, because of all the things I was sub-implementing at once... BUT I did it :D.
+
+Now let's talk about something...
+
+I build the game, right? Playtesting it and all that, when I realized the game was acting differently in the build. I was befuddled, cunfuzzled, and quite possibly flabbergasted. I was trying to find the reason why it was happening, until it occured to me... ***All my scripts were framerate dependent.*** It was all framerate dependent because I wasn't using Time.deltaTime, or Time.fixedDeltaTime in their respective updates, which exist to keep things consistent despite framerate changes. I died inside for a brief moment, then went on to fix every single script I have made up until this point. 
+
+Was it a really painful day? Yes. Do I feel whole-heartedly fulfilled after all that pain? Yes.
+
+Anyway yeah I'm NOT touching this project any more for today lol.
+
+Also 69 changed files committed LET'S GO.

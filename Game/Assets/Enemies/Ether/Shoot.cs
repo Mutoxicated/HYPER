@@ -6,11 +6,11 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField] private int shootInterval;
     [SerializeField] private GameObject bulletPrefab;
-    private int time;
+    private float time;
 
     private void FixedUpdate()
     {
-        time++;
+        time += Time.deltaTime;
         if (time > shootInterval)
         {
             Instantiate(bulletPrefab, transform.position, transform.rotation);
