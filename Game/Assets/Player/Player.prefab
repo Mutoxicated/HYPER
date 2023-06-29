@@ -62,7 +62,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 32
@@ -177,7 +177,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 8
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d08c654f1e489b449b0a5f8aa361c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 73.6
+  walkSpeed: 85
   slideSpeed: 19
   slamSpeed: 31.7
   dashSpeed: 25
@@ -754,7 +754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2011796481709383601, guid: a6cf1eef2ae3d74438df935e43bac674, type: 3}
       propertyPath: interval
-      value: 0.08
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 2011796481709383601, guid: a6cf1eef2ae3d74438df935e43bac674, type: 3}
       propertyPath: strength

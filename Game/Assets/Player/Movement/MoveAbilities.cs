@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoveAbilities
@@ -16,12 +12,16 @@ public class MoveAbilities
         this.rb = rb;
     }
 
-    public void Jump(Vector3 pointNormal, float jumpForce)
+    public void Jump(ContactPoint point, float jumpForce)
     {
-        if (pointNormal.y != 1f)
+        if (point.otherCollider.gameObject.layer != 10)
+        {
             rb.velocity = Vector3.zero;
-        pointNormal.y = 1f;
-        rb.AddForce(pointNormal.normalized * jumpForce, ForceMode.Impulse);
+            Debug.Log("happened");
+        }
+        Vector3 finalNormal = point.normal;
+        finalNormal.y = 1f;
+        rb.AddForce(finalNormal.normalized * jumpForce, ForceMode.Impulse);
     }
 
     public void Slide(Vector3 direction, float slideSpeed)

@@ -77,12 +77,12 @@ public class staminaComms : MonoBehaviour
             return;
         if (chargeBack)
         {
-            t += 0.75f*Time.deltaTime;
+            t += 32f*Time.deltaTime;
         }
         if (t > 100f)
             t = 100f;
 
-        if (t == 0f)
+        if (Mathf.Approximately(t, 0f))
             lerp = 0f;
         else
             lerp = t / 100f;

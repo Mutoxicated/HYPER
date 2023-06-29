@@ -145,7 +145,7 @@ public class Movement : MonoBehaviour
             currentJumps++;
             if (!airborne)
             {
-                ability.Jump(point.normal, jumpForce);
+                ability.Jump(point, jumpForce);
                 movementState = MovementState.WALKING;
                 crouchReleased = false;
             }

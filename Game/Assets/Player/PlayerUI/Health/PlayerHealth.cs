@@ -89,13 +89,13 @@ public class PlayerHealth : MonoBehaviour, IDamagebale
 
     private void Update()
     {
-        if (currentHP != 0)
-            healthT = currentHP / HP;
-        else healthT = 0f;
-        //Debug.Log(healthT);
+        if (currentHP == 0f)
+            healthT = 0f;
+        else healthT = currentHP / HP;
+        
         healthBar.localScale = Vector3.Lerp(
             healthBar.localScale, 
-            new Vector3(initialScale.x * healthT,healthBar.localScale.y, healthBar.localScale.z), 
+            new Vector3(Mathf.Clamp(initialScale.x * healthT,0.002f,initialScale.x),healthBar.localScale.y, healthBar.localScale.z), 
             Time.deltaTime * lerpSpeed);
 
         Color healthColor = healthBarGradient.Evaluate(healthT);

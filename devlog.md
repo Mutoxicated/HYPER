@@ -294,3 +294,16 @@ Was it a really painful day? Yes. Do I feel whole-heartedly fulfilled after all 
 Anyway yeah I'm NOT touching this project any more for today lol.
 
 Also 69 changed files committed LET'S GO.
+
+## Day 21 
+
+Didn't do a lot but I made the beam in the center of the arena teleport you to the shop, and i also set up the gameplay systems. So the systems are as follows: Round System > Wave System > Sequence System. And all of these systems depend on the Difficulty System for not only acquiring essential info but also incrementing the info so as to create difficulty progression.
+
+1. Round System handles the round and initializing the wave system.
+2. Wave System handles the waves in the round and initializing the sequence system.
+3. Sequence System handles the sequences of enemies spawning in the wave.
+4. Difficulty System and all of the above handle each other.
+
+It's also worth mentioning that I organized some of the files and folders. Damn the game is getting big...
+
+That's all yeah.
