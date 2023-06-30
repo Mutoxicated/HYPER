@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ERotate : MonoBehaviour
 {
-    [SerializeField] private int rotationInterval;
+    [SerializeField] private float rotationInterval;
     [SerializeField, Range(0.2f,20f)] private float lerpSpeed;
     [SerializeField] private Quaternion toRotation;
     [SerializeField] private bool randomRotation = true;

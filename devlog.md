@@ -307,3 +307,13 @@ Didn't do a lot but I made the beam in the center of the arena teleport you to t
 It's also worth mentioning that I organized some of the files and folders. Damn the game is getting big...
 
 That's all yeah.
+
+## Day 22 
+
+Completed the gameplay loop, fully implemented, fixed a weird bug that is honestly unity's fault tbh. OnCollisionExit does not get called if you are colliding with an enemy constantly but then it suddenly dies, so the Movement class thinks that you are still colliding with the enemy, and this leads to some errors when trying to jump or slide. Fixed it though by checking if the other collider of the collision is null or not. If it is null, then you are most definitely airborne, and therefore can't jump or slide.
+
+Anyway yeah things are going fine, but I still like haven't even done half of the game, which is kinda scary.
+
+But uhh yep that's all, I'm not concentrating on the game so much because I want to finish some other stuff I've been working on for some time, but haven't had the time to finish them because of the game, lol.
+
+Tomorrow I want to think of a few potential enemies, upgrades, etc. And also make the shop actually be a shop lol. Maybe I'll also think of some lore for the enemies as well lol idk.

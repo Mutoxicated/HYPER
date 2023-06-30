@@ -52,6 +52,11 @@ public class GunShooter : MonoBehaviour
 
     private Scroll scrollWheel = new Scroll(0, 5);
 
+    public int GetWeaponTypeInt()
+    {
+        return index;
+    }
+
     private void Recoil()
     {
         transform.localPosition += recoilPosition;
@@ -86,7 +91,6 @@ public class GunShooter : MonoBehaviour
         if (bulletQueue.Count == 0 || bulletQueue.Peek().activeSelf)
         {
             var instance = Instantiate(bulletPrefab, pos, rotation);
-            instance.GetComponent<IPassInfo>().PassInfo(new object[] { weaponType });
             bulletQueue.Enqueue(instance);
         }
         else// reuse a bullet

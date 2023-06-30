@@ -3,55 +3,85 @@ using System.Collections.Generic;
 using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Sequence : MonoBehaviour
 {
     private static Difficulty diff;
+    private static GameObject[] spawnPoints;
 
-    private int spawner_amount;
-    public int spawn_times;
-    public float spawn_interval;
+    private List<Spawner> spawners = new List<Spawner>();
+    private const float spawnInterval = 0.2f;
 
     private List<GameObject> entities = new List<GameObject>();
     private float t = 0f;
-    private int current_times = 0;
+    private int spawns = 0;
     private bool sequenceEnded = false;
 
     private void Start()
     {
         if (diff == null)
             diff = GameObject.FindWithTag("Difficulty").GetComponent<Difficulty>();
+        if (spawnPoints == null)
+            spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        for (int i = 0; i < diff.spawnerPopulation; i++)
+        {
+            spawners.Add(new Spawner(spawnPoints[Random.Range(0, spawnPoints.Length)].transform));
+        }
     }
 
     private void Update()
     {
         t += Time.deltaTime;
-        if (t >= spawn_interval)
+        CalculateEntities();
+        if (sequenceEnded)
+            return;
+        if (t >= spawnInterval)
         {
-            current_times++;
-            Debug.Log("Enemy Spawned at location: ");
+            spawns++;
+            for (int i = 0; i < spawners.Count; i++)
+            {
+                GameObject instance = Instantiate(diff.enemyPool[Random.Range(0, diff.enemyPool.Count)], spawners[i].coords, spawners[i].rotation);
+                entities.Add(instance);
+            }
         }
-        if (current_times >= spawn_times)
+        if (spawns >= diff.entitySpawnerPopulation)
         {
             sequenceEnded = true;
         }
+    }
 
-        CalculateEntities();
+    public static void RemoveSpawnPoints()
+    {
+        spawnPoints = null;
+    }
+
+    public void EndSequence()
+    {
+        Destroy(gameObject);
     }
 
     private void CalculateEntities()
     {
+        if (entities.Count == 0)
+            return;
         foreach (var entity in entities)
         {
-            if (entity.IsDestroyed())
+            if (entity == null)
             {
                 entities.Remove(entity);
+                break;
             }
         }
     }
 
-    private int EnemiesLeft()
+    public int EnemiesLeft()
     {
         return entities.Count;
+    }
+
+    public bool SequenceEnded()
+    {
+        return sequenceEnded;
     }
 }

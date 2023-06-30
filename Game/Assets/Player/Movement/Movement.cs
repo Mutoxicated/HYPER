@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -42,7 +43,8 @@ public class Movement : MonoBehaviour
     private ButtonInput jumpInput = new ButtonInput("Jump");
     private ButtonInput dashInput = new ButtonInput("Dash");
     private ButtonInput slideInput = new ButtonInput("Slide");
-    private ButtonInput launchInput = new ButtonInput("Launch");
+    private ButtonInput launchInput = new ButtonInput("LaunchIn");
+    private ButtonInput launch2Input = new ButtonInput("LaunchOut");
 
     private bool airborne = true;
     private bool crouchReleased = true;
@@ -123,21 +125,37 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+        rb.drag = 2f;
         ability = new MoveAbilities(rb);
         movementState = MovementState.WALKING;
     }
 
     private void Update()
     {
+        //Debug.Log(airborne);
         jumpInput.Update();
         dashInput.Update();
         slideInput.Update();
         launchInput.Update();
+        launch2Input.Update();
+        if (!point.IsUnityNull())//this check covers specifically the enemies when they die while you are in contact with them
+        {
+            if (point.otherCollider == null)
+                airborne = true;
+        }
+
         if (launchInput.GetInputDown() && airborne && movementState != MovementState.BOUNCING)
         {
             movementState = MovementState.BOUNCING;
             stamina.ReduceStamina(100f);
             ability.LaunchIn(point, launchForce);
+            return;
+        }
+        else if (launch2Input.GetInputDown() && airborne && movementState != MovementState.BOUNCING)
+        {
+            movementState = MovementState.BOUNCING;
+            stamina.ReduceStamina(100f);
+            ability.LaunchOut(point, launchForce);
             return;
         }
         if (jumpInput.GetInputDown() && currentJumps < maxJumps)
@@ -149,12 +167,12 @@ public class Movement : MonoBehaviour
                 movementState = MovementState.WALKING;
                 crouchReleased = false;
             }
-            else
-            {
-                stamina.ReduceStamina(50f);
-                movementState = MovementState.LOCKED;
-            }
-            return;
+        else
+        {
+            stamina.ReduceStamina(50f);
+            movementState = MovementState.LOCKED;
+        }
+        return;
         }
         if (dashInput.GetInputDown() && stamina.GetCurrentStamina() > 100f)
         {
@@ -210,10 +228,10 @@ public class Movement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         point = collision.GetContact(0);
+        airborne = false;
         if (movementState != MovementState.BOUNCING)
             return;
         bounces++;
-        Debug.Log(bounces);
         ability.Bounce(point);
         if (bounces >= maxBounces)
         {

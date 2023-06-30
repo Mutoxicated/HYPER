@@ -6,6 +6,8 @@ TagManager:
   tags:
   - bullets
   - Difficulty
+  - SpawnPoint
+  - Gun
   layers:
   - Default
   - TransparentFX

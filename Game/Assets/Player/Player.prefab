@@ -428,7 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 85
   slideSpeed: 19
-  slamSpeed: 31.7
+  slamSpeed: 40.3
   dashSpeed: 25
   gravityForce: 19
   jumpForce: 18.2
@@ -850,6 +850,10 @@ PrefabInstance:
     - target: {fileID: 5891630555795777347, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
       propertyPath: m_Name
       value: insane gun 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891630555795777347, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
+      propertyPath: m_TagString
+      value: Gun
       objectReference: {fileID: 0}
     - target: {fileID: 6523629446027230713, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
       propertyPath: m_RootOrder

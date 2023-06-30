@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class normal : MonoBehaviour, IPassInfo
+public class normal : MonoBehaviour
 {
+    private static GunShooter gun;
+
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
     [SerializeField] private GameObject particlePrefab;
     [SerializeField] private int lifetime;
     [SerializeField] private int damage;
-    private int weaponType;
     private float time;
 
-    public void PassInfo(object[] info)
+    private void Awake()
     {
-        weaponType = (int)info[0]+1;
-        damage = damage/weaponType;//damage is equally shared with all of the bullets
+        if (gun == null)
+            gun = GameObject.FindWithTag("Gun").GetComponent<GunShooter>();
+        damage = damage / gun.GetWeaponTypeInt() + 1;//damage is equally shared with all of the bullets
+        speed = speed / gun.GetWeaponTypeInt() + 1;
     }
-
+    
     private void OnEnable()
     {
         rb.velocity = transform.forward * speed;

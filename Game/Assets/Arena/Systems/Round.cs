@@ -10,7 +10,7 @@ public class Round : MonoBehaviour
     public GameObject beamInstance;
 
     private Wave waveInfo;
-    private int currentWave = 0;
+    private int waves = 0;
 
     public void StartRound()
     {
@@ -35,23 +35,27 @@ public class Round : MonoBehaviour
     public void EndRound()
     {
         Destroy(gameObject);
+        Sequence.RemoveSpawnPoints();
         beamInstance.SetActive(true);
     }
 
     public void NextWave()
     {
-        if (currentWave >= diff.wavePopulation)
+        if (waves >= diff.wavePopulation)
         {
+            waveInfo.EndWave();
             EndRound();
             return;
         }
         else
         {
             Debug.Log("a");
+            if (waveInfo != null)
+                waveInfo.EndWave();
             var instance = Instantiate(wavePrefab);
             instance.transform.SetParent(transform);
             waveInfo = instance.GetComponent<Wave>();
-            currentWave++;
+            waves++;
         }
     }
 }

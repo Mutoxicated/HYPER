@@ -89,7 +89,6 @@ public class EnemyHealth : MonoBehaviour, IDamagebale
     {
         t = 1f;
         currentHP -= intake;
-        Debug.Log(intake);
         if (currentHP <= 0)
         {
             if (particleUponDeath != null)

@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class Wave : MonoBehaviour
     public GameObject sequencePrefab;
 
     private bool finished = false;
+    private int sequences = 0;
     private Sequence sequenceInfo;
 
     private void Start()
@@ -19,7 +21,19 @@ public class Wave : MonoBehaviour
 
     private void Update()
     {
-        
+        if (finished)
+            return;
+        if (sequenceInfo.EnemiesLeft() == 0 && sequenceInfo.SequenceEnded())
+        {
+            if (sequences >= diff.sequencePopulation)
+            {
+                finished = true;
+                sequenceInfo.EndSequence();
+                return;
+            }
+            Debug.Log("ha");
+            NextSequence();
+        }
     }
 
     public void StartSequence()
@@ -29,9 +43,17 @@ public class Wave : MonoBehaviour
 
     public void NextSequence()
     {
+        sequences++;
+        if (sequenceInfo != null)
+            sequenceInfo.EndSequence();
         var instance = Instantiate(sequencePrefab);
         instance.transform.SetParent(transform);
         sequenceInfo = instance.GetComponent<Sequence>();
+    }
+
+    public void EndWave()
+    {
+        Destroy(gameObject);
     }
 
     public bool isFinished()

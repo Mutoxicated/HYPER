@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba62ce21dcd91c4e947fa7daa284864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationInterval: 100
+  rotationInterval: 0.3
   lerpSpeed: 1.61
   toRotation: {x: 0, y: 0, z: 0, w: 0}
   randomRotation: 1
@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 5590852258249917329}
   - component: {fileID: 5590852258249917328}
   - component: {fileID: 5590852258249917331}
+  - component: {fileID: 4057817209302171822}
   - component: {fileID: 1934212863612445911}
   m_Layer: 8
   m_Name: inner
@@ -277,10 +278,26 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  HP: 400
+  HP: 19
   rate: 2
   hitReaction: 1
   enableHealthBar: 0
+--- !u!54 &4057817209302171822
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590852258249917334}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 2
 --- !u!64 &1934212863612445911
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -288,11 +305,11 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5590852258249917334}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fba8fb389789ce84099e83f1f8a97d65, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 289301614986012343, guid: cd89b8355d7243b4ab72b34bff33623d, type: 3}
 --- !u!1 &5590852258653356626
@@ -306,6 +323,7 @@ GameObject:
   - component: {fileID: 5590852258653356627}
   - component: {fileID: 5590852258653356636}
   - component: {fileID: 5590852258653356637}
+  - component: {fileID: 837531678672731437}
   m_Layer: 8
   m_Name: Ether
   m_TagString: Untagged
@@ -359,6 +377,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootInterval: 2
   bulletPrefab: {fileID: 8574461424792126625, guid: af413e6d89772d8419e76972c965b5cd, type: 3}
+--- !u!114 &837531678672731437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590852258653356626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0871d566f8731428cce538d6f0e313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yCheck: 0
+  distanceCheck: 5
+  minY: 2
+  maxY: 20
 --- !u!1001 &5585410069360270865
 PrefabInstance:
   m_ObjectHideFlags: 0

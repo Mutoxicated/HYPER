@@ -13,7 +13,7 @@ public class MoveAbilities
     }
 
     public void Jump(ContactPoint point, float jumpForce)
-    {
+    {   
         if (point.otherCollider.gameObject.layer != 10)
         {
             rb.velocity = Vector3.zero;
@@ -57,6 +57,14 @@ public class MoveAbilities
     {
         bounceSpeed = launchSpeed;
         bounceDirection = (point.point - rb.position).normalized * bounceSpeed;
+        rb.velocity = bounceDirection;
+        rb.drag = 0f;
+    }
+
+    public void LaunchOut(ContactPoint point, float launchSpeed)
+    {
+        bounceSpeed = launchSpeed;
+        bounceDirection = (rb.position - point.point).normalized * bounceSpeed;
         rb.velocity = bounceDirection;
         rb.drag = 0f;
     }
