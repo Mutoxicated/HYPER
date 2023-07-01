@@ -317,9 +317,3 @@ Anyway yeah things are going fine, but I still like haven't even done half of th
 But uhh yep that's all, I'm not concentrating on the game so much because I want to finish some other stuff I've been working on for some time, but haven't had the time to finish them because of the game, lol.
 
 Tomorrow I want to think of a few potential enemies, upgrades, etc. And also make the shop actually be a shop lol. Maybe I'll also think of some lore for the enemies as well lol idk.
-
-## Day 23 
-
-I didn't open Unity or matter of fact anything today. I did the unthinkable... I WENT OUTSIDE!! I touched GRASS! I made a staring contest with the SUN!! 
-
-Jokes aside it was a fun day.
