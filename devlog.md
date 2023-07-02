@@ -323,3 +323,9 @@ Tomorrow I want to think of a few potential enemies, upgrades, etc. And also mak
 I didn't open Unity or matter of fact anything today. I did the unthinkable... I WENT OUTSIDE!! I touched GRASS! I made a staring contest with the SUN!! 
 
 Jokes aside it was a fun day.
+
+## Day 24 
+
+I almost made the second enemy, I don't have time to finish it today. I changed the mesh for the particles, they look better now :] I also thought of some new items and stuff so yeah. Will explain tomorrow.
+
+Anyway yeah, going to sleep now.

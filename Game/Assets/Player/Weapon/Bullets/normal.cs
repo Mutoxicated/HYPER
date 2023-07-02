@@ -18,8 +18,8 @@ public class normal : MonoBehaviour
     {
         if (gun == null)
             gun = GameObject.FindWithTag("Gun").GetComponent<GunShooter>();
-        damage = damage / gun.GetWeaponTypeInt() + 1;//damage is equally shared with all of the bullets
-        speed = speed / gun.GetWeaponTypeInt() + 1;
+        damage = damage / (gun.GetWeaponTypeInt() + 1);//damage is equally shared with all of the bullets
+        speed = speed / (gun.GetWeaponTypeInt() + 1);
     }
     
     private void OnEnable()

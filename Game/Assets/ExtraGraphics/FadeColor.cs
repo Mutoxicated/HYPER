@@ -11,11 +11,12 @@ public class FadeColor : MonoBehaviour
     private Material mat;
     private const float tau = Mathf.PI * 2f;
     private float angle = tau;
-    [SerializeField, Range(tau / 180f, tau / 1800f)] private float rate;
+    [SerializeField, Range(tau / 10f, tau / 1800f)] private float rate;
 
     void Start()
     {
-        mat = GetComponent<Renderer>().materials[1];
+        var a = GetComponent<Renderer>().materials;
+        mat = a[a.Length-1];
     }
 
     // Update is called once per frame
@@ -24,6 +25,6 @@ public class FadeColor : MonoBehaviour
         angle += rate * Time.deltaTime;
         float rawSineWave = Mathf.Sin(angle);
 
-        mat.SetColor("_WireframeBackColour", gradient.Evaluate(rawSineWave));
+        mat.SetColor("_WireframeBackColour", gradient.Evaluate(Mathf.Abs(rawSineWave)));
     }
 }

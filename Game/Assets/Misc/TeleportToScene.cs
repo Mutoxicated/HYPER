@@ -7,7 +7,8 @@ public class TeleportToScene : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.tag != "Player")
+            return;
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
         if (rb != null)
             rb.velocity = Vector3.zero;
