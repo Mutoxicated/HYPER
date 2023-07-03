@@ -329,3 +329,9 @@ Jokes aside it was a fun day.
 I almost made the second enemy, I don't have time to finish it today. I changed the mesh for the particles, they look better now :] I also thought of some new items and stuff so yeah. Will explain tomorrow.
 
 Anyway yeah, going to sleep now.
+
+## Day 25
+
+So I did some stuff, not a lot because the development today went frmo ok to catastrophic to can it get worse? to it got worse to ok again. I do not want to talk about it. Lol. I thought of some new items again, kind of reorganized the item list because it's getting concerningly big...
+
+TOMORROW I am 102% sure that I will show you some of the new items and some more gameplay ideas that I've kept to myself for the past few days. But yeah that's all I gotta say. Bye !!

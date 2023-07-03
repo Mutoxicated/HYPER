@@ -23,6 +23,9 @@ public class LookToPlayer : MonoBehaviour
         toPlayer.y *= axisMultiplier.y;
         toPlayer.z *= axisMultiplier.z;
         lookRotation = Quaternion.LookRotation(toPlayer);
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime*lerpSpeed);
+    }
+    private void FixedUpdate()
+    {
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.fixedDeltaTime*lerpSpeed);
     }
 }

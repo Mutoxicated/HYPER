@@ -309,7 +309,6 @@ GameObject:
   - component: {fileID: 1797698961860950127}
   - component: {fileID: 1797698961860950126}
   - component: {fileID: 1797698961860950420}
-  - component: {fileID: 1797698961860950421}
   - component: {fileID: 1145246939}
   m_Layer: 7
   m_Name: Player
@@ -453,19 +452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensX: 2
   sensY: 2
---- !u!114 &1797698961860950421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797698961860950125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc3f86bd29f429041befec676626b54f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.12941194, g: 1, b: 0, a: 0}
 --- !u!114 &1145246939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,7 +798,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2011796481709383597, guid: a6cf1eef2ae3d74438df935e43bac674, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a6cf1eef2ae3d74438df935e43bac674, type: 3}
 --- !u!4 &2267576513121095958 stripped
 Transform:
@@ -824,6 +811,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8009595799803125327, guid: a6cf1eef2ae3d74438df935e43bac674, type: 3}
   m_PrefabInstance: {fileID: 223459880647551319}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5011997604227239601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799723705528334104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: _WireframeBackColour
+  matIndex: 1
+  color: {r: 0, g: 1, b: 0.15721321, a: 0}
 --- !u!1001 &5039698104966400126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -937,7 +939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
       propertyPath: weaponType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
       propertyPath: weaponHolder
@@ -975,8 +977,30 @@ PrefabInstance:
       propertyPath: snapiness
       value: 2.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6701970974427585039, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
+    - {fileID: 6701970974289007522, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
+--- !u!1 &1455749546322522608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5891630554952382862, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
+  m_PrefabInstance: {fileID: 5039698104966400126}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7571642004032838812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455749546322522608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: _WireframeBackColour
+  matIndex: 1
+  color: {r: 0, g: 1, b: 0.98099947, a: 1}
 --- !u!1 &1455749546409733949 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5891630555795777347, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
@@ -1078,6 +1102,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1600944510628785848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455749546409733949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: _WireframeBackColour
+  matIndex: 1
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1797698960887045087 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}

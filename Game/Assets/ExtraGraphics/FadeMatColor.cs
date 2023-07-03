@@ -1,13 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class FadeColor : MonoBehaviour
+public class FadeMatColor : MonoBehaviour
 {
+    [SerializeField] private string colorName = "_WireframeBackColour";
+    [SerializeField] private int index = 1;
     [SerializeField] private Gradient gradient;
+    [SerializeField] private bool cutOff;
     private Material mat;
     private const float tau = Mathf.PI * 2f;
     private float angle = tau;
@@ -16,15 +16,19 @@ public class FadeColor : MonoBehaviour
     void Start()
     {
         var a = GetComponent<Renderer>().materials;
-        mat = a[a.Length-1];
+        mat = a[index];
     }
 
-    // Update is called once per frame
     void Update()
     {
         angle += rate * Time.deltaTime;
         float rawSineWave = Mathf.Sin(angle);
 
-        mat.SetColor("_WireframeBackColour", gradient.Evaluate(Mathf.Abs(rawSineWave)));
+        if (cutOff && rawSineWave >= 0.98f)
+        {
+            angle = tau;
+        }
+
+        mat.SetColor(colorName, gradient.Evaluate(Mathf.Abs(rawSineWave)));
     }
 }

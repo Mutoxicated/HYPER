@@ -8,7 +8,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     private float time;
 
-    private void FixedUpdate()
+    private void Update()
     {
         time += Time.deltaTime;
         if (time > shootInterval)

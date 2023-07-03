@@ -127,7 +127,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _WireframeAliasing: 2
+    - _WireframeAliasing: 1.4
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

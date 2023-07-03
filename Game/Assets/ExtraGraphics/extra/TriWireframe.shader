@@ -18,7 +18,7 @@ Shader "Custom/TriWireframe"
 
         Pass
         {
-            ZWrite Off
+            ZWrite On
             Cull Back
             // Removes the front facing triangles, this enables us to create the wireframe for those behind.
             CGPROGRAM

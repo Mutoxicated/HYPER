@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5613751327765599874}
   - component: {fileID: 6496891850171162660}
   - component: {fileID: 6496891850171162656}
-  - component: {fileID: 6496891850171162663}
-  m_Layer: 0
+  - component: {fileID: 7793287771493725547}
+  m_Layer: 10
   m_Name: insane floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.28235295, b: 0.43137258, a: 0}
---- !u!114 &6496891850171162663
+--- !u!114 &7793287771493725547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,9 +123,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6262520705510225751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29b7222d22d0c2b489ccdb475d4cdec6, type: 3}
+  m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorName: _WireframeBackColour
+  index: 1
   gradient:
     serializedVersion: 2
     key0: {r: 0.006007465, g: 0.2739322, b: 0.4245283, a: 1}
@@ -155,4 +157,4 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  rate: 0.0184
+  rate: 0.021
