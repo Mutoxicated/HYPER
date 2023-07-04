@@ -1,34 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FadeMatColor : MonoBehaviour
 {
     [SerializeField] private string colorName = "_WireframeBackColour";
     [SerializeField] private int index = 1;
     [SerializeField] private Gradient gradient;
-    [SerializeField] private bool cutOff;
+    [SerializeField] private bool useOnInterval = false;
+    [SerializeField] private OnInterval onInterval;
+    [SerializeField] private float interval;
+    private float rate;
     private Material mat;
     private const float tau = Mathf.PI * 2f;
-    private float angle = tau;
-    [SerializeField, Range(tau / 10f, tau / 1800f)] private float rate;
+    private float angle = 0f;
+
+    private float t;
 
     void Start()
     {
+        rate = Mathf.PI / (interval*Mathf.PI);
         var a = GetComponent<Renderer>().materials;
         mat = a[index];
     }
 
     void Update()
     {
-        angle += rate * Time.deltaTime;
-        float rawSineWave = Mathf.Sin(angle);
-
-        if (cutOff && rawSineWave >= 0.98f)
+        if (!useOnInterval)
         {
-            angle = tau;
+            angle += rate * Time.deltaTime;
+            t = Mathf.Sin(angle);
+            if (angle >= Mathf.PI)
+            {
+                angle = 0f;
+            }
         }
-
-        mat.SetColor(colorName, gradient.Evaluate(Mathf.Abs(rawSineWave)));
+        else if (useOnInterval)
+        {
+            t = onInterval.t;
+        }
+        mat.SetColor(colorName, gradient.Evaluate(t));
     }
 }

@@ -22,8 +22,6 @@ public class playerLook : MonoBehaviour
 
     public void AlterLookRotation(Quaternion rotation)
     {
-        //rotationX -= rotation.eulerAngles.x;
-        //rotationY += rotation.eulerAngles.y;
         var differenceX = rotationX - rotation.eulerAngles.x;
         var differenceY = rotation.eulerAngles.y - rotationY;
         rotationX -= differenceX;

@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axisMultiplier: {x: 1, y: 1, z: 1}
-  lerpSpeed: 1.3
+  lerpSpeed: 2.5
 --- !u!114 &2449012977333359559
 MonoBehaviour:
   m_ObjectHideFlags: 0

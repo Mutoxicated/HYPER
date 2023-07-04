@@ -10,8 +10,13 @@ public class EMove : MonoBehaviour
     [SerializeField] private float speed;
 
     private Vector3 direction = Vector3.one;
-    
-    void Start()
+
+    public void ResetVelocity()
+    {
+        rb.velocity = rb.rotation.eulerAngles.normalized * speed;
+    }
+
+    void Awake()
     {
         rb.velocity = (Random.rotation * direction).normalized*speed;
     }

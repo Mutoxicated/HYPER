@@ -95,7 +95,7 @@ public class PlayerHealth : MonoBehaviour, IDamagebale
         
         healthBar.localScale = Vector3.Lerp(
             healthBar.localScale, 
-            new Vector3(Mathf.Clamp(initialScale.x * healthT,0.002f,initialScale.x),healthBar.localScale.y, healthBar.localScale.z), 
+            new Vector3(Mathf.Clamp(initialScale.x * healthT,0.0002f,initialScale.x),healthBar.localScale.y, healthBar.localScale.z), 
             Time.deltaTime * lerpSpeed);
 
         Color healthColor = healthBarGradient.Evaluate(healthT);
@@ -110,7 +110,7 @@ public class PlayerHealth : MonoBehaviour, IDamagebale
         ObjColorLogic();
     }
 
-    public void TakeDamage(int intake, GameObject sender)
+    public void TakeDamage(float intake, GameObject sender)
     {
         reactionT = 1f;
         currentHP = Mathf.Clamp(currentHP -= intake, 0f, HP);
@@ -120,7 +120,7 @@ public class PlayerHealth : MonoBehaviour, IDamagebale
         }
     }
 
-    public void TakeDamage(int intake)
+    public void TakeDamage(float intake)
     {
 
     }

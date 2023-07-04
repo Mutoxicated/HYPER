@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDamagebale
 {
-    void TakeDamage(int intake);
-    void TakeDamage(int intake, GameObject sender);
+    void TakeDamage(float intake);
+    void TakeDamage(float intake, GameObject sender);
 }

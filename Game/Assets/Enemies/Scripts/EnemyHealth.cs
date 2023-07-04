@@ -27,7 +27,7 @@ public class EnemyHealth : MonoBehaviour, IDamagebale
     [SerializeField] private bool enableHealthBar;
 
     private Material[] mats;
-    private int currentHP;
+    private float currentHP;
     private float t = 0f;
     private int index;
     private string ID;
@@ -85,7 +85,7 @@ public class EnemyHealth : MonoBehaviour, IDamagebale
         transform.DetachChildren();
     }
 
-    public void TakeDamage(int intake, GameObject sender)
+    public void TakeDamage(float intake, GameObject sender)
     {
         t = 1f;
         currentHP -= intake;
@@ -99,7 +99,7 @@ public class EnemyHealth : MonoBehaviour, IDamagebale
         }
     }
 
-    public void TakeDamage(int intake)
+    public void TakeDamage(float intake)
     {
 
     }

@@ -12,15 +12,21 @@ Shader "Custom/QuadWireframe"
 
         SubShader
     {
-        Tags { "Queue" = "Transparent"}
-        LOD 30
-        Blend SrcAlpha OneMinusSrcAlpha
+        Tags {"RenderType" = "Transparent" "Queue" = "Transparent" }
+        LOD 200
 
-        Pass
-        {
+            // first pass writes to depth buffer only (make sure sorting is done back-to-front! otherwise occluded fragments will get discarded!)
+           Pass
+           {
+               ZWrite On
+               // disable rendering to color channels
+               ColorMask 0
+           }
 
-            ZWrite On
-            Cull Back
+        Pass {
+               ZWrite Off
+               Blend SrcAlpha OneMinusSrcAlpha
+               BlendOp Add
 
             CGPROGRAM
             #pragma vertex vert
@@ -52,6 +58,7 @@ Shader "Custom/QuadWireframe"
 
             sampler2D _BaseMap;
             float4 _BaseMap_ST;
+            float _Cutoff;
 
             v2f vert(appdata v)
             {

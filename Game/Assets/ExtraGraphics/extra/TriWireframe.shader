@@ -10,16 +10,23 @@ Shader "Custom/TriWireframe"
         _WireframeAliasing("Wireframe aliasing", float) = 1.5
     }
 
-        SubShader
+    SubShader
     {
-        Tags { "Queue" = "Transparent"}
-        LOD 30
-        Blend SrcAlpha OneMinusSrcAlpha
+        Tags { "Queue" = "Transparent" "RenderType" = "Transparent" }
+        LOD 200
 
+         // first pass writes to depth buffer only (make sure sorting is done back-to-front! otherwise occluded fragments will get discarded!)
         Pass
         {
-            ZWrite On
-            Cull Back
+            ZWrite Off
+            // disable rendering to color channels
+            ColorMask 0
+        }
+
+        Pass {
+            ZWrite Off
+            Blend SrcAlpha OneMinusSrcAlpha
+            BlendOp Add
             // Removes the front facing triangles, this enables us to create the wireframe for those behind.
             CGPROGRAM
             #pragma vertex vert
@@ -100,6 +107,6 @@ Shader "Custom/TriWireframe"
                 return fixed4(_WireframeBackColour.r, _WireframeBackColour.g, _WireframeBackColour.b, alpha);
             }
             ENDCG
-            }
+        }
     }
 }
