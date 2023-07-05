@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour, IDamagebale
     [SerializeField, Range(0.5f, 3f)] private float reactionSpeed = 0.05f;
     [SerializeField] private HitReaction hitReaction;
 
-    private List<ObjectInfo> objs = new List<ObjectInfo>();
+    private List<MaterialInfo> objs = new List<MaterialInfo>();
     private float currentHP;
     private float reactionT = 0f;
     private float healthT = 1f;
@@ -81,7 +81,7 @@ public class PlayerHealth : MonoBehaviour, IDamagebale
             return;
         foreach (var obj in playerObjects)
         {
-            objs.Add(new ObjectInfo(obj, obj.GetComponent<Renderer>().materials));
+            objs.Add(new MaterialInfo(obj, obj.GetComponent<Renderer>().materials));
         }
         playerHitGradient = ChangeGradientColor(playerHitGradient, healthBarImg.color);
         ObjColorLogic();

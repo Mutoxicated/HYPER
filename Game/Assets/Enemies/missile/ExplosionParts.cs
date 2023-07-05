@@ -38,11 +38,11 @@ public class ExplosionParts : MonoBehaviour
         }
     }
 
-    public void ExplodeParts(Vector3 explosionPoint)
+    public void ExplodeParts(Transform explosionPoint)
     {
         foreach (var part in parts)
         {
-            var direction = part.transform.position - explosionPoint;
+            var direction = part.transform.position - explosionPoint.position;
             part.gameObject.SetActive(true);
             part.AddForce(direction * Random.Range(speedMin,speedMax), ForceMode.Impulse);
         }

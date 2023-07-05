@@ -94,7 +94,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 50}
+  - {x: 0, y: 0, z: 120}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

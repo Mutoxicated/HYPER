@@ -18,7 +18,7 @@ Shader "Custom/TriWireframe"
          // first pass writes to depth buffer only (make sure sorting is done back-to-front! otherwise occluded fragments will get discarded!)
         Pass
         {
-            ZWrite Off
+            ZWrite On
             // disable rendering to color channels
             ColorMask 0
         }
@@ -27,6 +27,7 @@ Shader "Custom/TriWireframe"
             ZWrite Off
             Blend SrcAlpha OneMinusSrcAlpha
             BlendOp Add
+
             // Removes the front facing triangles, this enables us to create the wireframe for those behind.
             CGPROGRAM
             #pragma vertex vert

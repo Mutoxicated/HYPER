@@ -5,67 +5,29 @@ using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour, IDamagebale
 {
-    public enum HitReaction
-    {
-        BASE,
-        WIREFRAME,
-        BOTH
-    }
     [Header("Post-Death")]
-    [SerializeField] private UnityEvent<Vector3> OnDeath = new UnityEvent<Vector3>();
+    [SerializeField] private UnityEvent<Transform> OnDeath = new UnityEvent<Transform>();
     [SerializeField] private GameObject[] ObjectsToDestroy;
-    [SerializeField] private GameObject particleUponDeath;
-    [SerializeField] private bool detachChildren;
+    [SerializeField] private GameObject[] ChildrenToDetach;
     [Space]
     [Header("General")]
     [SerializeField] private Gradient healthBarGradient;
-    [SerializeField] private Gradient enemyHitGradient;
     [SerializeField] private int HP;
     [SerializeField,Range(0.5f,2f)] private float rate = 0.05f;
 
-    [SerializeField] private HitReaction hitReaction;
     [SerializeField] private bool enableHealthBar;
 
-    private Material[] mats;
     private float currentHP;
-    private float t = 0f;
-    private int index;
-    private string ID;
+    public float t = 0f;
 
     private void Start()
     {
         currentHP = HP;
-        mats = GetComponent<Renderer>().materials;
-        switch (hitReaction)
-        {
-            case HitReaction.BASE:
-                index = 0;
-                ID = "_Color";
-                break;
-            case HitReaction.WIREFRAME:
-                index = mats.Length-1;
-                ID = "_WireframeBackColour";
-                break;
-            case HitReaction.BOTH:
-                index = 0;
-                ID = "_Color";
-                break;
-            default:
-                break;
-        }
     }
 
     private void Update()
     {
         t = Mathf.Clamp01(t - rate*Time.deltaTime);
-    
-        if (hitReaction == HitReaction.BOTH)
-        {
-            mats[index].SetColor(ID, enemyHitGradient.Evaluate(t));
-            mats[mats.Length-1].SetColor("_WireframeBackColour", enemyHitGradient.Evaluate(t));
-            return;
-        }
-        mats[index].SetColor(ID, enemyHitGradient.Evaluate(t));
     }
 
     private void DestroyStuff()
@@ -80,9 +42,12 @@ public class EnemyHealth : MonoBehaviour, IDamagebale
 
     private void Detach()
     {
-        if (!detachChildren)
+        if (ChildrenToDetach == null)
             return;
-        transform.DetachChildren();
+        foreach (var obj in ChildrenToDetach)
+        {
+            obj.transform.parent = null;
+        }
     }
 
     public void TakeDamage(float intake, GameObject sender)
@@ -91,11 +56,9 @@ public class EnemyHealth : MonoBehaviour, IDamagebale
         currentHP -= intake;
         if (currentHP <= 0)
         {
-            if (particleUponDeath != null)
-                Instantiate(particleUponDeath, transform.position, Quaternion.identity);
-            OnDeath.Invoke(sender.transform.position);
             Detach();
             DestroyStuff();
+            OnDeath.Invoke(sender.transform);
         }
     }
 

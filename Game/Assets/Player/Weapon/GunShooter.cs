@@ -162,6 +162,8 @@ public class GunShooter : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
         fireInput.Update();
         fire2Input.Update();
         if (fireInput.GetInput() && readyToShoot)

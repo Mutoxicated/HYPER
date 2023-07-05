@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class FadeMatColor : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class FadeMatColor : MonoBehaviour
     private float angle = 0f;
 
     private float t;
+    public Color color;
 
     void Start()
     {
@@ -40,6 +40,7 @@ public class FadeMatColor : MonoBehaviour
         {
             t = onInterval.t;
         }
-        mat.SetColor(colorName, gradient.Evaluate(t));
+        color = gradient.Evaluate(t);
+        mat.SetColor(colorName, color);
     }
 }

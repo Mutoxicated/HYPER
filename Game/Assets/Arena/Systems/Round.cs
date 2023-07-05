@@ -49,7 +49,6 @@ public class Round : MonoBehaviour
         }
         else
         {
-            Debug.Log("a");
             if (waveInfo != null)
                 waveInfo.EndWave();
             var instance = Instantiate(wavePrefab);

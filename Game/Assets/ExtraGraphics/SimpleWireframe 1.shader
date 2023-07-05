@@ -24,9 +24,9 @@ Shader "Custom/QuadWireframe"
            }
 
         Pass {
-               ZWrite Off
-               Blend SrcAlpha OneMinusSrcAlpha
-               BlendOp Add
+            ZWrite Off
+            Blend SrcAlpha OneMinusSrcAlpha
+            BlendOp Add
 
             CGPROGRAM
             #pragma vertex vert

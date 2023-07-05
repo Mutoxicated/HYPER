@@ -17,7 +17,6 @@ public class MoveAbilities
         if (point.otherCollider.gameObject.layer != 10)
         {
             rb.velocity = Vector3.zero;
-            Debug.Log("happened");
         }
         Vector3 finalNormal = point.normal;
         finalNormal.y = 1f;

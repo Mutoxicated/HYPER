@@ -351,3 +351,15 @@ Anyway I just realized that it's July which kind of worries me because 1/3 of my
 ### BY THE WAY
 
 Downloading the project in this version will result in many missing prefabs probably, I've unpacked a lot of prefabs because of missing scripts warnings (that show up for no reason...) so yeah next version I will fix everything.
+
+## Day 27
+
+Pretty slow progress, mostsly due to me trying to make things flexible enough for the future. I feel like I learned a lot during these 27 days, like, A LOT. Not only about coding architecture, but also about graphics, shaders, game design, etc. It's just been a nice 27 days y'know. So I got stuck on this problem that I believe I have found the solution that wouldn't cause any other problems. Surprisingly, the solution not only involved making a script, but changing an existing script to make it better and more flexible, while being acceptable in my mind. 
+
+The problem was, I wanted for particles to be colored depending on how the enemy was colored at that moment. This isn't as easy as it seems, however there are plenty solutions. One solution I thought of was to make an interface, with the function ColorParticle(Color color), and call it when instantiating the particle like this maybe: particleInstance.GetComponent<IColorParticle>()?.ColorParticle(color). But I quickly rejected that idea because particle instances are going to be pretty frequent and I would rather not to be calling GetComponent a lot of times, as it would probably reduce performance. Not only that but the idea wasn't all that entirely promising to me and didn't feel very intuitive. 
+
+So I thought of some other stupid problems, until one solution stuck with me, which was to have the enemy be instantiated with deactivated particles that would be activated detached from the parent upon death of the enemy. This sounds good, because the particles are already instantiated and I could very easily imagine a script using OnEnable() function to set the particle system color to that of the color of the enemy. But of course there was another problem. I realized that my missile code was detaching all of the children upon death... All of them, including the particles. But wait, the missile isn't supposed to have any particles activating when they are dead, instead there are supposed to be fragments of them exploding, and only when it collides something it should activate the particles. 
+
+So I thought about it until I realized the solution was extremely simple: just like I'm destroying gameobjects upon death, let's detach certain objects upon death! This fixes everything because now, it will not detach the particles upon death unless we put the particles in the array. 
+
+Anyway I didn't have enough time to implement everything, tomorrow I will though, bye!!!!!

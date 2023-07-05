@@ -72,7 +72,6 @@ public class staminaComms : MonoBehaviour
     {
         if (full)
             return;
-        //lose
         if (!activate)
             return;
         if (chargeBack)

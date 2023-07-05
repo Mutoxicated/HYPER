@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Melee : MonoBehaviour
 {
+    [SerializeField] private LayerMask layerMask;
     [SerializeField] private Animator animator;
     [SerializeField] private int punchDamage;
     [SerializeField] private float punchRange;
@@ -17,15 +16,16 @@ public class Melee : MonoBehaviour
     private ButtonInput meleeInput = new ButtonInput("Melee");
     private Camera cam;
     private bool once = true;
+    private bool punching = false;
 
     private RaycastHit hitInfo;
-    private bool block = false;
+    private bool block = true;
     private float t;
 
     private bool Punch()
     {
         Ray ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2,0));
-        bool hit = Physics.Raycast(ray,out hitInfo,punchRange);
+        bool hit = Physics.SphereCast(ray.origin,0.1f, ray.direction, out hitInfo, punchRange, layerMask);
         if (hit)
             hitInfo.collider.gameObject.GetComponent<IDamagebale>()?.TakeDamage(punchDamage,gameObject);
         return hit;
@@ -41,33 +41,34 @@ public class Melee : MonoBehaviour
     private void Update()
     {
         meleeInput.Update();
-        if (meleeInput.GetInputDown() && animator.GetCurrentAnimatorStateInfo(0).IsName("Nun") && once)//nun is idle btw
+        if (meleeInput.GetInputDown() && !punching && once)
         {
+            //Debug.Log("non");
             once = false;
-            animator.SetBool("punch", true);
+            animator.Play("Pwanch");
+            punching = true;
             block = false;
-            return;
-        }else if (animator.GetNextAnimatorStateInfo(0).IsName("Nun"))
+        }
+        else if (punching && animator.GetCurrentAnimatorStateInfo(0).IsName("Nun"))//nun is idle btw
         {
             once = true;
-            animator.SetBool("punch", false);
+            animator.SetFloat("speedMult", 1.3f);
+            punching = false;
         }
         if (block)
             return;
-        if (animator.GetBool("punch"))
+        t += Time.deltaTime;
+        if (t >= punchDelay)
         {
-            t += Time.deltaTime;
-            if (t >= punchDelay)
+            t = 0;
+            bool hit = Punch();
+            animator.SetFloat("speedMult", 0.85f);
+            if (hit)
             {
-                t = 0;
-                bool hit = Punch();
-                if (hit)
-                {
-                    shakeEffect.Shake();
-                    Instantiate(particlePrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                }
-                block = true;
+                shakeEffect.Shake();
+                Instantiate(particlePrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
             }
+            block = true;
         }
     }
 }
