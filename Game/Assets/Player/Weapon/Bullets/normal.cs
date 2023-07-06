@@ -47,7 +47,7 @@ public class normal : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Recycle();
-        collision.gameObject.GetComponent<IDamagebale>()?.TakeDamage(damage, gameObject);
+        collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage, gameObject);
     }
 
     private void OnCollisionStay(Collision collision)

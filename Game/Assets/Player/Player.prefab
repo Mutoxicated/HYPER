@@ -545,7 +545,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 87a9c4ded234b6b4dbbafca548b2a65c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 96e54c14ee2cd8a42acfc75a47172c53, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.508
   m_Pitch: 1
@@ -1037,6 +1037,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensX: 2
   sensY: 2
+  alterToRotation: {x: 0, y: 0, z: 0, w: 0}
+  alterRotation: 0
 --- !u!114 &119900076246059708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,7 +1203,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1875
+    m_Bits: 3923
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

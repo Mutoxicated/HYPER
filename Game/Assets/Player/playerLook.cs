@@ -7,6 +7,15 @@ public class playerLook : MonoBehaviour
     private float rotationX, rotationY;
     private Quaternion lookRotation;
 
+    [SerializeField] private Quaternion alterToRotation;
+    [SerializeField] private bool alterRotation;
+
+    private void Start()
+    {
+        if (alterRotation)
+            AlterLookRotation(alterToRotation);
+    }
+
     private void Update()
     {
         rotationX -= Input.GetAxis("Mouse Y") * Time.deltaTime * (sensY * 100f);

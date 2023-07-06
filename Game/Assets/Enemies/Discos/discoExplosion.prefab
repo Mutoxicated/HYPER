@@ -4820,7 +4820,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
+  - {fileID: 2100000, guid: 362d870322857254787f588baae99fe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4978,6 +4978,10 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 3780252667990583512, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 362d870322857254787f588baae99fe1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
 --- !u!4 &1653039515243025843 stripped

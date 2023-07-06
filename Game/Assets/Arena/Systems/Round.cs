@@ -34,9 +34,9 @@ public class Round : MonoBehaviour
 
     public void EndRound()
     {
-        Destroy(gameObject);
-        Sequence.RemoveSpawnPoints();
         beamInstance.SetActive(true);
+        Sequence.RemoveSpawnPoints();
+        Destroy(gameObject);
     }
 
     public void NextWave()

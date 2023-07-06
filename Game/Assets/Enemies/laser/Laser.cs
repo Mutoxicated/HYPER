@@ -18,7 +18,7 @@ public class Laser : MonoBehaviour
         foreach (var hit in hits)
         {
             Debug.Log(hit.transform.gameObject.name);
-            hit.transform.gameObject.GetComponent<IDamagebale>()?.TakeDamage(damage, gameObject);
+            hit.transform.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage, gameObject);
         }
     }
 

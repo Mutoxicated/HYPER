@@ -18,7 +18,7 @@ public class EnemyCollision : MonoBehaviour
         Detach();
         DestroyStuff();
         if (damage > 0)
-            collision.gameObject.GetComponent<IDamagebale>()?.TakeDamage(damage, gameObject);
+            collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage, gameObject);
     }
 
     private void DestroyStuff()

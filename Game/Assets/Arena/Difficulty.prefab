@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a98e7c1fd0e2a41bcc17019f82d9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPopulation: 3
+  entitySpawnerPopulation: 1
   wavePopulation: 1
-  sequencePopulation: 2
+  sequencePopulation: 1
+  spawnerPopulation: 1
   enemyPool:
   - {fileID: 5590852258653356626, guid: 6db9e5c7dc098d040b0844dcc6474c3b, type: 3}

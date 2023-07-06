@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class PlayerHealth : MonoBehaviour, IDamagebale
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
     public enum HitReaction
     {
@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour, IDamagebale
     private float reactionT = 0f;
     private float healthT = 1f;
     private Vector3 initialScale;
+    private Color playerColor;
 
     private void EvaluateObjColor(int i, int index,string ID)
     {
@@ -98,10 +99,9 @@ public class PlayerHealth : MonoBehaviour, IDamagebale
             new Vector3(Mathf.Clamp(initialScale.x * healthT,0.0002f,initialScale.x),healthBar.localScale.y, healthBar.localScale.z), 
             Time.deltaTime * lerpSpeed);
 
-        Color healthColor = healthBarGradient.Evaluate(healthT);
-        healthBarImg.color = healthColor;
-        healthBarBackImg.color = new Color(healthColor.r, healthColor.g, healthColor.b, healthBarBackImg.color.a);
-        playerHitGradient = ChangeGradientColor(playerHitGradient, healthBarImg.color);
+        playerColor = healthBarGradient.Evaluate(healthT);
+        healthBarImg.color = playerColor;
+        healthBarBackImg.color = new Color(playerColor.r, playerColor.g, playerColor.b, healthBarBackImg.color.a);
 
         if (playerObjects == null)
             return;
@@ -114,6 +114,8 @@ public class PlayerHealth : MonoBehaviour, IDamagebale
     {
         reactionT = 1f;
         currentHP = Mathf.Clamp(currentHP -= intake, 0f, HP);
+        playerColor = healthBarGradient.Evaluate(healthT);
+        playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
         if (currentHP <= 0)
         {
             //death

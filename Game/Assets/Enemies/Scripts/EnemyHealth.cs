@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyHealth : MonoBehaviour, IDamagebale
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [Header("Post-Death")]
     [SerializeField] private UnityEvent<Transform> OnDeath = new UnityEvent<Transform>();

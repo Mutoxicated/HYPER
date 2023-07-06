@@ -10,7 +10,7 @@ Day 1 is as simple and dry as it can get. Creating the repository, project and j
 
 Made the groundworks of the player today: movement, camera look, all that.
 Movement is almost done.
-The movement is very similar to ultrakill, but that's not intentional and is only because ultrakill just generally has good basic movement mechanics.
+The movement is very similar to ULTRAKILL, but that's not intentional and is only because ultrakill just generally has good basic movement mechanics.
 As I have stated in the description of the game, you will be able to upgrade your weapon with many different items.
 Not only that, but certain items are categorized in different **classes**.
 Classes can be synergized to create **synergized classes**.
@@ -363,3 +363,39 @@ So I thought of some other stupid problems, until one solution stuck with me, wh
 So I thought about it until I realized the solution was extremely simple: just like I'm destroying gameobjects upon death, let's detach certain objects upon death! This fixes everything because now, it will not detach the particles upon death unless we put the particles in the array. 
 
 Anyway I didn't have enough time to implement everything, tomorrow I will though, bye!!!!!
+
+## Day 28 
+
+Did the last finishing touche sot the discos enemy. These 28 days were fun. Here's a list of what I did:
+
+1. Movement Mechanics
+2. Graphics
+3. 2 enemies
+4. Attacking mechanics (melee, weaponry, etc)
+5. Gameplay Systems (except difficulty progression)
+6. Gameplay UI (except some small stuff like showing the current wave, current round, etc)
+
+Yup, and a few sound effects I guess. So what now? I'll tell you what. This month, I need to do:
+
+1. Sound effects
+2. Rets of Gameplay UI
+3. Difficulty progression
+4. Shop layout/environment
+5. More enemies
+6. Upgrades
+
+Seems like a fair amount of stuff I'd say. The next month I'll definitely start on like Main menus and all the UI.
+
+I have an idea about the shop. Whilst playing the game, everytime you teleport to the shop, a new random little piece of decoration appears. I just think that would be kinda neat. Like just have an array of preplaced decorations that are all deactivated and one random out of all gets activated after each round.
+
+### Also...
+
+If I remember correctly on Day 25 I told you guys I'd tell you about some of the upgrades and gameplay ideas I had thought of. I completely forgot about it lol. Let me tell you about the gameplay idea I thought about:
+
+So there will be these moments in the round called **Red Intermission** (might change the name later), that happen spontaneously and get more common as difficulty progresses. The arena becomes completely red and every enemy receives a random buff. Red intermissions only last about 10 seconds but you have to be very wary and cautious not to die. Feels like it would create some traumatic experiences on the person who is gonna be playing the game, and that is just what I want :)
+
+Anyway I can't talk about the upgrades because they arent really done, it's pretty slow progress on that side but yeah.
+
+Also I kinda reworked the melee script because of some weird bug. If I pressed F to punch it would lag for a second ONLY the first time, every other time it was fine, which is really weird tbh.
+
+Anyway yeah bye.
