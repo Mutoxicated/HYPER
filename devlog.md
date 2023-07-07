@@ -399,3 +399,20 @@ Anyway I can't talk about the upgrades because they arent really done, it's pret
 Also I kinda reworked the melee script because of some weird bug. If I pressed F to punch it would lag for a second ONLY the first time, every other time it was fine, which is really weird tbh.
 
 Anyway yeah bye.
+
+## Day 29
+
+So I made the gameplay UI, I made it show the current wave you're at and also whenever you teleport to the arena it pops up a floating message saying the current round. Pretty cool if you would ask me.
+
+I also drew the shop layout and then just made the exterior in blender, here's a goofy ahh pic:
+![Alt text](image.png)
+
+Anyway that's all for now. I'm planning on finally making the enemy health bars that were planned since i made the enemy health script (long time ago) and uh yeah. I also have been thinking about refactoring the cameraShake's code design... Like how it's applied and how I could make it better and more flexible. 
+
+I know that I shouldn't constantly be thinking about flexibility too much, because that slows my progress, but I think when you hit the sweetspot and think just enough for it, the oppsoite actually happens. In my opinion, thinking about the flexibility for the future to its almost bare minimum (and still thinking about possible exceptions and how to cover them) is very important, because you prepare yourself and make it easier for your future self to handle things later down the road. I think this is just about thinking not only analytically, but also how your intuition feels about the things you implement, with regards to everything else. Sometimes though you have to be analytical instead of thinking intuitively.
+
+Today I made the FadeMatColor more flexible to make it also applicable in TMP texts. Not only that, I also made this really cool (in my opinion) implementation, where you can choose if you want certain FadeMatColor color values to apply to your material, or whether you want it to apply the material's color value instead. This also let me slowly fade out the text showing the current Round number in the center, while still making it change color. I also had to make a change in the OnInterval script so that now it has the choice to self destruct once the interval has reached. I only did this because unity doesn't have a Destroy() function in the GameObject when picking for functions in the inspector in the UnityEvent, sooo yeah.
+
+By the way, no progress on the upgrades :p Sorry... I just haven't really been very active with the game or with any of my hobbies. Maybe because I've like worked on the game these past 28 days for more than 6 hours a day. I mean, that's what happens when you set up a deadline that lasts 3 months haha.
+
+Anyway yeah that's the end of day 29! With the amount of writing I'm doing, I'm prolly gonna write like 1200+ lines lol.

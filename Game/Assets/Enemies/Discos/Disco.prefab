@@ -154,8 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tmpText: {fileID: 0}
   colorName: _Color
   index: 0
+  useMaterialValues: 00000000
   gradient:
     serializedVersion: 2
     key0: {r: 0, g: 0.08760595, b: 1, a: 0}
@@ -310,6 +312,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  destroyUponEvent: 0
   t: 0
 --- !u!114 &2830821141501705261
 MonoBehaviour:
@@ -644,8 +647,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tmpText: {fileID: 0}
   colorName: _WireframeBackColour
   index: 1
+  useMaterialValues: 00000000
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.9039522, b: 0, a: 1}
@@ -862,8 +867,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tmpText: {fileID: 0}
   colorName: _WireframeBackColour
   index: 0
+  useMaterialValues: 00000000
   gradient:
     serializedVersion: 2
     key0: {r: 0.007843129, g: 0.2248531, b: 0.972549, a: 1}

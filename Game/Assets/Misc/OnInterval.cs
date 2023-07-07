@@ -7,6 +7,7 @@ public class OnInterval : MonoBehaviour
 {
     [SerializeField] private float interval;
     [SerializeField] private UnityEvent onInterval;
+    [SerializeField] private bool destroyUponEvent;
 
     [HideInInspector] public float t;
     private float time;
@@ -18,6 +19,8 @@ public class OnInterval : MonoBehaviour
         {
             time = 0f;
             onInterval.Invoke();
+            if (destroyUponEvent)
+                Destroy(gameObject);
         }
         if (time != 0f)
             t = time / interval;

@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FadeMatColor : MonoBehaviour
 {
+    [SerializeField] private TMP_Text tmpText;
     [SerializeField] private string colorName = "_WireframeBackColour";
     [SerializeField] private int index = 1;
+    [SerializeField] private bool[] useMaterialValues = new bool[4];
     [SerializeField] private Gradient gradient;
     [SerializeField] private bool useOnInterval = false;
     [SerializeField] private OnInterval onInterval;
@@ -15,18 +16,52 @@ public class FadeMatColor : MonoBehaviour
     private const float tau = Mathf.PI * 2f;
     private float angle = 0f;
 
+    private float[] colorValues = new float[4];
     private float t;
-    public Color color;
+    private Color gradientColor;
+    [HideInInspector] public Color color = new Color(0f,0f,0f,0f);
 
     void Start()
     {
         rate = Mathf.PI / (interval*Mathf.PI);
-        var a = GetComponent<Renderer>().materials;
-        mat = a[index];
+        if (tmpText != null)
+        {
+
+        }
+        else
+        {
+            var a = GetComponent<Renderer>().materials;
+            mat = a[index];
+        }
+        ComputeColorValues();
+    }
+
+    private void ComputeColorValues()
+    {
+        for (int i = 0; i < useMaterialValues.Length; i++)
+        {
+            if (useMaterialValues[i])
+            {
+                if (tmpText == null)
+                {
+                    colorValues[i] = mat.GetColor(colorName)[i];
+                }
+                else
+                {
+                    colorValues[i] = tmpText.color[i];
+                }
+            }
+            else
+            {
+                colorValues[i] = gradientColor[i];
+            }
+            color[i] = colorValues[i];
+        }
     }
 
     void Update()
     {
+        ComputeColorValues();
         if (!useOnInterval)
         {
             angle += rate * Time.deltaTime;
@@ -40,7 +75,12 @@ public class FadeMatColor : MonoBehaviour
         {
             t = onInterval.t;
         }
-        color = gradient.Evaluate(t);
-        mat.SetColor(colorName, color);
+        gradientColor = gradient.Evaluate(t);
+        if (tmpText == null)
+            mat.SetColor(colorName, color);
+        else
+        {
+            tmpText.color = color;
+        }
     }
 }

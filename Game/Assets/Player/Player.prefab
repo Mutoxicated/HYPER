@@ -397,9 +397,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cam: {fileID: 0}
-  times: 5
-  strength: 0.06
-  interval: 0.04
+  times: 10
+  strength: 0.08
+  interval: 0.03
 --- !u!1 &1556596222062719322
 GameObject:
   m_ObjectHideFlags: 0

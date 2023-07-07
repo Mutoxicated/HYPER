@@ -18,14 +18,11 @@ public class LookToPlayer : MonoBehaviour
     private void Update()
     {
         toPlayer = player.position - transform.position;
-        toPlayer.Normalize();
         toPlayer.x *= axisMultiplier.x;
         toPlayer.y *= axisMultiplier.y;
         toPlayer.z *= axisMultiplier.z;
-        lookRotation = Quaternion.LookRotation(toPlayer);
-    }
-    private void FixedUpdate()
-    {
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.fixedDeltaTime*lerpSpeed);
+        lookRotation = Quaternion.LookRotation(toPlayer,Vector3.up);
+        //Debug.Log(toPlayer);
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * lerpSpeed);
     }
 }

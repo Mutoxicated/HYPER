@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d3aeccbc837844a8593d6e02cbff78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immunityStart: 0.1
+  immunityStart: 0.15
 --- !u!114 &3868235556858948661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +338,6 @@ MonoBehaviour:
   ChildrenToDetach:
   - {fileID: 4614886852854802658}
   - {fileID: 3582436773348578294}
-  particleUponDeath: {fileID: 0}
   healthBarGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}

@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Round : MonoBehaviour
 {
     private static Difficulty diff;
+    private static int rounds = 0;
 
     public GameObject wavePrefab;
     public GameObject beamInstance;
+    public TMP_Text wavesText;
+    public TMP_Text roundText;
 
     private Wave waveInfo;
     private int waves = 0;
@@ -22,6 +26,8 @@ public class Round : MonoBehaviour
         if (diff == null)
             diff = GameObject.FindWithTag("Difficulty").GetComponent<Difficulty>();
         StartRound();
+        rounds++;
+        roundText.text = rounds.ToString();
     }
 
     private void Update()
@@ -56,5 +62,6 @@ public class Round : MonoBehaviour
             waveInfo = instance.GetComponent<Wave>();
             waves++;
         }
+        wavesText.text = waves.ToString();
     }
 }
