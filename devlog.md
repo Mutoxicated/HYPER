@@ -416,3 +416,11 @@ Today I made the FadeMatColor more flexible to make it also applicable in TMP te
 By the way, no progress on the upgrades :p Sorry... I just haven't really been very active with the game or with any of my hobbies. Maybe because I've like worked on the game these past 28 days for more than 6 hours a day. I mean, that's what happens when you set up a deadline that lasts 3 months haha.
 
 Anyway yeah that's the end of day 29! With the amount of writing I'm doing, I'm prolly gonna write like 1200+ lines lol.
+
+## Day 30
+
+I advanced the CameraShake script, I ended up realizing that camera shakes are applicable in explosion, which means that it's also applicable in most particle explosions, so I don't have to change the code a lot because you can just add the camerashake on a particle and the shake just happens to the player's main camera. 
+
+Anyway I wanted to implement the health bar but I ended up fixing another problem with the graphics that's kind of stupid to be honest. So for some reason that I am not fully aware of, the post-processing effects dont go by specific camera and happen in every camera even if it's not set to do that effect in the other cams. Currently I have 3 cams set, one for UI, that renders last, one for the weapon, which renders after the 3rd camera that hold renders all of the environment. 
+
+So to fix this problem I'm basically creating 3 different render textures for each camera, and then I'm trying to combine all those renderTexture into one and then copy that into the main render texture that the player can actually view. The way I'm doing things though don't work, and I'm sure it's just a very small detail that I haven't picked up on.

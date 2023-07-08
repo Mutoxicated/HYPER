@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1336210547162813129}
   - component: {fileID: 2898739920603817010}
   - component: {fileID: 3780252667990583512}
+  - component: {fileID: 5459717613112396255}
   m_Layer: 0
   m_Name: discoExplosion2
   m_TagString: Untagged
@@ -27,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 2278523658011342289}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 6.2546515, y: 3.3998752, z: -24.139444}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.79150337, y: 0.79150337, z: 0.79150337}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,7 +42,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2278523658011342289}
   serializedVersion: 8
-  lengthInSec: 0.6
+  lengthInSec: 0.3
   simulationSpeed: 1
   stopAction: 2
   cullingMode: 0
@@ -116,8 +117,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
-      minScalar: 0.3
+      scalar: 0.5
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -169,8 +170,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 50
-      minScalar: 40
+      scalar: 35
+      minScalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -223,7 +224,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.20977783, b: 1, a: 1}
+      maxColor: {r: 0, g: 0.98189926, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -338,7 +339,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.08
+      scalar: 0.07
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -391,7 +392,7 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.08
+      scalar: 0.07
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -977,7 +978,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 35
+        scalar: 40
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -4870,3 +4871,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5459717613112396255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2278523658011342289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1996d10ffd27084a8ac91a9b325f598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorToCopy: {fileID: 0}
+  particle: {fileID: 2898739920603817010}

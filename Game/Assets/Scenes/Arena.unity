@@ -255,7 +255,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1906128773}
+  m_Camera: {fileID: 861717894}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -301,6 +301,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axisMultiplier: {x: 1, y: 0, z: 1}
   lerpSpeed: 10
+--- !u!1 &306757500 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 119900075787253789, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+  m_PrefabInstance: {fileID: 119900074420227372}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &381509892
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,6 +898,25 @@ Transform:
   m_Father: {fileID: 1736174226}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &861717894 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 119900075787253788, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+  m_PrefabInstance: {fileID: 119900074420227372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &861717898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306757500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b3db54267ead9478a878356b48e20f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pixelArtFilter: {fileID: 4800000, guid: 40f888868bff54e489d63cf2a046892c, type: 3}
+  downSamples: 2
 --- !u!1001 &912384608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1782,7 +1806,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 861717894}
   m_PlaneDistance: 0.22
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -1996,11 +2020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 001c736e467998646b9e1a697ec601d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!20 &1906128773 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1827139654788565376, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
-  m_PrefabInstance: {fileID: 119900074420227372}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2029192769
 GameObject:
   m_ObjectHideFlags: 0
@@ -2309,6 +2328,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119900075787253788, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: m_Depth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 119900075787253788, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: m_ClearFlags
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 119900075787253788, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 119900076246059708, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
       propertyPath: healthBar
       value: 
@@ -2321,6 +2352,22 @@ PrefabInstance:
       propertyPath: healthBarBackImg
       value: 
       objectReference: {fileID: 5495133565006165537}
+    - target: {fileID: 352206531265977636, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827139653793452754, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827139653793452780, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: m_Depth
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827139653793452780, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 8bab30e6a4473944995e1ad1445a71aa, type: 2}
     - target: {fileID: 1827139654470346249, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
       propertyPath: stamina
       value: 
@@ -2373,7 +2420,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1827139654788565376, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: m_Depth
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827139654788565376, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: m_ClearFlags
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827139654788565376, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 1ca06536478127b4abd5619b0f10fc79, type: 2}
+    m_RemovedComponents:
+    - {fileID: 4219694151939827287, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
 --- !u!114 &168438270854581628
 MonoBehaviour:
@@ -3516,6 +3576,7 @@ GameObject:
   - component: {fileID: 3635261828426226590}
   - component: {fileID: 1555989370768535380}
   - component: {fileID: 168438270983799682}
+  - component: {fileID: 3635261828426226591}
   m_Layer: 0
   m_Name: sphere 1
   m_TagString: Untagged
@@ -3665,6 +3726,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7696c656fe4a72146a56117183d1a2be, type: 2}
+  - {fileID: 2100000, guid: d61075d98e09cdd42950242f8e72807c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3845,6 +3907,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051309478254644865}
   m_Mesh: {fileID: -2265290621878234611, guid: 7bac6cea42367ca458c80f75be959ac0, type: 3}
+--- !u!114 &3635261828426226591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051309478254644865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: _WireframeBackColour
+  matIndex: 1
+  color: {r: 0.07035407, g: 0.06621573, b: 0.4528302, a: 0}
 --- !u!33 &3635261828511600492
 MeshFilter:
   m_ObjectHideFlags: 0

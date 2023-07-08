@@ -333,6 +333,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  destroyUponEvent: 0
   t: 0
 --- !u!114 &1796096070018449921
 MonoBehaviour:
@@ -538,10 +539,6 @@ PrefabInstance:
     - target: {fileID: 8012317005352051237, guid: 4a2863c91ff36ed42bae98e4dede09b4, type: 3}
       propertyPath: m_Name
       value: explosion
-      objectReference: {fileID: 0}
-    - target: {fileID: 8012317005352051237, guid: 4a2863c91ff36ed42bae98e4dede09b4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a2863c91ff36ed42bae98e4dede09b4, type: 3}

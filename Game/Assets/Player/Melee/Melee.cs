@@ -11,7 +11,6 @@ public class Melee : MonoBehaviour
     [SerializeField] private float punchDelay;
     [SerializeField] private CameraShake shakeEffect;
     [SerializeField] private GameObject particlePrefab;
-    [SerializeField] private GameObject camHolder;
 
     private ButtonInput meleeInput = new ButtonInput("Melee");
     private Camera cam;
@@ -34,7 +33,6 @@ public class Melee : MonoBehaviour
     private void Start()
     {
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
-        shakeEffect._cam = camHolder;
     }
 
     private void Update()
