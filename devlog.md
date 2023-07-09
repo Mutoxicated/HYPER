@@ -405,7 +405,7 @@ Anyway yeah bye.
 So I made the gameplay UI, I made it show the current wave you're at and also whenever you teleport to the arena it pops up a floating message saying the current round. Pretty cool if you would ask me.
 
 I also drew the shop layout and then just made the exterior in blender, here's a goofy ahh pic:
-![Alt text](image.png)
+![image](https://github.com/Mutoxicated/HYPER/assets/96009711/ff8c983e-c849-4da1-a8fa-a18c7ffe4ac3)
 
 Anyway that's all for now. I'm planning on finally making the enemy health bars that were planned since i made the enemy health script (long time ago) and uh yeah. I also have been thinking about refactoring the cameraShake's code design... Like how it's applied and how I could make it better and more flexible. 
 
