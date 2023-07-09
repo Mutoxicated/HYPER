@@ -87,7 +87,6 @@ public class GunShooter : MonoBehaviour
 
     private void SpawnBullet(Vector3 pos, Quaternion rotation)
     {
-        ShootState();
         if (bulletQueue.Count == 0 || bulletQueue.Peek().activeSelf)
         {
             var instance = Instantiate(bulletPrefab, pos, rotation);
@@ -101,6 +100,7 @@ public class GunShooter : MonoBehaviour
             instance.SetActive(true);
             bulletQueue.Enqueue(instance);
         }
+        ShootState();
     }
     private void Single(Vector3 pos, Quaternion rotation)
     {

@@ -424,3 +424,13 @@ I advanced the CameraShake script, I ended up realizing that camera shakes are a
 Anyway I wanted to implement the health bar but I ended up fixing another problem with the graphics that's kind of stupid to be honest. So for some reason that I am not fully aware of, the post-processing effects dont go by specific camera and happen in every camera even if it's not set to do that effect in the other cams. Currently I have 3 cams set, one for UI, that renders last, one for the weapon, which renders after the 3rd camera that hold renders all of the environment. 
 
 So to fix this problem I'm basically creating 3 different render textures for each camera, and then I'm trying to combine all those renderTexture into one and then copy that into the main render texture that the player can actually view. The way I'm doing things though don't work, and I'm sure it's just a very small detail that I haven't picked up on.
+
+## Day 31
+
+I implemented the enemy health bar, it shows up below the enemy once you hit it and after some time it disappears. I fixed the problem with the render textures, almost. So now I CAN combine render textures with each other, but the problem is that it doesn't have a sense of depth. So it just looks like the texture has just been plasted onto the main texture, overlapping with objects in front of it.
+
+I'm sure I'll find a fix or something.
+
+I was importing the exterior blender mesh into unity, but after seeing how scuffed the mesh was with the wireframe material, i realized i could just make the whole shop in unity using scaled cubes, so that's what I'm doing now lol. 
+
+I'm gonna show you guys a video of its current state soon, so stay tuned for that hehe.

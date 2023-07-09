@@ -10,6 +10,8 @@ public class CopyTransform : MonoBehaviour
 
     void Update()
     {
+        if (_transform == null)
+            return;
         if (copyPosition)
             transform.position = _transform.position;
         if (copyRotation)

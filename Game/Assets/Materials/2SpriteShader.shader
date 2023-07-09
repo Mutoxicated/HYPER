@@ -10,12 +10,15 @@ Shader "Custom/SpriteV2"{
 				"Queue" = "Transparent"
 			}
 
-			Blend SrcAlpha OneMinusSrcAlpha
-
-			ZWrite Off
-			Cull Off
+			Pass {
+				ZWrite On
+				Colormask 0
+			}
 
 			Pass{
+				Blend SrcAlpha OneMinusSrcAlpha
+				ZWrite Off
+				Cull Back
 
 				CGPROGRAM
 

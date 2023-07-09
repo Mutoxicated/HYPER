@@ -11,18 +11,17 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] private GameObject[] ChildrenToDetach;
     [Space]
     [Header("General")]
-    [SerializeField] private Gradient healthBarGradient;
-    [SerializeField] private int HP;
+    public int maxHP;
     [SerializeField,Range(0.5f,2f)] private float rate = 0.05f;
 
-    [SerializeField] private bool enableHealthBar;
+    [SerializeField] private HealthBar healthBar;
 
-    private float currentHP;
-    public float t = 0f;
+    [HideInInspector] public float currentHP;
+    [HideInInspector] public float t = 0f;
 
     private void Start()
     {
-        currentHP = HP;
+        currentHP = maxHP;
     }
 
     private void Update()
@@ -54,6 +53,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     {
         t = 1f;
         currentHP -= intake;
+        healthBar?.Activate();
         if (currentHP <= 0)
         {
             Detach();
