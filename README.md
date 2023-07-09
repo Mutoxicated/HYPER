@@ -4,4 +4,4 @@ HYPER is a 3D arcade endless arena shooter game with a variety of choices to upg
 
 ## How to open the game
 
-Download the ZIP file and extract it into a folder. Then add that folder to your unity projects in Unity hub and then you can open the project. Make sure you have installed Unity version 2021.3.17f1, otherwise you might get some errors or something. Some commit versions might be unplayable because of missing prefabs... Sorry about that! I forget to make everything a prefab sometimes.
+Download the ZIP file and extract it into a folder. Then add that folder to your unity projects in Unity hub and then you can open the project. Make sure you have installed Unity version 2021.3.17f1, otherwise you might get some errors or something. Some commit versions might be unplayable because of missing prefabs... Sorry about that! I forget to update prefabs sometimes.
