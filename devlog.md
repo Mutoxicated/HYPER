@@ -431,6 +431,6 @@ I implemented the enemy health bar, it shows up below the enemy once you hit it 
 
 I'm sure I'll find a fix or something.
 
-I was importing the exterior blender mesh into unity, but after seeing how scuffed the mesh was with the wireframe material, i realized i could just make the whole shop in unity using scaled cubes, so that's what I'm doing now lol. 
+I was importing the shop exterior blender mesh into unity, but after seeing how scuffed the mesh was with the wireframe material, i realized i could just make the whole shop in unity using scaled cubes, so that's what I'm doing now lol. 
 
-I'm gonna show you guys a video of its current state soon, so stay tuned for that hehe.
+I'm gonna show you guys a video of the game's current state soon, so stay tuned for that hehe.
