@@ -4822,7 +4822,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 362d870322857254787f588baae99fe1, type: 2}
+  - {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4885,11 +4885,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a84aa2d5a10c45448e0037089e488f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 25
+  maxDistance: 30
   shakeOnEnable: 1
   _cam: {fileID: 0}
-  times: 12
-  strength: 0.7
+  times: 8
+  strength: 0.5
   interval: 0.02
 --- !u!114 &5076237348871001486
 MonoBehaviour:
@@ -4960,6 +4960,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: discoExplosion2
       objectReference: {fileID: 0}
+    - target: {fileID: 3780252667990583512, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
 --- !u!4 &1653039515243025843 stripped
