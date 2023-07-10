@@ -6,8 +6,8 @@ Shader "Custom/SpriteV2"{
 
 		SubShader{
 			Tags{
-				"RenderType" = "Opaque"
-				"Queue" = "AlphaTest"
+				"RenderType" = "Transparent"
+				"Queue" = "Transparent"
 			}
 
 			Pass {
@@ -17,7 +17,7 @@ Shader "Custom/SpriteV2"{
 
 			Pass{
 				Blend SrcAlpha OneMinusSrcAlpha
-				ZWrite On
+				ZWrite Off
 				Cull Back
 
 				CGPROGRAM
