@@ -433,10 +433,7 @@ I'm sure I'll find a fix or something.
 
 I was importing the shop exterior blender mesh into unity, but after seeing how scuffed the mesh was with the wireframe material, i realized i could just make the whole shop in unity using scaled cubes, so that's what I'm doing now lol. 
 
-<<<<<<< HEAD
 I'm gonna show you guys a video of the game's current state soon, so stay tuned for that hehe.
-=======
-I'm gonna show you guys a video of its current state soon, so stay tuned for that hehe.
 
 ## Day 32 
 
@@ -554,4 +551,3 @@ Echelons define not only the amount of bullets per shot you shoot, but also you 
 5. CINCOS: You can only shoot 5 bullets. All bullet stats equally shared.
 
 Alright that's all I've spent like 2 hours writing this lol.
->>>>>>> parent of e72a18e (Revert "Day 32")
