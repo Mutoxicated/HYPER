@@ -21,6 +21,7 @@ public class HealthBar : MonoBehaviour
 
     private List<MaterialInfo> pack = new List<MaterialInfo>();
     private bool active = false;
+    private MaterialColorChannel colorChannel;
 
     public void Activate()
     {
@@ -38,6 +39,7 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
+        colorChannel = (MaterialColorChannel)1;
         Deactivate();
         initialScale = healthBar.transform.parent.localScale;
         finalScale = initialScale;
@@ -55,7 +57,7 @@ public class HealthBar : MonoBehaviour
         Debug.Log(finalScale.x);
 
         healthBar.transform.parent.localScale = Vector3.Lerp(healthBar.transform.parent.localScale,finalScale,Time.deltaTime*lerpSpeed);
-        pack[0].mats[0].SetColor("_Color", healthBarGradient.Evaluate(t));
-        pack[1].mats[0].SetColor("_Color", backBarGradient.Evaluate(t));
+        pack[0].mats[0].SetColor(colorChannel.ToString(), healthBarGradient.Evaluate(t));
+        pack[1].mats[0].SetColor(colorChannel.ToString(), backBarGradient.Evaluate(t));
     }
 }
