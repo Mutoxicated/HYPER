@@ -7,7 +7,7 @@ public class HitGradient : MonoBehaviour
     [SerializeField] private EnemyHealth health;
     [SerializeField] private Gradient hitGradient;
 
-    [SerializeField] private MaterialColorChannel colorChannel;
+    [SerializeField] private string matColorName = "_WireframeBackColour";
     [SerializeField] private int matIndex = 1;
 
     private Material mat;
@@ -19,6 +19,6 @@ public class HitGradient : MonoBehaviour
 
     private void Update()
     {
-        mat.SetColor(colorChannel.ToString(), hitGradient.Evaluate(health.t));
+        mat.SetColor(matColorName, hitGradient.Evaluate(health.t));
     }
 }

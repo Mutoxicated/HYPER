@@ -54,7 +54,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
+  - {fileID: 2100000, guid: 362d870322857254787f588baae99fe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 0}
-  colorChannel: 1
+  colorName: _Color
   index: 0
   useMaterialValues: 00000000
   gradient:
@@ -621,7 +621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 0}
-  colorChannel: 0
+  colorName: _WireframeBackColour
   index: 1
   useMaterialValues: 00000000
   gradient:
@@ -699,7 +699,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  colorChannel: 1
+  matColorName: _Color
   matIndex: 0
 --- !u!1001 &4829517248377127484
 PrefabInstance:
@@ -841,7 +841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 0}
-  colorChannel: 0
+  colorName: _WireframeBackColour
   index: 0
   useMaterialValues: 00000000
   gradient:
