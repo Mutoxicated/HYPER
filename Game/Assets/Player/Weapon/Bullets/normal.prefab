@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1907635401927215816}
   - component: {fileID: 1549946323395533653}
   - component: {fileID: 775047400170272233}
+  - component: {fileID: 2042489557979923656}
   m_Layer: 6
   m_Name: normal
   m_TagString: bullets
@@ -132,3 +133,18 @@ MonoBehaviour:
   particlePrefab: {fileID: 3545220589067606805, guid: 6d5913b428758ba469ed17214f365d7b, type: 3}
   lifetime: 400
   damage: 100
+--- !u!114 &2042489557979923656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907635401927215823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorChannel: 1
+  matIndex: 0
+  color: {r: 4, g: 4, b: 4, a: 1}

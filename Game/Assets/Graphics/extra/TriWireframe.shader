@@ -6,7 +6,7 @@ Shader "Custom/TriWireframe"
     {
         [MainTexture] _BaseMap("Base Map (RGB) Smoothness / Alpha (A)", 2D) = "white" {}
 
-        _WireframeBackColour("Wireframe back colour", color) = (1.0, 1.0, 1.0, 1.0)
+        [HDR] _WireframeBackColour("Wireframe back colour", color) = (1.0, 1.0, 1.0, 1.0)
         _WireframeAliasing("Wireframe aliasing", float) = 1.5
     }
 
@@ -96,7 +96,7 @@ Shader "Custom/TriWireframe"
                 float3 aliased = smoothstep(float3(0.0, 0.0, 0.0), unitWidth * _WireframeAliasing, i.barycentric);
                 // Use the coordinate closest to the edge.
                 float alpha = 1 - min(aliased.x, min(aliased.y, aliased.z));
-                clip(alpha);
+                clip(alpha-0.1);
                 // Set to our backwards facing wireframe colour.
                 return fixed4(_WireframeBackColour.r, _WireframeBackColour.g, _WireframeBackColour.b, alpha);
             }

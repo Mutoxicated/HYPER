@@ -551,3 +551,7 @@ Echelons define not only the amount of bullets per shot you shoot, but also you 
 5. CINCOS: You can only shoot 5 bullets. All bullet stats equally shared.
 
 Alright that's all I've spent like 2 hours writing this lol.
+
+## Day 33
+
+Switched back to the built in render pipeline because I realized that URP isn't compatible with the Post-Processing v2 package. Anyway so I basically fixed all of the materials because everything was broken. Yeah today was a big waste of time but oh well.

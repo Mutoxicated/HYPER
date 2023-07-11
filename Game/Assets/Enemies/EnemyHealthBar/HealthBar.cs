@@ -6,8 +6,8 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private EnemyHealth health;
 
-    [SerializeField] private Gradient healthBarGradient;
-    [SerializeField] private Gradient backBarGradient;
+    [SerializeField, GradientUsage(true)] private Gradient healthBarGradient;
+    [SerializeField, GradientUsage(true)] private Gradient backBarGradient;
     [SerializeField] private GameObject healthBar;
     [SerializeField] private GameObject backBar;
 

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class FadeMatColor : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class FadeMatColor : MonoBehaviour
     [SerializeField] private MaterialColorChannel colorChannel;
     [SerializeField] private int index = 1;
     [SerializeField] private bool[] useMaterialValues = new bool[4];
-    [SerializeField] private Gradient gradient;
+    [SerializeField, GradientUsage(true)] private Gradient gradient;
     [SerializeField] private bool useOnInterval = false;
     [SerializeField] private OnInterval onInterval;
     [SerializeField] private float interval;
@@ -20,6 +21,8 @@ public class FadeMatColor : MonoBehaviour
     private float t;
     private Color gradientColor;
     [HideInInspector] public Color color = new Color(0f,0f,0f,0f);
+
+    
 
     void Start()
     {

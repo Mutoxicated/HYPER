@@ -1,6 +1,6 @@
-Shader "Custom/Sprite"{
+Shader "Custom/ParticleHDR"{
 	Properties{
-		_Color("Tint", Color) = (0, 0, 0, 1)
+		[HDR] _ParticleColor("Tint", Color) = (0, 0, 0, 1)
 		_MainTex("Texture", 2D) = "white" {}
 	}
 
@@ -10,12 +10,11 @@ Shader "Custom/Sprite"{
 				"Queue" = "Transparent"
 			}
 
-			Blend SrcAlpha OneMinusSrcAlpha
-
-			ZWrite On
-			Cull Back
 
 			Pass{
+				Blend SrcAlpha OneMinusSrcAlpha
+				ZWrite Off
+				Cull Back
 
 				CGPROGRAM
 

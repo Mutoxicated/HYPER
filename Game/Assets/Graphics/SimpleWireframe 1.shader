@@ -6,13 +6,13 @@ Shader "Custom/QuadWireframe"
     {
         [MainTexture] _BaseMap("Base Map (RGB) Smoothness / Alpha (A)", 2D) = "white" {}
 
-        _WireframeBackColour("Wireframe back colour", color) = (1.0, 1.0, 1.0, 1.0)
+        [HDR] _WireframeBackColour("Wireframe back colour", color) = (1.0, 1.0, 1.0, 1.0)
         _WireframeAliasing("Wireframe aliasing", float) = 1.5
     }
 
         SubShader
     {
-        Tags {"RenderType" = "Opaque" "Queue" = "AlphaTest"}
+        Tags {"RenderType" = "Transparent" "Queue" = "Transparent"}
         LOD 200
 
 
@@ -25,8 +25,6 @@ Shader "Custom/QuadWireframe"
             #pragma vertex vert
             #pragma fragment frag
             #pragma geometry geom
-            // make fog work
-            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
 
@@ -61,7 +59,6 @@ Shader "Custom/QuadWireframe"
                 //o.vertex = UnityObjectToClipPos(v.vertex);
                 o.vertex = v.vertex;
                 o.uv = TRANSFORM_TEX(v.uv, _BaseMap);
-                UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
 

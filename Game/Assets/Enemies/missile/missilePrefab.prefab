@@ -389,8 +389,8 @@ MonoBehaviour:
   health: {fileID: 2449012977333359559}
   hitGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0.88550186, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 2.9960785, g: 0, b: 2.6666667, a: 1}
+    key1: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}

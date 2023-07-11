@@ -160,33 +160,33 @@ MonoBehaviour:
   useMaterialValues: 00000000
   gradient:
     serializedVersion: 2
-    key0: {r: 0, g: 0.08760595, b: 1, a: 0}
-    key1: {r: 0, g: 0.08627451, b: 1, a: 0.5019608}
-    key2: {r: 0, g: 0, b: 0, a: 0.5019608}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0, g: 0.26666668, b: 2.9960785, a: 0}
+    key1: {r: 0, g: 0.26666668, b: 2.9960785, a: 0}
+    key2: {r: 0, g: 0.08627451, b: 1, a: 0.5019608}
+    key3: {r: 0, g: 0, b: 0, a: 0.5019608}
+    key4: {r: 0, g: 0, b: 0, a: 0.5019608}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
     ctime1: 65535
-    ctime2: 0
+    ctime2: 65535
     ctime3: 0
     ctime4: 0
     ctime5: 0
     ctime6: 0
     ctime7: 0
-    atime0: 32768
-    atime1: 65535
+    atime0: 0
+    atime1: 31804
     atime2: 65535
-    atime3: 0
-    atime4: 0
+    atime3: 65535
+    atime4: 65535
     atime5: 0
     atime6: 0
     atime7: 0
     m_Mode: 0
     m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+    m_NumAlphaKeys: 3
   useOnInterval: 1
   onInterval: {fileID: 3835179681775302895}
   interval: -1
@@ -449,7 +449,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
+      objectReference: {fileID: 2100000, guid: 93b8e28894b5eff4aa3b23f6cb9b0001, type: 2}
     - target: {fileID: -7511558181221131132, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -626,10 +626,10 @@ MonoBehaviour:
   useMaterialValues: 00000000
   gradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0.9039522, b: 0, a: 1}
-    key1: {r: 1, g: 0.2579247, b: 0.2216981, a: 1}
-    key2: {r: 0.9197078, g: 0, b: 1, a: 0}
-    key3: {r: 0.008547783, g: 0, b: 1, a: 0}
+    key0: {r: 4, g: 3.6235294, b: 0, a: 1}
+    key1: {r: 4, g: 1.0352942, b: 0.89411765, a: 1}
+    key2: {r: 3.6862745, g: 0, b: 4, a: 0}
+    key3: {r: 0.03137255, g: 0, b: 4, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
@@ -771,7 +771,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 9758fdca556ba214c8d4461e89f98974, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 94bb1bcbacca4b04c8a3bd78ff67a99f, type: 2}
+      objectReference: {fileID: 2100000, guid: 91f6b3e5c4616d8468a92d28a1751d0f, type: 2}
     - target: {fileID: -7511558181221131132, guid: 9758fdca556ba214c8d4461e89f98974, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -846,12 +846,12 @@ MonoBehaviour:
   useMaterialValues: 00000000
   gradient:
     serializedVersion: 2
-    key0: {r: 0.007843129, g: 0.2248531, b: 0.972549, a: 1}
-    key1: {r: 1, g: 0.3726415, b: 0.84875923, a: 1}
-    key2: {r: 0, g: 0.96165895, b: 1, a: 0}
-    key3: {r: 0, g: 1, b: 0.09811425, a: 0}
-    key4: {r: 1, g: 0.8836636, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.03137255, g: 0.6901961, b: 2.9960785, a: 1}
+    key1: {r: 2.9960785, g: 1.1294118, b: 2.5411766, a: 1}
+    key2: {r: 0, g: 2.8862746, b: 2.9960785, a: 0}
+    key3: {r: 0, g: 2.9960785, b: 0.29803923, a: 0}
+    key4: {r: 2.9960785, g: 2.6509805, b: 0, a: 0}
+    key5: {r: 1, g: 0.8836636, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
@@ -859,7 +859,7 @@ MonoBehaviour:
     ctime2: 35659
     ctime3: 53199
     ctime4: 65535
-    ctime5: 0
+    ctime5: 65535
     ctime6: 0
     ctime7: 0
     atime0: 0
@@ -1014,6 +1014,18 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 4829517246456464741}
+    - target: {fileID: 8391467601601404248, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: healthBarGradient.key0.r
+      value: 2.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391467601601404248, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: healthBarGradient.key1.g
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391467601601404248, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: healthBarGradient.key1.r
+      value: 2.9960785
+      objectReference: {fileID: 0}
     - target: {fileID: 9019466745800539690, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_Name
       value: HealthBar

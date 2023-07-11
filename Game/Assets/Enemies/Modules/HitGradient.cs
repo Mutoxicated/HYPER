@@ -5,7 +5,7 @@ using UnityEngine;
 public class HitGradient : MonoBehaviour
 {
     [SerializeField] private EnemyHealth health;
-    [SerializeField] private Gradient hitGradient;
+    [SerializeField,GradientUsage(true)] private Gradient hitGradient;
 
     [SerializeField] private MaterialColorChannel colorChannel;
     [SerializeField] private int matIndex = 1;

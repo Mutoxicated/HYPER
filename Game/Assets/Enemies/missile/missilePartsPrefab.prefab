@@ -892,8 +892,8 @@ MonoBehaviour:
   speedMax: 12
   color:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0.9529412, a: 0}
-    key1: {r: 1, g: 0, b: 0.9529412, a: 0}
+    key0: {r: 2.9960785, g: 0, b: 2.8705883, a: 0}
+    key1: {r: 2.9960785, g: 0, b: 2.8705883, a: 0}
     key2: {r: 1, g: 0, b: 0.9529412, a: 1}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}

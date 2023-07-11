@@ -1,23 +1,19 @@
 Shader "Custom/SpriteV2"{
 	Properties{
-		_Color("Tint", Color) = (0, 0, 0, 1)
+		[HDR] _Color("Tint", Color) = (0, 0, 0, 1)
 		_MainTex("Texture", 2D) = "white" {}
 	}
 
 		SubShader{
 			Tags{
-				"RenderType" = "Opaque"
-				"Queue" = "AlphaTest"
+				"RenderType" = "Transparent"
+				"Queue" = "Transparent"
 			}
 
-			Pass {
-				ZWrite On
-				Colormask 0
-			}
 
 			Pass{
 				Blend SrcAlpha OneMinusSrcAlpha
-				ZWrite On
+				ZWrite Off
 				Cull Back
 
 				CGPROGRAM

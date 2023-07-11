@@ -9,14 +9,16 @@ public class ExplosionParts : MonoBehaviour
 
     [SerializeField] private float speedMin;
     [SerializeField] private float speedMax;
-    [SerializeField] private Gradient color;
+    [SerializeField, GradientUsage(true)] private Gradient color;
     [SerializeField,Range(0.5f,2f)] private float rate;
 
     private bool exploding = false;
     private float t = 1f;
+    private MaterialColorChannel colorChannel;
 
     private void Start()
     {
+        colorChannel = (MaterialColorChannel)1;
         foreach (var part in parts)
         {
             materials.Add(part.gameObject.GetComponent<Renderer>().material);
@@ -30,7 +32,7 @@ public class ExplosionParts : MonoBehaviour
         t -= rate*Time.fixedDeltaTime;
         foreach (var mat in materials)
         {
-            mat.SetColor("_Color", color.Evaluate(t));
+            mat.SetColor(colorChannel.ToString(), color.Evaluate(t));
         }
         if (t <= 0f)
         {

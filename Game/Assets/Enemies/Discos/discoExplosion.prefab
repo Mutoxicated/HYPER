@@ -4236,14 +4236,14 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   CustomDataModule:
-    enabled: 0
-    mode0: 0
+    enabled: 1
+    mode0: 2
     vectorComponentCount0: 4
     color0:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1.7254902, g: 0, b: 2.9960785, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4302,7 +4302,7 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-    colorLabel0: Color
+    colorLabel0: StartColor
     vector0_0:
       serializedVersion: 2
       minMaxState: 0
@@ -4822,7 +4822,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
+  - {fileID: 2100000, guid: 9ad80a11985c0344997dcd93a8125b3e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4857,13 +4857,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 4
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 00030409
   m_Mesh: {fileID: -767777370849828036, guid: 68937ce95dc7235498a07affe1e8a54f, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -4960,10 +4960,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: discoExplosion2
       objectReference: {fileID: 0}
+    - target: {fileID: 2898739920603817010, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: CustomDataModule.mode0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898739920603817010, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: CustomDataModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898739920603817010, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: CustomDataModule.color0.maxColor.b
+      value: 2.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898739920603817010, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: CustomDataModule.color0.maxColor.g
+      value: 2.8862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898739920603817010, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: CustomDataModule.color0.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3780252667990583512, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: m_UseCustomVertexStreams
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3780252667990583512, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
+    - target: {fileID: 3780252667990583512, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: m_VertexStreams.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3780252667990583512, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: m_VertexStreams.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3780252667990583512, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
+      propertyPath: m_VertexStreams.Array.data[3]
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
 --- !u!4 &1653039515243025843 stripped
