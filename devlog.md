@@ -569,4 +569,6 @@ I think I changed a few other things but I can't remember them. I realized that 
 Oh I also implemented the stats for the enemies and for the player. I will implement the buffs soon. I also made some nice progress for the shop building. 
 Here is a pic:
 
+![image](https://github.com/Mutoxicated/HYPER/assets/96009711/1556965c-95aa-4f9c-8de1-ff22b03496ad)
+
 Anyway that's it for day 34 and 35, going pretty well, but I don't think I'll finish it in 3 months, I definitely overestimated my abilities. 3.5 - 4.5 months? Perhaps. But for my 2nd game it's going really well.
