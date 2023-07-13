@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7612042835807898035}
   - component: {fileID: 6338423137065065427}
+  - component: {fileID: 6228799189238817452}
   m_Layer: 9
   m_Name: Trail
   m_TagString: Untagged
@@ -104,9 +105,9 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.66253996, g: 0, b: 1, a: 1}
-      key1: {r: 0.26138687, g: 0, b: 1, a: 0.30980393}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0.66253996, g: 0, b: 1, a: 0}
+      key1: {r: 0.26138687, g: 0, b: 1, a: 0}
+      key2: {r: 0, g: 0, b: 0, a: 0.30980393}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -122,7 +123,7 @@ TrailRenderer:
       ctime7: 0
       atime0: 0
       atime1: 65535
-      atime2: 0
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
@@ -140,6 +141,78 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &6228799189238817452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086622778760461236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7243835e5559b294989dfb5f8dfdb6a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradient:
+  - serializedVersion: 2
+    key0: {r: 0.66253996, g: 0, b: 1, a: 1}
+    key1: {r: 0.26138687, g: 0, b: 1, a: 0.30980393}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.06252848, b: 0, a: 1}
+    key1: {r: 1, g: 0.12657765, b: 0, a: 0.30980393}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  index: 0
+  lineRenderer: {fileID: 0}
+  trailRenderer: {fileID: 6338423137065065427}
 --- !u!1 &8574461424792126625
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +232,8 @@ GameObject:
   - component: {fileID: 1884146861060504680}
   - component: {fileID: 1949877454724251180}
   - component: {fileID: 1905270715724612992}
+  - component: {fileID: 8025837559206595664}
+  - component: {fileID: 650634795607507202}
   m_Layer: 9
   m_Name: missilePrefab
   m_TagString: Untagged
@@ -275,9 +350,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7a5bd713bbffa4d8bb4e526f47c75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 8025837559206595664}
   rb: {fileID: -1273607849755214524}
-  speed: 12.57
-  lerpSpeed: 1.288
+  speed: 17
+  lerpSpeed: 2.56
+  interval: {fileID: 650634795607507202}
+  useInterval: 0
   axisMultiplier: {x: 1, y: 1, z: 1}
 --- !u!114 &6044119978656008813
 MonoBehaviour:
@@ -292,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axisMultiplier: {x: 1, y: 1, z: 1}
-  lerpSpeed: 2.5
+  lerpSpeed: 3.4
 --- !u!114 &2449012977333359559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07accf3a4229a749a0b613834c47ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 8025837559206595664}
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -338,7 +417,7 @@ MonoBehaviour:
   ChildrenToDetach:
   - {fileID: 4614886852854802658}
   - {fileID: 3582436773348578294}
-  maxHP: 0
+  maxHP: 20
   rate: 0.05
   healthBar: {fileID: 0}
   currentHP: 0
@@ -355,11 +434,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864f662bd3b9e0c4e8a4097c14603cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 8025837559206595664}
   ObjectsToDestroy:
   - {fileID: 8574461424792126625}
   particleUponCollision: {fileID: 2803386318374101593, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
   detachChildren: 0
   damage: 100
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!64 &1949877454724251180
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -388,8 +471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 2449012977333359559}
   hitGradient:
-    serializedVersion: 2
-    key0: {r: 2.9960785, g: 0, b: 2.6666667, a: 1}
+  - serializedVersion: 2
+    key0: {r: 2.9960785, g: 0, b: 2.5254903, a: 1}
     key1: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -416,8 +499,93 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 2.9960785, g: 0.118522674, b: 0, a: 1}
+    key1: {r: 2.9960785, g: 2.0392158, b: 1.6, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  index: 0
   colorChannel: 1
   matIndex: 0
+--- !u!114 &8025837559206595664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574461424792126625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &650634795607507202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574461424792126625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  chance: 100
+  interval: 8
+  onInterval:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1905270715724612992}
+        m_TargetAssemblyTypeName: HitGradient, Assembly-CSharp
+        m_MethodName: ChangeColorIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 6228799189238817452}
+        m_TargetAssemblyTypeName: ManageLine, Assembly-CSharp
+        m_MethodName: ChangeIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  destroyUponEvent: 0
+  t: 0
 --- !u!1001 &1680122225318818223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,6 +596,10 @@ PrefabInstance:
     - target: {fileID: 2803386318374101593, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
       propertyPath: m_Name
       value: missileExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803386318374101593, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2803386318374101593, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
       propertyPath: m_IsActive
@@ -547,6 +719,10 @@ PrefabInstance:
     - target: {fileID: 2182285701400850110, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: m_Name
       value: missilePartsPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182285701400850110, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}

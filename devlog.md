@@ -555,3 +555,18 @@ Alright that's all I've spent like 2 hours writing this lol.
 ## Day 33
 
 Switched back to the built in render pipeline because I realized that URP isn't compatible with the Post-Processing v2 package. Anyway so I basically fixed all of the materials because everything was broken. Yeah today was a big waste of time but oh well.
+
+## Day 34 and 35
+
+Couldn't commit yesterday because a huge wasp invaded my space and it was getting late anyway. BUT I am very satisfied with what I've done today. 
+
+I made the gun have a muzzle flash when you shoot. Small but nice detail. I am planning on adding more details to the movement. Speaking of movement, I'm probably going to change the launch&bounce mechanic, to something a little different but with the same spirit nonetheless. I'm probably gonna make it so that you shoot out a zipline out of your arm and when it sticks to something you can use your scrolling wheel to either launch yourself inwards or outwards to that point the ziplinen stuck to. If you do nothing for 1 second the zipline will come back. So basically the controls are different plus a few other small things. But I'm basically just trying to turn this mechanic into something that would feel satisfying to execute.
+
+I also made the missile enemy become red if eneough time has reached. That's all they're doing right now but soon they will also do some more exciting stuff. 
+
+I think I changed a few other things but I can't remember them. I realized that the enemy modules are really not advanced enough for the enemies that I'm thinking, so I'm advancing them, trying to make them as flexible as creativity can be (well not that much but you get the point).
+
+Oh I also implemented the stats for the enemies and for the player. I will implement the buffs soon. I also made some nice progress for the shop building. 
+Here is a pic:
+
+Anyway that's it for day 34 and 35, going pretty well, but I don't think I'll finish it in 3 months, I definitely overestimated my abilities. 3.5 - 4.5 months? Perhaps. But for my 2nd game it's going really well.

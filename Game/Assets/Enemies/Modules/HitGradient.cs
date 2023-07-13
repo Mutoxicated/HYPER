@@ -5,7 +5,8 @@ using UnityEngine;
 public class HitGradient : MonoBehaviour
 {
     [SerializeField] private EnemyHealth health;
-    [SerializeField,GradientUsage(true)] private Gradient hitGradient;
+    [SerializeField,GradientUsage(true)] private Gradient[] hitGradient;
+    [SerializeField] private int index = 0;
 
     [SerializeField] private MaterialColorChannel colorChannel;
     [SerializeField] private int matIndex = 1;
@@ -17,8 +18,13 @@ public class HitGradient : MonoBehaviour
         mat = GetComponent<Renderer>().materials[matIndex];
     }
 
+    public void ChangeColorIndex(int i)
+    {
+        index = i;
+    }
+
     private void Update()
     {
-        mat.SetColor(colorChannel.ToString(), hitGradient.Evaluate(health.t));
+        mat.SetColor(colorChannel.ToString(), hitGradient[index].Evaluate(health.t));
     }
 }

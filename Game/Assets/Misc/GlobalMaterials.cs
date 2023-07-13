@@ -6,7 +6,8 @@ using UnityEngine;
 public enum MaterialColorChannel
 {
     _WireframeBackColour,
-    _Color
+    _Color,
+    _OutlineColor
 }
 
 public static class GlobalMaterials 

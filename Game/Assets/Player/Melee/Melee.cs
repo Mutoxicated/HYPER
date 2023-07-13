@@ -59,7 +59,7 @@ public class Melee : MonoBehaviour
         {
             t = 0;
             bool hit = Punch();
-            animator.SetFloat("speedMult", 0.85f);
+            animator.SetFloat("speedMult", 0.75f);
             if (hit)
             {
                 shakeEffect.Shake();

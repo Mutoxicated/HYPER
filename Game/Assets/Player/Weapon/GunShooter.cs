@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.ParticleSystem;
 
 public class GunShooter : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class GunShooter : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] private GameObject gunScrew;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private ParticleSystem particle;
     [Space]
     [Header("Gun Settings")]
     [SerializeField] private AudioSource shootSFX;
@@ -66,6 +68,7 @@ public class GunShooter : MonoBehaviour
     private void ShootState()
     {
         Recoil();
+        particle.Play();
         shootSFX.Play();
         readyToShoot = false;
         stopwatch.Start();

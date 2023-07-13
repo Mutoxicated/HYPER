@@ -9,7 +9,7 @@ public class CopyFadeColor : MonoBehaviour
 
     private void OnEnable()
     {
-        var main = particle.main;
-        main.startColor = colorToCopy.color;
+        var customData = particle.customData;
+        customData.SetColor(ParticleSystemCustomData.Custom1, colorToCopy.color);
     }
 }

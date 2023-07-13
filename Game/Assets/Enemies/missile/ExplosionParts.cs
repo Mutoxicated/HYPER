@@ -42,6 +42,10 @@ public class ExplosionParts : MonoBehaviour
 
     public void ExplodeParts(Transform explosionPoint)
     {
+        if (explosionPoint == null)
+        {
+            explosionPoint = transform;
+        }
         foreach (var part in parts)
         {
             var direction = part.transform.position - explosionPoint.position;

@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
+    [SerializeField] private Stats stats;
     [Header("Post-Death")]
     [SerializeField] private UnityEvent<Transform> OnDeath = new UnityEvent<Transform>();
     [SerializeField] private GameObject[] ObjectsToDestroy;
@@ -49,16 +52,21 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }
     }
 
+    private void OnDestroy()
+    {
+        OnDeath.RemoveAllListeners();
+    }
+
     public void TakeDamage(float intake, GameObject sender)
     {
         t = 1f;
-        currentHP -= intake;
+        currentHP -= intake * stats.decrementalStat["defense"];
         healthBar?.Activate();
         if (currentHP <= 0)
         {
             Detach();
-            DestroyStuff();
             OnDeath.Invoke(sender.transform);
+            DestroyStuff();
         }
     }
 

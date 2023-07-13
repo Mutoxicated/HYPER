@@ -10,7 +10,6 @@ Shader "Custom/SpriteV2"{
 				"Queue" = "Transparent"
 			}
 
-
 			Pass{
 				Blend SrcAlpha OneMinusSrcAlpha
 				ZWrite Off

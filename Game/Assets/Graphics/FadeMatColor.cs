@@ -22,7 +22,7 @@ public class FadeMatColor : MonoBehaviour
     private Color gradientColor;
     [HideInInspector] public Color color = new Color(0f,0f,0f,0f);
 
-    
+    [GradientUsage(true)] private Gradient gradient2;
 
     void Start()
     {
@@ -58,9 +58,13 @@ public class FadeMatColor : MonoBehaviour
         }
     }
 
+    public void ChangeGradient(Gradient gradient)
+    {
+        this.gradient = gradient;
+    }
+
     void Update()
     {
-        ComputeColorValues();
         if (!useOnInterval)
         {
             angle += rate * Time.deltaTime;
@@ -75,6 +79,7 @@ public class FadeMatColor : MonoBehaviour
             t = onInterval.t;
         }
         gradientColor = gradient.Evaluate(t);
+        ComputeColorValues();
         if (tmpText == null)
             mat.SetColor(colorChannel.ToString(), color);
         else

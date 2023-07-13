@@ -54,7 +54,6 @@ public class HealthBar : MonoBehaviour
             t = health.currentHP / health.maxHP;
         else t = 0f;
         finalScale.x = Mathf.Lerp(0f, initialScale.x, t);
-        Debug.Log(finalScale.x);
 
         healthBar.transform.parent.localScale = Vector3.Lerp(healthBar.transform.parent.localScale,finalScale,Time.deltaTime*lerpSpeed);
         pack[0].mats[0].SetColor(colorChannel.ToString(), healthBarGradient.Evaluate(t));

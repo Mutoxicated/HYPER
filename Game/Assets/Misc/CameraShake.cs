@@ -27,7 +27,6 @@ public class CameraShake : MonoBehaviour
         shaking = true;
         var distance = Vector3.Distance(gameObject.transform.position, player.transform.position);
         distanceT = Mathf.Clamp01(Mathf.Abs((distance/maxDistance)-1));
-        Debug.Log(distanceT);
         actualStrength = strength * distanceT;
     }
 

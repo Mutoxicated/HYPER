@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SlowDown : MonoBehaviour
 {
+    [SerializeField] private Stats stats;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float slowDownSpeed;
     [SerializeField] private OnInterval onInterval;
@@ -13,7 +14,7 @@ public class SlowDown : MonoBehaviour
 
     private void Update()
     {
-        currentSpeed = Mathf.Lerp(maxSpeed, slowDownSpeed, onInterval.t);
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, currentSpeed);
+        currentSpeed = Mathf.Lerp(maxSpeed * stats.incrementalStat["moveSpeed"], slowDownSpeed * stats.incrementalStat["moveSpeed"], onInterval.t);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, currentSpeed * stats.incrementalStat["moveSpeed"]);
     }
 }
