@@ -572,3 +572,7 @@ Here is a pic:
 ![image](https://github.com/Mutoxicated/HYPER/assets/96009711/1556965c-95aa-4f9c-8de1-ff22b03496ad)
 
 Anyway that's it for day 34 and 35, going pretty well, but I don't think I'll finish it in 3 months, I definitely overestimated my abilities. 3.5 - 4.5 months? Perhaps. But for my 2nd game it's going really well.
+
+## Day 36
+
+I re-implemented the launch movement mechanic. Now you throw a magnetic thing and when it sticks to a wall or ground you have 1 second to decide if you want to launch in or out, bouncing 3 times as you do so.

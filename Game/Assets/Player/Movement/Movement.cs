@@ -32,6 +32,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private int maxBounces;
 
     [Header("Misc")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject zipMagnetPrefab;
+    [SerializeField] private GameObject throwPoint;
+    [SerializeField] private Transform camHolder;
     [SerializeField] private StaminaControl stamina;
     [SerializeField] private Rigidbody rb;
 
@@ -39,13 +43,15 @@ public class Movement : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 slideDirection = Vector3.zero;
     private ContactPoint point;
+    private OnInterval launchInterval;
 
     private ButtonInput jumpInput = new ButtonInput("Jump");
     private ButtonInput dashInput = new ButtonInput("Dash");
     private ButtonInput slideInput = new ButtonInput("Slide");
-    private ButtonInput launchInput = new ButtonInput("LaunchIn");
-    private ButtonInput launch2Input = new ButtonInput("LaunchOut");
+    private ButtonInput launchInput = new ButtonInput("Launch");
 
+    private RaycastHit hit;
+    private Vector3 launchPoint;
     private bool airborne = true;
     private bool crouchReleased = true;
     private bool uponSlide;
@@ -55,17 +61,25 @@ public class Movement : MonoBehaviour
     private MoveAbilities ability;
     private float moveX, moveZ;
 
+    private Vector3 GetCameraRayPoint()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.scaledPixelWidth / 2, Camera.main.scaledPixelHeight / 2, 0));
+        Physics.Raycast(ray, out hit, Mathf.Infinity);
+        return hit.point;
+    }
+
     private void Move()
     {
         if (movementState == MovementState.BOUNCING)
         {
-            moveX = Input.GetAxis("Horizontal") * walkSpeed;
-            moveZ = Input.GetAxis("Vertical") * walkSpeed;
-
-            Vector3 flatForward = transform.forward;
-            flatForward.y = 0f;
-
-            moveDirection = flatForward.normalized * moveZ + transform.right * moveX;
+            if (bounces == 0)
+            {
+                rb.AddForce(ability.GetBounceDir() * launchForce * 1.1f, ForceMode.Acceleration); ;
+            }
+            else
+            {
+                rb.velocity = ability.GetBounceDir() * launchForce * 0.38f;
+            }
             return;
         }
         if (movementState != MovementState.LOCKED && movementState != MovementState.BOUNCING)
@@ -88,10 +102,10 @@ public class Movement : MonoBehaviour
             moveX = Input.GetAxisRaw("Horizontal") * walkSpeed;
             moveZ = Input.GetAxisRaw("Vertical") * walkSpeed;
 
-            Vector3 flatForward = transform.forward;
+            Vector3 flatForward = camHolder.forward;
             flatForward.y = 0f;
 
-            moveDirection = flatForward.normalized * moveZ + transform.right * moveX;
+            moveDirection = flatForward.normalized * moveZ + camHolder.right * moveX;
             if (!airborne)
                 rb.AddForce(moveDirection, ForceMode.Force);
             else
@@ -109,17 +123,34 @@ public class Movement : MonoBehaviour
             }
             else if (uponSlide && moveDirection == Vector3.zero)
             {
-                slideDirection = transform.forward;
+                slideDirection = camHolder.forward;
                 uponSlide = false;
             }
             ability.Slide(slideDirection, slideSpeed);
-
             return;
         }
         //slamming
         if (movementState == MovementState.SLAMMING)
         {
             ability.GroundSlam(slamSpeed);
+        }
+    }
+
+    private void LaunchLogic()
+    {
+        if (!launchInterval.enabled)
+            return;
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            ability.LaunchIn(launchPoint, launchForce);
+            Destroy(launchInterval.gameObject);
+            movementState = MovementState.BOUNCING;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            ability.LaunchOut(launchPoint, launchForce);
+            Destroy(launchInterval.gameObject);
+            movementState = MovementState.BOUNCING;
         }
     }
 
@@ -137,26 +168,21 @@ public class Movement : MonoBehaviour
         dashInput.Update();
         slideInput.Update();
         launchInput.Update();
-        launch2Input.Update();
         if (!point.IsUnityNull())//this check covers specifically the enemies when they die while you are in contact with them
         {
             if (point.otherCollider == null)
                 airborne = true;
         }
-
-        if (launchInput.GetInputDown() && airborne && movementState != MovementState.BOUNCING)
+        if (launchInput.GetInputDown() && animator.GetCurrentAnimatorStateInfo(0).IsName("Nun") && launchInterval == null && movementState != MovementState.BOUNCING)
         {
-            movementState = MovementState.BOUNCING;
-            stamina.ReduceStamina(100f);
-            ability.LaunchIn(point, launchForce);
-            return;
+            animator.Play("Throw");
+            launchPoint = GetCameraRayPoint();
+            var instance = Instantiate(zipMagnetPrefab, throwPoint.transform.position, Quaternion.LookRotation(launchPoint-throwPoint.transform.position));
+            launchInterval = instance.GetComponent<OnInterval>();
         }
-        else if (launch2Input.GetInputDown() && airborne && movementState != MovementState.BOUNCING)
+        if (launchInterval != null)
         {
-            movementState = MovementState.BOUNCING;
-            stamina.ReduceStamina(100f);
-            ability.LaunchOut(point, launchForce);
-            return;
+            LaunchLogic();
         }
         if (jumpInput.GetInputDown() && currentJumps < maxJumps)
         {
@@ -182,7 +208,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                ability.Dash(transform.forward, dashSpeed);
+                ability.Dash(camHolder.forward, dashSpeed);
             }
             stamina.ReduceStamina(100f);
             movementState = MovementState.WALKING;
@@ -235,7 +261,8 @@ public class Movement : MonoBehaviour
         ability.Bounce(point);
         if (bounces >= maxBounces)
         {
-            //rb.drag = 2f;
+            rb.velocity = ability.GetBounceDir() * launchForce * 0.38f;
+            rb.drag = 2f;
             bounces = 0;
             movementState = MovementState.WALKING;
         }

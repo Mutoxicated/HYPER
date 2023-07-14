@@ -22,8 +22,6 @@ public class FadeMatColor : MonoBehaviour
     private Color gradientColor;
     [HideInInspector] public Color color = new Color(0f,0f,0f,0f);
 
-    [GradientUsage(true)] private Gradient gradient2;
-
     void Start()
     {
         rate = Mathf.PI / (interval*Mathf.PI);

@@ -52,18 +52,18 @@ public class MoveAbilities
         return false;
     }
 
-    public void LaunchIn(ContactPoint point, float launchSpeed)
+    public void LaunchIn(Vector3 point, float launchSpeed)
     {
         bounceSpeed = launchSpeed;
-        bounceDirection = (point.point - rb.position).normalized * bounceSpeed;
+        bounceDirection = (point - rb.position).normalized * bounceSpeed;
         rb.velocity = bounceDirection;
         rb.drag = 0f;
     }
 
-    public void LaunchOut(ContactPoint point, float launchSpeed)
+    public void LaunchOut(Vector3 point, float launchSpeed)
     {
         bounceSpeed = launchSpeed;
-        bounceDirection = (rb.position - point.point).normalized * bounceSpeed;
+        bounceDirection = (rb.position - point).normalized * bounceSpeed;
         rb.velocity = bounceDirection;
         rb.drag = 0f;
     }
@@ -71,7 +71,7 @@ public class MoveAbilities
     public void Bounce(ContactPoint point)
     {
         bounceDirection = Vector3.Reflect(bounceDirection, point.normal).normalized * bounceSpeed;
-        rb.velocity = bounceDirection;
+        rb.velocity = Vector3.zero;
     }
 
     public Vector3 GetBounceDir()

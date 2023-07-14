@@ -18,14 +18,14 @@ MonoBehaviour:
     value: 1
   spectralLut:
     overrideState: 0
-    value: {fileID: 0}
+    value: {fileID: 2800000, guid: 7a051dbda2d7bc447bee412427cd311e, type: 3}
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.183
+    value: 0.047
   fastMode:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 1
 --- !u!114 &-2251756185825107039
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -53,7 +53,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.389
+    value: 0.416
   smoothness:
     overrideState: 1
     value: 0.403
@@ -94,13 +94,13 @@ MonoBehaviour:
     value: 1
   softKnee:
     overrideState: 1
-    value: 1
+    value: 0
   clamp:
     overrideState: 1
     value: 65472
   diffusion:
     overrideState: 1
-    value: 6.43
+    value: 6.61
   anamorphicRatio:
     overrideState: 1
     value: 0
@@ -111,11 +111,11 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   dirtTexture:
-    overrideState: 1
+    overrideState: 0
     value: {fileID: 2800000, guid: aab796ff4a323064aa0ad92285961c18, type: 3}
     defaultState: 1
   dirtIntensity:
-    overrideState: 1
+    overrideState: 0
     value: 22
 --- !u!114 &11400000
 MonoBehaviour:
@@ -238,13 +238,13 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 1, y: 0.9985149, z: 0.98666, w: 0.02212398}
+    value: {x: 1, y: 0.9985149, z: 0.98666, w: -0.030543763}
   gamma:
     overrideState: 1
-    value: {x: 0.95648193, y: 0.9659926, z: 1, w: -0.14380533}
+    value: {x: 0.95648193, y: 0.9659926, z: 1, w: 0.039456725}
   gain:
     overrideState: 1
-    value: {x: 0.954794, y: 0.9484703, z: 1, w: 0.12168123}
+    value: {x: 0.954794, y: 0.9484703, z: 1, w: 0.09163123}
   masterCurve:
     overrideState: 1
     value:

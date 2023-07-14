@@ -21,7 +21,7 @@ TagManager:
   - enemybullets
   - Ground
   - IgnoreAllBullets
-  - Useless
+  - OnlyArenaColl
   - BasicPP
   - pixelPP
   - 

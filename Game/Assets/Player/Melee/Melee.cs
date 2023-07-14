@@ -38,7 +38,7 @@ public class Melee : MonoBehaviour
     private void Update()
     {
         meleeInput.Update();
-        if (meleeInput.GetInputDown() && !punching && once)
+        if (meleeInput.GetInputDown() && animator.GetCurrentAnimatorStateInfo(0).IsName("Nun") && !punching && once)
         {
             //Debug.Log("non");
             once = false;

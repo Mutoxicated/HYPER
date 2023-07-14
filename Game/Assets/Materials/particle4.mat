@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: particle2
+  m_Name: particle4
   m_Shader: {fileID: 4800000, guid: 6440b2a38c2d5494f8bee1ce2d062327, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
@@ -31,7 +31,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3002
   stringTagMap: {}
   disabledShaderPasses:
   - DepthOnly
