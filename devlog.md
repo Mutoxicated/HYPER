@@ -576,3 +576,7 @@ Anyway that's it for day 34 and 35, going pretty well, but I don't think I'll fi
 ## Day 36
 
 I re-implemented the launch movement mechanic. Now you throw a magnetic thing and when it sticks to a wall or ground you have 1 second to decide if you want to launch in or out, bouncing 3 times as you do so.
+
+## Day 37
+
+Reverted the re-implementation, kept some things. Made the health bar cooler, added ui elements.

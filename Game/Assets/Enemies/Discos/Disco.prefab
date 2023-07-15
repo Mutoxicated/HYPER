@@ -486,6 +486,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
 --- !u!4 &4940269727343667667 stripped
@@ -525,7 +529,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.95
   m_Center: {x: -0.00000047683716, y: 0.00000011920929, z: 0.00000047683716}
 --- !u!114 &2083089915992140260
 MonoBehaviour:
@@ -1075,12 +1079,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4940269727343667667}
     - target: {fileID: 5468932144483483105, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468932144483483105, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.23
+      value: 15.3
       objectReference: {fileID: 0}
     - target: {fileID: 5468932144483483105, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.2
+      value: 10.39
       objectReference: {fileID: 0}
     - target: {fileID: 8391467601601404248, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: health

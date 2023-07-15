@@ -32,9 +32,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private int maxBounces;
 
     [Header("Misc")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private GameObject zipMagnetPrefab;
-    [SerializeField] private GameObject throwPoint;
+    [SerializeField] private OnInterval launchInterval;
     [SerializeField] private Transform camHolder;
     [SerializeField] private StaminaControl stamina;
     [SerializeField] private Rigidbody rb;
@@ -43,7 +41,6 @@ public class Movement : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 slideDirection = Vector3.zero;
     private ContactPoint point;
-    private OnInterval launchInterval;
 
     private ButtonInput jumpInput = new ButtonInput("Jump");
     private ButtonInput dashInput = new ButtonInput("Dash");
@@ -60,6 +57,7 @@ public class Movement : MonoBehaviour
 
     private MoveAbilities ability;
     private float moveX, moveZ;
+    private CameraShake camShake;
 
     private Vector3 GetCameraRayPoint()
     {
@@ -138,24 +136,27 @@ public class Movement : MonoBehaviour
 
     private void LaunchLogic()
     {
-        if (!launchInterval.enabled)
+        if (stamina.GetCurrentStamina() < 100f)
             return;
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            ability.LaunchIn(launchPoint, launchForce);
-            Destroy(launchInterval.gameObject);
+            ability.LaunchOut(launchPoint, launchForce);
+            launchInterval.enabled = false;
             movementState = MovementState.BOUNCING;
+            stamina.ReduceStamina(100f);
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            ability.LaunchOut(launchPoint, launchForce);
-            Destroy(launchInterval.gameObject);
+            ability.LaunchIn(launchPoint, launchForce);
             movementState = MovementState.BOUNCING;
+            launchInterval.enabled = false;
+            stamina.ReduceStamina(100f);
         }
     }
 
     private void Start()
     {
+        camShake = GetComponent<CameraShake>();
         rb.drag = 2f;
         ability = new MoveAbilities(rb);
         movementState = MovementState.WALKING;
@@ -173,14 +174,7 @@ public class Movement : MonoBehaviour
             if (point.otherCollider == null)
                 airborne = true;
         }
-        if (launchInput.GetInputDown() && animator.GetCurrentAnimatorStateInfo(0).IsName("Nun") && launchInterval == null && movementState != MovementState.BOUNCING)
-        {
-            animator.Play("Throw");
-            launchPoint = GetCameraRayPoint();
-            var instance = Instantiate(zipMagnetPrefab, throwPoint.transform.position, Quaternion.LookRotation(launchPoint-throwPoint.transform.position));
-            launchInterval = instance.GetComponent<OnInterval>();
-        }
-        if (launchInterval != null)
+        if (launchInterval.enabled)
         {
             LaunchLogic();
         }
@@ -259,6 +253,12 @@ public class Movement : MonoBehaviour
             return;
         bounces++;
         ability.Bounce(point);
+        if (collision.collider.gameObject.tag == "Enemy")
+        {
+            camShake.Shake();
+            collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(100f,gameObject);
+            bounces = maxBounces;
+        }
         if (bounces >= maxBounces)
         {
             rb.velocity = ability.GetBounceDir() * launchForce * 0.38f;
@@ -290,6 +290,8 @@ public class Movement : MonoBehaviour
         airborne = true;
         if (movementState == MovementState.BOUNCING)
             return;
+        launchInterval.enabled = true;
+        launchPoint = transform.position;
         rb.drag = 2f;
     }
 }

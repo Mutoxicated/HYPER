@@ -32,37 +32,6 @@ Transform:
   m_Father: {fileID: 4757300082295422083}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &243406940051364907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3383948289363342170}
-  m_Layer: 0
-  m_Name: ThrowPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3383948289363342170
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243406940051364907}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.64, y: 0.429, z: -0.195}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1987462775687559841}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &649642760891219682
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,6 +904,7 @@ GameObject:
   - component: {fileID: 1827139654470346249}
   - component: {fileID: 119900076246059708}
   - component: {fileID: 7127821129873079633}
+  - component: {fileID: 8042353175293637678}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1039,19 +1009,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 84
   slideSpeed: 19.84
-  slamSpeed: 42.33
+  slamSpeed: 44
   dashSpeed: 25.67
   gravityForce: 19
   jumpForce: 21.8
   airMultiplier: 0.419
-  launchForce: 20
+  launchForce: 15
   maxJumps: 3
   maxBounces: 3
-  animator: {fileID: 1827139654312536223}
-  zipMagnetPrefab: {fileID: 644907414112524800, guid: d5500a90f6ba1dc489b44ef53637eb17, type: 3}
-  throwPoint: {fileID: 243406940051364907}
+  launchInterval: {fileID: 8042353175293637678}
   camHolder: {fileID: 1987462775687559841}
-  launchInterval: {fileID: 0}
   stamina: {fileID: 0}
   rb: {fileID: 1827139654470346248}
   movementState: 3
@@ -1149,6 +1116,38 @@ CapsuleCollider:
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: -0.3, z: 0}
+--- !u!114 &8042353175293637678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827139654470346250}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  chance: 100
+  interval: 1
+  onInterval:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8042353175293637678}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  destroyUponEvent: 0
+  t: 0
 --- !u!1 &1827139654788565378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,7 +2061,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1827139654788565383}
-  - {fileID: 3383948289363342170}
   m_Father: {fileID: 1827139654470346252}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
