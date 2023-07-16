@@ -1,14 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!21 &-9095539044233618618
+--- !u!21 &-6832918136610705557
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Overfont SDF Material
-  m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
+  m_Name: Overfont SDF2 Material
+  m_Shader: {fileID: 4800000, guid: dd89cf5b9246416f84610a006f916af7, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -33,7 +33,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2671076203331257715}
+        m_Texture: {fileID: 4747086754218595730}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
@@ -96,7 +96,7 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FaceColor: {r: 4, g: 4, b: 4, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
@@ -115,11 +115,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Overfont SDF
+  m_Name: Overfont SDF2
   m_EditorClassIdentifier: 
-  hashCode: -744510452
-  material: {fileID: -9095539044233618618}
-  materialHashCode: 1001237292
+  hashCode: 1200958910
+  material: {fileID: -6832918136610705557}
+  materialHashCode: -1355402274
   m_Version: 1.1.0
   m_SourceFontFileGUID: a15e8d121669d354984c144ae101032e
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: a15e8d121669d354984c144ae101032e, type: 3}
@@ -1461,7 +1461,7 @@ MonoBehaviour:
     m_GlyphIndex: 71
     m_Scale: 1
   m_AtlasTextures:
-  - {fileID: 2671076203331257715}
+  - {fileID: 4747086754218595730}
   m_AtlasTextureIndex: 0
   m_IsMultiAtlasTexturesEnabled: 0
   m_ClearDynamicDataOnBuild: 0
@@ -1858,7 +1858,7 @@ MonoBehaviour:
       wxyz01234567
 
       89.!?;:-%'
-    referencedFontAssetGUID: bf6e6d13e432ba8468230c20d9e90132
+    referencedFontAssetGUID: ba8edf6d0078d0341b9ba8fc57313e21
     referencedTextAssetGUID: 166700deaefc7494a937f7166ae5dd7b
     fontStyle: 0
     fontStyleModifier: 0
@@ -1892,13 +1892,13 @@ MonoBehaviour:
   boldSpacing: 7
   italicStyle: 35
   tabSize: 10
---- !u!28 &2671076203331257715
+--- !u!28 &4747086754218595730
 Texture2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Overfont SDF Atlas
+  m_Name: Overfont SDF2 Atlas
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000

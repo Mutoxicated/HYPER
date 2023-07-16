@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 00a05420500592d42a16c8612d59cc97
+guid: a15e8d121669d354984c144ae101032e
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
   fontSize: 16
-  forceTextureCase: -2
+  forceTextureCase: 3
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
   - Mystery Font
   fallbackFontReferences: []
-  customCharacters: 
+  customCharacters: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.!?;:-%
   fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0

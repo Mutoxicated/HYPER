@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class OnInterval : MonoBehaviour
 {
     [SerializeField] private Stats stats;
+    [SerializeField] private string specialTag = "Untagged";
     [SerializeField, Range(0, 100)] private int chance = 100;
     [SerializeField] private float interval;
     [SerializeField] private UnityEvent onInterval;
@@ -14,6 +15,21 @@ public class OnInterval : MonoBehaviour
     private bool useStats = false;
     [HideInInspector] public float t;
     private float time;
+
+    public void ResetEarly()
+    {
+        ResetInterval();
+    }
+
+    private void ResetInterval()
+    {
+        time = 0f;
+        t= 0f;
+        if (Random.Range(0, 100) <= chance)
+            onInterval.Invoke();
+        if (destroyUponEvent)
+            Destroy(gameObject);
+    }
 
     private void Awake()
     {
@@ -30,11 +46,7 @@ public class OnInterval : MonoBehaviour
         //Debug.Log(time);
         if (time >= interval)
         {
-            time = 0f;
-            if (Random.Range(0,100) <= chance)
-                onInterval.Invoke();
-            if (destroyUponEvent)
-                Destroy(gameObject);
+            ResetInterval();
         }
         if (time != 0f)
             t = time / interval;

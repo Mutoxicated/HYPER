@@ -39,17 +39,9 @@ public class MoveAbilities
         rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
     }
 
-    public bool Lock(float duration)
+    public void Lock()
     {
-        t += Time.fixedDeltaTime;
         rb.drag = 3f;
-        if (t > duration)
-        {
-            rb.drag = 2f;
-            t = 0;
-            return true;
-        }
-        return false;
     }
 
     public void LaunchIn(Vector3 point, float launchSpeed)

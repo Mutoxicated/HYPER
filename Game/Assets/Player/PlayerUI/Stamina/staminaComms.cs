@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class staminaComms : MonoBehaviour
 {
+    [SerializeField] private bool locked = false;
+    [SerializeField] private Image image;
     [SerializeField] private staminaComms previousNeighbor;
     [SerializeField] private staminaComms nextNeighbor;
+    private Color lockedColor = new Color(0.7f, 0.7f, 0.7f, 0.25f);
     private Vector3 minScale, maxScale;
     private float t = 100f;
     private bool chargeBack = false;
@@ -17,6 +18,15 @@ public class staminaComms : MonoBehaviour
 
     //im sorry this is a compact mess
     //idk wtf happened i was prolly high and shit
+
+    public void SetLockState(bool state)
+    {
+        locked = state;
+        if (state == false)
+            image.color = previousNeighbor.GetComponent<Image>().color;
+        else
+            image.color = lockedColor;
+    }
 
     private void TransferRemainingLoss(float remainder)
     {
@@ -40,6 +50,10 @@ public class staminaComms : MonoBehaviour
 
     public void LoseStamina(float loss)
     {
+        if (locked)
+        {
+            TransferRemainingLoss(loss);
+        }
         if (t < loss && previousNeighbor != false)
         {
             remainder = loss - t;
@@ -64,12 +78,18 @@ public class staminaComms : MonoBehaviour
 
     void Awake()
     {
+        if (locked)
+        {
+            image.color = lockedColor;
+        }
         maxScale = new Vector3(1f, 1f, 1f);
         minScale = new Vector3(0f,1f,1f);
     }
 
     void Update()
     {
+        if (locked)
+            return;
         if (full)
             return;
         if (!activate)

@@ -31,8 +31,11 @@ public class Movement : MonoBehaviour
     [SerializeField] private int maxJumps;
     [SerializeField] private int maxBounces;
 
-    [Header("Misc")]
+    [Header("Timers")]
     [SerializeField] private OnInterval launchInterval;
+    [SerializeField] private OnInterval lockInterval;
+
+    [Header("Misc")]
     [SerializeField] private Transform camHolder;
     [SerializeField] private StaminaControl stamina;
     [SerializeField] private Rigidbody rb;
@@ -45,7 +48,8 @@ public class Movement : MonoBehaviour
     private ButtonInput jumpInput = new ButtonInput("Jump");
     private ButtonInput dashInput = new ButtonInput("Dash");
     private ButtonInput slideInput = new ButtonInput("Slide");
-    private ButtonInput launchInput = new ButtonInput("Launch");
+    private ButtonInput launchInInput = new ButtonInput("LaunchIn");
+    private ButtonInput launchOutInput = new ButtonInput("LaunchOut");
 
     private RaycastHit hit;
     private Vector3 launchPoint;
@@ -59,11 +63,9 @@ public class Movement : MonoBehaviour
     private float moveX, moveZ;
     private CameraShake camShake;
 
-    private Vector3 GetCameraRayPoint()
+    public void ChangeState(int ms)
     {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.scaledPixelWidth / 2, Camera.main.scaledPixelHeight / 2, 0));
-        Physics.Raycast(ray, out hit, Mathf.Infinity);
-        return hit.point;
+        movementState = (MovementState)ms;
     }
 
     private void Move()
@@ -86,12 +88,7 @@ public class Movement : MonoBehaviour
         }
         else 
         {
-            bool durationExceeded = ability.Lock(1f);
-            if (durationExceeded)
-            {
-                //Debug.Log("UNLOCKED");
-                movementState = MovementState.WALKING;
-            }
+            ability.Lock();
             return;
         }
         //walking
@@ -138,14 +135,14 @@ public class Movement : MonoBehaviour
     {
         if (stamina.GetCurrentStamina() < 100f)
             return;
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (launchOutInput.GetInputDown())
         {
             ability.LaunchOut(launchPoint, launchForce);
             launchInterval.enabled = false;
             movementState = MovementState.BOUNCING;
             stamina.ReduceStamina(100f);
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        else if (launchInInput.GetInputDown())
         {
             ability.LaunchIn(launchPoint, launchForce);
             movementState = MovementState.BOUNCING;
@@ -168,31 +165,39 @@ public class Movement : MonoBehaviour
         jumpInput.Update();
         dashInput.Update();
         slideInput.Update();
-        launchInput.Update();
+        launchInInput.Update();
+        launchOutInput.Update();
         if (!point.IsUnityNull())//this check covers specifically the enemies when they die while you are in contact with them
         {
             if (point.otherCollider == null)
                 airborne = true;
         }
-        if (launchInterval.enabled)
-        {
-            LaunchLogic();
-        }
         if (jumpInput.GetInputDown() && currentJumps < maxJumps)
         {
             currentJumps++;
+            if (movementState == MovementState.LOCKED)
+            {
+                lockInterval.ResetEarly();
+                movementState = MovementState.WALKING;
+                return;
+            }
             if (!airborne)
             {
                 ability.Jump(point, jumpForce);
                 movementState = MovementState.WALKING;
                 crouchReleased = false;
             }
-        else
-        {
-            stamina.ReduceStamina(50f);
-            movementState = MovementState.LOCKED;
+            else
+            {
+                stamina.ReduceStamina(50f);
+                movementState = MovementState.LOCKED;
+                lockInterval.enabled = true;
+            }
+            return;
         }
-        return;
+        if (movementState == MovementState.LOCKED)
+        {
+            return;
         }
         if (dashInput.GetInputDown() && stamina.GetCurrentStamina() > 100f)
         {
@@ -210,7 +215,10 @@ public class Movement : MonoBehaviour
             crouchReleased = false;
             return;
         }
-
+        if (launchInterval.enabled)
+        {
+            LaunchLogic();
+        }
         if (slideInput.GetInputDown())
         {
             uponSlide = true;
@@ -234,8 +242,6 @@ public class Movement : MonoBehaviour
         }
         //Debug.Log(movementState.ToString());
         if (movementState == MovementState.SLAMMING)
-            return;
-        if (movementState == MovementState.LOCKED)
             return;
         if (movementState == MovementState.BOUNCING)
             return;
@@ -278,6 +284,7 @@ public class Movement : MonoBehaviour
         }
         if (movementState == MovementState.SLAMMING || movementState == MovementState.LOCKED)
         {
+            lockInterval.ResetEarly();
             movementState = MovementState.WALKING;
         }
         if (movementState == MovementState.BOUNCING)

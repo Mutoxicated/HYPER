@@ -326,11 +326,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Launch
+    m_Name: LaunchIn
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: r
-    positiveButton: r
+    negativeButton: q
+    positiveButton: q
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -361,8 +361,8 @@ InputManager:
     m_Name: LaunchOut
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: q
-    positiveButton: q
+    negativeButton: e
+    positiveButton: e
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

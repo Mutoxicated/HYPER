@@ -1,0 +1,6 @@
+ABCDEFGHIJKL
+MNOPQRSTUVWX
+YZabcdefghij
+klmnopqrstuv
+wxyz01234567
+89.!?;:-%

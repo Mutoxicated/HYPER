@@ -9,7 +9,7 @@ public class StaminaControl : MonoBehaviour
     
     public void ReduceStamina(float loss)
     {
-        bars[0].LoseStamina(loss);
+        bars[bars.Length-1].LoseStamina(loss);
     }
 
     public float GetCurrentStamina()
@@ -17,7 +17,8 @@ public class StaminaControl : MonoBehaviour
         float sum = 0f;
         foreach (var bar in bars)
         {
-            sum += bar.GetStamina();
+            if (bar.enabled)
+                sum += bar.GetStamina();
         }
         return sum;
     }

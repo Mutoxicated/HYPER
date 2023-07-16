@@ -580,3 +580,7 @@ I re-implemented the launch movement mechanic. Now you throw a magnetic thing an
 ## Day 37
 
 Reverted the re-implementation, kept some things. Made the health bar cooler, added ui elements.
+
+## Day 38
+
+I'm probably not gonna be doing a lot these following days.
