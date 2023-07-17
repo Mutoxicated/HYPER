@@ -1097,6 +1097,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  sumText: {fileID: 0}
   healthBar: {fileID: 0}
   healthBarImg: {fileID: 0}
   healthBarBackImg: {fileID: 0}

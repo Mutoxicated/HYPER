@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +19,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private GameObject[] playerObjects;
     [SerializeField] private Gradient healthBarGradient;
     [SerializeField] private Gradient playerHitGradient;
+    [SerializeField] private TMP_Text sumText;
     [SerializeField] private Transform healthBar;
     [SerializeField] private Image healthBarImg;
     [SerializeField] private Image healthBarBackImg;
@@ -31,6 +34,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private float healthT = 1f;
     private Vector3 initialScale;
     private Color playerColor;
+
+    private float currentT;
 
     private void EvaluateObjColor(int i, int index,string ID)
     {
@@ -77,6 +82,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         initialScale = healthBar.localScale;
         currentHP = HP;
         healthT = currentHP / HP;
+        currentT = healthT;
+        sumText.text = Mathf.Round(healthT*100f).ToString() + '%';
         healthBarImg = healthBar.GetComponent<Image>();
         if (playerObjects == null)
             return;
@@ -93,7 +100,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (currentHP == 0f)
             healthT = 0f;
         else healthT = currentHP / HP;
-        
+
+        if (currentT != healthT)
+        {
+            currentT = Mathf.Lerp(currentT, healthT, Time.deltaTime*3f);
+            sumText.text = Mathf.Round(currentT * 100f).ToString() + '%';
+        }
+
         healthBar.localScale = Vector3.Lerp(
             healthBar.localScale, 
             new Vector3(Mathf.Clamp(initialScale.x * healthT,0.0002f,initialScale.x),healthBar.localScale.y, healthBar.localScale.z), 
@@ -101,6 +114,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         playerColor = healthBarGradient.Evaluate(healthT);
         healthBarImg.color = playerColor;
+        sumText.color = playerColor;
         healthBarBackImg.color = new Color(playerColor.r, playerColor.g, playerColor.b, healthBarBackImg.color.a);
 
         if (playerObjects == null)

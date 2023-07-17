@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 public class staminaComms : MonoBehaviour
 {
-    [SerializeField] private bool locked = false;
+    public bool locked = false;
     [SerializeField] private Image image;
     [SerializeField] private staminaComms previousNeighbor;
     [SerializeField] private staminaComms nextNeighbor;
-    private Color lockedColor = new Color(0.7f, 0.7f, 0.7f, 0.25f);
+    private Color lockedColor = new Color(0.5f, 0.5f, 0.5f, 0.20f);
     private Vector3 minScale, maxScale;
     private float t = 100f;
     private bool chargeBack = false;
@@ -53,6 +53,7 @@ public class staminaComms : MonoBehaviour
         if (locked)
         {
             TransferRemainingLoss(loss);
+            return;
         }
         if (t < loss && previousNeighbor != false)
         {

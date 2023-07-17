@@ -584,3 +584,7 @@ Reverted the re-implementation, kept some things. Made the health bar cooler, ad
 ## Day 38
 
 I'm probably not gonna be doing a lot these following days.
+
+## Day 39
+
+-

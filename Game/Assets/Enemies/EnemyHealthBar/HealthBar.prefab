@@ -59,8 +59,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4752245327225448718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.21, y: -4.3699994, z: 0}
-  m_LocalScale: {x: 0.74, y: 0.74, z: 0.74}
+  m_LocalPosition: {x: -3.2, y: -4.38, z: 0}
+  m_LocalScale: {x: 0.54377425, y: 0.54377425, z: 0.54377425}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5468932144483483105}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorChannel: 1
   matIndex: 0
-  color: {r: 2.9960785, g: 0, b: 0, a: 1}
+  color: {r: 4, g: 4, b: 4, a: 1}
 --- !u!1 &6675817037426932262
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,8 +159,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6675817037426932262}
   m_LocalRotation: {x: -0, y: -0, z: 0.92387956, w: 0.38268343}
-  m_LocalPosition: {x: -1.3299994, y: -2.44, z: 0}
-  m_LocalScale: {x: 0.59999985, y: 5.6287804, z: 0.28048}
+  m_LocalPosition: {x: -1.32, y: -2.45, z: 0}
+  m_LocalScale: {x: 0.46389586, y: 5.6287804, z: 0.28048}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5468932144483483105}
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorChannel: 1
   matIndex: 0
-  color: {r: 2.9960785, g: 0, b: 0, a: 1}
+  color: {r: 4, g: 4, b: 4, a: 1}
 --- !u!1 &8976866479967901377
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
+  specialTag: Untagged
   chance: 100
   interval: 5
   onInterval:
@@ -575,23 +576,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.0999998
+      value: 1.0847754
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.0999998
+      value: 0.8950456
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.19713
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -661,7 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineColor: {r: 2.9960785, g: 0, b: 0, a: 1}
+  outlineColor: {r: 4, g: 4, b: 4, a: 1}
   outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
@@ -714,19 +715,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1
+      value: 1.069904
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.1
+      value: 0.8950457
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -763,6 +764,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: afe58833742e13541b36773ab36f31e5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_Materials.Array.data[0]
