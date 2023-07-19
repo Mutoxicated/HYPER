@@ -589,7 +589,7 @@ I'm probably not gonna be doing a lot these following days.
 
 -
 
-## Day 40
+## Day 40 and 41
 
 I fixed some really, REALLY stupid things lol. Bugs that should not have been there. Anyway I made a trello board page to have all my to-dos in there to clear up my mind and stop keeping track of everything in samsung notes lol. I theorized some of the enemies, which was really fun. Lemme tell you some!
 
@@ -618,3 +618,5 @@ An organic wall of extremely compact intestines from the gluttony layer. It move
 An organic creature that is half-plant half-animal. Because of its two mouths, it is able to blow the air constantly. When blowing, it also releases particles that communicate with each other. If a particle is disturbed, it will communicate with other particles close to it, reaching back to the siphan, which then starts fiercely suck the air until you reach its mouth, where you get damaged.
 
 Here ya go :p
+
+Also I just realized this is day 41 and not day 40 haha.
