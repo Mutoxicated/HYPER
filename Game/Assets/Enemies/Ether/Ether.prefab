@@ -287,6 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
+  specialTag: Untagged
   chance: 100
   interval: 4
   onInterval:
@@ -691,11 +692,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5468932144483483105, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.5
+      value: -5.42
       objectReference: {fileID: 0}
     - target: {fileID: 5468932144483483105, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.36
+      value: 9.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468932144483483105, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.92
       objectReference: {fileID: 0}
     - target: {fileID: 7519217494282106847, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_LocalPosition.x

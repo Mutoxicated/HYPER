@@ -588,3 +588,33 @@ I'm probably not gonna be doing a lot these following days.
 ## Day 39
 
 -
+
+## Day 40
+
+I fixed some really, REALLY stupid things lol. Bugs that should not have been there. Anyway I made a trello board page to have all my to-dos in there to clear up my mind and stop keeping track of everything in samsung notes lol. I theorized some of the enemies, which was really fun. Lemme tell you some!
+
+First of all, here's a list of all debuffs I've currently thought about:
+
+1. Burning
+2. Freezing
+3. Poison
+4. Rain
+5. Blindness
+
+Talking about the enemies, there will be organic and non-organic enemies. Organic enemies are immunne to rain, while non-organic enemies are immune to poison. The idea is that poison can't infiltrate a non-organic creature, but it can with an organic one. And with rain, it's the idea that non-organic cretures become rusty over time with rain, while organic creatures are fine.
+
+Here are a few O and N.O enemies:
+
+**Mog:** 
+A non-organic creature that can only be described as having a glowy core with multiple rings rotating on it. These creatures stay on the ground because of how heavy they are. But because of this, they have an extreme sensitivity to vibrations in the ground. So when you touch it, they immediately start rolling towards you. If there are many of them and collide, they will create a huge explosion.
+
+**Memoriam:** 
+This non-organic creature is a one for all. It is the memories and hopes and feelings of all monsters. It can turn into anything. Because this creature is like a memory suspended in time, it cannot hurt you and you cannot hurt it. However, it can indirectly hurt you through your environment. It can manifest itself into whatever enemy it wants, and you have to endure it, until it goes away.
+
+**Zorretox:** 
+An organic wall of extremely compact intestines from the gluttony layer. It moves slowly, constantly spewing toxic liquid everywhere. 
+
+**Siphan:** 
+An organic creature that is half-plant half-animal. Because of its two mouths, it is able to blow the air constantly. When blowing, it also releases particles that communicate with each other. If a particle is disturbed, it will communicate with other particles close to it, reaching back to the siphan, which then starts fiercely suck the air until you reach its mouth, where you get damaged.
+
+Here ya go :p

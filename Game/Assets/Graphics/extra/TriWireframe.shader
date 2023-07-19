@@ -6,7 +6,7 @@ Shader "Custom/TriWireframe"
     {
         [MainTexture] _BaseMap("Base Map (RGB) Smoothness / Alpha (A)", 2D) = "white" {}
 
-        [HDR] _WireframeBackColour("Wireframe back colour", color) = (1.0, 1.0, 1.0, 1.0)
+        [HDR] [MainColor] _WireframeBackColour("Wireframe back colour", color) = (1.0, 1.0, 1.0, 1.0)
         _WireframeAliasing("Wireframe aliasing", float) = 1.5
     }
 

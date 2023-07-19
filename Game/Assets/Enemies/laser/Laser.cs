@@ -17,7 +17,6 @@ public class Laser : MonoBehaviour
         var hits = Physics.SphereCastAll(transform.position, 0.5f, transform.TransformDirection(Vector3.forward), 100f, layerMask);
         foreach (var hit in hits)
         {
-            Debug.Log(hit.transform.gameObject.name);
             hit.transform.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage, gameObject);
         }
     }

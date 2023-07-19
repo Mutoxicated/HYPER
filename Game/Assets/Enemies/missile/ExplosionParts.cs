@@ -9,7 +9,8 @@ public class ExplosionParts : MonoBehaviour
 
     [SerializeField] private float speedMin;
     [SerializeField] private float speedMax;
-    [SerializeField, GradientUsage(true)] private Gradient color;
+    [SerializeField, GradientUsage(true)] private Gradient[] color;
+    [SerializeField] private int index = 0;
     [SerializeField,Range(0.5f,2f)] private float rate;
 
     private bool exploding = false;
@@ -25,14 +26,19 @@ public class ExplosionParts : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public void ChangeColorIndex(int index)
+    {
+        this.index = index;
+    }
+
+    private void Update()
     {
         if (!exploding)
             return;
-        t -= rate*Time.fixedDeltaTime;
+        t -= rate*Time.deltaTime;
         foreach (var mat in materials)
         {
-            mat.SetColor(colorChannel.ToString(), color.Evaluate(t));
+            mat.color = color[index].Evaluate(t);
         }
         if (t <= 0f)
         {

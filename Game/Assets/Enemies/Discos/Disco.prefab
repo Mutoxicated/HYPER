@@ -191,7 +191,6 @@ MonoBehaviour:
   useOnInterval: 1
   onInterval: {fileID: 3835179681775302895}
   interval: -1
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &3234883554362106647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
+  specialTag: Untagged
   chance: 100
   interval: 8
   onInterval:
@@ -695,7 +695,6 @@ MonoBehaviour:
   useOnInterval: 0
   onInterval: {fileID: 0}
   interval: 1
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &7244245088063053167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,6 +740,7 @@ MonoBehaviour:
   index: 0
   colorChannel: 1
   matIndex: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &4829517248377127484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -916,7 +916,6 @@ MonoBehaviour:
   useOnInterval: 0
   onInterval: {fileID: 0}
   interval: 1
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &6454650298255370119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -928,6 +927,10 @@ PrefabInstance:
       propertyPath: colorToCopy
       value: 
       objectReference: {fileID: 4829517246456464751}
+    - target: {fileID: 691070717336299533, guid: 4a5db2ab2bef2834192c511cfd11f91d, type: 3}
+      propertyPath: objectToCopy
+      value: 
+      objectReference: {fileID: 5747874642340167533}
     - target: {fileID: 1645277365440941042, guid: 4a5db2ab2bef2834192c511cfd11f91d, type: 3}
       propertyPath: m_Name
       value: discoExplosion
@@ -940,18 +943,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9ad80a11985c0344997dcd93a8125b3e, type: 2}
-    - target: {fileID: 4297280404784266020, guid: 4a5db2ab2bef2834192c511cfd11f91d, type: 3}
-      propertyPath: CustomDataModule.enabled
+    - target: {fileID: 5076237348871001486, guid: 4a5db2ab2bef2834192c511cfd11f91d, type: 3}
+      propertyPath: index
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4297280404784266020, guid: 4a5db2ab2bef2834192c511cfd11f91d, type: 3}
-      propertyPath: CustomDataModule.colorLabel0
-      value: Color
       objectReference: {fileID: 0}
     - target: {fileID: 5076237348871001486, guid: 4a5db2ab2bef2834192c511cfd11f91d, type: 3}
       propertyPath: colorToCopy
       value: 
       objectReference: {fileID: 4829517246872339938}
+    - target: {fileID: 5076237348871001486, guid: 4a5db2ab2bef2834192c511cfd11f91d, type: 3}
+      propertyPath: objectToCopy
+      value: 
+      objectReference: {fileID: 5747874643618771817}
     - target: {fileID: 5641779897331476564, guid: 4a5db2ab2bef2834192c511cfd11f91d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1080,7 +1083,7 @@ PrefabInstance:
       objectReference: {fileID: 4940269727343667667}
     - target: {fileID: 5468932144483483105, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.33
+      value: -4.04
       objectReference: {fileID: 0}
     - target: {fileID: 5468932144483483105, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_LocalPosition.y

@@ -20,7 +20,7 @@ public class FadeMatColor : MonoBehaviour
     private float[] colorValues = new float[4];
     private float t;
     private Color gradientColor;
-    [HideInInspector] public Color color = new Color(0f,0f,0f,0f);
+    private Color color = new Color(0f,0f,0f,0f);
 
     void Start()
     {
@@ -79,7 +79,7 @@ public class FadeMatColor : MonoBehaviour
         gradientColor = gradient.Evaluate(t);
         ComputeColorValues();
         if (tmpText == null)
-            mat.SetColor(colorChannel.ToString(), color);
+            mat.color = color;
         else
         {
             tmpText.color = color;

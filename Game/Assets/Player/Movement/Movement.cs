@@ -35,6 +35,9 @@ public class Movement : MonoBehaviour
     [SerializeField] private OnInterval launchInterval;
     [SerializeField] private OnInterval lockInterval;
 
+    [Header("Particles")]
+    [SerializeField] private GameObject groundSlamPrefab;
+
     [Header("Misc")]
     [SerializeField] private Transform camHolder;
     [SerializeField] private StaminaControl stamina;
@@ -255,6 +258,11 @@ public class Movement : MonoBehaviour
     {
         point = collision.GetContact(0);
         airborne = false;
+        if (movementState == MovementState.SLAMMING)
+        {
+            Instantiate(groundSlamPrefab, point.point, Quaternion.LookRotation(point.normal));
+            movementState = MovementState.WALKING;
+        }
         if (movementState != MovementState.BOUNCING)
             return;
         bounces++;
@@ -282,7 +290,7 @@ public class Movement : MonoBehaviour
         {
             currentJumps = 0;
         }
-        if (movementState == MovementState.SLAMMING || movementState == MovementState.LOCKED)
+        if (movementState == MovementState.LOCKED)
         {
             lockInterval.ResetEarly();
             movementState = MovementState.WALKING;

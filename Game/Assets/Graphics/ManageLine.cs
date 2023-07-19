@@ -14,7 +14,7 @@ public class ManageLine : MonoBehaviour
 
     private int previousindex = 90;
 
-    public void ChangeIndex(int i)
+    public void ChangeColorIndex(int i)
     {
         index = i;
     }

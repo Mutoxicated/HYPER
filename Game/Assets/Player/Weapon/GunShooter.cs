@@ -67,8 +67,8 @@ public class GunShooter : MonoBehaviour
 
     private void ShootState()
     {
-        Recoil();
         particle.Play();
+        Recoil();
         shootSFX.Play();
         readyToShoot = false;
         stopwatch.Start();

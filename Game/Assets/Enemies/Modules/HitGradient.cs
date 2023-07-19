@@ -12,6 +12,12 @@ public class HitGradient : MonoBehaviour
     [SerializeField] private int matIndex = 1;
 
     private Material mat;
+    [HideInInspector] public Color color;
+
+    private void Awake()
+    {
+        color = hitGradient[index].Evaluate(health.t);
+    }
 
     private void Start()
     {
@@ -25,6 +31,7 @@ public class HitGradient : MonoBehaviour
 
     private void Update()
     {
+        color = hitGradient[index].Evaluate(health.t);
         mat.SetColor(colorChannel.ToString(), hitGradient[index].Evaluate(health.t));
     }
 }

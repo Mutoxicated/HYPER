@@ -226,7 +226,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7407341, g: 0, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4236,14 +4236,14 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   CustomDataModule:
-    enabled: 1
+    enabled: 0
     mode0: 2
     vectorComponentCount0: 4
     color0:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1.7254902, g: 0, b: 2.9960785, a: 1}
+      maxColor: {r: 0.21268544, g: 2.9960785, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4302,7 +4302,7 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-    colorLabel0: StartColor
+    colorLabel0: Color
     vector0_0:
       serializedVersion: 2
       minMaxState: 0
@@ -4904,6 +4904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorToCopy: {fileID: 0}
+  gradientToCopy: {fileID: 0}
   particle: {fileID: 4297280404784266020}
 --- !u!1001 &4779441917312311762
 PrefabInstance:
@@ -4959,10 +4960,6 @@ PrefabInstance:
     - target: {fileID: 2278523658011342289, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
       propertyPath: m_Name
       value: discoExplosion2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2898739920603817010, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}
-      propertyPath: CustomDataModule.enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 607fe2a12ddf07b42a8eb27c26bddbf0, type: 3}

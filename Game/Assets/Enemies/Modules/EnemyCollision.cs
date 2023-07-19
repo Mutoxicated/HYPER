@@ -1,25 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyCollision : MonoBehaviour
 {
     [SerializeField] private Stats stats;
+    [SerializeField] private UnityEvent OnCollision;
     [SerializeField] private GameObject[] ObjectsToDestroy;
-    [SerializeField] private GameObject particleUponCollision;
-    [SerializeField] private bool detachChildren;
+    [SerializeField] private GameObject[] ChildrenToDetach;
     [SerializeField] private int damage;
     [SerializeField] private LayerMask layersToIgnore;
+    [SerializeField] private string[] tagsToIgnore;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "bullets")
-            return;
+        if (tagsToIgnore != null)
+        {
+            foreach (var tag in tagsToIgnore)
+            {
+                if (collision.gameObject.tag == tag)
+                    return;
+            }
+        }
         if ((layersToIgnore & (1 << collision.collider.gameObject.layer)) != 0)
             return;
-        if (particleUponCollision != null)
-            Instantiate(particleUponCollision, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
         Detach();
+        OnCollision.Invoke();
         DestroyStuff();
         if (damage > 0)
             collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage * stats.incrementalStat["damage"], gameObject);
@@ -37,8 +44,11 @@ public class EnemyCollision : MonoBehaviour
 
     private void Detach()
     {
-        if (!detachChildren)
+        if (ChildrenToDetach == null)
             return;
-        transform.DetachChildren();
+        foreach (var obj in ChildrenToDetach)
+        {
+            obj.transform.parent = null;
+        }
     }
 }

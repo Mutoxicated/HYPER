@@ -2,7 +2,7 @@ Shader "Unlit/BaseShader"
 {
     Properties
     {
-        [HDR] _Color ("Color", color) = (1,1,1,1)
+        [HDR] [MainColor] _Color("Color", color) = (1,1,1,1)
         _MainTex ("Texture", 2D) = "white" {}
     }
     SubShader

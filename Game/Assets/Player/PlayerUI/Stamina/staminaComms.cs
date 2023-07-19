@@ -5,6 +5,7 @@ public class staminaComms : MonoBehaviour
 {
     public bool locked = false;
     [SerializeField] private Image image;
+    [SerializeField] private Image backImage;
     [SerializeField] private staminaComms previousNeighbor;
     [SerializeField] private staminaComms nextNeighbor;
     private Color lockedColor = new Color(0.5f, 0.5f, 0.5f, 0.20f);
@@ -22,6 +23,7 @@ public class staminaComms : MonoBehaviour
     public void SetLockState(bool state)
     {
         locked = state;
+        backImage.gameObject.SetActive(!state);
         if (state == false)
             image.color = previousNeighbor.GetComponent<Image>().color;
         else

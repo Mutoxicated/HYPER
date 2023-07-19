@@ -213,6 +213,7 @@ MonoBehaviour:
   index: 0
   lineRenderer: {fileID: 0}
   trailRenderer: {fileID: 6338423137065065427}
+  dontUpdate: 0
 --- !u!1 &8574461424792126625
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,10 +231,10 @@ GameObject:
   - component: {fileID: 6044119978656008813}
   - component: {fileID: 2449012977333359559}
   - component: {fileID: 1884146861060504680}
-  - component: {fileID: 1949877454724251180}
   - component: {fileID: 1905270715724612992}
   - component: {fileID: 8025837559206595664}
   - component: {fileID: 650634795607507202}
+  - component: {fileID: 7356695330836512012}
   m_Layer: 9
   m_Name: missilePrefab
   m_TagString: Untagged
@@ -399,24 +400,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3582436773348578294}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   ObjectsToDestroy:
   - {fileID: 8574461424792126625}
   - {fileID: 1086622778760461236}
   ChildrenToDetach:
   - {fileID: 4614886852854802658}
-  - {fileID: 3582436773348578294}
   maxHP: 20
   rate: 0.05
   healthBar: {fileID: 0}
@@ -435,28 +423,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 8025837559206595664}
+  OnCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3582436773348578294}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   ObjectsToDestroy:
   - {fileID: 8574461424792126625}
-  particleUponCollision: {fileID: 2803386318374101593, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
-  detachChildren: 0
+  ChildrenToDetach:
+  - {fileID: 3582436773348578294}
   damage: 100
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 512
---- !u!64 &1949877454724251180
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8574461424792126625}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3613567641014311022, guid: d52d55559e3b12048868eadeaeee2f48, type: 3}
+  tagsToIgnore:
+  - bullets
 --- !u!114 &1905270715724612992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,6 +521,7 @@ MonoBehaviour:
   index: 0
   colorChannel: 1
   matIndex: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &8025837559206595664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,6 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
+  specialTag: Untagged
   chance: 100
   interval: 8
   onInterval:
@@ -574,7 +567,19 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 6228799189238817452}
         m_TargetAssemblyTypeName: ManageLine, Assembly-CSharp
-        m_MethodName: ChangeIndex
+        m_MethodName: ChangeColorIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1286590738520954447}
+        m_TargetAssemblyTypeName: ExplosionParts, Assembly-CSharp
+        m_MethodName: ChangeColorIndex
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -586,6 +591,19 @@ MonoBehaviour:
         m_CallState: 2
   destroyUponEvent: 0
   t: 0
+--- !u!135 &7356695330836512012
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574461424792126625}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.45
+  m_Center: {x: 0, y: 0, z: 0.6}
 --- !u!1001 &1680122225318818223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -611,15 +629,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2803386318374101598, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2803386318374101598, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2803386318374101598, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2803386318374101598, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -649,10 +667,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2803386318374101599, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 5373671906698012185, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
+      propertyPath: objectToCopy
+      value: 
+      objectReference: {fileID: 8574461424792126625}
+    - target: {fileID: 5373671906698012185, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
+      propertyPath: gradientToCopy
+      value: 
+      objectReference: {fileID: 8574461424792126625}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
 --- !u!4 &3582436773348578289 stripped

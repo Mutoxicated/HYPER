@@ -1,6 +1,6 @@
 Shader "Custom/SpriteV2"{
 	Properties{
-		[HDR] _Color("Tint", Color) = (0, 0, 0, 1)
+		[HDR] [MainColor] _Color("Tint", Color) = (0, 0, 0, 1)
 		_MainTex("Texture", 2D) = "white" {}
 	}
 

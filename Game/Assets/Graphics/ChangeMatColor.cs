@@ -7,13 +7,12 @@ public class ChangeMatColor : MonoBehaviour
     //changes the color of the wireframe material instance
     //so i don't have to make new materials for different colors
 
-    [SerializeField] private MaterialColorChannel colorChannel;
     [SerializeField] private int matIndex = 1;
     [SerializeField,ColorUsage(true,true)] private Color color;
     private void Start()
     {
         Material[] mats = GetComponent<Renderer>().materials;
         Material mat = mats[matIndex];
-        mat?.SetColor(colorChannel.ToString(), color);
+        mat.color = color;
     }
 }
