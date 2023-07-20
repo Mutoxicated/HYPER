@@ -10,7 +10,7 @@ Shader "Custom/Outline Fill" {
   Properties {
     [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 0
 
-    [HDR] _OutlineColor("Outline Color", Color) = (1, 1, 1, 1)
+    [HDR] [MainColor] _OutlineColor("Outline Color", Color) = (1, 1, 1, 1)
     _OutlineWidth("Outline Width", Range(0, 20)) = 2
   }
 

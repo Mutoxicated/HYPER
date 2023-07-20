@@ -8,7 +8,6 @@ public class HitGradient : MonoBehaviour
     [SerializeField,GradientUsage(true)] private Gradient[] hitGradient;
     [SerializeField] private int index = 0;
 
-    [SerializeField] private MaterialColorChannel colorChannel;
     [SerializeField] private int matIndex = 1;
 
     private Material mat;
@@ -32,6 +31,6 @@ public class HitGradient : MonoBehaviour
     private void Update()
     {
         color = hitGradient[index].Evaluate(health.t);
-        mat.SetColor(colorChannel.ToString(), hitGradient[index].Evaluate(health.t));
+        mat.color = hitGradient[index].Evaluate(health.t);
     }
 }

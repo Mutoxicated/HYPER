@@ -620,3 +620,19 @@ An organic creature that is half-plant half-animal. Because of its two mouths, i
 Here ya go :p
 
 Also I just realized this is day 41 and not day 40 haha.
+
+## Day 42
+
+I've realized there is no way I'm finishing it in 3 months. It's probably gonna take me twice the amount that i thought it would. I don't mind though, but that probably means that I will not be doing daily logs. Instead I'll be logging my progress on a weekly basis. This is exactly the 6th week that has passed since I started development. 
+
+Anyway now I'm making the movement particle effects and all that. I also realized that I can set the color of an instanced material in a 10x easier way, which is to just access the color variable of the material instead of using the function that requires the name that it has in the shader. Turns out if you put the [MainColor] attribute in a shader property or name the shader property _Color, this property will be the color variable of the instanced material that uses that shader. So that's cool and made my life easier.
+
+Anyway there are a few bugs that I'm stuck on and don't know how to fix, so that's fun :)
+
+I reflected upon my game a bit and thought about what would really make it fun. I came to the conclusion that your sheer evolution of becoming overpowered and the visual satisfaction of your power - with a big touch of strategic thinking and decisions that, if done right, will make you feel good about yourself - will make the game very satisfying and fun to play. I hope whoever is reading this can relate to this :]
+
+I think it is obvious though that this game will be very fast paced and adrenaline-inducing.
+
+On top of all that, the graphics make it really unique, as the 3D vector graphics genre has not been explored a lot. I think that's what's gonna grab the attention of many people, since the graphics are the most important first impressions a player gets from your game.
+
+Anyway that's it for today. This week hasn't been the msot productive, and I know that I should be more disciplined with my development and more consistent, so I will do better.

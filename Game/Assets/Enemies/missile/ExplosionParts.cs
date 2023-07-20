@@ -15,11 +15,9 @@ public class ExplosionParts : MonoBehaviour
 
     private bool exploding = false;
     private float t = 1f;
-    private MaterialColorChannel colorChannel;
 
     private void Start()
     {
-        colorChannel = (MaterialColorChannel)1;
         foreach (var part in parts)
         {
             materials.Add(part.gameObject.GetComponent<Renderer>().material);

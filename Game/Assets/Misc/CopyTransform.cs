@@ -11,7 +11,11 @@ public class CopyTransform : MonoBehaviour
     void Update()
     {
         if (_transform == null)
+        {
+            Debug.Log("ERROR! Transform has become null, possibly due to being destroyed. Disabling component.");
+            this.enabled = false;
             return;
+        }
         if (copyPosition)
             transform.position = _transform.position;
         if (copyRotation)

@@ -36,7 +36,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private OnInterval lockInterval;
 
     [Header("Particles")]
-    [SerializeField] private GameObject groundSlamPrefab;
+    [SerializeField] private ParticleSystem groundSlam;
+    [SerializeField] private ParticleSystem dash;
+    [SerializeField] private ParticleSystem slide;
+    [SerializeField] private ParticleSystem lockEffect;
 
     [Header("Misc")]
     [SerializeField] private Transform camHolder;
@@ -193,6 +196,7 @@ public class Movement : MonoBehaviour
             else
             {
                 stamina.ReduceStamina(50f);
+                lockEffect.Play();
                 movementState = MovementState.LOCKED;
                 lockInterval.enabled = true;
             }
@@ -204,12 +208,17 @@ public class Movement : MonoBehaviour
         }
         if (dashInput.GetInputDown() && stamina.GetCurrentStamina() > 100f)
         {
+            dash.transform.position = transform.position;
             if (moveDirection != Vector3.zero)
             {
+                dash.transform.rotation = Quaternion.LookRotation(moveDirection.normalized);
+                dash.Play();
                 ability.Dash(moveDirection.normalized, dashSpeed);
             }
             else
             {
+                dash.transform.rotation = camHolder.rotation;
+                dash.Play();
                 ability.Dash(camHolder.forward, dashSpeed);
             }
             stamina.ReduceStamina(100f);
@@ -260,7 +269,8 @@ public class Movement : MonoBehaviour
         airborne = false;
         if (movementState == MovementState.SLAMMING)
         {
-            Instantiate(groundSlamPrefab, point.point, Quaternion.LookRotation(point.normal));
+            groundSlam.transform.position = point.point;
+            groundSlam.Play();
             movementState = MovementState.WALKING;
         }
         if (movementState != MovementState.BOUNCING)

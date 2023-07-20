@@ -5,16 +5,13 @@ using UnityEngine.TextCore.Text;
 public class FadeMatColor : MonoBehaviour
 {
     [SerializeField] private TMP_Text tmpText;
-    [SerializeField] private MaterialColorChannel colorChannel;
     [SerializeField] private int index = 1;
     [SerializeField] private bool[] useMaterialValues = new bool[4];
     [SerializeField, GradientUsage(true)] private Gradient gradient;
-    [SerializeField] private bool useOnInterval = false;
     [SerializeField] private OnInterval onInterval;
     [SerializeField] private float interval;
     private float rate;
     private Material mat;
-    private const float tau = Mathf.PI * 2f;
     private float angle = 0f;
 
     private float[] colorValues = new float[4];
@@ -41,7 +38,7 @@ public class FadeMatColor : MonoBehaviour
             {
                 if (tmpText == null)
                 {
-                    colorValues[i] = mat.GetColor(colorChannel.ToString())[i];
+                    colorValues[i] = mat.color[i];
                 }
                 else
                 {
@@ -63,7 +60,7 @@ public class FadeMatColor : MonoBehaviour
 
     void Update()
     {
-        if (!useOnInterval)
+        if (onInterval == null)
         {
             angle += rate * Time.deltaTime;
             t = Mathf.Sin(angle);
@@ -72,7 +69,7 @@ public class FadeMatColor : MonoBehaviour
                 angle = 0f;
             }
         }
-        else if (useOnInterval)
+        else 
         {
             t = onInterval.t;
         }
