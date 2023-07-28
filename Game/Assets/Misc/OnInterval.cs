@@ -40,7 +40,7 @@ public class OnInterval : MonoBehaviour
     private void Update()
     {
         if (useStats)
-            time += Time.deltaTime * stats.incrementalStat["attackSpeed"];
+            time += Time.deltaTime * stats.incrementalStat["rate"][0];
         else
             time += Time.deltaTime;
         //Debug.Log(time);

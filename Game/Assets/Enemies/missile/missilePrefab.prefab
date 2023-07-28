@@ -519,7 +519,6 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   index: 0
-  colorChannel: 1
   matIndex: 0
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &8025837559206595664

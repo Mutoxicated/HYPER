@@ -635,4 +635,22 @@ I think it is obvious though that this game will be very fast paced and adrenali
 
 On top of all that, the graphics make it really unique, as the 3D vector graphics genre has not been explored a lot. I think that's what's gonna grab the attention of many people, since the graphics are the most important first impressions a player gets from your game.
 
-Anyway that's it for today. This week hasn't been the msot productive, and I know that I should be more disciplined with my development and more consistent, so I will do better.
+Anyway that's it for today. This week hasn't been the msot productive, and I know that I should be more disciplined with my development and more consistent, so I will do better.\
+
+## Week 7 & Day 50
+
+Here's what I did:
+
+> I added a shield system. You can have a certain namount of shields and once you get hit, they break. The more you have, the bigger the damage reduction.
+> I semi-finished the immune and bacteria (buff and debuff) system.
+> Making the immune system also allowed me to categorize enemies as organic or non-organic.
+> I made some more scripts use stats. Also change the way the stats work. Now each stat has its own lasting duration.
+> Fixed right mouse button throwing error.
+> Made the in and out launch direction be shown as two arrows in the bottom of the ui screen.
+
+
+All of that was pretty trivial to do. However, there was one thing, that took HALF of my week. For that half of the week I was in pain, trying to figure out how to implement this. Of course, this thing is graphics-related. 
+
+I wanted to do object pixelization, that being pixelating specific objects in runtime. This is harder than you think. First of all, it is very hard, almost impossible to do this. It's not just hard in a specific case, IT'S HARD IN EVERY SINGLE CASE. Why? BECAUSE UNITY. 
+
+It's still not completely done, I have to fix some things but basically I found an age old post in unity forums that contained half the solution. I'm implementing the other half currently. Basically it takes grabs the main render texture and it downscales and upscales it--the downscale and upscale part is probably the easiest out of all of this--and then simply outputs it. Simple. The downside is, it pixelates everything that the camera looks through the volume. So it not only pixelates the cube, but the background part as well. I'm currently just fixing this so I'm sure tomorrow it'll be good and ready to be used.

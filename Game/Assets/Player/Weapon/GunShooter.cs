@@ -8,15 +8,16 @@ using static UnityEngine.ParticleSystem;
 
 public class GunShooter : MonoBehaviour
 {
-    public enum WeaponType
+    public enum Echelon
     {
-        SINGLE,
-        DOUBLE,
-        TRIPLE,
-        QUADRUPLE,
-        QUINTUPLE
+        SINGULARITY,
+        DOUBLE_STANDARD,
+        CERBERUS,
+        TETRIPLEX,
+        CINCOS
     }
 
+    [SerializeField] public Stats stats;
     [SerializeField] private Transform firepoint;
     //[SerializeField] private Transform transform;
     [SerializeField] private Camera cam;
@@ -30,26 +31,26 @@ public class GunShooter : MonoBehaviour
     [Space]
     [Header("Gun Settings")]
     [SerializeField] private AudioSource shootSFX;
-    [SerializeField, Range(400f,2000f)] public float fireRate;//in milliseconds
+    [SerializeField] public float fireRate;
     [SerializeField] private Vector3 recoilPosition;
     [SerializeField] private Quaternion recoilRotation;
     [SerializeField] private float lerpSpeed;
-    [SerializeField] private WeaponType weaponType;
+    [SerializeField] private Echelon weaponType;
 
     private bool readyToShoot = true;
-    private Stopwatch stopwatch = new Stopwatch();
+    private float t = 0f;
+    private bool running = false;
     private ButtonInput fireInput = new ButtonInput("Fire1");
 
     public delegate void Methods(Vector3 pos, Quaternion rotation);
     private Methods[] shootMethods;
     private int index;
 
-    [HideInInspector] public float fireRateMod = 1f;
     [HideInInspector] public Queue<GameObject> bulletQueue = new Queue<GameObject>();
     [HideInInspector] public UnityEvent OnShootEvent = new UnityEvent();
 
     public delegate void extraShootMethods(Vector3 pos, Quaternion rotation);
-    public List<extraShootMethods> shootAbilities;
+    public List<extraShootMethods> shootAbilities = new List<extraShootMethods>();
     private ButtonInput fire2Input = new ButtonInput("Fire2");
 
     private Scroll scrollWheel = new Scroll(0, 5);
@@ -71,7 +72,7 @@ public class GunShooter : MonoBehaviour
         Recoil();
         shootSFX.Play();
         readyToShoot = false;
-        stopwatch.Start();
+        running = true;
     }
 
     //rotation point from firepoint to the crosshair
@@ -103,7 +104,6 @@ public class GunShooter : MonoBehaviour
             instance.SetActive(true);
             bulletQueue.Enqueue(instance);
         }
-        ShootState();
     }
     private void Single(Vector3 pos, Quaternion rotation)
     {
@@ -171,6 +171,7 @@ public class GunShooter : MonoBehaviour
         fire2Input.Update();
         if (fireInput.GetInput() && readyToShoot)
         {
+            ShootState();
             OnShootEvent.Invoke();
             shootMethods[index](firepoint.position, GetAccurateRotation());
         }
@@ -190,12 +191,14 @@ public class GunShooter : MonoBehaviour
         transform.localPosition = Vector3.Lerp(transform.localPosition, defaultPos, Time.deltaTime*lerpSpeed);
         transform.localRotation = Quaternion.Lerp(transform.localRotation, defaultRot, Time.deltaTime * lerpSpeed);
 
-        if (!stopwatch.IsRunning)
+        if (!running)
             return;
-        if (stopwatch.ElapsedMilliseconds > fireRate*fireRateMod)
+        t += Time.deltaTime * stats.incrementalStat["shootSpeed"][0];
+        if (t > fireRate)
         {
             readyToShoot = true;
-            stopwatch.Reset();
+            t = 0f;
+            running = false;
         }
     }
 }

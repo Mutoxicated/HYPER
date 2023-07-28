@@ -668,7 +668,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0.1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 2}
+    m_Position: {x: 0, y: 0, z: 3.5}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 2, y: 2, z: 2}
     placementMode: 0
@@ -4886,8 +4886,8 @@ MonoBehaviour:
   particle: {fileID: 2995725362301914519}
   gradient:
     serializedVersion: 2
-    key0: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
-    key1: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0}
+    key0: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0.4862745}
+    key1: {r: 0, g: 0, b: 0, a: 0}
     key2: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}

@@ -6,96 +6,121 @@ using UnityEngine;
 [Serializable]
 public class Stats : MonoBehaviour
 {
-    public Dictionary<string,float> incrementalStat = new Dictionary<string,float>();
-    public Dictionary<string, float> decrementalStat = new Dictionary<string, float>();
+    public Dictionary<string, float[]> incrementalStat = new Dictionary<string, float[]>();
+    public Dictionary<string, float[]> decrementalStat = new Dictionary<string, float[]>();
 
     private List<string> modifiedDecrementals = new List<string>();
     private List<string> modifiedIncrementals = new List<string>();
 
-    private float duration;
-    private float t;
+    //float array contains {value, time, duration in their respective places
+    private float[] defaultSet = new float[] { 1f, 0f, 0f };
 
     private void Awake()
     {
-        incrementalStat.Add("moveSpeed", 1f);
-        incrementalStat.Add("damage", 1f);
-        incrementalStat.Add("attackSpeed", 1f);
-        incrementalStat.Add("precision", 1f);
-
-        decrementalStat.Add("defense", 1f);
+        incrementalStat.Add("moveSpeed", defaultSet)
+        ; incrementalStat.Add("damage", defaultSet)
+        ; incrementalStat.Add("rate", defaultSet)
+        ; incrementalStat.Add("attackSpeed", defaultSet)
+        ; incrementalStat.Add("shootSpeed", defaultSet)
+        ; 
+        //HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH
     }
 
     private void Update()
     {
-        if (duration <= 0f)
-            return;
+        CheckIncrementals();
+        CheckDecrementals();
+    }
 
-        t += Time.deltaTime;
-        if (t >= duration)
+    private void CheckIncrementals()
+    {
+        if (modifiedIncrementals.Count == 0)
+            return;
+        foreach (var stat in modifiedIncrementals)
         {
-            t = 0f;
-            duration = -1f;
-            RevertStats();
+            incrementalStat[stat][1] += Time.deltaTime;
+            if (incrementalStat[stat][1] > incrementalStat[stat][2])
+            {
+                RevertIncrementalStat(stat);
+            }
+        }
+    }
+
+    private void CheckDecrementals()
+    {
+        if (modifiedDecrementals.Count == 0)
+            return;
+        foreach (var stat in modifiedDecrementals)
+        {
+            decrementalStat[stat][1] += Time.deltaTime;
+            if (decrementalStat[stat][1] > decrementalStat[stat][2])
+            {
+                RevertDecrementalStat(stat);
+            }
         }
     }
 
     public void ModifyAllIncrementalStats(float value, float duration)
     {
-        foreach (var buff in incrementalStat)
+        foreach (var stat in incrementalStat)
         {
-            incrementalStat[buff.Key] = value;
-            modifiedIncrementals.Add(buff.Key);
+            incrementalStat[stat.Key][0] = value;
+            incrementalStat[stat.Key][2] = duration;
+            modifiedIncrementals.Add(stat.Key);
         }
-        this.duration = duration;
     }
 
     public void ModifyAllDecrementalStats(float value, float duration)
     {
-        foreach (var buff in decrementalStat)
+        foreach (var stat in decrementalStat)
         {
-            decrementalStat[buff.Key] = value;
-            modifiedDecrementals.Add(buff.Key);
+            decrementalStat[stat.Key][0] = value;
+            decrementalStat[stat.Key][2] = duration;
+            modifiedDecrementals.Add(stat.Key);
         }
-        this.duration = duration;
     }
 
     public void ModifyIncrementalStat(string name, float value, float duration)
     {
-        incrementalStat[name] = value;
+        incrementalStat[name][0] = value;
+        incrementalStat[name][2] = duration;
         modifiedIncrementals.Add(name);
-        this.duration = duration;
     }
 
     public void ModifyDecrementalStat(string name, float value, float duration)
     {
-        incrementalStat[name] = value;
+        decrementalStat[name][0] = value;
+        decrementalStat[name][2] = duration;
         modifiedDecrementals.Add(name);
-        this.duration = duration;
     }
 
-    public void RevertStats()
+    public void RevertIncrementalStats()
     {
         foreach (var keyname in modifiedIncrementals)
         {
-            incrementalStat[keyname] = 1f;
+            incrementalStat[keyname] = defaultSet;
         }
         modifiedIncrementals.Clear();
+    }
+
+    public void RevertDecrementalStats()
+    {
         foreach (var keyname in modifiedDecrementals)
         {
-            decrementalStat[keyname] = 1f;
+            incrementalStat[keyname] = defaultSet;
         }
         modifiedDecrementals.Clear();
     }
 
     public void RevertIncrementalStat(string name)
     {
-        incrementalStat[name] = 1f;
+        incrementalStat[name] = defaultSet;
         modifiedIncrementals.Remove(name);
     }
 
     public void RevertDecrementalStat(string name)
     {
-        decrementalStat[name] = 1f;
+        decrementalStat[name] = defaultSet;
         modifiedDecrementals.Remove(name);
     }
 }

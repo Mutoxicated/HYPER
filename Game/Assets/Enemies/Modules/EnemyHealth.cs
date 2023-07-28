@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] private GameObject[] ChildrenToDetach;
     [Space]
     [Header("General")]
+    public int shields;
     public int maxHP;
     [SerializeField,Range(0.5f,2f)] private float rate = 0.05f;
 
@@ -60,7 +61,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public void TakeDamage(float intake, GameObject sender)
     {
         t = 1f;
-        currentHP -= intake * stats.decrementalStat["defense"];
+        currentHP -= intake / (shields + 1);
+        shields = Mathf.Clamp(shields - 1, 0, 999999);
         healthBar?.Activate();
         if (currentHP <= 0)
         {

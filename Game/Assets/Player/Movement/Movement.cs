@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private int maxBounces;
 
     [Header("Timers")]
-    [SerializeField] private OnInterval launchInterval;
+    [SerializeField] public OnInterval launchInterval;
     [SerializeField] private OnInterval lockInterval;
 
     [Header("Particles")]
@@ -42,6 +42,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private ParticleSystem lockEffect;
 
     [Header("Misc")]
+    [SerializeField] private Stats stats;
     [SerializeField] private Transform camHolder;
     [SerializeField] private StaminaControl stamina;
     [SerializeField] private Rigidbody rb;
@@ -57,8 +58,7 @@ public class Movement : MonoBehaviour
     private ButtonInput launchInInput = new ButtonInput("LaunchIn");
     private ButtonInput launchOutInput = new ButtonInput("LaunchOut");
 
-    private RaycastHit hit;
-    private Vector3 launchPoint;
+    [HideInInspector] public Vector3 launchPoint;
     private bool airborne = true;
     private bool crouchReleased = true;
     private bool uponSlide;
@@ -74,17 +74,22 @@ public class Movement : MonoBehaviour
         movementState = (MovementState)ms;
     }
 
+    public void ChangeDrag(float n)
+    {
+        rb.drag = n;
+    }
+
     private void Move()
     {
         if (movementState == MovementState.BOUNCING)
         {
             if (bounces == 0)
             {
-                rb.AddForce(ability.GetBounceDir() * launchForce * 1.1f, ForceMode.Acceleration); ;
+                rb.AddForce(ability.GetBounceDir() * launchForce * 1.1f * stats.incrementalStat["moveSpeed"][0], ForceMode.Acceleration); ;
             }
             else
             {
-                rb.velocity = ability.GetBounceDir() * launchForce * 0.38f;
+                rb.velocity = ability.GetBounceDir() * launchForce * 0.38f * stats.incrementalStat["moveSpeed"][0];
             }
             return;
         }
@@ -94,7 +99,7 @@ public class Movement : MonoBehaviour
         }
         else 
         {
-            ability.Lock();
+            ability.Lock(lockInterval.t);
             return;
         }
         //walking
@@ -108,9 +113,9 @@ public class Movement : MonoBehaviour
 
             moveDirection = flatForward.normalized * moveZ + camHolder.right * moveX;
             if (!airborne)
-                rb.AddForce(moveDirection, ForceMode.Force);
+                rb.AddForce(moveDirection * stats.incrementalStat["moveSpeed"][0], ForceMode.Force);
             else
-                rb.AddForce(moveDirection * airMultiplier, ForceMode.Force);
+                rb.AddForce(moveDirection * airMultiplier * stats.incrementalStat["moveSpeed"][0], ForceMode.Force);
 
             return;
         }
@@ -127,13 +132,17 @@ public class Movement : MonoBehaviour
                 slideDirection = camHolder.forward;
                 uponSlide = false;
             }
-            ability.Slide(slideDirection, slideSpeed);
+            
+            slide.transform.rotation = Quaternion.LookRotation(slideDirection);
+            if (!slide.isPlaying)
+                slide.Play();
+            ability.Slide(slideDirection, slideSpeed * stats.incrementalStat["moveSpeed"][0]);
             return;
         }
         //slamming
         if (movementState == MovementState.SLAMMING)
         {
-            ability.GroundSlam(slamSpeed);
+            ability.GroundSlam(slamSpeed * stats.incrementalStat["moveSpeed"][0]);
         }
     }
 
@@ -143,16 +152,16 @@ public class Movement : MonoBehaviour
             return;
         if (launchOutInput.GetInputDown())
         {
-            ability.LaunchOut(launchPoint, launchForce);
-            launchInterval.enabled = false;
+            ability.LaunchOut(launchPoint, launchForce * stats.incrementalStat["moveSpeed"][0]);
+            launchInterval.ResetEarly();
             movementState = MovementState.BOUNCING;
             stamina.ReduceStamina(100f);
         }
         else if (launchInInput.GetInputDown())
         {
-            ability.LaunchIn(launchPoint, launchForce);
+            ability.LaunchIn(launchPoint, launchForce * stats.incrementalStat["moveSpeed"][0]);
             movementState = MovementState.BOUNCING;
-            launchInterval.enabled = false;
+            launchInterval.ResetEarly();
             stamina.ReduceStamina(100f);
         }
     }
@@ -213,13 +222,13 @@ public class Movement : MonoBehaviour
             {
                 dash.transform.rotation = Quaternion.LookRotation(moveDirection.normalized);
                 dash.Play();
-                ability.Dash(moveDirection.normalized, dashSpeed);
+                ability.Dash(moveDirection.normalized, dashSpeed * stats.incrementalStat["moveSpeed"][0]);
             }
             else
             {
                 dash.transform.rotation = camHolder.rotation;
                 dash.Play();
-                ability.Dash(camHolder.forward, dashSpeed);
+                ability.Dash(camHolder.forward, dashSpeed * stats.incrementalStat["moveSpeed"][0]);
             }
             stamina.ReduceStamina(100f);
             movementState = MovementState.WALKING;
@@ -257,6 +266,8 @@ public class Movement : MonoBehaviour
             return;
         if (movementState == MovementState.BOUNCING)
             return;
+        if (slide.isPlaying)
+            slide.Stop();
         movementState = MovementState.WALKING;
     }
 
@@ -267,6 +278,7 @@ public class Movement : MonoBehaviour
     {
         point = collision.GetContact(0);
         airborne = false;
+        launchInterval.ResetEarly();
         if (movementState == MovementState.SLAMMING)
         {
             groundSlam.transform.position = point.point;
@@ -313,8 +325,6 @@ public class Movement : MonoBehaviour
     private void OnCollisionExit()
     {
         airborne = true;
-        if (movementState == MovementState.BOUNCING)
-            return;
         launchInterval.enabled = true;
         launchPoint = transform.position;
         rb.drag = 2f;

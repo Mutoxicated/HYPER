@@ -41,7 +41,7 @@ public class GunController : MonoBehaviour
         gunScrew.localRotation = Quaternion.Lerp(
             gunScrew.localRotation,
             Quaternion.AngleAxis(angle, new Vector3(0f, 0f, 1f)),
-            Time.deltaTime * (shooter.fireRate * shooter.fireRateMod / 90f));
+            Time.deltaTime * (shooter.fireRate / 90f));
     }
 
     private void FixedUpdate()

@@ -32,8 +32,6 @@ public class ManageLine : MonoBehaviour
             return;
         if (index != previousindex)
         {
-            Debug.Log("hap");
-
             if (trailRenderer == null)
             {
                 var copyGradient = lineRenderer.colorGradient;

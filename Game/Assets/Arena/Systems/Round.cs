@@ -10,8 +10,7 @@ public class Round : MonoBehaviour
 
     public GameObject wavePrefab;
     public GameObject beamInstance;
-    public TMP_Text wavesText;
-    public TMP_Text roundText;
+    public TMP_Text[] roundText;
 
     private Wave waveInfo;
     private int waves = 0;
@@ -27,7 +26,10 @@ public class Round : MonoBehaviour
             diff = GameObject.FindWithTag("Difficulty").GetComponent<Difficulty>();
         StartRound();
         rounds++;
-        roundText.text = rounds.ToString();
+        foreach (var tmp in roundText)
+        {
+            tmp.text = rounds.ToString();
+        }
     }
 
     private void Update()
@@ -62,6 +64,5 @@ public class Round : MonoBehaviour
             waveInfo = instance.GetComponent<Wave>();
             waves++;
         }
-        wavesText.text = waves.ToString();
     }
 }

@@ -45,7 +45,6 @@ Shader "Unlit/BaseShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
                 fixed4 col = _Color;
                 return col;
             }

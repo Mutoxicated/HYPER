@@ -39,9 +39,10 @@ public class MoveAbilities
         rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
     }
 
-    public void Lock()
+    public void Lock(float t)
     {
-        rb.drag = 3f;
+        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime);
+        rb.drag = Mathf.Lerp(2f, 5f, t);
     }
 
     public void LaunchIn(Vector3 point, float launchSpeed)

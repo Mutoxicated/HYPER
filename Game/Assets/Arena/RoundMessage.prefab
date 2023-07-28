@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 246769049914831969}
   - component: {fileID: 246769049914831983}
   - component: {fileID: 50497517458174897}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: RoundNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bf6e6d13e432ba8468230c20d9e90132, type: 2}
-  m_sharedMaterial: {fileID: 1538409501090895131, guid: bf6e6d13e432ba8468230c20d9e90132, type: 2}
+  m_sharedMaterial: {fileID: -9095539044233618618, guid: bf6e6d13e432ba8468230c20d9e90132, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -150,7 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 246769049914831969}
-  colorName: 
   index: 0
   useMaterialValues: 00000001
   gradient:
@@ -182,10 +181,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
-  useOnInterval: 0
   onInterval: {fileID: 0}
   interval: 0.2
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &50497517458174897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 246769049914831969}
-  colorName: 
   index: 0
   useMaterialValues: 01010100
   gradient:
@@ -231,10 +227,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  useOnInterval: 1
   onInterval: {fileID: 246769050674859409}
   interval: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &246769050291679867
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +242,7 @@ GameObject:
   - component: {fileID: 246769050291679865}
   - component: {fileID: 246769050291680135}
   - component: {fileID: 246769050291680134}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Round
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +300,7 @@ MonoBehaviour:
   m_text: Round
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bf6e6d13e432ba8468230c20d9e90132, type: 2}
-  m_sharedMaterial: {fileID: 1538409501090895131, guid: bf6e6d13e432ba8468230c20d9e90132, type: 2}
+  m_sharedMaterial: {fileID: -9095539044233618618, guid: bf6e6d13e432ba8468230c20d9e90132, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -385,7 +379,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 246769050291679865}
-  colorName: 
   index: 0
   useMaterialValues: 00000001
   gradient:
@@ -417,10 +410,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
-  useOnInterval: 0
   onInterval: {fileID: 0}
   interval: 0.2
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &246769050291680134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,7 +425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 246769050291679865}
-  colorName: 
   index: 0
   useMaterialValues: 01010100
   gradient:
@@ -466,10 +456,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  useOnInterval: 1
   onInterval: {fileID: 246769050674859409}
   interval: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &246769050674859411
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 246769050674859410}
   - component: {fileID: 246769050674859409}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: RoundMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,6 +509,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  specialTag: Untagged
+  chance: 100
   interval: 5
   onInterval:
     m_PersistentCalls:

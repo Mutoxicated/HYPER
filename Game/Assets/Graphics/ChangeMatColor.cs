@@ -9,7 +9,7 @@ public class ChangeMatColor : MonoBehaviour
 
     [SerializeField] private int matIndex = 1;
     [SerializeField,ColorUsage(true,true)] private Color color;
-    private void Start()
+    private void Awake()
     {
         Material[] mats = GetComponent<Renderer>().materials;
         Material mat = mats[matIndex];

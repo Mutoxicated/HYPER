@@ -53,10 +53,10 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.416
+    value: 0.236
   smoothness:
     overrideState: 1
-    value: 0.403
+    value: 0.491
   roundness:
     overrideState: 1
     value: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
     value: 65472
   diffusion:
     overrideState: 1
-    value: 6.61
+    value: 6.09
   anamorphicRatio:
     overrideState: 1
     value: 0

@@ -43,8 +43,8 @@ public class GoToPlayer : MonoBehaviour
         toPlayer.y *= axisMultiplier.y;
         toPlayer.z *= axisMultiplier.z;
         if (!useInterval)
-            rb.velocity = Vector3.Lerp(rb.velocity, toPlayer * speed * stats.incrementalStat["moveSpeed"], Time.deltaTime * lerpSpeed);
+            rb.velocity = Vector3.Lerp(rb.velocity, toPlayer * speed * stats.incrementalStat["moveSpeed"][0], Time.deltaTime * lerpSpeed);
         else
-            rb.velocity = Vector3.Lerp(rb.velocity, toPlayer * speed * stats.incrementalStat["moveSpeed"], interval.t* Time.deltaTime);
+            rb.velocity = Vector3.Lerp(rb.velocity, toPlayer * speed * stats.incrementalStat["moveSpeed"][0], interval.t* Time.deltaTime);
     }
 }

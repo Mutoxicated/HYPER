@@ -49,8 +49,8 @@ Shader "Custom/SpriteV2"{
 
 				fixed4 frag(v2f i) : SV_TARGET{
 					fixed4 col = tex2D(_MainTex, i.uv);
-					col *= _Color;
 					col *= i.color;
+					col *= _Color;
 					return col;
 				}
 

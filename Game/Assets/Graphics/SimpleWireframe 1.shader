@@ -1,7 +1,5 @@
-// Shader targeted for low end devices. Single Pass Forward Rendering.
 Shader "Custom/QuadWireframe"
 {
-    // Keep properties of StandardSpecular shader for upgrade reasons.
     Properties
     {
         [MainTexture] _BaseMap("Base Map (RGB) Smoothness / Alpha (A)", 2D) = "white" {}
@@ -49,7 +47,6 @@ Shader "Custom/QuadWireframe"
 
             sampler2D _BaseMap;
             float4 _BaseMap_ST;
-            float _Cutoff;
 
             v2f vert(appdata v)
             {

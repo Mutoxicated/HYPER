@@ -24,6 +24,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private Image healthBarImg;
     [SerializeField] private Image healthBarBackImg;
     [SerializeField] private float lerpSpeed;
+    [SerializeField] private int shields = 0;
+    [SerializeField] private TMP_Text shieldsText;
     [SerializeField] private float HP;
     [SerializeField, Range(0.5f, 3f)] private float reactionSpeed = 0.05f;
     [SerializeField] private HitReaction hitReaction;
@@ -36,6 +38,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private Color playerColor;
 
     private float currentT;
+    private TMP_Text shieldsParent;
 
     private void EvaluateObjColor(int i, int index,string ID)
     {
@@ -93,6 +96,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
         playerHitGradient = ChangeGradientColor(playerHitGradient, healthBarImg.color);
         ObjColorLogic();
+        shieldsParent = shieldsText.transform.parent.GetComponent<TMP_Text>();
+        EvaluateShields();
     }
 
     private void Update()
@@ -123,11 +128,32 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         //Debug.Log(reactionT);
         ObjColorLogic();
     }
+    
+    private void EvaluateShields()
+    {
+        if (shields == 0)
+        {
+            shieldsText.color = Color.red;
+        }
+        else if (shields >= 1 && shields <= 3)
+        {
+            shieldsText.color = Color.yellow;
+        }
+        else
+        {
+            shieldsText.color = Color.white;
+        }
+        shieldsParent.color = shieldsText.color;
+        shieldsText.text = shields.ToString();
+    }
 
     public void TakeDamage(float intake, GameObject sender)
     {
         reactionT = 1f;
-        currentHP = Mathf.Clamp(currentHP -= intake, 0f, HP);
+        //Debug.Log("Shields: " + shields + " | Health outake: " + (intake / (shields + 1)));
+        currentHP = Mathf.Clamp(currentHP-intake/(shields+1), 0f, HP);
+        shields = Mathf.Clamp(shields - 1, 0, 999999);
+        EvaluateShields();
         playerColor = healthBarGradient.Evaluate(healthT);
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
         if (currentHP <= 0)

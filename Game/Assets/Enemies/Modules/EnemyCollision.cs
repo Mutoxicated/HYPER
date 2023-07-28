@@ -29,7 +29,7 @@ public class EnemyCollision : MonoBehaviour
         OnCollision.Invoke();
         DestroyStuff();
         if (damage > 0)
-            collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage * stats.incrementalStat["damage"], gameObject);
+            collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage * stats.incrementalStat["damage"][0], gameObject);
     }
 
     private void DestroyStuff()
