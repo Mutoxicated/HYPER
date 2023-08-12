@@ -36,9 +36,8 @@ public class StaminaControl : MonoBehaviour
         float sum = 0f;
         foreach (var bar in bars)
         {
-            if (bar.locked)
-                break;
-            sum += bar.GetStamina();
+            if (!bar.locked)
+                sum += bar.GetStamina();
         }
         return sum;
     }

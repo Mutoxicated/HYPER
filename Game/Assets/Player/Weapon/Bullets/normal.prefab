@@ -131,7 +131,7 @@ MonoBehaviour:
   rb: {fileID: 1549946323395533653}
   speed: 100
   particlePrefab: {fileID: 3545220589067606805, guid: 6d5913b428758ba469ed17214f365d7b, type: 3}
-  lifetime: 400
+  lifetime: 5
   damage: 100
 --- !u!114 &2042489557979923656
 MonoBehaviour:
@@ -145,6 +145,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorChannel: 1
   matIndex: 0
-  color: {r: 4, g: 4, b: 4, a: 1}
+  color: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 1}

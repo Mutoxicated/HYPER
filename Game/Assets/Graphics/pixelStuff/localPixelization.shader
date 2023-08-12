@@ -50,30 +50,34 @@ Shader "Custom/localPixelization"
                 float3 viewPosition = UnityObjectToViewPos(v.pos);
                 float3 viewNormal = normalize(mul((float3x3)UNITY_MATRIX_IT_MV, normal));
 
-                o.pos = UnityViewToClipPos(viewPosition + viewNormal * _PixelSize*0.75 / 100.0);
+                o.pos = UnityViewToClipPos(viewPosition + viewNormal * _PixelSize / 100.0);
                 o.pos = UnityPixelSnap(o.pos);
                 o.uv = ComputeScreenPos(o.pos);
                 return o;
             }
 
-            sampler2D _GrabTexture;
+            Texture2D _GrabTexture;
+            SamplerState point_clamp_sampler;
             fixed4 _Color;
 
             float4 frag(v2f IN) : SV_Target
             {
                 float2 steppedUV = IN.uv.xy / IN.uv.w;
-                float thing = _PixelSize / _ScreenParams.xy;
+                fixed4 beforeColor = _GrabTexture.Sample(point_clamp_sampler, steppedUV);
+                float thing = _PixelSize / _ScreenParams.xy / _ScreenParams.w;
                 steppedUV /= thing;
                 steppedUV = round(steppedUV);
                 steppedUV *= thing;
-                fixed4 col = tex2D(_GrabTexture, steppedUV);
-                fixed check = _Color.rgb - col.rgb;
-                if (check < 0.9)
-                {
-                    col = _Color;
-                    return col;
+                fixed4 col = _GrabTexture.Sample(point_clamp_sampler, steppedUV);
+                fixed4 finalColor;// = (distance(_Color, col) < 1.3) ? _Color : col;
+                if (distance(_Color, col) < 1.1) {
+                    finalColor = _Color;
                 }
-                return col;
+                else {
+                    finalColor = (distance(beforeColor, _Color) < 1.5) ? col : beforeColor;
+                }
+                //finalColor = (distance(beforeColor, col) > 0.7) ? col : beforeColor;
+                return finalColor;
             }
 
             ENDCG

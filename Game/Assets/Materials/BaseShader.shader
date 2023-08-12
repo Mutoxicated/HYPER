@@ -1,4 +1,4 @@
-Shader "Unlit/BaseShader"
+Shader "Custom/BaseShader"
 {
     Properties
     {
@@ -12,6 +12,8 @@ Shader "Unlit/BaseShader"
 
         Pass
         {
+            Cull Back
+            ZWrite On
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag

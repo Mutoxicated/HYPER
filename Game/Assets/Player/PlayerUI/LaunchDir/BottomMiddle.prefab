@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 287113020198679975}
   - component: {fileID: 8040564556635549938}
   - component: {fileID: 6825445401171962065}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 0
-  color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  color: {r: 5.992157, g: 5.992157, b: 5.992157, a: 1}
 --- !u!1 &9164696129520115416
 GameObject:
   m_ObjectHideFlags: 0

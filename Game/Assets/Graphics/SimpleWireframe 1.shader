@@ -11,7 +11,7 @@ Shader "Custom/QuadWireframe"
         SubShader
     {
         Tags {"RenderType" = "Transparent" "Queue" = "Transparent"}
-        LOD 200
+        LOD 100
 
 
         Pass {

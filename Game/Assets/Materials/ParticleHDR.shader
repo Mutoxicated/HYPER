@@ -30,23 +30,26 @@ Shader "Custom/ParticleHDR"{
 				struct appdata {
 					float4 vertex : POSITION;
 					float2 uv : TEXCOORD0;
+					fixed4 Color : COLOR;
 				};
 
 				struct v2f {
 					float4 position : SV_POSITION;
 					float2 uv : TEXCOORD0;
+					fixed4 Color : COLOR;
 				};
 
 				v2f vert(appdata v) {
 					v2f o;
 					o.position = UnityObjectToClipPos(v.vertex);
 					o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+					o.Color = v.Color;
 					return o;
 				}
 
 				fixed4 frag(v2f i) : SV_TARGET{
 					
-					return _Color;
+					return i.Color;
 				}
 
 				ENDCG

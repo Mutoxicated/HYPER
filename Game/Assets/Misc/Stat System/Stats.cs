@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -36,11 +37,12 @@ public class Stats : MonoBehaviour
     {
         if (modifiedIncrementals.Count == 0)
             return;
-        foreach (var stat in modifiedIncrementals)
+        foreach (var stat in modifiedIncrementals.ToArray())
         {
             incrementalStat[stat][1] += Time.deltaTime;
             if (incrementalStat[stat][1] > incrementalStat[stat][2])
             {
+                Debug.Log("reverted stat: "+stat);
                 RevertIncrementalStat(stat);
             }
         }
@@ -50,7 +52,7 @@ public class Stats : MonoBehaviour
     {
         if (modifiedDecrementals.Count == 0)
             return;
-        foreach (var stat in modifiedDecrementals)
+        foreach (var stat in modifiedDecrementals.ToArray())
         {
             decrementalStat[stat][1] += Time.deltaTime;
             if (decrementalStat[stat][1] > decrementalStat[stat][2])
@@ -64,8 +66,11 @@ public class Stats : MonoBehaviour
     {
         foreach (var stat in incrementalStat)
         {
-            incrementalStat[stat.Key][0] = value;
-            incrementalStat[stat.Key][2] = duration;
+            incrementalStat[stat.Key][0] += value;
+            if (incrementalStat[stat.Key][2] < duration)
+            {
+                incrementalStat[stat.Key][2] = duration;
+            }
             modifiedIncrementals.Add(stat.Key);
         }
     }
@@ -74,53 +79,72 @@ public class Stats : MonoBehaviour
     {
         foreach (var stat in decrementalStat)
         {
-            decrementalStat[stat.Key][0] = value;
-            decrementalStat[stat.Key][2] = duration;
+            decrementalStat[stat.Key][0] += value;
+            if (decrementalStat[stat.Key][2] < duration)
+            {
+                decrementalStat[stat.Key][2] = duration;
+            }
             modifiedDecrementals.Add(stat.Key);
         }
     }
 
     public void ModifyIncrementalStat(string name, float value, float duration)
     {
-        incrementalStat[name][0] = value;
-        incrementalStat[name][2] = duration;
+        incrementalStat[name][0] += value;
+        if (incrementalStat[name][2] < duration)
+        {
+            incrementalStat[name][2] = duration;
+            Debug.Log("duration set to: " + duration);
+        }
         modifiedIncrementals.Add(name);
     }
 
     public void ModifyDecrementalStat(string name, float value, float duration)
     {
-        decrementalStat[name][0] = value;
-        decrementalStat[name][2] = duration;
+        decrementalStat[name][0] += value;
+        if(decrementalStat[name][2] < duration)
+        {
+            decrementalStat[name][2] = duration;
+        }
         modifiedDecrementals.Add(name);
     }
 
     public void RevertIncrementalStats()
     {
-        foreach (var keyname in modifiedIncrementals)
+        foreach (var name in modifiedIncrementals)
         {
-            incrementalStat[keyname] = defaultSet;
+            incrementalStat[name][0] = 1f;
+            incrementalStat[name][1] = 0f;
+            incrementalStat[name][2] = 0f;
         }
         modifiedIncrementals.Clear();
     }
 
     public void RevertDecrementalStats()
     {
-        foreach (var keyname in modifiedDecrementals)
+        foreach (var name in modifiedDecrementals)
         {
-            incrementalStat[keyname] = defaultSet;
+            decrementalStat[name][0] = 1f;
+            decrementalStat[name][1] = 0f;
+            decrementalStat[name][2] = 0f;
         }
         modifiedDecrementals.Clear();
     }
 
     public void RevertIncrementalStat(string name)
     {
-        incrementalStat[name] = defaultSet;
+        incrementalStat[name][0] = 1f;
+        incrementalStat[name][1] = 0f;
+        incrementalStat[name][2] = 0f;
+        Debug.Log(incrementalStat[name][0] + " / "+ incrementalStat[name][1] + " / " + incrementalStat[name][2]);
         modifiedIncrementals.Remove(name);
     }
 
     public void RevertDecrementalStat(string name)
     {
-        decrementalStat[name] = defaultSet;
+        decrementalStat[name][0] = 1f;
+        decrementalStat[name][1] = 0f;
+        decrementalStat[name][2] = 0f;
         modifiedDecrementals.Remove(name);
     }
 }

@@ -9,10 +9,12 @@ Shader "Custom/SpriteV2"{
 				"RenderType" = "Transparent"
 				"Queue" = "Transparent"
 			}
+		    LOD 100
 
 			Pass{
 				Blend SrcAlpha OneMinusSrcAlpha
 				ZWrite Off
+				ZTest Less
 				Cull Back
 
 				CGPROGRAM

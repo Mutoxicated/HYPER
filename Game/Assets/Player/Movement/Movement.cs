@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Internal;
 
 public enum MovementState
 {
@@ -18,7 +19,7 @@ public class Movement : MonoBehaviour
     [Header("Speeds")]
     [SerializeField, Range(40f,85f)] private float walkSpeed;
     [SerializeField, Range(12f,24f)] private float slideSpeed = 19f;
-    [SerializeField, Range(22f, 44f)] private float slamSpeed = 16f;
+    [SerializeField, Range(32f, 54f)] private float slamSpeed = 16f;
     [SerializeField, Range(18f, 30f)] private float dashSpeed = 25f;
 
     [Header("Forces")]
@@ -30,6 +31,7 @@ public class Movement : MonoBehaviour
     [Header("Limits")]
     [SerializeField] private int maxJumps;
     [SerializeField] private int maxBounces;
+    [SerializeField] private bool disableLaunch;
 
     [Header("Timers")]
     [SerializeField] public OnInterval launchInterval;
@@ -172,6 +174,7 @@ public class Movement : MonoBehaviour
         rb.drag = 2f;
         ability = new MoveAbilities(rb);
         movementState = MovementState.WALKING;
+        //stats.ModifyIncrementalStat("moveSpeed", 3f, 4f);// works :)
     }
 
     private void Update()
@@ -204,6 +207,8 @@ public class Movement : MonoBehaviour
             }
             else
             {
+                if (stamina.GetCurrentStamina() < 50f)
+                    return;
                 stamina.ReduceStamina(50f);
                 lockEffect.Play();
                 movementState = MovementState.LOCKED;
@@ -325,7 +330,7 @@ public class Movement : MonoBehaviour
     private void OnCollisionExit()
     {
         airborne = true;
-        launchInterval.enabled = true;
+        launchInterval.enabled = !disableLaunch;
         launchPoint = transform.position;
         rb.drag = 2f;
     }

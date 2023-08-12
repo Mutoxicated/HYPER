@@ -1,3 +1,4 @@
+using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,6 @@ public class staminaComms : MonoBehaviour
     [SerializeField] private staminaComms previousNeighbor;
     [SerializeField] private staminaComms nextNeighbor;
     private Color lockedColor = new Color(0.5f, 0.5f, 0.5f, 0.20f);
-    private Vector3 minScale, maxScale;
     private float t = 100f;
     private bool chargeBack = false;
     private bool full = true;
@@ -85,8 +85,6 @@ public class staminaComms : MonoBehaviour
         {
             image.color = lockedColor;
         }
-        maxScale = new Vector3(1f, 1f, 1f);
-        minScale = new Vector3(0f,1f,1f);
     }
 
     void Update()
@@ -111,11 +109,10 @@ public class staminaComms : MonoBehaviour
 
         //charge back
         if (chargeBack)
-            transform.localScale = Vector3.Lerp(minScale, maxScale, lerp);
+            image.fillAmount = lerp;
         else
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(maxScale.x * lerp, transform.localScale.y, transform.localScale.z), Time.deltaTime*10f);
-        
-        if (transform.localScale == maxScale)
+            image.fillAmount = Mathf.Lerp(image.fillAmount, lerp+0.001f, Time.deltaTime * 10f);
+        if (image.fillAmount == 1f)
         {
             full = true;
             chargeBack = false;
@@ -123,7 +120,7 @@ public class staminaComms : MonoBehaviour
                 nextNeighbor.ActivateChargeback();
             activate = false;
         }
-        if (transform.localScale == new Vector3(maxScale.x * lerp, transform.localScale.y, transform.localScale.z))
+        if (Mathf.Approximately(lerp + 0.001f, image.fillAmount))
         {
             if (previousNeighbor != null)
             {

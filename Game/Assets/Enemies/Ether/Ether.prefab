@@ -113,7 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorChannel: 0
   matIndex: 0
   color: {r: 2.9960785, g: 0, b: 0, a: 1}
 --- !u!1 &2029483554504949709
@@ -239,6 +238,7 @@ MonoBehaviour:
   - {fileID: 5419551051448238176}
   ChildrenToDetach:
   - {fileID: 8753202935635663913}
+  shields: 0
   maxHP: 200
   rate: 2
   healthBar: {fileID: 7971833800512259650}
@@ -350,8 +350,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   index: 0
-  colorChannel: 0
   matIndex: 1
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &3301143575855750706
 GameObject:
   m_ObjectHideFlags: 0

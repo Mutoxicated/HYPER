@@ -156,7 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 0}
-  colorChannel: 1
   index: 0
   useMaterialValues: 00000000
   gradient:
@@ -188,7 +187,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 3
-  useOnInterval: 1
   onInterval: {fileID: 3835179681775302895}
   interval: -1
 --- !u!114 &3234883554362106647
@@ -275,6 +273,9 @@ MonoBehaviour:
   _transform: {fileID: 4940269727343667667}
   copyPosition: 1
   copyRotation: 0
+  positionMultiplier: {x: 1, y: 1, z: 1}
+  rotationMultiplier: {x: 1, y: 1, z: 1}
+  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &4829517247957270423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,7 +470,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 93b8e28894b5eff4aa3b23f6cb9b0001, type: 2}
+      objectReference: {fileID: 2100000, guid: 3d96a8e96360a2b4baebb860bc77c3af, type: 2}
     - target: {fileID: -7511558181221131132, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -592,6 +593,7 @@ MonoBehaviour:
   - {fileID: 4829517248446311806}
   ChildrenToDetach:
   - {fileID: 5712452414405635189}
+  shields: 0
   maxHP: 300
   rate: 1.215
   healthBar: {fileID: 1013913412199572123}
@@ -660,7 +662,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 0}
-  colorChannel: 0
   index: 1
   useMaterialValues: 00000000
   gradient:
@@ -692,7 +693,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  useOnInterval: 0
   onInterval: {fileID: 0}
   interval: 1
 --- !u!114 &7244245088063053167
@@ -738,7 +738,6 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   index: 0
-  colorChannel: 1
   matIndex: 0
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &4829517248377127484
@@ -881,7 +880,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 0}
-  colorChannel: 0
   index: 0
   useMaterialValues: 00000000
   gradient:
@@ -913,7 +911,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 5
     m_NumAlphaKeys: 2
-  useOnInterval: 0
   onInterval: {fileID: 0}
   interval: 1
 --- !u!1001 &6454650298255370119

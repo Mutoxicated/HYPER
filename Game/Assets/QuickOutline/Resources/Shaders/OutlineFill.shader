@@ -8,6 +8,8 @@
 
 Shader "Custom/Outline Fill" {
   Properties {
+    _MainTex("Texture",2D) = "white"{}
+    [IntRange] _StencilRef ("Stencil Ref",Range(1,255)) = 0
     [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 0
 
     [HDR] [MainColor] _OutlineColor("Outline Color", Color) = (1, 1, 1, 1)
@@ -16,23 +18,34 @@ Shader "Custom/Outline Fill" {
 
   SubShader {
     Tags {
-      "Queue" = "Transparent+110"
+      "Queue" = "Transparent+160"
       "RenderType" = "Transparent"
-      "DisableBatching" = "True"
     }
+     Pass {
 
+      Name "Mask"
+        Cull Off
+        ZTest Always
+        ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
+        Colormask 0
+
+        Stencil {
+          Ref [_StencilRef]
+          Pass Replace
+        }
+    }
     Pass {
       Name "Fill"
       Cull Off
+      ZWrite On
       ZTest [_ZTest]
-      ZWrite Off
       Blend SrcAlpha OneMinusSrcAlpha
-      ColorMask RGB
 
-      Stencil {
-        Ref 1
-        Comp NotEqual
-      }
+        Stencil{
+            Ref[_StencilRef]
+            Comp Greater
+        }
 
       CGPROGRAM
       #include "UnityCG.cginc"
@@ -62,7 +75,7 @@ Shader "Custom/Outline Fill" {
         float3 viewPosition = UnityObjectToViewPos(input.vertex);
         float3 viewNormal = normalize(mul((float3x3)UNITY_MATRIX_IT_MV, normal));
 
-        output.position = UnityViewToClipPos(viewPosition + viewNormal * _OutlineWidth / 100.0);
+        output.position = UnityViewToClipPos(viewPosition + viewNormal * -viewPosition.z * _OutlineWidth / 100.0);
         output.color = _OutlineColor;
 
         return output;
