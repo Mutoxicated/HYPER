@@ -41,8 +41,8 @@ public class MoveAbilities
 
     public void Lock(float t)
     {
-        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime);
-        rb.drag = Mathf.Lerp(2f, 5f, t);
+        rb.velocity = Vector3.Lerp(rb.velocity, rb.velocity.normalized*0.5f, t);
+        //rb.drag = Mathf.Lerp(2f, 7f, t);
     }
 
     public void LaunchIn(Vector3 point, float launchSpeed)

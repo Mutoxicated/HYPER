@@ -9,13 +9,57 @@ Shader "Custom/localPixelization"
 
         SubShader
     {
-        Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" }
-        Blend Off
-        Lighting Off
-        Fog{ Mode Off }
-        ZWrite Off
+        Tags{ "Queue" = "AlphaTest" "IgnoreProjector" = "True" }
         LOD 200
-        Cull Off
+        Lighting Off
+        Blend SrcAlpha OneMinusSrcAlpha
+        ZWrite On
+        ZTest Less
+        Cull Back
+
+        Pass{
+
+            CGPROGRAM
+
+            #include "UnityCG.cginc"
+
+            #pragma vertex vert
+            #pragma fragment frag
+
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+
+            fixed4 _Color;
+
+            struct appdata {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+                fixed4 color : COLOR;
+            };
+
+            struct v2f {
+                float4 position : SV_POSITION;
+                float2 uv : TEXCOORD0;
+                fixed4 color : COLOR;
+            };
+
+            v2f vert(appdata v) {
+                v2f o;
+                o.position = UnityObjectToClipPos(v.vertex);
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.color = v.color;
+                return o;
+            }
+
+            fixed4 frag(v2f i) : SV_TARGET{
+                fixed4 col = tex2D(_MainTex, i.uv);
+                col *= i.color;
+                col *= _Color;
+                return col;
+            }
+
+            ENDCG
+        }
 
         GrabPass{ "_GrabTexture" }
 
@@ -32,12 +76,14 @@ Shader "Custom/localPixelization"
                 float3 normal : NORMAL;
                 float3 smoothNormal : TEXCOORD3;
                 float4 uv : TEXCOORD0;
+                fixed4 color : COLOR;
             };
 
             struct v2f
             {
                 float4 pos : SV_POSITION;
                 float4 uv : TEXCOORD0;
+                fixed4 color : COLOR;
             };
 
             float _PixelSize;
@@ -53,9 +99,11 @@ Shader "Custom/localPixelization"
                 o.pos = UnityViewToClipPos(viewPosition + viewNormal * _PixelSize / 100.0);
                 o.pos = UnityPixelSnap(o.pos);
                 o.uv = ComputeScreenPos(o.pos);
+                o.color = v.color;
                 return o;
             }
 
+            sampler2D _MainTex;
             Texture2D _GrabTexture;
             SamplerState point_clamp_sampler;
             fixed4 _Color;
@@ -70,11 +118,11 @@ Shader "Custom/localPixelization"
                 steppedUV *= thing;
                 fixed4 col = _GrabTexture.Sample(point_clamp_sampler, steppedUV);
                 fixed4 finalColor;// = (distance(_Color, col) < 1.3) ? _Color : col;
-                if (distance(_Color, col) < 1.1) {
+                if (distance(_Color, col) < 0.1) {
                     finalColor = _Color;
                 }
                 else {
-                    finalColor = (distance(beforeColor, _Color) < 1.5) ? col : beforeColor;
+                    finalColor = (distance(_Color,beforeColor) < 0.1) ? col : beforeColor;
                 }
                 //finalColor = (distance(beforeColor, col) > 0.7) ? col : beforeColor;
                 return finalColor;

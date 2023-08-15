@@ -829,6 +829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1514012001865118724}
   - component: {fileID: 5735533248423383059}
+  - component: {fileID: 8365248808641544606}
   m_Layer: 0
   m_Name: missilePartsPrefab
   m_TagString: Untagged
@@ -949,6 +950,26 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   index: 0
   rate: 1.208
+--- !u!114 &8365248808641544606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2182285701400850110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a84aa2d5a10c45448e0037089e488f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 1
+  maxDistance: 10
+  shakeOnEnable: 0
+  _cam: {fileID: 0}
+  times: 6
+  strength: 0.5
+  interval: 0.02
+  shaking: 0
 --- !u!1 &2224384586383111648
 GameObject:
   m_ObjectHideFlags: 0

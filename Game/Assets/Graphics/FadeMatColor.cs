@@ -1,10 +1,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 public class FadeMatColor : MonoBehaviour
 {
-    [SerializeField] private TMP_Text tmpText;
+    [SerializeField] private TMP_Text tmpTextAlt;
+    [SerializeField] private Image imageAlt;
     [SerializeField] private int index = 1;
     [SerializeField] private bool[] useMaterialValues = new bool[4];
     [SerializeField, GradientUsage(true)] private Gradient gradient;
@@ -19,30 +21,40 @@ public class FadeMatColor : MonoBehaviour
     private Color gradientColor;
     private Color color = new Color(0f,0f,0f,0f);
 
-    void Start()
+    void Awake()
     {
         rate = Mathf.PI / (interval*Mathf.PI);
-        if (tmpText == null)
+        if (tmpTextAlt == null)
         {
-            var a = GetComponent<Renderer>().materials;
-            mat = a[index];
+            if (imageAlt == null)
+            {
+                var a = GetComponent<Renderer>().materials;
+                mat = a[index];
+            }
         }
+        CalculateT();
         ComputeColorValues();
+        AssignColor();
     }
 
     private void ComputeColorValues()
     {
+        gradientColor = gradient.Evaluate(t);
         for (int i = 0; i < useMaterialValues.Length; i++)
         {
             if (useMaterialValues[i])
             {
-                if (tmpText == null)
+                if (tmpTextAlt != null)
                 {
-                    colorValues[i] = mat.color[i];
+                    colorValues[i] = tmpTextAlt.color[i];
+                }
+                else if (imageAlt != null)
+                {
+                    colorValues[i] = imageAlt.color[i];
                 }
                 else
                 {
-                    colorValues[i] = tmpText.color[i];
+                    colorValues[i] = mat.color[i];
                 }
             }
             else
@@ -58,7 +70,23 @@ public class FadeMatColor : MonoBehaviour
         this.gradient = gradient;
     }
 
-    void Update()
+    private void AssignColor()
+    {
+        if (tmpTextAlt != null)
+        {
+            tmpTextAlt.color = color;
+        }
+        else if (imageAlt != null)
+        {
+            imageAlt.color = color;
+        }
+        else
+        {
+            mat.color = color;
+        }
+    }
+
+    private void CalculateT()
     {
         if (onInterval == null)
         {
@@ -69,17 +97,16 @@ public class FadeMatColor : MonoBehaviour
                 angle = 0f;
             }
         }
-        else 
+        else
         {
             t = onInterval.t;
         }
-        gradientColor = gradient.Evaluate(t);
+    }
+
+    void Update()
+    {
+        CalculateT();
         ComputeColorValues();
-        if (tmpText == null)
-            mat.color = color;
-        else
-        {
-            tmpText.color = color;
-        }
+        AssignColor();
     }
 }

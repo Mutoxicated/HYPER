@@ -6,6 +6,7 @@ Shader "Custom/QuadWireframe"
 
         [HDR] [MainColor] _WireframeBackColour("Wireframe back colour", color) = (1.0, 1.0, 1.0, 1.0)
         _WireframeAliasing("Wireframe aliasing", float) = 1.5
+        _Intact("Intact Range", float) = 0
     }
 
         SubShader
@@ -17,6 +18,7 @@ Shader "Custom/QuadWireframe"
         Pass {
             Cull Back
             ZWrite On
+            Lighting Off
             Blend SrcAlpha OneMinusSrcAlpha
 
             CGPROGRAM
@@ -30,6 +32,8 @@ Shader "Custom/QuadWireframe"
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                float3 smoothNormal : TEXCOORD3;
+                float4 normal : NORMAL;
             };
 
             struct v2f
@@ -45,6 +49,11 @@ Shader "Custom/QuadWireframe"
                 float3 barycentric : TEXCOORD0;
             };
 
+            float random(float2 normal) {
+                return frac(sin(dot(normal, float2(12.9898, 78.233))) * 43758.5453123);
+            }
+
+            float _Intact;
             sampler2D _BaseMap;
             float4 _BaseMap_ST;
 
@@ -54,8 +63,12 @@ Shader "Custom/QuadWireframe"
                 // We push the conversion to ClipPos into the geom function as we need 
                 // the mesh vertex values for the edge culling.
                 //o.vertex = UnityObjectToClipPos(v.vertex);
-                o.vertex = v.vertex;
+                float randomNum = random(v.normal)*2;
+                float4 thing = v.vertex + v.normal * _Intact*0.6*randomNum;
+                o.vertex = thing;
+
                 o.uv = TRANSFORM_TEX(v.uv, _BaseMap);
+                UNITY_TRANSFER_FOG(o, o.vertex);
                 return o;
             }
 
@@ -102,7 +115,7 @@ Shader "Custom/QuadWireframe"
                 float alpha = 1 - min(aliased.x, min(aliased.y, aliased.z));
                 clip(alpha-0.1);
                 // Set to our backwards facing wireframe colour.
-                return fixed4(_WireframeBackColour.r, _WireframeBackColour.g, _WireframeBackColour.b, alpha);
+                return fixed4(_WireframeBackColour.r, _WireframeBackColour.g, _WireframeBackColour.b, alpha*abs(_Intact-1));
             }
             ENDCG
             }

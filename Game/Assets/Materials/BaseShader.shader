@@ -48,7 +48,7 @@ Shader "Custom/BaseShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = _Color;
-                return col;
+                return _Color;
             }
             ENDCG
         }

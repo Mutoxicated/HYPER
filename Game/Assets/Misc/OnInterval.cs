@@ -13,10 +13,10 @@ public class OnInterval : MonoBehaviour
     [SerializeField] private bool destroyUponEvent;
 
     private bool useStats = false;
-    [HideInInspector] public float t;
-    private float time;
+    [HideInInspector] public float t = 0f;
+    private float time = 0f;
 
-    public void ResetEarly()
+    public void ResetEarly()//this is stupid but oh well lol
     {
         ResetInterval();
     }

@@ -58,8 +58,8 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1549946323395533653}
-  speed: 100
+  speed: 200
   particlePrefab: {fileID: 3545220589067606805, guid: 6d5913b428758ba469ed17214f365d7b, type: 3}
   lifetime: 5
   damage: 100

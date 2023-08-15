@@ -29,7 +29,30 @@ public class EnemyCollision : MonoBehaviour
         OnCollision.Invoke();
         DestroyStuff();
         if (damage > 0)
+        {
             collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage * stats.incrementalStat["damage"][0], gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (tagsToIgnore != null)
+        {
+            foreach (var tag in tagsToIgnore)
+            {
+                if (other.gameObject.tag == tag)
+                    return;
+            }
+        }
+        if ((layersToIgnore & (1 << other.gameObject.layer)) != 0)
+            return;
+        Detach();
+        OnCollision.Invoke();
+        DestroyStuff();
+        if (damage > 0)
+        {
+            other.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage * stats.incrementalStat["damage"][0], gameObject);
+        }
     }
 
     private void DestroyStuff()

@@ -76,7 +76,7 @@ public class GunShooter : MonoBehaviour
     }
 
     //rotation point from firepoint to the crosshair
-    private Quaternion GetAccurateRotation()
+    public static Quaternion GetAccurateRotation(Camera cam, Transform firepoint)
     {
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth/2, cam.scaledPixelHeight/2, 0));
@@ -173,7 +173,7 @@ public class GunShooter : MonoBehaviour
         {
             ShootState();
             OnShootEvent.Invoke();
-            shootMethods[index](firepoint.position, GetAccurateRotation());
+            shootMethods[index](firepoint.position, GetAccurateRotation(cam,firepoint));
         }
         if (fire2Input.GetInputDown() && shootAbilities.Count > 0)
         {

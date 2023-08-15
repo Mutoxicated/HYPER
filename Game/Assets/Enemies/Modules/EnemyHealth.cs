@@ -14,6 +14,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] private GameObject[] ChildrenToDetach;
     [Space]
     [Header("General")]
+    [SerializeField] private HitGradient hitGradient;
+    [SerializeField] private float immunityDuration;
     public int shields;
     public int maxHP;
     [SerializeField,Range(0.5f,2f)] private float rate = 0.05f;
@@ -22,14 +24,33 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     [HideInInspector] public float currentHP;
     [HideInInspector] public float t = 0f;
+    private bool immune = false;
+    private float immunityTime;
+
+    private void Awake()
+    {
+        hitGradient.enabled = false;
+    }
 
     private void Start()
     {
         currentHP = maxHP;
+        immune = true;
     }
 
     private void Update()
     {
+        if (immunityTime < immunityDuration)
+        {
+            immunityTime += Time.deltaTime;
+            hitGradient.enabled = false;
+            immune = true;
+        }
+        else
+        {
+            hitGradient.enabled = true;
+            immune = false;
+        }
         t = Mathf.Clamp01(t - rate*Time.deltaTime);
     }
 
@@ -60,6 +81,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(float intake, GameObject sender)
     {
+        if (immune)
+            return;
         t = 1f;
         currentHP -= intake / (shields + 1);
         shields = Mathf.Clamp(shields - 1, 0, 999999);

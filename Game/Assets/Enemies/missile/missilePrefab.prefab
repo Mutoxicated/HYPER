@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d3aeccbc837844a8593d6e02cbff78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immunityStart: 0.15
+  immunityDuration: 0.2
 --- !u!114 &3868235556858948661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,11 +400,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3050347708552857538}
+        m_TargetAssemblyTypeName: CameraShake, Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ObjectsToDestroy:
   - {fileID: 8574461424792126625}
   - {fileID: 1086622778760461236}
   ChildrenToDetach:
   - {fileID: 4614886852854802658}
+  hitGradient: {fileID: 1905270715724612992}
+  immunityDuration: -1
+  shields: 0
   maxHP: 20
   rate: 0.05
   healthBar: {fileID: 0}
@@ -686,6 +701,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2803386318374101593, guid: d3035c5a215c5284baaaff0d6a3038b9, type: 3}
   m_PrefabInstance: {fileID: 1680122225318818223}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1839530815513688004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582436773348578294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a84aa2d5a10c45448e0037089e488f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 1
+  maxDistance: 10
+  shakeOnEnable: 0
+  _cam: {fileID: 0}
+  times: 6
+  strength: 0.5
+  interval: 0.02
+  shaking: 0
 --- !u!1001 &6792086210579695196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -756,6 +791,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fae4ad5ef8fc07549afd51af58fe669d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3050347708552857538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8365248808641544606, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
+  m_PrefabInstance: {fileID: 6792086210579695196}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4614886852854802658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a84aa2d5a10c45448e0037089e488f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4614886852854802658 stripped

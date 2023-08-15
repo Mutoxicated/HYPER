@@ -155,7 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmpText: {fileID: 0}
+  tmpTextAlt: {fileID: 0}
+  imageAlt: {fileID: 0}
   index: 0
   useMaterialValues: 00000000
   gradient:
@@ -470,7 +471,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3d96a8e96360a2b4baebb860bc77c3af, type: 2}
+      objectReference: {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
     - target: {fileID: -7511558181221131132, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -532,6 +533,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.95
   m_Center: {x: -0.00000047683716, y: 0.00000011920929, z: 0.00000047683716}
+--- !u!114 &421806795056785239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747874643618771817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604874d76da22d24098addf9c801d3db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireMatIndex: 1
+  baseMatIndex: 0
+  lerpSpeed: 0.01
+  accel: 0.1
 --- !u!114 &2083089915992140260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,8 +610,10 @@ MonoBehaviour:
   - {fileID: 4829517248446311806}
   ChildrenToDetach:
   - {fileID: 5712452414405635189}
+  hitGradient: {fileID: 7244245088063053167}
+  immunityDuration: 1
   shields: 0
-  maxHP: 300
+  maxHP: 200
   rate: 1.215
   healthBar: {fileID: 1013913412199572123}
   currentHP: 0
@@ -661,9 +680,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmpText: {fileID: 0}
+  tmpTextAlt: {fileID: 0}
+  imageAlt: {fileID: 0}
   index: 1
-  useMaterialValues: 00000000
+  useMaterialValues: 00000001
   gradient:
     serializedVersion: 2
     key0: {r: 4, g: 3.6235294, b: 0, a: 1}
@@ -702,7 +722,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5747874643618771817}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca37db4610ada05489edaaa1bd6aac56, type: 3}
   m_Name: 
@@ -834,6 +854,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9758fdca556ba214c8d4461e89f98974, type: 3}
   m_PrefabInstance: {fileID: 4829517248377127484}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2959692079422583433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747874642340167533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604874d76da22d24098addf9c801d3db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireMatIndex: 0
+  baseMatIndex: -1
+  lerpSpeed: 0.01
+  accel: 0.1
 --- !u!114 &4829517246872339870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,9 +915,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmpText: {fileID: 0}
+  tmpTextAlt: {fileID: 0}
+  imageAlt: {fileID: 0}
   index: 0
-  useMaterialValues: 00000000
+  useMaterialValues: 00000001
   gradient:
     serializedVersion: 2
     key0: {r: 0.03137255, g: 0.6901961, b: 2.9960785, a: 1}

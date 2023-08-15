@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Melee : MonoBehaviour
 {
+    [SerializeField] private Stats stats;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Animator animator;
     [SerializeField] private int punchDamage;
@@ -11,13 +12,19 @@ public class Melee : MonoBehaviour
     [SerializeField] private float punchDelay;
     [SerializeField] private CameraShake shakeEffect;
     [SerializeField] private GameObject particlePrefab;
+    [SerializeField] private Transform throwPoint;
+    [SerializeField] private GameObject TNTPrefab;
+    [SerializeField] private AudioSource punchSFX;
 
-    private ButtonInput meleeInput = new ButtonInput("Melee");
+    private ButtonInput throwInput = new ButtonInput("Throw");
+    private ButtonInput punchInput = new ButtonInput("Melee");
     private Camera cam;
     private bool once = true;
     private bool punching = false;
+    private bool isIdle;
 
     private RaycastHit hitInfo;
+    private Vector3 spawnCoords;
     private bool block = true;
     private float t;
 
@@ -27,6 +34,7 @@ public class Melee : MonoBehaviour
         bool hit = Physics.SphereCast(ray.origin,0.1f, ray.direction, out hitInfo, punchRange, layerMask);
         if (hit)
             hitInfo.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(punchDamage,gameObject);
+        spawnCoords = hitInfo.point;
         return hit;
     }
 
@@ -37,16 +45,24 @@ public class Melee : MonoBehaviour
 
     private void Update()
     {
-        meleeInput.Update();
-        if (meleeInput.GetInputDown() && animator.GetCurrentAnimatorStateInfo(0).IsName("Nun") && !punching && once)
+        isIdle = animator.GetCurrentAnimatorStateInfo(0).IsName("Nun");//nun is idle btw
+        throwInput.Update();
+        punchInput.Update();
+        if (throwInput.GetInputDown() && isIdle && stats.incrementalStat["capacitor1"][0] > 0)
         {
-            //Debug.Log("non");
+            animator.Play("Throw");
+            Instantiate(TNTPrefab, throwPoint.position,GunShooter.GetAccurateRotation(cam,throwPoint)*TNTPrefab.transform.rotation);
+            //stats.ModifyIncrementalStat("capacitor1", -1);
+        }
+        if (punchInput.GetInputDown() && isIdle && !punching && once)
+        {
+            punchSFX.Play();
             once = false;
             animator.Play("Pwanch");
             punching = true;
             block = false;
         }
-        else if (punching && animator.GetCurrentAnimatorStateInfo(0).IsName("Nun"))//nun is idle btw
+        else if (punching && isIdle)
         {
             once = true;
             animator.SetFloat("speedMult", 1.3f);
@@ -63,7 +79,7 @@ public class Melee : MonoBehaviour
             if (hit)
             {
                 shakeEffect.Shake();
-                Instantiate(particlePrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                Instantiate(particlePrefab, spawnCoords, Quaternion.LookRotation(hitInfo.normal));
             }
             block = true;
         }

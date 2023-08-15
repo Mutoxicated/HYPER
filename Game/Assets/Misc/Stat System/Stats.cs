@@ -18,12 +18,14 @@ public class Stats : MonoBehaviour
 
     private void Awake()
     {
-        incrementalStat.Add("moveSpeed", defaultSet)
-        ; incrementalStat.Add("damage", defaultSet)
-        ; incrementalStat.Add("rate", defaultSet)
-        ; incrementalStat.Add("attackSpeed", defaultSet)
-        ; incrementalStat.Add("shootSpeed", defaultSet)
-        ; 
+        incrementalStat.Add("moveSpeed", defaultSet.ToArray())
+        ; incrementalStat.Add("damage", defaultSet.ToArray())
+        ; incrementalStat.Add("rate", defaultSet.ToArray())
+        ; incrementalStat.Add("attackSpeed", defaultSet.ToArray())
+        ; incrementalStat.Add("shootSpeed", defaultSet.ToArray())
+        ; incrementalStat.Add("capacitor1", defaultSet.ToArray())
+        ; incrementalStat.Add("capacitor2", defaultSet.ToArray())
+        ;
         //HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH
     }
 
@@ -99,6 +101,11 @@ public class Stats : MonoBehaviour
         modifiedIncrementals.Add(name);
     }
 
+    public void ModifyIncrementalStat(string name, float value)
+    {
+        incrementalStat[name][0] += value;
+    }
+
     public void ModifyDecrementalStat(string name, float value, float duration)
     {
         decrementalStat[name][0] += value;
@@ -107,6 +114,10 @@ public class Stats : MonoBehaviour
             decrementalStat[name][2] = duration;
         }
         modifiedDecrementals.Add(name);
+    }
+    public void ModifyDecrementalStat(string name, float value)
+    {
+        decrementalStat[name][0] += value;
     }
 
     public void RevertIncrementalStats()

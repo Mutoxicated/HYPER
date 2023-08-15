@@ -658,3 +658,21 @@ It's still not completely done, I have to fix some things but basically I found 
 ## Week 8, 9 & Day 65
 
 Can't be working on the game because laptop cmos battery has got some problems. Will try to fix. In the meantime I will use a different pc and focus on some other stuff.
+
+## Day 66 & 67
+
+So I fixed the problem with my laptop. Back to development!
+
+Let me tell you guys what I've done so far these weeks:
+> Implemented object pixelization (still needs some fixing).
+> Changed the way stats are modified to now being additive instead of directly modifying the variable.
+> Renovated the UI.
+> Made space skybox with some particles.
+> Fixed bloom not being intense on 0 intensity HDR colors & non-HDR colors.
+> Made a super cool enemy spawn effect.
+> Tweaked lock ability.
+> Made it so that ground slamming and jumping after you come into contact with the ground will give you extra jump force (depending on how long your ground slamming took).
+> Made the player throw TNT!
+> Made a screen effect that plays when you get hit.
+
+Yeah that was a lot. And I still am not even halfway done, to be honest. I made a profiler check and it shows that it's at a stable 70 fps. It's mostly due to the editor and the post processing effects, but my scripts don't seem to be affecting the fps a lot.

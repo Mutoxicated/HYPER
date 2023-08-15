@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ImmunityFrames : MonoBehaviour
 {
-    [SerializeField] private float immunityStart;
+    [SerializeField] private float immunityDuration;
     private Collider coll;
     private float time;
 
@@ -16,7 +16,7 @@ public class ImmunityFrames : MonoBehaviour
 
     private void Update()
     {
-        if (time <= immunityStart)
+        if (time <= immunityDuration)
         {
             coll.enabled = false;
             time += Time.deltaTime;

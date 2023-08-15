@@ -4822,7 +4822,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12e80b37e7fcf3544863082008732e85, type: 2}
+  - {fileID: 2100000, guid: 587abbb59c394274ea6badc77c393fb0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4885,12 +4885,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a84aa2d5a10c45448e0037089e488f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 1
   maxDistance: 30
   shakeOnEnable: 1
   _cam: {fileID: 0}
   times: 8
   strength: 0.5
   interval: 0.02
+  shaking: 0
 --- !u!114 &5076237348871001486
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Device;
 using UnityEngine.UI;
 
 
@@ -23,6 +24,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private Transform healthBar;
     [SerializeField] private Image healthBarImg;
     [SerializeField] private Image healthBarBackImg;
+    [SerializeField] private GameObject screen;
     [SerializeField] private float lerpSpeed;
     [SerializeField] private int shields = 0;
     [SerializeField] private TMP_Text shieldsText;
@@ -36,6 +38,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private float healthT = 1f;
     private Vector3 initialScale;
     private Color playerColor;
+    private Color healthBarBackColor;
 
     private float currentT;
     private TMP_Text shieldsParent;
@@ -120,7 +123,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         playerColor = healthBarGradient.Evaluate(healthT);
         healthBarImg.color = playerColor;
         sumText.color = playerColor;
-        healthBarBackImg.color = new Color(playerColor.r, playerColor.g, playerColor.b, healthBarBackImg.color.a);
+        healthBarBackColor = playerColor;
+        healthBarBackColor.a = healthBarBackImg.color.a;
+        healthBarBackImg.color = healthBarBackColor;
 
         if (playerObjects == null)
             return;
@@ -150,6 +155,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public void TakeDamage(float intake, GameObject sender)
     {
         reactionT = 1f;
+        screen.SetActive(true);
         //Debug.Log("Shields: " + shields + " | Health outake: " + (intake / (shields + 1)));
         currentHP = Mathf.Clamp(currentHP-intake/(shields+1), 0f, HP);
         shields = Mathf.Clamp(shields - 1, 0, 999999);
@@ -164,6 +170,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(float intake)
     {
-
+        screen.SetActive(true);
     }
 }

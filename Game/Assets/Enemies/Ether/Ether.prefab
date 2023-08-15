@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2029483553560196242}
   - component: {fileID: 2029483553560196240}
   - component: {fileID: 1041804256555068032}
+  - component: {fileID: 1414607152047467096}
   m_Layer: 8
   m_Name: outer
   m_TagString: Untagged
@@ -115,6 +116,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matIndex: 0
   color: {r: 2.9960785, g: 0, b: 0, a: 1}
+--- !u!114 &1414607152047467096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029483553560196246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604874d76da22d24098addf9c801d3db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireMatIndex: 0
+  baseMatIndex: -1
+  lerpSpeed: 0.01
+  accel: 0.1
 --- !u!1 &2029483554504949709
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +148,8 @@ GameObject:
   - component: {fileID: 5434483908721940620}
   - component: {fileID: 3165358017143765182}
   - component: {fileID: 5867583259666909669}
+  - component: {fileID: 5198727170556841492}
+  - component: {fileID: 6629897476335823226}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -183,7 +202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93b8e28894b5eff4aa3b23f6cb9b0001, type: 2}
+  - {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
   - {fileID: 2100000, guid: 91f6b3e5c4616d8468a92d28a1751d0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -238,6 +257,8 @@ MonoBehaviour:
   - {fileID: 5419551051448238176}
   ChildrenToDetach:
   - {fileID: 8753202935635663913}
+  hitGradient: {fileID: 5867583259666909669}
+  immunityDuration: 1
   shields: 0
   maxHP: 200
   rate: 2
@@ -352,6 +373,36 @@ MonoBehaviour:
   index: 0
   matIndex: 1
   color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &5198727170556841492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029483554504949709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604874d76da22d24098addf9c801d3db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireMatIndex: 1
+  baseMatIndex: 0
+  lerpSpeed: 0.01
+  accel: 0.1
+--- !u!114 &6629897476335823226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029483554504949709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matIndex: 1
+  color: {r: 0.7058824, g: 0, b: 2.9960785, a: 1}
 --- !u!1 &3301143575855750706
 GameObject:
   m_ObjectHideFlags: 0

@@ -149,7 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmpText: {fileID: 246769049914831969}
+  tmpTextAlt: {fileID: 246769049914831969}
+  imageAlt: {fileID: 0}
   index: 0
   useMaterialValues: 00000001
   gradient:
@@ -195,7 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmpText: {fileID: 246769049914831969}
+  tmpTextAlt: {fileID: 246769049914831969}
+  imageAlt: {fileID: 0}
   index: 0
   useMaterialValues: 01010100
   gradient:
@@ -378,7 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmpText: {fileID: 246769050291679865}
+  tmpTextAlt: {fileID: 246769050291679865}
+  imageAlt: {fileID: 0}
   index: 0
   useMaterialValues: 00000001
   gradient:
@@ -424,7 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a0b8986585a9e4896108a5dd647224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmpText: {fileID: 246769050291679865}
+  tmpTextAlt: {fileID: 246769050291679865}
+  imageAlt: {fileID: 0}
   index: 0
   useMaterialValues: 01010100
   gradient:

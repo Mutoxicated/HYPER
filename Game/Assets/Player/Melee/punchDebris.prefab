@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5764368173425618352}
   - component: {fileID: 5764368173425618350}
   - component: {fileID: 5764368173425618353}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: punchDebris (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4828,7 +4828,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4890,7 +4890,7 @@ GameObject:
   - component: {fileID: 7623332215966184075}
   - component: {fileID: 4866102877683846241}
   - component: {fileID: 4637868027194540974}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: punchDebris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9708,7 +9708,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

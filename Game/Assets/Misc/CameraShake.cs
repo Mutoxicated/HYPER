@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
+    private static List<CameraShake> cameraShakes = new List<CameraShake>();
     private static GameObject player;
+    [Range(0,5),Tooltip("Lowest -> Highest")] public int priority;
     [SerializeField] private float maxDistance = 25f;
     [SerializeField] private bool shakeOnEnable = false;
     public GameObject _cam;
@@ -12,15 +15,23 @@ public class CameraShake : MonoBehaviour
     public float strength = 0.7f;
     public float interval = 0.02f;
 
+    [HideInInspector] public bool shaking;
     private float actualStrength;
     private int currentAmount;
     private float t;
     private float distanceT;
     private Vector3 initialPos;
-    private bool shaking = false;
 
     public void Shake()
     {
+        foreach (var cameraShake in cameraShakes)
+        {
+            if (cameraShake.shaking)
+            {
+                if (cameraShake.priority > priority)
+                    return;
+            }
+        }
         initialPos = _cam.transform.localPosition;
         t = 0;
         currentAmount = 0;
@@ -52,6 +63,7 @@ public class CameraShake : MonoBehaviour
 
     private void Start()
     {
+        cameraShakes.Add(this);
         GetEssentials();
     }
 

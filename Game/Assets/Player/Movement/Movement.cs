@@ -27,6 +27,7 @@ public class Movement : MonoBehaviour
     [SerializeField, Range(15f, 40f)] private float jumpForce;
     [SerializeField, Range(0f, 1f)] private float airMultiplier;
     [SerializeField] private float launchForce;
+    private float extraJumpForce = 2f;
 
     [Header("Limits")]
     [SerializeField] private int maxJumps;
@@ -36,6 +37,7 @@ public class Movement : MonoBehaviour
     [Header("Timers")]
     [SerializeField] public OnInterval launchInterval;
     [SerializeField] private OnInterval lockInterval;
+    [SerializeField] private OnInterval slamJumpInterval;
 
     [Header("Particles")]
     [SerializeField] private ParticleSystem groundSlam;
@@ -44,6 +46,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private ParticleSystem lockEffect;
 
     [Header("Misc")]
+    [SerializeField] private float slamJumpForceRate;
     [SerializeField] private Stats stats;
     [SerializeField] private Transform camHolder;
     [SerializeField] private StaminaControl stamina;
@@ -87,11 +90,11 @@ public class Movement : MonoBehaviour
         {
             if (bounces == 0)
             {
-                rb.AddForce(ability.GetBounceDir() * launchForce * 1.1f * stats.incrementalStat["moveSpeed"][0], ForceMode.Acceleration); ;
+                rb.AddForce(ability.GetBounceDir() * launchForce * 1.4f * stats.incrementalStat["moveSpeed"][0], ForceMode.Acceleration); ;
             }
             else
             {
-                rb.velocity = ability.GetBounceDir() * launchForce * 0.38f * stats.incrementalStat["moveSpeed"][0];
+                rb.velocity = ability.GetBounceDir() * launchForce * stats.incrementalStat["moveSpeed"][0];
             }
             return;
         }
@@ -144,6 +147,7 @@ public class Movement : MonoBehaviour
         //slamming
         if (movementState == MovementState.SLAMMING)
         {
+            extraJumpForce += slamJumpForceRate;
             ability.GroundSlam(slamSpeed * stats.incrementalStat["moveSpeed"][0]);
         }
     }
@@ -201,7 +205,11 @@ public class Movement : MonoBehaviour
             }
             if (!airborne)
             {
-                ability.Jump(point, jumpForce);
+                if (!slamJumpInterval.enabled)
+                    ability.Jump(point, jumpForce);
+                else
+                    ability.Jump(point, jumpForce+extraJumpForce);
+                extraJumpForce = 2f;
                 movementState = MovementState.WALKING;
                 crouchReleased = false;
             }
@@ -258,6 +266,7 @@ public class Movement : MonoBehaviour
             if (airborne && crouchReleased)
             {
                 movementState = MovementState.SLAMMING;
+                slamJumpInterval.ResetEarly();
                 crouchReleased = false;
             }
             return;
@@ -286,6 +295,7 @@ public class Movement : MonoBehaviour
         launchInterval.ResetEarly();
         if (movementState == MovementState.SLAMMING)
         {
+            slamJumpInterval.enabled = true;
             groundSlam.transform.position = point.point;
             groundSlam.Play();
             movementState = MovementState.WALKING;
@@ -302,7 +312,7 @@ public class Movement : MonoBehaviour
         }
         if (bounces >= maxBounces)
         {
-            rb.velocity = ability.GetBounceDir() * launchForce * 0.38f;
+            rb.velocity = ability.GetBounceDir() * launchForce * stats.incrementalStat["moveSpeed"][0];
             rb.drag = 2f;
             bounces = 0;
             movementState = MovementState.WALKING;

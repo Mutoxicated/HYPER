@@ -23,8 +23,7 @@ public class Pixelize : MonoBehaviour
         public List<Vector3> data;
     }
 
-    public int pixelMatIndex = 1;
-    public int otherMatIndex = 0;
+    public int pixelMatIndex = 0;
 
     private bool precomputeOutline = true;
 
@@ -36,7 +35,6 @@ public class Pixelize : MonoBehaviour
 
     private Renderer _renderer;
     private Material pixelMat;
-    private Material otherMat;
 
     void Start()
     {
@@ -46,9 +44,6 @@ public class Pixelize : MonoBehaviour
 
         // Instantiate outline materials
         pixelMat = _renderer.materials[pixelMatIndex];
-        otherMat = _renderer.materials[otherMatIndex];
-
-        pixelMat.color = otherMat.color;
 
         // Retrieve or generate smooth normals
         LoadSmoothNormals();

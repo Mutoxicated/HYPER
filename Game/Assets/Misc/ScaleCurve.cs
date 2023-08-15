@@ -10,19 +10,26 @@ public class ScaleCurve : MonoBehaviour
     [SerializeField] private AnimationCurve curveZ;
     [SerializeField] private OnInterval interval;
 
+    private bool oneForAll;
     private Vector3 initialScale;
     private Vector3 scale = Vector3.one;
 
-    private void Start()
-    {
-        initialScale = transform.localScale;
-    }
-
-    private void Update()
+    private void CalculateScale()
     {
         scale.x = initialScale.x * curveX.Evaluate(interval.t);
         scale.y = initialScale.y * curveY.Evaluate(interval.t);
         scale.z = initialScale.z * curveZ.Evaluate(interval.t);
         transform.localScale = scale;
+    }
+
+    private void Awake()
+    {
+        initialScale = transform.localScale;
+        CalculateScale();
+    }
+
+    private void Update()
+    {
+        CalculateScale();
     }
 }
