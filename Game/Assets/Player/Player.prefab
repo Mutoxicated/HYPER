@@ -360,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a84aa2d5a10c45448e0037089e488f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 0
   maxDistance: 100
   shakeOnEnable: 0
   _cam: {fileID: 8395529677905364782}
@@ -368,6 +367,7 @@ MonoBehaviour:
   strength: 0.1
   interval: 0.03
   shaking: 0
+  actualStrength: 0
 --- !u!82 &2567252511723581981
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1297,7 +1297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a84aa2d5a10c45448e0037089e488f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 0
   maxDistance: 100
   shakeOnEnable: 0
   _cam: {fileID: 8395529677905364782}
@@ -1305,6 +1304,7 @@ MonoBehaviour:
   strength: 1.6
   interval: 0.02
   shaking: 0
+  actualStrength: 0
 --- !u!114 &8166220741375504981
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -676,3 +676,9 @@ Let me tell you guys what I've done so far these weeks:
 > Made a screen effect that plays when you get hit.
 
 Yeah that was a lot. And I still am not even halfway done, to be honest. I made a profiler check and it shows that it's at a stable 70 fps. It's mostly due to the editor and the post processing effects, but my scripts don't seem to be affecting the fps a lot.
+
+## Day 68 & 69
+
+Soooooo i did some really cool stuff today. It was one cool thing actually. I implenmented a pixelated particle shader that uses vertex streams from the particle system. It's actually so cool.
+
+There was a lot of pain and suffering involved but when I finished it I legit teared up from the joy. It looks really cool imo.

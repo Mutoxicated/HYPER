@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/localPixelization"
 {
     Properties
@@ -14,11 +16,10 @@ Shader "Custom/localPixelization"
         Lighting Off
         Blend SrcAlpha OneMinusSrcAlpha
         ZWrite On
-        ZTest Less
         Cull Back
 
         Pass{
-
+            ZTest Less
             CGPROGRAM
 
             #include "UnityCG.cginc"
@@ -53,16 +54,16 @@ Shader "Custom/localPixelization"
 
             fixed4 frag(v2f i) : SV_TARGET{
                 fixed4 col = tex2D(_MainTex, i.uv);
-                col *= i.color;
                 col *= _Color;
-                return col;
+                return _Color;
             }
 
             ENDCG
         }
-
+        ZWrite Off
+        Cull Off
+        Blend Off
         GrabPass{ "_GrabTexture" }
-
         Pass
         {
             CGPROGRAM
@@ -92,11 +93,9 @@ Shader "Custom/localPixelization"
             {
                 v2f o;
 
-                float3 normal = any(v.smoothNormal) ? v.smoothNormal : v.normal;
-                float3 viewPosition = UnityObjectToViewPos(v.pos);
-                float3 viewNormal = normalize(mul((float3x3)UNITY_MATRIX_IT_MV, normal));
+                v.pos *= 1.1;
 
-                o.pos = UnityViewToClipPos(viewPosition + viewNormal * _PixelSize / 100.0);
+                o.pos = UnityObjectToClipPos(v.pos);
                 o.pos = UnityPixelSnap(o.pos);
                 o.uv = ComputeScreenPos(o.pos);
                 o.color = v.color;

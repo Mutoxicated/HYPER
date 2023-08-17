@@ -18,7 +18,7 @@ Shader "Custom/Outline Fill" {
 
   SubShader {
     Tags {
-      "Queue" = "Transparent+160"
+      "Queue" = "AlphaTest"
       "RenderType" = "Transparent"
     }
      Pass {

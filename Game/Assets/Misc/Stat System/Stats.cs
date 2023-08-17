@@ -124,9 +124,7 @@ public class Stats : MonoBehaviour
     {
         foreach (var name in modifiedIncrementals)
         {
-            incrementalStat[name][0] = 1f;
-            incrementalStat[name][1] = 0f;
-            incrementalStat[name][2] = 0f;
+            incrementalStat[name] = defaultSet.ToArray();
         }
         modifiedIncrementals.Clear();
     }
@@ -135,27 +133,21 @@ public class Stats : MonoBehaviour
     {
         foreach (var name in modifiedDecrementals)
         {
-            decrementalStat[name][0] = 1f;
-            decrementalStat[name][1] = 0f;
-            decrementalStat[name][2] = 0f;
+            decrementalStat[name] = defaultSet.ToArray();
         }
         modifiedDecrementals.Clear();
     }
 
     public void RevertIncrementalStat(string name)
     {
-        incrementalStat[name][0] = 1f;
-        incrementalStat[name][1] = 0f;
-        incrementalStat[name][2] = 0f;
+        incrementalStat[name] = defaultSet.ToArray();
         Debug.Log(incrementalStat[name][0] + " / "+ incrementalStat[name][1] + " / " + incrementalStat[name][2]);
         modifiedIncrementals.Remove(name);
     }
 
     public void RevertDecrementalStat(string name)
     {
-        decrementalStat[name][0] = 1f;
-        decrementalStat[name][1] = 0f;
-        decrementalStat[name][2] = 0f;
+        decrementalStat[name] = defaultSet.ToArray();
         modifiedDecrementals.Remove(name);
     }
 }
