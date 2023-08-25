@@ -93,7 +93,7 @@ Shader "Custom/localPixelization"
             {
                 v2f o;
 
-                v.pos *= 1.1;
+                v.pos *= 1.2;
 
                 o.pos = UnityObjectToClipPos(v.pos);
                 o.pos = UnityPixelSnap(o.pos);

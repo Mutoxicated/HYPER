@@ -86,6 +86,7 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
+        //Debug.Log(movementState);
         if (movementState == MovementState.BOUNCING)
         {
             if (bounces == 0)
@@ -125,7 +126,7 @@ public class Movement : MonoBehaviour
             return;
         }
         //sliding
-        if (movementState == MovementState.SLIDING)
+        if (!crouchReleased && movementState == MovementState.SLIDING)
         {
             if (uponSlide && moveDirection != Vector3.zero)
             {
@@ -178,7 +179,7 @@ public class Movement : MonoBehaviour
         rb.drag = 2f;
         ability = new MoveAbilities(rb);
         movementState = MovementState.WALKING;
-        //stats.ModifyIncrementalStat("moveSpeed", 3f, 4f);// works :)
+        stats.ModifyIncrementalStat("moveSpeed", 2f, 4f);// works :)
     }
 
     private void Update()
@@ -211,7 +212,7 @@ public class Movement : MonoBehaviour
                     ability.Jump(point, jumpForce+extraJumpForce);
                 extraJumpForce = 2f;
                 movementState = MovementState.WALKING;
-                crouchReleased = false;
+                crouchReleased = true;
             }
             else
             {
@@ -222,10 +223,6 @@ public class Movement : MonoBehaviour
                 movementState = MovementState.LOCKED;
                 lockInterval.enabled = true;
             }
-            return;
-        }
-        if (movementState == MovementState.LOCKED)
-        {
             return;
         }
         if (dashInput.GetInputDown() && stamina.GetCurrentStamina() > 100f)
@@ -249,6 +246,10 @@ public class Movement : MonoBehaviour
             crouchReleased = false;
             return;
         }
+        if (movementState == MovementState.LOCKED)
+        {
+            return;
+        }
         if (launchInterval.enabled)
         {
             LaunchLogic();
@@ -256,9 +257,6 @@ public class Movement : MonoBehaviour
         if (slideInput.GetInputDown())
         {
             uponSlide = true;
-        }
-        if (slideInput.GetInput())
-        {
             if (!airborne && crouchReleased)
             {
                 movementState = MovementState.SLIDING;
@@ -267,15 +265,19 @@ public class Movement : MonoBehaviour
             {
                 movementState = MovementState.SLAMMING;
                 slamJumpInterval.ResetEarly();
-                crouchReleased = false;
             }
-            return;
+        }
+        if (slideInput.GetInput())
+        {
+            crouchReleased = false;
         }
         else
         {
             crouchReleased = true;
         }
         //Debug.Log(movementState.ToString());
+        if (movementState == MovementState.SLIDING && !crouchReleased)
+            return;
         if (movementState == MovementState.SLAMMING)
             return;
         if (movementState == MovementState.BOUNCING)
@@ -307,7 +309,7 @@ public class Movement : MonoBehaviour
         if (collision.collider.gameObject.tag == "Enemy")
         {
             camShake.Shake();
-            collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(100f,gameObject);
+            collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(100f,gameObject,1f,0);
             bounces = maxBounces;
         }
         if (bounces >= maxBounces)

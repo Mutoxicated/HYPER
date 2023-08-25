@@ -150,9 +150,10 @@ GameObject:
   - component: {fileID: 5867583259666909669}
   - component: {fileID: 5198727170556841492}
   - component: {fileID: 6629897476335823226}
+  - component: {fileID: 1358221422168894942}
   m_Layer: 8
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 250674576862873568}
+  immuneSystem: {fileID: 1358221422168894942}
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -327,7 +329,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   destroyUponEvent: 0
+  recycleUponEvent: 0
   t: 0
+  isPlaying: 0
 --- !u!114 &5867583259666909669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +407,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matIndex: 1
   color: {r: 0.7058824, g: 0, b: 2.9960785, a: 1}
+--- !u!114 &1358221422168894942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029483554504949709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  immunityAttackRate: 1
+  immunityDamage: 10
+  foreignBacteria: []
 --- !u!1 &3301143575855750706
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +502,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modifiedDecrementals: []
+  modifiedIncrementals: []
+  defaultSet:
+  - 1
+  - 0
+  - 0
+  - 0
 --- !u!114 &2187372927416398556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d690bfb50e7204da1c3461d76aab03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootInterval: -1
+  usePool: 0
   bulletPrefab: {fileID: 8574461424792126625, guid: af413e6d89772d8419e76972c965b5cd, type: 3}
 --- !u!1 &5419551051448238176
 GameObject:

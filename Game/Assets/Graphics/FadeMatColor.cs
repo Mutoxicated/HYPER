@@ -9,7 +9,8 @@ public class FadeMatColor : MonoBehaviour
     [SerializeField] private Image imageAlt;
     [SerializeField] private int index = 1;
     [SerializeField] private bool[] useMaterialValues = new bool[4];
-    [SerializeField, GradientUsage(true)] private Gradient gradient;
+    [SerializeField, GradientUsage(true)] private Gradient[] gradient;
+    [SerializeField] private int gIndex;
     [SerializeField] private OnInterval onInterval;
     [SerializeField] private float interval;
     private float rate;
@@ -19,7 +20,7 @@ public class FadeMatColor : MonoBehaviour
     private float[] colorValues = new float[4];
     private float t;
     private Color gradientColor;
-    private Color color = new Color(0f,0f,0f,0f);
+    [HideInInspector] public Color color = new Color(0f,0f,0f,0f);
 
     void Awake()
     {
@@ -39,7 +40,7 @@ public class FadeMatColor : MonoBehaviour
 
     private void ComputeColorValues()
     {
-        gradientColor = gradient.Evaluate(t);
+        gradientColor = gradient[gIndex].Evaluate(t);
         for (int i = 0; i < useMaterialValues.Length; i++)
         {
             if (useMaterialValues[i])
@@ -65,9 +66,9 @@ public class FadeMatColor : MonoBehaviour
         }
     }
 
-    public void ChangeGradient(Gradient gradient)
+    public void ChangeGradientIndex(int index)
     {
-        this.gradient = gradient;
+        gIndex = index;
     }
 
     private void AssignColor()

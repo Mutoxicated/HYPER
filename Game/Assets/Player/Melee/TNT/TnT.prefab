@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708282144767931766}
-  m_LocalRotation: {x: -0.1349223, y: 0.1349223, z: 0.6941153, w: 0.6941153}
+  m_LocalRotation: {x: -0.122787856, y: 0.122787856, z: 0.6963643, w: 0.6963643}
   m_LocalPosition: {x: 6.02, y: 7.672, z: 2.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 6005207468442604130}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -22, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: -20, y: 0, z: 90}
 --- !u!54 &6637435214066444856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -84,8 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 26.5
   rb: {fileID: 6637435214066444856}
-  damageMultiplier: 1
-  explosionPrefab: {fileID: 1406129636473073463, guid: 204a045193b337e4c92614a8c2dcb0ad, type: 3}
+  explosionPrefab: {fileID: 1406129636473073463, guid: 69ee49fdb4df15e4f9bed40d174a9a83, type: 3}
 --- !u!114 &4358158747981673489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,7 +100,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   specialTag: Untagged
   chance: 100
-  interval: 2
+  interval: 1.5
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -118,7 +117,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   destroyUponEvent: 1
+  recycleUponEvent: 0
   t: 0
+  isPlaying: 0
 --- !u!1 &3012147047492929063
 GameObject:
   m_ObjectHideFlags: 0

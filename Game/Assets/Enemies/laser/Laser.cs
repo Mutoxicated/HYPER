@@ -1,33 +1,68 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
+    [SerializeField] private Stats stats;
     [SerializeField] private LayerMask layerMask;   
-    [SerializeField] private float duration;
     [SerializeField] private int damage;
     [SerializeField] private LineRenderer line;
-    private float t = 1f;
-    private float deathRate;
+    [SerializeField] private OnInterval interval;
+    [SerializeField] private float maxWidth;
+    [SerializeField] private GameObject objToIgnore;
 
-    private void Start()
+    private RaycastHit[] hits = new RaycastHit[5];
+    private float distance = 100f;
+    private Vector3 endVertex;
+    private float pierces;
+
+    private RaycastHit[] SortRaycasts(RaycastHit[] hits, int hitAmount)
     {
-        deathRate = t / duration;
-        var hits = Physics.SphereCastAll(transform.position, 0.5f, transform.TransformDirection(Vector3.forward), 100f, layerMask);
-        foreach (var hit in hits)
+        RaycastHit temp;
+        RaycastHit[] sortedHits = hits;
+
+        for (int i = 0; i <= hitAmount - 1; i++)
         {
-            hit.transform.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage, gameObject);
+            for (int j = i + 1; j < hitAmount; j++)
+            {
+                if (sortedHits[i].distance > sortedHits[j].distance)
+                {
+                    temp = sortedHits[i];
+                    sortedHits[i] = sortedHits[j];
+                    sortedHits[j] = temp;
+                }
+            }
         }
+        return sortedHits;
+    }
+
+    private void OnEnable()
+    {
+        pierces = stats.incrementalStat["pierces"][0];
+        int hitAmount = Physics.SphereCastNonAlloc(transform.position, 0.5f, transform.TransformDirection(Vector3.forward), hits, 100f, layerMask.value, QueryTriggerInteraction.UseGlobal);
+        hits = SortRaycasts(hits, hitAmount);
+        for (int i = 0; i < hitAmount; i++)
+        {
+            if (objToIgnore == hits[i].collider.gameObject)
+                continue;
+            distance = hits[i].distance;
+            //Debug.Log(hits[i].collider.gameObject.name + " | " + i);
+            hits[i].transform.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage, gameObject,1f,0);
+            if (pierces == 0f)
+                break;
+            pierces -= 1;
+        }
+        endVertex = line.GetPosition(1);
+        endVertex.z = distance;
+        line.SetPosition(1, endVertex);
     }
 
     private void Update()
     {
-        t -= deathRate * Time.deltaTime;
-        line.widthMultiplier = t;
-        if (t <= 0.04f)
-        {
-            Destroy(gameObject);
-        }
+        if (interval.isPlaying)
+            line.widthMultiplier = Mathf.Lerp(maxWidth,0f,interval.t);
     }
 }

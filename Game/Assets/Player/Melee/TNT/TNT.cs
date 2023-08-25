@@ -9,13 +9,11 @@ public class TNT : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private float damageMultiplier;
     [SerializeField] private GameObject explosionPrefab;
 
     public void Explode()
     {
-        var instance = Instantiate(explosionPrefab,transform.position,Quaternion.identity);
-        instance.GetComponent<Stats>().ModifyIncrementalStat("damage", damageMultiplier, 0.8f);
+        PublicPools.pools[explosionPrefab.name].UseObject(transform.position,Quaternion.identity);
     }
 
     void Start()

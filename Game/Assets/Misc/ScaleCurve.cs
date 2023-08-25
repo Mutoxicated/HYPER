@@ -10,7 +10,6 @@ public class ScaleCurve : MonoBehaviour
     [SerializeField] private AnimationCurve curveZ;
     [SerializeField] private OnInterval interval;
 
-    private bool oneForAll;
     private Vector3 initialScale;
     private Vector3 scale = Vector3.one;
 

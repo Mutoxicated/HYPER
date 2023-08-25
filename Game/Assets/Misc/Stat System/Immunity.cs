@@ -13,18 +13,18 @@ public class Immunity : MonoBehaviour
     public EntityType type;
     public float immunityAttackRate = 1f;
     public float immunityDamage = 10f;
-
-    private List<Bacteria> foreignBacteria = new List<Bacteria>();
+    [HideInInspector]
+    public List<Bacteria> foreignBacteria = new List<Bacteria>();
     private float t;
 
     public void NotifySystem(Bacteria bacteria)
     {
-        Debug.Log("notified!");
+        Debug.Log("Notified of bacteria "+bacteria.name+ ".");
         if (type == EntityType.ORGANIC)
         {
             if (bacteria.type == BacteriaType.RAIN)
             {
-                Destroy(bacteria);
+                bacteria.Instagib();
                 return;
             }
         }
@@ -32,7 +32,7 @@ public class Immunity : MonoBehaviour
         {
             if (bacteria.type == BacteriaType.POISON)
             {
-                Destroy(bacteria);
+                bacteria.Instagib();
                 return;
             }
         }

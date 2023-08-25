@@ -21,24 +21,34 @@ public class Bacteria : MonoBehaviour
 {
     public BacteriaType type;
     [Range(0.9f,0.1f)] public float strength;//weakest to strongest
+    private float lifeSpan = 100f;
 
     private void OnEnable()
     {
-        GetComponent<Immunity>().NotifySystem(this);// telling the immune system that we are here, and we are going to kill you
+        var immuneSystem = GetComponentInParent<Immunity>();
+        if (immuneSystem == null)
+        {
+            Instagib();
+            return;
+        }
+        immuneSystem.NotifySystem(this);// telling the immune system that we are here, and we are going to kill you
     }
-
-    private float lifeSpan = 100f;
 
     public bool Degrade(float damage)
     {
         lifeSpan -= damage*strength;
-        Debug.Log("oof");
         if (lifeSpan <= 0f)
         {
-            Debug.Log("Died! Component Ref: " + this);
-            Destroy(this);
+            lifeSpan = 100f;
+            PublicPools.pools[gameObject.name].ReattachImmediate(gameObject);
             return true;
         }
         return false;
+    }
+
+    public void Instagib()
+    {
+        lifeSpan = 100f;
+        PublicPools.pools[gameObject.name].ReattachImmediate(gameObject);
     }
 }

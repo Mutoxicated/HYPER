@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 1318928374030441264}
   - component: {fileID: 1146717025543487206}
   m_Layer: 15
-  m_Name: MediumExplosion
+  m_Name: MEDIUM_EXP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,20 +125,34 @@ MonoBehaviour:
   onInterval:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1406129636473073448}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1406129636473073451}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-  destroyUponEvent: 1
+      - m_Target: {fileID: 4430928375392112375}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  destroyUponEvent: 0
+  recycleUponEvent: 1
   t: 0
+  isPlaying: 0
 --- !u!114 &1406129636473073449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,8 +235,17 @@ MonoBehaviour:
       inWeight: 1
       outWeight: 0.08210873
     - serializedVersion: 3
-      time: 0.9990845
+      time: 0.9942481
       value: 1.8826942
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
       inSlope: 0.44232243
       outSlope: 0.44232243
       tangentMode: 0
@@ -254,8 +277,17 @@ MonoBehaviour:
       inWeight: 1
       outWeight: 0.08210873
     - serializedVersion: 3
-      time: 0.9990845
+      time: 0.9942481
       value: 1.8826942
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
       inSlope: 0.44232243
       outSlope: 0.44232243
       tangentMode: 0
@@ -287,8 +319,17 @@ MonoBehaviour:
       inWeight: 1
       outWeight: 0.08210873
     - serializedVersion: 3
-      time: 0.9990845
+      time: 0.9942481
       value: 1.8826942
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
       inSlope: 0.44232243
       outSlope: 0.44232243
       tangentMode: 0
@@ -334,6 +375,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modifiedDecrementals: []
+  modifiedIncrementals: []
+  defaultSet:
+  - 1
+  - 0
+  - 0
+  - 0
 --- !u!114 &1318928374030441264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +397,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   specialTag: DisableColl
   chance: 100
-  interval: 0.8
+  interval: 0.65
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -366,9 +414,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1318928374030441264}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_TargetAssemblyTypeName: OnInterval, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -378,7 +426,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   destroyUponEvent: 0
+  recycleUponEvent: 0
   t: 0
+  isPlaying: 0
 --- !u!114 &1146717025543487206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +460,7 @@ GameObject:
   - component: {fileID: 1502152729622622921}
   - component: {fileID: 3344484583840842802}
   - component: {fileID: 3613501392167241944}
+  - component: {fileID: 2452765985600212535}
   m_Layer: 0
   m_Name: discoExplosion2
   m_TagString: Untagged
@@ -442,14 +493,14 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5269,6 +5320,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2452765985600212535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859259502895420881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebea571177a9c2044ae7b789f944d455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 3344484583840842802}
 --- !u!1 &4430928375392112362
 GameObject:
   m_ObjectHideFlags: 0
@@ -5461,19 +5525,33 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4430928375392112373}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+        m_TargetAssemblyTypeName: OnInterval, Assembly-CSharp
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  destroyUponEvent: 1
+      - m_Target: {fileID: 4430928375392112375}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  destroyUponEvent: 0
+  recycleUponEvent: 0
   t: 0
+  isPlaying: 0
 --- !u!114 &4430928375392112372
 MonoBehaviour:
   m_ObjectHideFlags: 0

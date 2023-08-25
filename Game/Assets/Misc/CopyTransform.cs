@@ -8,6 +8,7 @@ public class CopyTransform : MonoBehaviour
     [SerializeField] private bool copyPosition;
     [SerializeField] private bool copyRotation;
     [Space]
+    [Header("Extra")]
     [SerializeField] private Vector3 positionMultiplier = Vector3.one;
     [SerializeField] private Vector3 rotationMultiplier = Vector3.one;
     [Space]

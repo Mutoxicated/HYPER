@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    [SerializeField] private float shootInterval;
+    [SerializeField] private bool usePool;
     [SerializeField] private GameObject bulletPrefab;
 
     public void ShootPrefab()
     {
-        Instantiate(bulletPrefab, transform.position, transform.rotation);
+        if (usePool)
+        {
+            PublicPools.pools[bulletPrefab.name].UseObject(transform.position,transform.rotation);
+        }
+        else
+        {
+            Instantiate(bulletPrefab, transform.position, transform.rotation);
+        }
     }
 }

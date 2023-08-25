@@ -682,3 +682,13 @@ Yeah that was a lot. And I still am not even halfway done, to be honest. I made 
 Soooooo i did some really cool stuff today. It was one cool thing actually. I implenmented a pixelated particle shader that uses vertex streams from the particle system. It's actually so cool.
 
 There was a lot of pain and suffering involved but when I finished it I legit teared up from the joy. It looks really cool imo.
+
+## Day 70 thru 77
+
+Alright, so I've implemented almost all the buffs and debuffs. I've also made player escape lock state through dashing, implemented piercing on stuff like lasers and bullets (not sure about missiles) and created a custom object pooling system that is gonna save a ton of performance. I've almost completed the space island! I've done the campfire site, which I'm pretty happy with.
+
+Now all there is to do before I start actually creating the enemies is to implement absolutely all debuffs and buffs, implement all code designs that will be needed for gameplay flexibility, set up a gun transforming system and make a fisheye lens effect shader.
+
+That is actually a lot of work...
+
+Despite organization, everything is kind of foggy in my head right now. Maybe because I got distracted from the game with another game that I've started to put hours on. Anyway yeah that's it for now.

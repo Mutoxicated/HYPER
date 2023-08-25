@@ -25,7 +25,6 @@ public class MoveAbilities
 
     public void Slide(Vector3 direction, float slideSpeed)
     {
-        direction.y = 0f;
         rb.velocity = direction * slideSpeed;
     }
 

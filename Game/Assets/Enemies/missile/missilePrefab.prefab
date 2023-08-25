@@ -235,9 +235,10 @@ GameObject:
   - component: {fileID: 8025837559206595664}
   - component: {fileID: 650634795607507202}
   - component: {fileID: 7356695330836512012}
+  - component: {fileID: 1015220819114483012}
   m_Layer: 9
   m_Name: missilePrefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,6 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 8025837559206595664}
+  immuneSystem: {fileID: 0}
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -548,6 +550,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modifiedDecrementals: []
+  modifiedIncrementals: []
+  defaultSet:
+  - 1
+  - 0
+  - 0
+  - 0
 --- !u!114 &650634795607507202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,7 +613,10 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   destroyUponEvent: 0
+  recycleUponEvent: 0
   t: 0
+  time: 0
+  isPlaying: 0
 --- !u!135 &7356695330836512012
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -616,8 +628,25 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0.6}
+--- !u!114 &1015220819114483012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574461424792126625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccd3a0430197e141925f941c4d6635d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  injectEnabled: 1
+  chance: 100
+  type: 0
+  bacteriaPools:
+  - BURNING
 --- !u!1001 &1680122225318818223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -713,7 +742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a84aa2d5a10c45448e0037089e488f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 1
   maxDistance: 10
   shakeOnEnable: 0
   _cam: {fileID: 0}
@@ -721,6 +749,7 @@ MonoBehaviour:
   strength: 0.5
   interval: 0.02
   shaking: 0
+  actualStrength: 0
 --- !u!1001 &6792086210579695196
 PrefabInstance:
   m_ObjectHideFlags: 0

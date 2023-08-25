@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 1907635401927215819}
   - component: {fileID: 1907635401927215818}
   - component: {fileID: 1907635401927215817}
-  - component: {fileID: 1907635401927215816}
   - component: {fileID: 1549946323395533653}
   - component: {fileID: 775047400170272233}
   - component: {fileID: 2042489557979923656}
+  - component: {fileID: 2838772722254914084}
+  - component: {fileID: 2944045812284909553}
   m_Layer: 6
   m_Name: normal
   m_TagString: bullets
@@ -87,19 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1907635401927215816
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907635401927215823}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1549946323395533653
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115,7 +103,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &775047400170272233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,8 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f4862032fca6c458c9255e1f571696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coll: {fileID: 0}
   rb: {fileID: 1549946323395533653}
-  speed: 200
+  speed: 50
   particlePrefab: {fileID: 3545220589067606805, guid: 6d5913b428758ba469ed17214f365d7b, type: 3}
   lifetime: 5
   damage: 100
@@ -147,3 +136,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matIndex: 0
   color: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 1}
+--- !u!136 &2838772722254914084
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907635401927215823}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.49999997
+  m_Height: 1.4
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.3}
+--- !u!114 &2944045812284909553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907635401927215823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccd3a0430197e141925f941c4d6635d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chance: 100
+  type: 2
+  bacteriaPools:
+  - FREEZING

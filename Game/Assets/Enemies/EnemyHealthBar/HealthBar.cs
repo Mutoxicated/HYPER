@@ -26,7 +26,10 @@ public class HealthBar : MonoBehaviour
     {
         objectToActivate.SetActive(true);
         active = true;
-        onInterval.enabled = true;
+        if (!onInterval.enabled)
+            onInterval.enabled = true;
+        else
+            onInterval.time = 2;
     }
 
     public void Deactivate()

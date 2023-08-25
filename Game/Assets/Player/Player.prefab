@@ -597,7 +597,7 @@ MonoBehaviour:
   recoilPosition: {x: 0, y: 0, z: -0.5}
   recoilRotation: {x: 0, y: -0.38268346, z: 0, w: 0.9238795}
   lerpSpeed: 12
-  weaponType: 4
+  weaponType: 0
   OnShootEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1109,6 +1109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f278f96deb4f842ae022871528faae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 8108540779480057966}
+  immuneSystem: {fileID: 8166220741375504981}
   playerObjects:
   - {fileID: 7897016974113696127}
   - {fileID: 1827139654470346250}
@@ -1174,11 +1176,12 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthBarImg: {fileID: 0}
   healthBarBackImg: {fileID: 0}
-  screen: {fileID: 0}
+  hurtScreen: {fileID: 0}
+  hurtScreen2: {fileID: 0}
   lerpSpeed: 4
   shields: 3
   shieldsText: {fileID: 0}
-  HP: 500
+  HP: 700
   reactionSpeed: 2.07
   hitReaction: 1
 --- !u!136 &7127821129873079633
@@ -1227,7 +1230,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   destroyUponEvent: 0
+  recycleUponEvent: 0
   t: 0
+  time: 0
+  isPlaying: 0
 --- !u!114 &3848314848283858412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1284,7 +1290,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   destroyUponEvent: 0
+  recycleUponEvent: 0
   t: 0
+  time: 0
+  isPlaying: 0
 --- !u!114 &415444476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1318,8 +1327,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  immunityAttackRate: 1
+  immunityAttackRate: 0.5
   immunityDamage: 10
+  foreignBacteria: []
 --- !u!114 &8108540779480057966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1332,6 +1342,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modifiedDecrementals: []
+  modifiedIncrementals: []
+  defaultSet:
+  - 1
+  - 0
+  - 0
+  - 0
 --- !u!114 &7311404026360387799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1364,7 +1381,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   destroyUponEvent: 0
+  recycleUponEvent: 0
   t: 0
+  time: 0
+  isPlaying: 0
 --- !u!1 &1827139654788565378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,7 +1500,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827139654788565378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -1540,7 +1560,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827139654788565378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 

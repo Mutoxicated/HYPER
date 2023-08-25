@@ -13,6 +13,14 @@ public class EnemyCollision : MonoBehaviour
     [SerializeField] private LayerMask layersToIgnore;
     [SerializeField] private string[] tagsToIgnore;
 
+    private IDamageable damageable;
+    private Injector injector;
+
+    private void OnEnable()
+    {
+        injector = GetComponent<Injector>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (tagsToIgnore != null)
@@ -28,9 +36,15 @@ public class EnemyCollision : MonoBehaviour
         Detach();
         OnCollision.Invoke();
         DestroyStuff();
+        damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damage > 0)
         {
-            collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage * stats.incrementalStat["damage"][0], gameObject);
+            damageable?.TakeDamage(damage * stats.incrementalStat["damage"][0], gameObject,1f,0);
+        }
+        if (injector != null)
+        {
+            if (injector.injectEnabled)
+                damageable?.TakeInjector(injector);
         }
     }
 
@@ -49,9 +63,15 @@ public class EnemyCollision : MonoBehaviour
         Detach();
         OnCollision.Invoke();
         DestroyStuff();
+        damageable = other.gameObject.GetComponent<IDamageable>();
         if (damage > 0)
         {
-            other.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage * stats.incrementalStat["damage"][0], gameObject);
+            damageable?.TakeDamage(damage * stats.incrementalStat["damage"][0], gameObject, 1f, 0);
+        }
+        if (injector != null)
+        {
+            if (injector.injectEnabled)
+                damageable?.TakeInjector(injector);
         }
     }
 

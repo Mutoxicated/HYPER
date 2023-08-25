@@ -15,7 +15,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         WIREFRAME,
         BOTH
     }
-
+    [SerializeField] private Stats stats;
+    [SerializeField] private Immunity immuneSystem;
     [Header("General")]
     [SerializeField] private GameObject[] playerObjects;
     [SerializeField] private Gradient healthBarGradient;
@@ -24,7 +25,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private Transform healthBar;
     [SerializeField] private Image healthBarImg;
     [SerializeField] private Image healthBarBackImg;
-    [SerializeField] private GameObject screen;
+    [SerializeField] private GameObject hurtScreen;
+    [SerializeField] private FadeMatColor fadeColor;
     [SerializeField] private float lerpSpeed;
     [SerializeField] private int shields = 0;
     [SerializeField] private TMP_Text shieldsText;
@@ -83,8 +85,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         return copyGradient;
     }
 
+    private void RecycleBacteria()
+    {
+        if (immuneSystem.foreignBacteria.Count == 0)
+            return;
+        foreach (var bac in immuneSystem.foreignBacteria)
+        {
+            PublicPools.pools[bac.gameObject.name].Reattach(bac.gameObject);
+        }
+    }
+
     private void Start()
     {
+        stats.ModifyIncrementalStat("shields", shields - 1, false);
         initialScale = healthBar.localScale;
         currentHP = HP;
         healthT = currentHP / HP;
@@ -152,24 +165,33 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         shieldsText.text = shields.ToString();
     }
 
-    public void TakeDamage(float intake, GameObject sender)
+    public void TakeDamage(float intake, GameObject sender, float arb, int index)
     {
         reactionT = 1f;
-        screen.SetActive(true);
+        hurtScreen.SetActive(true);
+        fadeColor.ChangeGradientIndex(index);
         //Debug.Log("Shields: " + shields + " | Health outake: " + (intake / (shields + 1)));
         currentHP = Mathf.Clamp(currentHP-intake/(shields+1), 0f, HP);
         shields = Mathf.Clamp(shields - 1, 0, 999999);
+        stats.ModifyIncrementalStat("shields", -1, false);
         EvaluateShields();
         playerColor = healthBarGradient.Evaluate(healthT);
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
         if (currentHP <= 0)
         {
-            //death
+            //RecycleBacteria(); 
+            //death(insane)
         }
     }
 
-    public void TakeDamage(float intake)
+    public void TakeInjector(Injector injector)
     {
-        screen.SetActive(true);
+        if (injector.type == injectorType.ENEMIES)
+            return;
+        foreach (string bacteriaPool in injector.bacteriaPools)
+        {
+            if (Random.Range(0f,100f) <= injector.chance)
+                PublicPools.pools[bacteriaPool].SendObject(gameObject);
+        }
     }
 }

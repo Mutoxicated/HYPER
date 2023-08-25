@@ -33,7 +33,7 @@ public class Melee : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2,0));
         bool hit = Physics.SphereCast(ray.origin,0.1f, ray.direction, out hitInfo, punchRange, layerMask);
         if (hit)
-            hitInfo.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(punchDamage,gameObject);
+            hitInfo.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(punchDamage,gameObject,1f,0);
         spawnCoords = hitInfo.point;
         return hit;
     }

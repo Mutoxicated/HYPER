@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamage(float intake);
-    void TakeDamage(float intake, GameObject sender);
+    void TakeDamage(float intake, GameObject sender, float arbParam, int arbParam2);
+    void TakeInjector(Injector injector);
 }

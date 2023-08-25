@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 2
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 0.5
+  outlineWidth: 1.05
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 4579454407841743219, guid: 7686bd194b6995f4080887f1253bd29d, type: 3}
