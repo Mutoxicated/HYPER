@@ -6,10 +6,9 @@ using UnityEngine.Events;
 public class EnemyCollision : MonoBehaviour
 {
     [SerializeField] private Stats stats;
-    [SerializeField] private UnityEvent OnCollision;
-    [SerializeField] private GameObject[] ObjectsToDestroy;
-    [SerializeField] private GameObject[] ChildrenToDetach;
-    [SerializeField] private int damage;
+    [SerializeField] private EnemyHealth health;
+    [SerializeField] private float damageOutput;
+    [SerializeField] private float damageInput;
     [SerializeField] private LayerMask layersToIgnore;
     [SerializeField] private string[] tagsToIgnore;
 
@@ -33,19 +32,21 @@ public class EnemyCollision : MonoBehaviour
         }
         if ((layersToIgnore & (1 << collision.collider.gameObject.layer)) != 0)
             return;
-        Detach();
-        OnCollision.Invoke();
-        DestroyStuff();
         damageable = collision.gameObject.GetComponent<IDamageable>();
-        if (damage > 0)
+        if (damageOutput > 0)
         {
-            damageable?.TakeDamage(damage * stats.incrementalStat["damage"][0], gameObject,1f,0);
+            damageable?.TakeDamage(damageOutput * stats.numericals["damage"], gameObject,1f,0);
         }
         if (injector != null)
         {
             if (injector.injectEnabled)
                 damageable?.TakeInjector(injector);
         }
+        if (stats.conditionals["explosive"])
+        {
+            PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position, Quaternion.identity);
+        }
+        health?.TakeDamage(damageInput,gameObject,1f,0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,38 +61,20 @@ public class EnemyCollision : MonoBehaviour
         }
         if ((layersToIgnore & (1 << other.gameObject.layer)) != 0)
             return;
-        Detach();
-        OnCollision.Invoke();
-        DestroyStuff();
         damageable = other.gameObject.GetComponent<IDamageable>();
-        if (damage > 0)
+        if (damageOutput > 0)
         {
-            damageable?.TakeDamage(damage * stats.incrementalStat["damage"][0], gameObject, 1f, 0);
+            damageable?.TakeDamage(damageOutput * stats.numericals["damage"], gameObject, 1f, 0);
         }
         if (injector != null)
         {
             if (injector.injectEnabled)
                 damageable?.TakeInjector(injector);
         }
-    }
-
-    private void DestroyStuff()
-    {
-        if (ObjectsToDestroy == null)
-            return;
-        foreach (var obj in ObjectsToDestroy)
+        if (stats.conditionals["explosive"])
         {
-            Destroy(obj);
+            PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position, Quaternion.identity);
         }
-    }
-
-    private void Detach()
-    {
-        if (ChildrenToDetach == null)
-            return;
-        foreach (var obj in ChildrenToDetach)
-        {
-            obj.transform.parent = null;
-        }
+        health?.TakeDamage(damageInput,gameObject,1f,0);
     }
 }

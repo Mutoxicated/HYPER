@@ -97,7 +97,7 @@ public class staminaComms : MonoBehaviour
             return;
         if (chargeBack)
         {
-            t += 32f*Time.deltaTime;
+            t += 42f*Time.deltaTime;
         }
         if (t > 100f)
             t = 100f;
@@ -111,7 +111,7 @@ public class staminaComms : MonoBehaviour
         if (chargeBack)
             image.fillAmount = lerp;
         else
-            image.fillAmount = Mathf.Lerp(image.fillAmount, lerp+0.001f, Time.deltaTime * 10f);
+            image.fillAmount = Mathf.Lerp(image.fillAmount, lerp+0.001f, Time.deltaTime * 15f);
         if (image.fillAmount == 1f)
         {
             full = true;
@@ -120,7 +120,7 @@ public class staminaComms : MonoBehaviour
                 nextNeighbor.ActivateChargeback();
             activate = false;
         }
-        if (Mathf.Approximately(lerp + 0.001f, image.fillAmount))
+        if (image.fillAmount > lerp-0.01f && image.fillAmount < lerp+0.01f)
         {
             if (previousNeighbor != null)
             {
@@ -130,6 +130,7 @@ public class staminaComms : MonoBehaviour
                 }
                 else
                 {
+                    image.fillAmount = lerp;
                     activate = false;
                 }
             }

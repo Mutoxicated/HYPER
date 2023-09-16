@@ -25,7 +25,9 @@ public class MoveAbilities
 
     public void Slide(Vector3 direction, float slideSpeed)
     {
-        rb.velocity = direction * slideSpeed;
+        direction *= slideSpeed;
+        direction.y = rb.velocity.y;
+        rb.velocity = direction;
     }
 
     public void GroundSlam(float slamSpeed)
@@ -35,6 +37,7 @@ public class MoveAbilities
 
     public void Dash(Vector3 direction, float dashSpeed)
     {
+        rb.velocity = Vector3.zero;
         rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
     }
 

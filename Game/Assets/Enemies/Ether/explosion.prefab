@@ -4821,7 +4821,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
+  - {fileID: 2100000, guid: 7ae10846f8e414d41aa453f34fd9d359, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4884,7 +4884,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a84aa2d5a10c45448e0037089e488f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 1
   maxDistance: 30
   shakeOnEnable: 1
   _cam: {fileID: 0}
@@ -4892,6 +4891,7 @@ MonoBehaviour:
   strength: 0.5
   interval: 0.02
   shaking: 0
+  actualStrength: 0
 --- !u!1001 &5972266171782763888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4987,6 +4987,10 @@ PrefabInstance:
       propertyPath: VelocityModule.speedModifier.maxCurve.m_Curve.Array.data[1].tangentMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3780252667990583512, guid: 1134e28c502896d47ba48ab07d3517cd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ae10846f8e414d41aa453f34fd9d359, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1134e28c502896d47ba48ab07d3517cd, type: 3}
 --- !u!4 &4641781958512510905 stripped

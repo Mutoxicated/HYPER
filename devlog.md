@@ -692,3 +692,125 @@ Now all there is to do before I start actually creating the enemies is to implem
 That is actually a lot of work...
 
 Despite organization, everything is kind of foggy in my head right now. Maybe because I got distracted from the game with another game that I've started to put hours on. Anyway yeah that's it for now.
+
+## Dat 78 thru 99
+
+Sorry for not waiting a day to make this log but I just want to say that for about 2 weeks I hadn't done any progress due to side projects taking over. Though, this week I've been doing ALOT. 
+
+I rewrote the whole document that explained everything about the game because it was a mess. Now, i rewrote, advanced and organized it and I'm pretty happy with how it turned out. Link to the doc here: .
+
+Apart from that, I should tell you about the changes I made to the debuff and buff system.
+
+Now, there aren't any debuffs or buffs. There are bacteria that can take many forms and be considered debuffs or buffs to an entity. 
+
+Here's a section of the .pdf i provided above that explains the bacteria:
+
+[start of section]
+### BACTERIA MECHANICS:
+
+Bacteria are what we call in layman’s terms buffs and debuffs and they are stackable. A bacteria can serve as both a buff and a debuff, depending on what type of bacteria it is (covered later). These bacterias hijack the immune system of the enemy or player and affect it in certain ways. We will also talk here about the immune system, as it is as important as bacterias.
+
+The immune system isn’t anything too complex currently in the making of the game. There are two types of immune systems, however, that define which bacteria can hijack it and which can’t. One extremely important thing to mention is that the Player’s immune system is obviously not the same as all the enemies. I mean the Player and the enemies came from a completely different galaxy, so there’s different bacteria that the enemies’ immune systems have built more tolerance for. So, they have also evolved to detect what bacteria are beneficial and which ones aren’t, letting the good bacteria inside them for longer than the bad ones.
+
+The immune system types are:
+1. Organic (completely immune to rain)
+2. Non-organic (completely immune to poison).
+
+It’s really important to note that a bacteria’s actions to the receiver are governed by its type: 
+1. Ally.
+2. Invader.
+
+An Ally will incubate the immune system, working with it to spread the bacteria to other entities through their own attack mechanisms. Any bacteria that spreads to other entities is an invader, causing harm to the recipients. There are exceptions for certain bacterias, of course.
+
+Here are all bacteria:
+* Flash (invader: boosts all speed related stats depending on difficulty, ally: applies effects to entities that are subjected to the ally’s attacks).
+* Warded (invader: gives X shields depending on difficulty, ally: refer back to Flash).
+* Eruption (makes death and attacks explosive, damage and area of explosion increases with difficulty, ally: refer back to Flash).
+* Impalement (invader: makes bullets and lasers pierce X amount, which increases with difficulty or stacks, ally: refer back to Flash).
+* Merry (invader: increases damage output by X amount, which increases with difficulty, ally: refer back to Flash).
+* Bragger (invader: increases attack iterations by +1, ally: gives entities of its kind*1 merry)
+* Vampire (invader: steals health and brings it to its ally counterpart that produced the invader, ally: producer invader to other entities)
+* Burning (invader: deals fast but dispersed DoT, ally: refer back to Flash)
+* Freezing (invader: deals slow but concentrated DoT, ally: refer back to Flash)
+* Poison (invader: deals somewhat fast DoT and slows all speed stats down, non organics are immune, ally: refer back to Flash)
+* Rain (invader: slows all stats down, organics are immune, ally:refer back to Flash)
+* Chimera(invader:vision radius is blocked by hallucinations, ally:refer back to Flash)
+* Sloth (invader:slowness, ally:refer back to Flash)
+* Flabbergast (invader:stunned, ally:refer back to Flash)
+* Betrayer (invader:starts targeting enemies instead of you, ally: refer back to Flash)
+* Radiation (damage is minimal when not stacked, but when there are lots of stacks it’s able to have time to accelerate its damage and chance to give nearby enemies sloth/flabbergast/burning/eruption)
+
+I would like to mention that there are certain reactions that happen with certain bacterias if they occupy the same immune system. These reactions are very type specific and bacteria specific, which in return creates a lot of variety (which is kinda needed because Magicka class*2).
+
+*1 Note: “..of its kind..” meaning that if the host is an enemy, it will give only enemies merry, not the player and the enemies.
+
+*2 Note: Refer back to the **Active classes & items** of the Player chapter. In short, magicka is all about using bacteria as a means of harm to your enemies, so it would make sense if there was some complexity behind these bacteria.
+
+[end of section]
+
+Now, since I refered to the Active classes & items segment, I might as well include it here. If you have read this far though, you're probably interested in this so I suggest you just read the .pdf I provided. Either way here's the segment, it's pretty big:
+
+[start of section]
+
+ACTIVE CLASSES & ITEMS:
+
+Here is a list of all active classes, from starter classes to hyper classes, given with their corresponding synergy recipe:
+* STARTER CLASSES.
+  - Bravery
+  - Bloodthirst
+  - Magicka
+  - Evocus
+* SYNERGIZED CLASSES.
+  - Sagacita (Bloodthirst + Bravery)
+  - Veneficus (Bloodthirst + Magicka)
+  - Elementum (Bravery + Magicka)
+  - Alpha Lanista (Bloodthirst +Evocus)
+  - Beta Lanista (Magicka + Evocus)
+  - Sigma Lanista (Bravery + Evocus)
+* HYPER CLASSES.
+  - Zeus (Sagacita + Veneficus)
+  - Dione (Sagacita + Elementum)
+  - Artemis (Sagacita + Alpha Lanista)
+  - Avatar (Sagacita + Sigma Lanista)
+  - Hekate (Sagacita + Beta Lanista)
+  - Lizzard (Veneficus + Elementum)
+  - Xenia (Veneficus + Alpha Lanista)
+  - Grinder (Veneficus + Sigma Lanista)
+  - Mooner (Veneficus + Beta Lanista)
+  - Mentor (Elementum + Alpha Lanista)
+  - Baller (Elementum + Sigma Lanista)
+  - Hephaestus (Elementum + Beta Lanista)
+  - Kappa Lanista (Alpha Lanista + Sigma Lanista)
+  - Omega Lanista (Alpha Lanista + Beta Lanista)
+  - Lambda Lanista (Beta Lanista + Sigma Lanista)
+
+*Note: To explain what the theme of all of these classes have is kind of tough, so I will only explain the starter classes for now.*
+
+Bravery is more of a warrior-type class, containing more defensive items but also a few offensive ones, though not very great. 
+
+Bloodthirst is about high dps. Consequently, there isn’t a lot of investing in defensive items. However, the ones that are offensive are pretty darn good and if you follow the path of dps you can get some great fun at the risk of close to zero defensive mechanisms. Your choice as always.
+
+Magicka is more about having abilities that don’t directly cause harm to the enemy. It uses bacteria to cause harm upon them. At first this class is pretty weak but through synergies later on can come up as a very clutch class. Of course, defensive items will mostly include invader buffs and offensive items will include ally debuffs.
+
+Evocus is pretty different from all other classes. It’s mostly about not killing on your own, but having others do it for you. Defensive items will mostly be passive probably and offensive items will include some sort of summoning mechanism. Not to say that’s all they are limited to, of course.
+
+Synergized classes will follow the principles of both starter classes that were used to create it. Of course, some will deviate from those principles, but only a little, so as to create variety.
+
+[end of section]
+
+So now, I'm just finishing the implementation of the bacteria system. It's been tough because I have to take into account so many things, given that for one change/implementation that i make, 2 or 3 things can go wrong. I have to really think about what I will do so that in the future it won't be a pain to change things around, while also remembering the components of the architecture I've created to leverage anything I could so as to not over-implement and over-complicate things.
+
+Things are going nicely though, I don't know if I have mentioned, but I created an object pooling system, which, after making some changes, is working really nice and I really like how it turned out.
+
+Right now I'm creating all bacteria VFX. There are 3 possible FX a bacteria can have on you:
+1. Outline effect.
+2. Surface effect
+3. Color effect.
+
+Now I'm thinking about cases where if an entity has a lot of ally bacterias, there might be a lot of overlap. 
+
+Okay so I just compromised: Entities can only have 3 ally bacterias MAX. The first effect will always be a surface effect, second will be color effect, third will be outline. The player is not bound to this. I like this because the game won't get too chaotic. Chaos is good, but not too much. Will have to update the document.
+
+The player wont be bound to it because there is a very important class called Magicka that depends completely on bacteria as its base. I don't want this base to be very limited very quickly, so I decided for the player to not be limited to this.
+
+Anyway this is all for now! Cya.

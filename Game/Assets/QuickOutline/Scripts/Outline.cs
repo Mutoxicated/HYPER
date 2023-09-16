@@ -1,4 +1,4 @@
-﻿//
+﻿﻿//
 //  Outline.cs
 //  QuickOutline
 //
@@ -16,28 +16,6 @@ using UnityEngine;
 
 public class Outline : MonoBehaviour {
   private static HashSet<Mesh> registeredMeshes = new HashSet<Mesh>();
-
-  public enum Mode {
-    OutlineAll,
-    OutlineVisible,
-    OutlineHidden,
-    OutlineAndSilhouette,
-    SilhouetteOnly
-  }
-
-  public Color OutlineColor {
-    get { return outlineColor; }
-    set {
-      outlineColor = value;
-    }
-  }
-
-  public float OutlineWidth {
-    get { return outlineWidth; }
-    set {
-      outlineWidth = value;
-    }
-  }
 
   [Serializable]
   private class ListVector3 {
@@ -70,27 +48,30 @@ public class Outline : MonoBehaviour {
 
   void Awake() {
 
-    // Cache renderers
+    // Cache renderer
     _renderer = GetComponent<Renderer>();
 
-    // Instantiate outline materials
     outlineFillMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineFill"+stencilIndex));
-    outlineFillMaterial.color = outlineColor;
 
     outlineFillMaterial.name = "OutlineFill (Instance)";
 
     // Retrieve or generate smooth normals
     LoadSmoothNormals();
 
-    // Append outline shaders
-    var materials = _renderer.sharedMaterials.ToList();
-
-    _renderer.materials = materials.ToArray();
-
+    // Apply material properties immediately
     UpdateMaterialProperties();
   }
 
-    void OnValidate() {
+  void OnEnable() {
+      // Append outline shaders
+      var materials = _renderer.sharedMaterials.ToList();
+
+      materials.Add(outlineFillMaterial);
+
+      _renderer.materials = materials.ToArray();
+  }
+
+  void OnValidate() {
 
     // Clear cache when baking is disabled or corrupted
     if (!precomputeOutline && bakeKeys.Count != 0 || bakeKeys.Count != bakeValues.Count) {
@@ -104,27 +85,18 @@ public class Outline : MonoBehaviour {
     }
   }
 
-  void OnDisable() {
 
+  void OnDisable() {
       // Remove outline shaders
       var materials = _renderer.sharedMaterials.ToList();
 
       materials.Remove(outlineFillMaterial);
 
       _renderer.materials = materials.ToArray();
-   }
+    
+  }
 
-    private void OnEnable()
-    {
-        var materials = _renderer.sharedMaterials.ToList();
-
-        materials.Add(outlineFillMaterial);
-
-        _renderer.materials = materials.ToArray();
-        UpdateMaterialProperties();
-    }
-
-    void OnDestroy() {
+  void OnDestroy() {
 
     // Destroy material instances
     Destroy(outlineFillMaterial);
@@ -135,30 +107,20 @@ public class Outline : MonoBehaviour {
     // Generate smooth normals for each mesh
     var bakedMeshes = new HashSet<Mesh>();
 
-    foreach (var meshFilter in GetComponentsInChildren<MeshFilter>()) {
-
-      // Skip duplicates
-      if (!bakedMeshes.Add(meshFilter.sharedMesh)) {
-        continue;
-      }
+    var meshFilter = GetComponent<MeshFilter>();
 
       // Serialize smooth normals
       var smoothNormals = SmoothNormals(meshFilter.sharedMesh);
 
       bakeKeys.Add(meshFilter.sharedMesh);
       bakeValues.Add(new ListVector3() { data = smoothNormals });
-    }
+    
   }
 
   void LoadSmoothNormals() {
 
     // Retrieve or generate smooth normals
-    foreach (var meshFilter in GetComponentsInChildren<MeshFilter>()) {
-
-      // Skip if smooth normals have already been adopted
-      if (!registeredMeshes.Add(meshFilter.sharedMesh)) {
-        continue;
-      }
+    var meshFilter = GetComponent<MeshFilter>();
 
       // Retrieve or generate smooth normals
       var index = bakeKeys.IndexOf(meshFilter.sharedMesh);
@@ -173,22 +135,19 @@ public class Outline : MonoBehaviour {
       if (renderer != null) {
         CombineSubmeshes(meshFilter.sharedMesh, renderer.sharedMaterials);
       }
-    }
+    
 
-    // Clear UV3 on skinned mesh renderers
-    foreach (var skinnedMeshRenderer in GetComponentsInChildren<SkinnedMeshRenderer>()) {
+      // Clear UV3 on skinned mesh _renderer
+      var skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
 
-      // Skip if UV3 has already been reset
-      if (!registeredMeshes.Add(skinnedMeshRenderer.sharedMesh)) {
-        continue;
-      }
-
+      if (skinnedMeshRenderer == null)
+      return;
       // Clear UV3
       skinnedMeshRenderer.sharedMesh.uv4 = new Vector2[skinnedMeshRenderer.sharedMesh.vertexCount];
 
       // Combine submeshes
       CombineSubmeshes(skinnedMeshRenderer.sharedMesh, skinnedMeshRenderer.sharedMaterials);
-    }
+    
   }
 
   List<Vector3> SmoothNormals(Mesh mesh) {
@@ -241,8 +200,8 @@ public class Outline : MonoBehaviour {
     mesh.subMeshCount++;
     mesh.SetTriangles(mesh.triangles, mesh.subMeshCount - 1);
   }
-
   void UpdateMaterialProperties() {
         outlineFillMaterial.SetFloat("_OutlineWidth", outlineWidth);
+        outlineFillMaterial.color = outlineColor;
     }
 }

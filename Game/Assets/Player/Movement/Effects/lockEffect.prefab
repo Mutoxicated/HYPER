@@ -4821,7 +4821,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12e80b37e7fcf3544863082008732e85, type: 2}
+  - {fileID: 2100000, guid: 7ae10846f8e414d41aa453f34fd9d359, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4929,3 +4929,6 @@ MonoBehaviour:
   _transform: {fileID: 0}
   copyPosition: 1
   copyRotation: 1
+  positionMultiplier: {x: 1, y: 1, z: 1}
+  rotationMultiplier: {x: 1, y: 1, z: 1}
+  positionOffset: {x: 0, y: 0, z: 0}

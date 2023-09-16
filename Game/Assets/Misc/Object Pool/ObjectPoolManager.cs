@@ -8,8 +8,6 @@ public class ObjectPoolManager : MonoBehaviour
 {
     private string poolID;
     public GameObject prefab;
-    public Queue<GameObject> queue = new Queue<GameObject>();
-
 
     private void Awake()
     {
@@ -20,47 +18,44 @@ public class ObjectPoolManager : MonoBehaviour
         Debug.Log(poolID);
     }
 
-    public void SendObject(GameObject receiver)
+    public GameObject SendObject(GameObject receiver)
     {
-        if (queue.Count == 0 || queue.Peek().transform.parent == transform.parent || queue.Peek().activeSelf)
-        {
+        if (transform.childCount == 0){
+            prefab.SetActive(false);
             var instance = Instantiate(prefab);
+            instance.transform.SetParent(receiver.transform, false);
             instance.name = poolID;
-            instance.transform.SetParent(receiver.transform);
             instance.SetActive(true);
-            queue.Enqueue(instance);
-        }
-        else
-        {
-            var instance = queue.Dequeue();
-            instance.transform.SetParent(receiver.transform);
+            return instance;
+        }else{
+            var instance = transform.GetChild(0).gameObject;
+            instance.transform.SetParent(receiver.transform, false);
             instance.SetActive(true);
-            queue.Enqueue(instance);
+            return instance;
         }
     }
 
     public void UseObject(Vector3 position, Quaternion rotation)
     {
-        if (queue.Count == 0 || queue.Peek().activeSelf)
+        if (transform.childCount == 0)
         {
             var instance = Instantiate(prefab, position, rotation);
             instance.name = poolID;
-            queue.Enqueue(instance);
         }
         else
         {
-            var instance = queue.Dequeue();
+             var instance = transform.GetChild(0).gameObject;
+            instance.transform.SetParent(null, false);
             instance.transform.position = position;
             instance.transform.rotation = rotation;
             instance.SetActive(true);
-            queue.Enqueue(instance);
         }
     }
 
     private IEnumerator ReceiveObject(GameObject package)
     {
         yield return new WaitForSeconds(.001f);
-        package.transform.SetParent(transform);
+        package.transform.SetParent(transform, false);
         if (package.activeSelf)
             package.SetActive(false);
         yield break;
@@ -68,7 +63,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     public void ReattachImmediate(GameObject package)
     {
-        package.transform.SetParent(transform);
+        package.transform.SetParent(transform, false);
         if (package.activeSelf)
             package.SetActive(false);
     }

@@ -7,6 +7,7 @@ public class normal : MonoBehaviour
 {
     private static GunShooter gun;
 
+    [SerializeField] private Immunity immuneSystem;
     [SerializeField] private Collider coll;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
@@ -32,7 +33,7 @@ public class normal : MonoBehaviour
     private void OnEnable()
     {
         rb.velocity = transform.forward * speed;
-        pierces = gun.stats.incrementalStat["pierces"][0];
+        pierces = gun.stats.numericals["pierces"];
     }
 
     private void Update()
@@ -40,6 +41,7 @@ public class normal : MonoBehaviour
         time += Time.deltaTime;
         if (time >= lifetime)
         {
+            immuneSystem?.RecycleBacteria();
             gameObject.SetActive(false);
             time = 0;
         }
@@ -47,6 +49,7 @@ public class normal : MonoBehaviour
 
     private void Recycle()
     {
+        immuneSystem?.RecycleBacteria();
         gameObject.SetActive(false);
         PublicPools.pools[particlePrefab.name].UseObject(transform.position, transform.rotation);
         time = 0;
@@ -60,7 +63,7 @@ public class normal : MonoBehaviour
             return;
         }
         var damageable = other.gameObject.GetComponent<IDamageable>();
-        damageable?.TakeDamage(damage * gun.stats.incrementalStat["damage"][0], gameObject,1f,0);
+        damageable?.TakeDamage(damage * gun.stats.numericals["damage"], gameObject,1f,0);
         if (injector != null)
         {
             damageable?.TakeInjector(injector);

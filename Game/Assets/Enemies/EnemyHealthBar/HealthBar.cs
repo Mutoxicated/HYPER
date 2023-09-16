@@ -51,8 +51,8 @@ public class HealthBar : MonoBehaviour
     private void Update()
     {
         if (!active) return;
-        if (health.currentHP != 0f)
-            t = health.currentHP / health.maxHP;
+        if (health.stats.numericals["health"] != 0f)
+            t = health.stats.numericals["health"] / health.maxHP;
         else t = 0f;
         finalScale.x = Mathf.Lerp(0f, initialScale.x, t);
 

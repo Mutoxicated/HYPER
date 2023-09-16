@@ -66,7 +66,7 @@ public class OnInterval : MonoBehaviour
         if (!isPlaying)
             return;
         if (useStats)
-            time += Time.deltaTime * stats.incrementalStat["rate"][0];
+            time += Time.deltaTime * stats.numericals["rate"];
         else
             time += Time.deltaTime;
         //Debug.Log(time);

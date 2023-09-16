@@ -12,6 +12,7 @@ public class TeleportToScene : MonoBehaviour
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
         if (rb != null)
             rb.velocity = Vector3.zero;
+        PublicPools.RetrieveAllObjectsToPools();
         gameObject.GetComponent<Collider>().enabled = false;
         SceneManager.LoadScene(sceneName);
     }

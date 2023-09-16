@@ -25,8 +25,9 @@ public class playerLook : MonoBehaviour
         lookRotation = Quaternion.Euler(rotationX, rotationY, 0f);
         transform.rotation = lookRotation;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)){
             Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     public void AlterLookRotation(Quaternion rotation)

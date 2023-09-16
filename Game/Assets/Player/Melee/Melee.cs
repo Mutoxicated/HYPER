@@ -48,7 +48,7 @@ public class Melee : MonoBehaviour
         isIdle = animator.GetCurrentAnimatorStateInfo(0).IsName("Nun");//nun is idle btw
         throwInput.Update();
         punchInput.Update();
-        if (throwInput.GetInputDown() && isIdle && stats.incrementalStat["capacitor1"][0] > 0)
+        if (throwInput.GetInputDown() && isIdle && stats.numericals["capacitor1"] > 0)
         {
             animator.Play("Throw");
             Instantiate(TNTPrefab, throwPoint.position,GunShooter.GetAccurateRotation(cam,throwPoint)*TNTPrefab.transform.rotation);

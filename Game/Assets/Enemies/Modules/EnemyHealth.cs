@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    [SerializeField] private Stats stats;
+    public Stats stats;
     [SerializeField] private Immunity immuneSystem;
     [Header("Post-Death")]
     [SerializeField] private UnityEvent<Transform> OnDeath = new UnityEvent<Transform>();
@@ -17,7 +17,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] private GameObject[] ChildrenToDetach;
     [Space]
     [Header("General")]
-    [SerializeField] private HitGradient hitGradient;
     [SerializeField] private float immunityDuration;
     public int shields;
     public int maxHP;
@@ -25,20 +24,14 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     [SerializeField] private HealthBar healthBar;
 
-    [HideInInspector] public float currentHP;
     [HideInInspector] public float t = 0f;
-    private bool immune = false;
+    [HideInInspector] public bool immune = false;
     private float immunityTime;
-
-    private void Awake()
-    {
-        hitGradient.enabled = false;
-    }
 
     private void Start()
     {
-        stats.ModifyIncrementalStat("shields",shields-1,false);
-        currentHP = maxHP;
+        stats.numericals["shields"] = shields;
+        stats.numericals["health"] = maxHP;
         immune = true;
     }
 
@@ -47,28 +40,13 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (immunityTime < immunityDuration)
         {
             immunityTime += Time.deltaTime;
-            hitGradient.enabled = false;
             immune = true;
         }
         else
         {
-            hitGradient.enabled = true;
             immune = false;
         }
         t = Mathf.Clamp01(t - rate*Time.deltaTime);
-    }
-
-    private void RecycleBacteria()
-    {
-        if (immuneSystem == null)
-            return;
-        if (immuneSystem.foreignBacteria.Count == 0)
-            return;
-        foreach (var bac in immuneSystem.foreignBacteria.ToList())
-        {
-            bac.Instagib();
-            immuneSystem.foreignBacteria.Remove(bac);
-        }
     }
 
     private void DestroyStuff()
@@ -101,23 +79,25 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (immune)
             return;
         t = strength;
-        currentHP -= intake / (shields + 1);
-        shields = Mathf.Clamp(shields - 1, 0, 999999);
-        stats.incrementalStat["shields"][0] = shields;
+        stats.numericals["health"] -= intake / (shields + 1);
+        stats.numericals["shields"] = -1;
+        stats.numericals["shields"] = Mathf.Clamp(stats.numericals["shields"], 0, 999999);
+        shields = Mathf.RoundToInt(stats.numericals["shields"]);
         healthBar?.Activate();
-        if (currentHP <= 0)
+        if (stats.numericals["health"] <= 0)
         {
-            Debug.Log(currentHP+" ha");
-            RecycleBacteria();
             Detach();
             OnDeath.Invoke(sender.transform);
             DestroyStuff();
+            if (stats.conditionals["explosive"]){
+                PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position,Quaternion.identity);
+            }
         }
     }
 
     public void TakeInjector(Injector injector)
     {
-        if (currentHP <= 0)
+        if (stats.numericals["health"] <= 0)
             return;
         if (injector.type == injectorType.PLAYER)
             return;

@@ -11,7 +11,7 @@ Shader "Custom/QuadWireframe"
 
         SubShader
     {
-        Tags {"RenderType" = "Transparent" "Queue" = "Transparent"}
+        Tags {"RenderType" = "Transparent" "Queue" = "AlphaTest"}
         LOD 100
 
 
@@ -115,9 +115,10 @@ Shader "Custom/QuadWireframe"
                 float alpha = 1 - min(aliased.x, min(aliased.y, aliased.z));
                 clip(alpha-0.1);
                 // Set to our backwards facing wireframe colour.
-                return fixed4(_WireframeBackColour.r, _WireframeBackColour.g, _WireframeBackColour.b, alpha*abs(_Intact-1));
+                return fixed4(_WireframeBackColour.r, _WireframeBackColour.g, _WireframeBackColour.b, clamp(alpha*abs(_Intact-1),0,1));
             }
             ENDCG
             }
     }
+    Fallback "Diffuse"
 }

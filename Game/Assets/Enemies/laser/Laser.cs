@@ -9,6 +9,7 @@ public class Laser : MonoBehaviour
     [SerializeField] private Stats stats;
     [SerializeField] private LayerMask layerMask;   
     [SerializeField] private int damage;
+    [SerializeField] private Injector injector;
     [SerializeField] private LineRenderer line;
     [SerializeField] private OnInterval interval;
     [SerializeField] private float maxWidth;
@@ -18,6 +19,8 @@ public class Laser : MonoBehaviour
     private float distance = 100f;
     private Vector3 endVertex;
     private float pierces;
+
+    private IDamageable cachedDamageable;
 
     private RaycastHit[] SortRaycasts(RaycastHit[] hits, int hitAmount)
     {
@@ -41,8 +44,8 @@ public class Laser : MonoBehaviour
 
     private void OnEnable()
     {
-        pierces = stats.incrementalStat["pierces"][0];
-        int hitAmount = Physics.SphereCastNonAlloc(transform.position, 0.5f, transform.TransformDirection(Vector3.forward), hits, 100f, layerMask.value, QueryTriggerInteraction.UseGlobal);
+        pierces = stats.numericals["pierces"];
+        int hitAmount = Physics.SphereCastNonAlloc(transform.position, maxWidth*0.5f, transform.TransformDirection(Vector3.forward), hits, 100f, layerMask.value, QueryTriggerInteraction.UseGlobal);
         hits = SortRaycasts(hits, hitAmount);
         for (int i = 0; i < hitAmount; i++)
         {
@@ -50,7 +53,9 @@ public class Laser : MonoBehaviour
                 continue;
             distance = hits[i].distance;
             //Debug.Log(hits[i].collider.gameObject.name + " | " + i);
-            hits[i].transform.gameObject.GetComponent<IDamageable>()?.TakeDamage(damage, gameObject,1f,0);
+            cachedDamageable = hits[i].transform.gameObject.GetComponent<IDamageable>();
+            cachedDamageable?.TakeDamage(damage, gameObject,1f,0);
+            cachedDamageable?.TakeInjector(injector);
             if (pierces == 0f)
                 break;
             pierces -= 1;

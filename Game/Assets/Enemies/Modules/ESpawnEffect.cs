@@ -12,8 +12,9 @@ public class ESpawnEffect : MonoBehaviour
     [SerializeField] private float lerpSpeed;
     [SerializeField] private float accel;
     private float t;
-
     [ColorUsage(true,true)] private Color baseColor;
+
+    private List<Material> bacteriaEffects = new List<Material>();
 
     private void ChangeBaseColor()
     {
@@ -34,9 +35,13 @@ public class ESpawnEffect : MonoBehaviour
             baseMat = GetComponent<Renderer>().materials[baseMatIndex];
             ChangeBaseColor();
         }
+        // if (bacteriaEffects.Count > 0){
+        //     foreach (var mat in bacteriaEffects){
+                
+        //     }
+        // }
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         t = Mathf.Lerp(t, 1f, Time.deltaTime * lerpSpeed);

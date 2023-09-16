@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f9a3b3b097a862a42b5432f50776ca14, type: 2}
+  - {fileID: 2100000, guid: 7ae10846f8e414d41aa453f34fd9d359, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   destroyUponEvent: 0
   recycleUponEvent: 1
   t: 0
+  time: 0
   isPlaying: 0
 --- !u!114 &1406129636473073449
 MonoBehaviour:
@@ -170,9 +171,9 @@ MonoBehaviour:
   index: 0
   useMaterialValues: 00000000
   gradient:
-    serializedVersion: 2
-    key0: {r: 0.7921569, g: 0.12783235, b: 0, a: 0.2784314}
-    key1: {r: 0.3764706, g: 0.10628441, b: 0, a: 0.2784314}
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.4895674, b: 0, a: 0.27450982}
+    key1: {r: 1, g: 0.40315855, b: 0, a: 0}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -188,18 +189,20 @@ MonoBehaviour:
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 35090
-    atime2: 65535
-    atime3: 65535
+    atime1: 65535
+    atime2: 0
+    atime3: 0
     atime4: 0
     atime5: 0
     atime6: 0
     atime7: 0
     m_Mode: 0
     m_NumColorKeys: 2
-    m_NumAlphaKeys: 3
+    m_NumAlphaKeys: 2
+  gIndex: 0
   onInterval: {fileID: 1406129636473073448}
   interval: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1406129636473073462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,12 +356,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 4882790075425700368}
-  OnCollision:
-    m_PersistentCalls:
-      m_Calls: []
-  ObjectsToDestroy: []
-  ChildrenToDetach: []
-  damage: 50
+  health: {fileID: 0}
+  damageOutput: 100
+  damageInput: 0
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 3137
@@ -375,13 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modifiedDecrementals: []
-  modifiedIncrementals: []
-  defaultSet:
-  - 1
-  - 0
-  - 0
-  - 0
+  explosionPrefab: {fileID: 0}
+  VFXScale: 1
 --- !u!114 &1318928374030441264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +423,7 @@ MonoBehaviour:
   destroyUponEvent: 0
   recycleUponEvent: 0
   t: 0
+  time: 0
   isPlaying: 0
 --- !u!114 &1146717025543487206
 MonoBehaviour:
@@ -5551,6 +5547,7 @@ MonoBehaviour:
   destroyUponEvent: 0
   recycleUponEvent: 0
   t: 0
+  time: 0
   isPlaying: 0
 --- !u!114 &4430928375392112372
 MonoBehaviour:
@@ -5569,9 +5566,9 @@ MonoBehaviour:
   index: 0
   useMaterialValues: 00000000
   gradient:
-    serializedVersion: 2
-    key0: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0.3529412}
-    key1: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 0}
+  - serializedVersion: 2
+    key0: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0.52156866}
+    key1: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 0}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5588,14 +5585,16 @@ MonoBehaviour:
     ctime7: 0
     atime0: 0
     atime1: 65535
-    atime2: 65535
-    atime3: 65535
-    atime4: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
     atime5: 0
     atime6: 0
     atime7: 0
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  gIndex: 0
   onInterval: {fileID: 4430928375392112373}
   interval: 0
+  color: {r: 0, g: 0, b: 0, a: 0}

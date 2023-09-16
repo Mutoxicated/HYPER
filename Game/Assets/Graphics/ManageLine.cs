@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ManageLine : MonoBehaviour
 {
@@ -20,10 +21,12 @@ public class ManageLine : MonoBehaviour
     }
     private void Start()
     {
-        if (trailRenderer == null)
+        if (trailRenderer == null){
             lineRenderer.enabled = true;
-        else
+        }
+        else{
             trailRenderer.enabled = true;
+        }
     }
 
     private void Update()

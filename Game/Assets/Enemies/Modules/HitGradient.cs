@@ -30,6 +30,8 @@ public class HitGradient : MonoBehaviour
 
     private void Update()
     {
+        if (health.immune)
+            return;
         color = hitGradient[index].Evaluate(health.t);
         mat.color = hitGradient[index].Evaluate(health.t);
     }

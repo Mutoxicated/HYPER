@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 554537209075427760}
   - component: {fileID: 3467146306103961109}
   - component: {fileID: 1727465241168745183}
-  - component: {fileID: 15944955313197195}
+  - component: {fileID: 6742461932465077292}
+  - component: {fileID: 6241666889649932509}
   m_Layer: 3
   m_Name: insane screw 1
   m_TagString: Untagged
@@ -55,14 +56,14 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93b8e28894b5eff4aa3b23f6cb9b0001, type: 2}
+  - {fileID: 2100000, guid: 3d96a8e96360a2b4baebb860bc77c3af, type: 2}
   - {fileID: 2100000, guid: faaa325337eda674eb7d833191ce2384, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -85,7 +86,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &15944955313197195
+--- !u!114 &6742461932465077292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +95,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 935002748680483594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc3f86bd29f429041befec676626b54f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0.98346853, b: 1, a: 1}
+  matIndex: 1
+  color: {r: 0, g: 2.9960785, b: 2.9490197, a: 1}
+--- !u!114 &6241666889649932509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935002748680483594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604874d76da22d24098addf9c801d3db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireMatIndex: 1
+  baseMatIndex: 0
+  lerpSpeed: 0.2
+  accel: 0.15

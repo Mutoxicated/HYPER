@@ -6,7 +6,7 @@ public enum BacteriaType
 {
     FLASH,
     WARDED,
-    ERUPTIVE,
+    ERUPTION,
     IMPALEMENT,
     MERRY,
     
@@ -14,24 +14,85 @@ public enum BacteriaType
     FREEZING,
     POISON,
     RAIN,
-    BLINDNESS
+    CHIMERA,
+    SLOTH,
+
+    RADIATION,
+    FLABBERGAST,
+    BRAG
+}
+
+public enum ImmunitySide
+{
+    ALLY,
+    INVADER
+}
+
+public enum BacteriaCharacter // This means: Generally does it negatively impact entities or positively?
+{
+    NEGATIVE,
+    POSITIVE
 }
 
 public class Bacteria : MonoBehaviour
 {
     public BacteriaType type;
-    [Range(0.9f,0.1f)] public float strength;//weakest to strongest
-    private float lifeSpan = 100f;
+    public ImmunitySide immunitySide;
+    public BacteriaCharacter bacChar;
+    [SerializeField] private OnInterval interval;
+    [Range(1f,0.1f)] public float strength;//weakest to strongest
+    [SerializeField] private float damage;
+    [HideInInspector]
+    public float lifeSpan = 100f;
+    [HideInInspector]
+    public Immunity immuneSystem;
 
     private void OnEnable()
     {
-        var immuneSystem = GetComponentInParent<Immunity>();
+        immuneSystem = GetComponentInParent<Immunity>();
+        transform.localScale = Vector3.one*immuneSystem.stats.VFXScale;
         if (immuneSystem == null)
         {
             Instagib();
             return;
         }
-        immuneSystem.NotifySystem(this);// telling the immune system that we are here, and we are going to kill you
+        if (immunitySide == ImmunitySide.INVADER && interval != null)
+        {
+            interval.enabled = true;
+        }
+        Invoke("CheckInjector",0.01f);
+        immuneSystem.NotifySystem(this);// telling the immune system that we are here, and we are going to kill you, or help you!
+    }
+
+    private void CheckInjector(){
+        if (immunitySide == ImmunitySide.INVADER)
+            return;
+        if (!immuneSystem.injector.allyBacterias.Contains(gameObject)){
+            immuneSystem.injector.allyBacterias.Add(gameObject);
+            if (immuneSystem.injector.bacteriaPools.Contains(gameObject.name.Replace("_ALLY","")))
+                return;
+            immuneSystem.injector.bacteriaPools.Add(gameObject.name.Replace("_ALLY",""));
+        }
+        
+    }
+
+    public void DamageGoodBacteria()
+    {
+        if (bacChar == BacteriaCharacter.POSITIVE)
+            return;
+        if (immunitySide == ImmunitySide.ALLY)
+            return;
+        if (immuneSystem.foreignBacteria.Count == 0)
+            return;
+        foreach (var bac in immuneSystem.foreignBacteria)
+        {
+            if (bac.bacChar == BacteriaCharacter.POSITIVE)
+            {
+                bac.Degrade(damage);
+            }else if (bac.immunitySide == ImmunitySide.ALLY){
+                bac.Degrade(damage);
+            }
+        }
     }
 
     public bool Degrade(float damage)
@@ -39,6 +100,11 @@ public class Bacteria : MonoBehaviour
         lifeSpan -= damage*strength;
         if (lifeSpan <= 0f)
         {
+            if (interval != null)
+            {
+                interval.ResetEventless();
+                interval.enabled = false;
+            }
             lifeSpan = 100f;
             PublicPools.pools[gameObject.name].ReattachImmediate(gameObject);
             return true;
@@ -48,6 +114,10 @@ public class Bacteria : MonoBehaviour
 
     public void Instagib()
     {
+        if (interval != null){
+            interval.ResetEventless();
+            interval.enabled = false;
+        }
         lifeSpan = 100f;
         PublicPools.pools[gameObject.name].ReattachImmediate(gameObject);
     }

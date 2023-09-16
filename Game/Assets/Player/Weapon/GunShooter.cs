@@ -193,7 +193,7 @@ public class GunShooter : MonoBehaviour
 
         if (!running)
             return;
-        t += Time.deltaTime * stats.incrementalStat["shootSpeed"][0];
+        t += Time.deltaTime * stats.numericals["shootSpeed"];
         if (t > fireRate)
         {
             readyToShoot = true;

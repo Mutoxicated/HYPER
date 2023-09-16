@@ -5,6 +5,7 @@ public class GunController : MonoBehaviour
 {
     [SerializeField] private Rigidbody playerRB;
     [SerializeField] private GunShooter shooter;
+    [SerializeField] private Movement movement;
 
     [Header("Thresholds")]
     [SerializeField] private float xThreshold;
@@ -15,6 +16,7 @@ public class GunController : MonoBehaviour
     [Header("Multipliers")]
     [SerializeField] private float xMultiplier;
     [SerializeField] private float zMultiplier;
+    [SerializeField] private float yMultiplier;
     [SerializeField, Range(1f, 6f)] private float snapiness;
 
     private float move_x, move_z;
@@ -34,14 +36,16 @@ public class GunController : MonoBehaviour
         move_z = Mathf.Clamp(Input.GetAxisRaw("Horizontal") * zMultiplier, -zThreshold, zThreshold);
         //point = new Vector3(-move_x, Mathf.Clamp(-playerRB.velocity.normalized.y, -yThreshold, yThreshold), -move_z);
         point.x = -move_x;
-        point.y = Mathf.Clamp(-playerRB.velocity.normalized.y, -yThreshold, yThreshold);
+        point.y = Mathf.Clamp(-playerRB.velocity.normalized.y* yMultiplier, -yThreshold, yThreshold);
+        if (!movement.airborne)
+            point.y = 0f;
         point.z = move_z;
         transform.localPosition = Vector3.Lerp(transform.localPosition, point, Time.deltaTime * snapiness);
 
         gunScrew.localRotation = Quaternion.Lerp(
             gunScrew.localRotation,
             Quaternion.AngleAxis(angle, new Vector3(0f, 0f, 1f)),
-            Time.deltaTime * (shooter.fireRate / 90f));
+            Time.deltaTime * (shooter.fireRate*11));
     }
 
     private void FixedUpdate()

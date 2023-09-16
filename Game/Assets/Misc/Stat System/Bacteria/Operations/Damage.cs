@@ -15,7 +15,7 @@ public class Damage : MonoBehaviour
         cachedDamageable.TakeDamage(damage,gameObject, -1f, hurtScreenIndex);
     }
     // Start is called before the first frame update
-    void OnEnable()
+    private void OnEnable()
     {
         cachedDamageable = GetComponentInParent<IDamageable>();
     }

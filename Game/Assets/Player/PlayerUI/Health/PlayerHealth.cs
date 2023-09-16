@@ -35,7 +35,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private HitReaction hitReaction;
 
     private List<MaterialInfo> objs = new List<MaterialInfo>();
-    private float currentHP;
     private float reactionT = 0f;
     private float healthT = 1f;
     private Vector3 initialScale;
@@ -97,10 +96,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        stats.ModifyIncrementalStat("shields", shields - 1, false);
+        stats.numericals["shields"] = shields;
+        stats.numericals["health"] = HP;
         initialScale = healthBar.localScale;
-        currentHP = HP;
-        healthT = currentHP / HP;
+        healthT = stats.numericals["health"] / HP;
         currentT = healthT;
         sumText.text = Mathf.Round(healthT*100f).ToString() + '%';
         healthBarImg = healthBar.GetComponent<Image>();
@@ -118,9 +117,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (currentHP == 0f)
+        if (stats.numericals["health"] == 0f)
             healthT = 0f;
-        else healthT = currentHP / HP;
+        else healthT = stats.numericals["health"] / HP;
 
         if (currentT != healthT)
         {
@@ -167,17 +166,17 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(float intake, GameObject sender, float arb, int index)
     {
-        reactionT = 1f;
+        reactionT = arb;
         hurtScreen.SetActive(true);
         fadeColor.ChangeGradientIndex(index);
         //Debug.Log("Shields: " + shields + " | Health outake: " + (intake / (shields + 1)));
-        currentHP = Mathf.Clamp(currentHP-intake/(shields+1), 0f, HP);
+        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"] - intake/(shields+1), 0f, HP);
         shields = Mathf.Clamp(shields - 1, 0, 999999);
-        stats.ModifyIncrementalStat("shields", -1, false);
+        stats.numericals["shields"] -= 1;
         EvaluateShields();
         playerColor = healthBarGradient.Evaluate(healthT);
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
-        if (currentHP <= 0)
+        if (stats.numericals["health"] <= 0)
         {
             //RecycleBacteria(); 
             //death(insane)
