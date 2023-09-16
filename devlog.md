@@ -693,11 +693,12 @@ That is actually a lot of work...
 
 Despite organization, everything is kind of foggy in my head right now. Maybe because I got distracted from the game with another game that I've started to put hours on. Anyway yeah that's it for now.
 
-## Dat 78 thru 99
+## Day 78 thru 99
 
 Sorry for not waiting a day to make this log but I just want to say that for about 2 weeks I hadn't done any progress due to side projects taking over. Though, this week I've been doing ALOT. 
 
-I rewrote the whole document that explained everything about the game because it was a mess. Now, i rewrote, advanced and organized it and I'm pretty happy with how it turned out. Link to the doc here: .
+I rewrote the whole document that explained everything about the game because it was a mess. Now, i rewrote, advanced and organized it and I'm pretty happy with how it turned out. Link to the doc here: [HYPER Doc v2.pdf](https://github.com/Mutoxicated/HYPER/files/12641235/HYPER.Doc.v2.pdf).
+
 
 Apart from that, I should tell you about the changes I made to the debuff and buff system.
 
