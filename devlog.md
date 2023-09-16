@@ -753,7 +753,7 @@ Now, since I refered to the Active classes & items segment, I might as well incl
 
 [start of section]
 
-ACTIVE CLASSES & ITEMS:
+### ACTIVE CLASSES & ITEMS:
 
 Here is a list of all active classes, from starter classes to hyper classes, given with their corresponding synergy recipe:
 * STARTER CLASSES.
