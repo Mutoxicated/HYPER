@@ -801,7 +801,7 @@ MonoBehaviour:
   hurtScreen: {fileID: 0}
   fadeColor: {fileID: 0}
   lerpSpeed: 4
-  shields: 3
+  shields: 0
   shieldsText: {fileID: 0}
   HP: 700
   reactionSpeed: 2.07
@@ -948,7 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 8108540779480057966}
   injector: {fileID: 0}
   type: 0
   immunityAttackRate: 0.5

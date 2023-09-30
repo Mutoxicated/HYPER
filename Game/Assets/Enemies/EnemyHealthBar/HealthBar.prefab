@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 9131518230594397207}
   - component: {fileID: 2883565115098836877}
   - component: {fileID: 7718832756342371914}
+  - component: {fileID: 8896537552764645371}
   m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
@@ -403,6 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec49d9c4ce02264d9b41063ae7d62c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 8896537552764645371}
   axisMultiplier: {x: 1, y: 1, z: 1}
   lerpSpeed: 16
 --- !u!114 &9131518230594397207
@@ -437,7 +439,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   destroyUponEvent: 0
+  recycleUponEvent: 0
   t: 0
+  time: 0
+  isPlaying: 0
 --- !u!114 &2883565115098836877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,6 +565,21 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   interval: {fileID: 9131518230594397207}
+--- !u!114 &8896537552764645371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019466745800539690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 0}
+  VFXScale: 1
+  objective: 0
 --- !u!1001 &8057811669862780980
 PrefabInstance:
   m_ObjectHideFlags: 0

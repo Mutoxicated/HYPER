@@ -273,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 2
   outlineColor: {r: 2.9960785, g: 0.6030386, b: 0, a: 1}
-  outlineWidth: 1.03
+  outlineWidth: 0.9
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -462981019419857548, guid: eb232d938d6259743a767eef848d429a, type: 3}
@@ -797,7 +797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 2
   outlineColor: {r: 2.9960785, g: 0.6030386, b: 0, a: 1}
-  outlineWidth: 1.03
+  outlineWidth: 0.9
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -462981019419857548, guid: 49d97e88b51c5f54ca7ee6a18711e4d8, type: 3}
@@ -2629,7 +2629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 4
   outlineColor: {r: 0, g: 1, b: 0.049153566, a: 1}
-  outlineWidth: 0.25
+  outlineWidth: 0.9
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -9111,7 +9111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 2
   outlineColor: {r: 2.9960785, g: 0.6030386, b: 0, a: 1}
-  outlineWidth: 1.03
+  outlineWidth: 0.9
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -462981019419857548, guid: aaae96290079f0e41ac132b7a0d0ca94, type: 3}
@@ -9807,7 +9807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 4
   outlineColor: {r: 0, g: 1, b: 0.049153566, a: 1}
-  outlineWidth: 0.25
+  outlineWidth: 0.9
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -14476,7 +14476,7 @@ ParticleSystem:
     vector1_0:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 6
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -16879,7 +16879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 2
   outlineColor: {r: 2.9960785, g: 0.6030386, b: 0, a: 1}
-  outlineWidth: 1.03
+  outlineWidth: 0.9
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -462981019419857548, guid: a6c7bf4b5d2356b4d90245909c50be68, type: 3}
@@ -17789,7 +17789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 4
   outlineColor: {r: 0, g: 1, b: 0.049153566, a: 1}
-  outlineWidth: 0.25
+  outlineWidth: 0.9
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -48378,10 +48378,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1948305424}
     m_Modifications:
-    - target: {fileID: 1260204415541458866, guid: 99753d74293109d4593f50b4b4ac4986, type: 3}
-      propertyPath: outlineWidth
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 4688265560698933574, guid: 99753d74293109d4593f50b4b4ac4986, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -48425,10 +48421,6 @@ PrefabInstance:
     - target: {fileID: 4688265560698933574, guid: 99753d74293109d4593f50b4b4ac4986, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 25.167
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718787293860251047, guid: 99753d74293109d4593f50b4b4ac4986, type: 3}
-      propertyPath: outlineWidth
-      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5358087410403511292, guid: 99753d74293109d4593f50b4b4ac4986, type: 3}
       propertyPath: m_Name
@@ -53208,21 +53200,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 25.167
       objectReference: {fileID: 0}
-    - target: {fileID: 5400804572576063461, guid: 10fc3aeea0f508d47a2736c0a203b2e3, type: 3}
-      propertyPath: outlineWidth
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 5744844319268895056, guid: 10fc3aeea0f508d47a2736c0a203b2e3, type: 3}
       propertyPath: m_Name
       value: tree1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7734892169318236394, guid: 10fc3aeea0f508d47a2736c0a203b2e3, type: 3}
-      propertyPath: outlineWidth
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7954706881608236533, guid: 10fc3aeea0f508d47a2736c0a203b2e3, type: 3}
-      propertyPath: outlineWidth
-      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10fc3aeea0f508d47a2736c0a203b2e3, type: 3}

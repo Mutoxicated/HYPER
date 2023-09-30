@@ -14,7 +14,7 @@ public class MoveAbilities
 
     public void Jump(ContactPoint point, float jumpForce)
     {   
-        if (point.otherCollider.gameObject.layer != 10)
+        if (point.normal.y < 0.9f)
         {
             rb.velocity = Vector3.zero;
         }

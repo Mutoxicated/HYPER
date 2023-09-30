@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 4
   outlineColor: {r: 0, g: 1, b: 0.049153566, a: 1}
-  outlineWidth: 0.25
+  outlineWidth: 0.9
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -359796757132063012, guid: 51d2f8b3ad48c0348b6891d2dacbbc30, type: 3}
@@ -779,7 +779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 4
   outlineColor: {r: 0, g: 1, b: 0.049153566, a: 1}
-  outlineWidth: 0.25
+  outlineWidth: 0.9
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -359796757132063012, guid: 51d2f8b3ad48c0348b6891d2dacbbc30, type: 3}

@@ -815,3 +815,18 @@ Okay so I just compromised: Entities can only have 3 ally bacterias MAX. The fir
 The player wont be bound to it because there is a very important class called Magicka that depends completely on bacteria as its base. I don't want this base to be very limited very quickly, so I decided for the player to not be limited to this.
 
 Anyway this is all for now! Cya.
+
+## Day 100 thru 113
+
+Been 2 weeks since I updated. Progress is going slow but I'm really close to finishing the bacterias. I was making the parry system these past few days and had to integrate that with everything else, which was kind of messy but things are looking good. It will take another week to get all bacteria effects and reactions done, which I'm kinda excited about. Now apart from implementing the bacteria effects, it's also about implementing the proper things to make these effects possible. For example, there is gonna be a bacteria called Betray. This bacteria makes you target enemies instead of the player. This required a neat implementation of an proximity-variable enemy detection function that is still not completely finished. This also required some additions to the basic scripts of LookToPlayer and GoToPlayer (now called LookTo and GoTo). Now what the bacteria will do is it will modify a variable in the component of the entity called "Stats" (through the StatModifier component of the bacteria), which decides what it will look to and/or go to.
+
+Anyway yeah after the bacteria reactions and effects are done, I will adjust the movement, add another movement/attacking mechanic (won't say what it is :>) and then actually start implementing the passive item pool, enemies, and all that stuff that I have pushed back.
+
+Also sound effects....... Idk how to make them but I will try to do some things with audacity.
+
+Some new additions to the bacteria list!
+
+* Tasty (invader: upon death has a chance to give the killer a bad bacteria, ally: spreads its invader counterpart to entities it hits)
+* Corrupt (invader: upon death has a chance to give the killer a bad bacteria, ally: spreads its invader counterpart to entities it hits)
+
+Will be interesting to tie those into the gameplay.

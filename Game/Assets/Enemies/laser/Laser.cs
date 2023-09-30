@@ -10,17 +10,16 @@ public class Laser : MonoBehaviour
     [SerializeField] private LayerMask layerMask;   
     [SerializeField] private int damage;
     [SerializeField] private Injector injector;
-    [SerializeField] private LineRenderer line;
     [SerializeField] private OnInterval interval;
     [SerializeField] private float maxWidth;
     [SerializeField] private GameObject objToIgnore;
 
     private RaycastHit[] hits = new RaycastHit[5];
     private float distance = 100f;
-    private Vector3 endVertex;
     private float pierces;
-
     private IDamageable cachedDamageable;
+
+    private Vector3 scale;
 
     private RaycastHit[] SortRaycasts(RaycastHit[] hits, int hitAmount)
     {
@@ -60,14 +59,16 @@ public class Laser : MonoBehaviour
                 break;
             pierces -= 1;
         }
-        endVertex = line.GetPosition(1);
-        endVertex.z = distance;
-        line.SetPosition(1, endVertex);
+        scale = transform.localScale;
+        scale.z = distance;
+        transform.localScale = scale;
     }
 
     private void Update()
     {
-        if (interval.isPlaying)
-            line.widthMultiplier = Mathf.Lerp(maxWidth,0f,interval.t);
+        if (interval.isPlaying){
+            scale.x = scale.y = Mathf.Lerp(maxWidth,0f,interval.t);
+            transform.localScale = scale;
+        }
     }
 }

@@ -5,17 +5,24 @@ using UnityEngine;
 public class HitGradient : MonoBehaviour
 {
     [SerializeField] private EnemyHealth health;
-    [SerializeField,GradientUsage(true)] private Gradient[] hitGradient;
-    [SerializeField] private int index = 0;
-
+    [SerializeField,ColorUsage(true,true)] private Color startColor;
+    [SerializeField,ColorUsage(true,true)] private Color endColor;
     [SerializeField] private int matIndex = 1;
 
     private Material mat;
     [HideInInspector] public Color color;
 
+    public void ChangeStartColor(Color color){
+        startColor = color;
+    }
+
+    public Color GetStartColor(){
+        return startColor;
+    }
+
     private void Awake()
     {
-        color = hitGradient[index].Evaluate(health.t);
+        color = Color.Lerp(startColor,endColor,health.t);
     }
 
     private void Start()
@@ -23,16 +30,12 @@ public class HitGradient : MonoBehaviour
         mat = GetComponent<Renderer>().materials[matIndex];
     }
 
-    public void ChangeColorIndex(int i)
-    {
-        index = i;
-    }
-
     private void Update()
     {
         if (health.immune)
             return;
-        color = hitGradient[index].Evaluate(health.t);
-        mat.color = hitGradient[index].Evaluate(health.t);
+        //Debug.Log(health.t);
+        color = Color.Lerp(startColor,endColor,health.t);
+        mat.color = color;
     }
 }

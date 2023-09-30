@@ -53,6 +53,7 @@ public class Bacteria : MonoBehaviour
         transform.localScale = Vector3.one*immuneSystem.stats.VFXScale;
         if (immuneSystem == null)
         {
+            RemoveSelfFromInjector();
             Instagib();
             return;
         }
@@ -67,8 +68,8 @@ public class Bacteria : MonoBehaviour
     private void CheckInjector(){
         if (immunitySide == ImmunitySide.INVADER)
             return;
-        if (!immuneSystem.injector.allyBacterias.Contains(gameObject)){
-            immuneSystem.injector.allyBacterias.Add(gameObject);
+        if (!immuneSystem.injector.allyBacterias.Contains(this)){
+            immuneSystem.injector.allyBacterias.Add(this);
             if (immuneSystem.injector.bacteriaPools.Contains(gameObject.name.Replace("_ALLY","")))
                 return;
             immuneSystem.injector.bacteriaPools.Add(gameObject.name.Replace("_ALLY",""));
@@ -105,11 +106,18 @@ public class Bacteria : MonoBehaviour
                 interval.ResetEventless();
                 interval.enabled = false;
             }
+            RemoveSelfFromInjector();
             lifeSpan = 100f;
             PublicPools.pools[gameObject.name].ReattachImmediate(gameObject);
             return true;
         }
         return false;
+    }
+
+    private void RemoveSelfFromInjector(){
+        if (immunitySide == ImmunitySide.INVADER)
+            return;
+        immuneSystem.injector.bacteriaPools.Remove(gameObject.name.Replace("_ALLY",""));
     }
 
     public void Instagib()

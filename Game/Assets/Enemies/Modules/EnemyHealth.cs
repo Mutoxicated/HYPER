@@ -28,8 +28,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [HideInInspector] public bool immune = false;
     private float immunityTime;
 
-    private void Start()
-    {
+    private void OnEnable(){
+        Difficulty.enemies.Add(gameObject);
         stats.numericals["shields"] = shields;
         stats.numericals["health"] = maxHP;
         immune = true;
@@ -69,38 +69,44 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }
     }
 
-    private void OnDestroy()
-    {
+    private void OnDisable(){
+        Difficulty.enemies.Remove(gameObject);
         OnDeath.RemoveAllListeners();
+        immunityTime = 0f;
+        stats.numericals["health"] = maxHP;
+        stats.numericals["shields"] = shields;
     }
 
     public void TakeDamage(float intake, GameObject sender, float strength, int _)
     {
         if (immune)
             return;
-        t = strength;
-        stats.numericals["health"] -= intake / (shields + 1);
+        t += strength;
+        stats.numericals["health"] -= intake / (stats.numericals["shields"] + 1);
         stats.numericals["shields"] = -1;
         stats.numericals["shields"] = Mathf.Clamp(stats.numericals["shields"], 0, 999999);
-        shields = Mathf.RoundToInt(stats.numericals["shields"]);
+        stats.numericals["shields"] = Mathf.RoundToInt(stats.numericals["shields"]);
         healthBar?.Activate();
         if (stats.numericals["health"] <= 0)
         {
-            Detach();
-            OnDeath.Invoke(sender.transform);
-            DestroyStuff();
             if (stats.conditionals["explosive"]){
                 PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position,Quaternion.identity);
             }
+            Detach();
+            OnDeath.Invoke(sender.transform);
+            DestroyStuff();
         }
     }
 
     public void TakeInjector(Injector injector)
     {
+        Debug.Log("acknowledged.");
         if (stats.numericals["health"] <= 0)
             return;
+        Debug.Log("health was fine.");
         if (injector.type == injectorType.PLAYER)
             return;
+        Debug.Log("injector was fine.");
         foreach (string bacteriaPool in injector.bacteriaPools)
         {
             PublicPools.pools[bacteriaPool].SendObject(gameObject);

@@ -178,9 +178,8 @@ public class Movement : MonoBehaviour
             if (point.otherCollider == null)
                 airborne = true;
         }
-        if (jumpInput.GetInputDown() && currentJumps < maxJumps)
+        if (jumpInput.GetInputDown() && currentJumps <= maxJumps)
         {
-            currentJumps++;
             if (movementState == MovementState.LOCKED)
             {
                 lockInterval.ResetEarly();
@@ -189,6 +188,7 @@ public class Movement : MonoBehaviour
             }
             if (!airborne)
             {
+                currentJumps++;
                 if (!slamJumpInterval.enabled)
                     ability.Jump(point, jumpForce);
                 else
@@ -277,6 +277,10 @@ public class Movement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         point = collision.GetContact(0);
+        if (point.normal.y >= 0.9f)
+        {
+            currentJumps = 0;
+        }
         airborne = false;
         launchInterval.ResetEarly();
         if (movementState == MovementState.SLAMMING)
@@ -309,10 +313,6 @@ public class Movement : MonoBehaviour
     {
         point = collision.GetContact(0);
         airborne = false;
-        if (Mathf.Approximately(point.normal.y, Vector3.up.y))
-        {
-            currentJumps = 0;
-        }
         if (movementState == MovementState.LOCKED)
         {
             lockInterval.ResetEarly();

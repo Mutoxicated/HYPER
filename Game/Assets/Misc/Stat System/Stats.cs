@@ -10,10 +10,10 @@ public class Stats : MonoBehaviour
 {
     public GameObject explosionPrefab;
     public float VFXScale = 1f;
+    public DeathFor objective = DeathFor.PLAYER;
     
     public Dictionary<string, bool> conditionals = new Dictionary<string, bool>();
     public Dictionary<string, float> numericals = new Dictionary<string, float>();
-
 
     private void Awake()
     {
@@ -21,6 +21,7 @@ public class Stats : MonoBehaviour
 
         numericals.Add("moveSpeed", 1f);
         numericals.Add("damage", 1f);
+        numericals.Add("hostility",1f);
         numericals.Add("rate", 1f);
         numericals.Add("attackSpeed", 1f);
         numericals.Add("shootSpeed", 1f);

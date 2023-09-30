@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    [SerializeField] private bool usePool;
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField, Tooltip("If you use this, don't use bulletPrefab.")] private ObjectPoolManager objectPool;
+    [SerializeField] private bool inheritInjector;
+    [SerializeField, Tooltip("Used when no object pool is used.")] private GameObject bulletPrefab;
     [SerializeField] private Injector injector;
+
+    private bool instantiated;
+    private GameObject instance;
 
     public void ShootPrefab()
     {
-        if (usePool)
+        if (objectPool != null)
         {
-            PublicPools.pools[bulletPrefab.name].UseObject(transform.position,transform.rotation);
+            instance = objectPool.UseObject(transform.position,transform.rotation, out instantiated);
+            if (instantiated)
+                instance.GetComponent<Injector>()?.InheritInjector(injector);
         }
         else
         {
-            var instance = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            if (injector != null & injector.bacteriaPools.Count > 0){
-                foreach (string bac in injector.bacteriaPools){
-                    PublicPools.pools[bac+"_ALLY"].SendObject(instance);
-                }
+            instance = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            instance.SetActive(true);
+            if (inheritInjector){
+                instance.GetComponent<Injector>()?.InheritInjector(injector);
             }
         }
     }

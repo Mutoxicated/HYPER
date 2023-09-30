@@ -14,6 +14,8 @@ Shader "Custom/SurfaceEffect"
         _Brightness("Brightness", Range(-1, 1)) = 0.
         _Contrast("Contrast", Range(0, 2)) = 1
         _Saturation("Saturation", Range(0, 2)) = 1
+
+        _ClampAlphaValue("ClampAlpha", Range(0,1)) = 1
     }
         SubShader
         {
@@ -51,6 +53,8 @@ Shader "Custom/SurfaceEffect"
                 float _Brightness;
                 float _Contrast;
                 float _Saturation;
+                float _ClampAlphaValue;
+
                 v2f vert(appdata v)
                 {
                     v2f o;
@@ -92,10 +96,10 @@ Shader "Custom/SurfaceEffect"
                     startColor.rgb = _MainColor.rgb;
                     float4 hsbColor = applyHSBEffect(startColor);
                     float alpha = tex2D(_NoiseTexture1,i.uv2);
-                    alpha = clamp(alpha,0,1);
                     hsbColor.a = alpha;
                     float nAlpha = tex2D(_NoiseTexture2,i.uv3);
                     nAlpha = abs(1-nAlpha);
+                    nAlpha = clamp(nAlpha,0,_ClampAlphaValue);
                     hsbColor.a *= nAlpha;
                     return hsbColor;
                 }

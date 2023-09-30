@@ -42,10 +42,6 @@ public class EnemyCollision : MonoBehaviour
             if (injector.injectEnabled)
                 damageable?.TakeInjector(injector);
         }
-        if (stats.conditionals["explosive"])
-        {
-            PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position, Quaternion.identity);
-        }
         health?.TakeDamage(damageInput,gameObject,1f,0);
     }
 

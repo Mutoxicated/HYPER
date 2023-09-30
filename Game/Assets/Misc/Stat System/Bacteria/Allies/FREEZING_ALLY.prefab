@@ -10,6 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5416554764380817282}
   - component: {fileID: 6042879126030446296}
+  - component: {fileID: 6639743145081419546}
+  - component: {fileID: -5631225654319521222}
+  - component: {fileID: -8592395367754494610}
+  - component: {fileID: 402500383251494373}
+  - component: {fileID: 132620985633910263}
+  - component: {fileID: 4637624545124837297}
   m_Layer: 0
   m_Name: FREEZING_ALLY
   m_TagString: Untagged
@@ -51,3 +57,167 @@ MonoBehaviour:
   strength: 0.828
   damage: 6
   lifeSpan: 100
+  immuneSystem: {fileID: 0}
+--- !u!114 &6639743145081419546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966649851776593610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53566428069b509439c842df6644c5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 6042879126030446296}
+  sfx: {fileID: 132620985633910263}
+  ofx: {fileID: -8592395367754494610}
+  cfx: {fileID: 4637624545124837297}
+--- !u!114 &-5631225654319521222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966649851776593610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  specialTag: Untagged
+  chance: 100
+  interval: 1.5
+  onInterval:
+    m_PersistentCalls:
+      m_Calls: []
+  destroyUponEvent: 0
+  recycleUponEvent: 0
+  t: 0
+  time: 0
+  isPlaying: 0
+--- !u!114 &-8592395367754494610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966649851776593610}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f173bd27b0ab5c499eeb3aa50586abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 2.6226926, b: 3.2111173, a: 1}
+    key1: {r: 0.528828, g: 2.8879611, b: 3.3973193, a: 1}
+    key2: {r: 3.2111173, g: 3.2111173, b: 3.2111173, a: 0}
+    key3: {r: 0.528828, g: 2.8879611, b: 3.3973193, a: 0}
+    key4: {r: 0, g: 2.6226926, b: 3.2111173, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 14320
+    ctime2: 32768
+    ctime3: 51215
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  interval: {fileID: -5631225654319521222}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  bac: {fileID: 6042879126030446296}
+--- !u!114 &402500383251494373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966649851776593610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e72878d21f0f74ba4a761eed1a8873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 1
+  t: 0
+--- !u!114 &132620985633910263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966649851776593610}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88f502a33779864bbcf10cbee221d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 6042879126030446296}
+  sineWave: {fileID: 402500383251494373}
+  speed: 0.001
+  randomizeDirection: 1
+  direction: {x: 0, y: 0}
+  oscilatorMultiplier: {x: 0, y: 0}
+  textureMultiplier: {x: 0.6, y: 0.6}
+--- !u!114 &4637624545124837297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966649851776593610}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912afcd32ce9e1741b009a0f0b8f3b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 6042879126030446296}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 0.92168856, b: 1, a: 1}
+    key1: {r: 0, g: 0.9893317, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  interval: {fileID: -5631225654319521222}

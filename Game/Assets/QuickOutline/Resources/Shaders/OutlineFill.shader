@@ -10,7 +10,6 @@ Shader "Custom/Outline Fill" {
   Properties {
     _MainTex("Texture",2D) = "white"{}
     [IntRange] _StencilRef ("Stencil Ref",Range(1,255)) = 0
-    [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 0
 
     [HDR] [MainColor] _OutlineColor("Outline Color", Color) = (1, 1, 1, 1)
     _OutlineWidth("Outline Width", Range(0, 20)) = 2
@@ -39,7 +38,7 @@ Shader "Custom/Outline Fill" {
       Name "Fill"
       Cull Off
       ZWrite On
-      ZTest [_ZTest]
+      ZTest Less
       Blend SrcAlpha OneMinusSrcAlpha
 
         Stencil{
@@ -75,7 +74,7 @@ Shader "Custom/Outline Fill" {
         float3 viewPosition = UnityObjectToViewPos(input.vertex);
         float3 viewNormal = normalize(mul((float3x3)UNITY_MATRIX_IT_MV, normal));
 
-        output.position = UnityViewToClipPos(viewPosition + viewNormal * -viewPosition.z * _OutlineWidth / 100.0);
+        output.position = UnityViewToClipPos(viewPosition + viewNormal * -clamp(viewPosition.z,-7,1) * _OutlineWidth / 100.0);
         output.color = _OutlineColor;
 
         return output;

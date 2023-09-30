@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2944045812284909553}
   - component: {fileID: -4579046777407666088}
   - component: {fileID: -8766207620506296604}
+  - component: {fileID: 8878825627043202888}
   m_Layer: 6
   m_Name: normal
   m_TagString: bullets
@@ -165,12 +166,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ccd3a0430197e141925f941c4d6635d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immuneSystem: {fileID: -4579046777407666088}
   bodyParts:
-  - {fileID: 1907635401927215817}
-  inheritInjectors: []
+  - {fileID: 8878825627043202888}
   injectEnabled: 1
   chance: 100
   type: 2
+  injectorsToInherit: []
   bacteriaPools:
   - BURNING
   allyBacterias: []
@@ -206,3 +208,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 0}
   VFXScale: 1
+  objective: 0
+--- !u!114 &8878825627043202888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907635401927215823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed8dca4d62edf5499997fb41445ad01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 1907635401927215817}
+  hitGradient: {fileID: 0}
+  surfaceEffectable: 1
+  outlineEffectable: 1
+  colorEffectable: 1
+  matIndex: 0
+  hasSurfaceFX: 0
+  hasOutlineFX: 0
+  hasColorFX: 0

@@ -17,18 +17,15 @@ public class SurfaceEffect : MonoBehaviour
     private List<Material> mats = new List<Material>();
     private Material mat;
 
-    private void Awake(){
-        mat = Instantiate(Resources.Load<Material>(@"Materials/"+bac.type.ToString()));
-        mat.name += " (Instance)";
-    }
-
     private void AddEffect(){
-        foreach(var _renderer in bac.immuneSystem.injector.bodyParts){
-            mats.Add(mat);
-            
-            var materials = _renderer.sharedMaterials.ToList();
+        foreach(var part in bac.immuneSystem.injector.bodyParts){
+            if (!part.surfaceEffectable)
+                continue;
+            part.hasSurfaceFX = true;
+            var materials = part._renderer.sharedMaterials.ToList();
             materials.Add(mat);
-            _renderer.materials = materials.ToArray();
+            part._renderer.materials = materials.ToArray();
+            mats.Add(part._renderer.materials[part._renderer.materials.Length-1]);
         }
     }
 
@@ -43,21 +40,24 @@ public class SurfaceEffect : MonoBehaviour
     }
 
     private void ApplyTextureOffset(){
-        foreach (Material mat in mats){
+        foreach (var mat in mats){
+            //Debug.Log(bac.immuneSystem.gameObject.name);
             mat.SetTextureOffset("_NoiseTexture2",offset*textureMultiplier.x);
             mat.SetTextureOffset("_NoiseTexture1",offset*textureMultiplier.y);
         }
     }
 
       private void RevertTextureOffset(){
-        foreach (Material mat in mats){
+        foreach (var mat in mats){
             mat.SetTextureOffset("_NoiseTexture2",Vector2.zero);
             mat.SetTextureOffset("_NoiseTexture1",Vector2.zero);
         }
     }
 
     private void OnEnable(){
-        Invoke("AddEffect",.01f);
+        if (mat == null)
+            mat = Instantiate(Resources.Load<Material>(@"Materials/"+bac.type.ToString()));
+        AddEffect();
         if (randomizeDirection){
             direction.x = Random.Range(-2f,2f);
             direction.y = Random.Range(-2f,2f);
@@ -69,11 +69,16 @@ public class SurfaceEffect : MonoBehaviour
     private void OnDisable(){
         RevertTextureOffset();
         for (int i = 0; i < bac.immuneSystem.injector.bodyParts.Count; i++){
-            var materials = bac.immuneSystem.injector.bodyParts[i].sharedMaterials.ToList();
+              if (!bac.immuneSystem.injector.bodyParts[i].surfaceEffectable)
+                continue;
+            bac.immuneSystem.injector.bodyParts[i].hasSurfaceFX = false;
+            var materials = bac.immuneSystem.injector.bodyParts[i]._renderer.sharedMaterials.ToList();
 
             materials.Remove(mats[i]);
 
-            bac.immuneSystem.injector.bodyParts[i].materials = materials.ToArray();
+            bac.immuneSystem.injector.bodyParts[i]._renderer.materials = materials.ToArray();
         }
+        mats.Clear();
+        enabled = false;
     }
 }

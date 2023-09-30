@@ -12,7 +12,7 @@ public class Damage : MonoBehaviour
 
     public void DamageEntity()
     {
-        cachedDamageable.TakeDamage(damage,gameObject, -1f, hurtScreenIndex);
+        cachedDamageable.TakeDamage(damage,gameObject, 0.1f, hurtScreenIndex);
     }
     // Start is called before the first frame update
     private void OnEnable()
