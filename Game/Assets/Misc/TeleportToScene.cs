@@ -16,4 +16,9 @@ public class TeleportToScene : MonoBehaviour
         gameObject.GetComponent<Collider>().enabled = false;
         SceneManager.LoadScene(sceneName);
     }
+
+    public void Teleport()
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }

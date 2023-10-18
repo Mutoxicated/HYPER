@@ -47,10 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 10
   immunitySide: 1
+  bacChar: 0
   interval: {fileID: 0}
   strength: 0.9
   damage: 0
   lifeSpan: 100
+  immuneSystem: {fileID: 0}
 --- !u!114 &8262879803334493385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +65,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658c0e8c7eea2994089cc6c77e519e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  bac: {fileID: 9141995045049036275}
+  changeObjective: 0
+  objective: 0
   conditionals: []
   conditionalValues: 
   numericals:

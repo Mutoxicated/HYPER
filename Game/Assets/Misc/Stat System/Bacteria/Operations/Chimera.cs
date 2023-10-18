@@ -4,33 +4,30 @@ using UnityEngine;
 
 public class Chimera : MonoBehaviour
 {
-    private static ChimeraEffect chimera;
+    private ChimeraEffect chimera;
     public Bacteria bacteria;
-    private static List<Chimera> chimeras = new List<Chimera>();
+    public ParticleSystem _particleSystem;
+    [HideInInspector] public bool atPlayer;
 
     private void OnEnable()
     {
+        if (transform.parent.gameObject.tag != "Player"){
+            _particleSystem.Play();
+            return;
+        }
+        atPlayer = true;
+        _particleSystem.Stop();
         if (chimera == null)
         {
             chimera = GameObject.FindWithTag("MainCamera").GetComponent<ChimeraEffect>();
         }
-        chimeras.Add(this);
         chimera.enabled = true;
     }
 
     public void EndChimera()
     {
-        if (chimeras.Count == 0)
-        {
-            chimera.EndEffect();
+        if (transform.parent.gameObject.tag != "Player"){
             return;
-        }
-        foreach (var chimera in chimeras)
-        {
-            if (chimera.bacteria.lifeSpan > bacteria.lifeSpan)
-            {
-                return;
-            }
         }
         chimera.EndEffect();
     }
@@ -38,6 +35,5 @@ public class Chimera : MonoBehaviour
     private void OnDisable()
     {
         EndChimera();
-        chimeras.Remove(this);
     }
 }

@@ -17,12 +17,13 @@ public class FadeMatColor : MonoBehaviour
     private Material mat;
     private float angle = 0f;
 
+    private Renderer _rend;
     private float[] colorValues = new float[4];
     private float t;
     private Color gradientColor;
     [HideInInspector] public Color color = new Color(0f,0f,0f,0f);
 
-    void Awake()
+    void OnEnable()
     {
         rate = Mathf.PI / (interval*Mathf.PI);
         if (tmpTextAlt == null)
@@ -55,6 +56,10 @@ public class FadeMatColor : MonoBehaviour
                 }
                 else
                 {
+                    if (mat == null)
+                    {
+                        mat = _rend.materials[index];
+                    }
                     colorValues[i] = mat.color[i];
                 }
             }
@@ -71,6 +76,17 @@ public class FadeMatColor : MonoBehaviour
         gIndex = index;
     }
 
+    public void GoToNextGradientIndex()
+    {
+        if (gIndex + 1 > gradient.Length - 1)
+        {
+            gIndex = 0;
+        }
+        else
+        {
+            gIndex++;
+        }
+    }
     private void AssignColor()
     {
         if (tmpTextAlt != null)

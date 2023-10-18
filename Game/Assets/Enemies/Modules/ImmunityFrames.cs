@@ -8,10 +8,12 @@ public class ImmunityFrames : MonoBehaviour
     private Collider coll;
     private float time;
 
-    private void Awake()
+    private void OnEnable()
     {
-        coll = GetComponent<Collider>();
+        if (coll == null)
+            coll = GetComponent<Collider>();
         coll.enabled = false;
+        time = 0f;
     }
 
     private void Update()

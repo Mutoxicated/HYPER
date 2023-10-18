@@ -6,6 +6,7 @@ public class MoveAbilities
     private Rigidbody rb;
     private float bounceSpeed;
     private Vector3 bounceDirection;
+    public float speed;
 
     public MoveAbilities(Rigidbody rb)
     {
@@ -35,10 +36,10 @@ public class MoveAbilities
         rb.velocity = Vector3.down * slamSpeed;
     }
 
-    public void Dash(Vector3 direction, float dashSpeed)
+    public void Dash(Vector3 direction, float curSpeed)
     {
         rb.velocity = Vector3.zero;
-        rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
+        rb.AddForce(direction * curSpeed, ForceMode.Impulse);
     }
 
     public void Lock(float t)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum EntityType
@@ -16,7 +17,7 @@ public class Immunity : MonoBehaviour
     public float immunityAttackRate = 1f;
     public float immunityDamage = 10f;
     [HideInInspector]
-    public List<Bacteria> foreignBacteria = new List<Bacteria>();
+    public Dictionary<string,Bacteria> bacterias = new Dictionary<string,Bacteria>();
     private float t;
     private bool died;
 
@@ -45,47 +46,42 @@ public class Immunity : MonoBehaviour
                 return;
             }
         }
-        foreignBacteria.Add(bacteria);
-    }
+        bacterias.Add(bacteria.name,bacteria);
+    }//a
 
     public void RecycleBacteria()
     {
-        if (foreignBacteria.Count == 0)
+        if (bacterias.Count == 0)
             return;
-        foreach (var bac in foreignBacteria.ToArray())
+        foreach (var bac in bacterias.Values.ToArray())
         {
             bac.Instagib();
-            foreignBacteria.Remove(bac);
         }
-        injector.allyBacterias.Clear();
     }
 
     private void Update()
     {
-        if (foreignBacteria.Count == 0)
+        if (bacterias.Count == 0)
             return;
         t += Time.deltaTime;
         if (t >= immunityAttackRate)
         {
             t = 0f;
-            foreach (Bacteria bacteria in foreignBacteria.ToArray())
+            foreach (string bacKey in bacterias.Keys.ToArray())
             {
-                bacteria.DamageGoodBacteria();
-                if (bacteria.immunitySide == ImmunitySide.ALLY ){
-                    died = bacteria.Degrade(immunityDamage*0.1f*stats.numericals["hostility"]);
+                //bacterias[bacKey].DamageGoodBacteria();
+                if (bacterias[bacKey].immunitySide == ImmunitySide.ALLY ){
+                    died = bacterias[bacKey].Degrade(immunityDamage*0.1f*stats.numericals["hostility"]);
                 }
-                else if (bacteria.bacChar == BacteriaCharacter.POSITIVE){
-                    died = bacteria.Degrade(immunityDamage*0.4f*stats.numericals["hostility"]);
+                else if (bacterias[bacKey].character == BacteriaCharacter.POSITIVE){
+                    died = bacterias[bacKey].Degrade(immunityDamage*0.4f*stats.numericals["hostility"]);
                 } else
                 {
-                    died = bacteria.Degrade(immunityDamage*stats.numericals["hostility"]);
+                    died = bacterias[bacKey].Degrade(immunityDamage*stats.numericals["hostility"]);
                 }
                 if (died)
                 {
-                    if (bacteria.immunitySide == ImmunitySide.ALLY){
-                        injector.bacteriaPools.Remove(bacteria.gameObject.name.Replace("_ALLY",""));
-                    }
-                    foreignBacteria.Remove(bacteria);
+                    bacterias.Remove(bacKey);
                 }
             }
         }

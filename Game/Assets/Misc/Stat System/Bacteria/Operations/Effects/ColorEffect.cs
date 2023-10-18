@@ -13,7 +13,11 @@ public class ColorEffect : MonoBehaviour
     private List<Material> mats = new List<Material>();
     
     private void EvaluateColor(){
-        color = gradient.Evaluate(interval.t);
+        if (interval != null){
+            color = gradient.Evaluate(interval.t);
+        }else{
+            color = gradient.Evaluate(0);
+        }
         foreach(var part in bac.immuneSystem.injector.bodyParts){
             if (!part.colorEffectable)
                 continue;
@@ -27,14 +31,18 @@ public class ColorEffect : MonoBehaviour
     }
 
     private void AddEffect(){
-        color = gradient.Evaluate(interval.t);
+        if (interval != null){
+            color = gradient.Evaluate(interval.t);
+        }else{
+            color = gradient.Evaluate(0);
+        }
+        bac.immuneSystem.stats.conditionals["colorFXED"] = false;
         foreach(var part in bac.immuneSystem.injector.bodyParts){
             if (!part.colorEffectable){
                 mats.Add(part._renderer.materials[part.matIndex]);//we're not gonna be accessing this, just have to add this so that the revert function works
                 previousColor.Add(Color.white);
                 continue;
             }
-            part.hasColorFX = true;
             mats.Add(part._renderer.materials[part.matIndex]);
             if (part.hitGradient != null){
                 previousColor.Add(part.hitGradient.GetStartColor());
@@ -48,10 +56,10 @@ public class ColorEffect : MonoBehaviour
     }
 
     private void RevertEffect(){
+        bac.immuneSystem.stats.conditionals["colorFXED"] = false;
         for (int i = 0; i < bac.immuneSystem.injector.bodyParts.Count; i++){
             if (!bac.immuneSystem.injector.bodyParts[i].colorEffectable)
                 continue;
-            bac.immuneSystem.injector.bodyParts[i].hasColorFX = false;
             if (bac.immuneSystem.injector.bodyParts[i].hitGradient != null){
                 bac.immuneSystem.injector.bodyParts[i].hitGradient.ChangeStartColor(previousColor[i]);
             }
@@ -62,16 +70,12 @@ public class ColorEffect : MonoBehaviour
         previousColor.Clear();
         enabled = false;
     }
+    
+    //Felt a lil goofy with these lambda expressions B)
 
-    private void LateUpdate(){
-        EvaluateColor();
-    }
+    private void LateUpdate() => EvaluateColor();
 
-    private void OnEnable(){
-        AddEffect();
-    }
+    private void OnEnable() => AddEffect();
 
-    private void OnDisable(){
-        RevertEffect();
-    }
+    private void OnDisable() => RevertEffect();
 }

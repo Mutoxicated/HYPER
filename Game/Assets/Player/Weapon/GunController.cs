@@ -47,11 +47,6 @@ public class GunController : MonoBehaviour
             Quaternion.AngleAxis(angle, new Vector3(0f, 0f, 1f)),
             Time.deltaTime * (shooter.fireRate*11));
     }
-
-    private void FixedUpdate()
-    {
-    }
-
     private void RotateScrew()
     {
         angle += 90f;

@@ -52,6 +52,16 @@ public class OnInterval : MonoBehaviour
         isPlaying = true;
     }
 
+    public void ManipulateT(float t)
+    {
+        this.t = t;
+    }
+
+    public void ChangeInterval(float interval)
+    {
+        this.interval = interval;
+    }
+
     private void OnEnable()
     {
         time = 0f;

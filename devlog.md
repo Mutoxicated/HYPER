@@ -830,3 +830,16 @@ Some new additions to the bacteria list!
 * Corrupt (invader: upon death has a chance to give the killer a bad bacteria, ally: spreads its invader counterpart to entities it hits)
 
 Will be interesting to tie those into the gameplay.
+
+
+## Day 114 thru 131
+
+Been a while... I've mostly been making a custom unity splash screen, then lost a bit of motivation, got busy with school, etc.
+
+But NOW I'm getting back to DAILY updates!! Oh yeah.
+
+Also.. I regenerated the project files of the game, wanting to switch from Microsoft Visual Studio to Vs Code but not realizing it would mess up some things and create a NEW copy of the whole game. So I was working on the wrong copy of the game, and so I had to move most folders from the copy onto the folder that is this repo. Anyway I fixed things sooo yep :p
+
+Lately I've been mostly not coding and actually caring about the game itself. The design of it. I realized there were some problems with its design and so these pas few days I was thinking of what to remove, keep and add. After making changes, I've decided I am not going to add anything else to the game unless absolutely necessary. I've been adding way too much stuff and now the game is getting bigger than what it was supposed to be. Yes it's way cooler than before now but the game has to be finished by the end of January. So if there comes up another design problem, I will try to fix it by removing or modifying things.
+
+Anyway here's an update on the document file of the game: 

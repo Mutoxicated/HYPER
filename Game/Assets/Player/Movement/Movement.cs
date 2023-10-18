@@ -33,11 +33,13 @@ public class Movement : MonoBehaviour
     [SerializeField] private int maxJumps;
     [SerializeField] private int maxBounces;
     [SerializeField] private bool disableLaunch;
+    [SerializeField, Range(0f,2f)] private float airdrag;
 
     [Header("Timers")]
     [SerializeField] public OnInterval launchInterval;
     [SerializeField] private OnInterval lockInterval;
     [SerializeField] private OnInterval slamJumpInterval;
+    [SerializeField] private OnInterval momentumWindow;
 
     [Header("Particles")]
     [SerializeField] private ParticleSystem groundSlam;
@@ -68,10 +70,12 @@ public class Movement : MonoBehaviour
     private bool uponSlide;
     private int currentJumps = 0;
     private int bounces = 0;
+    private bool readyToJump;
 
     private MoveAbilities ability;
     private float moveX, moveZ;
     private CameraShake camShake;
+    private float shields;
 
     public void ChangeState(int ms)
     {
@@ -97,6 +101,12 @@ public class Movement : MonoBehaviour
         }
         else 
         {
+            moveX = Input.GetAxisRaw("Horizontal") * walkSpeed;
+            moveZ = Input.GetAxisRaw("Vertical") * walkSpeed;
+            Vector3 flatForward = camHolder.forward;
+            flatForward.y = 0f;
+
+            moveDirection = flatForward.normalized * moveZ + camHolder.right * moveX;
             ability.Lock(lockInterval.t);
             return;
         }
@@ -105,7 +115,6 @@ public class Movement : MonoBehaviour
         {
             moveX = Input.GetAxisRaw("Horizontal") * walkSpeed;
             moveZ = Input.GetAxisRaw("Vertical") * walkSpeed;
-
             Vector3 flatForward = camHolder.forward;
             flatForward.y = 0f;
 
@@ -134,7 +143,7 @@ public class Movement : MonoBehaviour
             slide.transform.rotation = Quaternion.LookRotation(slideDirection);
             if (!slide.isPlaying)
                 slide.Play();
-            ability.Slide(slideDirection, slideSpeed * stats.numericals["moveSpeed"]);
+            ability.Slide(slideDirection, ability.speed+2f);
             return;
         }
         //slamming
@@ -142,6 +151,7 @@ public class Movement : MonoBehaviour
         {
             extraJumpForce += slamJumpForceRate;
             ability.GroundSlam(slamSpeed * stats.numericals["moveSpeed"]);
+            ability.speed = -rb.velocity.y;
         }
     }
 
@@ -161,7 +171,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         camShake = GetComponent<CameraShake>();
-        rb.drag = 2f;
+        rb.drag = airdrag;
         ability = new MoveAbilities(rb);
         movementState = MovementState.WALKING;
     }
@@ -186,10 +196,10 @@ public class Movement : MonoBehaviour
                 movementState = MovementState.WALKING;
                 return;
             }
-            if (!airborne)
+            if (readyToJump)
             {
                 currentJumps++;
-                if (!slamJumpInterval.enabled)
+                if (!momentumWindow.enabled)
                     ability.Jump(point, jumpForce);
                 else
                     ability.Jump(point, jumpForce+extraJumpForce);
@@ -201,6 +211,7 @@ public class Movement : MonoBehaviour
             {
                 if (stamina.GetCurrentStamina() < 50f)
                     return;
+                ability.speed = rb.velocity.magnitude;
                 stamina.ReduceStamina(50f);
                 lockEffect.Play();
                 movementState = MovementState.LOCKED;
@@ -215,17 +226,24 @@ public class Movement : MonoBehaviour
             {
                 dash.transform.rotation = Quaternion.LookRotation(moveDirection.normalized);
                 dash.Play();
-                ability.Dash(moveDirection.normalized, dashSpeed * stats.numericals["moveSpeed"]);
+                if (momentumWindow.enabled | lockInterval.enabled)
+                    ability.Dash(moveDirection.normalized, ability.speed+2f);
+                else
+                    ability.Dash(moveDirection.normalized, Mathf.Clamp(rb.velocity.magnitude+2f,dashSpeed,99999999f));
             }
             else
             {
                 dash.transform.rotation = camHolder.rotation;
                 dash.Play();
-                ability.Dash(camHolder.forward, dashSpeed * stats.numericals["moveSpeed"]);
+                if (momentumWindow.enabled | lockInterval.enabled)
+                    ability.Dash(camHolder.forward, ability.speed+2f);
+                else
+                    ability.Dash(camHolder.forward, Mathf.Clamp(rb.velocity.magnitude+2f,dashSpeed,99999999f));
             }
             stamina.ReduceStamina(50f);
+            lockInterval.ResetEarly();
             movementState = MovementState.WALKING;
-            rb.drag = 2f;
+            rb.drag = airdrag;
             crouchReleased = false;
             return;
         }
@@ -234,13 +252,18 @@ public class Movement : MonoBehaviour
             uponSlide = true;
             if (!airborne && crouchReleased)
             {
+                if (momentumWindow.enabled)
+                    ability.speed = Mathf.Clamp(extraJumpForce,slideSpeed*stats.numericals["moveSpeed"],9999f);
+                else
+                    ability.speed = Mathf.Clamp(rb.velocity.magnitude,slideSpeed*stats.numericals["moveSpeed"],9999f);
                 movementState = MovementState.SLIDING;
             }
             if (airborne && crouchReleased && stamina.GetCurrentStamina() >= 25f)
             {
+                lockInterval.ResetEarly();
                 movementState = MovementState.SLAMMING;
                 stamina.ReduceStamina(25f);
-                slamJumpInterval.ResetEarly();
+                momentumWindow.ResetEventless();
             }
         }
         if (slideInput.GetInput())
@@ -273,6 +296,18 @@ public class Movement : MonoBehaviour
 
     // used to be this comment said something really stupid
     private void FixedUpdate() => Move();
+
+    private void OnTriggerEnter(){
+        readyToJump = true;
+    }
+
+    private void OnTriggerStay(){
+        readyToJump = true;
+    }
+
+    private void OnTriggerExit(){
+        readyToJump = false;
+    }
     
     private void OnCollisionEnter(Collision collision)
     {
@@ -285,7 +320,8 @@ public class Movement : MonoBehaviour
         launchInterval.ResetEarly();
         if (movementState == MovementState.SLAMMING)
         {
-            slamJumpInterval.enabled = true;
+            momentumWindow.ResetEventless();
+            momentumWindow.enabled = true;
             groundSlam.transform.position = point.point;
             groundSlam.Play();
             movementState = MovementState.WALKING;
@@ -297,13 +333,13 @@ public class Movement : MonoBehaviour
         if (collision.collider.gameObject.tag == "Enemy")
         {
             camShake.Shake();
-            collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(100f,gameObject,1f,0);
+            collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(100f,gameObject,ref shields,1f,0);
             bounces = maxBounces;
         }
         if (bounces >= maxBounces)
         {
             rb.velocity = ability.GetBounceDir() * launchForce * stats.numericals["moveSpeed"];
-            rb.drag = 2f;
+            rb.drag = airdrag;
             bounces = 0;
             movementState = MovementState.WALKING;
         }
@@ -320,7 +356,7 @@ public class Movement : MonoBehaviour
         }
         if (movementState == MovementState.BOUNCING)
             return;
-        rb.drag = 5f;
+        rb.drag = 4f;
     }
 
     private void OnCollisionExit()
@@ -328,6 +364,6 @@ public class Movement : MonoBehaviour
         airborne = true;
         launchInterval.enabled = !disableLaunch;
         launchPoint = transform.position;
-        rb.drag = 2f;
+        rb.drag = airdrag;
     }
 }

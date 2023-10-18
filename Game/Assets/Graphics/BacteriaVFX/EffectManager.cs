@@ -15,18 +15,21 @@ public class EffectManager : MonoBehaviour
     }
 
     private void SetEffect(){
-            for (int i = 0; i < bac.immuneSystem.injector.bacteriaPools.Count; i++){
-            if (bac.type.ToString() == bac.immuneSystem.injector.bacteriaPools[i]){
-                if (i == 0){
+        foreach (var allyBac in bac.immuneSystem.injector.allyBacterias){
+            if (bac.gameObject == allyBac.gameObject){//put gameObject cuz maybe its more reliable
+                if (!bac.immuneSystem.stats.conditionals["surfaceFXED"]){
                     sfx.enabled = true;
-                }else if (i == 1){
-                    ofx.enabled = true;
-                }else{
-                    cfx.enabled = true;
+                    return;
                 }
-            }/*else{
-                Debug.Log("fail! at: "+i+" of "+ bac.immuneSystem.gameObject.name);
-            }*/
+                if (!bac.immuneSystem.stats.conditionals["outlineFXED"]){
+                    ofx.enabled = true;
+                    return;
+                }
+                if (!bac.immuneSystem.stats.conditionals["colorFXED"]) {
+                    cfx.enabled = true;
+                    return;
+                }
+            }
         }
     }
 }

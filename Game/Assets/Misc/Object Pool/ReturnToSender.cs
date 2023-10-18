@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class ReturnToSender : MonoBehaviour
 {
+    public bool isPublic = true;
+    public ObjectPoolManager localPool;
     private void OnDisable()
     {
-        PublicPools.pools[gameObject.name].Reattach(gameObject);
+        if (isPublic){
+            PublicPools.pools[gameObject.name].Reattach(gameObject);
+        }else{
+            if (localPool == null){
+                Destroy(gameObject);
+                return;
+            }
+            localPool.Reattach(gameObject);
+        }
     }
 }

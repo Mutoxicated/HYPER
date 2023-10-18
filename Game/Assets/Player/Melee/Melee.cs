@@ -27,13 +27,27 @@ public class Melee : MonoBehaviour
     private Vector3 spawnCoords;
     private bool block = true;
     private float t;
+    private Collider[] colls;
 
     private bool Punch()
     {
         Ray ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2,0));
         bool hit = Physics.SphereCast(ray.origin,0.1f, ray.direction, out hitInfo, punchRange, layerMask);
-        if (hit)
-            hitInfo.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(punchDamage,gameObject,1f,0);
+        if (hit){
+            bool? success = hitInfo.collider.gameObject.GetComponent<IParriable>()?.Parry(cam.transform.parent.parent.gameObject,cam.transform.position+cam.transform.forward*4f);
+            Debug.Log(success);
+            if (success == null || success == false)
+                hitInfo.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(punchDamage,gameObject,1f,0);
+        }else{
+            colls = Physics.OverlapSphere(ray.origin,0.1f);
+            foreach (Collider coll in colls){
+                if (coll.gameObject.tag != "Player"){
+                    bool? success = coll.gameObject.GetComponent<IParriable>()?.Parry(cam.transform.parent.parent.gameObject,cam.transform.position+cam.transform.forward*4f);
+                    if (success == null || success == false)
+                        coll.gameObject.GetComponent<IDamageable>()?.TakeDamage(punchDamage,gameObject,1f,0);
+                }
+            }
+        }
         spawnCoords = hitInfo.point;
         return hit;
     }
@@ -74,6 +88,7 @@ public class Melee : MonoBehaviour
         if (t >= punchDelay)
         {
             t = 0;
+
             bool hit = Punch();
             animator.SetFloat("speedMult", 0.75f);
             if (hit)

@@ -18,10 +18,10 @@ public class SurfaceEffect : MonoBehaviour
     private Material mat;
 
     private void AddEffect(){
+        bac.immuneSystem.stats.conditionals["surfaceFXED"] = true;
         foreach(var part in bac.immuneSystem.injector.bodyParts){
             if (!part.surfaceEffectable)
                 continue;
-            part.hasSurfaceFX = true;
             var materials = part._renderer.sharedMaterials.ToList();
             materials.Add(mat);
             part._renderer.materials = materials.ToArray();
@@ -30,8 +30,13 @@ public class SurfaceEffect : MonoBehaviour
     }
 
     private void Update(){
-        sincos.x = sineWave.t * oscilatorMultiplier.x;
-        sincos.y = sineWave.t * oscilatorMultiplier.y;
+        if (sineWave != null){
+            sincos.x = sineWave.t * oscilatorMultiplier.x;
+            sincos.y = sineWave.t * oscilatorMultiplier.y;
+        }else{
+            sincos.x = oscilatorMultiplier.x;
+            sincos.y = oscilatorMultiplier.y;
+        }
 
         offset.x += direction.x+sincos.x *Time.deltaTime;
         offset.y += direction.y+sincos.y *Time.deltaTime;
@@ -68,10 +73,10 @@ public class SurfaceEffect : MonoBehaviour
 
     private void OnDisable(){
         RevertTextureOffset();
+        bac.immuneSystem.stats.conditionals["surfaceFXED"] = false;
         for (int i = 0; i < bac.immuneSystem.injector.bodyParts.Count; i++){
               if (!bac.immuneSystem.injector.bodyParts[i].surfaceEffectable)
                 continue;
-            bac.immuneSystem.injector.bodyParts[i].hasSurfaceFX = false;
             var materials = bac.immuneSystem.injector.bodyParts[i]._renderer.sharedMaterials.ToList();
 
             materials.Remove(mats[i]);

@@ -13,11 +13,13 @@ public class EnemyCollision : MonoBehaviour
     [SerializeField] private string[] tagsToIgnore;
 
     private IDamageable damageable;
-    private Injector injector;
 
-    private void OnEnable()
-    {
-        injector = GetComponent<Injector>();
+    private void Inject(IDamageable damage){
+        if (health == null)
+            return;
+        if (health.immuneSystem.injector == null)
+            return;
+        damage?.TakeInjector(health.immuneSystem.injector, false);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,11 +39,7 @@ public class EnemyCollision : MonoBehaviour
         {
             damageable?.TakeDamage(damageOutput * stats.numericals["damage"], gameObject,1f,0);
         }
-        if (injector != null)
-        {
-            if (injector.injectEnabled)
-                damageable?.TakeInjector(injector);
-        }
+        Inject(damageable);
         health?.TakeDamage(damageInput,gameObject,1f,0);
     }
 
@@ -62,15 +60,7 @@ public class EnemyCollision : MonoBehaviour
         {
             damageable?.TakeDamage(damageOutput * stats.numericals["damage"], gameObject, 1f, 0);
         }
-        if (injector != null)
-        {
-            if (injector.injectEnabled)
-                damageable?.TakeInjector(injector);
-        }
-        if (stats.conditionals["explosive"])
-        {
-            PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position, Quaternion.identity);
-        }
+        Inject(damageable);
         health?.TakeDamage(damageInput,gameObject,1f,0);
     }
 }

@@ -52,12 +52,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   immunitySide: 1
-  bacChar: 0
+  character: 0
+  injectorCachedFrom: {fileID: 0}
+  _particleSys: {fileID: 247851906672540497}
   interval: {fileID: 0}
   strength: 0.9
   damage: 6
   lifeSpan: 100
   immuneSystem: {fileID: 0}
+  population: 1
 --- !u!114 &2578373311359353098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,8 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a1806d788193e43858e04efb547628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bac: {fileID: 6042879126030446296}
   interval: {fileID: 2282183439898115068}
-  damage: 4
+  damage: 2
   hurtScreenIndex: 2
 --- !u!114 &2282183439898115068
 MonoBehaviour:
@@ -88,7 +92,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   specialTag: Untagged
   chance: 100
-  interval: 0.15
+  interval: 0.4
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -1051,7 +1055,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2

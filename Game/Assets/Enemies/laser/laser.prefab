@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3027051904091300101}
+  - component: {fileID: 187228456903526656}
   - component: {fileID: 3647291987919514252}
   - component: {fileID: 8345614134963362486}
   - component: {fileID: 3311107570504202617}
@@ -38,6 +39,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &187228456903526656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153671034035948574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 0}
+  VFXScale: 1
+  objective: 0
+  entity: {fileID: 0}
+  maxHealth: 0
+  maxShields: 0
 --- !u!33 &3647291987919514252
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -100,15 +119,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fda3aeb49aec10499979bf23adaa7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 1985
+  stats: {fileID: 187228456903526656}
+  useObjective: 0
   damage: 100
   injector: {fileID: 5967580908633526872}
   interval: {fileID: 6924735940106440622}
   maxWidth: 1
   objToIgnore: {fileID: 0}
+  prefab: {fileID: 153671034035948574, guid: 687838c775f447c4e9cd4b0553480746, type: 3}
+  dieOnDisable: 0
 --- !u!114 &1732578597192557787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 187228456903526656}
   specialTag: Untagged
   chance: 100
   interval: 0.4
@@ -155,7 +174,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   destroyUponEvent: 0
-  recycleUponEvent: 1
+  recycleUponEvent: 0
   t: 0
   time: 0
   isPlaying: 0
@@ -171,13 +190,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ccd3a0430197e141925f941c4d6635d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immuneSystem: {fileID: 315794931800856651}
   bodyParts: []
-  inheritInjectors: []
   injectEnabled: 1
   chance: 100
   type: 0
+  injectorToInheritFrom: {fileID: 0}
+  injectorsToInherit: []
   bacteriaPools: []
   allyBacterias: []
+  cachedInstances: []
 --- !u!114 &315794931800856651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,9 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 187228456903526656}
   injector: {fileID: 5967580908633526872}
   type: 1
   immunityAttackRate: 1
   immunityDamage: 10
-  foreignBacteria: []
+  bacterias: []

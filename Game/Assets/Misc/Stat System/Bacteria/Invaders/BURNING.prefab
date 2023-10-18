@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2783147201568458627}
   - component: {fileID: 1100097229793328662}
   - component: {fileID: 2140571762907411593}
+  - component: {fileID: 7119735965371335605}
   m_Layer: 0
   m_Name: BURNING
   m_TagString: Untagged
@@ -52,10 +53,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   immunitySide: 1
+  character: 0
+  injectorCachedFrom: {fileID: 0}
+  _particleSys: {fileID: 2783147201568458627}
   interval: {fileID: -1897449632643660112}
   strength: 0.9
   damage: 3
   lifeSpan: 100
+  immuneSystem: {fileID: 0}
+  population: 1
 --- !u!114 &325309808921346095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,13 +69,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5220200391542015640}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a1806d788193e43858e04efb547628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bac: {fileID: 0}
   interval: {fileID: 6216714436957381709}
-  damage: 1
+  damage: 0.4
   hurtScreenIndex: 1
 --- !u!114 &6216714436957381709
 MonoBehaviour:
@@ -977,7 +984,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 13
+      scalar: 7
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4998,3 +5005,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 2783147201568458627}
+--- !u!114 &7119735965371335605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220200391542015640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  specialTag: Untagged
+  chance: 100
+  interval: 0.35
+  onInterval:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7119735965371335605}
+        m_TargetAssemblyTypeName: OnInterval, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 325309808921346095}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  destroyUponEvent: 0
+  recycleUponEvent: 0
+  t: 0
+  time: 0
+  isPlaying: 0

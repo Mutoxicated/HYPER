@@ -17,13 +17,19 @@ public class Shoot : MonoBehaviour
         if (objectPool != null)
         {
             instance = objectPool.UseObject(transform.position,transform.rotation, out instantiated);
-            if (instantiated)
-                instance.GetComponent<Injector>()?.InheritInjector(injector);
+            if (instantiated){
+                var rts = instance.GetComponent<ReturnToSender>();
+                rts.localPool = objectPool;
+                rts.isPublic = false;
+                var inj = instance.GetComponent<Injector>();
+                inj.injectorToInheritFrom = injector;
+                inj.InheritInjector(injector);
+            }
         }
         else
         {
             instance = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            instance.SetActive(true);
+            //instance.SetActive(true);
             if (inheritInjector){
                 instance.GetComponent<Injector>()?.InheritInjector(injector);
             }

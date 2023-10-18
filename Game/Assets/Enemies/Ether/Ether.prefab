@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &246505309136546374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4095709657238618873}
+  - component: {fileID: 5686175632287108662}
+  m_Layer: 0
+  m_Name: missilePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4095709657238618873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246505309136546374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2982936731220533164}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5686175632287108662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246505309136546374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6db3442497fe5148841517b3b41adf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPublic: 0
+  prefab: {fileID: 5725198740932932340, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
 --- !u!1 &2029483553560196246
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,9 +197,6 @@ MonoBehaviour:
   outlineEffectable: 0
   colorEffectable: 1
   matIndex: 0
-  hasSurfaceFX: 0
-  hasOutlineFX: 0
-  hasColorFX: 0
 --- !u!1 &2029483554504949709
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,8 +339,6 @@ MonoBehaviour:
   ChildrenToDetach:
   - {fileID: 8753202935635663913}
   immunityDuration: 1
-  shields: 3
-  maxHP: 200
   rate: 2
   healthBar: {fileID: 7971833800512259650}
   t: 0
@@ -432,7 +473,7 @@ MonoBehaviour:
   type: 0
   immunityAttackRate: 1
   immunityDamage: 10
-  foreignBacteria: []
+  bacterias: []
 --- !u!114 &1595523739458197103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,10 +493,11 @@ MonoBehaviour:
   injectEnabled: 1
   chance: 100
   type: 0
-  injectorsToInherit:
-  - {fileID: 2673553889079065310}
+  injectorToInheritFrom: {fileID: 0}
+  injectorsToInherit: []
   bacteriaPools:
-  - POISON
+  - POISON_ALLY
+  - CHIMERA
   allyBacterias: []
 --- !u!114 &6866425869919819366
 MonoBehaviour:
@@ -475,9 +517,6 @@ MonoBehaviour:
   outlineEffectable: 1
   colorEffectable: 0
   matIndex: 0
-  hasSurfaceFX: 0
-  hasOutlineFX: 0
-  hasColorFX: 0
 --- !u!1 &3301143575855750706
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 250674576862873568}
   axisMultiplier: {x: 1, y: 1, z: 1}
-  lerpSpeed: 4
+  lerpSpeed: 6
 --- !u!114 &250674576862873568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +600,9 @@ MonoBehaviour:
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   objective: 0
+  entity: {fileID: 0}
+  maxHealth: 300
+  maxShields: 1
 --- !u!114 &2187372927416398556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,9 +615,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d690bfb50e7204da1c3461d76aab03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 0}
-  inheritInjector: 0
-  bulletPrefab: {fileID: 5741202628808870350}
+  objectPool: {fileID: 5686175632287108662}
+  inheritInjector: 1
+  bulletPrefab: {fileID: 0}
   injector: {fileID: 1595523739458197103}
 --- !u!1 &5419551051448238176
 GameObject:
@@ -605,94 +647,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6015183820811184918}
+  - {fileID: 4095709657238618873}
   - {fileID: 2924701148933708670}
   - {fileID: 1677493216719049168}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &62809277674502970
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2982936731220533164}
-    m_Modifications:
-    - target: {fileID: 5725198740932932340, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_Name
-      value: MissileHolder
-      objectReference: {fileID: 0}
-    - target: {fileID: 5725198740932932340, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 18.092966
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 13.009364
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 9.030045
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
---- !u!114 &2673553889079065310 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2721717529990447588, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-  m_PrefabInstance: {fileID: 62809277674502970}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ccd3a0430197e141925f941c4d6635d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &5741202628808870350 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5725198740932932340, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-  m_PrefabInstance: {fileID: 62809277674502970}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6015183820811184918 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6027255992683827244, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
-  m_PrefabInstance: {fileID: 62809277674502970}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &69499260181313728
 PrefabInstance:
   m_ObjectHideFlags: 0

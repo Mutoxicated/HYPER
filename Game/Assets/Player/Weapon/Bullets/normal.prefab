@@ -172,10 +172,12 @@ MonoBehaviour:
   injectEnabled: 1
   chance: 100
   type: 2
+  injectorToInheritFrom: {fileID: 0}
   injectorsToInherit: []
   bacteriaPools:
-  - BURNING
+  - FREEZING_ALLY
   allyBacterias: []
+  cachedInstances: []
 --- !u!114 &-4579046777407666088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +195,7 @@ MonoBehaviour:
   type: 1
   immunityAttackRate: 1
   immunityDamage: 10
-  foreignBacteria: []
+  bacterias: []
 --- !u!114 &-8766207620506296604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +211,9 @@ MonoBehaviour:
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   objective: 0
+  entity: {fileID: 0}
+  maxHealth: 0
+  maxShields: 0
 --- !u!114 &8878825627043202888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +232,3 @@ MonoBehaviour:
   outlineEffectable: 1
   colorEffectable: 1
   matIndex: 0
-  hasSurfaceFX: 0
-  hasOutlineFX: 0
-  hasColorFX: 0

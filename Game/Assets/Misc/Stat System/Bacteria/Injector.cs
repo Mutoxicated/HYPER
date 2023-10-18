@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum injectorType
@@ -16,17 +17,19 @@ public class Injector : MonoBehaviour
     public bool injectEnabled = true;
     public float chance = 100f;
     public injectorType type;
+    public Injector injectorToInheritFrom;
     public List<Injector> injectorsToInherit = new List<Injector>();
     public List<string> bacteriaPools = new List<string>();
-    [HideInInspector]
-    public List<Bacteria> allyBacterias = new List<Bacteria>();
-
+    [HideInInspector] public List<Bacteria> allyBacterias = new List<Bacteria>();
+    [HideInInspector] public List<Bacteria> cachedInstances = new List<Bacteria>();
+    // TODO: Make it spawn invader bacteria the same way TakeInjector does it (because it will create complications with the population of the bacteria)
     private void OnEnable(){
-        if (allyBacterias.Count > 0){
-            return;
-        }
         foreach (var bac in bacteriaPools.ToArray()){
-            PublicPools.pools[bac+"_ALLY"].SendObject(gameObject);
+            PublicPools.pools[bac].SendObject(immuneSystem.gameObject);
+        }
+        if (injectorToInheritFrom != null){
+            Debug.Log(gameObject.name + " inherited from " + injectorToInheritFrom.gameObject.name);
+            InheritInjector(injectorToInheritFrom);
         }
         if (injectorsToInherit.Count > 0){
             foreach(var inj in injectorsToInherit){
@@ -39,46 +42,35 @@ public class Injector : MonoBehaviour
         chance = injector.chance;
         injectEnabled = injector.injectEnabled;
         type = injector.type;
-        foreach(var bac in injector.immuneSystem.foreignBacteria){
-            PublicPools.pools[bac.gameObject.name].SendObject(gameObject);
-            Debug.Log("hap");
+        foreach(var bac in injector.immuneSystem.bacterias.Values){
+            if (bac.character == BacteriaCharacter.NEGATIVE && bac.immunitySide == ImmunitySide.INVADER)
+                continue;
+            PublicPools.pools[bac.gameObject.name].SendObject(immuneSystem.gameObject);
         }
     }
 
     private void OnDisable(){
         allyBacterias.Clear();
-        bacteriaPools.Clear();
     }
 
-    public void AddAllyBacteria(string name)
-    {
-        bacteriaPools.Add(name);
-        allyBacterias.Add(PublicPools.pools[name+"_ALLY"].SendObject(gameObject).GetComponent<Bacteria>());
-    }
-
-    public void AddInvaderBacteria(string name){
-        PublicPools.pools[name].SendObject(gameObject);
+    public void AddBacteria(string name){
+        PublicPools.pools[name].SendObject(immuneSystem.gameObject);
     }
 
     public void RemoveBacteria(string name)
     {
-        foreach (var allyBac in allyBacterias){
-            if (allyBac.name == name){
-                allyBacterias.Remove(allyBac);
-                allyBac.Instagib();
-                return;
+        foreach (var bac in immuneSystem.bacterias.Values.ToArray()){
+            if (bac.gameObject.name == name){
+                bac.Instagib();
             }
         }
-        bacteriaPools.Remove(name);
     }
 
-    public void Clear()
+    public void ClearAllies()
     {
         foreach (var bac in allyBacterias.ToArray()){
-            allyBacterias.Remove(bac);
             bac.Instagib();
         }
-        bacteriaPools.Clear();
     }
 
     public void ChangeChance(float num)

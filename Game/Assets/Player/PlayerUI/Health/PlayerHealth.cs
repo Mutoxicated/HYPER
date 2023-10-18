@@ -28,7 +28,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private GameObject hurtScreen;
     [SerializeField] private FadeMatColor fadeColor;
     [SerializeField] private float lerpSpeed;
-    [SerializeField] private int shields = 0;
     [SerializeField] private TMP_Text shieldsText;
     [SerializeField] private float HP;
     [SerializeField, Range(0.5f, 3f)] private float reactionSpeed = 0.05f;
@@ -84,19 +83,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         return copyGradient;
     }
 
-    private void RecycleBacteria()
-    {
-        if (immuneSystem.foreignBacteria.Count == 0)
-            return;
-        foreach (var bac in immuneSystem.foreignBacteria)
-        {
-            PublicPools.pools[bac.gameObject.name].Reattach(bac.gameObject);
-        }
-    }
-
     private void Start()
     {
-        stats.numericals["shields"] = shields;
         stats.numericals["health"] = HP;
         initialScale = healthBar.localScale;
         healthT = stats.numericals["health"] / HP;
@@ -117,8 +105,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (stats.numericals["health"] == 0f)
+        if (stats.numericals["health"] <= 0f){
+            stats.numericals["health"] = 0f;
             healthT = 0f;
+        }
         else healthT = stats.numericals["health"] / HP;
 
         if (currentT != healthT)
@@ -126,7 +116,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             currentT = Mathf.Lerp(currentT, healthT, Time.deltaTime*3f);
             sumText.text = Mathf.Round(currentT * 100f).ToString() + '%';
         }
-
         healthBar.localScale = Vector3.Lerp(
             healthBar.localScale, 
             new Vector3(Mathf.Clamp(initialScale.x * healthT,0.0002f,initialScale.x),healthBar.localScale.y, healthBar.localScale.z), 
@@ -138,6 +127,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         healthBarBackColor = playerColor;
         healthBarBackColor.a = healthBarBackImg.color.a;
         healthBarBackImg.color = healthBarBackColor;
+        EvaluateShields();
 
         if (playerObjects == null)
             return;
@@ -148,31 +138,68 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     
     private void EvaluateShields()
     {
-        if (shields == 0)
+        float allShields = stats.shields.Count+stats.numericals["permaShields"];
+        if (allShields == 0)
         {
             shieldsText.color = Color.red;
         }
-        else if (shields >= 1 && shields <= 3)
+        else if (allShields >= 1 && allShields <= 3)
         {
             shieldsText.color = Color.yellow;
         }
         else
         {
-            shieldsText.color = Color.white;
+            shieldsText.color = Color.green;
         }
         shieldsParent.color = shieldsText.color;
-        shieldsText.text = shields.ToString();
+        shieldsText.text = allShields.ToString();
     }
 
-    public void TakeDamage(float intake, GameObject sender, float arb, int index)
+      public void TakeHealth(float intake, float shield){
+        stats.numericals["health"] += intake;
+        stats.numericals["shields"] += shield;
+    }
+
+    public float TakeDamage(float intake, GameObject sender, ref float shieldOut, float arb, int index)
     {
         reactionT = arb;
         hurtScreen.SetActive(true);
         fadeColor.ChangeGradientIndex(index);
         //Debug.Log("Shields: " + shields + " | Health outake: " + (intake / (shields + 1)));
-        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"] - intake/(shields+1), 0f, HP);
-        shields = Mathf.Clamp(shields - 1, 0, 999999);
-        stats.numericals["shields"] -= 1;
+        if (stats.numericals["shields"] == 0){
+            shieldOut = 0;
+        }else{
+            shieldOut = 1;
+        }
+        stats.numericals["health"] = stats.numericals["health"] - intake/(stats.shields.Count+stats.numericals["permaShields"]+1);
+        if (stats.shields.Count > 0){
+            if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
+                stats.shields.RemoveAt(stats.shields.Count-1);
+        }
+        playerColor = healthBarGradient.Evaluate(healthT);
+        playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
+        if (stats.numericals["health"] <= 0)
+        {
+            //RecycleBacteria(); 
+            //death(insane)
+        }
+        if (stats.numericals["health"] >= 0f)
+            return 0f;
+        else
+            return stats.numericals["health"];
+    }
+
+    public float TakeDamage(float intake, GameObject sender, float arb, int index)
+    {
+        reactionT = arb;
+        hurtScreen.SetActive(true);
+        fadeColor.ChangeGradientIndex(index);
+        //Debug.Log("Shields: " + shields + " | Health outake: " + (intake / (shields + 1)));
+        stats.numericals["health"] = stats.numericals["health"] - intake/(stats.shields.Count+stats.numericals["permaShields"]+1);
+        if (stats.shields.Count > 0){
+            if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
+                stats.shields.RemoveAt(stats.shields.Count-1);
+        }
         EvaluateShields();
         playerColor = healthBarGradient.Evaluate(healthT);
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
@@ -181,16 +208,49 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             //RecycleBacteria(); 
             //death(insane)
         }
+        if (stats.numericals["health"] >= 0f)
+            return 0f;
+        else
+            return stats.numericals["health"];
     }
 
-    public void TakeInjector(Injector injector)
+    public void TakeInjector(Injector injector, bool cacheInstances)
     {
         if (injector.type == injectorType.ENEMIES)
             return;
-        foreach (string bacteriaPool in injector.bacteriaPools)
+        if (stats.numericals["health"] <= 0f)
+            return;
+        foreach (var bac in injector.allyBacterias)
         {
-            if (Random.Range(0f,100f) <= injector.chance)
-                PublicPools.pools[bacteriaPool].SendObject(gameObject);
+            if (Random.Range(0f,100f) > injector.chance)
+                continue;
+            if (cacheInstances){
+                Bacteria instancedBac;
+                if (immuneSystem.bacterias.ContainsKey(bac.name.Replace("_ALLY",""))){
+                    instancedBac = immuneSystem.bacterias[bac.name.Replace("_ALLY","")];
+                    immuneSystem.bacterias[bac.name.Replace("_ALLY","")].BacteriaIn();
+                }else{
+                    instancedBac= PublicPools.pools[bac.name.Replace("_ALLY","")].SendObject(gameObject).GetComponent<Bacteria>();
+                }
+                instancedBac.injectorCachedFrom = injector;
+                injector.cachedInstances.Add(instancedBac);
+            }
+            else{
+                if (immuneSystem.bacterias.ContainsKey(bac.name.Replace("_ALLY",""))){
+                    immuneSystem.bacterias[bac.name.Replace("_ALLY","")].BacteriaIn();
+                }else{
+                    PublicPools.pools[bac.name.Replace("_ALLY","")].SendObject(gameObject);
+                }
+            }
+            Debug.Log(bac.gameObject.name);
+        }
+    }
+
+    public void RevertInjector(Injector injector){
+        foreach (var bac in injector.cachedInstances.ToArray())
+        {
+            if (immuneSystem.bacterias.ContainsValue(bac))
+                immuneSystem.bacterias[bac.name].Instagib();
         }
     }
 }

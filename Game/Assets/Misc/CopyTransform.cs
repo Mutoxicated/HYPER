@@ -13,6 +13,7 @@ public class CopyTransform : MonoBehaviour
     [SerializeField] private Vector3 rotationMultiplier = Vector3.one;
     [Space]
     [SerializeField] private Vector3 positionOffset;
+    [SerializeField] private Quaternion rotationOffset;
 
     private Quaternion alteredRotation;
     private Vector3 alteredPosition;
@@ -37,10 +38,8 @@ public class CopyTransform : MonoBehaviour
         if (copyRotation)
         {
             alteredRotation = _transform.rotation;
-            alteredRotation = Quaternion.Euler(
-                alteredRotation.eulerAngles.x * rotationMultiplier.x,
-                alteredRotation.eulerAngles.y * rotationMultiplier.y,
-                alteredRotation.eulerAngles.z * rotationMultiplier.z);
+            if ((rotationOffset.x+rotationOffset.y+rotationOffset.z) > 0f)
+                alteredRotation = alteredRotation * rotationOffset;
             transform.rotation = alteredRotation;
         }
     }

@@ -18,7 +18,6 @@ public class normal : MonoBehaviour
     private float pierces;
 
     private Injector injector;
-
     private void Awake()
     {
         injector = GetComponent<Injector>();
@@ -66,7 +65,7 @@ public class normal : MonoBehaviour
         damageable?.TakeDamage(damage * gun.stats.numericals["damage"], gameObject,1f,0);
         if (injector != null)
         {
-            damageable?.TakeInjector(injector);
+            damageable?.TakeInjector(injector,false);
         }
         if (pierces == 0)
             Recycle();

@@ -20,7 +20,7 @@ public class HitGradient : MonoBehaviour
         return startColor;
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         color = Color.Lerp(startColor,endColor,health.t);
     }

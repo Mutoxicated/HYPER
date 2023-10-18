@@ -48,12 +48,13 @@ public class OutlineEffect : MonoBehaviour {
     private List<Material> mats = new List<Material>();
     [ColorUsage(true,true)]
     private Color colorToRevert;
+    private float t;
 
     private void AddEffect(){
+        bac.immuneSystem.stats.conditionals["outlineFXED"] = true;
         foreach(var part in bac.immuneSystem.injector.bodyParts){
             if (!part.outlineEffectable)
                 continue;
-            part.hasOutlineFX = true;
             // Retrieve or generate smooth normals
             LoadSmoothNormals(part);
             var materials = part._renderer.sharedMaterials.ToList();
@@ -68,25 +69,35 @@ public class OutlineEffect : MonoBehaviour {
         outlineFillMaterial = Instantiate(Resources.Load<Material>(@"Materials/Outline"));
     }
 
+    private void CalculateT(){
+        if (interval != null){
+            t = interval.t;
+        }else{
+            t = 0;
+        }
+    }
+
     void OnEnable() {
         AddEffect();
         UpdateMaterialProperties();
+        CalculateT();
         foreach (var mat in mats){
-            mat.color = gradient.Evaluate(interval.t);
+            mat.color = gradient.Evaluate(t);
         }
     }
 
     void LateUpdate(){
+        CalculateT();
         foreach (var mat in mats){
-            mat.color = gradient.Evaluate(interval.t);
+            mat.color = gradient.Evaluate(t);
         }
     }
 
     void OnDisable() {
+        bac.immuneSystem.stats.conditionals["outlineFXED"] = false;
         for (int i = 0; i < bac.immuneSystem.injector.bodyParts.Count; i++){
             if (!bac.immuneSystem.injector.bodyParts[i].outlineEffectable)
                 continue;
-            bac.immuneSystem.injector.bodyParts[i].hasOutlineFX = false;
             var materials = bac.immuneSystem.injector.bodyParts[i]._renderer.sharedMaterials.ToList();
 
             materials.Remove(mats[i]);

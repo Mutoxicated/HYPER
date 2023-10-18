@@ -55,6 +55,7 @@ public class ExplosionParts : MonoBehaviour
                 parts[i].transform.localPosition = initialPositions[i];
                 parts[i].transform.localRotation = initialRotations[i];
                 t = 0f;
+                exploding = false;
             }
         }
     }

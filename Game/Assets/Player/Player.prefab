@@ -342,7 +342,7 @@ MonoBehaviour:
   animator: {fileID: 1827139654312536223}
   punchDamage: 200
   punchRange: 5
-  punchDelay: 0.05
+  punchDelay: 0.09
   shakeEffect: {fileID: 1827139654312536193}
   particlePrefab: {fileID: 8210001699898165931, guid: 6eefbd6477a59b948937387bb71b7c03, type: 3}
   throwPoint: {fileID: 8826647250518932482}
@@ -585,12 +585,13 @@ GameObject:
   - component: {fileID: 1827139654470346249}
   - component: {fileID: 119900076246059708}
   - component: {fileID: 7127821129873079633}
+  - component: {fileID: 281100366651219174}
   - component: {fileID: 8042353175293637678}
   - component: {fileID: 3848314848283858412}
   - component: {fileID: 415444476}
   - component: {fileID: 8166220741375504981}
   - component: {fileID: 8108540779480057966}
-  - component: {fileID: 7311404026360387799}
+  - component: {fileID: 4681041064830235763}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -693,20 +694,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d08c654f1e489b449b0a5f8aa361c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 84
+  walkSpeed: 75.7
   slideSpeed: 19.84
   slamSpeed: 54
   dashSpeed: 25.67
-  gravityForce: 20
-  jumpForce: 21.8
-  airMultiplier: 0.4
+  gravityForce: 22.02
+  jumpForce: 18
+  airMultiplier: 0.436
   launchForce: 9.5
   maxJumps: 3
   maxBounces: 2
   disableLaunch: 0
+  airdrag: 1.441
   launchInterval: {fileID: 8042353175293637678}
   lockInterval: {fileID: 3848314848283858412}
-  slamJumpInterval: {fileID: 7311404026360387799}
+  slamJumpInterval: {fileID: 0}
+  momentumWindow: {fileID: 4681041064830235763}
   groundSlam: {fileID: 0}
   dash: {fileID: 0}
   slide: {fileID: 0}
@@ -801,7 +804,6 @@ MonoBehaviour:
   hurtScreen: {fileID: 0}
   fadeColor: {fileID: 0}
   lerpSpeed: 4
-  shields: 0
   shieldsText: {fileID: 0}
   HP: 700
   reactionSpeed: 2.07
@@ -820,6 +822,20 @@ CapsuleCollider:
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: -0.3, z: 0}
+--- !u!136 &281100366651219174
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827139654470346250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.59
+  m_Height: 1.72
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.3, z: 0}
 --- !u!114 &8042353175293637678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,7 +851,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   specialTag: Launch
   chance: 100
-  interval: 1
+  interval: 2
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -911,6 +927,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4681041064830235763}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   destroyUponEvent: 0
   recycleUponEvent: 0
   t: 0
@@ -953,7 +981,7 @@ MonoBehaviour:
   type: 0
   immunityAttackRate: 0.5
   immunityDamage: 10
-  foreignBacteria: []
+  bacterias: []
 --- !u!114 &8108540779480057966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,26 +996,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 0}
   VFXScale: 1
---- !u!114 &7311404026360387799
+  objective: 0
+  entity: {fileID: 0}
+  maxHealth: 0
+  maxShields: 4
+  shieldhealth: 50
+--- !u!114 &4681041064830235763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827139654470346250}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
-  specialTag: SlamJump
+  specialTag: momentumWindow
   chance: 100
   interval: 0.15
   onInterval:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7311404026360387799}
+      - m_Target: {fileID: 4681041064830235763}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -2119,6 +2152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1987462775687559841}
   - component: {fileID: 7862258471834061820}
+  - component: {fileID: 8605636085867929451}
   m_Layer: 0
   m_Name: CamHolder
   m_TagString: Untagged
@@ -2158,6 +2192,68 @@ MonoBehaviour:
   sensY: 2
   alterToRotation: {x: 0, y: 0, z: 0, w: 0}
   alterRotation: 0
+--- !u!108 &8605636085867929451
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395529677905364782}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 7.92
+  m_Range: 19.2
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &8407429241445348203
 GameObject:
   m_ObjectHideFlags: 0

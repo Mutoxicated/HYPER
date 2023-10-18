@@ -274,6 +274,7 @@ MonoBehaviour:
   stencilIndex: 2
   outlineColor: {r: 2.9960785, g: 0.6030386, b: 0, a: 1}
   outlineWidth: 0.9
+  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -462981019419857548, guid: eb232d938d6259743a767eef848d429a, type: 3}
@@ -798,6 +799,7 @@ MonoBehaviour:
   stencilIndex: 2
   outlineColor: {r: 2.9960785, g: 0.6030386, b: 0, a: 1}
   outlineWidth: 0.9
+  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -462981019419857548, guid: 49d97e88b51c5f54ca7ee6a18711e4d8, type: 3}
@@ -2630,6 +2632,7 @@ MonoBehaviour:
   stencilIndex: 4
   outlineColor: {r: 0, g: 1, b: 0.049153566, a: 1}
   outlineWidth: 0.9
+  matToUse: {fileID: 0}
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -2763,6 +2766,7 @@ MonoBehaviour:
   stencilIndex: 4
   outlineColor: {r: 0, g: 1, b: 0.049153566, a: 1}
   outlineWidth: 0.25
+  matToUse: {fileID: 0}
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -9112,6 +9116,7 @@ MonoBehaviour:
   stencilIndex: 2
   outlineColor: {r: 2.9960785, g: 0.6030386, b: 0, a: 1}
   outlineWidth: 0.9
+  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -462981019419857548, guid: aaae96290079f0e41ac132b7a0d0ca94, type: 3}
@@ -9808,6 +9813,7 @@ MonoBehaviour:
   stencilIndex: 4
   outlineColor: {r: 0, g: 1, b: 0.049153566, a: 1}
   outlineWidth: 0.9
+  matToUse: {fileID: 0}
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -16880,6 +16886,7 @@ MonoBehaviour:
   stencilIndex: 2
   outlineColor: {r: 2.9960785, g: 0.6030386, b: 0, a: 1}
   outlineWidth: 0.9
+  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -462981019419857548, guid: a6c7bf4b5d2356b4d90245909c50be68, type: 3}
@@ -17790,6 +17797,7 @@ MonoBehaviour:
   stencilIndex: 4
   outlineColor: {r: 0, g: 1, b: 0.049153566, a: 1}
   outlineWidth: 0.9
+  matToUse: {fileID: 0}
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -30150,7 +30158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8241068d54c209943b2c710960a3ae00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Arena
+  sceneName: ArenaV2
 --- !u!65 &1999474805
 BoxCollider:
   m_ObjectHideFlags: 0

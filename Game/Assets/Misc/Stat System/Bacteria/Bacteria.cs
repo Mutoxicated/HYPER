@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum BacteriaType
@@ -9,7 +10,7 @@ public enum BacteriaType
     ERUPTION,
     IMPALEMENT,
     MERRY,
-    
+
     BURNING,
     FREEZING,
     POISON,
@@ -19,7 +20,11 @@ public enum BacteriaType
 
     RADIATION,
     FLABBERGAST,
-    BRAG
+    BRAG,
+    TASTY,
+    CORRUPT,
+    VAMPIRE,
+    BETRAY,
 }
 
 public enum ImmunitySide
@@ -38,19 +43,23 @@ public class Bacteria : MonoBehaviour
 {
     public BacteriaType type;
     public ImmunitySide immunitySide;
-    public BacteriaCharacter bacChar;
+    public BacteriaCharacter character;
+    [HideInInspector] public Injector injectorCachedFrom;
+    [SerializeField] private ParticleSystem _particleSys;
     [SerializeField] private OnInterval interval;
-    [Range(1f,0.1f)] public float strength;//weakest to strongest
+    [Range(1f, 0.1f)] public float strength;//weakest to strongest
     [SerializeField] private float damage;
-    [HideInInspector]
     public float lifeSpan = 100f;
-    [HideInInspector]
-    public Immunity immuneSystem;
+    [HideInInspector] public Immunity immuneSystem;
+    public int population = 1;
+    public delegate void Subcriber();
+    public List<Subcriber> subcribers = new List<Subcriber>();
 
     private void OnEnable()
     {
+        ChangeEmission();
         immuneSystem = GetComponentInParent<Immunity>();
-        transform.localScale = Vector3.one*immuneSystem.stats.VFXScale;
+        transform.localScale = Vector3.one * immuneSystem.stats.VFXScale;
         if (immuneSystem == null)
         {
             RemoveSelfFromInjector();
@@ -61,46 +70,31 @@ public class Bacteria : MonoBehaviour
         {
             interval.enabled = true;
         }
-        Invoke("CheckInjector",0.01f);
+        CheckInjector();
         immuneSystem.NotifySystem(this);// telling the immune system that we are here, and we are going to kill you, or help you!
     }
 
-    private void CheckInjector(){
-        if (immunitySide == ImmunitySide.INVADER)
+    private void ChangeEmission(){
+        if (_particleSys == null)
             return;
-        if (!immuneSystem.injector.allyBacterias.Contains(this)){
-            immuneSystem.injector.allyBacterias.Add(this);
-            if (immuneSystem.injector.bacteriaPools.Contains(gameObject.name.Replace("_ALLY","")))
-                return;
-            immuneSystem.injector.bacteriaPools.Add(gameObject.name.Replace("_ALLY",""));
-        }
-        
+        var emission = _particleSys.emission;
+        emission.rateOverTime = population;
     }
 
-    public void DamageGoodBacteria()
-    {
-        if (bacChar == BacteriaCharacter.POSITIVE)
-            return;
-        if (immunitySide == ImmunitySide.ALLY)
-            return;
-        if (immuneSystem.foreignBacteria.Count == 0)
-            return;
-        foreach (var bac in immuneSystem.foreignBacteria)
-        {
-            if (bac.bacChar == BacteriaCharacter.POSITIVE)
-            {
-                bac.Degrade(damage);
-            }else if (bac.immunitySide == ImmunitySide.ALLY){
-                bac.Degrade(damage);
-            }
+    private void InvokeSubs(){
+        foreach (Subcriber sub in subcribers){
+            sub();
         }
     }
 
-    public bool Degrade(float damage)
-    {
-        lifeSpan -= damage*strength;
-        if (lifeSpan <= 0f)
-        {
+    public void BacteriaIn(){
+        population++;
+        ChangeEmission();
+        InvokeSubs();
+    }
+
+    public bool BacteriaOut(){
+        if (population <= 1){
             if (interval != null)
             {
                 interval.ResetEventless();
@@ -110,23 +104,85 @@ public class Bacteria : MonoBehaviour
             lifeSpan = 100f;
             PublicPools.pools[gameObject.name].ReattachImmediate(gameObject);
             return true;
+        }else{
+            population--;
+            lifeSpan = 100f;
+            ChangeEmission();
+            InvokeSubs();
+            return false;
+        }
+    }
+
+    private void CheckInjector()
+    {
+        if (immunitySide == ImmunitySide.INVADER)
+            return;
+        if (!immuneSystem.injector.allyBacterias.Contains(this))
+        {
+            immuneSystem.injector.allyBacterias.Add(this);
+        }
+
+    }
+
+    public void DamageGoodBacteria()
+    {
+        if (character == BacteriaCharacter.POSITIVE)
+            return;
+        if (immunitySide == ImmunitySide.ALLY)
+            return;
+        if (immuneSystem.bacterias.Count == 0)
+            return;
+        foreach (var bac in immuneSystem.bacterias.Values.ToArray())
+        {
+            if (bac.character == BacteriaCharacter.POSITIVE)
+            {
+                bac.Degrade(damage);
+            }
+            else if (bac.immunitySide == ImmunitySide.ALLY)
+            {
+                bac.Degrade(damage);
+            }
+        }
+    }
+
+    public bool Degrade(float damage)
+    {
+        lifeSpan -= damage * strength;
+        if (lifeSpan <= 0f)
+        {
+            return BacteriaOut();
         }
         return false;
     }
 
-    private void RemoveSelfFromInjector(){
+    private void RemoveSelfFromInjector()
+    {
+        RemoveSelfFromCachedInstances();
         if (immunitySide == ImmunitySide.INVADER)
             return;
-        immuneSystem.injector.bacteriaPools.Remove(gameObject.name.Replace("_ALLY",""));
+        immuneSystem.injector.allyBacterias.Remove(this);
+    }
+
+    private void RemoveSelfFromCachedInstances(){
+        if (injectorCachedFrom != null)
+            injectorCachedFrom.cachedInstances.Remove(this);
+        injectorCachedFrom = null;
     }
 
     public void Instagib()
     {
-        if (interval != null){
+        if (interval != null)
+        {
             interval.ResetEventless();
             interval.enabled = false;
         }
+        RemoveSelfFromInjector();
+        population = 1;
         lifeSpan = 100f;
         PublicPools.pools[gameObject.name].ReattachImmediate(gameObject);
+        if (immuneSystem.bacterias.ContainsValue(this)){
+            immuneSystem.bacterias.Remove(name);
+        }
+            
     }
 }

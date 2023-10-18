@@ -14,37 +14,26 @@ public class LookTo : MonoBehaviour
     [SerializeField] private float lerpSpeed;
     private Quaternion lookRotation;
     private Vector3 toEntity = Vector3.zero;
-    private Transform entity;
 
     private void Start(){
-        if (Difficulty.enemies.Count == 1){
-            stats.objective = DeathFor.PLAYER;
-            entity = Difficulty.player;
-            return;
-        }
-        if (stats.objective == DeathFor.PLAYER){
-            entity = Difficulty.player;
-        }else{
-            entity = Difficulty.FindClosestEnemy(transform).transform;
-        }
+        stats.FindEntity();
+    }
+
+    public void ResetLocalRotation(){
+        transform.localRotation = Quaternion.identity;
+    }
+
+    public void ChangeLerpSpeed(float speed){
+        lerpSpeed = speed;
     }
 
     private void Update()
     {
-        if (entity == null){
-            if (Difficulty.enemies.Count == 1){
-                stats.objective = DeathFor.PLAYER;
-                entity = Difficulty.player;
-                return;
-            }
-            if (stats.objective == DeathFor.PLAYER){
-                stats.objective = DeathFor.ENEMIES;
-                entity = Difficulty.FindClosestEnemy(transform).transform;
-            }else{
-                entity = Difficulty.FindClosestEnemy(transform).transform;
-            }
+        if (stats.entity == null){
+            stats.DecideObjective();
+            stats.FindEntity();
         }
-        toEntity = entity.position - transform.position;
+        toEntity = stats.entity.position - transform.position;
         toEntity.x *= axisMultiplier.x;
         toEntity.y *= axisMultiplier.y;
         toEntity.z *= axisMultiplier.z;

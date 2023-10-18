@@ -93,9 +93,9 @@ public class ObjectPoolManager : MonoBehaviour
 
     public void ReattachImmediate(GameObject package)
     {
-        package.transform.SetParent(transform, false);
         if (package.activeSelf)
             package.SetActive(false);
+        package.transform.SetParent(transform, false);
     }
 
     public void Reattach(GameObject package)

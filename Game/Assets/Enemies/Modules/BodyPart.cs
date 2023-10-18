@@ -14,8 +14,4 @@ public class BodyPart : MonoBehaviour
     public bool colorEffectable;
 
     public int matIndex; // for color effect
-
-    [HideInInspector] public bool hasSurfaceFX;
-    [HideInInspector] public bool hasOutlineFX;
-    [HideInInspector] public bool hasColorFX;
 }
