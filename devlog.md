@@ -846,6 +846,7 @@ Anyway here's an update on the document file of the game: [HYPER Doc.pdf](https:
 
 ## Day 132
 
-Added effects for Merry and Flash bacteria. 
-Added a numerical to stats that defines the chance of an explosion happening upon enemy death. 
-Fixed some weird transparency and particle pixelation issues. 
+Changes:
+* Added effects for Merry and Flash bacteria. 
+* Added a numerical to stats that defines the chance of an explosion happening upon enemy death. 
+* Fixed some weird transparency and particle pixelation issues. 
