@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class ManageLine : MonoBehaviour
 {
-    [SerializeField] private Gradient[] gradient;
+    [SerializeField,GradientUsage(true)] private Gradient[] gradient;
     [SerializeField] private int index = 0;
 
     [SerializeField] private LineRenderer lineRenderer;

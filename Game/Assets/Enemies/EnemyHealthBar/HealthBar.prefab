@@ -461,6 +461,7 @@ MonoBehaviour:
   positionMultiplier: {x: 1, y: 1, z: 1}
   rotationMultiplier: {x: 1, y: 1, z: 1}
   positionOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &7718832756342371914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,6 +581,44 @@ MonoBehaviour:
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   objective: 0
+  entity: {fileID: 0}
+  maxHealth: 0
+  maxShields: 0
+  shieldhealth: 50
+  conditionals:
+    _serializedList:
+    - Key: explosive
+      Value: 0
+    - Key: surfaceFXED
+      Value: 0
+    - Key: outlineFXED
+      Value: 0
+    - Key: colorFXED
+      Value: 0
+  numericals:
+    _serializedList:
+    - Key: permaShields
+      Value: 0
+    - Key: moveSpeed
+      Value: 1
+    - Key: damage
+      Value: 1
+    - Key: hostility
+      Value: 1
+    - Key: rate
+      Value: 1
+    - Key: attackSpeed
+      Value: 1
+    - Key: shootSpeed
+      Value: 1
+    - Key: capacitor1
+      Value: 1
+    - Key: capacitor2
+      Value: 1
+    - Key: pierces
+      Value: 1
+    - Key: explosionChance
+      Value: 50
 --- !u!1001 &8057811669862780980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -613,7 +652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.21
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -684,7 +723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilIndex: 1
   outlineColor: {r: 4, g: 4, b: 4, a: 1}
-  outlineWidth: 1
+  outlineWidth: 1.5
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -5495902117074765545, guid: afe58833742e13541b36773ab36f31e5, type: 3}
@@ -752,7 +791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afe58833742e13541b36773ab36f31e5, type: 3}
       propertyPath: m_LocalRotation.w

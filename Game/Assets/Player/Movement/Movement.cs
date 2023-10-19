@@ -201,8 +201,10 @@ public class Movement : MonoBehaviour
                 currentJumps++;
                 if (!momentumWindow.enabled)
                     ability.Jump(point, jumpForce);
-                else
+                else if (momentumWindow.enabled && stamina.GetCurrentStamina() > 40f){
                     ability.Jump(point, jumpForce+extraJumpForce);
+                    stamina.ReduceStamina(40f);
+                }
                 extraJumpForce = 2f;
                 movementState = MovementState.WALKING;
                 crouchReleased = true;

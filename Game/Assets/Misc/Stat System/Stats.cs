@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using UnityEngine;
+using AYellowpaper.SerializedCollections;
 
 [DisallowMultipleComponent]
 public class Stats : MonoBehaviour
@@ -17,33 +18,33 @@ public class Stats : MonoBehaviour
     [SerializeField] private float maxShields;
     [SerializeField] private float shieldhealth = 50f;
     
-    public Dictionary<string, bool> conditionals;
-    public Dictionary<string, float> numericals;
+    [SerializedDictionary("name","boolean")]
+    public SerializedDictionary<string, bool> conditionals = new SerializedDictionary<string, bool>(){
+        {"explosive", false},
+        {"surfaceFXED", false},
+        {"outlineFXED", false},
+        {"colorFXED", false}
+    };
+    [SerializedDictionary("name","number")]
+    public SerializedDictionary<string, float> numericals = new SerializedDictionary<string, float>(){
+        {"permaShields",0},
+        {"moveSpeed", 1f},
+        {"damage", 1f},
+        {"hostility",1f},
+        {"rate", 1f},
+        {"attackSpeed", 1f},
+        {"shootSpeed", 1f},
+        {"capacitor1", 1f},
+        {"capacitor2", 1f},
+        {"pierces", 1f},
+        {"explosionChance",50f}
+    };
 
     [HideInInspector] public List<Shield> shields = new List<Shield>();
 
     private void Awake()
     {
-        conditionals = new Dictionary<string, bool>(){
-            {"explosive", false},
-            {"surfaceFXED", false},
-            {"outlineFXED", false},
-            {"colorFXED", false}
-        };
-
-        numericals = new Dictionary<string, float>(){
-            {"permaShields",0},
-            {"moveSpeed", 1f},
-            {"damage", 1f},
-            {"hostility",1f},
-            {"rate", 1f},
-            {"attackSpeed", 1f},
-            {"shootSpeed", 1f},
-            {"capacitor1", 1f},
-            {"capacitor2", 1f},
-            {"pierces", 1f},
-            {"health", maxHealth},
-        };
+        numericals.Add("health", maxHealth);
 
         for (int i = 0; i < maxShields;i++){
             shields.Add(new Shield(shieldhealth,false));

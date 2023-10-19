@@ -6,7 +6,7 @@ Shader "Custom/particle"
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" "IgnoreProjector" = "True" "Queue" = "AlphaTest"}
+        Tags { "RenderType"="Transparent" "IgnoreProjector" = "True" "Queue" = "Background"}
         LOD 100
         Blend SrcAlpha OneMinusSrcAlpha
         ZWrite Off

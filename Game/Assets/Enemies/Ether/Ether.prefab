@@ -473,7 +473,6 @@ MonoBehaviour:
   type: 0
   immunityAttackRate: 1
   immunityDamage: 10
-  bacterias: []
 --- !u!114 &1595523739458197103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,9 +495,9 @@ MonoBehaviour:
   injectorToInheritFrom: {fileID: 0}
   injectorsToInherit: []
   bacteriaPools:
-  - POISON_ALLY
-  - CHIMERA
+  - MERRY_ALLY
   allyBacterias: []
+  cachedInstances: []
 --- !u!114 &6866425869919819366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,6 +602,41 @@ MonoBehaviour:
   entity: {fileID: 0}
   maxHealth: 300
   maxShields: 1
+  shieldhealth: 50
+  conditionals:
+    _serializedList:
+    - Key: explosive
+      Value: 0
+    - Key: surfaceFXED
+      Value: 0
+    - Key: outlineFXED
+      Value: 0
+    - Key: colorFXED
+      Value: 0
+  numericals:
+    _serializedList:
+    - Key: permaShields
+      Value: 0
+    - Key: moveSpeed
+      Value: 1
+    - Key: damage
+      Value: 1
+    - Key: hostility
+      Value: 1
+    - Key: rate
+      Value: 1
+    - Key: attackSpeed
+      Value: 1
+    - Key: shootSpeed
+      Value: 1
+    - Key: capacitor1
+      Value: 1
+    - Key: capacitor2
+      Value: 1
+    - Key: pierces
+      Value: 1
+    - Key: explosionChance
+      Value: 50
 --- !u!114 &2187372927416398556
 MonoBehaviour:
   m_ObjectHideFlags: 0

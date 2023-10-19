@@ -9,7 +9,7 @@ Shader "Custom/particlePixelation"
 
         SubShader
         {
-            Tags{ "Queue" = "AlphaTest" "IgnoreProjector" = "True" }
+            Tags{ "Queue" = "AlphaTest" }
             LOD 200
             Lighting Off
             Blend SrcAlpha OneMinusSrcAlpha
@@ -52,10 +52,10 @@ Shader "Custom/particlePixelation"
 
                 ENDCG
             }
-            ZWrite Off
-            Cull Off
-            Blend Off
             GrabPass{ "_GrabTexture" }
+            ZWrite On
+            Cull Back
+            Blend Off
             Pass
             {
                 CGPROGRAM
@@ -77,6 +77,7 @@ Shader "Custom/particlePixelation"
                     float4 uv : TEXCOORD1;
                     fixed4 custom1 : TEXCOORD0;
                     float4 center : TEXCOORD2;
+                    float viewZ : TEXCOORD3;
                 };
 
                 v2f vert(appdata v)
@@ -86,14 +87,26 @@ Shader "Custom/particlePixelation"
                     
                     float3 vert = v.pos - v.center.xyz;
 
-                    vert *= 2;
+                    vert *= 2.5;
 
                     v.pos = vert + v.center.xyz;
+
+                    o.viewZ = UnityObjectToViewPos(v.pos).z;
 
                     o.pos = UnityObjectToClipPos(v.pos);
                     o.uv = ComputeScreenPos(o.pos);
                     o.custom1 = v.custom1;
                     return o;
+                }
+
+                inline bool compareColors(float4 color1, float4 color2, float tolerance){
+                    float4 endcolor;
+                    endcolor.r = abs(color1.r-color2.r);
+                    endcolor.g = abs(color1.g-color2.g);
+                    endcolor.b = abs(color1.b-color2.b);
+
+                    float Total = endcolor.r+endcolor.g+endcolor.b;
+                    return (Total < tolerance) ? true : false;
                 }
 
                 sampler2D _MainTex;
@@ -104,17 +117,17 @@ Shader "Custom/particlePixelation"
                 {
                     float2 steppedUV = IN.uv.xy/IN.uv.w;
                     fixed4 beforeColor = _GrabTexture.Sample(point_clamp_sampler, steppedUV);
-                    float thing = IN.center.w / _ScreenParams.xy / _ScreenParams.w;
+                    float thing = (IN.center.w+clamp(IN.viewZ,-IN.center.w*0.5,0)) / _ScreenParams.xy / _ScreenParams.w;// + clamp(IN.viewZ,-1,1);
                     steppedUV /= thing;
                     steppedUV = round(steppedUV);
                     steppedUV *= thing;
                     fixed4 col = _GrabTexture.Sample(point_clamp_sampler, steppedUV);
                     fixed4 finalColor;// = (distance(_Color, col) < 1.3) ? _Color : col;
-                    if (distance(IN.custom1, col) < 0.1) {
+                    if (compareColors(IN.custom1, col, 0.01)) {
                         finalColor = IN.custom1;
                     }
                     else {
-                        finalColor = (distance(IN.custom1,beforeColor) < 0.1) ? col : beforeColor;
+                        finalColor = (compareColors(IN.custom1, beforeColor, 0.01)) ? col : beforeColor;
                     }
                     //finalColor = (distance(beforeColor, col) > 0.7) ? col : beforeColor;
                     return finalColor;

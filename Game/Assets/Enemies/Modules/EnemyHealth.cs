@@ -100,7 +100,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         healthBar?.Activate();
         if (stats.numericals["health"] <= 0)
         {
-            if (stats.conditionals["explosive"]){
+            if (stats.conditionals["explosive"] && Random.Range(0f,100f) <= stats.numericals["explosionChance"]){
                 PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position,Quaternion.identity);
             }
             Detach();

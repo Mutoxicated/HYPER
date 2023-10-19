@@ -55,7 +55,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7ae10846f8e414d41aa453f34fd9d359, type: 2}
+  - {fileID: 2100000, guid: 8d4fa4fd30e5e814c84cad8f052ce4e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -183,34 +183,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  - serializedVersion: 2
-    key0: {r: 1, g: 0.06252848, b: 0, a: 1}
-    key1: {r: 1, g: 0.12657765, b: 0, a: 0.30980393}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
   index: 0
   lineRenderer: {fileID: 0}
   trailRenderer: {fileID: 6338423137065065427}
@@ -233,9 +205,6 @@ MonoBehaviour:
   outlineEffectable: 0
   colorEffectable: 1
   matIndex: 0
-  hasSurfaceFX: 0
-  hasOutlineFX: 0
-  hasColorFX: 0
 --- !u!1 &8574461424792126625
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +347,7 @@ MonoBehaviour:
   stats: {fileID: 8025837559206595664}
   rb: {fileID: -1273607849755214524}
   speed: 17
+  randomnessScale: 0
   lerpSpeed: 2.56
   interval: {fileID: 650634795607507202}
   useInterval: 0
@@ -538,6 +508,41 @@ MonoBehaviour:
   entity: {fileID: 0}
   maxHealth: 0
   maxShields: 0
+  shieldhealth: 50
+  conditionals:
+    _serializedList:
+    - Key: explosive
+      Value: 0
+    - Key: surfaceFXED
+      Value: 0
+    - Key: outlineFXED
+      Value: 0
+    - Key: colorFXED
+      Value: 0
+  numericals:
+    _serializedList:
+    - Key: permaShields
+      Value: 0
+    - Key: moveSpeed
+      Value: 1
+    - Key: damage
+      Value: 1
+    - Key: hostility
+      Value: 1
+    - Key: rate
+      Value: 1
+    - Key: attackSpeed
+      Value: 1
+    - Key: shootSpeed
+      Value: 1
+    - Key: capacitor1
+      Value: 1
+    - Key: capacitor2
+      Value: 1
+    - Key: pierces
+      Value: 1
+    - Key: explosionChance
+      Value: 50
 --- !u!114 &650634795607507202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,21 +562,9 @@ MonoBehaviour:
   onInterval:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6228799189238817452}
-        m_TargetAssemblyTypeName: ManageLine, Assembly-CSharp
-        m_MethodName: ChangeColorIndex
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1015220819114483012}
         m_TargetAssemblyTypeName: Injector, Assembly-CSharp
-        m_MethodName: AddInvaderBacteria
+        m_MethodName: AddBacteria
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -634,6 +627,7 @@ MonoBehaviour:
   injectorsToInherit: []
   bacteriaPools: []
   allyBacterias: []
+  cachedInstances: []
 --- !u!114 &9054464047035731292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,7 +645,6 @@ MonoBehaviour:
   type: 0
   immunityAttackRate: 10
   immunityDamage: 0
-  foreignBacteria: []
 --- !u!114 &538836485567030275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,9 +663,6 @@ MonoBehaviour:
   outlineEffectable: 1
   colorEffectable: 1
   matIndex: 0
-  hasSurfaceFX: 0
-  hasOutlineFX: 0
-  hasColorFX: 0
 --- !u!1001 &6792086210579695196
 PrefabInstance:
   m_ObjectHideFlags: 0

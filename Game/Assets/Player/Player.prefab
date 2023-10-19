@@ -703,7 +703,7 @@ MonoBehaviour:
   airMultiplier: 0.436
   launchForce: 9.5
   maxJumps: 3
-  maxBounces: 2
+  maxBounces: 1
   disableLaunch: 0
   airdrag: 1.441
   launchInterval: {fileID: 8042353175293637678}
@@ -981,7 +981,6 @@ MonoBehaviour:
   type: 0
   immunityAttackRate: 0.5
   immunityDamage: 10
-  bacterias: []
 --- !u!114 &8108540779480057966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1166,17 +1165,17 @@ MonoBehaviour:
     m_Bits: 8192
   stopNaNPropagation: 0
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 2
   temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
+    jitterSpread: 0.501
+    sharpness: 1.42
+    stationaryBlending: 0.58
     motionBlending: 0.85
   subpixelMorphologicalAntialiasing:
-    quality: 1
+    quality: 2
   fastApproximateAntialiasing:
     fastMode: 0
-    keepAlpha: 0
+    keepAlpha: 1
   fog:
     enabled: 1
     excludeSkybox: 1

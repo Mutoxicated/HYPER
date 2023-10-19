@@ -21,6 +21,7 @@ public class OutlineEffect : MonoBehaviour {
     private class ListVector3 {
         public List<Vector3> data;
     }
+    [SerializeField] private Bacteria bac;
 
     [SerializeField,GradientUsage(true)]
     private Gradient gradient;
@@ -43,8 +44,6 @@ public class OutlineEffect : MonoBehaviour {
     [SerializeField, HideInInspector]
     private List<ListVector3> bakeValues = new List<ListVector3>();
     private Material outlineFillMaterial;
-
-    [SerializeField] private Bacteria bac;
     private List<Material> mats = new List<Material>();
     [ColorUsage(true,true)]
     private Color colorToRevert;

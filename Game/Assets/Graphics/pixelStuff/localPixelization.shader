@@ -11,7 +11,7 @@ Shader "Custom/localPixelization"
 
         SubShader
     {
-        Tags{ "Queue" = "AlphaTest" "IgnoreProjector" = "True" }
+        Tags{ "Queue" = "AlphaTest" }
         LOD 200
         Lighting Off
         Blend SrcAlpha OneMinusSrcAlpha
@@ -62,7 +62,6 @@ Shader "Custom/localPixelization"
         }
         ZWrite Off
         Cull Off
-        Blend Off
         GrabPass{ "_GrabTexture" }
         Pass
         {
