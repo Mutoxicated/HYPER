@@ -842,10 +842,10 @@ Also.. I regenerated the project files of the game, wanting to switch from Micro
 
 Lately I've been mostly not coding and actually caring about the game itself. The design of it. I realized there were some problems with its design and so these pas few days I was thinking of what to remove, keep and add. After making changes, I've decided I am not going to add anything else to the game unless absolutely necessary. I've been adding way too much stuff and now the game is getting bigger than what it was supposed to be. Yes it's way cooler than before now but the game has to be finished by the end of January. So if there comes up another design problem, I will try to fix it by removing or modifying things.
 
-Anyway here's an update on the document file of the game: will add soon
+Anyway here's an update on the document file of the game: [HYPER Doc.pdf](https://github.com/Mutoxicated/HYPER/files/13046837/HYPER.Doc.pdf)
 
 ## Day 132
 
-Added effects for Merry and Flash bacteria
-Added a numerical to stats that defines the chance of an explosion happening upon enemy death
-Fixed some weird transparency and particle pixelation issues
+Added effects for Merry and Flash bacteria. 
+Added a numerical to stats that defines the chance of an explosion happening upon enemy death. 
+Fixed some weird transparency and particle pixelation issues. 
