@@ -8,6 +8,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private bool inheritInjector;
     [SerializeField, Tooltip("Used when no object pool is used.")] private GameObject bulletPrefab;
     [SerializeField] private Injector injector;
+    [SerializeField] private Transform transformRef;
 
     private bool instantiated;
     private GameObject instance;
@@ -16,7 +17,7 @@ public class Shoot : MonoBehaviour
     {
         if (objectPool != null)
         {
-            instance = objectPool.UseObject(transform.position,transform.rotation, out instantiated);
+            instance = objectPool.UseObject(transformRef.position,transformRef.rotation, out instantiated);
             if (instantiated){
                 var rts = instance.GetComponent<ReturnToSender>();
                 rts.localPool = objectPool;
@@ -28,7 +29,7 @@ public class Shoot : MonoBehaviour
         }
         else
         {
-            instance = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            instance = Instantiate(bulletPrefab, transformRef.position, transformRef.rotation);
             //instance.SetActive(true);
             if (inheritInjector){
                 instance.GetComponent<Injector>()?.InheritInjector(injector);

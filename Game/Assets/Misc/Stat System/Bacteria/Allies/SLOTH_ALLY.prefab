@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8687615897629355181}
   - component: {fileID: 9141995045049036275}
+  - component: {fileID: -7799115068104227424}
+  - component: {fileID: 599589584231789556}
+  - component: {fileID: 7454312886839565532}
+  - component: {fileID: -6474754816016796935}
   m_Layer: 0
   m_Name: SLOTH_ALLY
   m_TagString: Untagged
@@ -46,8 +50,136 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 10
   immunitySide: 0
-  bacChar: 0
+  character: 0
+  injectorCachedFrom: {fileID: 0}
+  _particleSys: {fileID: 0}
   interval: {fileID: 0}
   strength: 0.9
   damage: 0
   lifeSpan: 100
+  immuneSystem: {fileID: 0}
+  population: 1
+--- !u!114 &-7799115068104227424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819410969349945196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53566428069b509439c842df6644c5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 0}
+  sfx: {fileID: 0}
+  ofx: {fileID: 0}
+  cfx: {fileID: 0}
+--- !u!114 &599589584231789556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819410969349945196}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88f502a33779864bbcf10cbee221d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 0}
+  sineWave: {fileID: 0}
+  speed: 0
+  randomizeDirection: 0
+  direction: {x: 0, y: 0}
+  oscilatorMultiplier: {x: 0, y: 0}
+  textureMultiplier: {x: 0, y: 0}
+--- !u!114 &7454312886839565532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819410969349945196}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f173bd27b0ab5c499eeb3aa50586abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 0}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  interval: {fileID: 0}
+  outlineWidth: 2
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &-6474754816016796935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819410969349945196}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912afcd32ce9e1741b009a0f0b8f3b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 0}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  interval: {fileID: 0}

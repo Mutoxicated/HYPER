@@ -299,11 +299,15 @@ public class Movement : MonoBehaviour
     // used to be this comment said something really stupid
     private void FixedUpdate() => Move();
 
-    private void OnTriggerEnter(){
+    private void OnTriggerEnter(Collider coll){
+        if (coll.gameObject.tag == "Enemy")
+            return;
         readyToJump = true;
     }
 
-    private void OnTriggerStay(){
+    private void OnTriggerStay(Collider coll){
+        if (coll.gameObject.tag == "Enemy")
+            return;
         readyToJump = true;
     }
 
@@ -318,7 +322,8 @@ public class Movement : MonoBehaviour
         {
             currentJumps = 0;
         }
-        airborne = false;
+        if (collision.gameObject.tag != "Enemy")
+            airborne = false;
         launchInterval.ResetEarly();
         if (movementState == MovementState.SLAMMING)
         {
@@ -350,7 +355,8 @@ public class Movement : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         point = collision.GetContact(0);
-        airborne = false;
+        if (collision.gameObject.tag != "Enemy")
+            airborne = false;
         if (movementState == MovementState.LOCKED)
         {
             lockInterval.ResetEarly();

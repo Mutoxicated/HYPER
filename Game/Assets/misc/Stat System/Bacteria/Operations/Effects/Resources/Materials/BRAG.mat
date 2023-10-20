@@ -7,14 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pixelParticle
-  m_Shader: {fileID: 4800000, guid: 680ae4b80c6a0bf4f86fa5c49525b665, type: 3}
+  m_Name: BRAG
+  m_Shader: {fileID: 4800000, guid: f7ce216398a93654eb161ee8244d9dd0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3800
+  m_CustomRenderQueue: 3100
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -48,6 +48,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTexture1:
+        m_Texture: {fileID: 2800000, guid: eaef449b2401c554989188a65dea4c7b, type: 3}
+        m_Scale: {x: 0.96, y: 0.77}
+        m_Offset: {x: -0.12, y: 0}
+    - _NoiseTexture2:
+        m_Texture: {fileID: 2800000, guid: d87107e063a9d6440aa8888e3c9db71d, type: 3}
+        m_Scale: {x: 0.91, y: 1.01}
+        m_Offset: {x: 0.09, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -58,18 +66,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Brightness: -0.043
     - _BumpScale: 1
+    - _ClampAlphaValue: 0.87
+    - _Contrast: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Hue: 0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PixelSize: 10
+    - _Saturation: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -78,4 +90,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MainColor: {r: 1.1686275, g: 0.007843138, b: 0.023529412, a: 1}
+    - _NoiseColor: {r: 1, g: 0.6968627, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -1000,6 +1000,16 @@ MonoBehaviour:
   maxHealth: 0
   maxShields: 4
   shieldhealth: 50
+  conditionals:
+    _serializedList:
+    - Key: explosive
+      Value: 0
+    - Key: surfaceFXED
+      Value: 0
+    - Key: outlineFXED
+      Value: 0
+    - Key: colorFXED
+      Value: 0
 --- !u!114 &4681041064830235763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1175,7 +1185,7 @@ MonoBehaviour:
     quality: 2
   fastApproximateAntialiasing:
     fastMode: 0
-    keepAlpha: 1
+    keepAlpha: 0
   fog:
     enabled: 1
     excludeSkybox: 1

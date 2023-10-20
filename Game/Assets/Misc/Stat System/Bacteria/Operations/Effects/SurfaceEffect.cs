@@ -18,6 +18,8 @@ public class SurfaceEffect : MonoBehaviour
     private Material mat;
 
     private void AddEffect(){
+        if (sineWave != null)
+            sineWave.enabled = true;
         bac.immuneSystem.stats.conditionals["surfaceFXED"] = true;
         foreach(var part in bac.immuneSystem.injector.bodyParts){
             if (!part.surfaceEffectable)
@@ -72,6 +74,8 @@ public class SurfaceEffect : MonoBehaviour
     }
 
     private void OnDisable(){
+        if (sineWave != null)
+            sineWave.enabled = false;
         RevertTextureOffset();
         bac.immuneSystem.stats.conditionals["surfaceFXED"] = false;
         for (int i = 0; i < bac.immuneSystem.injector.bodyParts.Count; i++){

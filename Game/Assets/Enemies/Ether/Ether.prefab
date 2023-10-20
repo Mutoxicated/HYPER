@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4095709657238618873}
   - component: {fileID: 5686175632287108662}
+  - component: {fileID: 1097695226009025837}
   m_Layer: 0
   m_Name: missilePool
   m_TagString: Untagged
@@ -46,6 +47,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPublic: 0
   prefab: {fileID: 5725198740932932340, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
+--- !u!114 &1097695226009025837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246505309136546374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d690bfb50e7204da1c3461d76aab03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPool: {fileID: 5686175632287108662}
+  inheritInjector: 1
+  bulletPrefab: {fileID: 0}
+  injector: {fileID: 1595523739458197103}
+  transformRef: {fileID: 2924701148933708670}
 --- !u!1 &2029483553560196246
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07accf3a4229a749a0b613834c47ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 250674576862873568}
+  stats: {fileID: 3872225859729783973}
   immuneSystem: {fileID: 1358221422168894942}
   OnDeath:
     m_PersistentCalls:
@@ -385,14 +403,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 3872225859729783973}
   specialTag: Untagged
   chance: 100
   interval: 4
   onInterval:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2187372927416398556}
+      - m_Target: {fileID: 1097695226009025837}
         m_TargetAssemblyTypeName: Shoot, Assembly-CSharp
         m_MethodName: ShootPrefab
         m_Mode: 1
@@ -468,9 +486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 250674576862873568}
+  stats: {fileID: 3872225859729783973}
   injector: {fileID: 1595523739458197103}
-  type: 0
+  type: 1
   immunityAttackRate: 1
   immunityDamage: 10
 --- !u!114 &1595523739458197103
@@ -495,7 +513,7 @@ MonoBehaviour:
   injectorToInheritFrom: {fileID: 0}
   injectorsToInherit: []
   bacteriaPools:
-  - MERRY_ALLY
+  - ERUPTION_ALLY
   allyBacterias: []
   cachedInstances: []
 --- !u!114 &6866425869919819366
@@ -526,9 +544,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2924701148933708670}
   - component: {fileID: 6222126388342686547}
+  - component: {fileID: 3872225859729783973}
   - component: {fileID: 5495246450369773185}
-  - component: {fileID: 250674576862873568}
-  - component: {fileID: 2187372927416398556}
   m_Layer: 0
   m_Name: Holder
   m_TagString: Untagged
@@ -569,22 +586,7 @@ MonoBehaviour:
   distanceCheck: 5
   minY: 2
   maxY: 24
---- !u!114 &5495246450369773185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3301143575855750706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ec49d9c4ce02264d9b41063ae7d62c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 250674576862873568}
-  axisMultiplier: {x: 1, y: 1, z: 1}
-  lerpSpeed: 6
---- !u!114 &250674576862873568
+--- !u!114 &3872225859729783973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -596,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 0}
+  explosionPrefab: {fileID: 1406129636473073463, guid: 204a045193b337e4c92614a8c2dcb0ad, type: 3}
   VFXScale: 1
   objective: 0
   entity: {fileID: 0}
@@ -613,31 +615,7 @@ MonoBehaviour:
       Value: 0
     - Key: colorFXED
       Value: 0
-  numericals:
-    _serializedList:
-    - Key: permaShields
-      Value: 0
-    - Key: moveSpeed
-      Value: 1
-    - Key: damage
-      Value: 1
-    - Key: hostility
-      Value: 1
-    - Key: rate
-      Value: 1
-    - Key: attackSpeed
-      Value: 1
-    - Key: shootSpeed
-      Value: 1
-    - Key: capacitor1
-      Value: 1
-    - Key: capacitor2
-      Value: 1
-    - Key: pierces
-      Value: 1
-    - Key: explosionChance
-      Value: 50
---- !u!114 &2187372927416398556
+--- !u!114 &5495246450369773185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -646,13 +624,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3301143575855750706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32d690bfb50e7204da1c3461d76aab03, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ec49d9c4ce02264d9b41063ae7d62c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 5686175632287108662}
-  inheritInjector: 1
-  bulletPrefab: {fileID: 0}
-  injector: {fileID: 1595523739458197103}
+  stats: {fileID: 3872225859729783973}
+  axisMultiplier: {x: 1, y: 1, z: 1}
+  lerpSpeed: 6
 --- !u!1 &5419551051448238176
 GameObject:
   m_ObjectHideFlags: 0

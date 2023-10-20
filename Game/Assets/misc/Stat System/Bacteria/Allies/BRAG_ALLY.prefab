@@ -10,13 +10,19 @@ GameObject:
   m_Component:
   - component: {fileID: 3114140308920952880}
   - component: {fileID: 5780903243261917723}
+  - component: {fileID: 8233099143257546949}
+  - component: {fileID: 6740431845265105007}
+  - component: {fileID: 883320670080584622}
+  - component: {fileID: -674733925442957530}
+  - component: {fileID: 3656464342087673953}
+  - component: {fileID: 1136504825748959190}
   m_Layer: 0
   m_Name: BRAG_ALLY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3114140308920952880
 Transform:
   m_ObjectHideFlags: 0
@@ -46,9 +52,174 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 13
   immunitySide: 0
-  bacChar: 1
+  character: 1
+  injectorCachedFrom: {fileID: 0}
+  _particleSys: {fileID: 0}
   interval: {fileID: 0}
   strength: 0.452
   damage: 0
   lifeSpan: 100
   immuneSystem: {fileID: 0}
+  population: 1
+--- !u!114 &8233099143257546949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255408049445001169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53566428069b509439c842df6644c5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 5780903243261917723}
+  sfx: {fileID: 6740431845265105007}
+  ofx: {fileID: -674733925442957530}
+  cfx: {fileID: 3656464342087673953}
+--- !u!114 &6740431845265105007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255408049445001169}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88f502a33779864bbcf10cbee221d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 5780903243261917723}
+  sineWave: {fileID: 883320670080584622}
+  speed: 0.04
+  randomizeDirection: 1
+  direction: {x: 0, y: 0}
+  oscilatorMultiplier: {x: 0.5, y: -0.5}
+  textureMultiplier: {x: -0.2, y: 0.1}
+--- !u!114 &883320670080584622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255408049445001169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e72878d21f0f74ba4a761eed1a8873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 2
+  t: 0
+--- !u!114 &-674733925442957530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255408049445001169}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f173bd27b0ab5c499eeb3aa50586abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 5780903243261917723}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 0, a: 1}
+    key2: {r: 1, g: 0, b: 0, a: 0}
+    key3: {r: 1, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 33413
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  interval: {fileID: 1136504825748959190}
+  outlineWidth: 2
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &3656464342087673953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255408049445001169}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912afcd32ce9e1741b009a0f0b8f3b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 5780903243261917723}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 0, a: 1}
+    key2: {r: 1, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 33413
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  interval: {fileID: 1136504825748959190}
+--- !u!114 &1136504825748959190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255408049445001169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  specialTag: Untagged
+  chance: 100
+  interval: 2
+  onInterval:
+    m_PersistentCalls:
+      m_Calls: []
+  destroyUponEvent: 0
+  recycleUponEvent: 0
+  t: 0
+  time: 0
+  isPlaying: 0

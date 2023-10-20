@@ -52,12 +52,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   immunitySide: 0
-  bacChar: 0
+  character: 0
+  injectorCachedFrom: {fileID: 0}
+  _particleSys: {fileID: 0}
   interval: {fileID: 0}
   strength: 0.828
   damage: 6
   lifeSpan: 100
   immuneSystem: {fileID: 0}
+  population: 1
 --- !u!114 &6639743145081419546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,13 +84,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966649851776593610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
-  specialTag: Untagged
+  specialTag: fx
   chance: 100
   interval: 1.5
   onInterval:
@@ -110,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f173bd27b0ab5c499eeb3aa50586abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bac: {fileID: 6042879126030446296}
   gradient:
     serializedVersion: 2
     key0: {r: 0, g: 2.6226926, b: 3.2111173, a: 1}
@@ -141,10 +145,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   interval: {fileID: -5631225654319521222}
   outlineWidth: 2
-  precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
-  bac: {fileID: 6042879126030446296}
 --- !u!114 &402500383251494373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +154,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966649851776593610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04e72878d21f0f74ba4a761eed1a8873, type: 3}
   m_Name: 

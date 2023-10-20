@@ -850,3 +850,14 @@ Changes:
 * Added effects for Merry and Flash bacteria. 
 * Added a numerical to stats that defines the chance of an explosion happening upon enemy death. 
 * Fixed some weird transparency and particle pixelation issues. 
+
+## Day 133
+
+Changes:
+* Added effects for Rain, Eruption and Brag.
+* Fixed bug with missile rotating weirdly after spawning again.
+* Added a serialized dictionary asset from unity assets which lets me edit dictionaries from the unity editor.
+
+Also, I forgot to show the custom unty splash screen I talked about in the 'Day 114 thru 131' log. Here's the video: https://youtu.be/21vBgwOLD14?si=TUifF-L6HOlv-XQj
+
+Would like to say that I feel like the game is pretty much 95% thought out, so I'M just implementing stuff now :]

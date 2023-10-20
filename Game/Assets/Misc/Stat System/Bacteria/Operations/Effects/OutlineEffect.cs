@@ -32,12 +32,6 @@ public class OutlineEffect : MonoBehaviour {
     [SerializeField, Range(0f, 20f),Tooltip("For line thickness consistency between this and wireframes, 1.05 is recommended.")]
     private float outlineWidth = 2f;
 
-    [Header("Optional")]
-
-    [SerializeField, Tooltip("Precompute enabled: Per-vertex calculations are performed in the editor and serialized with the object. "
-    + "Precompute disabled: Per-vertex calculations are performed at runtime in Awake(). This may cause a pause for large meshes.")]
-    private bool precomputeOutline;
-
     [SerializeField, HideInInspector]
     private List<Mesh> bakeKeys = new List<Mesh>();
 
@@ -45,11 +39,11 @@ public class OutlineEffect : MonoBehaviour {
     private List<ListVector3> bakeValues = new List<ListVector3>();
     private Material outlineFillMaterial;
     private List<Material> mats = new List<Material>();
-    [ColorUsage(true,true)]
-    private Color colorToRevert;
     private float t;
 
     private void AddEffect(){
+        if (interval != null)
+            interval.enabled = true;
         bac.immuneSystem.stats.conditionals["outlineFXED"] = true;
         foreach(var part in bac.immuneSystem.injector.bodyParts){
             if (!part.outlineEffectable)
@@ -93,6 +87,8 @@ public class OutlineEffect : MonoBehaviour {
     }
 
     void OnDisable() {
+        if (interval != null)
+            interval.enabled = false;
         bac.immuneSystem.stats.conditionals["outlineFXED"] = false;
         for (int i = 0; i < bac.immuneSystem.injector.bodyParts.Count; i++){
             if (!bac.immuneSystem.injector.bodyParts[i].outlineEffectable)

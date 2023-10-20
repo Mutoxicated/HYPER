@@ -31,6 +31,8 @@ public class ColorEffect : MonoBehaviour
     }
 
     private void AddEffect(){
+        if (interval != null)
+            interval.enabled = true;
         if (interval != null){
             color = gradient.Evaluate(interval.t);
         }else{
@@ -56,6 +58,8 @@ public class ColorEffect : MonoBehaviour
     }
 
     private void RevertEffect(){
+        if (interval != null)
+            interval.enabled = false;
         bac.immuneSystem.stats.conditionals["colorFXED"] = false;
         for (int i = 0; i < bac.immuneSystem.injector.bodyParts.Count; i++){
             if (!bac.immuneSystem.injector.bodyParts[i].colorEffectable)
@@ -68,7 +72,7 @@ public class ColorEffect : MonoBehaviour
             }
         }
         previousColor.Clear();
-        enabled = false;
+        enabled = false;//Will look into why i did this later
     }
     
     //Felt a lil goofy with these lambda expressions B)

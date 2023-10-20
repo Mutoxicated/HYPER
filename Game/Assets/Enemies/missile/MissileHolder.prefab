@@ -601,30 +601,6 @@ MonoBehaviour:
       Value: 0
     - Key: colorFXED
       Value: 0
-  numericals:
-    _serializedList:
-    - Key: permaShields
-      Value: 0
-    - Key: moveSpeed
-      Value: 1
-    - Key: damage
-      Value: 1
-    - Key: hostility
-      Value: 1
-    - Key: rate
-      Value: 1
-    - Key: attackSpeed
-      Value: 1
-    - Key: shootSpeed
-      Value: 1
-    - Key: capacitor1
-      Value: 1
-    - Key: capacitor2
-      Value: 1
-    - Key: pierces
-      Value: 1
-    - Key: explosionChance
-      Value: 100
 --- !u!114 &2509691084831940002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -906,11 +882,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1514012001865118724, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1514012001865118724, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1514012001865118724, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

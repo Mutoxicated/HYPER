@@ -10,6 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4614322480922537433}
   - component: {fileID: 6567204345551776436}
+  - component: {fileID: -2628572433567427335}
+  - component: {fileID: 6483263994247932869}
+  - component: {fileID: -3797889622259393397}
+  - component: {fileID: 6748590889857110735}
+  - component: {fileID: 4818040868480662976}
   m_Layer: 0
   m_Name: ERUPTION_ALLY
   m_TagString: Untagged
@@ -46,8 +51,160 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   immunitySide: 0
-  bacChar: 0
+  character: 1
+  injectorCachedFrom: {fileID: 0}
+  _particleSys: {fileID: 0}
   interval: {fileID: 0}
   strength: 0.9
   damage: 0
   lifeSpan: 100
+  immuneSystem: {fileID: 0}
+  population: 1
+--- !u!114 &-2628572433567427335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886232006831415044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53566428069b509439c842df6644c5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 6567204345551776436}
+  sfx: {fileID: 6483263994247932869}
+  ofx: {fileID: -3797889622259393397}
+  cfx: {fileID: 6748590889857110735}
+--- !u!114 &6483263994247932869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886232006831415044}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88f502a33779864bbcf10cbee221d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 6567204345551776436}
+  sineWave: {fileID: 0}
+  speed: 0.007
+  randomizeDirection: 1
+  direction: {x: 0, y: 0}
+  oscilatorMultiplier: {x: -0.1, y: 0}
+  textureMultiplier: {x: 0.5, y: 0.35}
+--- !u!114 &-3797889622259393397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886232006831415044}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f173bd27b0ab5c499eeb3aa50586abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 6567204345551776436}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.3018868, g: 0.12103952, b: 0.12103952, a: 1}
+    key1: {r: 0.65882355, g: 0.23529412, b: 0.23529412, a: 1}
+    key2: {r: 0.3019608, g: 0.12156863, b: 0.12156863, a: 0}
+    key3: {r: 0.3019608, g: 0.12156863, b: 0.12156863, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32380
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  interval: {fileID: 4818040868480662976}
+  outlineWidth: 1.5
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &6748590889857110735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886232006831415044}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912afcd32ce9e1741b009a0f0b8f3b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bac: {fileID: 6567204345551776436}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.3019608, g: 0.12156863, b: 0.12156863, a: 1}
+    key1: {r: 0.6603774, g: 0.23362409, b: 0.23362409, a: 1}
+    key2: {r: 0.3019608, g: 0.12156863, b: 0.12156863, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  interval: {fileID: 4818040868480662976}
+--- !u!114 &4818040868480662976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886232006831415044}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  specialTag: Untagged
+  chance: 100
+  interval: 0.9
+  onInterval:
+    m_PersistentCalls:
+      m_Calls: []
+  destroyUponEvent: 0
+  recycleUponEvent: 0
+  t: 0
+  time: 0
+  isPlaying: 0

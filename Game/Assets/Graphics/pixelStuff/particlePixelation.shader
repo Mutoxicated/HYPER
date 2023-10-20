@@ -13,6 +13,7 @@ Shader "Custom/particlePixelation"
             LOD 200
             Lighting Off
             Blend SrcAlpha OneMinusSrcAlpha
+            ZTest LEqual
             ZWrite On
             Cull Back
 
@@ -117,7 +118,7 @@ Shader "Custom/particlePixelation"
                 {
                     float2 steppedUV = IN.uv.xy/IN.uv.w;
                     fixed4 beforeColor = _GrabTexture.Sample(point_clamp_sampler, steppedUV);
-                    float thing = (IN.center.w+clamp(IN.viewZ,-IN.center.w*0.5,0)) / _ScreenParams.xy / _ScreenParams.w;// + clamp(IN.viewZ,-1,1);
+                    float thing = (IN.center.w) / _ScreenParams.xy / _ScreenParams.w;// + clamp(IN.viewZ,-1,1);
                     steppedUV /= thing;
                     steppedUV = round(steppedUV);
                     steppedUV *= thing;
