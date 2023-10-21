@@ -63,7 +63,7 @@ MonoBehaviour:
   inheritInjector: 1
   bulletPrefab: {fileID: 0}
   injector: {fileID: 1595523739458197103}
-  transformRef: {fileID: 2924701148933708670}
+  transformRef: {fileID: 4095709657238618873}
 --- !u!1 &2029483553560196246
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 3872225859729783973}
   injector: {fileID: 1595523739458197103}
-  type: 1
+  type: 0
   immunityAttackRate: 1
   immunityDamage: 10
 --- !u!114 &1595523739458197103
@@ -513,7 +513,7 @@ MonoBehaviour:
   injectorToInheritFrom: {fileID: 0}
   injectorsToInherit: []
   bacteriaPools:
-  - ERUPTION_ALLY
+  - POISON_ALLY
   allyBacterias: []
   cachedInstances: []
 --- !u!114 &6866425869919819366
@@ -543,7 +543,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2924701148933708670}
-  - component: {fileID: 6222126388342686547}
   - component: {fileID: 3872225859729783973}
   - component: {fileID: 5495246450369773185}
   m_Layer: 0
@@ -570,22 +569,6 @@ Transform:
   m_Father: {fileID: 2982936731220533164}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6222126388342686547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3301143575855750706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c0871d566f8731428cce538d6f0e313, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yCheck: 0
-  distanceCheck: 5
-  minY: 2
-  maxY: 24
 --- !u!114 &3872225859729783973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,6 +598,8 @@ MonoBehaviour:
       Value: 0
     - Key: colorFXED
       Value: 0
+    - Key: stunned
+      Value: 0
 --- !u!114 &5495246450369773185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,7 +613,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 3872225859729783973}
-  axisMultiplier: {x: 1, y: 1, z: 1}
   lerpSpeed: 6
 --- !u!1 &5419551051448238176
 GameObject:
@@ -639,6 +623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2982936731220533164}
+  - component: {fileID: 8724980734261938019}
   m_Layer: 0
   m_Name: Ether
   m_TagString: Untagged
@@ -664,6 +649,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8724980734261938019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5419551051448238176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0871d566f8731428cce538d6f0e313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yCheck: 0
+  distanceCheck: 5
+  minY: 2
+  maxY: 24
 --- !u!1001 &69499260181313728
 PrefabInstance:
   m_ObjectHideFlags: 0

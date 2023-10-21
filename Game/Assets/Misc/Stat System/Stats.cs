@@ -23,7 +23,8 @@ public class Stats : MonoBehaviour
         {"explosive", false},
         {"surfaceFXED", false},
         {"outlineFXED", false},
-        {"colorFXED", false}
+        {"colorFXED", false},
+        {"stunned",false}
     };
     [SerializedDictionary("stat name","num")]
     public Dictionary<string, float> numericals = new Dictionary<string, float>(){
@@ -70,7 +71,7 @@ public class Stats : MonoBehaviour
             objective = DeathFor.PLAYER;
             return;
         }
-        if (objective == DeathFor.PLAYER){
+        if (objective == DeathFor.PLAYER && Difficulty.player == null){
             objective = DeathFor.ENEMIES;
         }
     }

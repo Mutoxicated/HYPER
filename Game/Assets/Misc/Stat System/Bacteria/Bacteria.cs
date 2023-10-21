@@ -55,6 +55,12 @@ public class Bacteria : MonoBehaviour
     public delegate void Subcriber();
     public List<Subcriber> subcribers = new List<Subcriber>();
 
+    private EffectManager fxm;
+
+    private void Awake(){
+        fxm = GetComponent<EffectManager>();
+    }
+
     private void OnEnable()
     {
         ChangeEmission();
@@ -72,6 +78,9 @@ public class Bacteria : MonoBehaviour
         }
         CheckInjector();
         immuneSystem.NotifySystem(this);// telling the immune system that we are here, and we are going to kill you, or help you!
+        if (fxm != null){
+            fxm.SetEffect();
+        }
     }
 
     private void ChangeEmission(){

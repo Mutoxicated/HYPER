@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum DeathFor {
@@ -10,17 +11,29 @@ public enum DeathFor {
 public class LookTo : MonoBehaviour
 {
     [SerializeField] private Stats stats;
-    [SerializeField] private Vector3 axisMultiplier = new Vector3(1f, 1f, 1f);
     [SerializeField] private float lerpSpeed;
     private Quaternion lookRotation;
     private Vector3 toEntity = Vector3.zero;
 
-    private void Start(){
+    private void OnEnable(){
         stats.FindEntity();
+        //Debug.Log("enabled on: "+gameObject.name);
+        GetRotation();
+        transform.rotation = lookRotation;
+    }
+
+    private void GetRotation(){
+        if (stats.entity == null){
+            stats.DecideObjective();
+            stats.FindEntity();
+        }
+        toEntity = stats.entity.position - transform.position;
+        lookRotation = Quaternion.LookRotation(toEntity,Vector3.up);
     }
 
     public void ResetLocalRotation(){
         transform.localRotation = Quaternion.identity;
+        lookRotation = Quaternion.identity;
     }
 
     public void ChangeLerpSpeed(float speed){
@@ -29,16 +42,7 @@ public class LookTo : MonoBehaviour
 
     private void Update()
     {
-        if (stats.entity == null){
-            stats.DecideObjective();
-            stats.FindEntity();
-        }
-        toEntity = stats.entity.position - transform.position;
-        toEntity.x *= axisMultiplier.x;
-        toEntity.y *= axisMultiplier.y;
-        toEntity.z *= axisMultiplier.z;
-        lookRotation = Quaternion.LookRotation(toEntity,Vector3.up);
-        //Debug.Log(toEntity);
+        GetRotation();
         transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * lerpSpeed);
     }
 }

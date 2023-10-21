@@ -861,3 +861,20 @@ Changes:
 Also, I forgot to show the custom unty splash screen I talked about in the 'Day 114 thru 131' log. Here's the video: https://youtu.be/21vBgwOLD14?si=TUifF-L6HOlv-XQj
 
 Would like to say that I feel like the game is pretty much 95% thought out, so I'M just implementing stuff now :]
+
+## Day 134
+
+Changes:
+* Added effects for Flabbergast and Radiation.
+* Changed the way the Effect Manager sets the effects.
+* Tried fixing again missile rotating weirdly after being parried (i think it's fixed now?).
+
+Some thoughts I had: 3D rogue-likes are kind of uncommon, which is a shame cuz it can be expanded sooo much. My game wont only be unique in that sense, but also the retro wireframe and pixel graphics I think will make it stand out more than the usual indie games that are coming out. I have found this game called Cyber Arena (i think?) and it does have very similar graphics with the wireframe and all, but for that game it's kinda obvious that it's not actual on-the-fly mesh-generated wireframe, it looks like it's an image texture. Not saying that it doesn't look good, but it doesn't look like the real wireframe graphics I personally know and love. Still a very visually cool game! 
+
+By far my favorite creation is the pixelation shader, which pixelizes any mesh and it's just such a cool effect. I use it mostly for particles and I feel like it makes the graphics more cohesive and distincts the enemies from the particles. 
+
+On the topic of code optimization, I've been programming for like 3 years but only recently have I started learning about how to design. This is because of the increasing scale of my projects. I realized design is an important part of optimization as well as flexibility. There is a trade-off when it comes to optimization and flexibility, but usually it doesn't mean sacrificing a ton of performance for some adaptibility. I've also come to realize premature optimization is a stupid idea, mostly. I say mostly because sometimes you might think of a way to implement something, but you might realize later that implementing it like that would be a stupid idea because of X and Y and Z. Usually though you don't need to worry about something being unoptimized until you're done implementing that thing.
+
+In regards to game-making though, it is important to profile every once in a while. See what's taking the bulk of performance, change things, see if it helped.
+
+Anyway that's all I have to say :p

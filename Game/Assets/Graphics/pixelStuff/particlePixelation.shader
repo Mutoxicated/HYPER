@@ -53,10 +53,10 @@ Shader "Custom/particlePixelation"
 
                 ENDCG
             }
-            GrabPass{ "_GrabTexture" }
+            GrabPass{ "_GrabTransparentTexture" }
             ZWrite On
             Cull Back
-            Blend Off
+            Blend SrcAlpha OneMinusSrcAlpha
             Pass
             {
                 CGPROGRAM
@@ -106,23 +106,23 @@ Shader "Custom/particlePixelation"
                     endcolor.g = abs(color1.g-color2.g);
                     endcolor.b = abs(color1.b-color2.b);
 
-                    float Total = endcolor.r+endcolor.g+endcolor.b;
-                    return (Total < tolerance) ? true : false;
+                    float average = (endcolor.r+endcolor.g+endcolor.b)/3;
+                    return (average < tolerance) ? true : false;
                 }
 
                 sampler2D _MainTex;
-                Texture2D _GrabTexture;
+                Texture2D _GrabTransparentTexture;
                 SamplerState point_clamp_sampler;
 
                 float4 frag(v2f IN) : SV_Target
                 {
                     float2 steppedUV = IN.uv.xy/IN.uv.w;
-                    fixed4 beforeColor = _GrabTexture.Sample(point_clamp_sampler, steppedUV);
+                    fixed4 beforeColor = _GrabTransparentTexture.Sample(point_clamp_sampler, steppedUV);
                     float thing = (IN.center.w) / _ScreenParams.xy / _ScreenParams.w;// + clamp(IN.viewZ,-1,1);
                     steppedUV /= thing;
                     steppedUV = round(steppedUV);
                     steppedUV *= thing;
-                    fixed4 col = _GrabTexture.Sample(point_clamp_sampler, steppedUV);
+                    fixed4 col = _GrabTransparentTexture.Sample(point_clamp_sampler, steppedUV);
                     fixed4 finalColor;// = (distance(_Color, col) < 1.3) ? _Color : col;
                     if (compareColors(IN.custom1, col, 0.01)) {
                         finalColor = IN.custom1;

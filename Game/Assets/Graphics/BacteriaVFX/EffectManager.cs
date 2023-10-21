@@ -10,26 +10,36 @@ public class EffectManager : MonoBehaviour
     public OutlineEffect ofx;
     public ColorEffect cfx;
 
-    private void OnEnable(){
-        Invoke("SetEffect",0.01f);
-    }
+    private int colorEffectableAmount;
+    private int outlineEffectableAmount;
+    private int surfaceEffectableAmount;
 
-    private void SetEffect(){
-        foreach (var allyBac in bac.immuneSystem.injector.allyBacterias){
-            if (bac.gameObject == allyBac.gameObject){//put gameObject cuz maybe its more reliable
-                if (!bac.immuneSystem.stats.conditionals["surfaceFXED"]){
-                    sfx.enabled = true;
-                    return;
-                }
-                if (!bac.immuneSystem.stats.conditionals["outlineFXED"]){
-                    ofx.enabled = true;
-                    return;
-                }
-                if (!bac.immuneSystem.stats.conditionals["colorFXED"]) {
-                    cfx.enabled = true;
-                    return;
-                }
-            }
+    public void SetEffect(){
+        if (bac.immuneSystem.injector.bodyParts.Count != 0){
+            foreach (BodyPart bodyPart in bac.immuneSystem.injector.bodyParts){
+            if (bodyPart.colorEffectable)
+                colorEffectableAmount++;
+            if (bodyPart.outlineEffectable)
+                outlineEffectableAmount++;
+            if (bodyPart.surfaceEffectable)
+                surfaceEffectableAmount++;
         }
+        Debug.Log(transform.parent.gameObject.name+ ", color: "+colorEffectableAmount);
+        Debug.Log(transform.parent.gameObject.name+ ", outline: "+outlineEffectableAmount);
+        Debug.Log(transform.parent.gameObject.name+ ", surface: "+surfaceEffectableAmount);
+        }
+        if (surfaceEffectableAmount > 0 && !bac.immuneSystem.stats.conditionals["surfaceFXED"]){
+            sfx.enabled = true;
+        }else if (outlineEffectableAmount > 0 && !bac.immuneSystem.stats.conditionals["outlineFXED"]){
+            ofx.enabled = true;
+        }else if (colorEffectableAmount > 0 && !bac.immuneSystem.stats.conditionals["colorFXED"]) {
+            cfx.enabled = true;
+        }
+        outlineEffectableAmount = 0;
+        colorEffectableAmount = 0;
+        surfaceEffectableAmount = 0;
+        return;
+            
+        
     }
 }

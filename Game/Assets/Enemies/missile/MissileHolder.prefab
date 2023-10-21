@@ -437,7 +437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 4950074896820588784}
-  axisMultiplier: {x: 1, y: 1, z: 1}
   lerpSpeed: 4.3
 --- !u!114 &733829502088007527
 MonoBehaviour:
@@ -601,6 +600,8 @@ MonoBehaviour:
       Value: 0
     - Key: colorFXED
       Value: 0
+    - Key: stunned
+      Value: 0
 --- !u!114 &2509691084831940002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,7 +677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 4950074896820588784}
   injector: {fileID: 4998289807964076718}
-  type: 0
+  type: 1
   immunityAttackRate: 10
   immunityDamage: 0
 --- !u!114 &3218357075336804515
@@ -1058,7 +1059,7 @@ PrefabInstance:
       objectReference: {fileID: 5056932239192324564}
     - target: {fileID: 5735533248423383059, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.size
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5735533248423383059, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1102,7 +1103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5735533248423383059, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[10].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5735533248423383059, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1147,7 +1148,7 @@ PrefabInstance:
     - target: {fileID: 5735533248423383059, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[10].m_Target
       value: 
-      objectReference: {fileID: 8661184321652823757}
+      objectReference: {fileID: 9052958201153895948}
     - target: {fileID: 5735533248423383059, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1234,7 +1235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5735533248423383059, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[10].m_MethodName
-      value: ResetLocalRotation
+      value: ChangeColorIndex
       objectReference: {fileID: 0}
     - target: {fileID: 5735533248423383059, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1278,7 +1279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5735533248423383059, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[10].m_TargetAssemblyTypeName
-      value: LookTo, Assembly-CSharp
+      value: ManageLine, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5735533248423383059, guid: 4e856ef5e526d2a45bb44a7ea8150ff8, type: 3}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument

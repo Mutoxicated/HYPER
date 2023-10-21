@@ -96,10 +96,9 @@ Shader "Custom/SurfaceEffect"
                     startColor.rgb = _MainColor.rgb;
                     float4 hsbColor = applyHSBEffect(startColor);
                     float alpha = tex2D(_NoiseTexture1,i.uv2);
-                    hsbColor.a = alpha;
+                    hsbColor.a = alpha*_ClampAlphaValue;
                     float nAlpha = tex2D(_NoiseTexture2,i.uv3);
                     nAlpha = abs(1-nAlpha);
-                    nAlpha = clamp(nAlpha,0,_ClampAlphaValue);
                     hsbColor.a *= nAlpha;
                     return hsbColor;
                 }

@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3114140308920952880
 Transform:
   m_ObjectHideFlags: 0
@@ -46,9 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 16
   immunitySide: 1
-  bacChar: 0
+  character: 0
+  injectorCachedFrom: {fileID: 0}
+  _particleSys: {fileID: 0}
   interval: {fileID: 0}
   strength: 0.452
   damage: 0
   lifeSpan: 100
   immuneSystem: {fileID: 0}
+  population: 1

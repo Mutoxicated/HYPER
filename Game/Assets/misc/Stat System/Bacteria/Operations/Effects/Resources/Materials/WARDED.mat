@@ -68,7 +68,7 @@ Material:
     m_Floats:
     - _Brightness: 0.051
     - _BumpScale: 1
-    - _ClampAlphaValue: 0.059
+    - _ClampAlphaValue: 0.146
     - _Contrast: 1.01
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1

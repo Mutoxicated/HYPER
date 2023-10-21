@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2719641978018148024}
   - component: {fileID: -114032035375306639}
   - component: {fileID: 247851906672540497}
-  - component: {fileID: -4932981138656356897}
   m_Layer: 0
   m_Name: FREEZING
   m_TagString: Untagged
@@ -77,6 +76,7 @@ MonoBehaviour:
   interval: {fileID: 2282183439898115068}
   damage: 2
   hurtScreenIndex: 2
+  exponential: 0
 --- !u!114 &2282183439898115068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,7 +853,7 @@ ParticleSystem:
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 1
+    radiusThickness: 0
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: -90, y: 0, z: 0}
@@ -4946,16 +4946,3 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &-4932981138656356897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966649851776593610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebea571177a9c2044ae7b789f944d455, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ps: {fileID: 247851906672540497}

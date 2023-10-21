@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 3172604959414786521}
   - component: {fileID: 8425512537902254851}
   - component: {fileID: 7578914104062414587}
-  - component: {fileID: 3351172527406392283}
   m_Layer: 0
   m_Name: POISON
   m_TagString: Untagged
@@ -78,6 +77,7 @@ MonoBehaviour:
   interval: {fileID: 7725010946570082399}
   damage: 4.3
   hurtScreenIndex: 3
+  exponential: 0
 --- !u!114 &7725010946570082399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,11 +804,11 @@ ParticleSystem:
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 1
+    radiusThickness: 0
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: -90, y: 0, z: 0}
-    m_Scale: {x: 2, y: 2, z: 2}
+    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -5014,16 +5014,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3351172527406392283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7460336503375401415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebea571177a9c2044ae7b789f944d455, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ps: {fileID: 8425512537902254851}

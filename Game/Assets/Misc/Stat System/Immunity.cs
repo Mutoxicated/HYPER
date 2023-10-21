@@ -26,26 +26,41 @@ public class Immunity : MonoBehaviour
             stats = GetComponent<Stats>();
     }
 
+    private void CheckOrganicImmunities(Bacteria bac){
+        if (type == EntityType.NON_ORGANIC)
+            return;
+        if (bac.immunitySide == ImmunitySide.ALLY)
+            return;
+        switch (bac.type) {
+            case BacteriaType.RAIN:
+                bac.Instagib();
+                break;
+            // case BacteriaType.RADIATION:
+            //     bac.Instagib();
+            //     break;
+            default:
+                break;
+        }
+    }
+    private void CheckNonOrganicImmunities(Bacteria bac){
+        if (type == EntityType.ORGANIC)
+            return;
+        if (bac.immunitySide == ImmunitySide.ALLY)
+            return;
+        switch (bac.type) {
+            case BacteriaType.POISON:
+                bac.Instagib();
+                break;
+            default:
+                break;
+        }
+    }
+
     public void NotifySystem(Bacteria bacteria)
     {
         //Debug.Log("Notified of bacteria "+bacteria.name+ ".");
-        if (type == EntityType.ORGANIC)
-        {
-            if (bacteria.type == BacteriaType.RAIN)
-            {
-                bacteria.Instagib();
-                return;
-            }
-        }
-        else
-        {
-            if (bacteria.type == BacteriaType.POISON)
-            {
-                Debug.Log("whataaa?");
-                bacteria.Instagib();
-                return;
-            }
-        }
+        CheckOrganicImmunities(bacteria);
+        CheckNonOrganicImmunities(bacteria);
         bacterias.Add(bacteria.name,bacteria);
     }//a
 

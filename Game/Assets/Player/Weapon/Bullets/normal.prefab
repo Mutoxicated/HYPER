@@ -175,7 +175,7 @@ MonoBehaviour:
   injectorToInheritFrom: {fileID: 0}
   injectorsToInherit: []
   bacteriaPools:
-  - FREEZING_ALLY
+  - POISON_ALLY
   allyBacterias: []
   cachedInstances: []
 --- !u!114 &-4579046777407666088
@@ -195,7 +195,6 @@ MonoBehaviour:
   type: 1
   immunityAttackRate: 1
   immunityDamage: 10
-  bacterias: []
 --- !u!114 &-8766207620506296604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +213,19 @@ MonoBehaviour:
   entity: {fileID: 0}
   maxHealth: 0
   maxShields: 0
+  shieldhealth: 50
+  conditionals:
+    _serializedList:
+    - Key: explosive
+      Value: 0
+    - Key: surfaceFXED
+      Value: 0
+    - Key: outlineFXED
+      Value: 0
+    - Key: colorFXED
+      Value: 0
+    - Key: stunned
+      Value: 0
 --- !u!114 &8878825627043202888
 MonoBehaviour:
   m_ObjectHideFlags: 0

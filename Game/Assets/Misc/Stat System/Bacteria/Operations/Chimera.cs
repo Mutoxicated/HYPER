@@ -2,38 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chimera : MonoBehaviour
-{
-    private ChimeraEffect chimera;
-    public Bacteria bacteria;
-    public ParticleSystem _particleSystem;
-    [HideInInspector] public bool atPlayer;
-
-    private void OnEnable()
+namespace BacteriaOperations {
+    public class Chimera : MonoBehaviour
     {
-        if (transform.parent.gameObject.tag != "Player"){
-            _particleSystem.Play();
-            return;
-        }
-        atPlayer = true;
-        _particleSystem.Stop();
-        if (chimera == null)
+        private ChimeraEffect chimera;
+        public Bacteria bacteria;
+        public ParticleSystem _particleSystem;
+        [HideInInspector] public bool atPlayer;
+
+        private void OnEnable()
         {
-            chimera = GameObject.FindWithTag("MainCamera").GetComponent<ChimeraEffect>();
+            if (transform.parent.gameObject.tag != "Player"){
+                _particleSystem.Play();
+                return;
+            }
+            atPlayer = true;
+            _particleSystem.Stop();
+            if (chimera == null)
+            {
+                chimera = GameObject.FindWithTag("MainCamera").GetComponent<ChimeraEffect>();
+            }
+            chimera.enabled = true;
         }
-        chimera.enabled = true;
-    }
 
-    public void EndChimera()
-    {
-        if (transform.parent.gameObject.tag != "Player"){
-            return;
+        public void EndChimera()
+        {
+            if (transform.parent.gameObject.tag != "Player"){
+                return;
+            }
+            chimera.EndEffect();
         }
-        chimera.EndEffect();
-    }
 
-    private void OnDisable()
-    {
-        EndChimera();
+        private void OnDisable()
+        {
+            EndChimera();
+        }
     }
 }
