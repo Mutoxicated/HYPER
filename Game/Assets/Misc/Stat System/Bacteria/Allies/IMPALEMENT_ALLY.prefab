@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1047996073713845559}
   - component: {fileID: 3075829144486248129}
   - component: {fileID: 343688793495266072}
+  - component: {fileID: 2139711971516693205}
   m_Layer: 0
   m_Name: IMPALEMENT_ALLY
   m_TagString: Untagged
@@ -71,10 +72,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53566428069b509439c842df6644c5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
-  sfx: {fileID: 0}
-  ofx: {fileID: 0}
-  cfx: {fileID: 0}
+  bac: {fileID: 2565898024105899883}
+  sfx: {fileID: 1047996073713845559}
+  ofx: {fileID: 3075829144486248129}
+  cfx: {fileID: 343688793495266072}
 --- !u!114 &1047996073713845559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,13 +88,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88f502a33779864bbcf10cbee221d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
+  bac: {fileID: 2565898024105899883}
   sineWave: {fileID: 0}
-  speed: 0
-  randomizeDirection: 0
+  speed: 0.001
+  randomizeDirection: 1
   direction: {x: 0, y: 0}
-  oscilatorMultiplier: {x: 0, y: 0}
-  textureMultiplier: {x: 0, y: 0}
+  oscilatorMultiplier: {x: 0.7, y: 0.3}
+  textureMultiplier: {x: 0.4, y: 0}
 --- !u!114 &3075829144486248129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,22 +107,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f173bd27b0ab5c499eeb3aa50586abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
+  bac: {fileID: 2565898024105899883}
   gradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+    key1: {r: 1.0586044, g: 1.0586044, b: 1.0586044, a: 1}
+    key2: {r: 2, g: 2, b: 2, a: 0}
+    key3: {r: 1.0586044, g: 1.0586044, b: 1.0586044, a: 0}
+    key4: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
+    ctime1: 15610
+    ctime2: 32638
+    ctime3: 49925
+    ctime4: 65535
     ctime5: 0
     ctime6: 0
     ctime7: 0
@@ -134,10 +135,10 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 5
     m_NumAlphaKeys: 2
-  interval: {fileID: 0}
-  outlineWidth: 2
+  interval: {fileID: 2139711971516693205}
+  outlineWidth: 1.5
   bakeKeys: []
   bakeValues: []
 --- !u!114 &343688793495266072
@@ -152,10 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912afcd32ce9e1741b009a0f0b8f3b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
+  bac: {fileID: 2565898024105899883}
   gradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -183,3 +184,27 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   interval: {fileID: 0}
+--- !u!114 &2139711971516693205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033994764135133062}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  specialTag: fx
+  chance: 100
+  interval: 1
+  onInterval:
+    m_PersistentCalls:
+      m_Calls: []
+  destroyUponEvent: 0
+  recycleUponEvent: 0
+  t: 0
+  time: 0
+  isPlaying: 0

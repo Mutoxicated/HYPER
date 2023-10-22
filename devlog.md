@@ -878,3 +878,9 @@ On the topic of code optimization, I've been programming for like 3 years but on
 In regards to game-making though, it is important to profile every once in a while. See what's taking the bulk of performance, change things, see if it helped.
 
 Anyway that's all I have to say :p
+
+## Day 135
+
+Changes:
+* Added effects for Impalement, betray and sloth.
+* Made bacteria compoenent get the initial emission rate of its particle system so as to multiply it by the bacteria population.

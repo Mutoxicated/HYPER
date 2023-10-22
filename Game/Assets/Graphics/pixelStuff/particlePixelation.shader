@@ -9,12 +9,10 @@ Shader "Custom/particlePixelation"
 
         SubShader
         {
-            Tags{ "Queue" = "AlphaTest" }
+            Tags{ "Queue" = "Transparent+1000" }
             LOD 200
-            Lighting Off
             Blend SrcAlpha OneMinusSrcAlpha
-            ZTest LEqual
-            ZWrite On
+            ZWrite Off
             Cull Back
 
             Pass{
@@ -54,9 +52,9 @@ Shader "Custom/particlePixelation"
                 ENDCG
             }
             GrabPass{ "_GrabTransparentTexture" }
-            ZWrite On
+            ZWrite Off
             Cull Back
-            Blend SrcAlpha OneMinusSrcAlpha
+            Blend Off
             Pass
             {
                 CGPROGRAM
@@ -88,7 +86,7 @@ Shader "Custom/particlePixelation"
                     
                     float3 vert = v.pos - v.center.xyz;
 
-                    vert *= 2.5;
+                    vert *= 2;
 
                     v.pos = vert + v.center.xyz;
 

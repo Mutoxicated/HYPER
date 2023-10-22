@@ -56,9 +56,12 @@ public class Bacteria : MonoBehaviour
     public List<Subcriber> subcribers = new List<Subcriber>();
 
     private EffectManager fxm;
+    private float initEmissionRate;
 
     private void Awake(){
         fxm = GetComponent<EffectManager>();
+        var emission = _particleSys.emission;
+        initEmissionRate = emission.rateOverTime.constant;
     }
 
     private void OnEnable()
@@ -87,7 +90,7 @@ public class Bacteria : MonoBehaviour
         if (_particleSys == null)
             return;
         var emission = _particleSys.emission;
-        emission.rateOverTime = population;
+        emission.rateOverTime = initEmissionRate*population;
     }
 
     private void InvokeSubs(){

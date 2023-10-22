@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a1806d788193e43858e04efb547628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
+  bac: {fileID: 4018216249001480758}
   interval: {fileID: 6216714436957381709}
   damage: 0.4
   hurtScreenIndex: 1
@@ -782,7 +782,7 @@ ParticleSystem:
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 1
+    radiusThickness: 0
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: -90, y: 0, z: 0}
@@ -984,7 +984,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 1
       minScalar: 10
       maxCurve:
         serializedVersion: 2

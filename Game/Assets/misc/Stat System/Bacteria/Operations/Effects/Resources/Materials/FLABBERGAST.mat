@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IMPALEMENT
+  m_Name: FLABBERGAST
   m_Shader: {fileID: 4800000, guid: f7ce216398a93654eb161ee8244d9dd0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -49,13 +49,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture1:
-        m_Texture: {fileID: 2800000, guid: d87107e063a9d6440aa8888e3c9db71d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9e51231e0e5f811459d20a89b18dcb45, type: 3}
         m_Scale: {x: 0.61, y: 0.88}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture2:
-        m_Texture: {fileID: 2800000, guid: 0d34c74080a2bd64dbeb98047b784d16, type: 3}
-        m_Scale: {x: 0.74, y: 1}
-        m_Offset: {x: 0, y: -0.63}
+        m_Texture: {fileID: 2800000, guid: d87107e063a9d6440aa8888e3c9db71d, type: 3}
+        m_Scale: {x: 1.6, y: 1.89}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -68,7 +68,7 @@ Material:
     m_Floats:
     - _Brightness: 0.051
     - _BumpScale: 1
-    - _ClampAlphaValue: 0.068
+    - _ClampAlphaValue: 0.092
     - _Contrast: 0.726
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -90,6 +90,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 8.4253025, g: 8.439353, b: 8.240312, a: 1}
+    - _MainColor: {r: 8.316827, g: 8.590406, b: 4.7602887, a: 1}
     - _NoiseColor: {r: 1, g: 0.6968627, b: 0, a: 1}
   m_BuildTextureStacks: []
