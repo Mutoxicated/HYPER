@@ -884,3 +884,7 @@ Anyway that's all I have to say :p
 Changes:
 * Added effects for Impalement, betray and sloth.
 * Made bacteria compoenent get the initial emission rate of its particle system so as to multiply it by the bacteria population.
+
+## Day 136
+
+Did a few other things today. I'm thinking that the GoTo script will have to become more expansive and perhaps how it makes an entity move might rely on some more complicated factors. I might make a seperate script for that. Anyway. I only have a few bacteria to complete their effects and after that I will start actually working on the upgrades system to flesh out the whole structure. Then I will work on the Stage generation (the Arena) and THEN I will start making enemies :]
