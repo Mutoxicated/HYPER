@@ -74,7 +74,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bac: {fileID: 731524406507713424}
-  interval: {fileID: 7725010946570082399}
   damage: 4.3
   hurtScreenIndex: 3
   exponential: 0
@@ -4963,7 +4962,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 933b2191005861d41a89046cef293ea8, type: 2}
+  - {fileID: 2100000, guid: c39fa322abf5b1147bcf92c6a666bd06, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

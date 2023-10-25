@@ -6,7 +6,6 @@ namespace BacteriaOperations{
     public class Damage : MonoBehaviour
     {
         public Bacteria bac;
-        public OnInterval interval;
         public float damage;
         public int hurtScreenIndex;
         [SerializeField] private bool exponential;

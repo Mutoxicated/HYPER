@@ -7,11 +7,30 @@ public class ExtraUtils : MonoBehaviour
 {
     [SerializeField] private GameObject screen;
     private Stopwatch stopwatch = new Stopwatch();
+
+
+    public bool spawnThem;
+    public GameObject[] entitiesToSpawn;
+
+    private GameObject[] spawnPoints;
     
     public void StopTime(){
         stopwatch.Start();
         Time.timeScale = 0f;
         screen.SetActive(true);
+    }
+
+    private void Start(){
+        if (!spawnThem)
+            return;
+        if (entitiesToSpawn.Length == 0)
+            return;
+        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        for (int i = 0; i < entitiesToSpawn.Length;i++){
+            Instantiate(entitiesToSpawn[i],
+            spawnPoints[i].transform.position, 
+            spawnPoints[i].transform.rotation);
+        }
     }
 
     private void Update(){

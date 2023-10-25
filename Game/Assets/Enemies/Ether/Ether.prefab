@@ -513,9 +513,8 @@ MonoBehaviour:
   injectorToInheritFrom: {fileID: 0}
   injectorsToInherit: []
   bacteriaPools:
-  - FLABBERGAST_ALLY
-  - RADIATION_ALLY
-  - BURNING_ALLY
+  - BRAG_ALLY
+  - VAMPIRE_ALLY
   allyBacterias: []
   cachedInstances: []
 --- !u!114 &6866425869919819366

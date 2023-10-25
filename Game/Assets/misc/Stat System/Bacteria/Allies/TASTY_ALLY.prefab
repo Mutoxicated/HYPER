@@ -14,13 +14,14 @@ GameObject:
   - component: {fileID: -8705401790719004945}
   - component: {fileID: -2380563223244897079}
   - component: {fileID: -5184070385980611563}
+  - component: {fileID: 7335023709737669798}
   m_Layer: 0
   m_Name: TASTY_ALLY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3114140308920952880
 Transform:
   m_ObjectHideFlags: 0
@@ -71,10 +72,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53566428069b509439c842df6644c5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
-  sfx: {fileID: 0}
-  ofx: {fileID: 0}
-  cfx: {fileID: 0}
+  bac: {fileID: 5780903243261917723}
+  sfx: {fileID: -8705401790719004945}
+  ofx: {fileID: -2380563223244897079}
+  cfx: {fileID: -5184070385980611563}
 --- !u!114 &-8705401790719004945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,13 +88,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88f502a33779864bbcf10cbee221d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
+  bac: {fileID: 5780903243261917723}
   sineWave: {fileID: 0}
-  speed: 0
-  randomizeDirection: 0
+  speed: 0.0005
+  randomizeDirection: 1
   direction: {x: 0, y: 0}
-  oscilatorMultiplier: {x: 0, y: 0}
-  textureMultiplier: {x: 0, y: 0}
+  oscilatorMultiplier: {x: 0.6, y: 1}
+  textureMultiplier: {x: 0.7, y: 0.4}
 --- !u!114 &-2380563223244897079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,20 +107,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f173bd27b0ab5c499eeb3aa50586abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
+  bac: {fileID: 5780903243261917723}
   gradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 2, g: 0, b: 1.654902, a: 1}
+    key1: {r: 0.49736157, g: 1.507874, b: 0.5030428, a: 1}
+    key2: {r: 2, g: 0, b: 1.654902, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
+    ctime1: 32251
+    ctime2: 65535
     ctime3: 0
     ctime4: 0
     ctime5: 0
@@ -134,9 +135,9 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  interval: {fileID: 0}
+  interval: {fileID: 7335023709737669798}
   outlineWidth: 2
   bakeKeys: []
   bakeValues: []
@@ -152,20 +153,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912afcd32ce9e1741b009a0f0b8f3b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
+  bac: {fileID: 5780903243261917723}
   gradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 2, g: 0, b: 1.654902, a: 1}
+    key1: {r: 0.49736157, g: 1.507874, b: 0.5030428, a: 1}
+    key2: {r: 2, g: 0, b: 1.654902, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
+    ctime1: 32251
+    ctime2: 65535
     ctime3: 0
     ctime4: 0
     ctime5: 0
@@ -180,6 +181,30 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  interval: {fileID: 0}
+  interval: {fileID: 7335023709737669798}
+--- !u!114 &7335023709737669798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255408049445001169}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  specialTag: fx
+  chance: 100
+  interval: 1
+  onInterval:
+    m_PersistentCalls:
+      m_Calls: []
+  destroyUponEvent: 0
+  recycleUponEvent: 0
+  t: 0
+  time: 0
+  isPlaying: 0

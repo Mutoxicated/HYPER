@@ -888,3 +888,24 @@ Changes:
 ## Day 136
 
 Did a few other things today. I'm thinking that the GoTo script will have to become more expansive and perhaps how it makes an entity move might rely on some more complicated factors. I might make a seperate script for that. Anyway. I only have a few bacteria to complete their effects and after that I will start actually working on the upgrades system to flesh out the whole structure. Then I will work on the Stage generation (the Arena) and THEN I will start making enemies :]
+
+## Day 137
+
+Finished the last couple of bacteria effects!
+
+Changes:
+* Added effects for Tasty, Corrupt, Vampire and Chimera.
+
+Will have to make chimera actually work. Might add some type of confuseness stat into the stats script and chimera can just increment to that.
+
+Thinking about the magicka class... Imagine how cool it'd be if you could transfer bacteria from one entity to another. That could be a really cool ability. When a boss appears or something you can move all the bad bactera from an enemy to the boss... Many cool strategies!
+
+Also I COMPLETELY forgot to mention but I changed the way the shields work. Shields now have health, once that health is at or less than zero it breaks. That's it :p. I think it's better than the original one where it would die in one hit no matter the damage. Though I WILL have to find a way to revert that effect when you parry a laser.
+
+## Day 138
+
+Oops, forgot to commit yesterday... lol
+
+I finalized the effects!
+
+I will now make the confusion stat actually be used for something.

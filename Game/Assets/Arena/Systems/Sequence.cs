@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Sequence : MonoBehaviour
 {
     private static Difficulty diff;
-    private static GameObject[] spawnPoints;
+    public static GameObject[] spawnPoints;
 
     private List<Spawner> spawners = new List<Spawner>();
     private const float spawnInterval = 0.2f;

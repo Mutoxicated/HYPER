@@ -26,7 +26,7 @@ public class Stats : MonoBehaviour
         {"colorFXED", false},
         {"stunned",false}
     };
-    [SerializedDictionary("stat name","num")]
+    //[SerializedDictionary("stat name","num")]
     public Dictionary<string, float> numericals = new Dictionary<string, float>(){
         {"permaShields",0},
         {"moveSpeed", 1f},
@@ -39,7 +39,8 @@ public class Stats : MonoBehaviour
         {"capacitor2", 1f},
         {"pierces", 1f},
         {"explosionChance",25f},
-        {"extra",0f}
+        {"extra",0f},
+        {"confusion",0f}
     };
 
     [HideInInspector] public List<Shield> shields = new List<Shield>();

@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public Stats stats;
     public Immunity immuneSystem;
     [Header("Post-Death")]
-    [SerializeField] private UnityEvent<Transform> OnDeath = new UnityEvent<Transform>();
+    public UnityEvent<Transform> OnDeath = new UnityEvent<Transform>();
     [SerializeField] private GameObject[] ObjectsToDestroy;
     [SerializeField] private GameObject[] ChildrenToDetach;
     [Space]

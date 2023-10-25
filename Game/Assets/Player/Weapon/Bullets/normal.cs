@@ -62,7 +62,7 @@ public class normal : MonoBehaviour
             return;
         }
         var damageable = other.gameObject.GetComponent<IDamageable>();
-        damageable?.TakeDamage(damage * gun.stats.numericals["damage"], gameObject,1f,0);
+        damageable?.TakeDamage(damage * gun.stats.numericals["damage"], Difficulty.player.gameObject,1f,0);
         if (injector != null)
         {
             damageable?.TakeInjector(injector,false);

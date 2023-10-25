@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8687615897629355181
 Transform:
   m_ObjectHideFlags: 0
@@ -71,10 +71,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53566428069b509439c842df6644c5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
-  sfx: {fileID: 0}
-  ofx: {fileID: 0}
-  cfx: {fileID: 0}
+  bac: {fileID: 9141995045049036275}
+  sfx: {fileID: 599589584231789556}
+  ofx: {fileID: 7454312886839565532}
+  cfx: {fileID: -6474754816016796935}
 --- !u!114 &599589584231789556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88f502a33779864bbcf10cbee221d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
+  bac: {fileID: 9141995045049036275}
   sineWave: {fileID: 0}
   speed: 0
   randomizeDirection: 0
@@ -106,10 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f173bd27b0ab5c499eeb3aa50586abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
+  bac: {fileID: 9141995045049036275}
   gradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -152,10 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912afcd32ce9e1741b009a0f0b8f3b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bac: {fileID: 0}
+  bac: {fileID: 9141995045049036275}
   gradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
