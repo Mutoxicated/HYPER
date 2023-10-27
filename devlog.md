@@ -909,3 +909,11 @@ Oops, forgot to commit yesterday... lol
 I finalized the effects!
 
 I will now make the confusion stat actually be used for something.
+
+## Day 139 && 140
+
+Didn't do anything on day 139, but to compensate, today I implemented a movement mechanic: magnetic pull. You throw a magnet and once it sticks to a surface, it will start pulling you into it, sending you into a bouncy state. I like it a lot because you can traverse the Arena with ease but it's also not so easy that you get bored.
+
+Next day I'll get into the items and all that.
+
+Side things I have to do: make vampire and chimera bacteria work.

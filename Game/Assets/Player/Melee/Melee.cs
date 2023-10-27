@@ -13,9 +13,12 @@ public class Melee : MonoBehaviour
     [SerializeField] private CameraShake shakeEffect;
     [SerializeField] private GameObject particlePrefab;
     [SerializeField] private Transform throwPoint;
+    [SerializeField] private Transform launchPoint;
     [SerializeField] private GameObject TNTPrefab;
+    [SerializeField] private GameObject launchPrefab;
     [SerializeField] private AudioSource punchSFX;
 
+    private ButtonInput launchInput = new ButtonInput("LaunchMagnet");
     private ButtonInput throwInput = new ButtonInput("Throw");
     private ButtonInput punchInput = new ButtonInput("Melee");
     private Camera cam;
@@ -28,10 +31,11 @@ public class Melee : MonoBehaviour
     private bool block = true;
     private float t;
     private Collider[] colls;
+    private Ray ray;
 
     private bool Punch()
     {
-        Ray ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2,0));
+        ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2,0));
         bool hit = Physics.SphereCast(ray.origin,0.1f, ray.direction, out hitInfo, punchRange, layerMask);
         if (hit){
             bool? success = hitInfo.collider.gameObject.GetComponent<IParriable>()?.Parry(cam.transform.parent.parent.gameObject,cam.transform.position+cam.transform.forward*4f);
@@ -54,12 +58,14 @@ public class Melee : MonoBehaviour
 
     private void Start()
     {
+        Launcher.FindMovement();
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
     }
 
     private void Update()
     {
         isIdle = animator.GetCurrentAnimatorStateInfo(0).IsName("Nun");//nun is idle btw
+        launchInput.Update();
         throwInput.Update();
         punchInput.Update();
         if (throwInput.GetInputDown() && isIdle && stats.numericals["capacitor1"] > 0)
@@ -67,6 +73,13 @@ public class Melee : MonoBehaviour
             animator.Play("Throw");
             Instantiate(TNTPrefab, throwPoint.position,GunShooter.GetAccurateRotation(cam,throwPoint)*TNTPrefab.transform.rotation);
             //stats.ModifyIncrementalStat("capacitor1", -1);
+        }if (launchInput.GetInputDown() && isIdle && Launcher.playerMovement.sender == null && Launcher.playerMovement.stamina.GetCurrentStamina() > 75f){
+            ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2,0));
+            bool hit = Physics.SphereCast(ray.origin,0.1f, ray.direction, out hitInfo, 10000f, layerMask);
+            if (hit){
+                animator.Play("Launch");
+                Instantiate(launchPrefab, launchPoint.position,GunShooter.GetAccurateRotation(cam,launchPoint));
+            }
         }
         if (punchInput.GetInputDown() && isIdle && !punching && once)
         {

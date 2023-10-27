@@ -346,7 +346,9 @@ MonoBehaviour:
   shakeEffect: {fileID: 1827139654312536193}
   particlePrefab: {fileID: 8210001699898165931, guid: 6eefbd6477a59b948937387bb71b7c03, type: 3}
   throwPoint: {fileID: 8826647250518932482}
+  launchPoint: {fileID: 3208109242713984900}
   TNTPrefab: {fileID: 1708282144767931766, guid: d7cb7832d10a96441a88ddeb651572ce, type: 3}
+  launchPrefab: {fileID: 3166393661345022375, guid: b331dcebe9559f349a99d8ecf6a169a2, type: 3}
   punchSFX: {fileID: 2567252511723581981}
 --- !u!114 &1827139654312536193
 MonoBehaviour:
@@ -1089,6 +1091,7 @@ Transform:
   - {fileID: 8826647250518932482}
   - {fileID: 1273321300480243521}
   - {fileID: 1827139654856663739}
+  - {fileID: 3208109242713984900}
   m_Father: {fileID: 1987462775687559841}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1505,6 +1508,37 @@ Transform:
   - {fileID: 6367816983276076971}
   m_Father: {fileID: 8955658238453932044}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3588653364845864521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3208109242713984900}
+  m_Layer: 13
+  m_Name: firePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3208109242713984900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3588653364845864521}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.032, y: 0.81100035, z: 0.25199986}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1827139654788565383}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3689750700923879026
 GameObject:

@@ -51,7 +51,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float slamJumpForceRate;
     [SerializeField] private Stats stats;
     [SerializeField] private Transform camHolder;
-    [SerializeField] private StaminaControl stamina;
+    public StaminaControl stamina;
     [SerializeField] private Rigidbody rb;
 
     [HideInInspector] public MovementState movementState = MovementState.WALKING;
@@ -66,6 +66,7 @@ public class Movement : MonoBehaviour
 
     [HideInInspector] public Vector3 launchPoint;
     [HideInInspector] public bool airborne = true;
+    [HideInInspector] public GameObject sender;
     private bool crouchReleased = true;
     private bool uponSlide;
     private int currentJumps = 0;
@@ -85,6 +86,16 @@ public class Movement : MonoBehaviour
     public void ChangeDrag(float n)
     {
         rb.drag = n;
+    }
+
+    public void TriggerBounceState(Vector3 point, GameObject sender){
+        if (stamina.GetCurrentStamina() < 75f)
+            return;
+        ability.LaunchIn(point, launchForce * stats.numericals["moveSpeed"]);
+        movementState = MovementState.BOUNCING;
+        launchInterval.ResetEarly();
+        stamina.ReduceStamina(75f);
+        this.sender = sender;
     }
 
     private void Move()
@@ -164,7 +175,7 @@ public class Movement : MonoBehaviour
             ability.LaunchIn(launchPoint, launchForce * stats.numericals["moveSpeed"]);
             movementState = MovementState.BOUNCING;
             launchInterval.ResetEarly();
-            stamina.ReduceStamina(100f);
+            stamina.ReduceStamina(75f);
         }
     }
 
@@ -335,6 +346,9 @@ public class Movement : MonoBehaviour
         }
         if (movementState != MovementState.BOUNCING)
             return;
+        if (sender != null){
+            Destroy(sender);
+        }
         bounces++;
         ability.Bounce(point);
         if (collision.collider.gameObject.tag == "Enemy")

@@ -27,6 +27,9 @@ public class LookTo : MonoBehaviour
             stats.DecideObjective();
             stats.FindEntity();
         }
+        if (stats.entity == null){
+            return;
+        }
         toEntity = stats.entity.position - transform.position;
         lookRotation = Quaternion.LookRotation(toEntity,Vector3.up);
     }
@@ -43,6 +46,9 @@ public class LookTo : MonoBehaviour
     private void Update()
     {
         GetRotation();
+        if (stats.entity == null){
+            return;
+        }
         transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * lerpSpeed);
     }
 }

@@ -8,11 +8,11 @@ public class ExtraUtils : MonoBehaviour
     [SerializeField] private GameObject screen;
     private Stopwatch stopwatch = new Stopwatch();
 
-
     public bool spawnThem;
     public GameObject[] entitiesToSpawn;
-
     private GameObject[] spawnPoints;
+
+    private ButtonInput dbreak = new ButtonInput("DebugBreak");
     
     public void StopTime(){
         stopwatch.Start();
@@ -34,6 +34,10 @@ public class ExtraUtils : MonoBehaviour
     }
 
     private void Update(){
+        dbreak.Update();
+        if (dbreak.GetInputDown()){
+            UnityEngine.Debug.Break();
+        }
         if (stopwatch.ElapsedMilliseconds > 214){
             stopwatch.Reset();
             Time.timeScale = 1f;

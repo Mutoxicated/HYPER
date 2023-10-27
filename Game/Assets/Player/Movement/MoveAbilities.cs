@@ -74,4 +74,8 @@ public class MoveAbilities
     {
         return bounceDirection;
     }
+
+    public void ChangeBounceDir(Vector3 targetPos){
+        bounceDirection = (targetPos-rb.position).normalized * bounceSpeed;
+    }
 }
