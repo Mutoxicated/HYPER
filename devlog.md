@@ -917,3 +917,7 @@ Didn't do anything on day 139, but to compensate, today I implemented a movement
 Next day I'll get into the items and all that.
 
 Side things I have to do: make vampire and chimera bacteria work.
+
+## Day 141
+
+I didn't actually code anything but I came up with the passive item list. I also thought about how passive and active items will be implemented and decided I will do a similar thing to what I did with the bacteria. Items will be prefabs that have components that define their function. An item will also have a population counter depending on whether its passive or not.
