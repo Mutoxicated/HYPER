@@ -921,3 +921,7 @@ Side things I have to do: make vampire and chimera bacteria work.
 ## Day 141
 
 I didn't actually code anything but I came up with the passive item list. I also thought about how passive and active items will be implemented and decided I will do a similar thing to what I did with the bacteria. Items will be prefabs that have components that define their function. An item will also have a population counter depending on whether its passive or not.
+
+## Day 142
+
+Kinda implemented the passive item pool. And improved the launch animation.

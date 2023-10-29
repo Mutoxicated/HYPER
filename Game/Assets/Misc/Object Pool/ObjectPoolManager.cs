@@ -10,6 +10,7 @@ public class ObjectPoolManager : MonoBehaviour
 {
     public bool isPublic = true;
     private string poolID;
+    public bool enableOnUse = true;
     public GameObject prefab;
 
     private void Awake()
@@ -32,12 +33,14 @@ public class ObjectPoolManager : MonoBehaviour
             var instance = Instantiate(prefab);
             instance.transform.SetParent(receiver.transform, false);
             instance.name = poolID;
-            instance.SetActive(true);
+            if (enableOnUse)
+                instance.SetActive(true);
             return instance;
         }else{
             var instance = transform.GetChild(0).gameObject;
             instance.transform.SetParent(receiver.transform, false);
-            instance.SetActive(true);
+            if (enableOnUse)
+                instance.SetActive(true);
             return instance;
         }
     }
@@ -56,7 +59,8 @@ public class ObjectPoolManager : MonoBehaviour
             instance.transform.SetParent(null, false);
             instance.transform.position = position;
             instance.transform.rotation = rotation;
-            instance.SetActive(true);
+            if (enableOnUse)
+                instance.SetActive(true);
             return instance;
         }
     }

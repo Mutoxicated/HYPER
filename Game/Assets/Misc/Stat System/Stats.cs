@@ -48,6 +48,7 @@ public class Stats : MonoBehaviour
     private void Awake()
     {
         numericals.Add("health", maxHealth);
+        numericals.Add("maxHealth", maxHealth);
 
         for (int i = 0; i < maxShields;i++){
             shields.Add(new Shield(shieldhealth,false));

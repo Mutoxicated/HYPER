@@ -26,13 +26,13 @@ public class Launcher : MonoBehaviour
 
     private void SettleMagnet(Collision collision){
         rb.velocity = Vector3.zero;
-        rb.useGravity = false;
         transform.position = collision.contacts[0].point;
         transform.rotation = Quaternion.LookRotation(collision.contacts[0].normal,Vector3.up);
         playerMovement.TriggerBounceState(collision.contacts[0].point,gameObject);
         rb.constraints = RigidbodyConstraints.FreezeAll;
         coll.enabled = false;
         interval.enabled = true;
+        transform.SetParent(collision.gameObject.transform);
     }
 
     private void OnCollisionEnter(Collision collision)

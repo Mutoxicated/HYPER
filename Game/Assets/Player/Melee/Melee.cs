@@ -75,7 +75,7 @@ public class Melee : MonoBehaviour
             //stats.ModifyIncrementalStat("capacitor1", -1);
         }if (launchInput.GetInputDown() && isIdle && Launcher.playerMovement.sender == null && Launcher.playerMovement.stamina.GetCurrentStamina() > 75f){
             ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2,0));
-            bool hit = Physics.SphereCast(ray.origin,0.1f, ray.direction, out hitInfo, 10000f, layerMask);
+            bool hit = Physics.SphereCast(ray.origin,0.01f, ray.direction, out hitInfo, 10000f, layerMask);
             if (hit){
                 animator.Play("Launch");
                 Instantiate(launchPrefab, launchPoint.position,GunShooter.GetAccurateRotation(cam,launchPoint));

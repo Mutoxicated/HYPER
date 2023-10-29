@@ -44,6 +44,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             immune = false;
         }
+        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"],0,stats.numericals["maxHealth"]);
         if (stats.numericals["health"] < 0)
             stats.numericals["health"] = 0f;
         t = Mathf.Clamp01(t - rate*Time.deltaTime);
