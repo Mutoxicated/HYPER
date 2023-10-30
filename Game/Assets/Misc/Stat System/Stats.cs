@@ -11,6 +11,7 @@ public class Stats : MonoBehaviour
 {
     public GameObject explosionPrefab;
     public float VFXScale = 1f;
+    public EntityType type;
     public DeathFor objective = DeathFor.PLAYER;
     [HideInInspector] public Transform entity;
 
@@ -36,11 +37,16 @@ public class Stats : MonoBehaviour
         {"attackSpeed", 1f},
         {"shootSpeed", 1f},
         {"capacitor1", 1f},
-        {"capacitor2", 1f},
         {"pierces", 1f},
         {"explosionChance",25f},
         {"extra",0f},
-        {"confusion",0f}
+        {"confusion",0f},
+        {"parryChance",3f},
+        {"shieldHealthModifier",1f},
+        {"damageNO",1f},
+        {"damageO",1f},
+        {"enemyBlockChance",0f},
+        {"bacteriaBlockChance",0f}
     };
 
     [HideInInspector] public List<Shield> shields = new List<Shield>();
@@ -48,16 +54,18 @@ public class Stats : MonoBehaviour
     private void Awake()
     {
         numericals.Add("health", maxHealth);
-        numericals.Add("maxHealth", maxHealth);
-
-        for (int i = 0; i < maxShields;i++){
-            shields.Add(new Shield(shieldhealth,false));
-        }
+        numericals.Add("maxHealthModifier", 1f);
     }
 
     private void OnEnable(){
         numericals["shields"] = maxShields;
         numericals["health"] = maxHealth;
+    }
+
+    private void Start(){
+        for (int i = 0; i < maxShields;i++){
+            shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
+        }
     }
 
     public void FindEntity(){
@@ -82,6 +90,14 @@ public class Stats : MonoBehaviour
         objective = (DeathFor)num;
         FindEntity();
     }
+    public void ChangeObjectiveToOpposite(){
+        if (objective == DeathFor.PLAYER){
+            objective = DeathFor.ENEMIES;
+        }else{
+            objective = DeathFor.PLAYER;
+        }
+    }
+
     public void ChangeObjective(DeathFor objective){
         this.objective = objective;
         FindEntity();

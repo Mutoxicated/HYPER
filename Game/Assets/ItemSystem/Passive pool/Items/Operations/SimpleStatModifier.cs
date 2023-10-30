@@ -37,7 +37,7 @@ public class SimpleStatModifier : MonoBehaviour
             }
             for (int i = 0; i < numericals.Length; i++)
             {
-                item.origin.stats.numericals[numericals[i]] += numericalIncrements[i]*populationMod;
+                item.origin.stats.numericals[numericals[i]] += numericalIncrements[i]*(populationMod-1);
             }
         }
 
@@ -53,7 +53,7 @@ public class SimpleStatModifier : MonoBehaviour
             }
             for (int i = 0; i < numericals.Length; i++)
             {
-                item.origin.stats.numericals[numericals[i]] -= numericalIncrements[i]*populationMod;
+                item.origin.stats.numericals[numericals[i]] -= numericalIncrements[i]*(populationMod-1);
             }
         }
     }

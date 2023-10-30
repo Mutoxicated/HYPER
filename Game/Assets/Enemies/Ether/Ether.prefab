@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPublic: 0
+  enableOnUse: 1
   prefab: {fileID: 5725198740932932340, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
 --- !u!114 &1097695226009025837
 MonoBehaviour:
@@ -352,6 +353,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 9221162558281345364}
+        m_TargetAssemblyTypeName: PassivePool, Assembly-CSharp
+        m_MethodName: RecyclePassiveItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   ObjectsToDestroy:
   - {fileID: 5419551051448238176}
   ChildrenToDetach:
@@ -647,6 +660,7 @@ Transform:
   - {fileID: 4095709657238618873}
   - {fileID: 2924701148933708670}
   - {fileID: 1677493216719049168}
+  - {fileID: 5138515371110754097}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -666,6 +680,52 @@ MonoBehaviour:
   distanceCheck: 5
   minY: 2
   maxY: 24
+--- !u!1 &6801068178828183284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5138515371110754097}
+  - component: {fileID: 9221162558281345364}
+  m_Layer: 0
+  m_Name: PassivePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5138515371110754097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801068178828183284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2982936731220533164}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9221162558281345364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801068178828183284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca1360994f2ae04180c6f603252af7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 3872225859729783973}
+  entityType: 1
 --- !u!1001 &69499260181313728
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -44,7 +44,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             immune = false;
         }
-        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"],0,stats.numericals["maxHealth"]);
+        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"],0,stats.maxHealth* stats.numericals["maxHealthModifier"]);
         if (stats.numericals["health"] < 0)
             stats.numericals["health"] = 0f;
         t = Mathf.Clamp01(t - rate*Time.deltaTime);
@@ -70,6 +70,30 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }
     }
 
+    private void Parry(GameObject sender){
+        if (Random.Range(0f,100f) <= stats.numericals["parryChance"]){
+            sender.GetComponent<IParriable>().Parry(gameObject,Vector3.zero);
+        }
+    }
+
+    private bool EvaluateDamageIntake(Stats senderStats, float intake){
+        if (stats == null){
+            if (Random.Range(0f,100f) > stats.numericals["bacteriaBlockChance"])
+                stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+            else return false;
+            return true;
+        }
+        if (stats.type == EntityType.ORGANIC){
+            intake*= senderStats.numericals["damageO"];
+        }else{
+            intake*= senderStats.numericals["damageNO"];
+        }
+        if (Random.Range(0f,100f) > stats.numericals["enemyBlockChance"])
+            stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+        else return false;
+        return true;
+    }
+
     private void OnDisable(){
         Difficulty.enemies.Remove(gameObject);
     }
@@ -83,29 +107,30 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         stats.numericals["shields"] += shield;
     }
 
-    public float TakeDamage(float intake, GameObject sender, ref float shieldOut, float strength, int _)
+    public float TakeDamage(float intake, Stats senderStats, ref float shieldOut, float strength, int _)
     {
+        if (!EvaluateDamageIntake(senderStats,intake)){
+            return 0f;
+        }
         if (immune)
             return 0f;
-         if (stats.numericals["shields"] == 0){
-            shieldOut = 0;
-        }else{
-            shieldOut = 1;
-        }
-        stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+        shieldOut = 0;
+        Parry(senderStats.gameObject);
         t += strength;
         if (stats.shields.Count > 0){
-            if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
+            if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f){
                 stats.shields.RemoveAt(stats.shields.Count-1);
+                shieldOut = 1;
+            }
         }
         healthBar?.Activate();
         if (stats.numericals["health"] <= 0)
         {
-            if (stats.conditionals["explosive"] && Random.Range(0f,101f) <= stats.numericals["explosionChance"]){
+            if (stats.conditionals["explosive"] && Random.Range(0f,100f) <= stats.numericals["explosionChance"]){
                 PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position,Quaternion.identity);
             }
             Detach();
-            OnDeath.Invoke(sender.transform);
+            OnDeath.Invoke(senderStats.transform);
             DestroyStuff();
         }
         if (stats.numericals["health"] >= 0f)
@@ -114,10 +139,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             return stats.numericals["health"];
     }
     
-    public float TakeDamage(float intake, GameObject sender, float strength, int _)
+    public float TakeDamage(float intake, Stats senderStats, float strength, int _)
     {
         if (immune)
             return 0f;
+        Parry(senderStats.gameObject);
         stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"]+ 1);
         t += strength;
         if (stats.shields.Count > 0){
@@ -131,7 +157,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
                 PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position,Quaternion.identity);
             }
             Detach();
-            OnDeath.Invoke(sender.transform);
+            OnDeath.Invoke(senderStats.transform);
             DestroyStuff();
         }
         if (stats.numericals["health"] >= 0f)

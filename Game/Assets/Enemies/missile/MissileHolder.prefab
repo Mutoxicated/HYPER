@@ -205,6 +205,53 @@ MonoBehaviour:
   outlineEffectable: 0
   colorEffectable: 1
   matIndex: 0
+--- !u!1 &3698258980567319294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8088690679220465196}
+  - component: {fileID: 7701053792306105584}
+  m_Layer: 0
+  m_Name: PassivePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8088690679220465196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698258980567319294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6027255992683827244}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7701053792306105584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698258980567319294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca1360994f2ae04180c6f603252af7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 4950074896820588784}
+  entityType: 1
+  myPassiveItems: []
 --- !u!1 &5725198740932932340
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,6 +284,7 @@ Transform:
   m_Children:
   - {fileID: 6225938174529012411}
   - {fileID: 6958973814195171064}
+  - {fileID: 8088690679220465196}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -527,6 +575,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7701053792306105584}
+        m_TargetAssemblyTypeName: PassivePool, Assembly-CSharp
+        m_MethodName: RecyclePassiveItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ObjectsToDestroy: []
   ChildrenToDetach: []
   immunityDuration: -1
@@ -776,8 +836,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 4950074896820588784}
         m_TargetAssemblyTypeName: Stats, Assembly-CSharp
-        m_MethodName: ChangeObjective
-        m_Mode: 3
+        m_MethodName: ChangeObjectiveToOpposite
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

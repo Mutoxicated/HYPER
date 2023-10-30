@@ -925,3 +925,26 @@ I didn't actually code anything but I came up with the passive item list. I also
 ## Day 142
 
 Kinda implemented the passive item pool. And improved the launch animation.
+
+## Day 143
+
+Yeah so the passive pool and items work now. Implemented 9/16 of the normal ones, i also have to implement the other 16 super passive items.
+Progress going steady. 
+
+Here are the passive items btw: 
+1. Feeble. 5% (+2% per stack)  more damage but 4% (+1% per stack) less health. 
+2. Expansion. Explosions are 5% (+2% per stack) bigger.
+3. Bloodline Theft. 4% (+2% per stack) chance of healing on damage.
+4. Debris. 4% (+1% per stack) chance to gain a shield on kill.
+5. Arcam. +5% (+2% per stack) hostility in your immune system.
+6. Al-Guard. +2% (+2.1% per stack) defense for ally bacterias.
+7. Deadman switch. Instantly get 0.25 bacteria (+0.25 per stack) when your health is at 5% (+1% per stack) of its max health.
+8. Ecstasy. +5% attack speed forever (+1% per stack).
+9. Metamorphosis. +3% chance (0.2% per stack) for invader bacterias to become ally bacterias.
+10. Predator. +1% (+1% per stack) damage to Organics.
+11. Prey Mechanics. +1.5% (+1% per stack) damage to Non-Organics.
+12. Divine rock. +4% (+0.7% per stack) chance to block incoming damage.
+13. Otherworldly rock. +5% (+1% per stack) chance to block incoming bacteria.
+14. 0.25 regen (+0.125 per stack).
+15. Rebel. +2% (+0.5% per stack) chance to parry incoming attacks.
+16. Proeon. +1% shield health (+2.5% per stack).

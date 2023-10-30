@@ -15,9 +15,9 @@ namespace BacteriaOperations{
         public void DamageEntity()
         {
             if (exponential)
-                cachedDamageable.TakeDamage(damage*bac.population,gameObject, ref _, 0.1f, hurtScreenIndex);
+                cachedDamageable.TakeDamage(damage*bac.population,null, ref _, 0.1f, hurtScreenIndex);
             else
-                cachedDamageable.TakeDamage(damage*(bac.population*Mathf.Clamp(bac.population*0.5f,1,10000)),gameObject, ref _, 0.1f, hurtScreenIndex);
+                cachedDamageable.TakeDamage(damage*(bac.population*Mathf.Clamp(bac.population*0.5f,1,10000)),null, ref _, 0.1f, hurtScreenIndex);
         }
         // Start is called before the first frame update
         private void OnEnable()

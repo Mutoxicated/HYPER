@@ -157,26 +157,44 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         shieldsText.text = allShields.ToString();
     }
 
-      public void TakeHealth(float intake, float shield){
+    private bool EvaluateDamageIntake(Stats senderStats, float intake){
+        if (stats == null){
+            if (Random.Range(0f,100f) > stats.numericals["bacteriaBlockChance"])
+                stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+            else return false;
+            return true;
+        }
+        if (stats.type == EntityType.ORGANIC){
+            intake*= senderStats.numericals["damageO"];
+        }else{
+            intake*= senderStats.numericals["damageNO"];
+        }
+        if (Random.Range(0f,100f) > stats.numericals["enemyBlockChance"])
+            stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+        else return false;
+        return true;
+    }
+
+    public void TakeHealth(float intake, float shield){
         stats.numericals["health"] += intake;
         stats.numericals["shields"] += shield;
     }
 
-    public float TakeDamage(float intake, GameObject sender, ref float shieldOut, float arb, int index)
+    public float TakeDamage(float intake, Stats senderStats, ref float shieldOut, float arb, int index)
     {
+        if (!EvaluateDamageIntake(senderStats,intake)){
+            return 0f;
+        }
         reactionT = arb;
         hurtScreen.SetActive(true);
         fadeColor.ChangeGradientIndex(index);
         //Debug.Log("Shields: " + shields + " | Health outake: " + (intake / (shields + 1)));
-        if (stats.numericals["shields"] == 0){
-            shieldOut = 0;
-        }else{
-            shieldOut = 1;
-        }
-        stats.numericals["health"] = stats.numericals["health"] - intake/(stats.shields.Count+stats.numericals["permaShields"]+1);
+        shieldOut = 0;
         if (stats.shields.Count > 0){
-            if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
+            if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f){
                 stats.shields.RemoveAt(stats.shields.Count-1);
+                shieldOut = 1;
+            }
         }
         playerColor = healthBarGradient.Evaluate(healthT);
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
@@ -191,7 +209,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             return stats.numericals["health"];
     }
 
-    public float TakeDamage(float intake, GameObject sender, float arb, int index)
+    public float TakeDamage(float intake, Stats senderStats, float arb, int index)
     {
         reactionT = arb;
         hurtScreen.SetActive(true);

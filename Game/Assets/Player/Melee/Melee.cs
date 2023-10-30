@@ -41,14 +41,14 @@ public class Melee : MonoBehaviour
             bool? success = hitInfo.collider.gameObject.GetComponent<IParriable>()?.Parry(cam.transform.parent.parent.gameObject,cam.transform.position+cam.transform.forward*4f);
             Debug.Log(success);
             if (success == null || success == false)
-                hitInfo.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(punchDamage,gameObject,1f,0);
+                hitInfo.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(punchDamage,stats,1f,0);
         }else{
             colls = Physics.OverlapSphere(ray.origin,0.1f);
             foreach (Collider coll in colls){
                 if (coll.gameObject.tag != "Player"){
                     bool? success = coll.gameObject.GetComponent<IParriable>()?.Parry(cam.transform.parent.parent.gameObject,cam.transform.position+cam.transform.forward*4f);
                     if (success == null || success == false)
-                        coll.gameObject.GetComponent<IDamageable>()?.TakeDamage(punchDamage,gameObject,1f,0);
+                        coll.gameObject.GetComponent<IDamageable>()?.TakeDamage(punchDamage,stats,1f,0);
                 }
             }
         }

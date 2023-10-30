@@ -96,7 +96,7 @@ public class Laser : MonoBehaviour
             if (cachedDamageables[Mathf.RoundToInt(Mathf.Abs(stats.numericals["pierces"]-pierces))] == null)
                 cachedLeftoverDamage.Add(0f);
             else
-                cachedLeftoverDamage.Add(cachedDamageables[Mathf.RoundToInt(Mathf.Abs(stats.numericals["pierces"]-pierces))].TakeDamage(damage, gameObject,ref refShield,1f,0));
+                cachedLeftoverDamage.Add(cachedDamageables[Mathf.RoundToInt(Mathf.Abs(stats.numericals["pierces"]-pierces))].TakeDamage(damage, stats,ref refShield,1f,0));
             cachedshieldOuts.Add(refShield);
             cachedDamageables[Mathf.RoundToInt(Mathf.Abs(stats.numericals["pierces"]-pierces))]?.TakeInjector(injector, true);
             //Debug.Log(Mathf.RoundToInt(Mathf.Abs(stats.numericals["pierces"]-pierces)));

@@ -52,7 +52,7 @@ public class HealthBar : MonoBehaviour
     {
         if (!active) return;
         if (health.stats.numericals["health"] != 0f)
-            t = health.stats.numericals["health"] / health.stats.maxHealth;
+            t = health.stats.numericals["health"] / health.stats.maxHealth * health.stats.numericals["maxHealthModifier"];
         else t = 0f;
         finalScale.x = Mathf.Lerp(0f, initialScale.x, t);
 

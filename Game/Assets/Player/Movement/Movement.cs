@@ -354,7 +354,7 @@ public class Movement : MonoBehaviour
         if (collision.collider.gameObject.tag == "Enemy")
         {
             camShake.Shake();
-            collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(100f,gameObject,ref shields,1f,0);
+            collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(100f,stats,ref shields,1f,0);
             bounces = maxBounces;
         }
         if (bounces >= maxBounces)

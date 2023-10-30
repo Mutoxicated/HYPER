@@ -13,7 +13,6 @@ public class Immunity : MonoBehaviour
 {
     public Stats stats;
     public Injector injector;
-    public EntityType type;
     public float immunityAttackRate = 1f;
     public float immunityDamage = 10f;
     [HideInInspector]
@@ -27,7 +26,7 @@ public class Immunity : MonoBehaviour
     }
 
     private void CheckOrganicImmunities(Bacteria bac){
-        if (type == EntityType.NON_ORGANIC)
+        if (stats.type == EntityType.NON_ORGANIC)
             return;
         if (bac.immunitySide == ImmunitySide.ALLY)
             return;
@@ -43,7 +42,7 @@ public class Immunity : MonoBehaviour
         }
     }
     private void CheckNonOrganicImmunities(Bacteria bac){
-        if (type == EntityType.ORGANIC)
+        if (stats.type == EntityType.ORGANIC)
             return;
         if (bac.immunitySide == ImmunitySide.ALLY)
             return;
