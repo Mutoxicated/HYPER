@@ -4,51 +4,14 @@ using UnityEngine;
 
 public class PassivePool : MonoBehaviour
 {
-    public static List<string> enemyItems = new List<string>(){
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE",
-        "FEEBLE"
+    public static Dictionary<string,int> enemyItems = new Dictionary<string,int>(){
+        {"DIVINE_ROCK",193}
     };
-    public static List<string> playerItems = new List<string>();
+    public static Dictionary<string,int> playerItems = new Dictionary<string,int>();
 
     public Stats stats;
     public DeathFor entityType;
     public List<PassiveItem> myPassiveItems = new List<PassiveItem>();
-
-    private void AddPassiveItem(string poolID){
-        foreach (PassiveItem item in myPassiveItems){
-            if (item.name == poolID){
-                Debug.Log("Es hat schon dieses Item.");
-                myPassiveItems[myPassiveItems.IndexOf(item)].population++;
-                return;
-            }
-        }
-        PassiveItem ak = PublicPools.pools[poolID].SendObject(gameObject).GetComponent<PassiveItem>();
-        ak.origin = this;
-        myPassiveItems.Add(ak);
-    }
 
     public void RecyclePassiveItems(){
         foreach(PassiveItem item in myPassiveItems){
@@ -61,14 +24,20 @@ public class PassivePool : MonoBehaviour
         if (entityType == DeathFor.PLAYER){
             if (playerItems.Count == 0)
                 return;
-            foreach (string poolID in playerItems){
-                AddPassiveItem(poolID);
+            foreach (string poolID in playerItems.Keys){
+                PassiveItem ak = PublicPools.pools[poolID].SendObject(gameObject).GetComponent<PassiveItem>();
+                ak.origin = this;
+                myPassiveItems.Add(ak);
+                ak.population = playerItems[poolID];
             }
         }else{
             if (enemyItems.Count == 0)
                 return;
-            foreach (string poolID in enemyItems){
-                AddPassiveItem(poolID);
+            foreach (string poolID in enemyItems.Keys){
+                PassiveItem ak = PublicPools.pools[poolID].SendObject(gameObject).GetComponent<PassiveItem>();
+                ak.origin = this;
+                myPassiveItems.Add(ak);
+                ak.population = enemyItems[poolID];
             }
         }
         foreach(PassiveItem item in myPassiveItems){

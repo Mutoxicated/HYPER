@@ -169,8 +169,15 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }else{
             intake*= senderStats.numericals["damageNO"];
         }
-        if (Random.Range(0f,100f) > stats.numericals["enemyBlockChance"])
-            stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+        if (Random.Range(0f,100f) > stats.numericals["enemyBlockChance"]){
+            if (Random.Range(0f,100f) > stats.numericals["enemyBlockChance"]){
+                stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+                if (stats.shields.Count > 0){
+                    if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
+                        stats.shields.RemoveAt(stats.shields.Count-1);
+                }
+            }
+        }
         else return false;
         return true;
     }
@@ -190,12 +197,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         fadeColor.ChangeGradientIndex(index);
         //Debug.Log("Shields: " + shields + " | Health outake: " + (intake / (shields + 1)));
         shieldOut = 0;
-        if (stats.shields.Count > 0){
-            if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f){
-                stats.shields.RemoveAt(stats.shields.Count-1);
-                shieldOut = 1;
-            }
-        }
         playerColor = healthBarGradient.Evaluate(healthT);
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
         if (stats.numericals["health"] <= 0)
@@ -211,15 +212,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public float TakeDamage(float intake, Stats senderStats, float arb, int index)
     {
+        if (!EvaluateDamageIntake(senderStats,intake)){
+            return 0f;
+        }
         reactionT = arb;
         hurtScreen.SetActive(true);
         fadeColor.ChangeGradientIndex(index);
         //Debug.Log("Shields: " + shields + " | Health outake: " + (intake / (shields + 1)));
-        stats.numericals["health"] = stats.numericals["health"] - intake/(stats.shields.Count+stats.numericals["permaShields"]+1);
-        if (stats.shields.Count > 0){
-            if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
-                stats.shields.RemoveAt(stats.shields.Count-1);
-        }
         EvaluateShields();
         playerColor = healthBarGradient.Evaluate(healthT);
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);

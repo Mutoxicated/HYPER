@@ -948,3 +948,26 @@ Here are the passive items btw:
 14. 0.25 regen (+0.125 per stack).
 15. Rebel. +2% (+0.5% per stack) chance to parry incoming attacks.
 16. Proeon. +1% shield health (+2.5% per stack).
+
+
+## Day 144
+
+Tested whether the current passive items worked and fixed bugs. Anyway so I'm adding a new mechanic. LAST MECHANIC.
+
+Guns will now be able to have equipment on them that you buy from the store.
+
+Here’s a list of the equipment:
+1. Bullet enlargener. Makes bullets bigger.
+2. Foregrip. Less recoil on the gun.
+3. Cone. Decreases the spread of bullets.
+4. Chemical Warfare. Explosions from bullets now spread bad bacteria.
+
+I only added this because I feel like guns wouldn't have the spotlight in this game. The main purpose is to build your gun and make it something epic. I've added already so much stuff in the game (not implemented, but in theory) but that has consequently added more emphasis on other characteristics of the game. I still want the game to be about your one and only love, your gun. So i added the mechanic to make them more exciting. Each gun variation will have its own equipment, meaning one gun variation will not inherit the equipment of another gun variation.
+
+Anyway this is all. NOTHING else. Oh and I also added a new round type that is actually super cool I think:
+
+**Chronic Anavatmis**. There will be a determined amount of enemies that will spawn. The round will keep spawning enemies until it has reached its max. If the counter of current enemies goes lower than the max, it replenishes the counter by spawning another enemy. Enemies will not obtain passive items from the enemy passive item pool immediately like they normally would, but instead over time. 
+
+I also thought of some more super passive items. One cool thing about them by the way: These super passive items can only be made from a passive item chain, which is a structure that holds passive items that, depending on how they are ordered, create a super passive item. Initially they are not very effectvive, but the more time you invest in them, the better they get.
+
+I think it's cool.

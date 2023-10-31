@@ -612,7 +612,7 @@ MonoBehaviour:
   damageInput: 1200
   layersToIgnore:
     serializedVersion: 2
-    m_Bits: 2560
+    m_Bits: 2624
   tagsToIgnore: []
 --- !u!114 &3576794645546850592
 MonoBehaviour:
@@ -645,6 +645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 1406129636473073463, guid: 204a045193b337e4c92614a8c2dcb0ad, type: 3}
   VFXScale: 0.45
+  type: 0
   objective: 0
   entity: {fileID: 0}
   maxHealth: 20
@@ -737,7 +738,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 4950074896820588784}
   injector: {fileID: 4998289807964076718}
-  type: 1
   immunityAttackRate: 10
   immunityDamage: 0
 --- !u!114 &3218357075336804515

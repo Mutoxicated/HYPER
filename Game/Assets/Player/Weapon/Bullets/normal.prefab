@@ -174,8 +174,7 @@ MonoBehaviour:
   type: 2
   injectorToInheritFrom: {fileID: 0}
   injectorsToInherit: []
-  bacteriaPools:
-  - POISON_ALLY
+  bacteriaPools: []
   allyBacterias: []
   cachedInstances: []
 --- !u!114 &-4579046777407666088
@@ -192,7 +191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: -8766207620506296604}
   injector: {fileID: 2944045812284909553}
-  type: 1
   immunityAttackRate: 1
   immunityDamage: 10
 --- !u!114 &-8766207620506296604
@@ -209,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 0}
   VFXScale: 1
+  type: 0
   objective: 0
   entity: {fileID: 0}
   maxHealth: 0
