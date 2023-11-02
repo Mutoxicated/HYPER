@@ -971,3 +971,7 @@ Anyway this is all. NOTHING else. Oh and I also added a new round type that is a
 I also thought of some more super passive items. One cool thing about them by the way: These super passive items can only be made from a passive item chain, which is a structure that holds passive items that, depending on how they are ordered, create a super passive item. Initially they are not very effectvive, but the more time you invest in them, the better they get.
 
 I think it's cool.
+
+## Day 145 & 146
+
+Didn't do anything on day 145, well I kinda did. Just writing some more super passive items. Today i wrote some new enemies and also started making the map generation. Tomorrow it's going to be practically done.
