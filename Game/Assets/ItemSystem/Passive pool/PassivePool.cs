@@ -5,7 +5,6 @@ using UnityEngine;
 public class PassivePool : MonoBehaviour
 {
     public static Dictionary<string,int> enemyItems = new Dictionary<string,int>(){
-        {"DIVINE_ROCK",193}
     };
     public static Dictionary<string,int> playerItems = new Dictionary<string,int>();
 

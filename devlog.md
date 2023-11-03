@@ -975,3 +975,9 @@ I think it's cool.
 ## Day 145 & 146
 
 Didn't do anything on day 145, well I kinda did. Just writing some more super passive items. Today i wrote some new enemies and also started making the map generation. Tomorrow it's going to be practically done.
+
+## Day 147
+
+Implemented random platform generation. Still kinda buggy though. It was really fun making it though.
+
+Basically i take 3 platforms, effectively making a triangle, getting the bisector of each line, extruding it outwards from its center and checking if the positions is valid. Some platforms still overlap and I also still haven't implemented any of the extra platforms but i will in the future.
