@@ -38,12 +38,12 @@ public class PlatformGenerator : MonoBehaviour
         new PlatformInfo(new Vector3(71,-10,-110),new Vector3(55,2,40))
     };
 
-    private static List<PlatformInfo> unsearchedPlatforms = new List<PlatformInfo>(){
+    private static List<PlatformInfo> unusedPlatforms = new List<PlatformInfo>(){
         new PlatformInfo(new Vector3(0,0,0),new Vector3(40,2,40))
     };
 
     private PlatformInfo FindPlatform(){
-        return unsearchedPlatforms[0];
+        return unusedPlatforms[0];
     }
 
     private PlatformInfo FindNeighborPlatformRelative(PlatformInfo relativePlat, PlatformInfo blacklistedPlat){
@@ -63,26 +63,57 @@ public class PlatformGenerator : MonoBehaviour
                 closestPlat = plat;
             }
         }
-        return closestPlat;
-    }
-
-    private float GetDistanceOfObjectToScale(Vector3 scale){
-        return Vector3.Distance(new Vector3(scale.x*0.5f,0f,scale.z*0.5f), Vector3.zero);
-    }
-
-    private Vector2 FindShortestDistanceRelative(Vector3 relativePosition){
-        float currentDist = 999999f;
-        PlatformInfo closestPlat = oldPlatformData[Random.Range(0,oldPlatformData.Count-1)];
-        foreach (PlatformInfo plat in oldPlatformData){
-            //trying to account for scale of the plat
-            float dist = Vector3.Distance(relativePosition,plat.mainPosition+(relativePosition-plat.mainPosition).normalized*((plat.mainScale.x+plat.mainScale.z)*0.5f));
+        foreach (PlatformInfo plat in unusedPlatforms){
+            if (plat == blacklistedPlat)
+                continue;
+            if (plat == relativePlat)
+                continue;
+            Vector3 flattenedPos = plat.mainPosition;
+            flattenedPos.y = 0f;
+            relativePlat.mainPosition.y = 0f;
+            float dist = Vector3.Distance(flattenedPos,relativePlat.mainPosition);
             if (currentDist > dist){
                 currentDist = dist;
                 closestPlat = plat;
             }
         }
-        Debug.Log("Closest plat: " + closestPlat.mainPosition);
-        return new Vector2(currentDist,GetDistanceOfObjectToScale(closestPlat.mainScale));
+        return closestPlat;
+    }
+
+    private float GetDistanceOfObjectToScale(Vector3 scale){
+        return Vector3.Distance(Vector3.zero,new Vector3(scale.x*0.5f,0f,scale.z*0.5f));
+    }
+
+    private bool DetectOverlapBetweenPlatforms(Vector3 pos, Vector3 scale, PlatformInfo platTwo, out float fix){
+        float dist = Vector3.Distance(pos,platTwo.mainPosition);
+        float minDistAllowed = (scale.x+scale.z)*0.3f+(platTwo.mainScale.x+platTwo.mainScale.z)*0.3f;
+        // if (Mathf.Abs(pos.y-platTwo.mainPosition.y) < platTwo.mainScale.y){
+        //     pos.y += -(platTwo.mainScale.y*0.5f+scale.y*0.5f)+Random.Range(-Yoffset,-Yoffset*0.1f);
+        // }
+        if (dist < minDistAllowed){
+            fix = dist-minDistAllowed;
+            return true;
+        }else{
+            fix = 0f;
+            return false;
+        }
+    }
+
+    private bool DetectOverlapRelative(Vector3 pos, Vector3 scale, out float fix){
+
+        foreach (PlatformInfo plat in oldPlatformData){
+            //trying to account for scale of the plat
+            if (DetectOverlapBetweenPlatforms(pos,scale,plat,out fix)){
+                return true;
+            }
+        }
+        foreach (PlatformInfo plat in unusedPlatforms){
+            if (DetectOverlapBetweenPlatforms(pos,scale,plat,out fix)){
+                return true;
+            }
+        }
+        fix  = 0f;
+        return false;
     }
 
     private List<Vector3> FindPositionsThroughTriangle(List<Vector3> points, List<Vector3> scales, float minExpand, float maxExpand, int cap){
@@ -105,6 +136,7 @@ public class PlatformGenerator : MonoBehaviour
         List<Vector3> theoreticalPositions = new List<Vector3>();
         Vector3 theoreticalPosition;
         Vector3 extrudedTheoreticalPos;
+        float potentialFix = 0f;
         for (int i = 0; i < points.Count;i++){
             currentIt++;
             Vector3 halfPoint;
@@ -122,23 +154,28 @@ public class PlatformGenerator : MonoBehaviour
             Debug.Log("Scale: "+scales[i]);
             extrudedTheoreticalPos = halfPoint+(halfPoint-center).normalized*Random.Range(scaleAvg+minExpand,scaleAvg+maxExpand);
             Debug.Log("Theoretical pos: "+extrudedTheoreticalPos);
-            Vector2 distAndPlatScale = FindShortestDistanceRelative(extrudedTheoreticalPos);
-            float scaleDist = GetDistanceOfObjectToScale(scales[i]);
-            float minDistAllowed = (scaleDist*0.5f+distAndPlatScale.y*0.5f)*0.8f;
-            Debug.Log("Minimum Distance Allowed: "+minDistAllowed + " || compared to distance between two platforms: "+distAndPlatScale.x);
-            if (Vector3.Distance(extrudedTheoreticalPos,Vector3.zero) < Vector3.Distance(theoreticalPosition,Vector3.zero)){
+            if (Vector3.Distance(Vector3.zero,extrudedTheoreticalPos) < Vector3.Distance(Vector3.zero,theoreticalPosition)){
+                Debug.Log("!!!! Was going backwards !!!!");
                 failedIt = i;
                 theoreticalPositions.Add(Vector3.zero);
                 continue;
             }
-            if (distAndPlatScale.x > minDistAllowed){
+            if (!DetectOverlapRelative(extrudedTheoreticalPos,scales[i], out potentialFix)){
                 theoreticalPositions.Add(extrudedTheoreticalPos);
                 if (currentIt >= cap){
                     return theoreticalPositions;
                 }
             }else{
-                extrudedTheoreticalPos += (halfPoint-center).normalized*(minDistAllowed-distAndPlatScale.x);
+                extrudedTheoreticalPos += (halfPoint-center).normalized*(potentialFix+3f);
                 Debug.Log("MODIFED theoretical pos: "+extrudedTheoreticalPos);
+                scales[i] *= 0.9f;
+                if (DetectOverlapRelative(extrudedTheoreticalPos,scales[i],out potentialFix)){
+                    theoreticalPositions.Add(Vector3.zero);
+                    if (currentIt >= cap){
+                        return theoreticalPositions;
+                    }
+                    continue;
+                }
                 theoreticalPositions.Add(extrudedTheoreticalPos);
                 if (currentIt >= cap){
                     return theoreticalPositions;
@@ -147,15 +184,13 @@ public class PlatformGenerator : MonoBehaviour
         }
         if (failedIt != 0){
             theoreticalPosition = center;
-            Vector2 distAndPlatScale = FindShortestDistanceRelative(theoreticalPosition);
-            float scaleDist = GetDistanceOfObjectToScale(scales[failedIt]);
-            float minDistAllowed = (scaleDist*0.5f+distAndPlatScale.y*0.5f)*0.8f;
-            if (distAndPlatScale.x > minDistAllowed){
-                theoreticalPositions.Add(theoreticalPosition);
+
+            if (!DetectOverlapRelative(theoreticalPosition,scales[failedIt],out potentialFix)){
+                theoreticalPositions[failedIt] = theoreticalPosition;
             }else{
-                Vector3 theoreticalScale = new Vector3(scales[failedIt].x-(minDistAllowed-distAndPlatScale.x)*0.5f,
+                Vector3 theoreticalScale = new Vector3(scales[failedIt].x-(potentialFix)*0.5f,
                                                         scales[failedIt].y,
-                                                        scales[failedIt].z-(minDistAllowed-distAndPlatScale.x)*0.5f);
+                                                        scales[failedIt].z-(potentialFix)*0.5f);
                 Debug.Log("MODIFED scale: "+theoreticalScale);
                 if ((theoreticalScale.x+theoreticalScale.z)*0.5f-1f <= minMaxPlatformXScale.x){
                     return theoreticalPositions;
@@ -185,13 +220,12 @@ public class PlatformGenerator : MonoBehaviour
             if (positions[i] == Vector3.zero){
                 continue;
             }
-            positions[i].y = positions[i].y+Random.Range(-Yoffset,Yoffset);
             GameObject pHolder = Instantiate(platformHolder,positions[i],Quaternion.identity);
             GameObject main = Instantiate(mainPlat,positions[i],Quaternion.identity);
             main.transform.localScale = scales[i];
             main.transform.parent = pHolder.transform;
             DontDestroyOnLoad(pHolder);
-            unsearchedPlatforms.Add(new PlatformInfo(positions[i],scales[i]));
+            unusedPlatforms.Add(new PlatformInfo(positions[i],scales[i]));
             if (Random.Range(0,101) <= extraLowerPlatformChance){
                 //add extra platform
             }
@@ -199,8 +233,8 @@ public class PlatformGenerator : MonoBehaviour
     }
 
     private void RemoveFromUnsearched(PlatformInfo plat){
-        if (unsearchedPlatforms.Contains(plat))
-            unsearchedPlatforms.Remove(plat);
+        if (unusedPlatforms.Contains(plat))
+            unusedPlatforms.Remove(plat);
         if (!oldPlatformData.Contains(plat))
             oldPlatformData.Add(plat);
     }

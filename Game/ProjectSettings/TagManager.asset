@@ -9,6 +9,9 @@ TagManager:
   - SpawnPoint
   - Gun
   - Enemy
+  - ExtraUtils
+  - Platform
+  - Teleporter
   layers:
   - Default
   - TransparentFX
