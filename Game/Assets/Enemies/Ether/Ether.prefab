@@ -501,7 +501,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 3872225859729783973}
   injector: {fileID: 1595523739458197103}
-  type: 0
   immunityAttackRate: 1
   immunityDamage: 10
 --- !u!114 &1595523739458197103
@@ -597,6 +596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 1406129636473073463, guid: 204a045193b337e4c92614a8c2dcb0ad, type: 3}
   VFXScale: 1
+  type: 0
   objective: 0
   entity: {fileID: 0}
   maxHealth: 300
@@ -676,7 +676,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0871d566f8731428cce538d6f0e313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yCheck: 0
+  layermask:
+    serializedVersion: 2
+    m_Bits: 64511
   distanceCheck: 5
   minY: 2
   maxY: 24
@@ -726,6 +728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 3872225859729783973}
   entityType: 1
+  myPassiveItems: []
 --- !u!1001 &69499260181313728
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -72,7 +72,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private void Parry(GameObject sender){
         if (Random.Range(0f,100f) <= stats.numericals["parryChance"]){
-            sender.GetComponent<IParriable>().Parry(gameObject,Vector3.zero);
+            sender.GetComponent<IParriable>()?.Parry(gameObject,Vector3.zero);
         }
     }
 

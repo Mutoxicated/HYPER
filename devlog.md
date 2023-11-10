@@ -987,3 +987,11 @@ Basically i take 3 platforms, effectively making a triangle, getting the bisecto
 IT WORKS!!!!!!!!!!!!!!!!!!!!!!!!!! NO PLATFORM OVERLAP!!!!!!!!!!!!!!!!!!!!!!!!! WOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!
 
 Now i have to add the extra platforms and then the y axis offset to absolutely guarantee no overlap.
+
+## Day 149 thru 154
+
+Damn I didn't even realize 6 days passed. What the heck.
+
+I started working on a new side project 6 days ago and I finished it yesterday, I will start working on the game again now.
+
+Today I did some of the works for the new enemies: Mog and Oxywand. We'll see how it goes.

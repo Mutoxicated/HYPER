@@ -41,12 +41,13 @@ public class Stats : MonoBehaviour
         {"explosionChance",25f},
         {"extra",0f},
         {"confusion",0f},
-        {"parryChance",3f},
+        {"parryChance",1f},
         {"shieldHealthModifier",1f},
         {"damageNO",1f},
         {"damageO",1f},
         {"enemyBlockChance",0f},
-        {"bacteriaBlockChance",0f}
+        {"bacteriaBlockChance",0f},
+        {"range",40f}
     };
 
     [HideInInspector] public List<Shield> shields = new List<Shield>();

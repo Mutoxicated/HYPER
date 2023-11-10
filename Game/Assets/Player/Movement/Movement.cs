@@ -57,7 +57,7 @@ public class Movement : MonoBehaviour
     [HideInInspector] public MovementState movementState = MovementState.WALKING;
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 slideDirection = Vector3.zero;
-    private ContactPoint point;
+    public ContactPoint point;
 
     private ButtonInput jumpInput = new ButtonInput("Jump");
     private ButtonInput dashInput = new ButtonInput("Dash");

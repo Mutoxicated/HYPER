@@ -20,7 +20,7 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField] private Vector2 minMaxPlatformYScale;
     [SerializeField] private float platformZScaleOffset;
     [SerializeField] private float distTolerance;
-    [SerializeField] private int generationAmount;
+    [SerializeField] private int[] generationCycle;
     [Header("World pieces")]
     [SerializeField] private GameObject platformHolder;
     [Space]
@@ -30,15 +30,15 @@ public class PlatformGenerator : MonoBehaviour
 
     private int maxPlatforms;
     private int extraLowerPlatformChance;
-
+    private Scroll cycle;
     private float totalDistAvg;
 
     private static List<PlatformInfo> oldPlatformData = new List<PlatformInfo>(){
-        new PlatformInfo(new Vector3(-67,-10,-106),new Vector3(70,2,70)),
-        new PlatformInfo(new Vector3(71,-10,-110),new Vector3(55,2,40))
     };
 
     private static List<PlatformInfo> unusedPlatforms = new List<PlatformInfo>(){
+        new PlatformInfo(new Vector3(-67,-10,-106),new Vector3(70,2,70)),
+        new PlatformInfo(new Vector3(71,-10,-110),new Vector3(55,2,40)),
         new PlatformInfo(new Vector3(0,0,0),new Vector3(40,2,40))
     };
 
@@ -84,12 +84,14 @@ public class PlatformGenerator : MonoBehaviour
         return Vector3.Distance(Vector3.zero,new Vector3(scale.x*0.5f,0f,scale.z*0.5f));
     }
 
-    private bool DetectOverlapBetweenPlatforms(Vector3 pos, Vector3 scale, PlatformInfo platTwo, out float fix){
+    private bool DetectOverlapBetweenPlatforms(ref Vector3 pos, Vector3 scale, PlatformInfo platTwo, out float fix){
         float dist = Vector3.Distance(pos,platTwo.mainPosition);
         float minDistAllowed = (scale.x+scale.z)*0.3f+(platTwo.mainScale.x+platTwo.mainScale.z)*0.3f;
-        // if (Mathf.Abs(pos.y-platTwo.mainPosition.y) < platTwo.mainScale.y){
-        //     pos.y += -(platTwo.mainScale.y*0.5f+scale.y*0.5f)+Random.Range(-Yoffset,-Yoffset*0.1f);
-        // }
+        if (Mathf.Abs(pos.y-platTwo.mainPosition.y) < platTwo.mainScale.y){
+           pos.y += -(platTwo.mainScale.y*0.5f+scale.y*0.5f)*0.5f+Random.Range(-Yoffset,-Yoffset*0.1f);
+        }else{
+            pos.y += Random.Range(-Yoffset,Yoffset);
+        }
         if (dist < minDistAllowed){
             fix = dist-minDistAllowed;
             return true;
@@ -99,16 +101,16 @@ public class PlatformGenerator : MonoBehaviour
         }
     }
 
-    private bool DetectOverlapRelative(Vector3 pos, Vector3 scale, out float fix){
+    private bool DetectOverlapRelative(ref Vector3 pos, Vector3 scale, out float fix){
 
         foreach (PlatformInfo plat in oldPlatformData){
             //trying to account for scale of the plat
-            if (DetectOverlapBetweenPlatforms(pos,scale,plat,out fix)){
+            if (DetectOverlapBetweenPlatforms(ref pos,scale,plat,out fix)){
                 return true;
             }
         }
         foreach (PlatformInfo plat in unusedPlatforms){
-            if (DetectOverlapBetweenPlatforms(pos,scale,plat,out fix)){
+            if (DetectOverlapBetweenPlatforms(ref pos,scale,plat,out fix)){
                 return true;
             }
         }
@@ -116,7 +118,7 @@ public class PlatformGenerator : MonoBehaviour
         return false;
     }
 
-    private List<Vector3> FindPositionsThroughTriangle(List<Vector3> points, List<Vector3> scales, float minExpand, float maxExpand, int cap){
+    private List<Vector3> FindPositionsThroughTriangle(List<Vector3> points, List<Vector3> scales, float minExpand, float maxExpand){
         Vector3 center = new Vector3((points[0].x+points[1].x+points[2].x)/3f,
                                      (points[0].y+points[1].y+points[2].y)/3f,
                                      (points[0].z+points[1].z+points[2].z)/3f);
@@ -160,46 +162,37 @@ public class PlatformGenerator : MonoBehaviour
                 theoreticalPositions.Add(Vector3.zero);
                 continue;
             }
-            if (!DetectOverlapRelative(extrudedTheoreticalPos,scales[i], out potentialFix)){
+            if (!DetectOverlapRelative(ref extrudedTheoreticalPos,scales[i], out potentialFix)){
                 theoreticalPositions.Add(extrudedTheoreticalPos);
-                if (currentIt >= cap){
-                    return theoreticalPositions;
-                }
             }else{
                 extrudedTheoreticalPos += (halfPoint-center).normalized*(potentialFix+3f);
                 Debug.Log("MODIFED theoretical pos: "+extrudedTheoreticalPos);
                 scales[i] *= 0.9f;
-                if (DetectOverlapRelative(extrudedTheoreticalPos,scales[i],out potentialFix)){
+                if (DetectOverlapRelative(ref extrudedTheoreticalPos,scales[i],out potentialFix)){
                     theoreticalPositions.Add(Vector3.zero);
-                    if (currentIt >= cap){
-                        return theoreticalPositions;
-                    }
                     continue;
                 }
                 theoreticalPositions.Add(extrudedTheoreticalPos);
-                if (currentIt >= cap){
-                    return theoreticalPositions;
-                }
             }
         }
-        if (failedIt != 0){
-            theoreticalPosition = center;
+        // if (failedIt != 0){
+        //     theoreticalPosition = center;
 
-            if (!DetectOverlapRelative(theoreticalPosition,scales[failedIt],out potentialFix)){
-                theoreticalPositions[failedIt] = theoreticalPosition;
-            }else{
-                Vector3 theoreticalScale = new Vector3(scales[failedIt].x-(potentialFix)*0.5f,
-                                                        scales[failedIt].y,
-                                                        scales[failedIt].z-(potentialFix)*0.5f);
-                Debug.Log("MODIFED scale: "+theoreticalScale);
-                if ((theoreticalScale.x+theoreticalScale.z)*0.5f-1f <= minMaxPlatformXScale.x){
-                    return theoreticalPositions;
-                }else{
-                    scales[failedIt] = theoreticalScale;
-                    theoreticalPositions[failedIt] = theoreticalPosition;
-                }
-            }
-        }
+        //     if (!DetectOverlapRelative(ref theoreticalPosition,scales[failedIt],out potentialFix)){
+        //         theoreticalPositions[failedIt] = theoreticalPosition;
+        //     }else{
+        //         Vector3 theoreticalScale = new Vector3(scales[failedIt].x-(potentialFix)*0.5f,
+        //                                                 scales[failedIt].y,
+        //                                                 scales[failedIt].z-(potentialFix)*0.5f);
+        //         Debug.Log("MODIFED scale: "+theoreticalScale);
+        //         if ((theoreticalScale.x+theoreticalScale.z)*0.5f-1f <= minMaxPlatformXScale.x){
+        //             return theoreticalPositions;
+        //         }else{
+        //             scales[failedIt] = theoreticalScale;
+        //             theoreticalPositions[failedIt] = theoreticalPosition;
+        //         }
+        //     }
+        // }
         return theoreticalPositions;
     }
 
@@ -215,7 +208,8 @@ public class PlatformGenerator : MonoBehaviour
         return scales;
     }
 
-    private void CreatePlatforms(Vector3[] positions, Vector3[] scales){
+    private void CreatePlatforms(Vector3[] positions, Vector3[] scales, int cap){
+        int amountCreated = 0;
         for (int i = 0; i < positions.Length; i++){
             if (positions[i] == Vector3.zero){
                 continue;
@@ -226,6 +220,10 @@ public class PlatformGenerator : MonoBehaviour
             main.transform.parent = pHolder.transform;
             DontDestroyOnLoad(pHolder);
             unusedPlatforms.Add(new PlatformInfo(positions[i],scales[i]));
+            amountCreated++;
+            if (amountCreated >= cap){
+                return;
+            }
             if (Random.Range(0,101) <= extraLowerPlatformChance){
                 //add extra platform
             }
@@ -239,7 +237,7 @@ public class PlatformGenerator : MonoBehaviour
             oldPlatformData.Add(plat);
     }
 
-    public void GeneratePlatforms(int cap){
+    public void GeneratePlatforms(){
         PlatformInfo mainPlatform = FindPlatform();
         List<PlatformInfo> neighboringPlatforms = new List<PlatformInfo>();
         RemoveFromUnsearched(mainPlatform);
@@ -252,12 +250,26 @@ public class PlatformGenerator : MonoBehaviour
             neighboringPlatforms[1].mainPosition
         };
         List<Vector3> scales = CreateScales();
-        List<Vector3> platformPos = FindPositionsThroughTriangle(points, scales, 20f, 50f,cap);
-        CreatePlatforms(platformPos.ToArray(),scales.ToArray());
+        List<Vector3> platformPos = FindPositionsThroughTriangle(points, scales, 20f, 50f);
+        CreatePlatforms(platformPos.ToArray(),scales.ToArray(), maxPlatforms);
+    }
+
+    private void RandomizeGenerationCycle(){
+        for (int n = generationCycle.Length - 1; n > 0; --n)
+        {
+            int k = Random.Range(0,generationCycle.Length-1);
+            int temp = generationCycle[n];
+            generationCycle[n] = generationCycle[k];
+            generationCycle[k] = temp;
+        }
     }
 
     private void Start(){
-        maxPlatforms = generationAmount;
-        GeneratePlatforms(maxPlatforms);
+        RandomizeGenerationCycle();
+        if (cycle == null)
+            cycle = new Scroll(0,generationCycle.Length);
+        maxPlatforms = generationCycle[cycle.index];
+        GeneratePlatforms();
+        cycle.Increase();
     }
 }
