@@ -995,3 +995,11 @@ Damn I didn't even realize 6 days passed. What the heck.
 I started working on a new side project 6 days ago and I finished it yesterday, I will start working on the game again now.
 
 Today I did some of the works for the new enemies: Mog and Oxywand. We'll see how it goes.
+
+## Day 155 thru 165
+
+Sorry... I've been doing other things lately. 
+
+It does not feel like 11 days ago I stopped commiting. Really feels like 4 or 5..
+
+Anyway I completed the EWalk script, haven't tested it yet.

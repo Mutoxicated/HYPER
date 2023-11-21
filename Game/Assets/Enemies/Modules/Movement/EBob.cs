@@ -7,7 +7,14 @@ public class EBob : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private BobInformation[] bobs;
 
-    public void Bob(int index){
-        rb.AddForce(bobs[index].direction.eulerAngles.normalized*bobs[index].speed,ForceMode.Impulse);
+    private int currentIndex;
+
+    public void ChangeIndex(int index){
+        currentIndex = index;
+    }
+
+    public void Bob(bool state){
+        if (state)
+            rb.AddForce(bobs[currentIndex].direction.normalized*bobs[currentIndex].speed,ForceMode.Impulse);
     } 
 }

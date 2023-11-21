@@ -89,12 +89,12 @@ public class Movement : MonoBehaviour
     }
 
     public void TriggerBounceState(Vector3 point, GameObject sender){
-        if (stamina.GetCurrentStamina() < 75f)
+        if (stamina.GetCurrentStamina() < 100f)
             return;
         ability.LaunchIn(point, launchForce * stats.numericals["moveSpeed"]);
         movementState = MovementState.BOUNCING;
         launchInterval.ResetEarly();
-        stamina.ReduceStamina(75f);
+        stamina.ReduceStamina(100f);
         this.sender = sender;
     }
 
@@ -168,7 +168,7 @@ public class Movement : MonoBehaviour
 
     private void LaunchLogic()
     {
-        if (stamina.GetCurrentStamina() < 100f)
+        if (stamina.GetCurrentStamina() < 75f)
             return;
         if (launchInInput.GetInputDown())
         {
@@ -227,6 +227,8 @@ public class Movement : MonoBehaviour
                 ability.speed = rb.velocity.magnitude;
                 stamina.ReduceStamina(50f);
                 lockEffect.Play();
+                if (slide.isPlaying)
+                    slide.Stop();
                 movementState = MovementState.LOCKED;
                 lockInterval.enabled = true;
             }
@@ -260,7 +262,7 @@ public class Movement : MonoBehaviour
             crouchReleased = false;
             return;
         }
-        if (slideInput.GetInputDown())
+        if (slideInput.GetInputDown() && movementState != MovementState.LOCKED)
         {
             uponSlide = true;
             if (!airborne && crouchReleased)

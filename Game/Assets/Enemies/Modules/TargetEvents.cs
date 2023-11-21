@@ -21,65 +21,75 @@ public class TargetEvents : MonoBehaviour
         if (Mathf.Abs(transform.position.y-transformComparison.position.y) <= tolerance){
             return true;
         }
-        return true;
+        return false;
     }
 
     private void PlayerEvents(){
-        if (targetOnSameLevel.GetPersistentEventCount() != 0 && inRange){
-            if (SameYAxis(Difficulty.player,3f) && !switch1){
-                targetOnSameLevel.Invoke(true);
-                switch1 = true;
-            }else if (!SameYAxis(Difficulty.player,3f) && switch1){
-                targetOnSameLevel.Invoke(false);
-                switch1 = false;
-            }
-        }
-
-        if (targetInRange.GetPersistentEventCount() == 0)
-            return;
         t += Time.deltaTime;
         if (t >= checkInSeconds){
             t = 0f;
             dist = Vector3.Distance(transform.position,Difficulty.player.position);
             if (dist <= stats.numericals["range"] && !switch2){
-                targetInRange.Invoke(true);
+                CallTargetRange(true);
                 inRange = true;
                 switch2 = true;
                 
-            }else if (dist <= stats.numericals["range"] && !switch2){
-                targetInRange.Invoke(false);
+            }else if (dist > stats.numericals["range"] && switch2){
+                CallTargetRange(false);
                 inRange = false;
                 switch2 = false;
             }
         }
-    }
 
-    private void EnemyEvents(){
-        if (targetOnSameLevel.GetPersistentEventCount() != 0 && inRange){
-            if (SameYAxis(stats.entity,3f) && !switch1){
-                targetOnSameLevel.Invoke(true);
+        if (inRange){
+            if (SameYAxis(Difficulty.player,3f) && !switch1){
+                CallTargetSameYLevel(true);
                 switch1 = true;
-            }else if (!SameYAxis(stats.entity,3f) && switch1){
-                targetOnSameLevel.Invoke(true);
+            }else if (!SameYAxis(Difficulty.player,3f) && switch1){
+                CallTargetSameYLevel(false);
                 switch1 = false;
             }
         }
+    }
 
-        if (targetInRange.GetPersistentEventCount() == 0)
-            return;
+    private void CallTargetSameYLevel(bool state){
+        if (targetOnSameLevel.GetPersistentEventCount() != 0){
+            targetOnSameLevel.Invoke(state);
+            Debug.Log("Target at same Y Level: " + state);
+        }
+    }
+
+    private void CallTargetRange(bool state){
+        if (targetInRange.GetPersistentEventCount() != 0){
+            targetInRange.Invoke(state);
+            Debug.Log("Target In Range: " + state);
+        }
+    }
+
+    private void EnemyEvents(){
         t += Time.deltaTime;
         if (t >= checkInSeconds){
             t = 0f;
             dist = Vector3.Distance(transform.position,stats.entity.position);
             if (dist <= stats.numericals["range"] && !switch2){
-                targetInRange.Invoke(true);
+                CallTargetRange(true);
                 inRange = true;
                 switch2 = true;
                 
-            }else if (dist <= stats.numericals["range"] && !switch2){
-                targetInRange.Invoke(false);
+            }else if (dist > stats.numericals["range"] && switch2){
+                CallTargetRange(false);
                 inRange = false;
                 switch2 = false;
+            }
+        }
+
+        if (inRange){
+            if (SameYAxis(stats.entity,3f) && !switch1){
+                CallTargetSameYLevel(true);
+                switch1 = true;
+            }else if (!SameYAxis(stats.entity,3f) && switch1){
+                CallTargetSameYLevel(false);
+                switch1 = false;
             }
         }
     }

@@ -73,7 +73,7 @@ public class Melee : MonoBehaviour
             animator.Play("Throw");
             Instantiate(TNTPrefab, throwPoint.position,GunShooter.GetAccurateRotation(cam,throwPoint)*TNTPrefab.transform.rotation);
             //stats.ModifyIncrementalStat("capacitor1", -1);
-        }if (launchInput.GetInputDown() && isIdle && Launcher.playerMovement.sender == null && Launcher.playerMovement.stamina.GetCurrentStamina() > 75f){
+        }if (launchInput.GetInputDown() && isIdle && Launcher.playerMovement.sender == null && Launcher.playerMovement.stamina.GetCurrentStamina() > 100f){
             ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2,0));
             bool hit = Physics.SphereCast(ray.origin,0.01f, ray.direction, out hitInfo, 10000f, layerMask);
             if (hit){

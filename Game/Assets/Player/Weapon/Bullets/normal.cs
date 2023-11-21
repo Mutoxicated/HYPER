@@ -56,11 +56,15 @@ public class normal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.layer == 11){
+            return;
+        }
         if (other.gameObject.tag != "Enemy")
         {
             Recycle();
             return;
         }
+        //Debug.Log(other.gameObject.name);
         var damageable = other.gameObject.GetComponent<IDamageable>();
         damageable?.TakeDamage(damage * gun.stats.numericals["damage"], gun.stats,1f,0);
         if (injector != null)
@@ -75,6 +79,9 @@ public class normal : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (other.gameObject.layer == 11){
+            return;
+        }
         if (other.gameObject.tag != "Enemy")
         {
             Recycle();
@@ -85,6 +92,9 @@ public class normal : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.layer == 11){
+            return;
+        }
         if (other.gameObject.tag != "Enemy")
         {
             Recycle();

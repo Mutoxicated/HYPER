@@ -29,8 +29,12 @@ public class Shoot : MonoBehaviour
         }
         else
         {
-            instance = Instantiate(bulletPrefab, transformRef.position, transformRef.rotation);
+            if (PublicPools.pools.ContainsKey(bulletPrefab.name)){
+                instance = PublicPools.pools[bulletPrefab.name].UseObject(transformRef.position, transformRef.rotation);
+            }else{
+                instance = Instantiate(bulletPrefab, transformRef.position, transformRef.rotation);
             //instance.SetActive(true);
+            }
             if (inheritInjector){
                 instance.GetComponent<Injector>()?.InheritInjector(injector);
             }

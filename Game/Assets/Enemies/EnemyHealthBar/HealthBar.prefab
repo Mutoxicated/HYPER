@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 7641948402028920785}
   - component: {fileID: 4665220955380819846}
   - component: {fileID: 5987680399965101212}
-  - component: {fileID: 3855053205176874441}
   - component: {fileID: 736330443699394656}
   m_Layer: 0
   m_Name: Quad
@@ -215,20 +214,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3855053205176874441
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6675817037426932262}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &736330443699394656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 8896537552764645371}
-  axisMultiplier: {x: 1, y: 1, z: 1}
   lerpSpeed: 16
 --- !u!114 &9131518230594397207
 MonoBehaviour:
@@ -580,6 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 0}
   VFXScale: 1
+  type: 0
   objective: 0
   entity: {fileID: 0}
   maxHealth: 0
@@ -595,30 +580,6 @@ MonoBehaviour:
       Value: 0
     - Key: colorFXED
       Value: 0
-  numericals:
-    _serializedList:
-    - Key: permaShields
-      Value: 0
-    - Key: moveSpeed
-      Value: 1
-    - Key: damage
-      Value: 1
-    - Key: hostility
-      Value: 1
-    - Key: rate
-      Value: 1
-    - Key: attackSpeed
-      Value: 1
-    - Key: shootSpeed
-      Value: 1
-    - Key: capacitor1
-      Value: 1
-    - Key: capacitor2
-      Value: 1
-    - Key: pierces
-      Value: 1
-    - Key: explosionChance
-      Value: 50
 --- !u!1001 &8057811669862780980
 PrefabInstance:
   m_ObjectHideFlags: 0
