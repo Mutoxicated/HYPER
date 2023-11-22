@@ -362,7 +362,8 @@ MonoBehaviour:
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 3137
-  tagsToIgnore: []
+  tagsToIgnore:
+  - BlastProtected
 --- !u!114 &4882790075425700368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,6 +378,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 0}
   VFXScale: 1
+  type: 0
+  objective: 0
+  entity: {fileID: 0}
+  maxHealth: 0
+  maxShields: 0
+  shieldhealth: 50
+  conditionals:
+    _serializedList:
+    - Key: explosive
+      Value: 0
+    - Key: surfaceFXED
+      Value: 0
+    - Key: outlineFXED
+      Value: 0
+    - Key: colorFXED
+      Value: 0
+    - Key: stunned
+      Value: 0
 --- !u!114 &1318928374030441264
 MonoBehaviour:
   m_ObjectHideFlags: 0

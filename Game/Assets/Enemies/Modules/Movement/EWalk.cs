@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class EWalk : MonoBehaviour
 {
-    /*
-    step 1: find valid direction,
-    step 2: rest
-    step 3: walk
-    */
-
+    [SerializeField] private Stats stats;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private Transform transformToRotate;
     [SerializeField] private FloorDetector fd;
 
     [SerializeField] private OnInterval walkInterval;
     [SerializeField] private OnInterval restInterval;
 
     [SerializeField] private float walkLerp;
-    [SerializeField] private Vector3 walkLerpminmaxcale;
+    [SerializeField] private Vector2 walkLerpminmaxcale;
 
     [SerializeField] private float restIntervalTime;
     [SerializeField] private Vector2 restIntervalminmaxScale;
@@ -25,6 +21,7 @@ public class EWalk : MonoBehaviour
     private Vector3 moveDirection;
     private Quaternion rotation;
     private float lerp;
+    private bool lookToWalk = true;
 
     private void ChangeDirection(){
         float ry = Random.Range(0f,360f);
@@ -37,15 +34,19 @@ public class EWalk : MonoBehaviour
         }
     }
 
-    private void Walk(){
+    public void Walk(){
         walkInterval.enabled = true;
         ValidateDirection();
     }
 
-    private void Rest(){
+    public void Rest(){
         restInterval.enabled = true;
         ChangeDirection();
         ChangeLerp();
+    }
+
+    public void LookToWalk(bool state){
+        lookToWalk = !state;
     }
 
     private void ChangeLerp(){
@@ -68,8 +69,9 @@ public class EWalk : MonoBehaviour
     private void FixedUpdate(){
         if (walkInterval.enabled != true)
             return;
-        rb.rotation = Quaternion.Lerp(rb.rotation,rotation,Time.fixedDeltaTime*7f);
-        moveDirection = transform.forward;
+        if (lookToWalk)
+            transformToRotate.rotation = Quaternion.Lerp(transformToRotate.rotation,rotation,Time.fixedDeltaTime*15f);
+        moveDirection = transformToRotate.forward;
         rb.position = Vector3.Lerp(rb.position,rb.position+moveDirection*2f,Time.fixedDeltaTime*lerp);
     }
 

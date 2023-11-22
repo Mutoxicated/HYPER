@@ -7,7 +7,7 @@ public class TargetEvents : MonoBehaviour
 {
     [SerializeField] private Stats stats;
     [SerializeField] private UnityEvent<bool> targetInRange = new UnityEvent<bool>();
-    [SerializeField] private UnityEvent<bool> targetOnSameLevel = new UnityEvent<bool>();
+    [SerializeField] private UnityEvent<bool> targetInCloseRange = new UnityEvent<bool>();
 
     private bool switch1 = false;
     private bool switch2 = false;
@@ -16,13 +16,6 @@ public class TargetEvents : MonoBehaviour
     private float checkInSeconds = 1f;
     private float dist;
     private bool inRange = false;
-
-    private bool SameYAxis(Transform transformComparison, float tolerance){
-        if (Mathf.Abs(transform.position.y-transformComparison.position.y) <= tolerance){
-            return true;
-        }
-        return false;
-    }
 
     private void PlayerEvents(){
         t += Time.deltaTime;
@@ -39,22 +32,24 @@ public class TargetEvents : MonoBehaviour
                 inRange = false;
                 switch2 = false;
             }
-        }
-
-        if (inRange){
-            if (SameYAxis(Difficulty.player,3f) && !switch1){
-                CallTargetSameYLevel(true);
-                switch1 = true;
-            }else if (!SameYAxis(Difficulty.player,3f) && switch1){
-                CallTargetSameYLevel(false);
+            if (inRange){
+                if (dist <= stats.numericals["range"]*0.5f && !switch1){
+                    CallCloseRange(true);
+                    switch1 = true;
+                }else if (dist > stats.numericals["range"]*0.5f && switch1){
+                    CallCloseRange(false);
+                    switch1 = false;
+                }
+            }else if (!inRange && switch1){
+                CallCloseRange(false);
                 switch1 = false;
             }
         }
     }
 
-    private void CallTargetSameYLevel(bool state){
-        if (targetOnSameLevel.GetPersistentEventCount() != 0){
-            targetOnSameLevel.Invoke(state);
+    private void CallCloseRange(bool state){
+        if (targetInCloseRange.GetPersistentEventCount() != 0){
+            targetInCloseRange.Invoke(state);
             Debug.Log("Target at same Y Level: " + state);
         }
     }
@@ -81,14 +76,16 @@ public class TargetEvents : MonoBehaviour
                 inRange = false;
                 switch2 = false;
             }
-        }
-
-        if (inRange){
-            if (SameYAxis(stats.entity,3f) && !switch1){
-                CallTargetSameYLevel(true);
-                switch1 = true;
-            }else if (!SameYAxis(stats.entity,3f) && switch1){
-                CallTargetSameYLevel(false);
+            if (inRange){
+                if (dist <= stats.numericals["range"]*0.65f && !switch1){
+                    CallCloseRange(true);
+                    switch1 = true;
+                }else if (dist > stats.numericals["range"]*0.65f && switch1){
+                    CallCloseRange(false);
+                    switch1 = false;
+                }
+            }else if (!inRange && switch1){
+                CallCloseRange(false);
                 switch1 = false;
             }
         }

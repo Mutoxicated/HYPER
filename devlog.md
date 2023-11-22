@@ -1003,3 +1003,11 @@ Sorry... I've been doing other things lately.
 It does not feel like 11 days ago I stopped commiting. Really feels like 4 or 5..
 
 Anyway I completed the EWalk script, haven't tested it yet.
+
+## Day 166
+
+Sorta finished the Mog enemy, will add his ability to combine with other mogs later.
+
+Finna start on Zorretox tomorrow. It's this toxic wall comprised of intestines and guts that spew toxic shit everywhere.
+
+So yeah :D

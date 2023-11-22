@@ -12,6 +12,7 @@ TagManager:
   - ExtraUtils
   - Platform
   - Teleporter
+  - BlastProtected
   layers:
   - Default
   - TransparentFX

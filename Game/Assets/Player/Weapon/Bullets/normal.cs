@@ -59,7 +59,7 @@ public class normal : MonoBehaviour
         if (other.gameObject.layer == 11){
             return;
         }
-        if (other.gameObject.tag != "Enemy")
+        if (other.gameObject.layer != 8)
         {
             Recycle();
             return;
@@ -82,7 +82,7 @@ public class normal : MonoBehaviour
         if (other.gameObject.layer == 11){
             return;
         }
-        if (other.gameObject.tag != "Enemy")
+        if (other.gameObject.layer != 8)
         {
             Recycle();
             return;
@@ -95,7 +95,7 @@ public class normal : MonoBehaviour
         if (other.gameObject.layer == 11){
             return;
         }
-        if (other.gameObject.tag != "Enemy")
+        if (other.gameObject.layer != 8)
         {
             Recycle();
             return;

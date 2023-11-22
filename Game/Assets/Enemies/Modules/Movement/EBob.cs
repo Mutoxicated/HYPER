@@ -5,6 +5,7 @@ using UnityEngine;
 public class EBob : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private FloorDetector fd;
     [SerializeField] private BobInformation[] bobs;
 
     private int currentIndex;
@@ -14,6 +15,8 @@ public class EBob : MonoBehaviour
     }
 
     public void Bob(bool state){
+        if (!fd.isGrounded)
+            return;
         if (state)
             rb.AddForce(bobs[currentIndex].direction.normalized*bobs[currentIndex].speed,ForceMode.Impulse);
     } 
