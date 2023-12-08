@@ -1031,3 +1031,5 @@ I added chromatic abberation (spanning the whole screen and not just the edge) a
 I really think that all the graphics have come together and that the final product will look hella epic.
 
 Here's a picture of before those 2 additions (top img) and after (bottom img):
+![FINAL](https://github.com/Mutoxicated/HYPER/assets/96009711/2baaa139-751f-4bd1-8be9-90866aad2aea)
+![wp](https://github.com/Mutoxicated/HYPER/assets/96009711/8b80e455-baed-4f76-997b-fafe0d4e27ee)
