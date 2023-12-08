@@ -1011,3 +1011,23 @@ Sorta finished the Mog enemy, will add his ability to combine with other mogs la
 Finna start on Zorretox tomorrow. It's this toxic wall comprised of intestines and guts that spew toxic shit everywhere.
 
 So yeah :D
+
+## Day 167 thru 182
+
+Have been busy with other stuff lately and this week I also got sick...
+
+SO ANYWAYS. I did some graphics stuff and a lil bit of enemy work. Y'know what? It's better that I didn't do anything because I ended up realizing some very serious problems with the enemies. For one enemy, I would write 2 or 3 different attacks, thinking that it has to be very unique. I believe I was overdoing it though. I don't know eveyrthing about how to make good enemies, but I do have experience on this field. 
+
+I would like to start off by saying that enemies have a certain priority placed upon them by the player once evaluated. There is ***high-priority*** (danger is imminent), ***medium-priority*** (nuisance) and ***low-priority*** (doesn't bite unless aggravated or killed). 
+
+A good enemy offers flavour to the gameplay and the environment with as little mechanics as possible. For example, I've made an enemy called Discos, which floats in the air and periodically shoots a laser at you. This enemy provides no flavour to the environment, but it gives the following interactions to the gameplay: the player will have to use it's movement mechanics to efficiently move towards the Disco enemy and kill it. It also pushes the player into being more aware of them and their lasers (which BY THE WAY are parriable) so as to not get damaged by them. This enemy is what one would consider a medium priority.
+
+I went on the game document yesterday and, with the newfound perspective I had on enemy design, I took a look at the enemy list. What I saw was sad. Some normal enemies had upto 3 ATTACKS. Might as well be a boss at that point man. I fixed all of them and some I just completely removed. The thing is, you gotta leave some attacks for other enemies, you can't just cramp everything into one enemy.
+
+Anyway, so about the graphics stuff, I added some more cool post-processing. I had to do it myself because the post-processing unity package didn't have the stuff that I wanted.
+
+I added chromatic abberation (spanning the whole screen and not just the edge) and scanlines!!!
+
+I really think that all the graphics have come together and that the final product will look hella epic.
+
+Here's a picture of before those 2 additions (top img) and after (bottom img):

@@ -61,8 +61,10 @@ public class normal : MonoBehaviour
         }
         if (other.gameObject.layer != 8)
         {
-            Recycle();
-            return;
+            if (other.gameObject.layer != 9){
+                Recycle();
+                return;
+            }
         }
         //Debug.Log(other.gameObject.name);
         var damageable = other.gameObject.GetComponent<IDamageable>();
@@ -84,8 +86,10 @@ public class normal : MonoBehaviour
         }
         if (other.gameObject.layer != 8)
         {
-            Recycle();
-            return;
+            if (other.gameObject.layer != 9){
+                Recycle();
+                return;
+            }
         }
         //Debug.Log("STAY");
     }
@@ -97,8 +101,10 @@ public class normal : MonoBehaviour
         }
         if (other.gameObject.layer != 8)
         {
-            Recycle();
-            return;
+            if (other.gameObject.layer != 9){
+                Recycle();
+                return;
+            }
         }
         //Debug.Log("EXIT");
     }

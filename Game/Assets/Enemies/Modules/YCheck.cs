@@ -14,9 +14,11 @@ public class YCheck : MonoBehaviour
 
     void Start()
     {
-        Physics.RaycastNonAlloc(transform.position,Vector3.down,hits,Mathf.Infinity,layermask,QueryTriggerInteraction.UseGlobal);
+        Physics.RaycastNonAlloc(transform.position,Vector3.down,hits,Mathf.Infinity,layermask);
 
         float yDistance = Mathf.Abs(transform.position.y - hits[0].point.y);
+
+        Debug.Log("Hit point y: "+hits[0].point.y);
         if (yDistance < distanceCheck)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + Random.Range(minY, maxY),transform.position.z);

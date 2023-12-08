@@ -77,4 +77,8 @@ public class ExplosionParts : MonoBehaviour
         }
         exploding = true;
     }
+
+    public void Die(){
+        Destroy(gameObject);
+    }
 }

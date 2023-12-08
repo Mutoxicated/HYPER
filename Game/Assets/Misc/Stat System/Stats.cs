@@ -27,8 +27,8 @@ public class Stats : MonoBehaviour
         {"colorFXED", false},
         {"stunned",false}
     };
-    //[SerializedDictionary("stat name","num")]
-    public Dictionary<string, float> numericals = new Dictionary<string, float>(){
+    [SerializedDictionary("stat name","num")]
+    public SerializedDictionary<string, float> numericals = new SerializedDictionary<string, float>(){
         {"permaShields",0},
         {"moveSpeed", 1f},
         {"damage", 1f},
@@ -97,6 +97,7 @@ public class Stats : MonoBehaviour
         }else{
             objective = DeathFor.PLAYER;
         }
+        FindEntity();
     }
 
     public void ChangeObjective(DeathFor objective){

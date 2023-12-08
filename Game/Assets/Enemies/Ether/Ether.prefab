@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4095709657238618873}
-  - component: {fileID: 5686175632287108662}
   - component: {fileID: 1097695226009025837}
   m_Layer: 0
-  m_Name: missilePool
+  m_Name: missileShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,21 +32,6 @@ Transform:
   m_Father: {fileID: 2982936731220533164}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5686175632287108662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 246505309136546374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6db3442497fe5148841517b3b41adf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPublic: 0
-  enableOnUse: 1
-  prefab: {fileID: 5725198740932932340, guid: 8c5254d0a0dd18c4b801365929fad7e6, type: 3}
 --- !u!114 &1097695226009025837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d690bfb50e7204da1c3461d76aab03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 5686175632287108662}
+  objectPool: {fileID: 0}
   inheritInjector: 1
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 1505947228412035310, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
   injector: {fileID: 1595523739458197103}
   transformRef: {fileID: 4095709657238618873}
 --- !u!1 &2029483553560196246
@@ -614,6 +598,46 @@ MonoBehaviour:
       Value: 0
     - Key: stunned
       Value: 0
+  numericals:
+    _serializedList:
+    - Key: permaShields
+      Value: 0
+    - Key: moveSpeed
+      Value: 1
+    - Key: damage
+      Value: 1
+    - Key: hostility
+      Value: 1
+    - Key: rate
+      Value: 1
+    - Key: attackSpeed
+      Value: 1
+    - Key: shootSpeed
+      Value: 1
+    - Key: capacitor1
+      Value: 1
+    - Key: pierces
+      Value: 1
+    - Key: explosionChance
+      Value: 25
+    - Key: extra
+      Value: 0
+    - Key: confusion
+      Value: 0
+    - Key: parryChance
+      Value: 1
+    - Key: shieldHealthModifier
+      Value: 1
+    - Key: damageNO
+      Value: 1
+    - Key: damageO
+      Value: 1
+    - Key: enemyBlockChance
+      Value: 0
+    - Key: bacteriaBlockChance
+      Value: 0
+    - Key: range
+      Value: 28
 --- !u!114 &5495246450369773185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,8 +702,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layermask:
     serializedVersion: 2
-    m_Bits: 64511
-  distanceCheck: 5
+    m_Bits: 1024
+  distanceCheck: 7
   minY: 2
   maxY: 24
 --- !u!1 &6801068178828183284

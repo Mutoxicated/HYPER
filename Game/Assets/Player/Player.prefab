@@ -704,7 +704,7 @@ MonoBehaviour:
   gravityForce: 22.02
   jumpForce: 18
   airMultiplier: 0.436
-  launchForce: 9.5
+  launchForce: 9
   maxJumps: 3
   maxBounces: 1
   disableLaunch: 0
@@ -982,7 +982,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 8108540779480057966}
   injector: {fileID: 0}
-  type: 0
   immunityAttackRate: 0.5
   immunityDamage: 10
 --- !u!114 &8108540779480057966
@@ -999,6 +998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 0}
   VFXScale: 1
+  type: 0
   objective: 0
   entity: {fileID: 0}
   maxHealth: 0
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   specialTag: momentumWindow
   chance: 100
-  interval: 0.15
+  interval: 0.3
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -1067,6 +1067,8 @@ GameObject:
   - component: {fileID: 6262949754242476843}
   - component: {fileID: 7642153573572923154}
   - component: {fileID: 4498379128786653580}
+  - component: {fileID: 6473936322817518523}
+  - component: {fileID: 2429442514312512617}
   m_Layer: 13
   m_Name: MainCam
   m_TagString: MainCamera
@@ -1350,6 +1352,35 @@ MonoBehaviour:
   t: 0
   time: 0
   isPlaying: 0
+--- !u!114 &6473936322817518523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827139654788565378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd31baabc54894c4c8edc58a42023efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 74fd739abdfb04441b3409d11faf4229, type: 3}
+  chromaticAberration: 0.126
+--- !u!114 &2429442514312512617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827139654788565378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdc36702efcd5e40b2da53e96072453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 697832f4bc7f6114e8888c5c003fc1a0, type: 3}
+  lineSize: 2.36
+  modulo: 2
 --- !u!1 &1827139654856663732
 GameObject:
   m_ObjectHideFlags: 0

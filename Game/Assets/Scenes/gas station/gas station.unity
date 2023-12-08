@@ -5124,7 +5124,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 1}
   outlineWidth: 2
-  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 8155765629141027734, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
@@ -21771,7 +21770,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.1882353, g: 0.1882353, b: 0.1882353, a: 1}
   outlineWidth: 2
-  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -5518553633264409321, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
@@ -22535,7 +22533,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 1}
   outlineWidth: 2
-  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 8155765629141027734, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
@@ -27207,7 +27204,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
   outlineWidth: 2
-  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 7454171102033758545, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
@@ -33016,7 +33012,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.1882353, g: 0.1882353, b: 0.1882353, a: 1}
   outlineWidth: 2
-  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -5518553633264409321, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
@@ -34233,7 +34228,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
   outlineWidth: 2
-  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 7454171102033758545, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
@@ -37993,7 +37987,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.31132078, g: 0.12482201, b: 0.12482201, a: 1}
   outlineWidth: 8.25
-  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
@@ -38943,7 +38936,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
   outlineWidth: 8.25
-  matToUse: {fileID: 0}
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
@@ -40226,6 +40218,8 @@ GameObject:
   - component: {fileID: 2006926805}
   - component: {fileID: 2006926804}
   - component: {fileID: 2006926803}
+  - component: {fileID: 2006926807}
+  - component: {fileID: 2006926806}
   m_Layer: 13
   m_Name: Camera
   m_TagString: Untagged
@@ -40368,6 +40362,35 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2006926806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006926801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdc36702efcd5e40b2da53e96072453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 697832f4bc7f6114e8888c5c003fc1a0, type: 3}
+  lineSize: 2.41
+  modulo: 2
+--- !u!114 &2006926807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006926801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd31baabc54894c4c8edc58a42023efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 74fd739abdfb04441b3409d11faf4229, type: 3}
+  chromaticAberration: 0.135
 --- !u!1 &2008597913
 GameObject:
   m_ObjectHideFlags: 0
@@ -40713,7 +40736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8241068d54c209943b2c710960a3ae00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Arena
+  sceneName: ArenaV2
 --- !u!4 &2028077332
 Transform:
   m_ObjectHideFlags: 0

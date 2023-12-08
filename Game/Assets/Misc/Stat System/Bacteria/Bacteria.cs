@@ -75,12 +75,12 @@ public class Bacteria : MonoBehaviour
             Instagib();
             return;
         }
+        immuneSystem.NotifySystem(this);// telling the immune system that we are here, and we are going to kill you, or help you!
         if (immunitySide == ImmunitySide.INVADER && interval != null)
         {
             interval.enabled = true;
         }
         CheckInjector();
-        immuneSystem.NotifySystem(this);// telling the immune system that we are here, and we are going to kill you, or help you!
         if (fxm != null){
             fxm.SetEffect();
         }

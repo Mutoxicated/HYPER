@@ -60,7 +60,8 @@ public class Immunity : MonoBehaviour
         //Debug.Log("Notified of bacteria "+bacteria.name+ ".");
         CheckOrganicImmunities(bacteria);
         CheckNonOrganicImmunities(bacteria);
-        bacterias.Add(bacteria.name,bacteria);
+        //if (!bacterias.ContainsKey(bacteria.name))
+            bacterias.Add(bacteria.name,bacteria);
     }//a
 
     public void RecycleBacteria()

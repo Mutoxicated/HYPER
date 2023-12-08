@@ -17,7 +17,8 @@ public class EBob : MonoBehaviour
     public void Bob(bool state){
         if (!fd.isGrounded)
             return;
-        if (state)
-            rb.AddForce(bobs[currentIndex].direction.normalized*bobs[currentIndex].speed,ForceMode.Impulse);
+        if (state){
+            rb.AddForce(bobs[currentIndex].direction.normalized*Random.Range(bobs[currentIndex].minmaxSpeed.x,bobs[currentIndex].minmaxSpeed.y),ForceMode.Impulse);
+        }
     } 
 }

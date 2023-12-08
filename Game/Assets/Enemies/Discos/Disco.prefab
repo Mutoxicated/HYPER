@@ -301,7 +301,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 3690289086005728931}
-  axisMultiplier: {x: 1, y: 1, z: 1}
   lerpSpeed: 6
 --- !u!114 &3835179681775302895
 MonoBehaviour:
@@ -459,7 +458,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0871d566f8731428cce538d6f0e313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yCheck: 0
+  layermask:
+    serializedVersion: 2
+    m_Bits: 1024
   distanceCheck: 5
   minY: 2
   maxY: 24
@@ -1190,11 +1191,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 0}
   VFXScale: 1.8
+  type: 0
   objective: 0
   entity: {fileID: 0}
   maxHealth: 250
   maxShields: 0
   shieldhealth: 50
+  conditionals:
+    _serializedList:
+    - Key: explosive
+      Value: 0
+    - Key: surfaceFXED
+      Value: 0
+    - Key: outlineFXED
+      Value: 0
+    - Key: colorFXED
+      Value: 0
+    - Key: stunned
+      Value: 0
+  numericals:
+    _serializedList:
+    - Key: permaShields
+      Value: 0
+    - Key: moveSpeed
+      Value: 1
+    - Key: damage
+      Value: 1
+    - Key: hostility
+      Value: 1
+    - Key: rate
+      Value: 1
+    - Key: attackSpeed
+      Value: 1
+    - Key: shootSpeed
+      Value: 1
+    - Key: capacitor1
+      Value: 1
+    - Key: pierces
+      Value: 1
+    - Key: explosionChance
+      Value: 25
+    - Key: extra
+      Value: 0
+    - Key: confusion
+      Value: 0
+    - Key: parryChance
+      Value: 1
+    - Key: shieldHealthModifier
+      Value: 1
+    - Key: damageNO
+      Value: 1
+    - Key: damageO
+      Value: 1
+    - Key: enemyBlockChance
+      Value: 0
+    - Key: bacteriaBlockChance
+      Value: 0
+    - Key: range
+      Value: 28
 --- !u!114 &3782803558214053804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,10 +1467,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 3690289086005728931}
   injector: {fileID: 3782803558214053804}
-  type: 1
   immunityAttackRate: 0.5
   immunityDamage: 7
-  bacterias: []
 --- !u!23 &6108132308293817020 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
