@@ -5,9 +5,11 @@ Shader "Hidden/Scanlines"
         _MainTex ("Texture", 2D) = "white" {}
         _LineSize ("LineSize",float) = 0.1
         _Modulo ("Modulo",int) = 2
+        _Alpha ("Alpha",float) = 0.4
     }
     SubShader
     {
+        Tags { "Queue" = "Overlay"}
         // No culling or depth
         Cull Off ZWrite Off ZTest Always
 
@@ -42,13 +44,14 @@ Shader "Hidden/Scanlines"
             sampler2D _MainTex;
             fixed _LineSize;
             fixed _Modulo;
+            fixed _Alpha;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed p = i.uv.y / i.uv.w;
                 fixed4 col = tex2D(_MainTex, i.uv);
                 if((int)(p*_ScreenParams.y/floor(_LineSize))%_Modulo==0) {
-                    col *= 0.5;
+                    col *= _Alpha;
                 }
                 return col;
             }

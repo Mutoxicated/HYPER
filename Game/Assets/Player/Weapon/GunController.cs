@@ -24,6 +24,8 @@ public class GunController : MonoBehaviour
     private Transform gunScrew;
     private float angle = 0f;
 
+    private float fireRate = 1f;
+
     private void Start()
     {
         gunScrew = transform.GetChild(0);
@@ -45,10 +47,11 @@ public class GunController : MonoBehaviour
         gunScrew.localRotation = Quaternion.Lerp(
             gunScrew.localRotation,
             Quaternion.AngleAxis(angle, new Vector3(0f, 0f, 1f)),
-            Time.deltaTime * (shooter.fireRate*11));
+            Time.deltaTime * 11);
     }
-    private void RotateScrew()
+    private void RotateScrew(float fr)
     {
+        fireRate = fr;
         angle += 90f;
     }
 }

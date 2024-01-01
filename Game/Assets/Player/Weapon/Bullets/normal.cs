@@ -42,6 +42,7 @@ public class normal : MonoBehaviour
         {
             immuneSystem?.RecycleBacteria();
             gameObject.SetActive(false);
+            PublicPools.pools[gameObject.name].Reattach(gameObject);
             time = 0;
         }
     }
@@ -51,6 +52,7 @@ public class normal : MonoBehaviour
         immuneSystem?.RecycleBacteria();
         gameObject.SetActive(false);
         PublicPools.pools[particlePrefab.name].UseObject(transform.position, transform.rotation);
+        PublicPools.pools[gameObject.name].Reattach(gameObject);
         time = 0;
     }
 

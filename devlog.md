@@ -1033,3 +1033,9 @@ I really think that all the graphics have come together and that the final produ
 Here's a picture of before those 2 additions (top img) and after (bottom img):
 ![FINAL](https://github.com/Mutoxicated/HYPER/assets/96009711/2baaa139-751f-4bd1-8be9-90866aad2aea)
 ![wp](https://github.com/Mutoxicated/HYPER/assets/96009711/8b80e455-baed-4f76-997b-fafe0d4e27ee)
+
+## Day 183 thru 206
+
+So, I will make a schedule for working on the game. Initially I just worked 7+ hours on it everyday and that did not end well. Then I decided to work on it whenever and that also did not work well. I will try making schedule, which I think will actually work.
+
+So anyway I pretty much just changed how the player's weapon works. Now, a weapon is a data container that has the bullet pool, fire rate and the recoil of the weapon. The Gun of the player contains these weapons and you can use your scrolling wheel to change between them. I will make it so that there is a unique symbol for every weapon later on, but for now this is good.

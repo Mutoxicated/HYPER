@@ -50,13 +50,14 @@ public class ObjectPoolManager : MonoBehaviour
         if (transform.childCount == 0)
         {
             var instance = Instantiate(prefab, position, rotation);
+            instance.transform.SetParent(transform.parent, false);
             instance.name = poolID;
             return instance;
         }
         else
         {
             var instance = transform.GetChild(0).gameObject;
-            instance.transform.SetParent(null, false);
+            instance.transform.SetParent(transform.parent, false);
             instance.transform.position = position;
             instance.transform.rotation = rotation;
             if (enableOnUse)

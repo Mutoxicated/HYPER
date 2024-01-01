@@ -1014,6 +1014,46 @@ MonoBehaviour:
       Value: 0
     - Key: colorFXED
       Value: 0
+  numericals:
+    _serializedList:
+    - Key: permaShields
+      Value: 0
+    - Key: moveSpeed
+      Value: 1
+    - Key: damage
+      Value: 1
+    - Key: hostility
+      Value: 1
+    - Key: rate
+      Value: 1
+    - Key: attackSpeed
+      Value: 1
+    - Key: shootSpeed
+      Value: 1
+    - Key: capacitor1
+      Value: 1
+    - Key: pierces
+      Value: 1
+    - Key: explosionChance
+      Value: 25
+    - Key: extra
+      Value: 0
+    - Key: confusion
+      Value: 0
+    - Key: parryChance
+      Value: 1
+    - Key: shieldHealthModifier
+      Value: 1
+    - Key: damageNO
+      Value: 1
+    - Key: damageO
+      Value: 1
+    - Key: enemyBlockChance
+      Value: 0
+    - Key: bacteriaBlockChance
+      Value: 0
+    - Key: range
+      Value: 28
 --- !u!114 &4681041064830235763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,7 +1419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: 697832f4bc7f6114e8888c5c003fc1a0, type: 3}
-  lineSize: 2.36
+  lineSize: 1.02
   modulo: 2
 --- !u!1 &1827139654856663732
 GameObject:
@@ -2816,6 +2856,14 @@ PrefabInstance:
       propertyPath: firepoint
       value: 
       objectReference: {fileID: 1827139653628657380}
+    - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
+      propertyPath: weapons.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 664fa601e8272e845b3e9f27b086aba7, type: 2}
     - target: {fileID: 6701970974289007535, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
       propertyPath: movement
       value: 
