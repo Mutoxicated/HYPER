@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class normal : MonoBehaviour
+public class bullet : MonoBehaviour
 {
     private static GunShooter gun;
 
@@ -77,6 +77,7 @@ public class normal : MonoBehaviour
         }
         if (pierces == 0)
             Recycle();
+        PublicPools.pools[particlePrefab.name].UseObject(transform.position, transform.rotation);
         pierces -= 1;
         //Debug.Log("ENTER");
     }

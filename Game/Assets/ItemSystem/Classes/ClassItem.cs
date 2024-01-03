@@ -35,9 +35,6 @@ public enum Class {
 
 public class ClassItem : MonoBehaviour
 {
-    public List<Class> classesContainingThis = new List<Class>();
+    [SerializeField] private List<Class> classes = new List<Class>();//classes the class item is in
 
-    private void Start(){
-        ClassItemPool.publicItemPool.items.Add(this);
-    }
 }

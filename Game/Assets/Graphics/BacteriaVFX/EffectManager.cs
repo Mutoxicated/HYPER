@@ -24,9 +24,9 @@ public class EffectManager : MonoBehaviour
             if (bodyPart.surfaceEffectable)
                 surfaceEffectableAmount++;
         }
-        Debug.Log(transform.parent.gameObject.name+ ", color: "+colorEffectableAmount);
-        Debug.Log(transform.parent.gameObject.name+ ", outline: "+outlineEffectableAmount);
-        Debug.Log(transform.parent.gameObject.name+ ", surface: "+surfaceEffectableAmount);
+        // Debug.Log(transform.parent.gameObject.name+ ", color: "+colorEffectableAmount);
+        // Debug.Log(transform.parent.gameObject.name+ ", outline: "+outlineEffectableAmount);
+        // Debug.Log(transform.parent.gameObject.name+ ", surface: "+surfaceEffectableAmount);
         }
         if (surfaceEffectableAmount > 0 && !bac.immuneSystem.stats.conditionals["surfaceFXED"]){
             sfx.enabled = true;

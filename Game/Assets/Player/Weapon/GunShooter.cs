@@ -35,7 +35,7 @@ public class GunShooter : MonoBehaviour
     [SerializeField] private float lerpSpeed;
     [SerializeField] private Echelon weaponType;
 
-    public List<Weapon> weapons = new List<Weapon>();
+    [SerializeField] private List<Weapon> weapons = new List<Weapon>();
 
     private bool readyToShoot = true;
     private float t = 0f;
@@ -150,9 +150,13 @@ public class GunShooter : MonoBehaviour
         }
     }
 
+    private void Awake(){
+        PlayerInfo.playerGun = this;
+    }
+
     private void Start()
     {
-        scroll.AlterMaxIndex(weapons.Count);
+        scroll.AlterMaxIndex(weapons.Count-1);
         shootMethods = new Methods[] { Single, Double, Triple, Quadruple, Quintuple };
         defaultPos = transform.localPosition;
         defaultRot = transform.localRotation;
@@ -199,5 +203,20 @@ public class GunShooter : MonoBehaviour
             readyToShoot = true;
             running = false;
         }
+    }
+
+    public void AddWeapon(Weapon weapon){
+        weapons.Add(weapon);
+    }
+
+    public void RemoveWeapon(Weapon weapon){
+        weapons.Remove(weapon);
+    }
+
+    public bool ContainsWeapon(Weapon weapon){
+        if (weapons.Contains(weapon))
+            return true;
+        else 
+            return false;
     }
 }

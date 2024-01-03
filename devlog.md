@@ -1039,3 +1039,11 @@ Here's a picture of before those 2 additions (top img) and after (bottom img):
 So, I will make a schedule for working on the game. Initially I just worked 7+ hours on it everyday and that did not end well. Then I decided to work on it whenever and that also did not work well. I will try making schedule, which I think will actually work.
 
 So anyway I pretty much just changed how the player's weapon works. Now, a weapon is a data container that has the bullet pool, fire rate and the recoil of the weapon. The Gun of the player contains these weapons and you can use your scrolling wheel to change between them. I will make it so that there is a unique symbol for every weapon later on, but for now this is good.
+
+## Day 207 & 208
+
+Changed how the gun works a bit so that it works with the weapon system i implemented and also started making the system for the classes. 
+
+I realized that there isn't much creative room for passive class items, since there are already passive items in the passive item pool. So what I thought of was this: Only enemies will be able to use passive items for their effect, but the player will be able to use them for the super passive item that they create through the passive chain structure that I believe I already have talked about. This way I can create more passive items for the player and make him actually think about what to use.
+
+Anyway for the weapon system, I pretty much made this ScriptableObject, which is a data container, and called it Weapon. It contains the bulletPrefab, fireRate and recoil modifier, as well as an alternate shooting method. So there is primary shooting (left mouse button) and secondary shooting (right mouse button), which isn't always guaranteed to be in every weapon. 

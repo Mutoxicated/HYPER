@@ -15,8 +15,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         WIREFRAME,
         BOTH
     }
-    [SerializeField] private Stats stats;
-    [SerializeField] private Immunity immuneSystem;
+    [SerializeField] public Stats stats;
+    [SerializeField] public Immunity immuneSystem;
     [Header("General")]
     [SerializeField] private GameObject[] playerObjects;
     [SerializeField] private Gradient healthBarGradient;
@@ -83,6 +83,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         return copyGradient;
     }
     private void OnEnable(){
+        PlayerInfo.player = gameObject;
+        PlayerInfo.playerHealth = this;
         stats.numericals["maxHealth"] = HP;
     }
 

@@ -7,7 +7,7 @@ public class playerLook : MonoBehaviour
     private float rotationX, rotationY;
     private Quaternion lookRotation;
 
-    [SerializeField] private Quaternion alterToRotation;
+    [SerializeField] public Quaternion alterToRotation;
     [SerializeField] private bool alterRotation;
 
     private void Start()

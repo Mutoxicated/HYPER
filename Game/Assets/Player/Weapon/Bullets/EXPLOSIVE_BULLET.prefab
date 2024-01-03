@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: -8766207620506296604}
   - component: {fileID: 8878825627043202888}
   m_Layer: 6
-  m_Name: NORMAL_BULLET
+  m_Name: EXPLOSIVE_BULLET
   m_TagString: bullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,10 +123,10 @@ MonoBehaviour:
   immuneSystem: {fileID: -4579046777407666088}
   coll: {fileID: 0}
   rb: {fileID: 1549946323395533653}
-  speed: 50
-  particlePrefab: {fileID: 3545220589067606805, guid: 6d5913b428758ba469ed17214f365d7b, type: 3}
-  lifetime: 5
-  damage: 100
+  speed: 40
+  particlePrefab: {fileID: 1406129636473073463, guid: 204a045193b337e4c92614a8c2dcb0ad, type: 3}
+  lifetime: 4
+  damage: 110
 --- !u!114 &2042489557979923656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 0
-  color: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 1}
+  color: {r: 2, g: 0.028301835, b: 0.028301835, a: 1}
 --- !u!136 &2838772722254914084
 CapsuleCollider:
   m_ObjectHideFlags: 0

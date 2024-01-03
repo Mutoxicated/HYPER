@@ -24,7 +24,7 @@ public class Injector : MonoBehaviour
     [HideInInspector] public List<Bacteria> cachedInstances = new List<Bacteria>();
     // TODO: Make it spawn invader bacteria the same way TakeInjector does it (because it will create complications with the population of the bacteria)
     private void OnEnable(){
-        foreach (var bac in bacteriaPools.ToArray()){
+        foreach (var bac in bacteriaPools){
             PublicPools.pools[bac].SendObject(immuneSystem.gameObject);
         }
         if (injectorToInheritFrom != null){
