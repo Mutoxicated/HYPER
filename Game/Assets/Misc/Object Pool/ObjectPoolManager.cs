@@ -18,12 +18,12 @@ public class ObjectPoolManager : MonoBehaviour
         poolID = gameObject.name;
         if (isPublic){
             if (PublicPools.PoolsExists(poolID)){
-                Debug.Log("Dupe version of "+ poolID +" detected!");
+                //Debug.Log("Dupe version of "+ poolID +" detected!");
                 return;
             }
             PublicPools.pools.Add(poolID, this);
         }
-        Debug.Log(poolID);
+        //Debug.Log(poolID);
     }
 
     public GameObject SendObject(GameObject receiver)

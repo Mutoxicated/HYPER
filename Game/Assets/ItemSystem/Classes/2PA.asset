@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5fb357689405444ca4d981e1deae6f1, type: 3}
+  m_Name: 2PA
+  m_EditorClassIdentifier: 
+  item: {fileID: 6432951408254796468, guid: 4dfd590621fe04f4bb8d3d4ab62be55c, type: 3}
+  itemImage: {fileID: 21300000, guid: 3a21ab37efeb8a84d81ac4b854ff7d6c, type: 3}
+  description: A passive item. Randomly enables 3 of the player's weapon extras.

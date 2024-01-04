@@ -56,6 +56,10 @@ public class Melee : MonoBehaviour
         return hit;
     }
 
+    private void Awake(){
+        PlayerInfo.SetMelee(this);
+    }
+
     private void Start()
     {
         Launcher.FindMovement();

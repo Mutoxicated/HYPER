@@ -10,6 +10,13 @@ public class playerLook : MonoBehaviour
     [SerializeField] public Quaternion alterToRotation;
     [SerializeField] private bool alterRotation;
 
+    private void Awake(){
+        if (PlayerInfo.GetCam() == null){
+            PlayerInfo.SetCam(GameObject.FindWithTag("MainCamera").GetComponent<Camera>());
+        }
+        PlayerInfo.SetPL(this);
+    }
+
     private void Start()
     {
         if (alterRotation)
@@ -36,5 +43,14 @@ public class playerLook : MonoBehaviour
         var differenceY = rotation.eulerAngles.y - rotationY;
         rotationX -= differenceX;
         rotationY += differenceY;
+    }
+
+    public void IsLocked(bool state){
+        this.enabled = !state;
+        if (state){
+            Cursor.lockState = CursorLockMode.None;
+        }else{
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }

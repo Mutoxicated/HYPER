@@ -21,7 +21,8 @@ public class ShowLaunchDirection : MonoBehaviour
         //    Time.deltaTime * 10f);
         if (movement.launchInterval.enabled)
         {
-            arrowHolder.transform.rotation = Quaternion.LookRotation(movement.launchPoint - playerTransform.position);
+            if ((movement.launchPoint - playerTransform.position) != Vector3.zero)
+                arrowHolder.transform.rotation = Quaternion.LookRotation(movement.launchPoint - playerTransform.position);
             arrowHolder.SetActive(true);
             return;
         }

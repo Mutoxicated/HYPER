@@ -7,11 +7,11 @@ public class AddWeapon : MonoBehaviour
     [SerializeField] private Weapon weapon;
 
     private void OnEnable(){
-        PlayerInfo.playerGun.AddWeapon(weapon);
+        PlayerInfo.GetGun().AddWeapon(weapon);
     }
 
     private void OnDisable(){
-        if (PlayerInfo.playerGun.ContainsWeapon(weapon))
-            PlayerInfo.playerGun.RemoveWeapon(weapon);
+        if (PlayerInfo.GetGun().ContainsWeapon(weapon))
+            PlayerInfo.GetGun().RemoveWeapon(weapon);
     }
 }

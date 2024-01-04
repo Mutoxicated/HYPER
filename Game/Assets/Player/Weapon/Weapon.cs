@@ -9,6 +9,7 @@ public class Weapon : ScriptableObject
   public string bulletPool;
   public float recoilModifier;//0 to 1
   public float fireRate;//in seconds
+  public float modifier;
 
   public bool extra;
   public string extraBulletPool;

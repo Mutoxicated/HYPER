@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TransformLerper : MonoBehaviour
 {
+    [SerializeField] private Transform _transform;
     [SerializeField] private Transform transformToLerpTo;
     [SerializeField] private AnimationCurve curve;
     [SerializeField] private OnInterval interval;
@@ -13,7 +14,24 @@ public class TransformLerper : MonoBehaviour
     void Update()
     {
         lerpSpeed = curve.Evaluate(interval.t);
-        transform.position = Vector3.Lerp(transform.position, transformToLerpTo.position, Time.deltaTime* lerpSpeed);
-        transform.rotation = Quaternion.Lerp(transform.rotation, transformToLerpTo.rotation, Time.deltaTime* lerpSpeed*1.5f);
+        _transform.position = Vector3.Lerp(_transform.position, transformToLerpTo.position, Time.deltaTime* lerpSpeed);
+        _transform.rotation = Quaternion.Lerp(_transform.rotation, transformToLerpTo.rotation, Time.deltaTime* lerpSpeed*1.5f);
+    }
+
+    public void EnableTransformLerper(){
+        interval.enabled = true;
+        this.enabled = true;
+    }
+
+    public void SetTrans(Transform trans){
+        _transform = trans;
+    }
+
+    public void SetTransToLerpTo(Transform trans){
+        transformToLerpTo = trans;
+    }
+
+    public Transform GetTransToLerpTo(){
+        return transformToLerpTo;
     }
 }

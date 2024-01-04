@@ -33,8 +33,13 @@ public enum Class {
     Lambda_Lanista
 }
 
+public enum ItemType {
+    PASSIVE,
+    WEAPON
+}
+
 public class ClassItem : MonoBehaviour
 {
+    [SerializeField] private ItemType itemType;
     [SerializeField] private List<Class> classes = new List<Class>();//classes the class item is in
-
 }

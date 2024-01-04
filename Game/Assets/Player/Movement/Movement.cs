@@ -88,6 +88,10 @@ public class Movement : MonoBehaviour
         rb.drag = n;
     }
 
+    public Rigidbody GetRB(){
+        return rb;
+    }
+
     public void TriggerBounceState(Vector3 point, GameObject sender){
         if (stamina.GetCurrentStamina() < 100f)
             return;
@@ -177,6 +181,10 @@ public class Movement : MonoBehaviour
             launchInterval.ResetEarly();
             stamina.ReduceStamina(75f);
         }
+    }
+
+    private void Awake(){
+        PlayerInfo.SetMovement(this);
     }
 
     private void Start()

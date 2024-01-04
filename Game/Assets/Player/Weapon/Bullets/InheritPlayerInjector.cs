@@ -8,6 +8,6 @@ public class InheritPlayerInjector : MonoBehaviour
 
     void Start()
     {
-        injector.InheritInjector(PlayerInfo.playerHealth.immuneSystem.injector);
+        injector.InheritInjector(PlayerInfo.GetPH().immuneSystem.injector);
     }
 }

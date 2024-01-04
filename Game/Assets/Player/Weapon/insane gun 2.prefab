@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4837144458852494918}
   m_Layer: 3
   m_Name: insane gun 2
-  m_TagString: Gun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,14 +128,13 @@ MonoBehaviour:
   firepoint: {fileID: 0}
   cam: {fileID: 0}
   gunScrew: {fileID: 272818088875111670}
-  bulletPrefab: {fileID: 1907635401927215823, guid: 055fee3dba1a98141b5b925afdd11742, type: 3}
   particle: {fileID: 0}
   shootSFX: {fileID: 2650675614034399949}
-  fireRate: 0.4
   recoilPosition: {x: 0, y: 0, z: -0.5}
   recoilRotation: {x: 0, y: -0.38268346, z: 0, w: 0.9238795}
   lerpSpeed: 12
   weaponType: 0
+  weapons: []
   OnShootEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -14,6 +14,7 @@ public class PlatformInfo {
 
 public class PlatformGenerator : MonoBehaviour
 {
+    public static PlatformGenerator PG;
     [Header("Generation Settings")]
     [SerializeField] private float Yoffset;
     [SerializeField] private Vector2 minMaxPlatformXScale;
@@ -27,6 +28,10 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField] private GameObject mainPlat;
     [SerializeField] private GameObject[] randomPlatformProps;
     [SerializeField] private GameObject[] poles;
+    [SerializeField] private bool platformActive;
+    [Space]
+    [Header("Misc")]
+    [SerializeField] private GameObject platformsHolder;
 
     private int maxPlatforms;
     private int extraLowerPlatformChance;
@@ -216,9 +221,10 @@ public class PlatformGenerator : MonoBehaviour
             }
             GameObject pHolder = Instantiate(platformHolder,positions[i],Quaternion.identity);
             GameObject main = Instantiate(mainPlat,positions[i],Quaternion.identity);
+            pHolder.transform.SetParent(platformsHolder.transform,true);
             main.transform.localScale = scales[i];
             main.transform.parent = pHolder.transform;
-            DontDestroyOnLoad(pHolder);
+            //DontDestroyOnLoad(pHolder);
             unusedPlatforms.Add(new PlatformInfo(positions[i],scales[i]));
             amountCreated++;
             if (amountCreated >= cap){
@@ -265,11 +271,18 @@ public class PlatformGenerator : MonoBehaviour
     }
 
     private void Start(){
+        PG = this;
+        // if (!platformsHolder.activeInHierarchy)
+        //     return;
         RandomizeGenerationCycle();
         if (cycle == null)
             cycle = new Scroll(0,generationCycle.Length);
         maxPlatforms = generationCycle[cycle.index];
         GeneratePlatforms();
         cycle.Increase();
+    }
+
+    public void ActiveState(bool state){
+        platformsHolder.SetActive(state);
     }
 }

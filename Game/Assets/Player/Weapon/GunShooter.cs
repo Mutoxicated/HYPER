@@ -19,7 +19,6 @@ public class GunShooter : MonoBehaviour
 
     [SerializeField] public Stats stats;
     [SerializeField] private Transform firepoint;
-    //[SerializeField] private Transform transform;
     [SerializeField] private Camera cam;
     private Vector3 defaultPos;
     private Quaternion defaultRot;
@@ -151,7 +150,7 @@ public class GunShooter : MonoBehaviour
     }
 
     private void Awake(){
-        PlayerInfo.playerGun = this;
+        PlayerInfo.SetGun(this);
     }
 
     private void Start()
@@ -205,12 +204,18 @@ public class GunShooter : MonoBehaviour
         }
     }
 
+    public List<Weapon> GetWeapons(){
+        return weapons;
+    }
+
     public void AddWeapon(Weapon weapon){
         weapons.Add(weapon);
+        scroll.AlterMaxIndex(weapons.Count-1);
     }
 
     public void RemoveWeapon(Weapon weapon){
         weapons.Remove(weapon);
+        scroll.AlterMaxIndex(weapons.Count-1);
     }
 
     public bool ContainsWeapon(Weapon weapon){
@@ -218,5 +223,9 @@ public class GunShooter : MonoBehaviour
             return true;
         else 
             return false;
+    }
+
+    public void IsLocked(bool state){
+        this.enabled = !state;
     }
 }

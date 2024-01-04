@@ -23175,6 +23175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b547d6fd86402294182700b34836d6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transform: {fileID: 0}
   transformToLerpTo: {fileID: 704093921}
   curve:
     serializedVersion: 2
@@ -26704,6 +26705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b547d6fd86402294182700b34836d6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transform: {fileID: 1067604992}
   transformToLerpTo: {fileID: 1605648702}
   curve:
     serializedVersion: 2
@@ -40375,7 +40377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: 697832f4bc7f6114e8888c5c003fc1a0, type: 3}
-  lineSize: 2.41
+  lineSize: 1.07
   modulo: 2
 --- !u!114 &2006926807
 MonoBehaviour:
@@ -40736,7 +40738,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8241068d54c209943b2c710960a3ae00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: ArenaV2
+  justTeleport: 1
+  sceneName: Interoid
+  playerlook: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  platformsState: 0
 --- !u!4 &2028077332
 Transform:
   m_ObjectHideFlags: 0

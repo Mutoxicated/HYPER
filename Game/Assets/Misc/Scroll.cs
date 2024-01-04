@@ -39,5 +39,8 @@ public class Scroll
     public void AlterMaxIndex(int maxI)
     {
         maxIndex = maxI;
+        if (index > maxI) {
+            index = maxI;
+        }
     }
 }

@@ -11,7 +11,7 @@ public class PublicPools : MonoBehaviour
     {
         if (!spawned)
         {
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject.transform.root);
             spawned = true;
         }
     }

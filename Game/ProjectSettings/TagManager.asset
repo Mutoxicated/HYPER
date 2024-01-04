@@ -7,12 +7,12 @@ TagManager:
   - bullets
   - Difficulty
   - SpawnPoint
-  - Gun
   - Enemy
   - ExtraUtils
-  - Platform
-  - Teleporter
   - BlastProtected
+  - CamHolder
+  - GUI
+  - PlatformsHolder
   layers:
   - Default
   - TransparentFX

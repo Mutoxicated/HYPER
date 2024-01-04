@@ -17,8 +17,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
     [SerializeField] public Stats stats;
     [SerializeField] public Immunity immuneSystem;
-    [Header("General")]
+    [Header("World Objects")]
     [SerializeField] private GameObject[] playerObjects;
+    [Header("UI")]
     [SerializeField] private Gradient healthBarGradient;
     [SerializeField] private Gradient playerHitGradient;
     [SerializeField] private TMP_Text sumText;
@@ -29,6 +30,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private FadeMatColor fadeColor;
     [SerializeField] private float lerpSpeed;
     [SerializeField] private TMP_Text shieldsText;
+    [SerializeField] private TMP_Text info;
+    [SerializeField] private bool infoIsScore;
     [SerializeField] private float HP;
     [SerializeField, Range(0.5f, 3f)] private float reactionSpeed = 0.05f;
     [SerializeField] private HitReaction hitReaction;
@@ -82,9 +85,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         gradient.SetKeys(new GradientColorKey[] { new GradientColorKey(color,0f), gradient.colorKeys[1] }, gradient.alphaKeys);
         return copyGradient;
     }
+
+    private void Awake(){
+        PlayerInfo.SetPlayer(gameObject);
+        PlayerInfo.SetPH(this);
+    }
+
     private void OnEnable(){
-        PlayerInfo.player = gameObject;
-        PlayerInfo.playerHealth = this;
         stats.numericals["maxHealth"] = HP;
     }
 
@@ -110,6 +117,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (infoIsScore){
+            info.text = PlayerInfo.GetScore().ToString();
+        }else{
+            info.text = PlayerInfo.GetMoney().ToString()+"*";
+        }
         if (stats.numericals["health"] <= 0f){
             stats.numericals["health"] = 0f;
             healthT = 0f;

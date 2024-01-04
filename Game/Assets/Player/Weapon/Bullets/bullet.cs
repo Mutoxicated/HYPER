@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    private static GunShooter gun;
-
     [SerializeField] private Immunity immuneSystem;
     [SerializeField] private Collider coll;
     [SerializeField] private Rigidbody rb;
@@ -21,18 +19,14 @@ public class bullet : MonoBehaviour
     private void Awake()
     {
         injector = GetComponent<Injector>();
-        if (gun == null)
-        {
-            gun = GameObject.FindWithTag("Gun").GetComponent<GunShooter>();
-        }
-        damage = damage / (gun.GetWeaponTypeInt() + 1);//damage is equally shared with all of the bullets
-        speed = speed / (gun.GetWeaponTypeInt() + 1);
+        damage = damage / (PlayerInfo.GetGun().GetWeaponTypeInt() + 1);//damage is equally shared with all of the bullets
+        speed = speed / (PlayerInfo.GetGun().GetWeaponTypeInt() + 1);
     }
 
     private void OnEnable()
     {
         rb.velocity = transform.forward * speed;
-        pierces = gun.stats.numericals["pierces"];
+        pierces = PlayerInfo.GetGun().stats.numericals["pierces"];
     }
 
     private void Update()
@@ -70,7 +64,7 @@ public class bullet : MonoBehaviour
         }
         //Debug.Log(other.gameObject.name);
         var damageable = other.gameObject.GetComponent<IDamageable>();
-        damageable?.TakeDamage(damage * gun.stats.numericals["damage"], gun.stats,1f,0);
+        damageable?.TakeDamage(damage * PlayerInfo.GetGun().stats.numericals["damage"], PlayerInfo.GetGun().stats,1f,0);
         if (injector != null)
         {
             damageable?.TakeInjector(injector,false);
