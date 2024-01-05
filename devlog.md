@@ -1053,3 +1053,9 @@ Anyway for the weapon system, I pretty much made this ScriptableObject, which is
 Started making the shop system. Also started on the working of the item operations. I got some pretty cool ideas in mind. Next up I'll start revamping the round system a bit so that there can be different round types. 
 
 Will have to make the homing bullet in the meantime.
+
+## Day 210
+
+Created homing bullets!!!!! They are awesome. Also added ENEMIES_FOREVER and PLAYER_FOREVER to the DeathFor enum, pretty explanatory what they're about. Found some bugs and fixed them. Didn't have time for the shop system today but tomorrow is another day.
+
+Also found a better serialized dictionary asset in unity that actually works properly.

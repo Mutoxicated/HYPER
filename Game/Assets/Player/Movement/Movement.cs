@@ -273,7 +273,7 @@ public class Movement : MonoBehaviour
         if (slideInput.GetInputDown() && movementState != MovementState.LOCKED)
         {
             uponSlide = true;
-            if (!airborne && crouchReleased)
+            if (!airborne && crouchReleased && point.normal.y >= 0.9f) 
             {
                 if (momentumWindow.enabled)
                     ability.speed = Mathf.Clamp(extraJumpForce,slideSpeed*stats.numericals["moveSpeed"],9999f);

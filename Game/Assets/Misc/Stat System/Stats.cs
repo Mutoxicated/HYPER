@@ -4,7 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using UnityEngine;
-using AYellowpaper.SerializedCollections;
+using RotaryHeart.Lib.SerializableDictionary;
+
+public enum DeathFor {
+    PLAYER,
+    ENEMIES,
+    PLAYER_FOREVER,
+    ENEMIES_FOREVER
+}
 
 [DisallowMultipleComponent]
 public class Stats : MonoBehaviour
@@ -19,16 +26,19 @@ public class Stats : MonoBehaviour
     [SerializeField] private float maxShields;
     [SerializeField] private float shieldhealth = 50f;
     
-    [SerializedDictionary("name","boolean")]
-    public SerializedDictionary<string, bool> conditionals = new SerializedDictionary<string, bool>(){
+    [Serializable]
+    public class conditionalDict : SerializableDictionaryBase<string,bool> {};
+    public conditionalDict conditionals = new conditionalDict(){
         {"explosive", false},
         {"surfaceFXED", false},
         {"outlineFXED", false},
         {"colorFXED", false},
         {"stunned",false}
     };
-    [SerializedDictionary("stat name","num")]
-    public SerializedDictionary<string, float> numericals = new SerializedDictionary<string, float>(){
+
+    [Serializable]
+    public class numericalDict : SerializableDictionaryBase<string,float> {};
+    public numericalDict numericals = new numericalDict(){
         {"permaShields",0},
         {"moveSpeed", 1f},
         {"damage", 1f},
@@ -70,15 +80,22 @@ public class Stats : MonoBehaviour
     }
 
     public void FindEntity(){
-        if (objective == DeathFor.PLAYER){
-            entity = Difficulty.player;
+        if (objective == DeathFor.PLAYER || objective == DeathFor.PLAYER_FOREVER){
+            entity = PlayerInfo.GetPlayer().transform;
         }else{
-            entity = Difficulty.FindClosestEnemy(transform).transform;
+            GameObject go = Difficulty.FindClosestEnemy(transform);
+            //Debug.Log("From go: "+gameObject.name+", found go: "+go.name);
+            if (go == null){
+                //Debug.Log("pass");
+                entity = null;
+            }else{
+                entity = go.transform;
+            }
         }
     }
 
     public void DecideObjective(){
-        if (Difficulty.enemies.Count == 1 && Difficulty.enemies[0] == gameObject){
+        if (Difficulty.enemies.Count == 1 && Difficulty.enemies[0] == gameObject && objective == DeathFor.ENEMIES){
             objective = DeathFor.PLAYER;
             return;
         }

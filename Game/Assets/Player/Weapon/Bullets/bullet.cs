@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
+    [SerializeField] private Stats bStats;
     [SerializeField] private Immunity immuneSystem;
-    [SerializeField] private Collider coll;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
     [SerializeField] private GameObject particlePrefab;
     [SerializeField] private float lifetime;
     [SerializeField] private float damage;
+    [SerializeField] private float pierceModifier = 1f;
     private float time;
     private float pierces;
 
@@ -25,8 +26,12 @@ public class bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        rb.velocity = transform.forward * speed;
-        pierces = PlayerInfo.GetGun().stats.numericals["pierces"];
+        bStats = PlayerInfo.GetGun().stats;
+        pierces = bStats.numericals["pierces"];
+        pierces = Mathf.RoundToInt(pierces*pierceModifier);
+
+        rb.velocity = transform.forward * speed * bStats.numericals["moveSpeed"];
+        Debug.Log(pierces);
     }
 
     private void Update()
@@ -64,7 +69,7 @@ public class bullet : MonoBehaviour
         }
         //Debug.Log(other.gameObject.name);
         var damageable = other.gameObject.GetComponent<IDamageable>();
-        damageable?.TakeDamage(damage * PlayerInfo.GetGun().stats.numericals["damage"], PlayerInfo.GetGun().stats,1f,0);
+        damageable?.TakeDamage(damage * bStats.numericals["damage"], bStats,1f,0);
         if (injector != null)
         {
             damageable?.TakeInjector(injector,false);

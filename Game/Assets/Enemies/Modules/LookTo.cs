@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum DeathFor {
-    PLAYER,
-    ENEMIES
-}
-
 public class LookTo : MonoBehaviour
 {
     [SerializeField] private Stats stats;
@@ -19,7 +14,8 @@ public class LookTo : MonoBehaviour
         stats.FindEntity();
         //Debug.Log("enabled on: "+gameObject.name);
         GetRotation();
-        transform.rotation = lookRotation;
+        if (stats.entity != null)
+            transform.rotation = lookRotation;
     }
 
     private void GetRotation(){

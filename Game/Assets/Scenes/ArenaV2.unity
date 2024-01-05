@@ -373,6 +373,17 @@ Transform:
   m_Father: {fileID: 1736174226}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &69890391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7862258471834061820, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+  m_PrefabInstance: {fileID: 2017626624}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a0675cf42f2a24291f7b6170b3f872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &70434301
 GameObject:
   m_ObjectHideFlags: 0
@@ -9717,7 +9728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   justTeleport: 0
   sceneName: Interoid
-  playerlook: {fileID: 0}
+  playerlook: {fileID: 69890391}
   spawnPoint: {fileID: 1242166426}
   platformsState: 0
 --- !u!65 &168438272066565149

@@ -19,7 +19,7 @@ public class GoTo : MonoBehaviour
         stats.FindEntity();
         speed += Random.Range(-randomnessScale,randomnessScale);
         GetDirection();
-        rb.velocity = toEntity * speed * stats.numericals["moveSpeed"];
+        Go();
     }
 
     public void ChangeSpeed(float speed)
@@ -55,6 +55,8 @@ public class GoTo : MonoBehaviour
             stats.DecideObjective();
             stats.FindEntity();
         }
+        if (stats.entity == null)
+            return;
         toEntity = stats.entity.position - transform.position;
         toEntity.Normalize();
         toEntity.x *= axisMultiplier.x;
@@ -62,12 +64,18 @@ public class GoTo : MonoBehaviour
         toEntity.z *= axisMultiplier.z;
     }
 
-    private void Update()
-    {
-        GetDirection();
+    private void Go(){
+        if (stats.entity == null)
+            return;
         if (!useInterval)
             rb.velocity = Vector3.Lerp(rb.velocity, toEntity * speed * stats.numericals["moveSpeed"], Time.deltaTime * lerpSpeed);
         else
             rb.velocity = Vector3.Lerp(rb.velocity, toEntity * speed * stats.numericals["moveSpeed"], interval.t* Time.deltaTime);
+    }
+
+    private void Update()
+    {
+        GetDirection();
+        Go();
     }
 }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 1
-  classes: 0300000001000000
+  classes: 02000000
 --- !u!114 &-8701548534503801209
 MonoBehaviour:
   m_ObjectHideFlags: 0

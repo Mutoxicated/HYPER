@@ -810,6 +810,8 @@ MonoBehaviour:
   fadeColor: {fileID: 0}
   lerpSpeed: 4
   shieldsText: {fileID: 0}
+  info: {fileID: 0}
+  infoIsScore: 0
   HP: 700
   reactionSpeed: 2.07
   hitReaction: 1
@@ -2869,7 +2871,7 @@ PrefabInstance:
       objectReference: {fileID: 1827139653628657380}
     - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
       propertyPath: weapons.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
       propertyPath: weapons.Array.data[0]
@@ -2877,6 +2879,10 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 664fa601e8272e845b3e9f27b086aba7, type: 2}
     - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
       propertyPath: weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: bc47b5543e2d5d042a1fe027793c2168, type: 2}
+    - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
+      propertyPath: weapons.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: cdaebeb401c682249b40b54811ae16bd, type: 2}
     - target: {fileID: 6701970974289007535, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
