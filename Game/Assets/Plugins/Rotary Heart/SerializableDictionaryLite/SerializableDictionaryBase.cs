@@ -26,7 +26,7 @@ namespace RotaryHeart.Lib.SerializableDictionary
     [System.Serializable]
     public class SerializableDictionaryBase<TKey, TValue> : DrawableDictionary, IDictionary<TKey, TValue>, UnityEngine.ISerializationCallbackReceiver
     {
-        Dictionary<TKey, TValue> _dict;
+        public Dictionary<TKey, TValue> _dict;
         static readonly Dictionary<TKey, TValue> _staticEmptyDict = new Dictionary<TKey, TValue>(0);
 
         /// <summary>

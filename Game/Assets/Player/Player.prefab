@@ -812,7 +812,6 @@ MonoBehaviour:
   shieldsText: {fileID: 0}
   info: {fileID: 0}
   infoIsScore: 0
-  HP: 700
   reactionSpeed: 2.07
   hitReaction: 1
 --- !u!136 &7127821129873079633
@@ -1004,59 +1003,134 @@ MonoBehaviour:
   type: 0
   objective: 0
   entity: {fileID: 0}
-  maxHealth: 0
+  maxHealth: 700
   maxShields: 4
   shieldhealth: 50
   conditionals:
-    _serializedList:
-    - Key: explosive
-      Value: 0
-    - Key: surfaceFXED
-      Value: 0
-    - Key: outlineFXED
-      Value: 0
-    - Key: colorFXED
-      Value: 0
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _keys:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _values: 0000000000
   numericals:
-    _serializedList:
-    - Key: permaShields
-      Value: 0
-    - Key: moveSpeed
-      Value: 1
-    - Key: damage
-      Value: 1
-    - Key: hostility
-      Value: 1
-    - Key: rate
-      Value: 1
-    - Key: attackSpeed
-      Value: 1
-    - Key: shootSpeed
-      Value: 1
-    - Key: capacitor1
-      Value: 1
-    - Key: pierces
-      Value: 1
-    - Key: explosionChance
-      Value: 25
-    - Key: extra
-      Value: 0
-    - Key: confusion
-      Value: 0
-    - Key: parryChance
-      Value: 1
-    - Key: shieldHealthModifier
-      Value: 1
-    - Key: damageNO
-      Value: 1
-    - Key: damageO
-      Value: 1
-    - Key: enemyBlockChance
-      Value: 0
-    - Key: bacteriaBlockChance
-      Value: 0
-    - Key: range
-      Value: 28
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues:
+    - permaShields
+    - moveSpeed
+    - damage
+    - hostility
+    - rate
+    - attackSpeed
+    - shootSpeed
+    - capacitor1
+    - pierces
+    - explosionChance
+    - extra
+    - confusion
+    - parryChance
+    - shieldHealthModifier
+    - damageNO
+    - damageO
+    - enemyBlockChance
+    - bacteriaBlockChance
+    - range
+    - health
+    - maxHealthModifier
+    _keys:
+    - permaShields
+    - moveSpeed
+    - damage
+    - hostility
+    - rate
+    - attackSpeed
+    - shootSpeed
+    - capacitor1
+    - pierces
+    - explosionChance
+    - extra
+    - confusion
+    - parryChance
+    - shieldHealthModifier
+    - damageNO
+    - damageO
+    - enemyBlockChance
+    - bacteriaBlockChance
+    - range
+    - health
+    - maxHealthModifier
+    _values:
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 25
+    - 0
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 0
+    - 0
+    - 500
+    - 0
+    - 0
 --- !u!114 &4681041064830235763
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class GoTo : MonoBehaviour
     [SerializeField] private OnInterval interval;
     [SerializeField] private bool useInterval;
     [SerializeField] private Vector3 axisMultiplier = new Vector3(1f,1f,1f);
-    Vector3 toEntity = Vector3.zero;
+    private Vector3 toEntity = Vector3.zero;
     
     private void OnEnable()
     {
@@ -51,6 +51,8 @@ public class GoTo : MonoBehaviour
     }
 
     private void GetDirection(){
+        stats.FindEntity();
+        Debug.Log(stats.numericals["range"]);
         if (stats.entity == null){
             stats.DecideObjective();
             stats.FindEntity();

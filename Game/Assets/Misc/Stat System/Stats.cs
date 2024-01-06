@@ -16,6 +16,7 @@ public enum DeathFor {
 [DisallowMultipleComponent]
 public class Stats : MonoBehaviour
 {
+    [SerializeField] private bool inheritFromPlayer;
     public GameObject explosionPrefab;
     public float VFXScale = 1f;
     public EntityType type;
@@ -26,9 +27,9 @@ public class Stats : MonoBehaviour
     [SerializeField] private float maxShields;
     [SerializeField] private float shieldhealth = 50f;
     
-    [Serializable]
-    public class conditionalDict : SerializableDictionaryBase<string,bool> {};
-    public conditionalDict conditionals = new conditionalDict(){
+    [Serializable] public class conditionalDict : SerializableDictionaryBase<string,bool> {};
+    //[NonSerialized]
+    private static conditionalDict conditionalsPrototype = new conditionalDict(){
         {"explosive", false},
         {"surfaceFXED", false},
         {"outlineFXED", false},
@@ -36,9 +37,11 @@ public class Stats : MonoBehaviour
         {"stunned",false}
     };
 
-    [Serializable]
-    public class numericalDict : SerializableDictionaryBase<string,float> {};
-    public numericalDict numericals = new numericalDict(){
+    public conditionalDict conditionals = new conditionalDict();
+
+    [Serializable] public class numericalDict : SerializableDictionaryBase<string,float> {};
+    //[NonSerialized]
+    private static numericalDict numericalsPrototype = new numericalDict(){
         {"permaShields",0},
         {"moveSpeed", 1f},
         {"damage", 1f},
@@ -57,20 +60,36 @@ public class Stats : MonoBehaviour
         {"damageO",1f},
         {"enemyBlockChance",0f},
         {"bacteriaBlockChance",0f},
-        {"range",28f}
+        {"range",28f},
+        {"health", 999f},
+        {"maxHealthModifier", 1f}
     };
+
+    public numericalDict numericals = new numericalDict();
 
     [HideInInspector] public List<Shield> shields = new List<Shield>();
 
-    private void Awake()
-    {
-        numericals.Add("health", maxHealth);
-        numericals.Add("maxHealthModifier", 1f);
+    [ContextMenu("Import scripted dictionaries")]
+    private void ImportScriptedDictionaries(){
+        numericals = numericalsPrototype;
+        conditionals = conditionalsPrototype;
     }
 
-    private void OnEnable(){
-        numericals["shields"] = maxShields;
+    private void Awake()
+    {
+        foreach (string key in conditionalsPrototype.Keys){
+            if (!conditionals.ContainsKey(key))
+                conditionals.Add(key,conditionalsPrototype[key]);
+        }
+        foreach (string key in numericalsPrototype.Keys){
+            if (!numericals.ContainsKey(key))
+                numericals.Add(key,numericalsPrototype[key]);
+        }
         numericals["health"] = maxHealth;
+        if (inheritFromPlayer){
+            numericals = PlayerInfo.GetGun().stats.numericals;
+            conditionals = PlayerInfo.GetGun().stats.conditionals;
+        }
     }
 
     private void Start(){
@@ -83,7 +102,7 @@ public class Stats : MonoBehaviour
         if (objective == DeathFor.PLAYER || objective == DeathFor.PLAYER_FOREVER){
             entity = PlayerInfo.GetPlayer().transform;
         }else{
-            GameObject go = Difficulty.FindClosestEnemy(transform);
+            GameObject go = Difficulty.FindClosestEnemy(transform,numericals["range"]);
             //Debug.Log("From go: "+gameObject.name+", found go: "+go.name);
             if (go == null){
                 //Debug.Log("pass");

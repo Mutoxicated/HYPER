@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Item : ScriptableObject
 {
     public GameObject item;
+    public string itemName;
+    public Color nameColor;
     public Sprite itemImage;
     public string description;
 }

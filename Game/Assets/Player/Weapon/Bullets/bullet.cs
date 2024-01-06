@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using RotaryHeart.Lib.SerializableDictionary;
 
 public class bullet : MonoBehaviour
 {
@@ -26,12 +28,11 @@ public class bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        bStats = PlayerInfo.GetGun().stats;
         pierces = bStats.numericals["pierces"];
         pierces = Mathf.RoundToInt(pierces*pierceModifier);
-
         rb.velocity = transform.forward * speed * bStats.numericals["moveSpeed"];
-        Debug.Log(pierces);
+        //Debug.Log(pierces);
+        //Debug.Log(bStats.numericals["range"]);
     }
 
     private void Update()
@@ -60,6 +61,8 @@ public class bullet : MonoBehaviour
         if (other.gameObject.layer == 11){
             return;
         }
+        if (other.gameObject.tag == "Player")
+            return;
         if (other.gameObject.layer != 8)
         {
             if (other.gameObject.layer != 9){

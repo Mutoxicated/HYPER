@@ -246,6 +246,8 @@ GameObject:
   - component: {fileID: 4829517247957270422}
   - component: {fileID: 4829517247957270423}
   - component: {fileID: 3835179681775302895}
+  - component: {fileID: 3339952186981951102}
+  - component: {fileID: 3407523415682526303}
   m_Layer: 8
   m_Name: Looker
   m_TagString: Untagged
@@ -314,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 3690289086005728931}
   specialTag: Untagged
   chance: 100
   interval: 8
@@ -404,6 +406,97 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+  destroyUponEvent: 0
+  recycleUponEvent: 0
+  t: 0
+  time: 0
+  isPlaying: 0
+--- !u!114 &3339952186981951102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829517247957270421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cdd220a3de82b48b0a32b55a4e70fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 3690289086005728931}
+  targetInRange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3835179681775302895}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3690289086005728931}
+        m_TargetAssemblyTypeName: Stats, Assembly-CSharp
+        m_MethodName: FindEntity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4829517246827541150}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  targetInCloseRange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3407523415682526303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829517247957270421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 3690289086005728931}
+  specialTag: Untagged
+  chance: 100
+  interval: 8
+  onInterval:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4829517246456464743}
+        m_TargetAssemblyTypeName: EMove, Assembly-CSharp
+        m_MethodName: LookToTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
   destroyUponEvent: 0
   recycleUponEvent: 0
@@ -1198,57 +1291,130 @@ MonoBehaviour:
   maxShields: 0
   shieldhealth: 50
   conditionals:
-    _serializedList:
-    - Key: explosive
-      Value: 0
-    - Key: surfaceFXED
-      Value: 0
-    - Key: outlineFXED
-      Value: 0
-    - Key: colorFXED
-      Value: 0
-    - Key: stunned
-      Value: 0
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _keys:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _values: 0000000000
   numericals:
-    _serializedList:
-    - Key: permaShields
-      Value: 0
-    - Key: moveSpeed
-      Value: 1
-    - Key: damage
-      Value: 1
-    - Key: hostility
-      Value: 1
-    - Key: rate
-      Value: 1
-    - Key: attackSpeed
-      Value: 1
-    - Key: shootSpeed
-      Value: 1
-    - Key: capacitor1
-      Value: 1
-    - Key: pierces
-      Value: 1
-    - Key: explosionChance
-      Value: 25
-    - Key: extra
-      Value: 0
-    - Key: confusion
-      Value: 0
-    - Key: parryChance
-      Value: 1
-    - Key: shieldHealthModifier
-      Value: 1
-    - Key: damageNO
-      Value: 1
-    - Key: damageO
-      Value: 1
-    - Key: enemyBlockChance
-      Value: 0
-    - Key: bacteriaBlockChance
-      Value: 0
-    - Key: range
-      Value: 28
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues:
+    - permaShields
+    - moveSpeed
+    - damage
+    - hostility
+    - rate
+    - attackSpeed
+    - shootSpeed
+    - capacitor1
+    - pierces
+    - explosionChance
+    - extra
+    - confusion
+    - parryChance
+    - shieldHealthModifier
+    - damageNO
+    - damageO
+    - enemyBlockChance
+    - bacteriaBlockChance
+    - range
+    - health
+    - maxHealthModifier
+    _keys:
+    - permaShields
+    - moveSpeed
+    - damage
+    - hostility
+    - rate
+    - attackSpeed
+    - shootSpeed
+    - capacitor1
+    - pierces
+    - explosionChance
+    - extra
+    - confusion
+    - parryChance
+    - shieldHealthModifier
+    - damageNO
+    - damageO
+    - enemyBlockChance
+    - bacteriaBlockChance
+    - range
+    - health
+    - maxHealthModifier
+    _values:
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 25
+    - 0
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 0
+    - 0
+    - 60
+    - 999
+    - 1
 --- !u!114 &3782803558214053804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1893,6 +2059,94 @@ PrefabInstance:
     - target: {fileID: 8391467601601404248, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: healthBarGradient.key1.r
       value: 2.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.canAdd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.canAdd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.canRemove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.draggable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.expandable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.canRemove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.draggable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.slideEasing
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.expandable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.footerHeight
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.headerHeight
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.label.m_Text
+      value: Keys
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.slideEasing
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.footerHeight
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.headerHeight
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.label.m_Text
+      value: Keys
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.verticalSpacing
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.verticalSpacing
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.multipleSelection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.multipleSelection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: numericals.reorderableList.showDefaultBackground
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896537552764645371, guid: 197fc30560778e44e86cba0766007181, type: 3}
+      propertyPath: conditionals.reorderableList.showDefaultBackground
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9019466745800539690, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_Name

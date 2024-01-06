@@ -32,4 +32,17 @@ public class EMove : MonoBehaviour
             rb.velocity = Vector3.Lerp(rb.velocity, clampedVel, Time.deltaTime);
         }
     }
+
+    public void LookToTarget(){
+        stats.FindEntity();
+        if (stats.entity != null)
+        {
+            direction = stats.entity.position - transform.position;
+            direction.Normalize();
+
+        }else{
+            direction = -direction;
+        }
+        rb.velocity = direction.normalized*speed * stats.numericals["moveSpeed"];
+    }
 }

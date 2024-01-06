@@ -1059,3 +1059,9 @@ Will have to make the homing bullet in the meantime.
 Created homing bullets!!!!! They are awesome. Also added ENEMIES_FOREVER and PLAYER_FOREVER to the DeathFor enum, pretty explanatory what they're about. Found some bugs and fixed them. Didn't have time for the shop system today but tomorrow is another day.
 
 Also found a better serialized dictionary asset in unity that actually works properly.
+
+## Day 211
+
+Fixed some weird bugs and finalized the enemy detection system (i hope lol).
+
+Tomorrow I will make more of the shop system and the health store and dynamite stuff.

@@ -32,7 +32,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private TMP_Text shieldsText;
     [SerializeField] private TMP_Text info;
     [SerializeField] private bool infoIsScore;
-    [SerializeField] private float HP;
     [SerializeField, Range(0.5f, 3f)] private float reactionSpeed = 0.05f;
     [SerializeField] private HitReaction hitReaction;
 
@@ -91,15 +90,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         PlayerInfo.SetPH(this);
     }
 
-    private void OnEnable(){
-        stats.numericals["maxHealth"] = HP;
-    }
-
     private void Start()
     {
-        stats.numericals["health"] = stats.numericals["maxHealth"];
         initialScale = healthBar.localScale;
-        healthT = stats.numericals["health"] / stats.numericals["maxHealth"];
+        healthT = stats.numericals["health"] / stats.maxHealth;
         currentT = healthT;
         sumText.text = Mathf.Round(healthT*100f).ToString() + '%';
         healthBarImg = healthBar.GetComponent<Image>();
@@ -125,8 +119,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (stats.numericals["health"] <= 0f){
             stats.numericals["health"] = 0f;
             healthT = 0f;
-        } else healthT = stats.numericals["health"] / stats.numericals["maxHealth"];
-        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"],0,stats.numericals["maxHealth"]);
+        } else healthT = stats.numericals["health"] / stats.maxHealth;
+        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"],0,stats.maxHealth);
         if (currentT != healthT)
         {
             currentT = Mathf.Lerp(currentT, healthT, Time.deltaTime*3f);
@@ -170,9 +164,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         shieldsParent.color = shieldsText.color;
         shieldsText.text = allShields.ToString();
     }
-
     private bool EvaluateDamageIntake(Stats senderStats, float intake){
-        if (stats == null){
+        if (stats == null){//if stat is null that means its a bacteria
             if (Random.Range(0f,100f) > stats.numericals["bacteriaBlockChance"])
                 stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
             else return false;

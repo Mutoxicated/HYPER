@@ -220,49 +220,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inheritFromPlayer: 1
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   type: 0
   objective: 3
   entity: {fileID: 0}
-  maxHealth: 0
+  maxHealth: 100
   maxShields: 0
   shieldhealth: 50
   conditionals:
-    _serializedList:
-    - Key: explosive
-      Value: 0
-    - Key: surfaceFXED
-      Value: 0
-    - Key: outlineFXED
-      Value: 0
-    - Key: colorFXED
-      Value: 0
-    - Key: stunned
-      Value: 0
-  numericals:
     reorderableList:
-      canAdd: 0
-      canRemove: 0
-      draggable: 0
-      expandable: 0
-      multipleSelection: 0
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
       isExpanded: 0
       label:
-        m_Text: 
+        m_Text: Keys
         m_Image: {fileID: 0}
         m_Tooltip: 
-      headerHeight: 0
-      footerHeight: 0
-      slideEasing: 0
-      verticalSpacing: 0
-      showDefaultBackground: 0
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
       elementDisplayType: 0
       elementNameProperty: 
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
+    _keyValues:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _keys:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _values: 0000000000
+  numericals:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
     _keyValues:
     - permaShields
     - moveSpeed
@@ -283,6 +308,8 @@ MonoBehaviour:
     - enemyBlockChance
     - bacteriaBlockChance
     - range
+    - health
+    - maxHealthModifier
     _keys:
     - permaShields
     - moveSpeed
@@ -303,6 +330,8 @@ MonoBehaviour:
     - enemyBlockChance
     - bacteriaBlockChance
     - range
+    - health
+    - maxHealthModifier
     _values:
     - 0
     - 1
@@ -323,6 +352,8 @@ MonoBehaviour:
     - 0
     - 0
     - 28
+    - 999
+    - 1
 --- !u!114 &8878825627043202888
 MonoBehaviour:
   m_ObjectHideFlags: 0

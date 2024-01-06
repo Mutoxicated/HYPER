@@ -17,7 +17,7 @@ public class Difficulty : MonoBehaviour
 
     public List<GameObject> enemyPool;
 
-    public static GameObject FindClosestEnemy(Transform trans)
+    public static GameObject FindClosestEnemy(Transform trans, float distTol)
     {
         GameObject closest = null;
         float distance = Mathf.Infinity;
@@ -33,6 +33,9 @@ public class Difficulty : MonoBehaviour
                 closest = go;
                 distance = curDistance;
             }
+        }
+        if (distance > distTol){
+            return null;
         }
         return closest;
     }

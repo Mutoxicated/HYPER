@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: 2PA
   m_EditorClassIdentifier: 
   item: {fileID: 6432951408254796468, guid: 4dfd590621fe04f4bb8d3d4ab62be55c, type: 3}
+  itemName: Circumtelum
+  nameColor: {r: 0.31198823, g: 0.4153077, b: 0.5377358, a: 1}
   itemImage: {fileID: 21300000, guid: 3a21ab37efeb8a84d81ac4b854ff7d6c, type: 3}
   description: A passive item. Randomly enables 3 of the player's weapon extras.
