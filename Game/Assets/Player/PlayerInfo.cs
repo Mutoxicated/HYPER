@@ -11,7 +11,8 @@ public static class PlayerInfo
     private static GunShooter playerGun;
     private static Camera cam;
     private static Melee melee;
-    private static float money;
+    private static ItemPool itemPool;
+    private static int money;
     private static float score;
 
     public static GameObject GetPlayer(){
@@ -70,6 +71,14 @@ public static class PlayerInfo
         melee = mel;
     }
 
+    public static ItemPool GetIP(){
+        return itemPool;
+    }
+
+    public static void SetIP(ItemPool ip){
+        itemPool = ip;
+    }
+
     public static float GetScore(){
         return score;
     }
@@ -78,11 +87,11 @@ public static class PlayerInfo
         score = score2;
     }
 
-    public static float GetMoney(){
+    public static int GetMoney(){
         return money;
     }
 
-    public static void SetMoney(float money2){
-        money = money2;
+    public static void SetMoney(int money2){
+        money -= money2;
     }
 }

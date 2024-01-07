@@ -18,7 +18,7 @@ public class ModifyWeapon : MonoBehaviour
         List<Weapon> weapons = new List<Weapon>();
         int rn = 0;
         int cap = wps.Count;
-        if (cap > amountToModify){
+        if (cap < amountToModify){
             cap = amountToModify;
         }
         for (int i = 0; i < cap;i++){
