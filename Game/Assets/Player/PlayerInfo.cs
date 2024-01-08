@@ -12,7 +12,7 @@ public static class PlayerInfo
     private static Camera cam;
     private static Melee melee;
     private static ItemPool itemPool;
-    private static int money;
+    private static int money = 40;
     private static float score;
 
     public static GameObject GetPlayer(){

@@ -40,6 +40,8 @@ public class ItemShop : MonoBehaviour
     }
 
     private void SpendMoney(){
+        if (PlayerInfo.GetMoney() < rerollCost)
+            return;
         PlayerInfo.SetMoney(rerollCost);
     }
 

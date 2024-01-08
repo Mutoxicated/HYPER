@@ -42,4 +42,12 @@ public class ClassItem : MonoBehaviour
 {
     [SerializeField] private ItemType itemType;
     [SerializeField] private List<Class> classes = new List<Class>();//classes the class item is in
+
+    private void OnEnable(){
+        gameObject.SetActive(false);
+    }
+
+    public List<Class> GetClasses(){
+        return classes;
+    }
 }

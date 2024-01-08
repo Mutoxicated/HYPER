@@ -20,7 +20,7 @@ public class ItemSubscriber : MonoBehaviour
     private Vector3 maxScale;
     private Vector3 currScale;
 
-    private bool hovering = false;
+    [HideInInspector] public bool hovering = false;
     private float speed = 5f;
 
     public void Awake(){
@@ -54,10 +54,15 @@ public class ItemSubscriber : MonoBehaviour
     }
 
     public void ItemTaken(){
-        PlayerInfo.GetIP().AddItem(currentItem);
+        if (PlayerInfo.GetMoney() < currentItem.cost)
+            return;
+        bool success = PlayerInfo.GetIP().AddItem(currentItem);
+        if (!success)
+            return;
         PlayerInfo.SetMoney(currentItem.cost);
         gameObject.SetActive(false);
         currScale = initScale;
         scalableObj.transform.localScale = currScale;
+        hovering = false;
     }
 }

@@ -1069,3 +1069,7 @@ Tomorrow I will make more of the shop system and the health store and dynamite s
 ## Day 212
 
 Implemented more of the shop: you can reroll in the item shop and 3 random items will appear. You can buy them and their effects apply!
+
+## Day 213
+
+Will implement shield and powerup boxes and bombs. Also planning on making the enemies give score when you kill them and making the Main Menu, the Menu, as well as some other stuff.

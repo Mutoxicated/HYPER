@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fb357689405444ca4d981e1deae6f1, type: 3}
   m_Name: 1WA
   m_EditorClassIdentifier: 
-  item: {fileID: 6432951408254796468, guid: f30c6dd27513630419c47a1bd30fbb87, type: 3}
+  item: {fileID: 1933982387302755489, guid: f30c6dd27513630419c47a1bd30fbb87, type: 3}
   cost: 5
   itemName: Accrixis
   nameColor: {r: 1, g: 0, b: 0, a: 1}

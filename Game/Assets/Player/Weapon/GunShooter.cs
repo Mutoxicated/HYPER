@@ -171,14 +171,14 @@ public class GunShooter : MonoBehaviour
         if (fireInput.GetInput() && readyToShoot)
         {
             ShootState(weapons[scroll.index].recoilModifier);
-            OnShootEvent.Invoke(weapons[scroll.index].fireRate);
+            OnShootEvent.Invoke(weapons[scroll.index].fireRate*weapons[scroll.index].modifier);
             shootMethods[index](weapons[scroll.index].bulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
             t = weapons[scroll.index].fireRate;
         }
         if (fire2Input.GetInput() && readyToShoot && weapons[scroll.index].extra)
         {
             ShootState(weapons[scroll.index].extraRecoilModifier);
-            OnShootEvent.Invoke(weapons[scroll.index].extraFireRate);
+            OnShootEvent.Invoke(weapons[scroll.index].extraFireRate*weapons[scroll.index].modifier);
             shootMethods[index](weapons[scroll.index].extraBulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
             t = weapons[scroll.index].extraFireRate;
         }

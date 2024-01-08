@@ -52,7 +52,7 @@ public class GoTo : MonoBehaviour
 
     private void GetDirection(){
         stats.FindEntity();
-        Debug.Log(stats.numericals["range"]);
+        //Debug.Log(stats.numericals["range"]);
         if (stats.entity == null){
             stats.DecideObjective();
             stats.FindEntity();

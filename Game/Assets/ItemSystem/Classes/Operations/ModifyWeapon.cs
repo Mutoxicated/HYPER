@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,20 +15,18 @@ public class ModifyWeapon : MonoBehaviour
     private List<Weapon> wps = new List<Weapon>();
 
     private List<Weapon> GetRandomWeapons(){
-        wps = PlayerInfo.GetGun().GetWeapons();
+        wps = PlayerInfo.GetGun().GetWeapons().ToArray().ToList();
         List<Weapon> weapons = new List<Weapon>();
         int rn = 0;
         int cap = wps.Count;
-        if (cap < amountToModify){
-            cap = amountToModify;
-        }
+        if (cap == 0)
+            return weapons;
         for (int i = 0; i < cap;i++){
+            if (wps.Count == 0)
+                break;
             rn = Random.Range(0,wps.Count);
             weapons.Add(wps[rn]);
             wps.Remove(wps[rn]);
-            if (rn <= i){
-                i--;
-            }
         }
 
         return weapons;
@@ -45,7 +44,9 @@ public class ModifyWeapon : MonoBehaviour
         }
     }
 
-    private void OnDisable(){
+    private void OnDestroy(){
+        if (wps.Count == 0)
+            return;
         foreach (Weapon wp in wps){
             if (modifyFireRate){
                 wp.modifier -= modifier;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fb357689405444ca4d981e1deae6f1, type: 3}
   m_Name: 3WA
   m_EditorClassIdentifier: 
-  item: {fileID: 6432951408254796468, guid: 88c4d61a50b75384f987c1af6e60bfdd, type: 3}
+  item: {fileID: 1933982387302755489, guid: 88c4d61a50b75384f987c1af6e60bfdd, type: 3}
   cost: 3
   itemName: Remigro
   nameColor: {r: 0.6678721, g: 0.042452812, b: 1, a: 1}

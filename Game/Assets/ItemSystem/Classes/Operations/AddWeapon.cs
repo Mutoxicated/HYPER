@@ -10,7 +10,7 @@ public class AddWeapon : MonoBehaviour
         PlayerInfo.GetGun().AddWeapon(weapon);
     }
 
-    private void OnDisable(){
+    private void OnDestroy(){
         if (PlayerInfo.GetGun().ContainsWeapon(weapon))
             PlayerInfo.GetGun().RemoveWeapon(weapon);
     }

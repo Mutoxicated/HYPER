@@ -56,12 +56,19 @@ public class bullet : MonoBehaviour
         time = 0;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 11){
-            return;
+    private bool LogicStop(Collider other){
+        if (other.gameObject.layer == LayerMask.NameToLayer("IgnoreAllBullets")){
+            return true;
         }
         if (other.gameObject.tag == "Player")
+            return true;
+        if (other.gameObject.layer == LayerMask.NameToLayer("explosions"))
+            return true;
+        return false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (LogicStop(other))
             return;
         if (other.gameObject.layer != 8)
         {
@@ -86,9 +93,8 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == 11){
+        if (LogicStop(other))
             return;
-        }
         if (other.gameObject.layer != 8)
         {
             if (other.gameObject.layer != 9){
@@ -101,9 +107,8 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 11){
+        if (LogicStop(other))
             return;
-        }
         if (other.gameObject.layer != 8)
         {
             if (other.gameObject.layer != 9){
