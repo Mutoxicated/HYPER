@@ -112,4 +112,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 0}
+  color: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}

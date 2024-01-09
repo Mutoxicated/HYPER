@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.5, g: 0.5, b: 0.5, a: 0}
+  color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &3495736955814306452
 GameObject:
   m_ObjectHideFlags: 0

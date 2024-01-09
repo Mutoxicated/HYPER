@@ -1073,3 +1073,7 @@ Implemented more of the shop: you can reroll in the item shop and 3 random items
 ## Day 213
 
 Will implement shield and powerup boxes and bombs. Also planning on making the enemies give score when you kill them and making the Main Menu, the Menu, as well as some other stuff.
+
+## Day 214
+
+Made the shield and health box pickup, along with some nice sound effects. Next up will make more of the main menu, especially the prepare screen that lets you choose some things before starting a run.

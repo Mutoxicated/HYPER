@@ -40739,7 +40739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   justTeleport: 1
-  sceneName: Interoid
+  sceneName: MainMenu
   playerlook: {fileID: 0}
   spawnPoint: {fileID: 0}
   platformsState: 0

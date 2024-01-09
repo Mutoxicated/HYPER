@@ -119,6 +119,7 @@ MonoBehaviour:
   destroyUponEvent: 1
   recycleUponEvent: 0
   t: 0
+  time: 0
   isPlaying: 0
 --- !u!1 &3012147047492929063
 GameObject:
@@ -219,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 1, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!136 &3279131436173867593
 CapsuleCollider:
   m_ObjectHideFlags: 0

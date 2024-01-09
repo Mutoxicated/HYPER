@@ -279,4 +279,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
                 immuneSystem.bacterias[bac.name].Instagib();
         }
     }
+
+    public void ActivateScreen(int index){
+        hurtScreen.SetActive(true);
+        fadeColor.ChangeGradientIndex(index);
+    }
+
+    public void ActivateScreen(){
+        hurtScreen.SetActive(true);
+    }
 }

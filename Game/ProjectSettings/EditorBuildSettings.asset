@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/gas station/gas station.unity
     guid: 15d212fbca9935d448aadac07a7aa2d2
   - enabled: 1
-    path: Assets/Scenes/ArenaV2.unity
-    guid: fa29c2645b2e3b9419cf1ab5a7644813
+    path: Assets/Scenes/MainMenu.unity
+    guid: 909c0fc3322b65b43bb37bdf49550069
   - enabled: 1
     path: Assets/Scenes/Interoid.unity
     guid: 692c47d65622c5744bbe7a3524f1721c
+  - enabled: 1
+    path: Assets/Scenes/ArenaV2.unity
+    guid: fa29c2645b2e3b9419cf1ab5a7644813
   m_configObjects: {}

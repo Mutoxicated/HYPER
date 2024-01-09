@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 0}
+  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 1}
 --- !u!1 &126457573 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: eb232d938d6259743a767eef848d429a, type: 3}
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 2.1185474, g: 0.37712362, b: 0, a: 0}
+  color: {r: 2.1185474, g: 0.37712362, b: 0, a: 1}
 --- !u!1001 &159089378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 2.1185474, g: 0.37712362, b: 0, a: 0}
+  color: {r: 2.1185474, g: 0.37712362, b: 0, a: 1}
 --- !u!1 &254213535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,7 +2986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 2.6352942, g: 2.792157, b: 3.3411765, a: 0}
+  color: {r: 2.6352942, g: 2.792157, b: 3.3411765, a: 1}
 --- !u!4 &519784818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7932659350571100740, guid: 06243447dabae0e4b9ec463948f9e6b2, type: 3}
@@ -3700,7 +3700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 2.1185474, g: 0.37712362, b: 0, a: 0}
+  color: {r: 2.1185474, g: 0.37712362, b: 0, a: 1}
 --- !u!1 &564502129
 GameObject:
   m_ObjectHideFlags: 0
@@ -10544,7 +10544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 0}
+  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 1}
 --- !u!1 &834770060
 GameObject:
   m_ObjectHideFlags: 0
@@ -11054,7 +11054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.2264151, g: 0.061984915, b: 0.013883951, a: 0}
+  color: {r: 0.2264151, g: 0.061984915, b: 0.013883951, a: 1}
 --- !u!136 &921175540
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11938,7 +11938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 2.1185474, g: 0.37712362, b: 0, a: 0}
+  color: {r: 2.1185474, g: 0.37712362, b: 0, a: 1}
 --- !u!1 &1013436812
 GameObject:
   m_ObjectHideFlags: 0
@@ -18574,7 +18574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 1.082353, g: 1.9294118, b: 2.9960785, a: 0}
+  color: {r: 1.082353, g: 1.9294118, b: 2.9960785, a: 1}
 --- !u!65 &1142334227
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21306,7 +21306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 0}
+  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 1}
 --- !u!1 &1502140796 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a516827584c9bd4db7c3fbde99d113b, type: 3}
@@ -21330,7 +21330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 0}
+  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 1}
 --- !u!1 &1505567833
 GameObject:
   m_ObjectHideFlags: 0
@@ -21443,7 +21443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 2.1185474, g: 0.37712362, b: 0, a: 0}
+  color: {r: 2.1185474, g: 0.37712362, b: 0, a: 1}
 --- !u!1 &1510885280
 GameObject:
   m_ObjectHideFlags: 0
@@ -28175,7 +28175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 1.082353, g: 1.9294118, b: 2.9960785, a: 0}
+  color: {r: 1.082353, g: 1.9294118, b: 2.9960785, a: 1}
 --- !u!1 &1695091851
 GameObject:
   m_ObjectHideFlags: 0
@@ -28369,7 +28369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 0}
+  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 1}
 --- !u!1001 &1725697687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28903,66 +28903,6 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4278255615
       objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.key0.a
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.data[4].atime1
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.data[4].atime2
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.data[4].ctime1
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.data[4].key0.a
-      value: 0.1254902
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.data[4].key0.g
-      value: 0.6415094
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.data[4].key0.r
-      value: 0.030188676
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.data[4].key1.g
-      value: 0.6431373
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.data[4].key1.r
-      value: 0.03137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: useMaterialValues.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: useMaterialValues.Array.data[1]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: useMaterialValues.Array.data[2]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.data[4].m_NumAlphaKeys
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840016334545598128, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
-      propertyPath: gradient.Array.data[4].m_NumColorKeys
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2787319632090587800, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_fontColor.b
       value: 0
@@ -29097,7 +29037,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4177914415260335034, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_fontSize
-      value: 25
+      value: 24.85
       objectReference: {fileID: 0}
     - target: {fileID: 7048620876245889674, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_Material
@@ -29702,7 +29642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.2264151, g: 0.061984915, b: 0.013883951, a: 0}
+  color: {r: 0.2264151, g: 0.061984915, b: 0.013883951, a: 1}
 --- !u!136 &1840919952
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -35780,7 +35720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 0}
+  color: {r: 0.3301887, g: 0.08427772, b: 0.0140174385, a: 1}
 --- !u!1 &1924456172
 GameObject:
   m_ObjectHideFlags: 0
@@ -36644,7 +36584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.2264151, g: 0.061984915, b: 0.013883951, a: 0}
+  color: {r: 0.2264151, g: 0.061984915, b: 0.013883951, a: 1}
 --- !u!136 &2007469554
 CapsuleCollider:
   m_ObjectHideFlags: 0

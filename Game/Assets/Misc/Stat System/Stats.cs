@@ -159,4 +159,14 @@ public class Stats : MonoBehaviour
     public void ChangeNum(string name, float num){
         numericals[name] = num;
     }
+
+    public void AddShield(int amount){
+        for (int i = 0; i < amount;i++){
+            shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
+        }
+    }
+
+    public void GetHealth(float amount){
+        numericals["health"] += amount;
+    }
 }

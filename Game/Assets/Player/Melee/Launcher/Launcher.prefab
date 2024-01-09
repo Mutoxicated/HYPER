@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0}
+  color: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
 --- !u!114 &6473456943172482351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 1, g: 0.94274926, b: 0, a: 0}
+  color: {r: 1, g: 0.94274926, b: 0, a: 1}
 --- !u!65 &3888972445646988669
 BoxCollider:
   m_ObjectHideFlags: 0

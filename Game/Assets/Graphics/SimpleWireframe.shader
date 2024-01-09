@@ -7,6 +7,8 @@ Shader "Custom/QuadWireframe"
         [HDR] [MainColor] _WireframeBackColour("Wireframe back colour", color) = (1.0, 1.0, 1.0, 1.0)
         _WireframeAliasing("Wireframe aliasing", float) = 1.5
         _Intact("Intact Range", float) = 0
+
+       [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Integer) = 2
     }
 
         SubShader
@@ -16,7 +18,7 @@ Shader "Custom/QuadWireframe"
 
 
         Pass {
-            Cull Back
+            Cull [_Cull]
             ZWrite On
             Lighting Off
             Blend SrcAlpha OneMinusSrcAlpha
@@ -39,7 +41,6 @@ Shader "Custom/QuadWireframe"
             struct v2f
             {
                 float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
             };
 
@@ -68,7 +69,6 @@ Shader "Custom/QuadWireframe"
                 o.vertex = thing;
 
                 o.uv = TRANSFORM_TEX(v.uv, _BaseMap);
-                UNITY_TRANSFER_FOG(o, o.vertex);
                 return o;
             }
 
@@ -115,7 +115,7 @@ Shader "Custom/QuadWireframe"
                 float alpha = 1 - min(aliased.x, min(aliased.y, aliased.z));
                 clip(alpha-0.1);
                 // Set to our backwards facing wireframe colour.
-                return fixed4(_WireframeBackColour.r, _WireframeBackColour.g, _WireframeBackColour.b, clamp(alpha*abs(_Intact-1),0,1));
+                return fixed4(_WireframeBackColour.r, _WireframeBackColour.g, _WireframeBackColour.b, _WireframeBackColour.a*clamp(alpha*abs(_Intact-1),0,1));
             }
             ENDCG
             }
