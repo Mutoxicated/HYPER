@@ -25,6 +25,8 @@ public class playerLook : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
         rotationX -= Input.GetAxis("Mouse Y") * Time.deltaTime * (sensY * 100f);
         rotationY += Input.GetAxis("Mouse X") * Time.deltaTime * (sensX * 100f);
         //clamp it so that cam cant freely move

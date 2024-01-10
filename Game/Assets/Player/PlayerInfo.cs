@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class PlayerInfo
@@ -14,6 +15,13 @@ public static class PlayerInfo
     private static ItemPool itemPool;
     private static int money = 40;
     private static float score;
+
+    private static Stats.conditionalDict conditionalDictTransfer = new Stats.conditionalDict();
+    private static Stats.numericalDict numericalDictTransfer = new Stats.numericalDict();
+
+    private static Shield[] shields;
+
+    private static GunShooter.Echelon echelon;
 
     public static GameObject GetPlayer(){
         return player;
@@ -87,11 +95,39 @@ public static class PlayerInfo
         score = score2;
     }
 
+    public static void AddScore(float score2){
+        score += score2;
+    }
+
     public static int GetMoney(){
         return money;
     }
 
     public static void SetMoney(int money2){
         money -= money2;
+    }
+
+    public static Stats.conditionalDict GetConditionals(){
+        return conditionalDictTransfer;
+    }
+
+    public static Stats.numericalDict GetNumericals(){
+        return numericalDictTransfer;
+    }
+
+    public static Shield[] GetShields(){
+        return shields;
+    }
+
+    public static void SetShields(Shield[] shieldss){
+        shields = shieldss;
+    }
+
+    public static GunShooter.Echelon GetEchelon(){
+        return echelon;
+    }
+
+    public static void SetEchelon(int ind){
+        echelon = (GunShooter.Echelon)ind;
     }
 }

@@ -1,8 +1,3 @@
-using Mono.CompilerServices.SymbolWriter;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,6 +14,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [Header("General")]
     [SerializeField] private float immunityDuration;
     [SerializeField,Range(0.5f,2f)] private float rate = 0.05f;
+    [SerializeField] private float hitScore;
+    [SerializeField] private float deathScore;
 
     [SerializeField] private HealthBar healthBar;
 
@@ -113,6 +110,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         OnDeath.RemoveAllListeners();
     }
 
+    private void ScoreOnHit(Stats senderStats){
+        if (senderStats.gameObject.tag == "Player" | senderStats.inheritFromPlayer)
+            PlayerInfo.AddScore(hitScore);
+    }
+
     public void Die(Stats senderStats){
         if (stats.conditionals["explosive"] && Random.Range(0f,100f) <= stats.numericals["explosionChance"]){
                 PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position,Quaternion.identity);
@@ -121,26 +123,31 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (senderStats == null){
             OnDeath.Invoke(transform);
         }else{
+            if (senderStats.gameObject.tag == "Player" | senderStats.inheritFromPlayer)
+                PlayerInfo.AddScore(deathScore);
             OnDeath.Invoke(senderStats.transform);
         }
         DestroyStuff();
     }
 
-    public void TakeHealth(float intake, float shield){
+    public void TakeHealth(float intake, int shield){
         stats.numericals["health"] += intake;
-        stats.numericals["shields"] += shield;
+        stats.AddShield(shield);
     }
 
-    public float TakeDamage(float intake, Stats senderStats, ref float shieldOut, float strength, int _)
+    public float TakeDamage(float intake, Stats senderStats, ref int shieldOut, float strength, int _)
     {
         if (!EvaluateDamageIntake(senderStats,intake)){
             return 0f;
         }
         if (immune)
             return 0f;
+        
         shieldOut = 0;
-        if (senderStats != null)
+        if (senderStats != null){
             Parry(senderStats.gameObject);
+            ScoreOnHit(senderStats);
+        }
         t += strength;
         healthBar?.Activate();
         if (stats.numericals["health"] <= 0)
@@ -160,7 +167,10 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }
         if (immune)
             return 0f;
-        Parry(senderStats.gameObject);
+        if (senderStats != null){
+            Parry(senderStats.gameObject);
+            ScoreOnHit(senderStats);
+        }
         t += strength;
         healthBar?.Activate();
         if (stats.numericals["health"] <= 0)

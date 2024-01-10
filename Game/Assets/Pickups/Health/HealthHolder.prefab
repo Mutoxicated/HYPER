@@ -296,10 +296,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4640709349962592055, guid: 04e0b1f16198d0e41ad3f9a91acbb962, type: 3}
-      propertyPath: lengthInSec
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640709349962592055, guid: 04e0b1f16198d0e41ad3f9a91acbb962, type: 3}
       propertyPath: InitialModule.size3D
       value: 1
       objectReference: {fileID: 0}
@@ -631,6 +627,10 @@ PrefabInstance:
       propertyPath: VelocityModule.speedModifier.maxCurve.m_Curve.Array.data[4].outWeight
       value: 0.5826547
       objectReference: {fileID: 0}
+    - target: {fileID: 5355028427852983041, guid: 04e0b1f16198d0e41ad3f9a91acbb962, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 001b619f199649747868d251d279266f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04e0b1f16198d0e41ad3f9a91acbb962, type: 3}
 --- !u!4 &911448292373854522 stripped

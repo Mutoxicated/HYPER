@@ -9,7 +9,7 @@ namespace BacteriaOperations{
         public float damage;
         public int hurtScreenIndex;
         [SerializeField] private bool exponential;
-        private float _;
+        private int _;
         private IDamageable cachedDamageable;
 
         public void DamageEntity()

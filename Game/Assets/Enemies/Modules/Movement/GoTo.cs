@@ -14,7 +14,7 @@ public class GoTo : MonoBehaviour
     [SerializeField] private Vector3 axisMultiplier = new Vector3(1f,1f,1f);
     private Vector3 toEntity = Vector3.zero;
     
-    private void OnEnable()
+    private void Start()
     {
         stats.FindEntity();
         speed += Random.Range(-randomnessScale,randomnessScale);

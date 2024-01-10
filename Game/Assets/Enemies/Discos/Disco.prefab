@@ -1282,6 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inheritFromPlayer: 0
   explosionPrefab: {fileID: 0}
   VFXScale: 1.8
   type: 0
@@ -1333,7 +1334,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 1
+      isExpanded: 0
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -1348,7 +1349,7 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 1
+    isExpanded: 0
     _keyValues:
     - permaShields
     - moveSpeed
@@ -1500,6 +1501,8 @@ MonoBehaviour:
   - {fileID: 5712452414405635189}
   immunityDuration: 1
   rate: 1.215
+  hitScore: 30
+  deathScore: 100
   healthBar: {fileID: 1013913412199572123}
   t: 0
   immune: 0

@@ -7,4 +7,8 @@ public class ButtonEvents : MonoBehaviour
     public void ExitApp(){
         Application.Quit();
     }
+
+    public void ChooseEchelon(int index){
+        PlayerInfo.SetEchelon(index);
+    }
 }

@@ -76,7 +76,7 @@ public class Movement : MonoBehaviour
     private MoveAbilities ability;
     private float moveX, moveZ;
     private CameraShake camShake;
-    private float shields;
+    private int shields;
 
     public void ChangeState(int ms)
     {

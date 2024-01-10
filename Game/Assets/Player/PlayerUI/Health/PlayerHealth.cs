@@ -96,6 +96,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         healthT = stats.numericals["health"] / stats.maxHealth;
         currentT = healthT;
         sumText.text = Mathf.Round(healthT*100f).ToString() + '%';
+        healthBar.localScale = new Vector3(Mathf.Clamp(initialScale.x * healthT,0.0002f,initialScale.x),healthBar.localScale.y, healthBar.localScale.z);
         healthBarImg = healthBar.GetComponent<Image>();
         if (playerObjects == null)
             return;
@@ -189,12 +190,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         return true;
     }
 
-    public void TakeHealth(float intake, float shield){
+    public void TakeHealth(float intake, int shield){
         stats.numericals["health"] += intake;
-        stats.numericals["shields"] += shield;
+        stats.AddShield(shield);
     }
 
-    public float TakeDamage(float intake, Stats senderStats, ref float shieldOut, float arb, int index)
+    public float TakeDamage(float intake, Stats senderStats, ref int shieldOut, float arb, int index)
     {
         if (!EvaluateDamageIntake(senderStats,intake)){
             return 0f;

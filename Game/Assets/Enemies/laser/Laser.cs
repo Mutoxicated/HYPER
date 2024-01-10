@@ -23,8 +23,8 @@ public class Laser : MonoBehaviour
     private List<float> cachedLeftoverDamage = new List<float>();
     private Vector3 scale;
     private LayerMask mask = -1;
-    private List<float> cachedshieldOuts = new List<float>();
-    private float refShield;
+    private List<int> cachedshieldOuts = new List<int>();
+    private int refShield;
 
     public void ParryLaser(GameObject parrier, Vector3 position){
         Debug.Log("parried");
@@ -76,7 +76,8 @@ public class Laser : MonoBehaviour
             stats.DecideObjective();
             stats.FindEntity();
             }
-            Debug.Log(stats.entity.gameObject.name);
+            
+            //Debug.Log(stats.entity.gameObject.name);
             transform.rotation = GetRotation();
         }
         pierces = stats.numericals["pierces"];

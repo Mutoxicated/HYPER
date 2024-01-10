@@ -19,9 +19,9 @@ public class ButtonScale : MonoBehaviour
 
     private void Update(){
         if (hovering){
-            transform.localScale = Vector3.Lerp(transform.localScale,maxScale,Time.deltaTime*lerpSpeed);
+            transform.localScale = Vector3.Lerp(transform.localScale,maxScale,Time.unscaledDeltaTime*lerpSpeed);
         }else{
-            transform.localScale = Vector3.Lerp(transform.localScale,initScale,Time.deltaTime*lerpSpeed);
+            transform.localScale = Vector3.Lerp(transform.localScale,initScale,Time.unscaledDeltaTime*lerpSpeed);
         }
     }
 

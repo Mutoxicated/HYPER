@@ -150,6 +150,7 @@ public class GunShooter : MonoBehaviour
     }
 
     private void Awake(){
+        weaponType = PlayerInfo.GetEchelon();
         PlayerInfo.SetGun(this);
     }
 

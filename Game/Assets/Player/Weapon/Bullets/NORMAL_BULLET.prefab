@@ -176,7 +176,8 @@ MonoBehaviour:
   type: 2
   injectorToInheritFrom: {fileID: 0}
   injectorsToInherit: []
-  bacteriaPools: []
+  bacteriaPools:
+  - BURNING_ALLY
   allyBacterias: []
   cachedInstances: []
 --- !u!114 &-6783982848360908735

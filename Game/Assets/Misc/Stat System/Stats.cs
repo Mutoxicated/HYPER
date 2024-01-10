@@ -16,7 +16,7 @@ public enum DeathFor {
 [DisallowMultipleComponent]
 public class Stats : MonoBehaviour
 {
-    [SerializeField] private bool inheritFromPlayer;
+    public bool inheritFromPlayer;
     public GameObject explosionPrefab;
     public float VFXScale = 1f;
     public EntityType type;
@@ -77,6 +77,44 @@ public class Stats : MonoBehaviour
 
     private void Awake()
     {
+        if (gameObject.tag == "Player"){
+            var conds = PlayerInfo.GetConditionals();
+            var nums = PlayerInfo.GetNumericals();
+
+            Debug.Log("Player: "+conds.Count);
+
+            if (conds.Count == 0){
+                foreach (string key in conditionalsPrototype.Keys){
+                    if (!conditionals.ContainsKey(key))
+                        conditionals.Add(key,conditionalsPrototype[key]);
+                }
+                foreach (string key in numericalsPrototype.Keys){
+                    if (!numericals.ContainsKey(key))
+                        numericals.Add(key,numericalsPrototype[key]);
+                }
+                numericals["health"] = maxHealth;
+                for (int i = 0; i < maxShields;i++){
+                    this.shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
+                }
+                PlayerInfo.SetShields(shields.ToArray());
+            }else{
+                foreach (string key in conds.Keys){
+                    if (!conditionals.ContainsKey(key))
+                        conditionals.Add(key,conds[key]);
+                    else
+                        conditionals[key] = conds[key];
+                }
+
+                foreach (string key in nums.Keys){
+                    if (!numericals.ContainsKey(key))
+                        numericals.Add(key,nums[key]);
+                    else
+                        numericals[key] = nums[key];
+                }
+                shields = PlayerInfo.GetShields().ToList();
+            }
+            return;
+        }
         foreach (string key in conditionalsPrototype.Keys){
             if (!conditionals.ContainsKey(key))
                 conditionals.Add(key,conditionalsPrototype[key]);
@@ -93,6 +131,8 @@ public class Stats : MonoBehaviour
     }
 
     private void Start(){
+        if (gameObject.tag == "Player")
+            return;
         for (int i = 0; i < maxShields;i++){
             shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
         }
@@ -168,5 +208,13 @@ public class Stats : MonoBehaviour
 
     public void GetHealth(float amount){
         numericals["health"] += amount;
+    }
+
+    public conditionalDict GetConditionals(){
+        return conditionals;
+    }
+
+    public numericalDict GetNumericals(){
+        return numericals;
     }
 }

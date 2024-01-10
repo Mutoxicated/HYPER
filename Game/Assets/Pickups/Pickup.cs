@@ -66,6 +66,7 @@ public class Pickup : MonoBehaviour
         switch(pickup){
             case PICKUP_TYPE.HEALTH:
                 PlayerInfo.GetGun().stats.GetHealth(healthAmount);
+                PlayerInfo.GetPH().ActivateScreen(3);
                 break;
             case PICKUP_TYPE.SHIELD:
                 PlayerInfo.GetGun().stats.AddShield(shieldAmount);
@@ -75,7 +76,6 @@ public class Pickup : MonoBehaviour
                 PlayerInfo.GetGun().stats.AddShield(shieldAmount);
                 break;
         }
-        sfx.Play();
     }
 
     public void DestroyPickup(){

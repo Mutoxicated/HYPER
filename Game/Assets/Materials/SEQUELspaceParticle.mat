@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: spaceParticle
-  m_Shader: {fileID: 4800000, guid: eb37944dadcd3d94a8be9fb0bbfdcbc5, type: 3}
+  m_Name: SEQUELspaceParticle
+  m_Shader: {fileID: 4800000, guid: 991b95ca3fdfffd459d89c1c43e7cf4a, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 0
@@ -58,8 +58,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpaceTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: f7bc316e01fb9aa4fa093209518a1e16, type: 3}
+        m_Scale: {x: 1.43, y: 1.17}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}

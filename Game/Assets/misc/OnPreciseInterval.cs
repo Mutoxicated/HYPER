@@ -67,6 +67,8 @@ public class OnPreciseInterval : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
         if (!isPlaying)
             return;
         //Debug.Log(time);

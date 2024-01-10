@@ -1077,3 +1077,7 @@ Will implement shield and powerup boxes and bombs. Also planning on making the e
 ## Day 214
 
 Made the shield and health box pickup, along with some nice sound effects. Next up will make more of the main menu, especially the prepare screen that lets you choose some things before starting a run.
+
+## Day 215
+
+Implemented the score system in enemies and the player, pause menu (that doesn't work on the Arena scene for some reaosn, will fix) and fixed some bugs.

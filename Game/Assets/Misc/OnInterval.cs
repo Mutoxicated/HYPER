@@ -9,6 +9,7 @@ public class OnInterval : MonoBehaviour
     [SerializeField] private string specialTag = "Untagged";
     [SerializeField, Range(0, 100)] private int chance = 100;
     [SerializeField] private float interval;
+    [SerializeField] private Vector2 minMaxInterval;
     [SerializeField] public UnityEvent onInterval;
     [SerializeField] private bool destroyUponEvent;
     [SerializeField] private bool recycleUponEvent;
@@ -64,6 +65,9 @@ public class OnInterval : MonoBehaviour
 
     private void OnEnable()
     {
+        if (minMaxInterval != Vector2.zero){
+            interval = Random.Range(minMaxInterval.x,minMaxInterval.y);
+        }
         time = 0f;
         t = 0f;
         isPlaying = true;
@@ -73,6 +77,8 @@ public class OnInterval : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
         if (!isPlaying)
             return;
         if (useStats)
