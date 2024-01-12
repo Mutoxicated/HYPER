@@ -51,6 +51,7 @@ MonoBehaviour:
   specialTag: Untagged
   chance: 100
   interval: 0.5
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls: []
@@ -74,7 +75,7 @@ GameObject:
   - component: {fileID: 3622639119799479724}
   - component: {fileID: 3622639119799479725}
   - component: {fileID: 5762586568327915413}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Outermesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +213,7 @@ MonoBehaviour:
   specialTag: Expirtation
   chance: 100
   interval: 13
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:

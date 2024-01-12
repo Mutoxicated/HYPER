@@ -1081,3 +1081,11 @@ Made the shield and health box pickup, along with some nice sound effects. Next 
 ## Day 215
 
 Implemented the score system in enemies and the player, pause menu (that doesn't work on the Arena scene for some reaosn, will fix) and fixed some bugs.
+
+## Day 216 & 217
+
+Made a weapon inventory!!! Also fixed a few more things.
+
+There is a bug that I just discovered with the ally bacteria effects being applied and the echelons. Will fix.
+
+Will start working again on Sunday.

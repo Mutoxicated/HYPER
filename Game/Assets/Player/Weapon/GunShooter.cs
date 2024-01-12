@@ -149,6 +149,57 @@ public class GunShooter : MonoBehaviour
         }
     }
 
+    private void AlterIndex(int ind){
+        //if (ind > )
+    }
+
+    private void WeaponLogic(){
+        if (Input.GetKeyDown(KeyCode.Alpha1)){
+            scroll.AlterIndex(0);
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)){
+            scroll.AlterIndex(1);
+            return;
+        } 
+        if (Input.GetKeyDown(KeyCode.Alpha3)){
+            scroll.AlterIndex(2);
+            return;
+        } 
+        if (Input.GetKeyDown(KeyCode.Alpha4)){
+            scroll.AlterIndex(3);
+            return;
+        } 
+        if (Input.GetKeyDown(KeyCode.Alpha5)){
+            scroll.AlterIndex(4);
+            return;
+        } 
+        if (Input.GetKeyDown(KeyCode.Alpha6)){
+            scroll.AlterIndex(5);
+            return;
+        } 
+        if (Input.GetKeyDown(KeyCode.Alpha7)){
+            scroll.AlterIndex(6);
+            return;
+        } 
+        if (Input.GetKeyDown(KeyCode.Alpha7)){
+            scroll.AlterIndex(7);
+            return;
+        } 
+        if (Input.GetKeyDown(KeyCode.Alpha8)){
+            scroll.AlterIndex(8);
+            return;
+        } 
+        if (Input.GetKeyDown(KeyCode.Alpha9)){
+            scroll.AlterIndex(9);
+            return;
+        } 
+        if (Input.GetKeyDown(KeyCode.Alpha0)){
+            scroll.AlterIndex(10);
+            return;
+        } 
+    }
+
     private void Awake(){
         weaponType = PlayerInfo.GetEchelon();
         PlayerInfo.SetGun(this);
@@ -167,6 +218,7 @@ public class GunShooter : MonoBehaviour
     {
         if (Time.timeScale == 0f)
             return;
+        WeaponLogic();
         fireInput.Update();
         fire2Input.Update();
         if (fireInput.GetInput() && readyToShoot)

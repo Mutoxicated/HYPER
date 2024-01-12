@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountToModify: 3
-  modifier: 0.5
+  modifier: 0
   boolModifer: 1
   modifyFireRate: 0
   modifyExtra: 1

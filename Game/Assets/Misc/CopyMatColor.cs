@@ -11,10 +11,6 @@ public class CopyMatColor : MonoBehaviour
 
     private Material instance;
 
-    private void Start()
-    {
-    }
-
     private void OnEnable()
     {
         instance = objectToCopy.GetComponent<Renderer>().materials[index];

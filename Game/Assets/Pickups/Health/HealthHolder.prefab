@@ -51,6 +51,7 @@ MonoBehaviour:
   specialTag: Untagged
   chance: 100
   interval: 0.5
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls: []
@@ -74,7 +75,7 @@ GameObject:
   - component: {fileID: 3622639119799479724}
   - component: {fileID: 3622639119799479725}
   - component: {fileID: 7271577902489558755}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Outermesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +213,7 @@ MonoBehaviour:
   specialTag: Expirtation
   chance: 100
   interval: 13
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -809,6 +811,10 @@ PrefabInstance:
     - target: {fileID: 2180606284091275827, guid: f2f41df0927d3d2469f19190816e3c17, type: 3}
       propertyPath: m_Name
       value: healthThing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180606284091275827, guid: f2f41df0927d3d2469f19190816e3c17, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5471664338095950086, guid: f2f41df0927d3d2469f19190816e3c17, type: 3}
       propertyPath: color.g

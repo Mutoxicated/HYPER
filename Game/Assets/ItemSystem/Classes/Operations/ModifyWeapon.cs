@@ -35,8 +35,13 @@ public class ModifyWeapon : MonoBehaviour
     private void OnEnable(){
         wps = GetRandomWeapons();
         foreach (Weapon wp in wps){
+            //Debug.Log("wp: "+wp);
             if (modifyFireRate){
                 wp.modifier += modifier;
+            }
+            if (wp.modifier < 0){
+                modifier = modifier - wp.modifier;
+                wp.modifier = 0;
             }
             if (modifyExtra){
                 wp.extra = boolModifer;

@@ -43,4 +43,13 @@ public class Scroll
             index = maxI;
         }
     }
+
+    public void AlterIndex(int I)
+    {
+        if (I > maxIndex){
+            index = maxIndex;
+            return;
+        }
+        index = I;
+    }
 }
