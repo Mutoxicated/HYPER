@@ -67,7 +67,7 @@ public class Bacteria : MonoBehaviour
     private void OnEnable()
     {
         ChangeEmission();
-        immuneSystem = GetComponentInParent<Immunity>();
+        immuneSystem = transform.parent.GetComponent<Immunity>();
         transform.localScale = Vector3.one * immuneSystem.stats.VFXScale;
         if (immuneSystem == null)
         {
@@ -85,7 +85,6 @@ public class Bacteria : MonoBehaviour
             fxm.SetEffect();
         }
     }
-
     private void ChangeEmission(){
         if (_particleSys == null)
             return;
@@ -195,6 +194,5 @@ public class Bacteria : MonoBehaviour
         if (immuneSystem.bacterias.ContainsValue(this)){
             immuneSystem.bacterias.Remove(name);
         }
-            
     }
 }

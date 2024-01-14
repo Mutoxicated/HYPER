@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 2838772722254914084}
   - component: {fileID: 2944045812284909553}
   - component: {fileID: -6783982848360908735}
-  - component: {fileID: -4579046777407666088}
   - component: {fileID: -8766207620506296604}
   - component: {fileID: 8878825627043202888}
+  - component: {fileID: -4579046777407666088}
   m_Layer: 6
   m_Name: NORMAL_BULLET
   m_TagString: bullets
@@ -123,7 +123,7 @@ MonoBehaviour:
   bStats: {fileID: -8766207620506296604}
   immuneSystem: {fileID: -4579046777407666088}
   rb: {fileID: 1549946323395533653}
-  speed: 50
+  speed: 70
   particlePrefab: {fileID: 3545220589067606805, guid: 6d5913b428758ba469ed17214f365d7b, type: 3}
   lifetime: 5
   damage: 100
@@ -193,22 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   injector: {fileID: 2944045812284909553}
---- !u!114 &-4579046777407666088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907635401927215823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: -8766207620506296604}
-  injector: {fileID: 2944045812284909553}
-  immunityAttackRate: 1
-  immunityDamage: 10
 --- !u!114 &-8766207620506296604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +272,7 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 1
+    isExpanded: 0
     _keyValues:
     - permaShields
     - moveSpeed
@@ -373,3 +357,19 @@ MonoBehaviour:
   outlineEffectable: 1
   colorEffectable: 1
   matIndex: 0
+--- !u!114 &-4579046777407666088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907635401927215823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: -8766207620506296604}
+  injector: {fileID: 2944045812284909553}
+  immunityAttackRate: 1
+  immunityDamage: 10

@@ -28,7 +28,7 @@ public class Injector : MonoBehaviour
             PublicPools.pools[bac].SendObject(immuneSystem.gameObject);
         }
         if (injectorToInheritFrom != null){
-            Debug.Log(gameObject.name + " inherited from " + injectorToInheritFrom.gameObject.name);
+            //Debug.Log(gameObject.name + " inherited from " + injectorToInheritFrom.gameObject.name);
             InheritInjector(injectorToInheritFrom);
         }
         if (injectorsToInherit.Count > 0){

@@ -36,7 +36,6 @@ public class Stats : MonoBehaviour
         {"colorFXED", false},
         {"stunned",false}
     };
-
     public conditionalDict conditionals = new conditionalDict();
 
     [Serializable] public class numericalDict : SerializableDictionaryBase<string,float> {};
@@ -94,7 +93,7 @@ public class Stats : MonoBehaviour
                 }
                 numericals["health"] = maxHealth;
                 for (int i = 0; i < maxShields;i++){
-                    this.shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
+                    shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
                 }
                 PlayerInfo.SetShields(shields.ToArray());
             }else{
@@ -123,24 +122,27 @@ public class Stats : MonoBehaviour
             if (!numericals.ContainsKey(key))
                 numericals.Add(key,numericalsPrototype[key]);
         }
-        numericals["health"] = maxHealth;
-        if (inheritFromPlayer){
-            numericals = PlayerInfo.GetGun().stats.numericals;
-            conditionals = PlayerInfo.GetGun().stats.conditionals;
-        }
-    }
-
-    private void Start(){
-        if (gameObject.tag == "Player")
-            return;
         for (int i = 0; i < maxShields;i++){
             shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
+        }
+        numericals["health"] = maxHealth;
+        if (inheritFromPlayer){
+            var nums = PlayerInfo.GetGun().stats.numericals;
+            foreach (string key in nums.Keys){
+                numericals[key] = nums[key];
+            }
+            var conds = PlayerInfo.GetGun().stats.conditionals;
+            foreach (string key in conds.Keys){
+                conditionals[key] = conds[key];
+            }
         }
     }
 
     public void FindEntity(){
         if (objective == DeathFor.PLAYER || objective == DeathFor.PLAYER_FOREVER){
-            entity = PlayerInfo.GetPlayer().transform;
+            if (PlayerInfo.GetPlayer() != null)
+                entity = PlayerInfo.GetPlayer().transform;
+            else entity = null;
         }else{
             GameObject go = Difficulty.FindClosestEnemy(transform,numericals["range"]);
             //Debug.Log("From go: "+gameObject.name+", found go: "+go.name);

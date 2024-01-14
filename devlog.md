@@ -1089,3 +1089,7 @@ Made a weapon inventory!!! Also fixed a few more things.
 There is a bug that I just discovered with the ally bacteria effects being applied and the echelons. Will fix.
 
 Will start working again on Sunday.
+
+## Day 218 & 219
+
+TODO: Fix static guipopup not working, find a way to only get the KeyCode of the action binding and migrate to inputSystem

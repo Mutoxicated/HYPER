@@ -3,6 +3,7 @@ Shader "Custom/particle"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        [HDR] _Color ("Color",color) = (1,1,1,1)
     }
     SubShader
     {
@@ -34,6 +35,7 @@ Shader "Custom/particle"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            fixed4 _Color;
 
             v2f vert (appdata v)
             {
@@ -48,7 +50,7 @@ Shader "Custom/particle"
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                return col *i.color;
+                return col *i.color*_Color;
             }
             ENDCG
         }

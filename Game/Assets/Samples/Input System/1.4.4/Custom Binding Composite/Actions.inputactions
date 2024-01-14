@@ -1,0 +1,34 @@
+{
+    "name": "Actions",
+    "maps": [
+        {
+            "name": "LaunchOut",
+            "id": "acf8ed68-4e8b-421f-9155-ce9560a6ecf5",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "62394bae-3da6-4bbc-a229-aca8c2d9e528",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "443ed628-0e19-4822-842c-66be1c61ce9f",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -40,7 +40,7 @@ public class bullet : MonoBehaviour
         time += Time.deltaTime;
         if (time >= lifetime)
         {
-            immuneSystem?.RecycleBacteria();
+            immuneSystem.RecycleBacteria();
             gameObject.SetActive(false);
             PublicPools.pools[gameObject.name].Reattach(gameObject);
             time = 0;

@@ -13,6 +13,8 @@ public class ChangeMatColor : MonoBehaviour
     {
         Material[] mats = GetComponent<Renderer>().materials;
         Material mat = mats[matIndex];
+        if (color.a == 0f)
+            color.a = 1f;
         mat.color = color;
     }
 }
