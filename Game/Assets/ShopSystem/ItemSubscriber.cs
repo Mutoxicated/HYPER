@@ -59,7 +59,7 @@ public class ItemSubscriber : MonoBehaviour
         bool success = PlayerInfo.GetIP().AddItem(currentItem);
         if (!success)
             return;
-        PlayerInfo.SetMoney(currentItem.cost);
+        PlayerInfo.SetMoney(-currentItem.cost);
         gameObject.SetActive(false);
         currScale = initScale;
         scalableObj.transform.localScale = currScale;

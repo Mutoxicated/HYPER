@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wavePrefab: {fileID: 8514395769281492769, guid: 278429702ac3b714f824764d1157bfba, type: 3}
   beamInstance: {fileID: 0}
-  beamOpenAudio: {fileID: 1391061858}
+  roundText: []
 --- !u!82 &1391061858
 AudioSource:
   m_ObjectHideFlags: 0

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public static class PlayerInfo
@@ -104,7 +101,7 @@ public static class PlayerInfo
     }
 
     public static void SetMoney(int money2){
-        money -= money2;
+        money += money2;
     }
 
     public static Stats.conditionalDict GetConditionals(){

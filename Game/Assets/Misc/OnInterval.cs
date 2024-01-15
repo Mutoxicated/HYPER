@@ -7,6 +7,7 @@ public class OnInterval : MonoBehaviour
 {
     [SerializeField] private Stats stats;
     [SerializeField] private string specialTag = "Untagged";
+    [SerializeField] private bool dontResetTime;
     [SerializeField, Range(0, 100)] private int chance = 100;
     [SerializeField] private float interval;
     [SerializeField] private Vector2 minMaxInterval;
@@ -39,8 +40,10 @@ public class OnInterval : MonoBehaviour
             Destroy(gameObject);
         if (recycleUponEvent)
             PublicPools.pools[gameObject.name].Reattach(gameObject);
-        time = 0f;
-        t = 0f;
+        if (!dontResetTime){
+            time = 0f;
+            t = 0f;
+        }
     }
 
     public void Pause()
@@ -65,6 +68,7 @@ public class OnInterval : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log(gameObject.name);
         if (minMaxInterval != Vector2.zero){
             interval = Random.Range(minMaxInterval.x,minMaxInterval.y);
         }

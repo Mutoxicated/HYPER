@@ -1093,3 +1093,7 @@ Will start working again on Sunday.
 ## Day 218 & 219
 
 TODO: Fix static guipopup not working, find a way to only get the KeyCode of the action binding and migrate to inputSystem
+
+## Day 220
+
+Fixed guipopup. Fixed the intro scene as well (gas station), really happy with it. Realized the the best move rn would be to implement the gun equipment, so i will do that tomorrow.

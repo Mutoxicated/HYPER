@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Round : MonoBehaviour
+public class StandardRound : MonoBehaviour
 {
     private static Difficulty diff;
     private static int rounds = 0;

@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemShop : MonoBehaviour
 {
     private static int rerollCost = 3;
+    private static int restoreCost = 20;
     [SerializeField] private List<Item> items = new List<Item>();
 
     [HideInInspector] public List<Item> currentItems = new List<Item>();
@@ -42,11 +43,18 @@ public class ItemShop : MonoBehaviour
     private void SpendMoney(){
         if (PlayerInfo.GetMoney() < rerollCost)
             return;
-        PlayerInfo.SetMoney(rerollCost);
+        PlayerInfo.SetMoney(-rerollCost);
     }
 
     public void Reroll(){
         NewItems();
         SpendMoney();
+    }
+
+    public void RestoreHealth(){
+        if (PlayerInfo.GetMoney() < restoreCost)
+            return;
+        PlayerInfo.SetMoney(-restoreCost);
+        PlayerInfo.GetGun().stats.numericals["health"] += 9999999f;
     }
 }

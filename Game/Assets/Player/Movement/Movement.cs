@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Internal;
 
 public enum MovementState
 {
@@ -202,7 +197,7 @@ public class Movement : MonoBehaviour
         dashInput.Update();
         slideInput.Update();
         launchInInput.Update();
-        if (!point.IsUnityNull())//this check covers specifically the enemies when they die while you are in contact with them
+        if (!point.Equals(null))//this check covers specifically the enemies when they die while you are in contact with them
         {
             if (point.otherCollider == null)
                 airborne = true;

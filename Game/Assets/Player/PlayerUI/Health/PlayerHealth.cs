@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Device;
 using UnityEngine.UI;
 
 
@@ -117,11 +115,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }else{
             info.text = PlayerInfo.GetMoney().ToString()+"*";
         }
+        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"],0,stats.maxHealth);
         if (stats.numericals["health"] <= 0f){
             stats.numericals["health"] = 0f;
             healthT = 0f;
         } else healthT = stats.numericals["health"] / stats.maxHealth;
-        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"],0,stats.maxHealth);
         if (currentT != healthT)
         {
             currentT = Mathf.Lerp(currentT, healthT, Time.deltaTime*3f);

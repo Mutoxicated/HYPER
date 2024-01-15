@@ -9,13 +9,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [DisallowMultipleComponent]
 
 public class Outline : MonoBehaviour {
-  private static HashSet<Mesh> registeredMeshes = new HashSet<Mesh>();
 
   [Serializable]
   private class ListVector3 {
@@ -69,6 +67,12 @@ public class Outline : MonoBehaviour {
       materials.Add(outlineFillMaterial);
 
       _renderer.materials = materials.ToArray();
+  }
+
+  [ContextMenu("Clear Data")]
+  private void ClearData(){
+    bakeKeys.Clear();
+    bakeValues.Clear();
   }
 
   void OnValidate() {
