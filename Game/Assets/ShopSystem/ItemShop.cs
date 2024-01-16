@@ -7,16 +7,23 @@ public class ItemShop : MonoBehaviour
 {
     private static int rerollCost = 3;
     private static int restoreCost = 20;
+
+    [SerializeField] private EquipmentManager em;
+
     [SerializeField] private List<Item> items = new List<Item>();
+    [SerializeField] private List<Equipment> equipments = new List<Equipment>();
 
     [HideInInspector] public List<Item> currentItems = new List<Item>();
+    [HideInInspector] public List<Item> currentEquips = new List<Item>();
     private List<Item> modifiableItems = new List<Item>();
+    private List<Item> modifiableEquips = new List<Item>();
 
     public delegate void Sub();
     public List<Sub> subscribers = new List<Sub>();
 
     void Start()
     {
+        GetRandomGunEquipment(2);
         NewItems();
     }
 
@@ -56,5 +63,22 @@ public class ItemShop : MonoBehaviour
             return;
         PlayerInfo.SetMoney(-restoreCost);
         PlayerInfo.GetGun().stats.numericals["health"] += 9999999f;
+    }
+
+    private void GetRandomGunEquipment(int amount){
+        modifiableEquips = items.ToArray().ToList();
+        currentEquips.Clear();
+        int rn = 0;
+        for (int i = 0; i < amount;i++){
+            rn = Random.Range(0,modifiableEquips.Count);
+            Debug.Log(rn);
+            currentEquips.Add(modifiableEquips[rn]);
+            modifiableEquips.Remove(modifiableEquips[rn]);
+        }
+        Debug.Log("items: "+currentEquips.Count);
+    }
+
+    public void BuyEquipment(Equipment equip){
+
     }
 }

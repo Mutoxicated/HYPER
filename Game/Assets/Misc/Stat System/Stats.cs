@@ -61,7 +61,8 @@ public class Stats : MonoBehaviour
         {"bacteriaBlockChance",0f},
         {"range",28f},
         {"health", 999f},
-        {"maxHealthModifier", 1f}
+        {"maxHealthModifier", 1f},
+        {"size",1f}
     };
 
     public numericalDict numericals = new numericalDict();
