@@ -16,7 +16,6 @@ public enum DeathFor {
 [DisallowMultipleComponent]
 public class Stats : MonoBehaviour
 {
-    public bool inheritFromPlayer;
     public GameObject explosionPrefab;
     public float VFXScale = 1f;
     public EntityType type;
@@ -62,7 +61,8 @@ public class Stats : MonoBehaviour
         {"range",28f},
         {"health", 999f},
         {"maxHealthModifier", 1f},
-        {"size",1f}
+        {"size",1f},
+        {"focus",1f}
     };
 
     public numericalDict numericals = new numericalDict();
@@ -127,16 +127,6 @@ public class Stats : MonoBehaviour
             shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
         }
         numericals["health"] = maxHealth;
-        if (inheritFromPlayer){
-            var nums = PlayerInfo.GetGun().stats.numericals;
-            foreach (string key in nums.Keys){
-                numericals[key] = nums[key];
-            }
-            var conds = PlayerInfo.GetGun().stats.conditionals;
-            foreach (string key in conds.Keys){
-                conditionals[key] = conds[key];
-            }
-        }
     }
 
     public void FindEntity(){

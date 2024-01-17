@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Equipment", menuName = "ScriptableObjects/Equipment")]
 public class Equipment : ScriptableObject
 {
-    [SerializeField] private Sprite symbol;
-    [SerializeField] private int cost;
+    public Sprite symbol;
+    public int cost;
 }

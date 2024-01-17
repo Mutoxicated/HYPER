@@ -7,6 +7,7 @@ public class ObjectPoolManager : MonoBehaviour
     public bool isPublic = true;
     private string poolID;
     public bool enableOnUse = true;
+    public bool enableOnInstance = true;
     public GameObject prefab;
 
     private void Awake()
@@ -46,6 +47,8 @@ public class ObjectPoolManager : MonoBehaviour
         if (transform.childCount == 0)
         {
             var instance = Instantiate(prefab, position, rotation);
+            if (enableOnInstance)
+                instance.SetActive(true);
             instance.transform.SetParent(transform.parent, false);
             instance.name = poolID;
             return instance;
@@ -67,6 +70,8 @@ public class ObjectPoolManager : MonoBehaviour
         if (transform.childCount == 0)
         {
             var instance = Instantiate(prefab, position, rotation);
+            if (enableOnInstance)
+                instance.SetActive(true);
             instance.name = poolID;
             instantiated = true;
             return instance;
@@ -77,7 +82,8 @@ public class ObjectPoolManager : MonoBehaviour
             instance.transform.SetParent(null, false);
             instance.transform.position = position;
             instance.transform.rotation = rotation;
-            instance.SetActive(true);
+            if (enableOnUse)
+                instance.SetActive(true);
             instantiated = false;
             return instance;
         }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7cc8190b2ea1f54794e90cd816a435a, type: 3}
-  m_Name: BulletEnlargener
+  m_Name: Bullet_Enlargener
   m_EditorClassIdentifier: 
   symbol: {fileID: 21300000, guid: b3087acea3fe9304688ab8dd5ede0e1c, type: 3}
   cost: 60

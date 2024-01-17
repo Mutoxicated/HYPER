@@ -1101,3 +1101,7 @@ Fixed guipopup. Fixed the intro scene as well (gas station), really happy with i
 ## Day 221
 
 Almost implemented gun equipments.
+
+## Day 222
+
+Finished gun equipment system. Fixed some more bugs.

@@ -68,7 +68,7 @@ public class OnInterval : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         if (minMaxInterval != Vector2.zero){
             interval = Random.Range(minMaxInterval.x,minMaxInterval.y);
         }

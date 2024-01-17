@@ -49,8 +49,6 @@ public class GunShooter : MonoBehaviour
     private ButtonInput fire2Input = new ButtonInput("Fire2");
     public Scroll scroll = new Scroll(0, 5);
 
-    [HideInInspector] public float focus = 1f;
-
     public int GetWeaponTypeInt()
     {
         return index;
@@ -58,16 +56,16 @@ public class GunShooter : MonoBehaviour
 
     private void Recoil(float recoilMod)
     {
-        transform.localPosition += recoilPosition*recoilMod*focus;
+        transform.localPosition += recoilPosition*recoilMod*stats.numericals["focus"];
         Quaternion modifiedRotation = recoilRotation;
         if (modifiedRotation.x != 0) {
-            modifiedRotation.x = modifiedRotation.x * recoilMod*focus;
+            modifiedRotation.x = modifiedRotation.x * recoilMod*stats.numericals["focus"];
         }
         if (modifiedRotation.y != 0) {
-            modifiedRotation.y = modifiedRotation.y * recoilMod*focus;
+            modifiedRotation.y = modifiedRotation.y * recoilMod*stats.numericals["focus"];
         }
         if (modifiedRotation.z != 0) {
-            modifiedRotation.z = modifiedRotation.z * recoilMod*focus;
+            modifiedRotation.z = modifiedRotation.z * recoilMod*stats.numericals["focus"];
         }
         transform.localRotation *= modifiedRotation;
     }
@@ -107,45 +105,45 @@ public class GunShooter : MonoBehaviour
 
     private void Double(string bulletPool, Vector3 pos, Quaternion rotation)
     {
-        rotation *= Quaternion.Euler(new Vector3(0f, -2.5f*focus, 0f));
+        rotation *= Quaternion.Euler(new Vector3(0f, -2.5f*stats.numericals["focus"], 0f));
         for (int i = 0; i < 2; i++)
         {
             rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
             SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 5*focus, 0f));
+            rotation *= Quaternion.Euler(new Vector3(0f, 5*stats.numericals["focus"], 0f));
         }
     }
 
     private void Triple(string bulletPool, Vector3 pos, Quaternion rotation)
     {
-        rotation *= Quaternion.Euler(new Vector3(0f, -5*focus, 0f));
+        rotation *= Quaternion.Euler(new Vector3(0f, -5*stats.numericals["focus"], 0f));
         for (int i = 0; i < 3; i++)
         {
             rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
             SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 5*focus, 0f));
+            rotation *= Quaternion.Euler(new Vector3(0f, 5*stats.numericals["focus"], 0f));
         }
     }
 
     private void Quadruple(string bulletPool, Vector3 pos, Quaternion rotation)
     {
-        rotation *= Quaternion.Euler(new Vector3(0f, -7.5f*focus, 0f));
+        rotation *= Quaternion.Euler(new Vector3(0f, -7.5f*stats.numericals["focus"], 0f));
         for (int i = 0; i < 4; i++)
         {
             rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
             SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 4.6875f*focus, 0f));//3.75f-7.5f
+            rotation *= Quaternion.Euler(new Vector3(0f, 4.6875f*stats.numericals["focus"], 0f));//3.75f-7.5f
         }
     }
 
     private void Quintuple(string bulletPool, Vector3 pos, Quaternion rotation)
     {
-        rotation *= Quaternion.Euler(new Vector3(0f, -10f*focus, 0f));
+        rotation *= Quaternion.Euler(new Vector3(0f, -10f*stats.numericals["focus"], 0f));
         for (int i = 0; i < 5; i++)
         {
             rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
             SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 5f*focus, 0f));
+            rotation *= Quaternion.Euler(new Vector3(0f, 5f*stats.numericals["focus"], 0f));
         }
     }
 

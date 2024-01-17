@@ -18,19 +18,25 @@ public class bullet : MonoBehaviour
     private float time;
     private float pierces;
 
+    private Vector3 initialScale = Vector3.zero;
+
     private Injector injector;
     private void Awake()
     {
         injector = GetComponent<Injector>();
         damage = damage / (PlayerInfo.GetGun().GetWeaponTypeInt() + 1);//damage is equally shared with all of the bullets
-        speed = speed / (PlayerInfo.GetGun().GetWeaponTypeInt() + 1);
+        bStats.numericals["moveSpeed"] = bStats.numericals["moveSpeed"] / ((PlayerInfo.GetGun().GetWeaponTypeInt() + 1)*0.5f);
     }
 
     private void OnEnable()
     {
-        pierces = bStats.numericals["pierces"];
+        if (initialScale == Vector3.zero){
+            initialScale = transform.localScale;
+        }
+        transform.localScale = initialScale*PlayerInfo.GetGun().stats.numericals["size"];
+        pierces = PlayerInfo.GetGun().stats.numericals["pierces"];
         pierces = Mathf.RoundToInt(pierces*pierceModifier);
-        rb.velocity = transform.forward * speed * bStats.numericals["moveSpeed"];
+        rb.velocity = transform.forward * speed * PlayerInfo.GetGun().stats.numericals["moveSpeed"]*bStats.numericals["moveSpeed"];
         //Debug.Log(pierces);
         //Debug.Log(bStats.numericals["range"]);
     }
@@ -79,7 +85,7 @@ public class bullet : MonoBehaviour
         }
         //Debug.Log(other.gameObject.name);
         var damageable = other.gameObject.GetComponent<IDamageable>();
-        damageable?.TakeDamage(damage * bStats.numericals["damage"], bStats,1f,0);
+        damageable?.TakeDamage(damage * PlayerInfo.GetGun().stats.numericals["damage"], bStats,1f,0);
         if (injector != null)
         {
             damageable?.TakeInjector(injector,false);

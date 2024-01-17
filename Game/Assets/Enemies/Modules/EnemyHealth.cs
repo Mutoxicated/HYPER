@@ -110,7 +110,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
 
     private void ScoreOnHit(Stats senderStats){
-        if (senderStats.gameObject.tag == "Player" | senderStats.inheritFromPlayer)
+        if (senderStats.gameObject.tag == "Player" | senderStats.gameObject.tag == "bullets")
             PlayerInfo.AddScore(hitScore);
     }
 
@@ -122,7 +122,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (senderStats == null){
             OnDeath.Invoke(transform);
         }else{
-            if (senderStats.gameObject.tag == "Player" | senderStats.inheritFromPlayer)
+            if (senderStats.gameObject.tag == "Player" | senderStats.gameObject.tag == "bullets")
                 PlayerInfo.AddScore(deathScore);
             OnDeath.Invoke(senderStats.transform);
         }

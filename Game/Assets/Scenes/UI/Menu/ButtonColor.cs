@@ -7,7 +7,7 @@ public class ButtonColor : MonoBehaviour
 {
     [SerializeField] private Image image;
     [SerializeField] private Gradient gradient;
-    [SerializeField,Range(0.001f,0.2f)] private float rate;
+    [SerializeField,Range(0.01f,30f)] private float rate;
 
     private float t;
     private bool hovering;

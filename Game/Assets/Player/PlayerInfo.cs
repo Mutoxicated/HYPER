@@ -10,7 +10,7 @@ public static class PlayerInfo
     private static Camera cam;
     private static Melee melee;
     private static ItemPool itemPool;
-    private static int money = 40;
+    private static int money = 2000;
     private static float score;
 
     private static Stats.conditionalDict conditionalDictTransfer = new Stats.conditionalDict();

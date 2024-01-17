@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 1907635401927215818}
   - component: {fileID: 1907635401927215817}
   - component: {fileID: 1549946323395533653}
-  - component: {fileID: 775047400170272233}
   - component: {fileID: 2042489557979923656}
   - component: {fileID: 2838772722254914084}
   - component: {fileID: 2944045812284909553}
   - component: {fileID: -6783982848360908735}
   - component: {fileID: -8766207620506296604}
   - component: {fileID: 8878825627043202888}
+  - component: {fileID: 775047400170272233}
   - component: {fileID: -4579046777407666088}
   m_Layer: 6
   m_Name: NORMAL_BULLET
@@ -37,7 +37,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.0364623, y: 4.6721706, z: -9.638388}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -105,29 +105,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &775047400170272233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907635401927215823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f4862032fca6c458c9255e1f571696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bStats: {fileID: -8766207620506296604}
-  immuneSystem: {fileID: -4579046777407666088}
-  rb: {fileID: 1549946323395533653}
-  speed: 70
-  particlePrefab: {fileID: 3545220589067606805, guid: 6d5913b428758ba469ed17214f365d7b, type: 3}
-  lifetime: 5
-  damage: 100
-  pierceModifier: 1
 --- !u!114 &2042489557979923656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +133,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.49999997
-  m_Height: 1.4
+  m_Height: 1.6
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.3}
 --- !u!114 &2944045812284909553
@@ -205,7 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inheritFromPlayer: 1
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   type: 0
@@ -295,6 +274,7 @@ MonoBehaviour:
     - range
     - health
     - maxHealthModifier
+    - size
     _keys:
     - permaShields
     - moveSpeed
@@ -317,6 +297,7 @@ MonoBehaviour:
     - range
     - health
     - maxHealthModifier
+    - size
     _values:
     - 0
     - 1
@@ -339,6 +320,7 @@ MonoBehaviour:
     - 28
     - 999
     - 1
+    - 1
 --- !u!114 &8878825627043202888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +339,26 @@ MonoBehaviour:
   outlineEffectable: 1
   colorEffectable: 1
   matIndex: 0
+--- !u!114 &775047400170272233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907635401927215823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f4862032fca6c458c9255e1f571696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bStats: {fileID: -8766207620506296604}
+  immuneSystem: {fileID: -4579046777407666088}
+  rb: {fileID: 1549946323395533653}
+  speed: 70
+  particlePrefab: {fileID: 3545220589067606805, guid: 6d5913b428758ba469ed17214f365d7b, type: 3}
+  lifetime: 5
+  damage: 100
+  pierceModifier: 1
 --- !u!114 &-4579046777407666088
 MonoBehaviour:
   m_ObjectHideFlags: 0

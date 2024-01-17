@@ -24,13 +24,12 @@ public class ItemSubscriber : MonoBehaviour
     private float speed = 5f;
 
     public void Awake(){
-        shop.subscribers.Add(UpdateItem);
         initScale = scalableObj.transform.localScale;
         maxScale = initScale*1.1f;
         currScale = initScale;
     }
 
-    private void UpdateItem(){
+    public void UpdateItem(){
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
         currentItem = shop.currentItems[index];
