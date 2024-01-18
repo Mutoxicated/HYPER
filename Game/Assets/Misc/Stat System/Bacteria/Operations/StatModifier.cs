@@ -43,8 +43,16 @@ namespace BacteriaOperations{
             bac.subcribers.Add(ChangeNumericals);
         }
 
+        private bool EdgeCasesPresent(){
+            if (bac.immuneSystem.injector.injectorToInheritFrom == PlayerInfo.GetPH().immuneSystem.injector && bac.immuneSystem.stats.usePlayerStats)
+                return true;
+            return false;
+        }
+
         private void OnEnable()
         {
+            if (EdgeCasesPresent())
+                return;
             // if (bac.immuneSystem == null){
             //     GetComponentInParent<Immunity>().stats.objective = objective;
             // }
@@ -63,6 +71,8 @@ namespace BacteriaOperations{
 
         private void OnDisable()
         {
+            if (EdgeCasesPresent())
+                return;
             if (changeObjective){
                 bac.immuneSystem.stats.objective = DeathFor.PLAYER;
             }

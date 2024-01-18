@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Difficulty : MonoBehaviour 
 {
-    //Info enemies will use
     public static Transform player;
     public static List<GameObject> enemies = new List<GameObject>();
     public static ExtraUtils utils;
 
+    public float t = 1f;
     public int wavePopulation = 1;
     public int sequencePopulation = 2;
     public int spawnerPopulation = 1;
@@ -16,6 +16,7 @@ public class Difficulty : MonoBehaviour
     public float allyBacteriaChance = 100f;
 
     public List<GameObject> enemyPool;
+    public GameObject[] spawnPoints;
 
     public static GameObject FindClosestEnemy(Transform trans, float distTol)
     {
@@ -79,6 +80,7 @@ public class Difficulty : MonoBehaviour
     }
 
     private void Awake(){
+        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         player = GameObject.FindWithTag("Player").transform;
         utils = GameObject.FindWithTag("ExtraUtils").GetComponent<ExtraUtils>();
     }

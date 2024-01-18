@@ -14,21 +14,21 @@ public class EMove : MonoBehaviour
 
     public void ResetVelocity()
     {
-        rb.velocity = rb.rotation.eulerAngles.normalized * speed * stats.numericals["moveSpeed"];
+        rb.velocity = rb.rotation.eulerAngles.normalized * speed * stats.GetNum("moveSpeed");
     }
 
     void Start()
     {
-        rb.velocity = (Random.rotation * direction).normalized*speed * stats.numericals["moveSpeed"];
+        rb.velocity = (Random.rotation * direction).normalized*speed * stats.GetNum("moveSpeed");
     }
 
     void Update()
     {
         if (!clampVelocity)
             return;
-        if (rb.velocity.magnitude > speed * stats.numericals["moveSpeed"])
+        if (rb.velocity.magnitude > speed * stats.GetNum("moveSpeed"))
         {
-            var clampedVel = Vector3.ClampMagnitude(rb.velocity, speed * stats.numericals["moveSpeed"]);
+            var clampedVel = Vector3.ClampMagnitude(rb.velocity, speed * stats.GetNum("moveSpeed"));
             rb.velocity = Vector3.Lerp(rb.velocity, clampedVel, Time.deltaTime);
         }
     }
@@ -43,6 +43,6 @@ public class EMove : MonoBehaviour
         }else{
             direction = -direction;
         }
-        rb.velocity = direction.normalized*speed * stats.numericals["moveSpeed"];
+        rb.velocity = direction.normalized*speed * stats.GetNum("moveSpeed");
     }
 }

@@ -72,8 +72,9 @@ public class Melee : MonoBehaviour
         launchInput.Update();
         throwInput.Update();
         punchInput.Update();
-        if (throwInput.GetInputDown() && isIdle && stats.numericals["capacitor1"] > 0)
+        if (throwInput.GetInputDown() && isIdle && stats.numericals["capacitor1"] > 0f)
         {
+            stats.numericals["capacitor1"] -= 1f;
             animator.Play("Throw");
             Instantiate(TNTPrefab, throwPoint.position,GunShooter.GetAccurateRotation(cam,throwPoint)*TNTPrefab.transform.rotation);
             //stats.ModifyIncrementalStat("capacitor1", -1);

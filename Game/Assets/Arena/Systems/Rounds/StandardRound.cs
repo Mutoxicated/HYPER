@@ -3,66 +3,54 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class StandardRound : MonoBehaviour
+public class StandardRound : MonoBehaviour, IRound
 {
-    private static Difficulty diff;
     private static int rounds = 0;
+    public static readonly float initEnemySpawnInterval = 4f;
+    public static readonly float initDuration = 120f;
 
+    public Difficulty diff;
     public GameObject wavePrefab;
     public GameObject beamInstance;
     public TMP_Text[] roundText;
 
-    private Wave waveInfo;
-    private int waves = 0;
+    public static float enemySpawnInterval = initEnemySpawnInterval;
+    public static float duration = initDuration;
 
-    public void StartRound()
-    {
-        NextWave();
-    }
+    [SerializeField] private OnInterval spawnInterval;
+    [SerializeField] private OnInterval durationInterval;
 
-    private void Start()
-    {
-        if (diff == null)
-            diff = GameObject.FindWithTag("Difficulty").GetComponent<Difficulty>();
-        StartRound();
+    private void Start(){
         rounds++;
-        foreach (var tmp in roundText)
-        {
-            tmp.text = rounds.ToString();
-        }
+        spawnInterval.ChangeInterval(enemySpawnInterval);
+        durationInterval.ChangeInterval(duration);
+        PreSpawnEnemies();
+
+        ProgressDifficulty();
     }
 
-    private void Update()
-    {
-        if (waveInfo.isFinished())
-        {
-            NextWave();
+    public void SpawnEnemy(){
+        Instantiate(diff.enemyPool[Random.Range(0,diff.enemyPool.Count)],
+                    diff.spawnPoints[Random.Range(0,diff.spawnPoints.Length)].transform.position, 
+                    Quaternion.identity);
+    }
+
+    public void PreSpawnEnemies(){
+        int spawnAmount = Mathf.RoundToInt(duration/enemySpawnInterval*0.25f);
+        for (int i = 0; i < spawnAmount; i++){
+            SpawnEnemy();
         }
     }
 
     public void EndRound()
     {
         beamInstance.SetActive(true);
-        Sequence.RemoveSpawnPoints();
         Destroy(gameObject);
     }
 
-    public void NextWave()
+    public void ProgressDifficulty()
     {
-        if (waves >= diff.wavePopulation)
-        {
-            waveInfo.EndWave();
-            EndRound();
-            return;
-        }
-        else
-        {
-            if (waveInfo != null)
-                waveInfo.EndWave();
-            var instance = Instantiate(wavePrefab);
-            instance.transform.SetParent(transform);
-            waveInfo = instance.GetComponent<Wave>();
-            waves++;
-        }
+        enemySpawnInterval = initEnemySpawnInterval*diff.t;
+        duration = initDuration*diff.t;
     }
 }

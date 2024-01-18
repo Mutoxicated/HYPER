@@ -16,6 +16,7 @@ public enum DeathFor {
 [DisallowMultipleComponent]
 public class Stats : MonoBehaviour
 {
+    public bool usePlayerStats;
     public GameObject explosionPrefab;
     public float VFXScale = 1f;
     public EntityType type;
@@ -47,7 +48,8 @@ public class Stats : MonoBehaviour
         {"rate", 1f},
         {"attackSpeed", 1f},
         {"shootSpeed", 1f},
-        {"capacitor1", 1f},
+        {"maxCapacitor1", 1f},
+        {"capacitor1", 15f},
         {"pierces", 1f},
         {"explosionChance",25f},
         {"extra",0f},
@@ -81,7 +83,7 @@ public class Stats : MonoBehaviour
             var conds = PlayerInfo.GetConditionals();
             var nums = PlayerInfo.GetNumericals();
 
-            Debug.Log("Player: "+conds.Count);
+            //Debug.Log("Player: "+conds.Count);
 
             if (conds.Count == 0){
                 foreach (string key in conditionalsPrototype.Keys){
@@ -127,6 +129,13 @@ public class Stats : MonoBehaviour
             shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
         }
         numericals["health"] = maxHealth;
+    }
+
+    public float GetNum(string name){
+        if (usePlayerStats)
+            return PlayerInfo.GetGun().stats.numericals[name]*numericals[name];
+        else
+            return numericals[name];
     }
 
     public void FindEntity(){

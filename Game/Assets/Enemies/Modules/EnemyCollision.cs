@@ -37,7 +37,7 @@ public class EnemyCollision : MonoBehaviour
         damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageOutput > 0)
         {
-            damageable?.TakeDamage(damageOutput * stats.numericals["damage"], stats,1f,0);
+            damageable?.TakeDamage(damageOutput * stats.GetNum("damage"), stats,1f,0);
         }
         Inject(damageable);
         health?.TakeDamage(damageInput,stats,1f,0);
@@ -58,7 +58,7 @@ public class EnemyCollision : MonoBehaviour
         damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageOutput > 0)
         {
-            damageable?.TakeDamage(damageOutput * stats.numericals["damage"], stats, 1f, 0);
+            damageable?.TakeDamage(damageOutput * stats.GetNum("damage"), stats, 1f, 0);
         }
         Inject(damageable);
         health?.TakeDamage(damageInput,stats,1f,0);

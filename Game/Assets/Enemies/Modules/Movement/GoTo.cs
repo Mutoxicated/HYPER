@@ -13,6 +13,8 @@ public class GoTo : MonoBehaviour
     [SerializeField] private bool useInterval;
     [SerializeField] private Vector3 axisMultiplier = new Vector3(1f,1f,1f);
     private Vector3 toEntity = Vector3.zero;
+
+    private float moveSpeedMod;
     
     private void Start()
     {
@@ -69,10 +71,11 @@ public class GoTo : MonoBehaviour
     private void Go(){
         if (stats.entity == null)
             return;
+        moveSpeedMod = stats.GetNum("moveSpeed");
         if (!useInterval)
-            rb.velocity = Vector3.Lerp(rb.velocity, toEntity * speed * stats.numericals["moveSpeed"], Time.deltaTime * lerpSpeed);
+            rb.velocity = Vector3.Lerp(rb.velocity, toEntity * speed * moveSpeedMod, Time.deltaTime * lerpSpeed);
         else
-            rb.velocity = Vector3.Lerp(rb.velocity, toEntity * speed * stats.numericals["moveSpeed"], interval.t* Time.deltaTime);
+            rb.velocity = Vector3.Lerp(rb.velocity, toEntity * speed * moveSpeedMod, interval.t* Time.deltaTime);
     }
 
     private void Update()

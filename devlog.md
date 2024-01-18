@@ -1105,3 +1105,7 @@ Almost implemented gun equipments.
 ## Day 222
 
 Finished gun equipment system. Fixed some more bugs.
+
+## Day 223
+
+Revamped the standard round. Tested it with all current enemies and I'm happy with the fact that everything is sort of coming together.

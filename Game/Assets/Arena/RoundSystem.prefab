@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6380492275281940094}
   - component: {fileID: 4692834473444519190}
+  - component: {fileID: 4772959095499585195}
+  - component: {fileID: 638814871690188541}
   - component: {fileID: 1391061858}
   m_Layer: 0
   m_Name: RoundSystem
@@ -45,9 +47,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4f195a6fa397d45823cf891bfecc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diff: {fileID: 0}
   wavePrefab: {fileID: 8514395769281492769, guid: 278429702ac3b714f824764d1157bfba, type: 3}
   beamInstance: {fileID: 0}
   roundText: []
+  spawnInterval: {fileID: 4772959095499585195}
+  durationInterval: {fileID: 638814871690188541}
+--- !u!114 &4772959095499585195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8801973901392522121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  specialTag: spawn
+  dontResetTime: 0
+  chance: 100
+  interval: 99
+  minMaxInterval: {x: 0, y: 0}
+  onInterval:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4692834473444519190}
+        m_TargetAssemblyTypeName: StandardRound, Assembly-CSharp
+        m_MethodName: SpawnEnemy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  destroyUponEvent: 0
+  recycleUponEvent: 0
+  t: 0
+  time: 0
+  isPlaying: 0
+--- !u!114 &638814871690188541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8801973901392522121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdbd5d8f3de5a94288eb024879adb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  specialTag: Untagged
+  dontResetTime: 0
+  chance: 100
+  interval: 99
+  minMaxInterval: {x: 0, y: 0}
+  onInterval:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4692834473444519190}
+        m_TargetAssemblyTypeName: StandardRound, Assembly-CSharp
+        m_MethodName: EndRound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  destroyUponEvent: 0
+  recycleUponEvent: 0
+  t: 0
+  time: 0
+  isPlaying: 0
 --- !u!82 &1391061858
 AudioSource:
   m_ObjectHideFlags: 0

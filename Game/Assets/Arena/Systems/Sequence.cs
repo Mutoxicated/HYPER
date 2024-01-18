@@ -4,7 +4,6 @@ using UnityEngine;
 public class Sequence : MonoBehaviour
 {
     private static Difficulty diff;
-    public static GameObject[] spawnPoints;
 
     private List<Spawner> spawners = new List<Spawner>();
     private const float spawnInterval = 0.2f;
@@ -18,11 +17,9 @@ public class Sequence : MonoBehaviour
     {
         if (diff == null)
             diff = GameObject.FindWithTag("Difficulty").GetComponent<Difficulty>();
-        if (spawnPoints == null)
-            spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         for (int i = 0; i < diff.spawnerPopulation; i++)
         {
-            spawners.Add(new Spawner(spawnPoints[Random.Range(0, spawnPoints.Length)].transform));
+            spawners.Add(new Spawner(diff.spawnPoints[Random.Range(0, diff.spawnPoints.Length)].transform));
         }
     }
 
@@ -45,11 +42,6 @@ public class Sequence : MonoBehaviour
         {
             sequenceEnded = true;
         }
-    }
-
-    public static void RemoveSpawnPoints()
-    {
-        spawnPoints = null;
     }
 
     public void EndSequence()

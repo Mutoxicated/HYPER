@@ -14,7 +14,7 @@ public class SlowDown : MonoBehaviour
 
     private void Update()
     {
-        currentSpeed = Mathf.Lerp(maxSpeed * stats.numericals["moveSpeed"], slowDownSpeed * stats.numericals["moveSpeed"], onInterval.t);
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, currentSpeed * stats.numericals["moveSpeed"]);
+        currentSpeed = Mathf.Lerp(maxSpeed * stats.GetNum("moveSpeed"), slowDownSpeed * stats.GetNum("moveSpeed"), onInterval.t);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, currentSpeed * stats.GetNum("moveSpeed"));
     }
 }
