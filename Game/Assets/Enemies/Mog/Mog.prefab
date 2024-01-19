@@ -51,8 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 5864196316227636094}
   specialTag: runningState
+  dontResetTime: 0
   chance: 100
   interval: 1.3
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -155,8 +157,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 5864196316227636094}
   specialTag: bobbingUpToExplode
+  dontResetTime: 0
   chance: 100
   interval: 0.5
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -220,8 +224,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 5864196316227636094}
   specialTag: walkTime
+  dontResetTime: 0
   chance: 100
   interval: 1
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -268,8 +274,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 5864196316227636094}
   specialTag: restTime
+  dontResetTime: 0
   chance: 100
   interval: 1
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -463,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inheritFromPlayer: 0
+  usePlayerStats: 0
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   type: 1
@@ -495,9 +503,19 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues: []
-    _keys: []
-    _values: 
+    _keyValues:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _keys:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _values: 0000000000
   numericals:
     reorderableList:
       canAdd: 1
@@ -505,7 +523,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 0
+      isExpanded: 1
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -520,10 +538,82 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 0
-    _keyValues: []
-    _keys: []
-    _values: []
+    isExpanded: 1
+    _keyValues:
+    - permaShields
+    - moveSpeed
+    - damage
+    - hostility
+    - rate
+    - attackSpeed
+    - shootSpeed
+    - maxCapacitor1
+    - capacitor1
+    - pierces
+    - explosionChance
+    - extra
+    - confusion
+    - parryChance
+    - shieldHealthModifier
+    - damageNO
+    - damageO
+    - enemyBlockChance
+    - bacteriaBlockChance
+    - range
+    - health
+    - maxHealthModifier
+    - size
+    - focus
+    _keys:
+    - permaShields
+    - moveSpeed
+    - damage
+    - hostility
+    - rate
+    - attackSpeed
+    - shootSpeed
+    - maxCapacitor1
+    - capacitor1
+    - pierces
+    - explosionChance
+    - extra
+    - confusion
+    - parryChance
+    - shieldHealthModifier
+    - damageNO
+    - damageO
+    - enemyBlockChance
+    - bacteriaBlockChance
+    - range
+    - health
+    - maxHealthModifier
+    - size
+    - focus
+    _values:
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 15
+    - 15
+    - 1
+    - 25
+    - 0
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 0
+    - 0
+    - 30
+    - 999
+    - 1
+    - 1
+    - 1
 --- !u!114 &4056052035369469484
 MonoBehaviour:
   m_ObjectHideFlags: 0

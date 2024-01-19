@@ -1048,6 +1048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usePlayerStats: 0
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   type: 0
@@ -1123,6 +1124,7 @@ MonoBehaviour:
     - rate
     - attackSpeed
     - shootSpeed
+    - maxCapacitor1
     - capacitor1
     - pierces
     - explosionChance
@@ -1147,6 +1149,7 @@ MonoBehaviour:
     - rate
     - attackSpeed
     - shootSpeed
+    - maxCapacitor1
     - capacitor1
     - pierces
     - explosionChance
@@ -1172,6 +1175,7 @@ MonoBehaviour:
     - 1
     - 1
     - 1
+    - 15
     - 1
     - 25
     - 0
@@ -1185,7 +1189,7 @@ MonoBehaviour:
     - 28
     - 999
     - 1
-    - 2
+    - 1
     - 1
 --- !u!114 &4681041064830235763
 MonoBehaviour:
@@ -1820,7 +1824,7 @@ Camera:
   m_Depth: -5
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 65345
+    m_Bits: 130881
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class StandardRound : MonoBehaviour, IRound
 {
-    private static int rounds = 0;
     public static readonly float initEnemySpawnInterval = 4f;
-    public static readonly float initDuration = 120f;
+    public static readonly float initDuration = 100f;
 
     public Difficulty diff;
-    public GameObject wavePrefab;
     public GameObject beamInstance;
-    public TMP_Text[] roundText;
+    public TMP_Text roundText;
 
     public static float enemySpawnInterval = initEnemySpawnInterval;
     public static float duration = initDuration;
@@ -21,7 +19,8 @@ public class StandardRound : MonoBehaviour, IRound
     [SerializeField] private OnInterval durationInterval;
 
     private void Start(){
-        rounds++;
+        Difficulty.rounds++;
+        roundText.text = Difficulty.rounds.ToString();
         spawnInterval.ChangeInterval(enemySpawnInterval);
         durationInterval.ChangeInterval(duration);
         PreSpawnEnemies();

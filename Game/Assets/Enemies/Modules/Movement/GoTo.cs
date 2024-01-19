@@ -69,8 +69,6 @@ public class GoTo : MonoBehaviour
     }
 
     private void Go(){
-        if (stats.entity == null)
-            return;
         moveSpeedMod = stats.GetNum("moveSpeed");
         if (!useInterval)
             rb.velocity = Vector3.Lerp(rb.velocity, toEntity * speed * moveSpeedMod, Time.deltaTime * lerpSpeed);

@@ -78,7 +78,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 100}
+  - {x: 0, y: 0, z: 600}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -172,7 +172,7 @@ MonoBehaviour:
   - serializedVersion: 2
     key0: {r: 0, g: 0.39607844, b: 1, a: 0}
     key1: {r: 0, g: 0.39677978, b: 1, a: 0.4117647}
-    key2: {r: 0, g: 0.39677978, b: 1, a: 0}
+    key2: {r: 0, g: 0.39677978, b: 1, a: 0.4117647}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
@@ -186,9 +186,9 @@ MonoBehaviour:
     ctime5: 0
     ctime6: 0
     ctime7: 0
-    atime0: 31864
-    atime1: 65535
-    atime2: 0
+    atime0: 0
+    atime1: 25930
+    atime2: 46055
     atime3: 0
     atime4: 0
     atime5: 0
@@ -318,8 +318,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 3690289086005728931}
   specialTag: Untagged
+  dontResetTime: 0
   chance: 100
   interval: 8
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -481,8 +483,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 3690289086005728931}
   specialTag: Untagged
+  dontResetTime: 0
   chance: 100
   interval: 8
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -576,10 +580,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
-    - target: {fileID: 187228456903526656, guid: 9f4651eae9909b8439b1d6246f0aa973, type: 3}
-      propertyPath: explosionPrefab
-      value: 
-      objectReference: {fileID: 1406129636473073463, guid: c0d7eb2368f05ad47b960aede68cee10, type: 3}
     - target: {fileID: 315794931800856651, guid: 9f4651eae9909b8439b1d6246f0aa973, type: 3}
       propertyPath: stats
       value: 
@@ -1282,7 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inheritFromPlayer: 0
+  usePlayerStats: 0
   explosionPrefab: {fileID: 0}
   VFXScale: 1.8
   type: 0
@@ -1334,7 +1334,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 0
+      isExpanded: 1
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -1349,7 +1349,7 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 0
+    isExpanded: 1
     _keyValues:
     - permaShields
     - moveSpeed
@@ -1358,6 +1358,7 @@ MonoBehaviour:
     - rate
     - attackSpeed
     - shootSpeed
+    - maxCapacitor1
     - capacitor1
     - pierces
     - explosionChance
@@ -1372,6 +1373,8 @@ MonoBehaviour:
     - range
     - health
     - maxHealthModifier
+    - size
+    - focus
     _keys:
     - permaShields
     - moveSpeed
@@ -1380,6 +1383,7 @@ MonoBehaviour:
     - rate
     - attackSpeed
     - shootSpeed
+    - maxCapacitor1
     - capacitor1
     - pierces
     - explosionChance
@@ -1394,6 +1398,8 @@ MonoBehaviour:
     - range
     - health
     - maxHealthModifier
+    - size
+    - focus
     _values:
     - 0
     - 1
@@ -1402,7 +1408,8 @@ MonoBehaviour:
     - 1
     - 1
     - 1
-    - 1
+    - 15
+    - 15
     - 1
     - 25
     - 0
@@ -1413,8 +1420,10 @@ MonoBehaviour:
     - 1
     - 0
     - 0
-    - 60
+    - 28
     - 999
+    - 1
+    - 1
     - 1
 --- !u!114 &3782803558214053804
 MonoBehaviour:

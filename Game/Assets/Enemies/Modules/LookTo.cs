@@ -4,7 +4,7 @@ public class LookTo : MonoBehaviour
 {
     [SerializeField] private Stats stats;
     [SerializeField] private float lerpSpeed;
-    private Quaternion lookRotation;
+    private Quaternion lookRotation = Quaternion.identity;
     private Vector3 toEntity = Vector3.zero;
 
     private void OnEnable(){
@@ -39,9 +39,6 @@ public class LookTo : MonoBehaviour
     private void Update()
     {
         GetRotation();
-        if (stats.entity == null){
-            return;
-        }
         transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * lerpSpeed);
     }
 }

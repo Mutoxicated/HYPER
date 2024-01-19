@@ -15,7 +15,7 @@ public class CopyTransform : MonoBehaviour
     [SerializeField] private Vector3 positionOffset;
     [SerializeField] private Quaternion rotationOffset;
 
-    private Quaternion alteredRotation;
+    private Quaternion alteredRotation = Quaternion.identity;
     private Vector3 alteredPosition;
 
     void LateUpdate()

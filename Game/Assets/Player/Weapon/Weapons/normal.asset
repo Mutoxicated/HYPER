@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponSymbol: {fileID: 21300000, guid: 9b0495e386daff447b9d97727733efdd, type: 3}
   bulletPool: NORMAL_BULLET
   recoilModifier: 1
-  fireRate: 0.4
+  fireRate: 0.3
   modifier: 0
   extra: 0
   extraBulletPool: NORMAL_BULLET

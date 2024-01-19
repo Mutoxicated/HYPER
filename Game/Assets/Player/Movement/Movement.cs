@@ -330,6 +330,11 @@ public class Movement : MonoBehaviour
     private void OnTriggerExit(){
         readyToJump = false;
     }
+
+    private void CollisionDamage(Collision collision){
+        camShake.Shake();
+        collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(250f*stats.numericals["damage"],stats,ref shields,1f,0);
+    }
     
     private void OnCollisionEnter(Collision collision)
     {
@@ -348,6 +353,10 @@ public class Movement : MonoBehaviour
             groundSlam.transform.position = point.point;
             groundSlam.Play();
             movementState = MovementState.WALKING;
+            if (collision.collider.gameObject.tag == "Enemy")
+            {
+                CollisionDamage(collision);
+            }
         }
         if (movementState != MovementState.BOUNCING)
             return;
@@ -358,8 +367,7 @@ public class Movement : MonoBehaviour
         ability.Bounce(point);
         if (collision.collider.gameObject.tag == "Enemy")
         {
-            camShake.Shake();
-            collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(100f,stats,ref shields,1f,0);
+            CollisionDamage(collision);
             bounces = maxBounces;
         }
         if (bounces >= maxBounces)

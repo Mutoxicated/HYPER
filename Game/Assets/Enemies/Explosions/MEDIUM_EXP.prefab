@@ -120,8 +120,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  dontResetTime: 0
   chance: 100
   interval: 1.1
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -376,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usePlayerStats: 0
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   type: 0
@@ -385,17 +388,139 @@ MonoBehaviour:
   maxShields: 0
   shieldhealth: 50
   conditionals:
-    _serializedList:
-    - Key: explosive
-      Value: 0
-    - Key: surfaceFXED
-      Value: 0
-    - Key: outlineFXED
-      Value: 0
-    - Key: colorFXED
-      Value: 0
-    - Key: stunned
-      Value: 0
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _keys:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _values: 0000000000
+  numericals:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues:
+    - permaShields
+    - moveSpeed
+    - damage
+    - hostility
+    - rate
+    - attackSpeed
+    - shootSpeed
+    - maxCapacitor1
+    - capacitor1
+    - pierces
+    - explosionChance
+    - extra
+    - confusion
+    - parryChance
+    - shieldHealthModifier
+    - damageNO
+    - damageO
+    - enemyBlockChance
+    - bacteriaBlockChance
+    - range
+    - health
+    - maxHealthModifier
+    - size
+    - focus
+    _keys:
+    - permaShields
+    - moveSpeed
+    - damage
+    - hostility
+    - rate
+    - attackSpeed
+    - shootSpeed
+    - maxCapacitor1
+    - capacitor1
+    - pierces
+    - explosionChance
+    - extra
+    - confusion
+    - parryChance
+    - shieldHealthModifier
+    - damageNO
+    - damageO
+    - enemyBlockChance
+    - bacteriaBlockChance
+    - range
+    - health
+    - maxHealthModifier
+    - size
+    - focus
+    _values:
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 15
+    - 15
+    - 1
+    - 25
+    - 0
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 0
+    - 0
+    - 28
+    - 999
+    - 1
+    - 1
+    - 1
 --- !u!114 &1318928374030441264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,8 +535,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: DisableColl
+  dontResetTime: 0
   chance: 100
   interval: 0.65
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -5534,8 +5661,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  dontResetTime: 0
   chance: 100
   interval: 0.4
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:

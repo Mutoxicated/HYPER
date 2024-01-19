@@ -40,6 +40,7 @@ public class bullet : MonoBehaviour
     private void OnEnable()
     {
         injector.InheritInjector(PlayerInfo.GetPH().immuneSystem.injector);
+        injector.injectorToInheritFrom = PlayerInfo.GetPH().immuneSystem.injector;
         interval.enabled = true;
         if (initialScale == Vector3.zero){
             initialScale = transform.localScale;
@@ -48,12 +49,6 @@ public class bullet : MonoBehaviour
         pierces = CombinedStat("pierces");
         pierces = Mathf.RoundToInt(pierces*pierceModifier);
         rb.velocity = transform.forward * speed * CombinedStat("moveSpeed");
-        //Debug.Log(pierces);
-        //Debug.Log(bStats.numericals["range"]);
-    }
-
-    private void Start(){
-        injector.injectorToInheritFrom = PlayerInfo.GetPH().immuneSystem.injector;
     }
 
     private void Update()

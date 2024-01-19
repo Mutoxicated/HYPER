@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2282730909277592148}
   - component: {fileID: 2882928557443814897}
   - component: {fileID: 1145831262155727163}
+  - component: {fileID: 970851751731316767}
   - component: {fileID: 885964833475623179}
   - component: {fileID: 1476187494200445498}
   - component: {fileID: 6320260586745718906}
@@ -18,7 +19,6 @@ GameObject:
   - component: {fileID: 4892048741126330248}
   - component: {fileID: 8664219438449440807}
   - component: {fileID: 8676265659061354959}
-  - component: {fileID: 970851751731316767}
   - component: {fileID: 7718937613034079565}
   - component: {fileID: 288392382078351683}
   - component: {fileID: 7305679546848878668}
@@ -99,6 +99,161 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &970851751731316767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505947228412035310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usePlayerStats: 0
+  explosionPrefab: {fileID: 1406129636473073463, guid: 204a045193b337e4c92614a8c2dcb0ad, type: 3}
+  VFXScale: 0.45
+  type: 0
+  objective: 0
+  entity: {fileID: 0}
+  maxHealth: 20
+  maxShields: 0
+  shieldhealth: 50
+  conditionals:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _keys:
+    - explosive
+    - surfaceFXED
+    - outlineFXED
+    - colorFXED
+    - stunned
+    _values: 0000000000
+  numericals:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues:
+    - permaShields
+    - moveSpeed
+    - damage
+    - hostility
+    - rate
+    - attackSpeed
+    - shootSpeed
+    - maxCapacitor1
+    - capacitor1
+    - pierces
+    - explosionChance
+    - extra
+    - confusion
+    - parryChance
+    - shieldHealthModifier
+    - damageNO
+    - damageO
+    - enemyBlockChance
+    - bacteriaBlockChance
+    - range
+    - health
+    - maxHealthModifier
+    - size
+    - focus
+    _keys:
+    - permaShields
+    - moveSpeed
+    - damage
+    - hostility
+    - rate
+    - attackSpeed
+    - shootSpeed
+    - maxCapacitor1
+    - capacitor1
+    - pierces
+    - explosionChance
+    - extra
+    - confusion
+    - parryChance
+    - shieldHealthModifier
+    - damageNO
+    - damageO
+    - enemyBlockChance
+    - bacteriaBlockChance
+    - range
+    - health
+    - maxHealthModifier
+    - size
+    - focus
+    _values:
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 15
+    - 15
+    - 1
+    - 25
+    - 0
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 0
+    - 0
+    - 120
+    - 999
+    - 1
+    - 1
+    - 1
 --- !u!54 &885964833475623179
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,6 +364,8 @@ MonoBehaviour:
   - {fileID: 1437773228595662437}
   immunityDuration: -1
   rate: 1.834
+  hitScore: 0
+  deathScore: 0
   healthBar: {fileID: 0}
   t: 0
   immune: 0
@@ -249,78 +406,6 @@ MonoBehaviour:
   endColor: {r: 2, g: 2, b: 2, a: 1}
   matIndex: 0
   color: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &970851751731316767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505947228412035310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f5bc5b12721e341a1e59386dc48bb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 1406129636473073463, guid: 204a045193b337e4c92614a8c2dcb0ad, type: 3}
-  VFXScale: 0.45
-  type: 0
-  objective: 0
-  entity: {fileID: 0}
-  maxHealth: 20
-  maxShields: 0
-  shieldhealth: 50
-  conditionals:
-    _serializedList:
-    - Key: explosive
-      Value: 0
-    - Key: surfaceFXED
-      Value: 0
-    - Key: outlineFXED
-      Value: 0
-    - Key: colorFXED
-      Value: 0
-    - Key: stunned
-      Value: 0
-  numericals:
-    _serializedList:
-    - Key: permaShields
-      Value: 0
-    - Key: moveSpeed
-      Value: 1
-    - Key: damage
-      Value: 1
-    - Key: hostility
-      Value: 1
-    - Key: rate
-      Value: 1
-    - Key: attackSpeed
-      Value: 1
-    - Key: shootSpeed
-      Value: 1
-    - Key: capacitor1
-      Value: 1
-    - Key: pierces
-      Value: 1
-    - Key: explosionChance
-      Value: 100
-    - Key: extra
-      Value: 0
-    - Key: confusion
-      Value: 0
-    - Key: parryChance
-      Value: 1
-    - Key: shieldHealthModifier
-      Value: 1
-    - Key: damageNO
-      Value: 1
-    - Key: damageO
-      Value: 1
-    - Key: enemyBlockChance
-      Value: 0
-    - Key: bacteriaBlockChance
-      Value: 0
-    - Key: range
-      Value: 28
 --- !u!114 &7718937613034079565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,8 +420,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  dontResetTime: 0
   chance: 100
   interval: 8
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls:
@@ -478,7 +565,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 970851751731316767}
         m_TargetAssemblyTypeName: Stats, Assembly-CSharp
-        m_MethodName: ChangeObjectiveToOpposite
+        m_MethodName: ChangeObjectiveToOppositeForever
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

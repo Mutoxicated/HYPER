@@ -48,7 +48,7 @@ public class Stats : MonoBehaviour
         {"rate", 1f},
         {"attackSpeed", 1f},
         {"shootSpeed", 1f},
-        {"maxCapacitor1", 1f},
+        {"maxCapacitor1", 15f},
         {"capacitor1", 15f},
         {"pierces", 1f},
         {"explosionChance",25f},
@@ -131,6 +131,13 @@ public class Stats : MonoBehaviour
         numericals["health"] = maxHealth;
     }
 
+    private void Update(){
+        if (entity == null){
+            DecideObjective();
+            FindEntity();
+        }
+    }
+
     public float GetNum(string name){
         if (usePlayerStats)
             return PlayerInfo.GetGun().stats.numericals[name]*numericals[name];
@@ -140,14 +147,26 @@ public class Stats : MonoBehaviour
 
     public void FindEntity(){
         if (objective == DeathFor.PLAYER || objective == DeathFor.PLAYER_FOREVER){
-            if (PlayerInfo.GetPlayer() != null)
-                entity = PlayerInfo.GetPlayer().transform;
+            if (PlayerInfo.GetPlayer() != null){
+                if (Vector3.Distance(PlayerInfo.GetPlayer().transform.position,transform.position) > numericals["range"])
+                    entity = null;
+                else
+                    entity = PlayerInfo.GetPlayer().transform;
+            }   
             else entity = null;
-        }else{
+        }else if (objective == DeathFor.ENEMIES){
             GameObject go = Difficulty.FindClosestEnemy(transform,numericals["range"]);
             //Debug.Log("From go: "+gameObject.name+", found go: "+go.name);
             if (go == null){
                 //Debug.Log("pass");
+                entity = null;
+            }else{
+                entity = go.transform;
+            }
+        }else{
+            GameObject go = Difficulty.FindClosestEnemy(transform,999999f);
+            if (go == null){
+                objective = DeathFor.PLAYER_FOREVER;
                 entity = null;
             }else{
                 entity = go.transform;
@@ -172,8 +191,17 @@ public class Stats : MonoBehaviour
     public void ChangeObjectiveToOpposite(){
         if (objective == DeathFor.PLAYER){
             objective = DeathFor.ENEMIES;
-        }else{
+        }else if (objective == DeathFor.ENEMIES){
             objective = DeathFor.PLAYER;
+        }
+        FindEntity();
+    }
+
+    public void ChangeObjectiveToOppositeForever(){
+        if (objective == DeathFor.PLAYER){
+            objective = DeathFor.ENEMIES_FOREVER;
+        }else if (objective == DeathFor.ENEMIES){
+            objective = DeathFor.PLAYER_FOREVER;
         }
         FindEntity();
     }

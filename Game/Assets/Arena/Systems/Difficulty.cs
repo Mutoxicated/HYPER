@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Difficulty : MonoBehaviour 
 {
+    public static int rounds = 0;
     public static Transform player;
     public static List<GameObject> enemies = new List<GameObject>();
     public static ExtraUtils utils;

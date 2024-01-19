@@ -17,11 +17,32 @@ public class TargetEvents : MonoBehaviour
     private float dist;
     private bool inRange = false;
 
+    private void Start(){
+        if (stats.entity == null){
+            CallTargetRange(false);
+            inRange = false;
+            return;
+        }
+        dist = Vector3.Distance(transform.position,stats.entity.position);
+        if (dist <= stats.numericals["range"]){
+            CallTargetRange(true);
+            inRange = true;
+            switch2 = true;
+                    
+        }else if (dist > stats.numericals["range"]){
+            CallTargetRange(false);
+            inRange = false;
+        }
+    }
+
     private void PlayerEvents(){
         t += Time.deltaTime;
         if (t >= checkInSeconds){
             t = 0f;
-            dist = Vector3.Distance(transform.position,Difficulty.player.position);
+            if (stats.entity == null){
+                return;
+            }
+            dist = Vector3.Distance(transform.position,stats.entity.position);
             if (dist <= stats.numericals["range"] && !switch2){
                 CallTargetRange(true);
                 inRange = true;

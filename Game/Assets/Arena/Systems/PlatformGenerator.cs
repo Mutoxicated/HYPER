@@ -26,11 +26,12 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField] private GameObject platformHolder;
     [Space]
     [SerializeField] private GameObject mainPlat;
+    [SerializeField] private GameObject specialPlats;
     [SerializeField] private GameObject[] randomPlatformProps;
     [SerializeField] private GameObject[] poles;
-    [SerializeField] private bool platformActive;
     [Space]
     [Header("Misc")]
+        [SerializeField] private bool platformActive;
     [SerializeField] private GameObject platformsHolder;
 
     private int maxPlatforms;
