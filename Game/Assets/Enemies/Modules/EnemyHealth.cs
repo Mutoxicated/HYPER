@@ -5,6 +5,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 {
     public Stats stats;
     public Immunity immuneSystem;
+    [SerializeField] private ScorePopupCanvas spc;
     [Header("Post-Death")]
     public UnityEvent<Transform> OnDeath = new UnityEvent<Transform>();
     [SerializeField] private GameObject[] ObjectsToDestroy;
@@ -13,8 +14,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [Header("General")]
     [SerializeField] private float immunityDuration;
     [SerializeField,Range(0.5f,2f)] private float rate = 0.05f;
-    [SerializeField] private float hitScore;
-    [SerializeField] private float deathScore;
+    [SerializeField] private int hitScore;
+    [SerializeField] private int deathScore;
 
     [SerializeField] private HealthBar healthBar;
 
@@ -58,6 +59,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private void Detach()
     {
+        if (spc != null){
+            spc.transform.SetParent(null,false);
+            spc.transform.position = transform.position;
+            spc.transform.rotation = transform.rotation;
+            spc.Die();
+        }
         if (ChildrenToDetach == null)
             return;
         foreach (var obj in ChildrenToDetach)
@@ -109,9 +116,16 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         OnDeath.RemoveAllListeners();
     }
 
+    private void PopScore(int score, float duration){
+        if (spc != null)
+            spc.PopScore(score, duration);
+    }
+
     private void ScoreOnHit(Stats senderStats){
-        if (senderStats.gameObject.tag == "Player" | senderStats.gameObject.tag == "bullets")
+        if (senderStats.gameObject.tag == "Player" | senderStats.gameObject.tag == "bullets"){
             PlayerInfo.AddScore(hitScore);
+            PopScore(hitScore,0.5f);
+        }
     }
 
     public void Die(Stats senderStats){
@@ -122,8 +136,10 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (senderStats == null){
             OnDeath.Invoke(transform);
         }else{
-            if (senderStats.gameObject.tag == "Player" | senderStats.gameObject.tag == "bullets")
+            if (senderStats.gameObject.tag == "Player" | senderStats.gameObject.tag == "bullets"){
                 PlayerInfo.AddScore(deathScore);
+                PopScore(deathScore,1.2f);
+            }
             OnDeath.Invoke(senderStats.transform);
         }
         DestroyStuff();

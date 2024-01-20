@@ -1113,3 +1113,7 @@ Revamped the standard round. Tested it with all current enemies and I'm happy wi
 ## Day 224
 
 Fixed some more bugs and implemented one of the platform objectives.
+
+## Day 225 
+
+Implemented score popups.

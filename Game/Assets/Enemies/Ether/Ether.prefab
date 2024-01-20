@@ -211,7 +211,6 @@ GameObject:
   - component: {fileID: 2029483554504949705}
   - component: {fileID: 2029483554504949706}
   - component: {fileID: 2029483554504949707}
-  - component: {fileID: 2029483554504949704}
   - component: {fileID: 7632718783492308213}
   - component: {fileID: 5434483908721940620}
   - component: {fileID: 3165358017143765182}
@@ -221,6 +220,7 @@ GameObject:
   - component: {fileID: 1358221422168894942}
   - component: {fileID: 1595523739458197103}
   - component: {fileID: 6866425869919819366}
+  - component: {fileID: 3040201614390660952}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -296,70 +296,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2029483554504949704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029483554504949709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d07accf3a4229a749a0b613834c47ca2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 3872225859729783973}
-  immuneSystem: {fileID: 1358221422168894942}
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8753202935635663913}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1358221422168894942}
-        m_TargetAssemblyTypeName: Immunity, Assembly-CSharp
-        m_MethodName: RecycleBacteria
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 9221162558281345364}
-        m_TargetAssemblyTypeName: PassivePool, Assembly-CSharp
-        m_MethodName: RecyclePassiveItems
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  ObjectsToDestroy:
-  - {fileID: 5419551051448238176}
-  ChildrenToDetach:
-  - {fileID: 8753202935635663913}
-  immunityDuration: 1
-  rate: 2
-  hitScore: 40
-  deathScore: 150
-  healthBar: {fileID: 7971833800512259650}
-  t: 0
-  immune: 0
 --- !u!54 &7632718783492308213
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -440,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca37db4610ada05489edaaa1bd6aac56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 2029483554504949704}
+  health: {fileID: 3040201614390660952}
   startColor: {r: 0.7058824, g: 0, b: 2.9960785, a: 1}
   endColor: {r: 2, g: 2, b: 2, a: 1}
   matIndex: 1
@@ -535,6 +471,71 @@ MonoBehaviour:
   outlineEffectable: 1
   colorEffectable: 0
   matIndex: 0
+--- !u!114 &3040201614390660952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029483554504949709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07accf3a4229a749a0b613834c47ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 3872225859729783973}
+  immuneSystem: {fileID: 1358221422168894942}
+  spc: {fileID: 6415523524465491938}
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8753202935635663913}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1358221422168894942}
+        m_TargetAssemblyTypeName: Immunity, Assembly-CSharp
+        m_MethodName: RecycleBacteria
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 9221162558281345364}
+        m_TargetAssemblyTypeName: PassivePool, Assembly-CSharp
+        m_MethodName: RecyclePassiveItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  ObjectsToDestroy:
+  - {fileID: 5419551051448238176}
+  ChildrenToDetach:
+  - {fileID: 8753202935635663913}
+  immunityDuration: 1
+  rate: 2
+  hitScore: 20
+  deathScore: 100
+  healthBar: {fileID: 7971833800512259650}
+  t: 0
+  immune: 0
 --- !u!1 &3301143575855750706
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +570,7 @@ Transform:
   - {fileID: 2442934889264234383}
   - {fileID: 2029483554504949705}
   m_Father: {fileID: 2982936731220533164}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3872225859729783973
 MonoBehaviour:
@@ -801,6 +802,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4095709657238618873}
+  - {fileID: 5716827271600056824}
   - {fileID: 2924701148933708670}
   - {fileID: 1677493216719049168}
   - {fileID: 5138515371110754097}
@@ -855,7 +857,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2982936731220533164}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9221162558281345364
 MonoBehaviour:
@@ -1018,7 +1020,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 977977081578146506, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 977977081578146506, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: m_LocalScale.x
@@ -1107,7 +1109,7 @@ PrefabInstance:
     - target: {fileID: 8391467601601404248, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: health
       value: 
-      objectReference: {fileID: 2029483554504949704}
+      objectReference: {fileID: 3040201614390660952}
     - target: {fileID: 8391467601601404248, guid: 197fc30560778e44e86cba0766007181, type: 3}
       propertyPath: backBarGradient.key0.a
       value: 1
@@ -1168,5 +1170,114 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c643b48d9d24d44c86ddeaacfcc827a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &2987010764367514299
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2982936731220533164}
+    m_Modifications:
+    - target: {fileID: 1030674685271951835, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654068412739916923, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_Name
+      value: ScorePopupCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+--- !u!224 &5716827271600056824 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7360498535253959491, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+  m_PrefabInstance: {fileID: 2987010764367514299}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6415523524465491938 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8105206993750963545, guid: 804e561437fc7ea4f823497053aeab21, type: 3}
+  m_PrefabInstance: {fileID: 2987010764367514299}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0170f176b57c36f4bb0fe71db32fbe68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

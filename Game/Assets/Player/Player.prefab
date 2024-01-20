@@ -764,7 +764,7 @@ MonoBehaviour:
   dash: {fileID: 0}
   slide: {fileID: 0}
   lockEffect: {fileID: 0}
-  slamJumpForceRate: 1
+  slamJumpForceRate: 0.5
   stats: {fileID: 8108540779480057966}
   camHolder: {fileID: 1987462775687559841}
   stamina: {fileID: 0}
@@ -1207,7 +1207,7 @@ MonoBehaviour:
   specialTag: momentumWindow
   dontResetTime: 0
   chance: 100
-  interval: 0.3
+  interval: 0.2
   minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:

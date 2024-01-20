@@ -11,7 +11,7 @@ public static class PlayerInfo
     private static Melee melee;
     private static ItemPool itemPool;
     private static int money = 2000;
-    private static float score;
+    private static int score;
 
     private static Stats.conditionalDict conditionalDictTransfer = new Stats.conditionalDict();
     private static Stats.numericalDict numericalDictTransfer = new Stats.numericalDict();
@@ -84,15 +84,15 @@ public static class PlayerInfo
         itemPool = ip;
     }
 
-    public static float GetScore(){
+    public static int GetScore(){
         return score;
     }
 
-    public static void SetScore(float score2){
+    public static void SetScore(int score2){
         score = score2;
     }
 
-    public static void AddScore(float score2){
+    public static void AddScore(int score2){
         score += score2;
     }
 

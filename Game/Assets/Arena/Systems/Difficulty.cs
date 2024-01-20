@@ -9,7 +9,8 @@ public class Difficulty : MonoBehaviour
     public static List<GameObject> enemies = new List<GameObject>();
     public static ExtraUtils utils;
 
-    public float t = 1f;
+    public float linearT = 1f;
+    public float asymT = 0f;
     public int wavePopulation = 1;
     public int sequencePopulation = 2;
     public int spawnerPopulation = 1;
@@ -81,6 +82,8 @@ public class Difficulty : MonoBehaviour
     }
 
     private void Awake(){
+        asymT = rounds/(rounds+300);
+        linearT += 1f/10f;
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         player = GameObject.FindWithTag("Player").transform;
         utils = GameObject.FindWithTag("ExtraUtils").GetComponent<ExtraUtils>();

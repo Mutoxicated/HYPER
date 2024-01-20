@@ -22,7 +22,7 @@ public class CopyTransform : MonoBehaviour
     {
         if (_transform == null)
         {
-            Debug.Log("ERROR! Transform has become null, possibly due to being destroyed. Disabling component.");
+            //Debug.Log("ERROR! Transform has become null, possibly due to being destroyed. Disabling component.");
             enabled = false;
             return;
         }

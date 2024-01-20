@@ -7,19 +7,21 @@ public class Recharge : MonoBehaviour
 {
     [Header("World pieces")]
     [SerializeField] private GameObject canvas;
+    [SerializeField] private ScorePopupCanvas spc;
     [SerializeField] private TMP_Text percent;
     [Header("Mechanics")]
     [SerializeField] private OnInterval sphereScaleInterval;
     [SerializeField] private float duration;
     [SerializeField] private OnInterval durationInterval;
     [SerializeField] private OnInterval sphereDieInterval;
-    [SerializeField] private float scoreToGive = 4000f;
+    [SerializeField] private int scoreToGive = 4000;
 
     private Vector3 initScale;
     private Vector3 alteredScale;
     private Material sphereMat;
 
     private Vector3 initPlatScale = new Vector3(72f,2f,72f);
+    private Vector3 initSpcPos;
 
     private void OnTriggerEnter(){
         durationInterval.Resume();
@@ -41,21 +43,17 @@ public class Recharge : MonoBehaviour
         transform.localScale = alteredScale;
         
         initScale = transform.localScale;
-        alteredScale = transform.localScale;
-        alteredScale = initScale * sphereScaleInterval.t;
-        transform.localScale = alteredScale;
+        transform.localScale = Vector3.zero;
 
         transform.SetParent(transform,false);
         transform.position = new Vector3(0f,Mathf.Lerp(0f,15f,tx),0f);
         sphereMat = GetComponent<Renderer>().material;
+
+        initSpcPos = spc.transform.position;
     }
 
     private void Update(){
-        if (sphereScaleInterval.enabled){
-            alteredScale = transform.localScale;
-            alteredScale = initScale * sphereScaleInterval.t;
-            transform.localScale = alteredScale;
-        }
+        transform.localScale = Vector3.Lerp(transform.localScale,initScale,Time.deltaTime*15f);
         if (sphereDieInterval.enabled){
             percent.text = 100f+"%!";
             sphereMat.SetFloat("_Intact",sphereDieInterval.t);
@@ -65,12 +63,16 @@ public class Recharge : MonoBehaviour
     }
 
     public void ChargedFull(){
+        spc.transform.SetParent(null,false);
+        spc.transform.position = transform.parent.transform.position;
+        spc.transform.localRotation = Quaternion.identity;
+        spc.PopScore(scoreToGive,4f);
+        spc.Die();
         sphereDieInterval.enabled = true;
     }
 
     public void FinishObjective(){
-        Destroy(gameObject);
-        Destroy(canvas);
+        Destroy(gameObject.transform.parent.gameObject);
         PlayerInfo.AddScore(scoreToGive);
     }
 }

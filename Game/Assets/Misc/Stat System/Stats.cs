@@ -166,7 +166,7 @@ public class Stats : MonoBehaviour
         }else{
             GameObject go = Difficulty.FindClosestEnemy(transform,999999f);
             if (go == null){
-                objective = DeathFor.PLAYER_FOREVER;
+                //objective = DeathFor.PLAYER_FOREVER;
                 entity = null;
             }else{
                 entity = go.transform;

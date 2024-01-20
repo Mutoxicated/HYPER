@@ -316,13 +316,13 @@ public class Movement : MonoBehaviour
     private void FixedUpdate() => Move();
 
     private void OnTriggerEnter(Collider coll){
-        if (coll.gameObject.tag == "Enemy")
+        if (coll.gameObject.tag == "Enemy" | coll.gameObject.layer == 16)
             return;
         readyToJump = true;
     }
 
     private void OnTriggerStay(Collider coll){
-        if (coll.gameObject.tag == "Enemy")
+        if (coll.gameObject.tag == "Enemy" | coll.gameObject.layer == 16)
             return;
         readyToJump = true;
     }

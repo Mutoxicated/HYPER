@@ -6,7 +6,8 @@ using UnityEngine;
 public class StandardRound : MonoBehaviour, IRound
 {
     public static readonly float initEnemySpawnInterval = 4f;
-    public static readonly float initDuration = 100f;
+    public static readonly float initDuration = 40f;
+    public static readonly float initDifficultyMod = 4f;
 
     public Difficulty diff;
     public GameObject beamInstance;
@@ -35,7 +36,7 @@ public class StandardRound : MonoBehaviour, IRound
     }
 
     public void PreSpawnEnemies(){
-        int spawnAmount = Mathf.RoundToInt(duration/enemySpawnInterval*0.25f);
+        int spawnAmount = Mathf.RoundToInt(duration/enemySpawnInterval*0.5f);
         for (int i = 0; i < spawnAmount; i++){
             SpawnEnemy();
         }
@@ -49,7 +50,7 @@ public class StandardRound : MonoBehaviour, IRound
 
     public void ProgressDifficulty()
     {
-        enemySpawnInterval = initEnemySpawnInterval*diff.t;
-        duration = initDuration*diff.t;
+        enemySpawnInterval = Mathf.Lerp(initEnemySpawnInterval,initEnemySpawnInterval*initDifficultyMod,diff.asymT);
+        duration = initDuration*diff.linearT;
     }
 }
