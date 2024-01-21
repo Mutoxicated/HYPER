@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class DestroyOnReload : MonoBehaviour
 {
-    private static DestroyOnReload instance;
+    private static Dictionary<string, DestroyOnReload> dict = new Dictionary<string, DestroyOnReload>();
     private void Awake() {
-        if (instance != null && instance != this) {
+
+        if (dict.ContainsKey(gameObject.name) && dict[gameObject.name] != this) {
             Destroy(gameObject);
         }
         else {
-            instance = this;
+            if (dict.ContainsKey(gameObject.name))
+                dict[gameObject.name] = this;
+            else dict.Add(gameObject.name,this);
         }
     }
 }

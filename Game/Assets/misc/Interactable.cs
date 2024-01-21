@@ -47,7 +47,8 @@ public class Interactable : MonoBehaviour
             if (actions.Interact.interact.WasPerformedThisFrame()){
                 onInput.Invoke();
             }
-        }else{
+        }else if (!rayHit && once) {
+            once = false;
             popup.DeactivatePopup();
         }
     }

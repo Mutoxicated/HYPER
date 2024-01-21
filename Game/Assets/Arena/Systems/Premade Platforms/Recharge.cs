@@ -64,7 +64,7 @@ public class Recharge : MonoBehaviour
 
     public void ChargedFull(){
         spc.transform.SetParent(null,false);
-        spc.transform.position = transform.parent.transform.position;
+        spc.transform.position = new Vector3(transform.parent.transform.position.x,transform.parent.transform.position.y+5f,transform.parent.transform.position.x+5f);
         spc.transform.localRotation = Quaternion.identity;
         spc.PopScore(scoreToGive,4f);
         spc.Die();

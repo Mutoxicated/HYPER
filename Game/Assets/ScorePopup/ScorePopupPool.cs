@@ -10,7 +10,8 @@ public class ScorePopupPool : MonoBehaviour
     private List<ScorePopup> inactivePopups = new List<ScorePopup>();
     private List<ScorePopup> activePopups = new List<ScorePopup>();
 
-    private void Awake(){
+    private void Start(){
+        DontDestroyOnLoad(gameObject);
         spp = this;
     }
 
