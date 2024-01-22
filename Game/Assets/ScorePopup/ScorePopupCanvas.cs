@@ -19,6 +19,12 @@ public class ScorePopupCanvas : MonoBehaviour
         hasScorePopups = true;
     }
 
+    public void PopScore(int score, float duration, float yInc){
+        ScorePopupPool.spp.GetObject(scoreSpawnPoint,score,duration, yInc);
+        hasScorePopups = true;
+    }
+
+
     public bool HasScorePopups(){
         return hasScorePopups;
     }

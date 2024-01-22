@@ -5,22 +5,30 @@ using UnityEngine;
 
 public class ScorePopup : MonoBehaviour
 {
+    private static readonly float initYInc = 300f;
+    private static readonly float initDuration = 1f;
+
     [SerializeField] private RectTransform trans;
     [SerializeField] private TMP_Text txt;
     private string plus = "+";
     
     private float duration = 1f;
-    private float yInc = 180f;
+    private float yInc = initYInc;
     private float time = 0f;
     private Vector3 alteredPos;
     private Color alteredCol;
     private float t;
 
+    private void OnDisable(){
+        yInc = initYInc;
+        duration = initDuration;
+        time = 0f;
+    }
+
     private void Update(){
         time += Time.deltaTime;
         if (time >= duration){
             gameObject.SetActive(false);
-            time = 0f;
             trans.localPosition = Vector3.zero;
             ScorePopupPool.spp.ReturnObject(this);
             return;
@@ -42,5 +50,9 @@ public class ScorePopup : MonoBehaviour
 
     public void SetDuration(float duration){
         this.duration = duration;
+    }
+
+    public void SetYInc(float yInc){
+        this.yInc = yInc;
     }
 }

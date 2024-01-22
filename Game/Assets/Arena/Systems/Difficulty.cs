@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Difficulty : MonoBehaviour 
 {
+    public static bool roundFinished = false;
     public static int rounds = 0;
     public static Transform player;
     public static List<GameObject> enemies = new List<GameObject>();
@@ -82,6 +83,7 @@ public class Difficulty : MonoBehaviour
     }
 
     private void Awake(){
+        roundFinished = false;
         asymT = rounds/(rounds+300);
         linearT += 1f/10f;
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");

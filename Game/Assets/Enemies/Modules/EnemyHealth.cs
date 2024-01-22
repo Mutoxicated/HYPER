@@ -152,12 +152,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public float TakeDamage(float intake, Stats senderStats, ref int shieldOut, float strength, int _)
     {
+        if (immune)
+            return 0f;
         if (!EvaluateDamageIntake(senderStats,intake)){
             return 0f;
         }
-        if (immune)
-            return 0f;
-        
         shieldOut = 0;
         if (senderStats != null){
             Parry(senderStats.gameObject);
@@ -177,11 +176,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     
     public float TakeDamage(float intake, Stats senderStats, float strength, int _)
     {
+        if (immune)
+            return 0f;
         if (!EvaluateDamageIntake(senderStats,intake)){
             return 0f;
         }
-        if (immune)
-            return 0f;
         if (senderStats != null){
             Parry(senderStats.gameObject);
             ScoreOnHit(senderStats);
@@ -191,6 +190,27 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (stats.numericals["health"] <= 0)
         {
             Die(senderStats);
+        }
+        if (stats.numericals["health"] >= 0f)
+            return 0f;
+        else
+            return stats.numericals["health"];
+    }
+
+    public float TakeDamage(float intake, float strength, int _)
+    {
+        if (immune)
+            return 0f;
+        if (stats.shields.Count > 0){
+            if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
+                stats.shields.RemoveAt(stats.shields.Count-1);
+        }
+        stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+        t += strength;
+        healthBar?.Activate();
+        if (stats.numericals["health"] <= 0)
+        {
+            Die(null);
         }
         if (stats.numericals["health"] >= 0f)
             return 0f;

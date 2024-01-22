@@ -1,6 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Security.Cryptography;
+using System.Linq;
 
 public class PlatformInfo {
     public PlatformInfo(Vector3 mainPosition,Vector3 mainScale){
@@ -14,6 +15,24 @@ public class PlatformInfo {
 
 public class PlatformGenerator : MonoBehaviour
 {
+    private static readonly float inc1 = 0.1f;
+    private static readonly float inc2 = 0.05f;
+    private static readonly float inc3 = 0.125f;
+    private static readonly Vector2 minMaxRandomness = new Vector2(-2f,2f);
+    private static readonly float chance = 100f;
+
+    private static float sleepers = 0;
+    private static float trappers = 1;
+    private static float rechargers = 0;
+    private static float simoners = 0;
+    private static float derusters = 0;
+
+    private static float currentsleepers = 0;
+    private static float currenttrappers = 0;
+    private static float currentrechargers = 0;
+    private static float currentsimoners = 0;
+    private static float currentderusters = 0;
+
     public static PlatformGenerator PG;
     [Header("Generation Settings")]
     [SerializeField] private float Yoffset;
@@ -26,18 +45,16 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField] private GameObject platformHolder;
     [Space]
     [SerializeField] private GameObject mainPlat;
-    [SerializeField] private GameObject specialPlats;
     [SerializeField] private GameObject[] randomPlatformProps;
     [SerializeField] private GameObject[] poles;
     [Space]
     [Header("Misc")]
-        [SerializeField] private bool platformActive;
+    [SerializeField] private bool platformActive;
     [SerializeField] private GameObject platformsHolder;
 
     private int maxPlatforms;
     private int extraLowerPlatformChance;
     private Scroll cycle;
-    private float totalDistAvg;
 
     private static List<PlatformInfo> oldPlatformData = new List<PlatformInfo>(){
     };
@@ -47,6 +64,25 @@ public class PlatformGenerator : MonoBehaviour
         new PlatformInfo(new Vector3(71,-10,-110),new Vector3(55,2,40)),
         new PlatformInfo(new Vector3(0,0,0),new Vector3(40,2,40))
     };
+
+    private static List<PlatformObjective> objectives = new List<PlatformObjective>();
+
+    private void ShuffleObjectives(IList<PlatformObjective> list)
+    {
+        RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+        int n = list.Count;
+        while (n > 1)
+        {
+            byte[] box = new byte[1];
+            do provider.GetBytes(box);
+            while (!(box[0] < n * (byte.MaxValue / n)));
+            int k = (box[0] % n);
+            n--;
+            PlatformObjective value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
 
     private PlatformInfo FindPlatform(){
         return unusedPlatforms[0];
@@ -222,6 +258,7 @@ public class PlatformGenerator : MonoBehaviour
             }
             GameObject pHolder = Instantiate(platformHolder,positions[i],Quaternion.identity);
             GameObject main = Instantiate(mainPlat,positions[i],Quaternion.identity);
+            objectives.Add(main.GetComponent<PlatformObjective>());
             pHolder.transform.SetParent(platformsHolder.transform,true);
             main.transform.localScale = scales[i];
             main.transform.parent = pHolder.transform;
@@ -271,19 +308,75 @@ public class PlatformGenerator : MonoBehaviour
         }
     }
 
+    private bool GiveObjective(ref float currentOf, PlatformObjectiveType pot, PlatformObjective po){
+        if (currentOf <= 0f){
+            currentOf = 0f;
+            return false;
+        }
+        currentOf--;
+        if (Random.Range(0,100) <= chance){
+            po.SetPot(pot);
+        }else{
+            currentOf += Mathf.RoundToInt(Random.Range(minMaxRandomness.x,minMaxRandomness.y));
+        }
+        return true;
+    }
+
+    private void ClearObjectives(){
+        foreach (PlatformObjective po in objectives){
+            po.SetPot(PlatformObjectiveType.NONE);
+        }
+    }
+
+    private void ApplyObjectivesToPlatforms(){
+        ClearObjectives();
+        currentderusters = Mathf.RoundToInt(derusters);
+        currentrechargers = Mathf.RoundToInt(rechargers);
+        currentsimoners = Mathf.RoundToInt(simoners);
+        currentsleepers = Mathf.RoundToInt(sleepers);
+        currenttrappers = Mathf.RoundToInt(trappers);
+        List<PlatformObjective> shuffledObjectives = objectives.ToList();
+        Debug.Log("before: "+shuffledObjectives.Count);
+        ShuffleObjectives(shuffledObjectives);
+        Debug.Log("after: "+shuffledObjectives.Count);
+        foreach (PlatformObjective po in shuffledObjectives){//im a monster
+            if (GiveObjective(ref currentderusters,PlatformObjectiveType.DERUST,po))
+                continue;
+            if (GiveObjective(ref currentrechargers,PlatformObjectiveType.RECHARGE,po))
+                continue;
+            if (GiveObjective(ref currentsimoners,PlatformObjectiveType.SIMON_SAYS,po))
+                continue;
+            if (GiveObjective(ref currentsleepers,PlatformObjectiveType.SLEEP,po))
+                continue;
+            if (GiveObjective(ref currenttrappers,PlatformObjectiveType.TRAP,po))
+                continue;
+            return;
+        }
+    }
+
+    private void Progress(){
+        sleepers += inc1;
+        trappers += inc2;
+        rechargers += inc3;
+        simoners += inc2;
+        derusters += inc1;
+    }
+
     private void Start(){
         PG = this;
-        // if (!platformsHolder.activeInHierarchy)
-        //     return;
-        RandomizeGenerationCycle();
-        if (cycle == null)
-            cycle = new Scroll(0,generationCycle.Length);
-        maxPlatforms = generationCycle[cycle.index];
-        GeneratePlatforms();
-        cycle.Increase();
     }
 
     public void ActiveState(bool state){
         platformsHolder.SetActive(state);
+        if (state){
+            RandomizeGenerationCycle();
+            if (cycle == null)
+                cycle = new Scroll(0,generationCycle.Length);
+            maxPlatforms = generationCycle[cycle.index];
+            GeneratePlatforms();
+            cycle.Increase();
+            ApplyObjectivesToPlatforms();
+            Progress();
+        }
     }
 }

@@ -34,6 +34,27 @@ public class ScorePopupPool : MonoBehaviour
         }
     }
 
+    public void GetObject(Transform parent, int score, float duration, float yInc){
+        if (inactivePopups.Count == 0){
+            GameObject instance = Instantiate(scorePopupPrefab, parent.position,parent.rotation);
+            instance.transform.SetParent(parent,false);
+            instance.transform.rotation = parent.rotation;
+            var popup  = instance.GetComponent<ScorePopup>();
+            popup.SetText(score);
+            popup.SetDuration(duration);
+            popup.SetYInc(yInc);
+            activePopups.Add(popup);
+        }else{
+            inactivePopups[0].gameObject.transform.SetParent(parent,false);
+            inactivePopups[0].transform.rotation = parent.rotation;
+            inactivePopups[0].gameObject.SetActive(true);
+            inactivePopups[0].SetText(score);
+            inactivePopups[0].SetDuration(duration);
+            inactivePopups[0].SetYInc(yInc);
+            AddAndRemove(inactivePopups[0],activePopups,inactivePopups);
+        }
+    }
+
     public void ReturnObject(ScorePopup scorePopup){
         scorePopup.transform.SetParent(transform,false);
         scorePopup.transform.rotation = Quaternion.identity;

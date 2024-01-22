@@ -13476,8 +13476,7 @@ MonoBehaviour:
   distTolerance: 8.62
   generationCycle: 01000000010000000100000001000000010000000200000001000000010000000200000001000000010000000100000001000000
   platformHolder: {fileID: 790167100816406624, guid: 756ef2494007ec24dab872c18e5e44d3, type: 3}
-  mainPlat: {fileID: 1849135328250760642, guid: 02836a6ae57dc8d4bba97913b76f6c5a, type: 3}
-  specialPlats: {fileID: 0}
+  mainPlat: {fileID: 1849135328250760642, guid: 8b00f65ed38e707419d8d2062e3981c8, type: 3}
   randomPlatformProps: []
   poles: []
   platformActive: 0

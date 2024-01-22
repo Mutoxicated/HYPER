@@ -1121,3 +1121,7 @@ Implemented score popups.
 ## Day 226
 
 Fixed score popup bug where pretty much the pool wasnt a true singleton but now it is. I also made it so that you can restore your dynamites and add one to your inventory (if you are at max capacity, the max capacity will also increment). UI for the costs of things also gets updated now so that's nice. I think that's all for today.
+
+## Day 227
+
+Made platform objectives randomly get applied to platforms. Created the trap objective. The objective is to stay inside the platform, cuz the platform trapped you, hehe.

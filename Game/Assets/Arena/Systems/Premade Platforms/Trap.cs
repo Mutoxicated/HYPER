@@ -1,27 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class Recharge : MonoBehaviour
+public class Trap : MonoBehaviour
 {
-    [Header("World pieces")]
-    [SerializeField] private GameObject canvas;
+[Header("World pieces")]
     [SerializeField] private ScorePopupCanvas spc;
-    [SerializeField] private TMP_Text percent;
     [Header("Mechanics")]
-    [SerializeField] private OnInterval sphereScaleInterval;
     [SerializeField] private float duration;
     [SerializeField] private OnInterval durationInterval;
     [SerializeField] private OnInterval sphereDieInterval;
     [SerializeField] private int scoreToGive = 4000;
+    [SerializeField] private float damage = 20f;
+    [SerializeField] private float damageInterval = 0.5f;
+    [SerializeField] private OnInterval damageOnInterval;
 
     private Vector3 initScale;
     private Vector3 alteredScale;
     private Material sphereMat;
     private Vector3 initSpcPos;
     private float yOff;
-    private float time;
 
     private void OnTriggerEnter(){
         durationInterval.Resume();
@@ -34,6 +32,8 @@ public class Recharge : MonoBehaviour
     }
 
     private void OnEnable(){
+        damageOnInterval.ChangeInterval(damageInterval);
+        damageOnInterval.Pause();
         durationInterval.ChangeInterval(duration);
         float tx = Mathf.InverseLerp(0f,PlatformObjective.initPlatScale.x,transform.parent.parent.transform.localScale.x);
         alteredScale = transform.localScale;
@@ -50,33 +50,39 @@ public class Recharge : MonoBehaviour
         transform.position = new Vector3(0f,yOff,0f);
         sphereMat = GetComponent<Renderer>().material;
 
-        initSpcPos = spc.transform.position;
+        if (spc != null)
+            initSpcPos = spc.transform.position;
     }
 
     private void Update(){
-        time += Time.deltaTime;
-        if (time >= duration+50f){
-            sphereDieInterval.enabled = true;
-            spc.Die();
-            return;
-        }
         transform.localScale = Vector3.Lerp(transform.localScale,initScale,Time.deltaTime*15f);
         if (sphereDieInterval.enabled){
-            percent.text = 100f+"%!";
             sphereMat.SetFloat("_Intact",sphereDieInterval.t);
-        }else{  
-            percent.text = Mathf.RoundToInt(durationInterval.t*100f).ToString()+"%";
+            return;
+        }
+        float distance = Vector3.Distance(transform.position,PlayerInfo.GetPlayer().transform.position);
+        if (distance > transform.lossyScale.magnitude*0.5f+7f && !damageOnInterval.isPlaying){
+            damageOnInterval.Resume();
+        }else if (distance <= transform.lossyScale.magnitude*0.5f+7f && damageOnInterval.isPlaying){
+            damageOnInterval.Pause();
         }
     }
 
-    public void ChargedFull(){
-        spc.transform.SetParent(null,false);
-        spc.transform.position = new Vector3(transform.position.x,transform.position.y+yOff,transform.position.z);
-        spc.transform.localRotation = Quaternion.identity;
-        spc.transform.rotation = Quaternion.identity;
-        spc.PopScore(scoreToGive,4f,0f);
-        PlayerInfo.AddScore(scoreToGive);
-        spc.Die();
+    public void DamagePlayer(){
+        PlayerInfo.GetPH().TakeDamage(damage,1f,0);
+    }
+
+    public void Ended(){
+        if (spc != null){
+            spc.transform.SetParent(null,false);
+            spc.transform.position = new Vector3(transform.position.x,transform.position.y+yOff,transform.position.z);
+            spc.transform.localRotation = Quaternion.identity;
+            spc.transform.rotation = Quaternion.identity;
+            spc.PopScore(scoreToGive,4f,0f);
+            PlayerInfo.AddScore(scoreToGive);
+            spc.Die();
+        }
+        damageOnInterval.enabled = false;
         sphereDieInterval.enabled = true;
     }
 

@@ -88,7 +88,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         PlayerInfo.SetPH(this);
     }
 
-    private void Start()
+    private void Start()//Player colors dont update on scene switch
     {
         initialScale = healthBar.localScale;
         healthT = stats.numericals["health"] / stats.maxHealth;
@@ -96,6 +96,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         sumText.text = Mathf.Round(healthT*100f).ToString() + '%';
         healthBar.localScale = new Vector3(Mathf.Clamp(initialScale.x * healthT,0.0002f,initialScale.x),healthBar.localScale.y, healthBar.localScale.z);
         healthBarImg = healthBar.GetComponent<Image>();
+        playerColor = healthBarGradient.Evaluate(healthT);
+        playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
         if (playerObjects == null)
             return;
         foreach (var obj in playerObjects)
@@ -220,6 +222,31 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (!EvaluateDamageIntake(senderStats,intake)){
             return 0f;
+        }
+        reactionT = arb;
+        hurtScreen.SetActive(true);
+        fadeColor.ChangeGradientIndex(index);
+        //Debug.Log("Shields: " + shields + " | Health outake: " + (intake / (shields + 1)));
+        EvaluateShields();
+        playerColor = healthBarGradient.Evaluate(healthT);
+        playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
+        if (stats.numericals["health"] <= 0)
+        {
+            //RecycleBacteria(); 
+            //death(insane)
+        }
+        if (stats.numericals["health"] >= 0f)
+            return 0f;
+        else
+            return stats.numericals["health"];
+    }
+
+    public float TakeDamage(float intake, float arb, int index)
+    {
+        stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+        if (stats.shields.Count > 0){
+            if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
+                stats.shields.RemoveAt(stats.shields.Count-1);
         }
         reactionT = arb;
         hurtScreen.SetActive(true);

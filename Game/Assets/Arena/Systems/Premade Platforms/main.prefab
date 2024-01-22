@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1849135328250760649}
   - component: {fileID: 1849135328250760646}
   - component: {fileID: 1849135328250760647}
-  - component: {fileID: 1849135328250760648}
+  - component: {fileID: 4741097509747733363}
+  - component: {fileID: 4685993779547794427}
   m_Layer: 10
   m_Name: main
   m_TagString: Untagged
@@ -104,7 +105,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1849135328250760648
+--- !u!114 &4741097509747733363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,11 +114,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1849135328250760642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6df66f5db4e6a3542885d1efd83247ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matIndex: 1
-  color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  rend: {fileID: 1849135328250760646}
+  pot: 0
+  rechargePrefab: {fileID: 5365286935132006627, guid: adf538eaef6d23f429a31fecfd9af512, type: 3}
+  simonPrefab: {fileID: 0}
+  derustPrefab: {fileID: 0}
+  trapPrefab: {fileID: 5365286935132006627, guid: 279eb9dc2723b864fb5a2df7cd34bd4c, type: 3}
+  sleepComponent: {fileID: 4685993779547794427}
+  touchTolerance: 1
+--- !u!114 &4685993779547794427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849135328250760642}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d48ed45f1c85cd439d2e3467d3bd977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 1849135328250760646}
 --- !u!1 &3495736955814306452
 GameObject:
   m_ObjectHideFlags: 0

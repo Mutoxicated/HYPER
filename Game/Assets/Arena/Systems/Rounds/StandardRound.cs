@@ -44,6 +44,7 @@ public class StandardRound : MonoBehaviour, IRound
 
     public void EndRound()
     {
+        Difficulty.roundFinished = true;
         beamInstance.SetActive(true);
         Destroy(gameObject);
     }
