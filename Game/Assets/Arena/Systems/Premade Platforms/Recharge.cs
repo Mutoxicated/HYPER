@@ -54,6 +54,10 @@ public class Recharge : MonoBehaviour
     }
 
     private void Update(){
+        if (Difficulty.roundFinished){
+            FinishObjective();
+            return;
+        }
         time += Time.deltaTime;
         if (time >= duration+50f){
             sphereDieInterval.enabled = true;
@@ -75,12 +79,12 @@ public class Recharge : MonoBehaviour
         spc.transform.localRotation = Quaternion.identity;
         spc.transform.rotation = Quaternion.identity;
         spc.PopScore(scoreToGive,4f,0f);
-        PlayerInfo.AddScore(scoreToGive);
-        spc.Die();
+        PlayerInfo.AddScore(scoreToGive);;
         sphereDieInterval.enabled = true;
     }
 
     public void FinishObjective(){
+        spc.Die();
         Destroy(gameObject.transform.parent.gameObject);
     }
 }

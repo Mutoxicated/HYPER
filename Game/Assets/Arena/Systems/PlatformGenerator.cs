@@ -22,10 +22,10 @@ public class PlatformGenerator : MonoBehaviour
     private static readonly float chance = 100f;
 
     private static float sleepers = 0;
-    private static float trappers = 1;
+    private static float trappers = 0;
     private static float rechargers = 0;
     private static float simoners = 0;
-    private static float derusters = 0;
+    private static float derusters = 1;
 
     private static float currentsleepers = 0;
     private static float currenttrappers = 0;
@@ -336,9 +336,9 @@ public class PlatformGenerator : MonoBehaviour
         currentsleepers = Mathf.RoundToInt(sleepers);
         currenttrappers = Mathf.RoundToInt(trappers);
         List<PlatformObjective> shuffledObjectives = objectives.ToList();
-        Debug.Log("before: "+shuffledObjectives.Count);
+        //Debug.Log("before: "+shuffledObjectives.Count);
         ShuffleObjectives(shuffledObjectives);
-        Debug.Log("after: "+shuffledObjectives.Count);
+        //Debug.Log("after: "+shuffledObjectives.Count);
         foreach (PlatformObjective po in shuffledObjectives){//im a monster
             if (GiveObjective(ref currentderusters,PlatformObjectiveType.DERUST,po))
                 continue;

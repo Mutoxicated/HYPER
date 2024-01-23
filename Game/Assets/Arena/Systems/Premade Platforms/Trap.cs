@@ -32,6 +32,10 @@ public class Trap : MonoBehaviour
     }
 
     private void OnEnable(){
+        if (Difficulty.roundFinished){
+            Ended();
+            return;
+        }
         damageOnInterval.ChangeInterval(damageInterval);
         damageOnInterval.Pause();
         durationInterval.ChangeInterval(duration);

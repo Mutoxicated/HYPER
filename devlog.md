@@ -1125,3 +1125,7 @@ Fixed score popup bug where pretty much the pool wasnt a true singleton but now 
 ## Day 227
 
 Made platform objectives randomly get applied to platforms. Created the trap objective. The objective is to stay inside the platform, cuz the platform trapped you, hehe.
+
+## Day 228 & 229
+
+Made the simon says objective and the derust objective.

@@ -117,11 +117,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df66f5db4e6a3542885d1efd83247ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoints: []
   rend: {fileID: 1849135328250760646}
   pot: 0
   rechargePrefab: {fileID: 5365286935132006627, guid: adf538eaef6d23f429a31fecfd9af512, type: 3}
-  simonPrefab: {fileID: 0}
-  derustPrefab: {fileID: 0}
+  simonPrefab: {fileID: 5365286935132006627, guid: 3ab85e4b31c23894dab42a4f58275700, type: 3}
+  derustPrefab: {fileID: 304411639316609756, guid: 16048af650cd1a843934923433f6d1c2, type: 3}
   trapPrefab: {fileID: 5365286935132006627, guid: 279eb9dc2723b864fb5a2df7cd34bd4c, type: 3}
   sleepComponent: {fileID: 4685993779547794427}
   touchTolerance: 1

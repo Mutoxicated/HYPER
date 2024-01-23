@@ -31,7 +31,7 @@ public class StandardRound : MonoBehaviour, IRound
 
     public void SpawnEnemy(){
         Instantiate(diff.enemyPool[Random.Range(0,diff.enemyPool.Count)],
-                    diff.spawnPoints[Random.Range(0,diff.spawnPoints.Length)].transform.position, 
+                    Difficulty.spawnPoints[Random.Range(0,Difficulty.spawnPoints.Count)].transform.position, 
                     Quaternion.identity);
     }
 

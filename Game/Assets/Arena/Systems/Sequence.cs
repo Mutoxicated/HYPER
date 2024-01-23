@@ -19,7 +19,7 @@ public class Sequence : MonoBehaviour
             diff = GameObject.FindWithTag("Difficulty").GetComponent<Difficulty>();
         for (int i = 0; i < diff.spawnerPopulation; i++)
         {
-            spawners.Add(new Spawner(diff.spawnPoints[Random.Range(0, diff.spawnPoints.Length)].transform));
+            spawners.Add(new Spawner(Difficulty.spawnPoints[Random.Range(0, Difficulty.spawnPoints.Count)].transform));
         }
     }
 

@@ -18,8 +18,9 @@ public class PlatformObjective : MonoBehaviour
     private static readonly Color normalColor = new Color(0.5f,0.5f,0.5f,1f);
     private static readonly Color sleepColor = new Color(0.35f,0.35f,0.35f,1f);
     private static readonly Color rechargeColor = new Color(0.35f,0.65f,0.75f,1f);
-    private static readonly Color simonColor = new Color(0.35f,0.75f,0.1f,1f);
+    private static readonly Color simonColor = new Color(0.35f,0.55f,0.1f,1f);
 
+    [SerializeField] private GameObject[] spawnPoints;
     [SerializeField] private Renderer rend;
     [SerializeField] private PlatformObjectiveType pot = PlatformObjectiveType.NONE;
     [SerializeField] private GameObject rechargePrefab;
@@ -46,6 +47,12 @@ public class PlatformObjective : MonoBehaviour
         EvaluateCharacteristics();
     }
 
+    private void RemoveSpawnsFromArray(){
+        foreach (GameObject go in spawnPoints){
+            Difficulty.spawnPoints.Remove(go);
+        }
+    }
+
     private void EvaluateCharacteristics(){
         switch(pot){
             case PlatformObjectiveType.NONE:
@@ -62,6 +69,8 @@ public class PlatformObjective : MonoBehaviour
                 SetColor(simonColor);
                 break;
             case PlatformObjectiveType.DERUST:
+                InstatiateObjectivePrefab(derustPrefab);
+                RemoveSpawnsFromArray();
                 SetColor(simonColor);
                 break;
             case PlatformObjectiveType.TRAP:
@@ -73,6 +82,8 @@ public class PlatformObjective : MonoBehaviour
     }
 
     private void OnEnable(){
+        currentTouches = 0;
+        touchTolerance = 1;
         EvaluateCharacteristics();
     }
 
@@ -86,9 +97,6 @@ public class PlatformObjective : MonoBehaviour
                 break;
             case PlatformObjectiveType.SIMON_SAYS:
                 InstatiateObjectivePrefab(simonPrefab);
-                break;
-            case PlatformObjectiveType.DERUST:
-                InstatiateObjectivePrefab(derustPrefab);
                 break;
             case PlatformObjectiveType.TRAP:
                 InstatiateObjectivePrefab(trapPrefab);

@@ -16,6 +16,8 @@ Shader "Custom/SurfaceEffect"
         _Saturation("Saturation", Range(0, 2)) = 1
 
         _ClampAlphaValue("ClampAlpha", Range(0,1)) = 1
+
+        _Extension("Extension", Range(1,2)) = 1.2
     }
         SubShader
         {
@@ -54,6 +56,7 @@ Shader "Custom/SurfaceEffect"
                 float _Contrast;
                 float _Saturation;
                 float _ClampAlphaValue;
+                float _Extension;
 
                 v2f vert(appdata v)
                 {
@@ -62,7 +65,7 @@ Shader "Custom/SurfaceEffect"
                     
                     float3 vert = v.vertex - center.xyz;
 
-                    vert *= 1.2;
+                    vert *= _Extension;
 
                     v.vertex = vert + center.xyz;
 

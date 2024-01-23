@@ -11,7 +11,6 @@ public class Interactable : MonoBehaviour
     [SerializeField] private GUIPopup popup;
     [SerializeField] private UnityEvent onInput = new UnityEvent();
 
-    private string popupText = "Press";
     private bool rayHit;
     private bool once;
 

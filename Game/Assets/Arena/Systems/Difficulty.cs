@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Difficulty : MonoBehaviour 
@@ -9,6 +10,7 @@ public class Difficulty : MonoBehaviour
     public static Transform player;
     public static List<GameObject> enemies = new List<GameObject>();
     public static ExtraUtils utils;
+    public static List<GameObject> spawnPoints = new List<GameObject>();
 
     public float linearT = 1f;
     public float asymT = 0f;
@@ -19,7 +21,6 @@ public class Difficulty : MonoBehaviour
     public float allyBacteriaChance = 100f;
 
     public List<GameObject> enemyPool;
-    public GameObject[] spawnPoints;
 
     public static GameObject FindClosestEnemy(Transform trans, float distTol)
     {
@@ -86,7 +87,7 @@ public class Difficulty : MonoBehaviour
         roundFinished = false;
         asymT = rounds/(rounds+300);
         linearT += 1f/10f;
-        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
         player = GameObject.FindWithTag("Player").transform;
         utils = GameObject.FindWithTag("ExtraUtils").GetComponent<ExtraUtils>();
     }

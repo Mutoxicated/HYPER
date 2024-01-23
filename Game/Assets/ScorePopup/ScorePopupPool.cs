@@ -15,6 +15,12 @@ public class ScorePopupPool : MonoBehaviour
         spp = this;
     }
 
+    public void RetrieveAllPopups(){
+        foreach (ScorePopup sp in activePopups.ToArray()){
+            ReturnObject(sp);
+        }
+    }
+
     public void GetObject(Transform parent, int score, float duration){
         if (inactivePopups.Count == 0){
             GameObject instance = Instantiate(scorePopupPrefab, parent.position,parent.rotation);

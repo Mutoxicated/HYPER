@@ -40,8 +40,6 @@ public class TeleportToScene : MonoBehaviour
         }
 
         PlayerInfo.SetShields(playerStats.shields.ToArray());
-
-        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -50,6 +48,7 @@ public class TeleportToScene : MonoBehaviour
             return;
         if (!justTeleport){
             PlayerInfo.GetPH().immuneSystem.RecycleBacteria();
+            ScorePopupPool.spp.RetrieveAllPopups();
             PublicPools.RetrieveAllObjectsToPools();
             collision.gameObject.transform.position = spawnPoint.position;
             playerlook.AlterLookRotation(spawnPoint.rotation);
