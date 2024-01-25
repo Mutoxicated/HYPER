@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ModifyWeapon : MonoBehaviour
 {
+    [SerializeField] private ClassItem ci;
+
     [SerializeField] private int amountToModify;
     [SerializeField] private float modifier;
     [SerializeField] private bool boolModifer;
@@ -31,7 +34,7 @@ public class ModifyWeapon : MonoBehaviour
         return weapons;
     }
 
-    private void OnEnable(){
+    private void ApplyEffect(Scene scene, LoadSceneMode lsm){
         wps = GetRandomWeapons();
         foreach (Weapon wp in wps){
             //Debug.Log("wp: "+wp);
@@ -48,7 +51,33 @@ public class ModifyWeapon : MonoBehaviour
         }
     }
 
+     private void ApplyEffect(){
+        wps = GetRandomWeapons();
+        foreach (Weapon wp in wps){
+            //Debug.Log("wp: "+wp);
+            if (modifyFireRate){
+                wp.modifier += modifier;
+            }
+            if (wp.modifier < 0){
+                modifier = modifier - wp.modifier;
+                wp.modifier = 0;
+            }
+            if (modifyExtra){
+                wp.extra = boolModifer;
+            }
+        }
+    }
+
+    private void Start(){
+        ApplyEffect();
+        if (ci.ReApply())
+            SceneManager.sceneLoaded += ApplyEffect;
+       
+    }
+
     private void OnDestroy(){
+        if (ci.ReApply())
+            SceneManager.sceneLoaded -= ApplyEffect;
         if (wps.Count == 0)
             return;
         foreach (Weapon wp in wps){

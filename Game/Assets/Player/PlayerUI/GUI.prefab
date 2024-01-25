@@ -1257,7 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6603774, g: 0.17413338, b: 0.09656461, a: 1}
+  m_Color: {r: 0.09291565, g: 0.6764573, b: 0.6792453, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5252,7 +5252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -5261,6 +5261,10 @@ PrefabInstance:
     - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5280,6 +5284,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}
@@ -5304,6 +5312,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: ButtonScale, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: ButtonScale, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2269862271969458035, guid: c6f3f4cbc6378e344ad116dd13f0e103, type: 3}

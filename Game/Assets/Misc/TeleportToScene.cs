@@ -39,7 +39,24 @@ public class TeleportToScene : MonoBehaviour
             nums[key] = pnums[key];
         }
 
-        PlayerInfo.SetShields(playerStats.shields.ToArray());
+        PlayerInfo.SetShields(playerStats.shields);
+    }
+
+    public void SwitchScene(){
+        PlayerInfo.GetPH().immuneSystem.RecycleBacteria();
+        if (sceneName != "MainMenu"){
+            ScorePopupPool.spp.RetrieveAllPopups();
+            PublicPools.RetrieveAllObjectsToPools();
+        }
+        UpdatePlayerStatsTransfer();
+        if (SceneManager.GetActiveScene().name == "Interoid"){
+            RunDataSave.rData.conditionals = PlayerInfo.GetConditionals();
+            RunDataSave.rData.numericals = PlayerInfo.GetNumericals();
+            RunDataSave.rData.shields = PlayerInfo.GetShields();
+            RunDataSave.rData.money = PlayerInfo.GetMoney();
+            RunDataSave.UpdateJsonData();
+            RunDataSave.UpdateData();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -47,12 +64,9 @@ public class TeleportToScene : MonoBehaviour
         if (collision.gameObject.tag != "Player")
             return;
         if (!justTeleport){
-            PlayerInfo.GetPH().immuneSystem.RecycleBacteria();
-            ScorePopupPool.spp.RetrieveAllPopups();
-            PublicPools.RetrieveAllObjectsToPools();
             collision.gameObject.transform.position = spawnPoint.position;
             playerlook.AlterLookRotation(spawnPoint.rotation);
-            UpdatePlayerStatsTransfer();
+            SwitchScene();
         }
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
         PlatformGenerator.PG.ActiveState(platformsState);

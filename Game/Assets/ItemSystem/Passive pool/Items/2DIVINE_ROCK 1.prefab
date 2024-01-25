@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -8643496922600783546}
   - component: {fileID: -8505040975282532416}
   m_Layer: 0
-  m_Name: REBEL
+  m_Name: 2DIVINE_ROCK 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   population: 1
+  number: 1
+  _operator: 0
 --- !u!114 &-8505040975282532416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,9 +65,9 @@ MonoBehaviour:
   conditionals: []
   conditionalValues: 
   numericals:
-  - parryChance
+  - enemyBlockChance
   initialNumericalIncrements:
-  - 2
+  - 3
   numericalIncrements:
-  - 0.5
+  - 0.45
   populationMod: 0

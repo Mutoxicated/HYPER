@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4398219318003504558}
   - component: {fileID: -8643496922600783546}
-  - component: {fileID: 640912790695918200}
+  - component: {fileID: -8505040975282532416}
   m_Layer: 0
-  m_Name: PREY_MECHANIC
+  m_Name: 8PROEON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   population: 1
---- !u!114 &640912790695918200
+  number: 6
+  _operator: 4
+--- !u!114 &-8505040975282532416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,9 +65,9 @@ MonoBehaviour:
   conditionals: []
   conditionalValues: 
   numericals:
-  - damageNO
+  - shieldHealthModifier
   initialNumericalIncrements:
-  - 0.015
-  numericalIncrements:
   - 0.01
+  numericalIncrements:
+  - 0.025
   populationMod: 0

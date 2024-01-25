@@ -10,7 +10,7 @@ public class ObjectPoolManager : MonoBehaviour
     public bool enableOnInstance = true;
     public GameObject prefab;
 
-    private void Awake()
+    private void Start()
     {
         poolID = gameObject.name;
         if (isPublic){
@@ -107,6 +107,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     public void Reattach(GameObject package)
     {
-        StartCoroutine(ReceiveObject(package));
+        if (gameObject.activeSelf)
+            StartCoroutine(ReceiveObject(package));
     }
 }

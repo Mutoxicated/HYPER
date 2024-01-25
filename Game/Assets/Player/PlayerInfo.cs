@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class PlayerInfo
 {
+    public static bool getRunData = true;
     private static GameObject player;
     private static playerLook pl;
     private static PlayerHealth playerHealth;
@@ -16,9 +18,13 @@ public static class PlayerInfo
     private static Stats.conditionalDict conditionalDictTransfer = new Stats.conditionalDict();
     private static Stats.numericalDict numericalDictTransfer = new Stats.numericalDict();
 
-    private static Shield[] shields;
+    private static List<Shield> shields = new List<Shield>();
 
     private static GunShooter.Echelon echelon;
+
+    public static void SetGetRunData(bool state){
+        getRunData = state;
+    }
 
     public static GameObject GetPlayer(){
         return player;
@@ -104,6 +110,10 @@ public static class PlayerInfo
         money += money2;
     }
 
+    public static void SetMoneyAbsolute(int money2){
+        money = money2;
+    }
+
     public static Stats.conditionalDict GetConditionals(){
         return conditionalDictTransfer;
     }
@@ -112,11 +122,11 @@ public static class PlayerInfo
         return numericalDictTransfer;
     }
 
-    public static Shield[] GetShields(){
+    public static List<Shield> GetShields(){
         return shields;
     }
 
-    public static void SetShields(Shield[] shieldss){
+    public static void SetShields(List<Shield> shieldss){
         shields = shieldss;
     }
 

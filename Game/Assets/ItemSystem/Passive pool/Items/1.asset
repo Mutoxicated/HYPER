@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 1
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveItemInfo
+  item: {fileID: -8643496922600783546, guid: 3224958bb255c8149b6bf999cf186aa1, type: 3}
+  itemName: Arcam
+  nameColor: {r: 0.575233, g: 0, b: 1, a: 1}
+  itemImage: {fileID: 21300000, guid: 4d6a36bd0682a61408b15c001260ed74, type: 3}

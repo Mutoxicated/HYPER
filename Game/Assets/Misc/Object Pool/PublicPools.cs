@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class PublicPools : MonoBehaviour
 {
+    public static bool spawned = true;
     public static Dictionary<string, ObjectPoolManager> pools = new Dictionary<string, ObjectPoolManager>();
-    private static bool spawned = false;
-
     private void Awake()
     {
-        if (!spawned)
-        {
+        if (!spawned){
+            pools.Clear();
             DontDestroyOnLoad(gameObject.transform.root);
             spawned = true;
         }
+    }
+
+    public static void SetSpawn(bool state){
+        spawned = state;
     }
 
     public static void RetrieveAllObjectsToPools(){

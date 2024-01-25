@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public enum Class {
     //STARTER CLASSES \/
     Evocus,
@@ -32,7 +34,7 @@ public enum Class {
     Grinder,
     Lambda_Lanista
 }
-
+[Serializable]
 public enum ItemType {
     PASSIVE,
     WEAPON
@@ -43,8 +45,10 @@ public class ClassItem : MonoBehaviour
     [SerializeField] private ItemType itemType;
     [SerializeField] private List<Class> classes = new List<Class>();//classes the class item is in
 
-    private void OnEnable(){
-        gameObject.SetActive(false);
+    [SerializeField] private bool reApplyEffectsOnSceneChange = true;
+
+    public bool ReApply(){
+        return reApplyEffectsOnSceneChange;
     }
 
     public List<Class> GetClasses(){

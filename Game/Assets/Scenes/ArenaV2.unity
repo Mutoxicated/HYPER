@@ -654,6 +654,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3790309396005371068, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4177914415260335034, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_text
       value: I WOKE UP IN A NEW-
@@ -2351,6 +2355,7 @@ MonoBehaviour:
     - 0
     - 0
     - 28
+  shields: []
 --- !u!114 &1075948888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2804,55 +2809,6 @@ Transform:
   m_Father: {fileID: 168438271673831087}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!1 &1247850751
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1247850753}
-  - component: {fileID: 1247850752}
-  m_Layer: 0
-  m_Name: ItemPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1247850752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247850751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ecadec1aed51e846ac10a8008b3e757, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  receiver: 0
-  prefabs:
-  - {fileID: 6432951408254796468, guid: f30c6dd27513630419c47a1bd30fbb87, type: 3}
-  - {fileID: 6432951408254796468, guid: 4dfd590621fe04f4bb8d3d4ab62be55c, type: 3}
-  - {fileID: 6432951408254796468, guid: 88c4d61a50b75384f987c1af6e60bfdd, type: 3}
---- !u!4 &1247850753
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247850751}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1252647529
 GameObject:
   m_ObjectHideFlags: 0

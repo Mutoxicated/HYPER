@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -195,7 +196,17 @@ public class GunShooter : MonoBehaviour
     }
 
     private void Awake(){
-        weaponType = PlayerInfo.GetEchelon();
+        if (!RunDataSave.rData.newRun){
+            if (PlayerInfo.getRunData){
+                weaponType = RunDataSave.rData.echelonType;
+                PlayerInfo.SetEchelon((int)weaponType);
+            }else{
+                weaponType = PlayerInfo.GetEchelon();
+            }
+        }else{
+            weaponType = PlayerInfo.GetEchelon();
+            RunDataSave.rData.echelonType = weaponType;
+        }
         PlayerInfo.SetGun(this);
     }
 

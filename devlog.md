@@ -1129,3 +1129,7 @@ Made platform objectives randomly get applied to platforms. Created the trap obj
 ## Day 228 & 229
 
 Made the simon says objective and the derust objective.
+
+## Day 230
+
+Started implementing the persistent data saving system. Partially works! Very annoying to implement lol.

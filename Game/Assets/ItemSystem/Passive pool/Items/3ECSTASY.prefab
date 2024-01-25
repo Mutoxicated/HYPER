@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -8643496922600783546}
   - component: {fileID: -8505040975282532416}
   m_Layer: 0
-  m_Name: ECSTASY
+  m_Name: 3ECSTASY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   population: 1
+  number: 7
+  _operator: 2
 --- !u!114 &-8505040975282532416
 MonoBehaviour:
   m_ObjectHideFlags: 0

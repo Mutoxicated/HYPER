@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using UnityEngine;
 using RotaryHeart.Lib.SerializableDictionary;
+using UnityEngine.SceneManagement;
 
 public enum DeathFor {
     PLAYER,
@@ -80,26 +81,22 @@ public class Stats : MonoBehaviour
     private void Awake()
     {
         if (gameObject.tag == "Player"){
-            var conds = PlayerInfo.GetConditionals();
-            var nums = PlayerInfo.GetNumericals();
-
-            //Debug.Log("Player: "+conds.Count);
-
-            if (conds.Count == 0){
-                foreach (string key in conditionalsPrototype.Keys){
-                    if (!conditionals.ContainsKey(key))
-                        conditionals.Add(key,conditionalsPrototype[key]);
+            conditionalDict conds;
+            numericalDict nums;
+            Debug.Log("New run? "+RunDataSave.rData.newRun);
+            if (!RunDataSave.rData.newRun){
+                if (PlayerInfo.getRunData){
+                    PlayerInfo.getRunData = false;
+                    conds = RunDataSave.rData.conditionals;
+                    nums = RunDataSave.rData.numericals;
+                    shields = RunDataSave.rData.shields.ToList();
+                    PlayerInfo.SetMoneyAbsolute(RunDataSave.rData.money);
+                    RunDataSave.UpdateJsonData();
+                }else{
+                    conds = PlayerInfo.GetConditionals();
+                    nums = PlayerInfo.GetNumericals();
+                    shields = PlayerInfo.GetShields();
                 }
-                foreach (string key in numericalsPrototype.Keys){
-                    if (!numericals.ContainsKey(key))
-                        numericals.Add(key,numericalsPrototype[key]);
-                }
-                numericals["health"] = maxHealth;
-                for (int i = 0; i < maxShields;i++){
-                    shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
-                }
-                PlayerInfo.SetShields(shields.ToArray());
-            }else{
                 foreach (string key in conds.Keys){
                     if (!conditionals.ContainsKey(key))
                         conditionals.Add(key,conds[key]);
@@ -113,7 +110,31 @@ public class Stats : MonoBehaviour
                     else
                         numericals[key] = nums[key];
                 }
-                shields = PlayerInfo.GetShields().ToList();
+            }else{
+                foreach (string key in conditionalsPrototype.Keys){
+                    if (!conditionals.ContainsKey(key))
+                        conditionals.Add(key,conditionalsPrototype[key]);
+                }
+                foreach (string key in numericalsPrototype.Keys){
+                    if (!numericals.ContainsKey(key))
+                        numericals.Add(key,numericalsPrototype[key]);
+                }
+                for (int i = 0; i < maxShields;i++){
+                    shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
+                }
+                RunDataSave.rData.newRun = false;
+                conds = PlayerInfo.GetConditionals();
+                nums = PlayerInfo.GetNumericals();
+            }
+
+            PlayerInfo.SetShields(shields);
+
+            if (SceneManager.GetActiveScene().name == "Interoid"){
+                RunDataSave.rData.conditionals = conditionals;
+                RunDataSave.rData.numericals = numericals;
+                RunDataSave.rData.shields = shields;
+                RunDataSave.rData.money = PlayerInfo.GetMoney();
+                RunDataSave.UpdateJsonData();
             }
             return;
         }

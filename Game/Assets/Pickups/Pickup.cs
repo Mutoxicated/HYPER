@@ -12,14 +12,16 @@ public enum PICKUP_TYPE {
 
 public class Pickup : MonoBehaviour
 {
-    private static int shieldAmount = 1;
-    private static int healthAmount = 50;
+    private static float shieldModifier = 1f;
+    private static float healthModifier = 1f;
+
+    private static float shieldAmount = 1;
+    private static float healthAmount = 50;
 
     [SerializeField] private Collider col;
     [SerializeField] private PICKUP_TYPE pickup;
     [SerializeField] private float duration;
     [SerializeField] private OnInterval durationInterval;
-    [SerializeField] private AudioSource sfx;
     [SerializeField] private GameObject ps;
     [SerializeField] private OnInterval interval;
     [SerializeField] private Renderer[] rends;
@@ -27,6 +29,14 @@ public class Pickup : MonoBehaviour
     private List<Material> mats = new List<Material>();
 
     private Color color;
+
+    public static void StepShieldMod(float num){
+        shieldModifier += num;
+    }
+
+    public static void StepHealthMod(float num){
+        healthModifier += num;
+    }
 
     private void Start(){
         foreach (Renderer rend in rends){
@@ -54,6 +64,10 @@ public class Pickup : MonoBehaviour
         }
     }
 
+    private int Processed(float value,float mod){
+        return Mathf.RoundToInt(value*mod);
+    }
+
     private void OnTriggerEnter(Collider other){
         if (other.gameObject.tag != "Player")
             return;
@@ -64,15 +78,15 @@ public class Pickup : MonoBehaviour
         ps.transform.SetParent(null);
         switch(pickup){
             case PICKUP_TYPE.HEALTH:
-                PlayerInfo.GetGun().stats.GetHealth(healthAmount);
+                PlayerInfo.GetGun().stats.GetHealth(Processed(healthAmount,healthModifier));
                 PlayerInfo.GetPH().ActivateScreen(3);
                 break;
             case PICKUP_TYPE.SHIELD:
-                PlayerInfo.GetGun().stats.AddShield(shieldAmount);
+                PlayerInfo.GetGun().stats.AddShield(Processed(shieldAmount,shieldModifier));
                 PlayerInfo.GetPH().ActivateScreen(4);
                 break;
             default:
-                PlayerInfo.GetGun().stats.AddShield(shieldAmount);
+                PlayerInfo.GetGun().stats.AddShield(Processed(shieldAmount,shieldModifier));
                 break;
         }
     }

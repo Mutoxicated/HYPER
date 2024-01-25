@@ -9,7 +9,8 @@ public class ReturnToSender : MonoBehaviour
     private void OnDisable()
     {
         if (isPublic){
-            PublicPools.pools[gameObject.name].Reattach(gameObject);
+            if (PublicPools.pools[gameObject.name].gameObject.activeInHierarchy)
+                PublicPools.pools[gameObject.name].Reattach(gameObject);
         }else{
             if (localPool == null){
                 Destroy(gameObject);
