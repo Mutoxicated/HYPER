@@ -1133,3 +1133,7 @@ Made the simon says objective and the derust objective.
 ## Day 230
 
 Started implementing the persistent data saving system. Partially works! Very annoying to implement lol.
+
+## Day 231
+
+Small revamp on the data saving system, which made it fully functional. I will implement the super passive items tomorrow.

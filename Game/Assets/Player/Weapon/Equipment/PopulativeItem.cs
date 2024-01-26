@@ -19,6 +19,14 @@ public class PopulativeItem : MonoBehaviour
         }
     }
 
+    public void SetPopulation(int num){
+        int diff = num-population;
+        population = num;
+        foreach (Sub sub in subs){
+            sub.Invoke(diff);
+        }
+    }
+
     private void OnDisable(){
         population = 1;
     }

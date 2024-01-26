@@ -9,11 +9,31 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private List<PopulativeItem> equips = new List<PopulativeItem>();
 
     private void Awake(){
-        if (eq != null && eq != this) {
+        if (eq != null && eq != this){
             Destroy(gameObject);
         }
         else {
             eq = this;
+        }
+    }
+
+    public static void UpdateRunDataEquipment(){
+        RunDataSave.rData.equipment.Clear();
+        foreach (PopulativeItem pi in eq.equips){
+            if (!pi.gameObject.activeSelf)
+                continue;
+            RunDataSave.rData.equipment.Add(new EquipmentInfo(pi.name,pi.GetPopulation()));
+        }
+    }
+
+    private void RegenerateEquips(){
+        if (RunDataSave.rData.equipment == null){
+            return;
+        }
+        Debug.Log("REGENERATING EQUIPS: ");
+        foreach (EquipmentInfo equip in RunDataSave.rData.equipment){
+            Debug.Log(equip.name+" REGENERATED");
+            AddEquipmentByName(equip.name,equip.population);
         }
     }
 
@@ -23,6 +43,15 @@ public class EquipmentManager : MonoBehaviour
                 continue;
             equip.gameObject.SetActive(false);
             //equip.gameObject.SetActive(true);
+        }
+        RegenerateEquips();
+    }
+
+    public static void RevertAllEquipment(){
+        foreach (PopulativeItem pi in eq.equips){
+            if (!pi.gameObject.activeSelf)
+                continue;
+            pi.gameObject.SetActive(false);
         }
     }
 
@@ -45,5 +74,23 @@ public class EquipmentManager : MonoBehaviour
             return true;
         }
         return false; 
+    }
+
+    public bool AddEquipmentByName(string name, int population){
+        PopulativeItem item = null;
+        foreach (PopulativeItem it in equips){
+            if (it.name == name)
+                item = it;
+        }
+        if (item == null){
+            Debug.Log("No equipment with that name found.");
+            return false;
+        }
+        if (!item.gameObject.activeSelf){
+            item.gameObject.SetActive(true);
+            return true;
+        }
+        item.SetPopulation(Mathf.RoundToInt(Mathf.Clamp(population,0,maxPopulation)));
+        return true; 
     }
 }

@@ -67,5 +67,5 @@ MonoBehaviour:
   initialNumericalIncrements:
   - -0.1
   numericalIncrements:
-  - -0.03
+  - -0.3
   populationMod: 0

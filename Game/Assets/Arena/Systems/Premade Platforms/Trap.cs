@@ -82,8 +82,10 @@ public class Trap : MonoBehaviour
             spc.transform.position = new Vector3(transform.position.x,transform.position.y+yOff,transform.position.z);
             spc.transform.localRotation = Quaternion.identity;
             spc.transform.rotation = Quaternion.identity;
-            spc.PopScore(scoreToGive,4f,0f);
-            PlayerInfo.AddScore(scoreToGive);
+            if (!Difficulty.roundFinished){
+                spc.PopScore(scoreToGive,4f,0f);
+                PlayerInfo.AddScore(scoreToGive);
+            }
             spc.Die();
         }
         damageOnInterval.enabled = false;

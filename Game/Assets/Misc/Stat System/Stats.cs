@@ -78,64 +78,51 @@ public class Stats : MonoBehaviour
         conditionals = conditionalsPrototype;
     }
 
+    private void UsePrototypes(){
+        foreach (string key in conditionalsPrototype.Keys){
+            if (!conditionals.ContainsKey(key))
+                conditionals.Add(key,conditionalsPrototype[key]);
+        }
+        foreach (string key in numericalsPrototype.Keys){
+            if (!numericals.ContainsKey(key))
+                numericals.Add(key,numericalsPrototype[key]);
+        }
+    }
+
     private void Awake()
     {
         if (gameObject.tag == "Player"){
             conditionalDict conds;
             numericalDict nums;
-            Debug.Log("New run? "+RunDataSave.rData.newRun);
-            if (!RunDataSave.rData.newRun){
-                if (PlayerInfo.getRunData){
-                    PlayerInfo.getRunData = false;
-                    conds = RunDataSave.rData.conditionals;
-                    nums = RunDataSave.rData.numericals;
-                    shields = RunDataSave.rData.shields.ToList();
-                    PlayerInfo.SetMoneyAbsolute(RunDataSave.rData.money);
-                    RunDataSave.UpdateJsonData();
-                }else{
-                    conds = PlayerInfo.GetConditionals();
-                    nums = PlayerInfo.GetNumericals();
-                    shields = PlayerInfo.GetShields();
+            
+            if (RunDataSave.rData.conditionals.Count == 0){
+                
+                UsePrototypes();
+                for (int i = 0; i < maxShields;i++){
+                    shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
                 }
+            }else{
+                conds = RunDataSave.rData.conditionals;
+                nums = RunDataSave.rData.numericals;
                 foreach (string key in conds.Keys){
                     if (!conditionals.ContainsKey(key))
                         conditionals.Add(key,conds[key]);
                     else
                         conditionals[key] = conds[key];
                 }
-
                 foreach (string key in nums.Keys){
                     if (!numericals.ContainsKey(key))
                         numericals.Add(key,nums[key]);
                     else
                         numericals[key] = nums[key];
                 }
-            }else{
-                foreach (string key in conditionalsPrototype.Keys){
-                    if (!conditionals.ContainsKey(key))
-                        conditionals.Add(key,conditionalsPrototype[key]);
-                }
-                foreach (string key in numericalsPrototype.Keys){
-                    if (!numericals.ContainsKey(key))
-                        numericals.Add(key,numericalsPrototype[key]);
-                }
-                for (int i = 0; i < maxShields;i++){
-                    shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
-                }
-                RunDataSave.rData.newRun = false;
-                conds = PlayerInfo.GetConditionals();
-                nums = PlayerInfo.GetNumericals();
-            }
+
+                shields = RunDataSave.rData.shields.ToList();
+            }   
 
             PlayerInfo.SetShields(shields);
-
-            if (SceneManager.GetActiveScene().name == "Interoid"){
-                RunDataSave.rData.conditionals = conditionals;
-                RunDataSave.rData.numericals = numericals;
-                RunDataSave.rData.shields = shields;
-                RunDataSave.rData.money = PlayerInfo.GetMoney();
-                RunDataSave.UpdateJsonData();
-            }
+            PlayerInfo.SetConditionals(conditionals);
+            PlayerInfo.SetNumericals(numericals);
             return;
         }
         foreach (string key in conditionalsPrototype.Keys){

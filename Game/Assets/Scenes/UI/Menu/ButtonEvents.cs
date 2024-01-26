@@ -19,4 +19,8 @@ public class ButtonEvents : MonoBehaviour
     public void StartRun(){
         RunDataSave.CreateData();
     }
+
+    public void UpdateRunInfo(){
+        RunDataSave.UpdateData();
+    }
 }

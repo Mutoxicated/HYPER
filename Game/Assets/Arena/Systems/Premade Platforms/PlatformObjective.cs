@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public enum PlatformObjectiveType{
@@ -13,6 +14,7 @@ public enum PlatformObjectiveType{
 
 public class PlatformObjective : MonoBehaviour
 {
+    private static List<GameObject> instances = new List<GameObject>();
     public static readonly Vector3 initPlatScale = new Vector3(72f,2f,72f);
 
     private static readonly Color normalColor = new Color(0.5f,0.5f,0.5f,1f);
@@ -32,9 +34,11 @@ public class PlatformObjective : MonoBehaviour
     [SerializeField] private int touchTolerance = 1;
     private int currentTouches = 0;
     private GameObject instance;
+    private Color currentColor = Color.white;
 
     private void InstatiateObjectivePrefab(GameObject prefab){
         instance = Instantiate(prefab,transform,true);
+        instances.Add(instance);
         instance.transform.position = transform.position;
     }
 
@@ -56,25 +60,25 @@ public class PlatformObjective : MonoBehaviour
     private void EvaluateCharacteristics(){
         switch(pot){
             case PlatformObjectiveType.NONE:
-                SetColor(normalColor);
+                currentColor = normalColor;
                 break;
             case PlatformObjectiveType.RECHARGE:
-                SetColor(rechargeColor);
+                currentColor = rechargeColor;
                 break;
             case PlatformObjectiveType.SLEEP:
-                SetColor(sleepColor);
+                currentColor = sleepColor;
                 touchTolerance = 3;
                 break;
             case PlatformObjectiveType.SIMON_SAYS:
-                SetColor(simonColor);
+                currentColor = simonColor;
                 break;
             case PlatformObjectiveType.DERUST:
                 InstatiateObjectivePrefab(derustPrefab);
                 RemoveSpawnsFromArray();
-                SetColor(simonColor);
+                currentColor = simonColor;
                 break;
             case PlatformObjectiveType.TRAP:
-                SetColor(rechargeColor);
+                currentColor = rechargeColor;
                 break;
             default:
                 break;
@@ -82,9 +86,11 @@ public class PlatformObjective : MonoBehaviour
     }
 
     private void OnEnable(){
+        sleepComponent.enabled = false;
         currentTouches = 0;
         touchTolerance = 1;
         EvaluateCharacteristics();
+        SetColor(currentColor);
     }
 
     private void ObjectiveLogic(){
@@ -103,6 +109,12 @@ public class PlatformObjective : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public static void RevertObjectives(){
+        foreach (GameObject instance in instances){
+            Destroy(instance);
         }
     }
 

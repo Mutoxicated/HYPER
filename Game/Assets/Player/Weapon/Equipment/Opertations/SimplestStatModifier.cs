@@ -71,6 +71,8 @@ public class SimplestStatModifier : MonoBehaviour
         {
             if (!effectApplied)
                 return;
+            if (stats == null)
+                return;
             for (int i = 0; i < conditionals.Length; i++)
             {
                 stats.conditionals[conditionals[i]] = !conditionalValues[i];

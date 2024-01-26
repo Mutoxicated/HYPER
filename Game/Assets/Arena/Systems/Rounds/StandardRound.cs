@@ -6,7 +6,7 @@ using UnityEngine;
 public class StandardRound : MonoBehaviour, IRound
 {
     public static readonly float initEnemySpawnInterval = 4f;
-    public static readonly float initDuration = 10f;
+    public static readonly float initDuration = 3f;
     public static readonly float initDifficultyMod = 4f;
 
     public Difficulty diff;
@@ -19,8 +19,11 @@ public class StandardRound : MonoBehaviour, IRound
     [SerializeField] private OnInterval spawnInterval;
     [SerializeField] private OnInterval durationInterval;
 
+    private void Awake(){
+        Difficulty.StepRound();
+    }
+
     private void Start(){
-        Difficulty.rounds++;
         roundText.text = Difficulty.rounds.ToString();
         spawnInterval.ChangeInterval(enemySpawnInterval);
         durationInterval.ChangeInterval(duration);

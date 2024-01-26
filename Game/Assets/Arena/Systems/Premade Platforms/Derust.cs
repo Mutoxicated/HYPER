@@ -27,7 +27,10 @@ public class Derust : MonoBehaviour
         spc.transform.position = new Vector3(transform.position.x,transform.position.y+yOff,transform.position.z);
         spc.transform.localRotation = Quaternion.identity;
         spc.transform.rotation = Quaternion.identity;
-        spc.PopScore(scoreToGive,3f,0f);
+        if (!Difficulty.roundFinished){
+            spc.PopScore(scoreToGive,3f,0f);
+            PlayerInfo.AddScore(scoreToGive);
+        }
         spc.Die();
         for (int i = 0; i < transform.parent.childCount;i++){
             if (transform.parent.GetChild(i) == transform)
@@ -42,9 +45,6 @@ public class Derust : MonoBehaviour
     }
 
     private void Update(){
-        if (Difficulty.roundFinished){
-            Destroy(holder);
-        }
 
         MoveTexture("_NoiseTexture2",offset);
         MoveTexture("_NoiseTexture1",offset2);

@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Security.Cryptography;
 using System.Linq;
+using System;
 
+[Serializable]
 public class PlatformInfo {
     public PlatformInfo(Vector3 mainPosition,Vector3 mainScale){
         this.mainPosition = mainPosition;
@@ -56,16 +58,22 @@ public class PlatformGenerator : MonoBehaviour
     private int extraLowerPlatformChance;
     private Scroll cycle;
 
-    private static List<PlatformInfo> oldPlatformData = new List<PlatformInfo>(){
+    private List<PlatformInfo> oldPlatformData = new List<PlatformInfo>(){
     };
 
-    private static List<PlatformInfo> unusedPlatforms = new List<PlatformInfo>(){
+    private List<PlatformInfo> unusedPlatforms = new List<PlatformInfo>(){
         new PlatformInfo(new Vector3(-67,-10,-106),new Vector3(70,2,70)),
         new PlatformInfo(new Vector3(71,-10,-110),new Vector3(55,2,40)),
         new PlatformInfo(new Vector3(0,0,0),new Vector3(40,2,40))
     };
 
-    private static List<PlatformObjective> objectives = new List<PlatformObjective>();
+    List<Vector3> preInstantiatedPlatformPositions = new List<Vector3>(){
+        new Vector3(-67,-10,-106),
+        new Vector3(71,-10,-110),
+        new Vector3(0,0,0)
+    };
+
+    private List<PlatformObjective> objectives = new List<PlatformObjective>();
 
     private void ShuffleObjectives(IList<PlatformObjective> list)
     {
@@ -90,7 +98,7 @@ public class PlatformGenerator : MonoBehaviour
 
     private PlatformInfo FindNeighborPlatformRelative(PlatformInfo relativePlat, PlatformInfo blacklistedPlat){
         float currentDist = 999999f;
-        PlatformInfo closestPlat = oldPlatformData[Random.Range(0,oldPlatformData.Count-1)];
+        PlatformInfo closestPlat = oldPlatformData[UnityEngine.Random.Range(0,oldPlatformData.Count-1)];
         foreach (PlatformInfo plat in oldPlatformData){
             if (plat == blacklistedPlat)
                 continue;
@@ -130,9 +138,9 @@ public class PlatformGenerator : MonoBehaviour
         float dist = Vector3.Distance(pos,platTwo.mainPosition);
         float minDistAllowed = (scale.x+scale.z)*0.3f+(platTwo.mainScale.x+platTwo.mainScale.z)*0.3f;
         if (Mathf.Abs(pos.y-platTwo.mainPosition.y) < platTwo.mainScale.y){
-           pos.y += -(platTwo.mainScale.y*0.5f+scale.y*0.5f)*0.5f+Random.Range(-Yoffset,-Yoffset*0.1f);
+           pos.y += -(platTwo.mainScale.y*0.5f+scale.y*0.5f)*0.5f+UnityEngine.Random.Range(-Yoffset,-Yoffset*0.1f);
         }else{
-            pos.y += Random.Range(-Yoffset,Yoffset);
+            pos.y += UnityEngine.Random.Range(-Yoffset,Yoffset);
         }
         if (dist < minDistAllowed){
             fix = dist-minDistAllowed;
@@ -146,12 +154,16 @@ public class PlatformGenerator : MonoBehaviour
     private bool DetectOverlapRelative(ref Vector3 pos, Vector3 scale, out float fix){
 
         foreach (PlatformInfo plat in oldPlatformData){
+            if (!PositionIsValid(plat.mainPosition))
+                continue;
             //trying to account for scale of the plat
             if (DetectOverlapBetweenPlatforms(ref pos,scale,plat,out fix)){
                 return true;
             }
         }
         foreach (PlatformInfo plat in unusedPlatforms){
+            if (!PositionIsValid(plat.mainPosition))
+                continue;
             if (DetectOverlapBetweenPlatforms(ref pos,scale,plat,out fix)){
                 return true;
             }
@@ -196,7 +208,7 @@ public class PlatformGenerator : MonoBehaviour
             theoreticalPosition = halfPoint;
             float scaleAvg = (scales[i].x+scales[i].z)*0.5f;
             Debug.Log("Scale: "+scales[i]);
-            extrudedTheoreticalPos = halfPoint+(halfPoint-center).normalized*Random.Range(scaleAvg+minExpand,scaleAvg+maxExpand);
+            extrudedTheoreticalPos = halfPoint+(halfPoint-center).normalized*UnityEngine.Random.Range(scaleAvg+minExpand,scaleAvg+maxExpand);
             Debug.Log("Theoretical pos: "+extrudedTheoreticalPos);
             if (Vector3.Distance(Vector3.zero,extrudedTheoreticalPos) < Vector3.Distance(Vector3.zero,theoreticalPosition)){
                 Debug.Log("!!!! Was going backwards !!!!");
@@ -241,13 +253,22 @@ public class PlatformGenerator : MonoBehaviour
     private List<Vector3> CreateScales(){
         List<Vector3> scales = new List<Vector3>();
         for (int i = 0; i<3; i++){
-            Vector3 mainScale = new Vector3(Random.Range(minMaxPlatformXScale.x,minMaxPlatformXScale.y),
-                                Random.Range(minMaxPlatformYScale.x,minMaxPlatformYScale.y),
+            Vector3 mainScale = new Vector3(UnityEngine.Random.Range(minMaxPlatformXScale.x,minMaxPlatformXScale.y),
+                                UnityEngine.Random.Range(minMaxPlatformYScale.x,minMaxPlatformYScale.y),
                                 0f);
-            mainScale.z = mainScale.x+Random.Range(-platformZScaleOffset,platformZScaleOffset);
+            mainScale.z = mainScale.x+UnityEngine.Random.Range(-platformZScaleOffset,platformZScaleOffset);
             scales.Add(mainScale);
         }
         return scales;
+    }
+
+    private void RegeneratePlatform(Vector3 position, Vector3 scale){
+        GameObject pHolder = Instantiate(platformHolder,position,Quaternion.identity);
+        GameObject main = Instantiate(mainPlat,position,Quaternion.identity);
+        objectives.Add(main.GetComponent<PlatformObjective>());
+        pHolder.transform.SetParent(platformsHolder.transform,true);
+        main.transform.localScale = scale;
+        main.transform.parent = pHolder.transform;
     }
 
     private void CreatePlatforms(Vector3[] positions, Vector3[] scales, int cap){
@@ -268,7 +289,7 @@ public class PlatformGenerator : MonoBehaviour
             if (amountCreated >= cap){
                 return;
             }
-            if (Random.Range(0,101) <= extraLowerPlatformChance){
+            if (UnityEngine.Random.Range(0,101) <= extraLowerPlatformChance){
                 //add extra platform
             }
         }
@@ -301,7 +322,7 @@ public class PlatformGenerator : MonoBehaviour
     private void RandomizeGenerationCycle(){
         for (int n = generationCycle.Length - 1; n > 0; --n)
         {
-            int k = Random.Range(0,generationCycle.Length-1);
+            int k = UnityEngine.Random.Range(0,generationCycle.Length-1);
             int temp = generationCycle[n];
             generationCycle[n] = generationCycle[k];
             generationCycle[k] = temp;
@@ -314,10 +335,10 @@ public class PlatformGenerator : MonoBehaviour
             return false;
         }
         currentOf--;
-        if (Random.Range(0,100) <= chance){
+        if (UnityEngine.Random.Range(0,100) <= chance){
             po.SetPot(pot);
         }else{
-            currentOf += Mathf.RoundToInt(Random.Range(minMaxRandomness.x,minMaxRandomness.y));
+            currentOf += Mathf.RoundToInt(UnityEngine.Random.Range(minMaxRandomness.x,minMaxRandomness.y));
         }
         return true;
     }
@@ -364,19 +385,59 @@ public class PlatformGenerator : MonoBehaviour
 
     private void Start(){
         PG = this;
+        if (cycle == null)
+            cycle = new Scroll(0,generationCycle.Length);
+
+        if (RunDataSave.rData.unusedPlatforms.Count == 0)
+            return;
+        oldPlatformData = RunDataSave.rData.oldPlatforms;
+        unusedPlatforms = RunDataSave.rData.unusedPlatforms;
+        cycle.AlterIndex(RunDataSave.rData.cycleIndex);
+        generationCycle = RunDataSave.rData.generationCycle;
+        RegeneratePlatforms();
     }
 
-    public void ActiveState(bool state){
-        platformsHolder.SetActive(state);
-        if (state){
+    public bool PositionIsValid(Vector3 position){
+        foreach (Vector3 pos in preInstantiatedPlatformPositions){
+            if (position.x == pos.x && position.z == pos.z)
+                return false;
+        }
+        return true;
+    }
+
+    public void RegeneratePlatforms(){
+        foreach (PlatformInfo pi in oldPlatformData){
+            if (!PositionIsValid(pi.mainPosition))
+                continue;
+            RegeneratePlatform(pi.mainPosition,pi.mainScale);
+        }
+
+        foreach (PlatformInfo pi in unusedPlatforms){
+            if (!PositionIsValid(pi.mainPosition))
+                continue;
+            RegeneratePlatform(pi.mainPosition,pi.mainScale);
+        }
+    }
+
+    public void UpdateRunDataPlatforms(){
+        RunDataSave.rData.oldPlatforms = oldPlatformData;
+        RunDataSave.rData.unusedPlatforms = unusedPlatforms;
+        RunDataSave.rData.cycleIndex = cycle.index;
+        RunDataSave.rData.generationCycle = generationCycle;
+    }
+
+    public void ActiveState(string sceneName, bool state){
+        if (sceneName == "Interoid"){
             RandomizeGenerationCycle();
-            if (cycle == null)
-                cycle = new Scroll(0,generationCycle.Length);
             maxPlatforms = generationCycle[cycle.index];
             GeneratePlatforms();
             cycle.Increase();
-            ApplyObjectivesToPlatforms();
             Progress();
+            UpdateRunDataPlatforms();
+        }
+        platformsHolder.SetActive(state);
+        if (state){
+            ApplyObjectivesToPlatforms();
         }
     }
 }

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 public static class PlayerInfo
 {
-    public static bool getRunData = true;
     private static GameObject player;
     private static playerLook pl;
     private static PlayerHealth playerHealth;
@@ -21,10 +21,6 @@ public static class PlayerInfo
     private static List<Shield> shields = new List<Shield>();
 
     private static GunShooter.Echelon echelon;
-
-    public static void SetGetRunData(bool state){
-        getRunData = state;
-    }
 
     public static GameObject GetPlayer(){
         return player;
@@ -118,8 +114,16 @@ public static class PlayerInfo
         return conditionalDictTransfer;
     }
 
+    public static void SetConditionals(Stats.conditionalDict conds){
+        conditionalDictTransfer = conds;
+    }
+
     public static Stats.numericalDict GetNumericals(){
         return numericalDictTransfer;
+    }
+
+    public static void SetNumericals(Stats.numericalDict conds){
+        numericalDictTransfer = conds;
     }
 
     public static List<Shield> GetShields(){

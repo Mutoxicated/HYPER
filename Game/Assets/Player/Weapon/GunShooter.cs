@@ -15,7 +15,8 @@ public class GunShooter : MonoBehaviour
         DOUBLE_STANDARD,
         CERBERUS,
         TETRIPLEX,
-        CINCOS
+        CINCOS,
+        IMPOSSIBLE
     }
 
     [SerializeField] public Stats stats;
@@ -196,17 +197,13 @@ public class GunShooter : MonoBehaviour
     }
 
     private void Awake(){
-        if (!RunDataSave.rData.newRun){
-            if (PlayerInfo.getRunData){
-                weaponType = RunDataSave.rData.echelonType;
-                PlayerInfo.SetEchelon((int)weaponType);
-            }else{
-                weaponType = PlayerInfo.GetEchelon();
-            }
-        }else{
+        if (RunDataSave.rData.echelonType == Echelon.IMPOSSIBLE){
+            RunDataSave.rData.echelonType = PlayerInfo.GetEchelon();
             weaponType = PlayerInfo.GetEchelon();
-            RunDataSave.rData.echelonType = weaponType;
+        }else{
+            weaponType = RunDataSave.rData.echelonType;
         }
+
         PlayerInfo.SetGun(this);
     }
 

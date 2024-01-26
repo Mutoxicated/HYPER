@@ -24,38 +24,22 @@ public class TeleportToScene : MonoBehaviour
             return;
     }
 
-    private void UpdatePlayerStatsTransfer(){
-        conds = PlayerInfo.GetConditionals();
-        nums = PlayerInfo.GetNumericals();
-
-        var pconds = playerStats.GetConditionals();
-        var pnums = playerStats.GetNumericals();
-
-        foreach (string key in pconds.Keys){
-            conds[key] = pconds[key];
-        }
-
-        foreach (string key in pnums.Keys){
-            nums[key] = pnums[key];
-        }
-
-        PlayerInfo.SetShields(playerStats.shields);
-    }
-
     public void SwitchScene(){
         PlayerInfo.GetPH().immuneSystem.RecycleBacteria();
         if (sceneName != "MainMenu"){
             ScorePopupPool.spp.RetrieveAllPopups();
             PublicPools.RetrieveAllObjectsToPools();
         }
-        UpdatePlayerStatsTransfer();
-        if (SceneManager.GetActiveScene().name == "Interoid"){
-            RunDataSave.rData.conditionals = PlayerInfo.GetConditionals();
-            RunDataSave.rData.numericals = PlayerInfo.GetNumericals();
-            RunDataSave.rData.shields = PlayerInfo.GetShields();
+        if (sceneName == "ArenaV2" | sceneName == "MainMenu"){
+            EquipmentManager.UpdateRunDataEquipment();
+            if (sceneName =="MainMenu"){
+                EquipmentManager.RevertAllEquipment();
+            }
+            RunDataSave.rData.conditionals = playerStats.conditionals;
+            RunDataSave.rData.numericals = playerStats.numericals;
+            RunDataSave.rData.shields = playerStats.shields;
             RunDataSave.rData.money = PlayerInfo.GetMoney();
             RunDataSave.UpdateJsonData();
-            RunDataSave.UpdateData();
         }
     }
 
@@ -69,7 +53,7 @@ public class TeleportToScene : MonoBehaviour
             SwitchScene();
         }
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-        PlatformGenerator.PG.ActiveState(platformsState);
+        PlatformGenerator.PG.ActiveState(sceneName,platformsState);
         if (rb != null)
             rb.velocity = Vector3.zero;
         gameObject.GetComponent<Collider>().enabled = false;

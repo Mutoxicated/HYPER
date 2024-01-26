@@ -6,7 +6,7 @@ using UnityEngine;
 public class Difficulty : MonoBehaviour 
 {
     public static bool roundFinished = false;
-    public static int rounds = 0;
+    public static int rounds = 1;
     public static Transform player;
     public static List<GameObject> enemies = new List<GameObject>();
     public static ExtraUtils utils;
@@ -83,10 +83,15 @@ public class Difficulty : MonoBehaviour
         return SortGameObjects(gos.ToArray(), trans);
     }
 
+    public static void StepRound(){
+        rounds++;
+        RunDataSave.rData.rounds = rounds;
+    }
+
     private void Awake(){
         roundFinished = false;
         asymT = rounds/(rounds+300);
-        linearT += 1f/10f;
+        linearT = (4f)*rounds;
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
         player = GameObject.FindWithTag("Player").transform;
         utils = GameObject.FindWithTag("ExtraUtils").GetComponent<ExtraUtils>();
