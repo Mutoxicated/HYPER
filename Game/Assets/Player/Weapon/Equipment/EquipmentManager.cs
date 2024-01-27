@@ -22,7 +22,7 @@ public class EquipmentManager : MonoBehaviour
         foreach (PopulativeItem pi in eq.equips){
             if (!pi.gameObject.activeSelf)
                 continue;
-            RunDataSave.rData.equipment.Add(new EquipmentInfo(pi.name,pi.GetPopulation()));
+            RunDataSave.rData.equipment.Add(new PopulativeInfo(pi.name,pi.GetPopulation()));
         }
     }
 
@@ -30,9 +30,9 @@ public class EquipmentManager : MonoBehaviour
         if (RunDataSave.rData.equipment == null){
             return;
         }
-        Debug.Log("REGENERATING EQUIPS: ");
-        foreach (EquipmentInfo equip in RunDataSave.rData.equipment){
-            Debug.Log(equip.name+" REGENERATED");
+        //Debug.Log("REGENERATING EQUIPS: ");
+        foreach (PopulativeInfo equip in RunDataSave.rData.equipment){
+            //Debug.Log(equip.name+" REGENERATED");
             AddEquipmentByName(equip.name,equip.population);
         }
     }

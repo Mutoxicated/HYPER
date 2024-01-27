@@ -56,7 +56,6 @@ public class GoTo : MonoBehaviour
         stats.FindEntity();
         //Debug.Log(stats.numericals["range"]);
         if (stats.entity == null){
-            stats.DecideObjective();
             stats.FindEntity();
         }
         if (stats.entity == null)

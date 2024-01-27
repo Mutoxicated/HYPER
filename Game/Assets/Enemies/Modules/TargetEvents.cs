@@ -86,6 +86,9 @@ public class TargetEvents : MonoBehaviour
         t += Time.deltaTime;
         if (t >= checkInSeconds){
             t = 0f;
+            if (stats.entity == null){
+                return;
+            }
             dist = Vector3.Distance(transform.position,stats.entity.position);
             if (dist <= stats.numericals["range"] && !switch2){
                 CallTargetRange(true);
@@ -113,7 +116,7 @@ public class TargetEvents : MonoBehaviour
     }
 
     private void Update(){
-        if (stats.objective == DeathFor.PLAYER){
+        if (stats.GetCurrentLayer() == DeathFor.PLAYER){
             PlayerEvents();
         }else{
             EnemyEvents();

@@ -1137,3 +1137,7 @@ Started implementing the persistent data saving system. Partially works! Very an
 ## Day 231
 
 Small revamp on the data saving system, which made it fully functional. I will implement the super passive items tomorrow.
+
+## Day 232
+
+Enemy passives get saved as persistent data. Made multi-layered priority in the stats component. Implemented a nice drag and drop with slots, slot occupants and slot collection system.

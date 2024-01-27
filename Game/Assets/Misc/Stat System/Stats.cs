@@ -10,8 +10,9 @@ using UnityEngine.SceneManagement;
 public enum DeathFor {
     PLAYER,
     ENEMIES,
+    PLATFORMS,
     PLAYER_FOREVER,
-    ENEMIES_FOREVER
+    ENEMIES_FOREVER,
 }
 
 [DisallowMultipleComponent]
@@ -21,7 +22,8 @@ public class Stats : MonoBehaviour
     public GameObject explosionPrefab;
     public float VFXScale = 1f;
     public EntityType type;
-    public DeathFor objective = DeathFor.PLAYER;
+    [SerializeField] private DeathFor[] priority = new DeathFor[3];
+    private DeathFor currentLayer;
     [HideInInspector] public Transform entity;
 
     public float maxHealth;
@@ -141,7 +143,6 @@ public class Stats : MonoBehaviour
 
     private void Update(){
         if (entity == null){
-            DecideObjective();
             FindEntity();
         }
     }
@@ -154,7 +155,44 @@ public class Stats : MonoBehaviour
     }
 
     public void FindEntity(){
-        if (objective == DeathFor.PLAYER || objective == DeathFor.PLAYER_FOREVER){
+        if (EvaluatePriorityLayer(priority[0])){
+            currentLayer = priority[0];
+            return;
+        }
+        if (EvaluatePriorityLayer(priority[1])){
+            currentLayer = priority[1];
+            return;
+        }
+        if (EvaluatePriorityLayer(priority[2])){
+            currentLayer = priority[2];
+            return;
+        }
+    }
+    
+    private bool IsEntityNull(){
+        if (entity == null)
+            return true;
+        else return false;
+    }
+
+    public DeathFor GetCurrentLayer(){
+        return currentLayer;
+    }
+
+    public DeathFor[] GetPriority(){
+        return priority;
+    }
+
+    public void SetPriority(DeathFor[] priority){
+        this.priority = priority;
+    }
+
+    public void OverrideTopPriority(int index){
+        priority[0] = (DeathFor)index;
+    }
+
+    private bool EvaluatePriorityLayer(DeathFor objective){
+        if (objective == DeathFor.PLAYER){
             if (PlayerInfo.GetPlayer() != null){
                 if (Vector3.Distance(PlayerInfo.GetPlayer().transform.position,transform.position) > numericals["range"])
                     entity = null;
@@ -162,61 +200,37 @@ public class Stats : MonoBehaviour
                     entity = PlayerInfo.GetPlayer().transform;
             }   
             else entity = null;
-        }else if (objective == DeathFor.ENEMIES){
+            return !IsEntityNull();
+        }
+        if (objective == DeathFor.ENEMIES){
             GameObject go = Difficulty.FindClosestEnemy(transform,numericals["range"]);
-            //Debug.Log("From go: "+gameObject.name+", found go: "+go.name);
             if (go == null){
                 //Debug.Log("pass");
                 entity = null;
             }else{
                 entity = go.transform;
             }
-        }else{
+            return !IsEntityNull();
+        }
+        if (objective == DeathFor.PLAYER_FOREVER){
+            if (PlayerInfo.GetPlayer() != null){
+                entity = PlayerInfo.GetPlayer().transform;
+            }   
+            else entity = null;
+            return !IsEntityNull();
+        }
+        if (objective == DeathFor.ENEMIES_FOREVER){
             GameObject go = Difficulty.FindClosestEnemy(transform,999999f);
             if (go == null){
-                //objective = DeathFor.PLAYER_FOREVER;
+                //Debug.Log("pass");
                 entity = null;
             }else{
                 entity = go.transform;
             }
+            return !IsEntityNull();
         }
-    }
-
-    public void DecideObjective(){
-        if (Difficulty.enemies.Count == 1 && Difficulty.enemies[0] == gameObject && objective == DeathFor.ENEMIES){
-            objective = DeathFor.PLAYER;
-            return;
-        }
-        if (objective == DeathFor.PLAYER && Difficulty.player == null){
-            objective = DeathFor.ENEMIES;
-        }
-    }
-
-    public void ChangeObjective(int num){
-        objective = (DeathFor)num;
-        FindEntity();
-    }
-    public void ChangeObjectiveToOpposite(){
-        if (objective == DeathFor.PLAYER){
-            objective = DeathFor.ENEMIES;
-        }else if (objective == DeathFor.ENEMIES){
-            objective = DeathFor.PLAYER;
-        }
-        FindEntity();
-    }
-
-    public void ChangeObjectiveToOppositeForever(){
-        if (objective == DeathFor.PLAYER){
-            objective = DeathFor.ENEMIES_FOREVER;
-        }else if (objective == DeathFor.ENEMIES){
-            objective = DeathFor.PLAYER_FOREVER;
-        }
-        FindEntity();
-    }
-
-    public void ChangeObjective(DeathFor objective){
-        this.objective = objective;
-        FindEntity();
+        return !IsEntityNull();
+        //soon will add platform objective
     }
 
     public void EnableConditional(string name){

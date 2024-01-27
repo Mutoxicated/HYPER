@@ -34,7 +34,9 @@ public class Laser : MonoBehaviour
             dmgbl.RevertInjector(injector);
         }
         GameObject instance = Instantiate(prefab,position,Quaternion.identity);
-        instance.GetComponent<Laser>().InheritLaser(this);
+        var laser = instance.GetComponent<Laser>();
+        laser.InheritLaser(this);
+        instance.transform.rotation = Quaternion.LookRotation(stats.transform.position-position,Vector3.up);
         instance.SetActive(true);
     }
 
@@ -73,8 +75,7 @@ public class Laser : MonoBehaviour
         ClearCache();
         if (useObjective){
             if (stats.entity == null){
-            stats.DecideObjective();
-            stats.FindEntity();
+                stats.FindEntity();
             }
             
             //Debug.Log(stats.entity.gameObject.name);

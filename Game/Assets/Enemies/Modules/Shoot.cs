@@ -6,12 +6,14 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField, Tooltip("If you use this, don't use bulletPrefab.")] private ObjectPoolManager objectPool;
     [SerializeField] private bool inheritInjector;
+    [SerializeField] private bool inheritPriority;
     [SerializeField, Tooltip("Used when no object pool is used.")] private GameObject bulletPrefab;
     [SerializeField] private Injector injector;
     [SerializeField] private Transform transformRef;
 
     private bool instantiated;
     private GameObject instance;
+    private Injector cachedInjector;
 
     public void ShootPrefab()
     {
@@ -36,7 +38,11 @@ public class Shoot : MonoBehaviour
             //instance.SetActive(true);
             }
             if (inheritInjector){
-                instance.GetComponent<Injector>()?.InheritInjector(injector);
+                cachedInjector = instance.GetComponent<Injector>();
+                cachedInjector?.InheritInjector(injector);
+                if (inheritPriority){
+                    cachedInjector.immuneSystem.stats.SetPriority(injector.immuneSystem.stats.GetPriority());
+                }
             }
         }
     }

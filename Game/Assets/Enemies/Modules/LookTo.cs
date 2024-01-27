@@ -17,7 +17,6 @@ public class LookTo : MonoBehaviour
 
     private void GetRotation(){
         if (stats.entity == null){
-            stats.DecideObjective();
             stats.FindEntity();
         }
         if (stats.entity == null){

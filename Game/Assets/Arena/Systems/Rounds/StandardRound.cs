@@ -13,8 +13,8 @@ public class StandardRound : MonoBehaviour, IRound
     public GameObject beamInstance;
     public TMP_Text roundText;
 
-    public static float enemySpawnInterval = initEnemySpawnInterval;
-    public static float duration = initDuration;
+    public float enemySpawnInterval = initEnemySpawnInterval;
+    public float duration = initDuration;
 
     [SerializeField] private OnInterval spawnInterval;
     [SerializeField] private OnInterval durationInterval;
@@ -25,11 +25,10 @@ public class StandardRound : MonoBehaviour, IRound
 
     private void Start(){
         roundText.text = Difficulty.rounds.ToString();
+        ProgressDifficulty();
         spawnInterval.ChangeInterval(enemySpawnInterval);
         durationInterval.ChangeInterval(duration);
         PreSpawnEnemies();
-
-        ProgressDifficulty();
     }
 
     public void SpawnEnemy(){

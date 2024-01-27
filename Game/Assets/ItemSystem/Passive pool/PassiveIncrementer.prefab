@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &190552645844100498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8836744069888620310}
+  - component: {fileID: 4401519402080011350}
+  m_Layer: 0
+  m_Name: PassiveIncrementer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8836744069888620310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190552645844100498}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.962021, y: -19.102959, z: -40.39067}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4401519402080011350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190552645844100498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca1360994f2ae04180c6f603252af7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  incrementer: 1
+  passives:
+  - {fileID: 11400000, guid: 9b2a8e57e7d463d46919bd0dd7e159cb, type: 2}
+  - {fileID: 11400000, guid: a21965aa70480c649b33a1f46633912f, type: 2}
+  - {fileID: 11400000, guid: 0741d5a9677cfdf4baaf2889e9f4ceb8, type: 2}
+  - {fileID: 11400000, guid: 6b3b365e3ed1d60409c2baae6861deac, type: 2}
+  - {fileID: 11400000, guid: 9e91ac46abdd7b14fa3f4495b82c3594, type: 2}
+  - {fileID: 11400000, guid: f5e48fc0eacfd334fa06aa4e10a05fba, type: 2}
+  - {fileID: 11400000, guid: 44d8377fc0381454da76d8a94e52cf7e, type: 2}
+  - {fileID: 11400000, guid: 5a8b165b16900e94b95639d6deaccede, type: 2}
+  - {fileID: 11400000, guid: c3d21d3a5876d9b41be7fa554cf72028, type: 2}
+  stats: {fileID: 0}
+  entityType: 0
+  myPassiveItems: []

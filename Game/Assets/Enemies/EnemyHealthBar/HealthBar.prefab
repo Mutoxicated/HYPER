@@ -393,7 +393,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   type: 0
-  objective: 0
+  priority: 000000000000000000000000
   entity: {fileID: 0}
   maxHealth: 0
   maxShields: 0
@@ -527,11 +527,12 @@ MonoBehaviour:
     - 1
     - 0
     - 0
-    - 99999
+    - 9999999
     - 999
     - 1
     - 1
     - 1
+  shields: []
 --- !u!114 &1964637975499389572
 MonoBehaviour:
   m_ObjectHideFlags: 0

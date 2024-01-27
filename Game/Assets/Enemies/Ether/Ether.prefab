@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPool: {fileID: 0}
   inheritInjector: 1
+  inheritPriority: 1
   bulletPrefab: {fileID: 1505947228412035310, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
   injector: {fileID: 1595523739458197103}
   transformRef: {fileID: 4095709657238618873}
@@ -588,7 +589,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   type: 0
-  objective: 0
+  priority: 000000000100000002000000
   entity: {fileID: 0}
   maxHealth: 400
   maxShields: 0
@@ -636,7 +637,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 1
+      isExpanded: 0
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -651,7 +652,7 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 1
+    isExpanded: 0
     _keyValues:
     - permaShields
     - moveSpeed
@@ -727,6 +728,7 @@ MonoBehaviour:
     - 1
     - 1
     - 1
+  shields: []
 --- !u!114 &5495246450369773185
 MonoBehaviour:
   m_ObjectHideFlags: 0

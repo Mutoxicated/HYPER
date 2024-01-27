@@ -115,7 +115,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 1406129636473073463, guid: 204a045193b337e4c92614a8c2dcb0ad, type: 3}
   VFXScale: 0.45
   type: 0
-  objective: 0
+  priority: 000000000000000000000000
   entity: {fileID: 0}
   maxHealth: 20
   maxShields: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
     - 1
     - 1
     - 1
+  shields: []
 --- !u!54 &885964833475623179
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -331,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 970851751731316767}
   immuneSystem: {fileID: 597014270405408030}
+  spc: {fileID: 0}
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -565,12 +567,12 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 970851751731316767}
         m_TargetAssemblyTypeName: Stats, Assembly-CSharp
-        m_MethodName: ChangeObjectiveToOppositeForever
-        m_Mode: 1
+        m_MethodName: OverrideTopPriority
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

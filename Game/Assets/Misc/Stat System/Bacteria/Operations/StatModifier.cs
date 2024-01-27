@@ -8,8 +8,8 @@ namespace BacteriaOperations{
     {
         [SerializeField] private Bacteria bac;
 
-        [SerializeField] private bool changeObjective;
-        [SerializeField] private DeathFor objective;
+        [SerializeField] private bool changePriority;
+        [SerializeField] private DeathFor[] priority = new DeathFor[3];
 
         [SerializeField] private string[] conditionals;
         [SerializeField] private bool[] conditionalValues;
@@ -18,6 +18,8 @@ namespace BacteriaOperations{
         [SerializeField] private float[] numericalIncrements;
 
         [HideInInspector] public int populationMod;
+
+        private DeathFor[] cachedPriority = new DeathFor[3];
 
         private void ChangeConditionals()
         {
@@ -56,8 +58,9 @@ namespace BacteriaOperations{
             // if (bac.immuneSystem == null){
             //     GetComponentInParent<Immunity>().stats.objective = objective;
             // }
-            if (changeObjective){
-                bac.immuneSystem.stats.objective = objective;
+            if (changePriority){
+                cachedPriority = bac.immuneSystem.stats.GetPriority();
+                bac.immuneSystem.stats.SetPriority(priority);
             }
             populationMod = bac.population;
             ChangeConditionals();
@@ -73,8 +76,8 @@ namespace BacteriaOperations{
         {
             if (EdgeCasesPresent())
                 return;
-            if (changeObjective){
-                bac.immuneSystem.stats.objective = DeathFor.PLAYER;
+            if (changePriority){
+                bac.immuneSystem.stats.SetPriority(cachedPriority);
             }
             for (int i = 0; i < conditionals.Length; i++)
             {

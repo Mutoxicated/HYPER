@@ -89,6 +89,7 @@ public class Difficulty : MonoBehaviour
     }
 
     private void Awake(){
+        rounds = RunDataSave.rData.rounds;
         roundFinished = false;
         asymT = rounds/(rounds+300);
         linearT = (4f)*rounds;

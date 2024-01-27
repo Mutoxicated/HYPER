@@ -20,8 +20,17 @@ public class TeleportToScene : MonoBehaviour
 
     private void Start()
     {
-        if (justTeleport)
+        if (justTeleport){
             return;
+        }
+        Application.quitting += UpdateRunDataOnQuit;
+    }
+
+    private void OnDestroy(){
+        if (justTeleport){
+            return;
+        }
+        Application.quitting -= UpdateRunDataOnQuit;
     }
 
     public void SwitchScene(){
@@ -30,17 +39,31 @@ public class TeleportToScene : MonoBehaviour
             ScorePopupPool.spp.RetrieveAllPopups();
             PublicPools.RetrieveAllObjectsToPools();
         }
-        if (sceneName == "ArenaV2" | sceneName == "MainMenu"){
-            EquipmentManager.UpdateRunDataEquipment();
-            if (sceneName =="MainMenu"){
-                EquipmentManager.RevertAllEquipment();
-            }
-            RunDataSave.rData.conditionals = playerStats.conditionals;
-            RunDataSave.rData.numericals = playerStats.numericals;
-            RunDataSave.rData.shields = playerStats.shields;
-            RunDataSave.rData.money = PlayerInfo.GetMoney();
-            RunDataSave.UpdateJsonData();
+        if (SceneManager.GetActiveScene().name == "ArenaV2" && sceneName == "MainMenu")
+            return;
+        EquipmentManager.UpdateRunDataEquipment();
+        if (sceneName =="MainMenu"){
+            EquipmentManager.RevertAllEquipment();
         }
+        RunDataSave.rData.conditionals = playerStats.conditionals;
+        RunDataSave.rData.numericals = playerStats.numericals;
+        RunDataSave.rData.shields = playerStats.shields;
+        RunDataSave.rData.money = PlayerInfo.GetMoney();
+        PassivePool.UpdateRunDataPassives();
+        RunDataSave.UpdateJsonData();
+        
+    }
+
+    private void UpdateRunDataOnQuit(){
+        if (SceneManager.GetActiveScene().name == "gas station" || SceneManager.GetActiveScene().name == "ArenaV2") return;
+        EquipmentManager.UpdateRunDataEquipment();
+        EquipmentManager.RevertAllEquipment();
+        RunDataSave.rData.conditionals = playerStats.conditionals;
+        RunDataSave.rData.numericals = playerStats.numericals;
+        RunDataSave.rData.shields = playerStats.shields;
+        RunDataSave.rData.money = PlayerInfo.GetMoney();
+        PassivePool.UpdateRunDataPassives();
+        RunDataSave.UpdateJsonData();
     }
 
     private void OnCollisionEnter(Collision collision)
