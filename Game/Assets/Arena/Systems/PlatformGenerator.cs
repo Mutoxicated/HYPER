@@ -98,7 +98,7 @@ public class PlatformGenerator : MonoBehaviour
 
     private PlatformInfo FindNeighborPlatformRelative(PlatformInfo relativePlat, PlatformInfo blacklistedPlat){
         float currentDist = 999999f;
-        PlatformInfo closestPlat = oldPlatformData[UnityEngine.Random.Range(0,oldPlatformData.Count-1)];
+        PlatformInfo closestPlat = oldPlatformData[SeedGenerator.random.Next(0,oldPlatformData.Count-1)];
         foreach (PlatformInfo plat in oldPlatformData){
             if (plat == blacklistedPlat)
                 continue;
@@ -138,9 +138,9 @@ public class PlatformGenerator : MonoBehaviour
         float dist = Vector3.Distance(pos,platTwo.mainPosition);
         float minDistAllowed = (scale.x+scale.z)*0.3f+(platTwo.mainScale.x+platTwo.mainScale.z)*0.3f;
         if (Mathf.Abs(pos.y-platTwo.mainPosition.y) < platTwo.mainScale.y){
-           pos.y += -(platTwo.mainScale.y*0.5f+scale.y*0.5f)*0.5f+UnityEngine.Random.Range(-Yoffset,-Yoffset*0.1f);
+           pos.y += -(platTwo.mainScale.y*0.5f+scale.y*0.5f)*0.5f+SeedGenerator.NextFloat(-Yoffset,-Yoffset*0.1f);
         }else{
-            pos.y += UnityEngine.Random.Range(-Yoffset,Yoffset);
+            pos.y += SeedGenerator.NextFloat(-Yoffset,Yoffset);
         }
         if (dist < minDistAllowed){
             fix = dist-minDistAllowed;
@@ -208,7 +208,7 @@ public class PlatformGenerator : MonoBehaviour
             theoreticalPosition = halfPoint;
             float scaleAvg = (scales[i].x+scales[i].z)*0.5f;
             Debug.Log("Scale: "+scales[i]);
-            extrudedTheoreticalPos = halfPoint+(halfPoint-center).normalized*UnityEngine.Random.Range(scaleAvg+minExpand,scaleAvg+maxExpand);
+            extrudedTheoreticalPos = halfPoint+(halfPoint-center).normalized*SeedGenerator.NextFloat(scaleAvg+minExpand,scaleAvg+maxExpand);
             Debug.Log("Theoretical pos: "+extrudedTheoreticalPos);
             if (Vector3.Distance(Vector3.zero,extrudedTheoreticalPos) < Vector3.Distance(Vector3.zero,theoreticalPosition)){
                 Debug.Log("!!!! Was going backwards !!!!");
@@ -253,10 +253,10 @@ public class PlatformGenerator : MonoBehaviour
     private List<Vector3> CreateScales(){
         List<Vector3> scales = new List<Vector3>();
         for (int i = 0; i<3; i++){
-            Vector3 mainScale = new Vector3(UnityEngine.Random.Range(minMaxPlatformXScale.x,minMaxPlatformXScale.y),
-                                UnityEngine.Random.Range(minMaxPlatformYScale.x,minMaxPlatformYScale.y),
+            Vector3 mainScale = new Vector3(SeedGenerator.NextFloat(minMaxPlatformXScale.x,minMaxPlatformXScale.y),
+                                SeedGenerator.NextFloat(minMaxPlatformYScale.x,minMaxPlatformYScale.y),
                                 0f);
-            mainScale.z = mainScale.x+UnityEngine.Random.Range(-platformZScaleOffset,platformZScaleOffset);
+            mainScale.z = mainScale.x+SeedGenerator.NextFloat(-platformZScaleOffset,platformZScaleOffset);
             scales.Add(mainScale);
         }
         return scales;
@@ -289,7 +289,7 @@ public class PlatformGenerator : MonoBehaviour
             if (amountCreated >= cap){
                 return;
             }
-            if (UnityEngine.Random.Range(0,101) <= extraLowerPlatformChance){
+            if (SeedGenerator.NextFloat(0,101) <= extraLowerPlatformChance){
                 //add extra platform
             }
         }
@@ -322,7 +322,7 @@ public class PlatformGenerator : MonoBehaviour
     private void RandomizeGenerationCycle(){
         for (int n = generationCycle.Length - 1; n > 0; --n)
         {
-            int k = UnityEngine.Random.Range(0,generationCycle.Length-1);
+            int k = SeedGenerator.random.Next(0,generationCycle.Length-1);
             int temp = generationCycle[n];
             generationCycle[n] = generationCycle[k];
             generationCycle[k] = temp;
@@ -335,10 +335,10 @@ public class PlatformGenerator : MonoBehaviour
             return false;
         }
         currentOf--;
-        if (UnityEngine.Random.Range(0,100) <= chance){
+        if (SeedGenerator.random.Next(0,100) <= chance){
             po.SetPot(pot);
         }else{
-            currentOf += Mathf.RoundToInt(UnityEngine.Random.Range(minMaxRandomness.x,minMaxRandomness.y));
+            currentOf += Mathf.RoundToInt(SeedGenerator.NextFloat(minMaxRandomness.x,minMaxRandomness.y));
         }
         return true;
     }

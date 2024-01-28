@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TNT : MonoBehaviour
 {
+    public static float tntEffectiveness = 1f;
+
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject explosionPrefab;

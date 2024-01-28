@@ -8,12 +8,18 @@ public class PlayerStatModifier : MonoBehaviour
     [SerializeField] private string[] numericals;
     [SerializeField] private float[] numericalIncrements;
 
-    [SerializeField] private int shieldAmount = -1;
+    [SerializeField] private float shieldAmount = -1;
+    [SerializeField] private float shieldStep = -1;
+
+    private int shieldsAdded = 0;
 
     private void GiveShields(){
-        if (shieldAmount <= 0) return;
-
-        PlayerInfo.GetGun().stats.AddShield(shieldAmount);
+        if (shieldAmount < 0) return;
+        shieldAmount += shieldStep;
+        int shieldsToAdd = Mathf.RoundToInt(shieldAmount)-shieldsAdded;
+        if (shieldsToAdd == 0) return;
+        shieldsAdded = Mathf.RoundToInt(shieldAmount);
+        PlayerInfo.GetGun().stats.AddShield(shieldsToAdd);
     }
 
     private void Increment(){

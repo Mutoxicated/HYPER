@@ -18,6 +18,7 @@ public class PopulativeInfo{
 public class RunData 
 {
     //run
+    public int seed = -1;
     public int rounds = 0;
     public string[] goodChosenBacteria;
     public string[] badChosenBacteria;

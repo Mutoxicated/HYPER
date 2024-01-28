@@ -26,7 +26,7 @@ public class ModifyWeapon : MonoBehaviour
         for (int i = 0; i < cap;i++){
             if (wps.Count == 0)
                 break;
-            rn = Random.Range(0,wps.Count);
+            rn = SeedGenerator.random.Next(0,wps.Count);
             weapons.Add(wps[rn]);
             wps.Remove(wps[rn]);
         }

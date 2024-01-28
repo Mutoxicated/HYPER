@@ -15,15 +15,21 @@ public class Slot : MonoBehaviour
         this.so = so;
     }
 
+    public SlotOccupant GetSO(){
+        return so;
+    }
+
     private void Update(){
         if (sc.GetCurrentSelectedSO() == null) return;
 
+        if (sc.GetCurrentSelectedSO().GetSlot() == this) return;
+
         if (Vector3.Distance(sc.GetCurrentSelectedSO().transform.position,transform.position) > radius && !once){
+            sc.GetCurrentSelectedSO().GetNotified(null,null);
             once = true;
         }else if (Vector3.Distance(sc.GetCurrentSelectedSO().transform.position,transform.position) <= radius && once){
             once = false;
-            if (sc.GetCurrentSelectedSO().GetSlot() != this)
-                sc.GetCurrentSelectedSO().GetNotified(this,so);
+            sc.GetCurrentSelectedSO().GetNotified(this,so);
         }
     }
 }

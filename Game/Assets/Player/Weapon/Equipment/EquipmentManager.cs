@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
+    public static float effectivenessMod = 1f;
     public static EquipmentManager eq;
     private float maxPopulation = 4;
     [SerializeField] private List<PopulativeItem> equips = new List<PopulativeItem>();
+
+    public void StepEffectiveness(float num){
+        effectivenessMod += num;
+    }
 
     private void Awake(){
         if (eq != null && eq != this){

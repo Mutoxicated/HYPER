@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ModifyPickups : MonoBehaviour
 {
-    [SerializeField] private float shieldAMountStep = -1f;
+    [SerializeField] private float shieldAmountStep = -1f;
     [SerializeField] private float healthAmountStep = -1f;
 
     private void StepShield(){
-        if (shieldAMountStep <= 0f) return;
-        Pickup.StepShieldMod(shieldAMountStep);
+        if (shieldAmountStep <= 0f) return;
+        Pickup.StepShieldMod(shieldAmountStep);
     }
 
     private void StepHealth(){

@@ -43,7 +43,7 @@ public class ItemShop : MonoBehaviour
         for (int i = 0; i <  items.Count;i++){
             if (i > amount-1)
                 break;
-            rn = Random.Range(0,modifiableItems.Count);
+            rn = SeedGenerator.random.Next(0,modifiableItems.Count);
             Debug.Log(rn);
             currentItems.Add(modifiableItems[rn]);
             modifiableItems.Remove(modifiableItems[rn]);
@@ -65,7 +65,7 @@ public class ItemShop : MonoBehaviour
         for (int i = 0; i < equipments.Count;i++){
             if (i > amount-1)
                 break;
-            rn = Random.Range(0,modifiableEquips.Count);
+            rn = SeedGenerator.random.Next(0,modifiableEquips.Count);
             Debug.Log(rn);
             currentEquips.Add(modifiableEquips[rn]);
             modifiableEquips.Remove(modifiableEquips[rn]);

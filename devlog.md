@@ -1141,3 +1141,7 @@ Small revamp on the data saving system, which made it fully functional. I will i
 ## Day 232
 
 Enemy passives get saved as persistent data. Made multi-layered priority in the stats component. Implemented a nice drag and drop with slots, slot occupants and slot collection system.
+
+## Day 233
+
+All of randomness in the game (I think) is now governed by the seed of the run. Almost implemented the P.I.C Structure, very close to finishing it, just didn't have enough time for everything. I also fixed multiple bugs with the drag-and-drop system.

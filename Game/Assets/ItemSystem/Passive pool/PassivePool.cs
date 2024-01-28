@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PassivePool : MonoBehaviour
 {
+    public static PassivePool pp;
     public static List<PopulativeInfo> enemyItems = new List<PopulativeInfo>();
 
     [SerializeField] private bool updater;
@@ -26,7 +27,7 @@ public class PassivePool : MonoBehaviour
     }
 
     public void AddPassive(){
-        string passiveName = passives[UnityEngine.Random.Range(0,passives.Length)].itemName;
+        string passiveName = passives[SeedGenerator.random.Next(0,passives.Length)].itemName;
         foreach (PopulativeInfo pi in enemyItems){
             if (pi.name == passiveName){
                 pi.population++;
@@ -38,6 +39,7 @@ public class PassivePool : MonoBehaviour
 
     private void OnEnable(){
         if (updater){
+            pp = this;
             if (RunDataSave.rData.getPassives){
                 RunDataSave.rData.getPassives = false;
             }else{

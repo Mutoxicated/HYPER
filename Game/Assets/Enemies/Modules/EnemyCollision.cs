@@ -22,6 +22,12 @@ public class EnemyCollision : MonoBehaviour
         damage?.TakeInjector(health.immuneSystem.injector, false);
     }
 
+    private void Start(){
+        if (gameObject.name == "PLAYER_LARGE_EXP"){
+            SuperPassivePool.DevelopPassiveByName("NUCLEAR");
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (tagsToIgnore != null)
@@ -35,9 +41,12 @@ public class EnemyCollision : MonoBehaviour
         if ((layersToIgnore & (1 << collision.collider.gameObject.layer)) != 0)
             return;
         damageable = collision.gameObject.GetComponent<IDamageable>();
+        float mod = 1f;
+        if (gameObject.name == "PLAYER_LARGE_EXP")
+            mod = TNT.tntEffectiveness;
         if (damageOutput > 0)
         {
-            damageable?.TakeDamage(damageOutput * stats.GetNum("damage"), stats,1f,0);
+            damageable?.TakeDamage(damageOutput * stats.GetNum("damage")*mod, stats,1f,0);
         }
         Inject(damageable);
         health?.TakeDamage(damageInput,stats,1f,0);
@@ -56,9 +65,12 @@ public class EnemyCollision : MonoBehaviour
         if ((layersToIgnore & (1 << other.gameObject.layer)) != 0)
             return;
         damageable = other.gameObject.GetComponent<IDamageable>();
+        float mod = 1f;
+        if (gameObject.name == "PLAYER_LARGE_EXP")
+            mod = TNT.tntEffectiveness;
         if (damageOutput > 0)
         {
-            damageable?.TakeDamage(damageOutput * stats.GetNum("damage"), stats, 1f, 0);
+            damageable?.TakeDamage(damageOutput * stats.GetNum("damage")*mod, stats, 1f, 0);
         }
         Inject(damageable);
         health?.TakeDamage(damageInput,stats,1f,0);

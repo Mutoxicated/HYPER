@@ -8,11 +8,15 @@ public class InjectPlayer : MonoBehaviour
 {
     [SerializeField] private bool random;
     [SerializeField] private string[] bacteria;
-    [SerializeField] private int[] population;
-    [SerializeField] private int[] populationStep;
+    [SerializeField] private float[] population;
+    [SerializeField] private float[] populationStep;
 
     [SerializeField,Range(0f,100f)] private float chance;
     [SerializeField,Range(0f,10f)] private float chanceStep;
+
+    private int[] cachedPopulations = new int[]{
+        0,0,0,0,0,0,0,0,0,0,0
+    };
 
     private void AddBacteriaWithPopulation(string bacteria, int population){
         for (int i = 0; i < population; i++){
@@ -28,35 +32,28 @@ public class InjectPlayer : MonoBehaviour
         AddBacteriaWithPopulation(bacName, population);
     }
 
+    private int Processed(float num){
+        return Mathf.FloorToInt(num);
+    }
+
     private void ApplyEffect(){
+
         for (int i = 0; i < bacteria.Length; i++){
+            int populationToAdd = Processed(population[i])-cachedPopulations[i];
+            if (populationToAdd == 0) continue;
             if (!random){
-                if (UnityEngine.Random.Range(0f,101f) <= chance)
-                    AddBacteriaWithPopulation(bacteria[i], population[i]);
+
+                if (UnityEngine.Random.Range(0f,101f) <= chance){
+                    cachedPopulations[i] = Processed(population[i]);
+                    AddBacteriaWithPopulation(bacteria[i], populationToAdd);
+                }
             }else{
-                if (UnityEngine.Random.Range(0f,101f) <= chance)
-                    AddRandomBacteria(population[i]);
+                if (UnityEngine.Random.Range(0f,101f) <= chance){
+                    cachedPopulations[i] = Processed(population[i]);
+                    AddRandomBacteria(populationToAdd);
+                }
             }
         }
-    }
-
-    private void ApplyEffect(Scene scene, LoadSceneMode lsm){
-        if (scene.name != "ArenaV2") return;
-        
-        for (int i = 0; i < bacteria.Length; i++){
-            if (!random){
-                if (UnityEngine.Random.Range(0f,101f) <= chance)
-                    AddBacteriaWithPopulation(bacteria[i], population[i]);
-            }else{
-                if (UnityEngine.Random.Range(0f,101f) <= chance)
-                    AddRandomBacteria(population[i]);
-            }
-        }
-    }
-
-    private void Start(){
-        ApplyEffect();
-        SceneManager.sceneLoaded += ApplyEffect;
     }
 
     private void Develop(){
@@ -65,5 +62,6 @@ public class InjectPlayer : MonoBehaviour
         for (int i = 0; i < population.Length; i++){
             population[i] += populationStep[i];
         }
+        ApplyEffect();
     }
 }

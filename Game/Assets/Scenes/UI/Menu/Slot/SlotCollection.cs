@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SlotCollection : MonoBehaviour
 {
+
     private SlotOccupant currentSelectedSO;
 
     public void SetCurrentSelectedSO(SlotOccupant so){

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed19d6d3302e7eb49b69f489187193b5, type: 3}
+  m_Name: SP12
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  itemName: Ferocity
+  nameColor: {r: 0.9254902, g: 0.65098375, b: 0.19607843, a: 1}
+  itemImage: {fileID: 21300000, guid: 91e92f5863188974bbd5cdb21b09b01e, type: 3}

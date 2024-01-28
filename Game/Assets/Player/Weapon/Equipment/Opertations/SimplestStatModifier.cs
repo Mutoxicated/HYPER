@@ -42,7 +42,7 @@ public class SimplestStatModifier : MonoBehaviour
                 return;
             for (int i = 0; i < numericals.Length; i++)
             {
-                stats.numericals[numericals[i]] += numericalIncrements[i]*(addedPopulation-1);
+                stats.numericals[numericals[i]] += numericalIncrements[i]*(addedPopulation-1)*EquipmentManager.effectivenessMod;
             }
             populationMod += addedPopulation;
         }
@@ -57,11 +57,11 @@ public class SimplestStatModifier : MonoBehaviour
                 return;
             for (int i = 0; i < numericals.Length; i++)
             {
-                stats.numericals[numericals[i]] += initialNumericalIncrements[i];
+                stats.numericals[numericals[i]] += initialNumericalIncrements[i]*EquipmentManager.effectivenessMod;
             }
             for (int i = 0; i < numericals.Length; i++)
             {
-                stats.numericals[numericals[i]] += numericalIncrements[i]*(populationMod-1);
+                stats.numericals[numericals[i]] += numericalIncrements[i]*(populationMod-1)*EquipmentManager.effectivenessMod;
             }
             effectApplied = true;
             Debug.Log("effect applied!");
@@ -79,11 +79,11 @@ public class SimplestStatModifier : MonoBehaviour
             }
             for (int i = 0; i < numericals.Length; i++)
             {
-                stats.numericals[numericals[i]] -= initialNumericalIncrements[i];
+                stats.numericals[numericals[i]] -= initialNumericalIncrements[i]*EquipmentManager.effectivenessMod;
             }
             for (int i = 0; i < numericals.Length; i++)
             {
-                stats.numericals[numericals[i]] -= numericalIncrements[i]*(populationMod-1);
+                stats.numericals[numericals[i]] -= numericalIncrements[i]*(populationMod-1)*EquipmentManager.effectivenessMod;
             }
         }
 }

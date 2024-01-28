@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PassiveItemPresenter : MonoBehaviour
 {
+    [SerializeField] private PassiveItem currentPassive;
     [SerializeField] private Image image;
     [SerializeField] private TMP_Text title;
 
@@ -13,7 +14,15 @@ public class PassiveItemPresenter : MonoBehaviour
         image.sprite = sprite;
     }
 
+    public void SetCurrentPassive(PassiveItem pi){
+        currentPassive = pi;
+    }
+
+    public PassiveItem GetCurrentPassive(){
+        return currentPassive;
+    }
+
     public void SetTitle(string text){
-        title.text = text;
+        //title.text = text;
     }
 }
