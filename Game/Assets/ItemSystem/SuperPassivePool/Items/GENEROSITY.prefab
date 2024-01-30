@@ -58,5 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee03d0bb50b9cc443a826d6f5a895f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sp: {fileID: 8260986312177372349}
   shieldAmountStep: -1
   healthAmountStep: 0.04

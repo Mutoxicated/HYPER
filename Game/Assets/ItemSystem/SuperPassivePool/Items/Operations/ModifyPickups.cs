@@ -4,29 +4,26 @@ using UnityEngine;
 
 public class ModifyPickups : MonoBehaviour
 {
+    [SerializeField] private SuperPassive sp;
     [SerializeField] private float shieldAmountStep = -1f;
     [SerializeField] private float healthAmountStep = -1f;
 
-    private void StepShield(){
+    private void StepShield(int num){
         if (shieldAmountStep <= 0f) return;
-        Pickup.StepShieldMod(shieldAmountStep);
+        Pickup.StepShieldMod(shieldAmountStep*num);
     }
 
-    private void StepHealth(){
+    private void StepHealth(int num){
         if (healthAmountStep <= 0f) return;
-        Pickup.StepHealthMod(healthAmountStep);
+        Pickup.StepHealthMod(healthAmountStep*num);
     }
 
     private void Start(){
-        ApplyEffect();
+        sp.subs.Add(ApplyEffect);
     }
 
-    private void ApplyEffect(){
-        StepShield();
-        StepHealth();
-    }
-
-    private void Develop(){
-        ApplyEffect();
+    private void ApplyEffect(int num){
+        StepShield(num);
+        StepHealth(num);
     }
 }

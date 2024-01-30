@@ -5,6 +5,7 @@ using UnityEngine.Video;
 
 public class PlayerStatModifier : MonoBehaviour
 {
+    [SerializeField] private SuperPassive sp;
     [SerializeField] private string[] numericals;
     [SerializeField] private float[] numericalIncrements;
 
@@ -22,22 +23,18 @@ public class PlayerStatModifier : MonoBehaviour
         PlayerInfo.GetGun().stats.AddShield(shieldsToAdd);
     }
 
-    private void Increment(){
+    private void Increment(int num){
         GiveShields();
         if (numericals.Length == 0)
             return;
         for (int i = 0; i < numericals.Length; i++)
         {
-            PlayerInfo.GetGun().stats.numericals[numericals[i]] += numericalIncrements[i];
+            PlayerInfo.GetGun().stats.numericals[numericals[i]] += numericalIncrements[i]*num;
         }
     }
 
     private void Start()
     {
-        Increment();
-    }
-
-    private void Develop(){
-        Increment();
+        sp.subs.Add(Increment);
     }
 }

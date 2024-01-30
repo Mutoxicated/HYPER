@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447cee709d663df4997afff5620140a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sp: {fileID: 8260986312177372349}
   random: 1
   bacteria:
   - 
@@ -67,7 +68,15 @@ MonoBehaviour:
   - 
   population:
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
   populationStep:
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
   - 0.2
   chance: 15
   chanceStep: 0.9

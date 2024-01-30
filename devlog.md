@@ -1145,3 +1145,7 @@ Enemy passives get saved as persistent data. Made multi-layered priority in the 
 ## Day 233
 
 All of randomness in the game (I think) is now governed by the seed of the run. Almost implemented the P.I.C Structure, very close to finishing it, just didn't have enough time for everything. I also fixed multiple bugs with the drag-and-drop system.
+
+## Day 234 thru 235
+
+The Passive Item Structure is fully implemented now and the super passives (some of them, at least) are funcional and their iterations are saved. There are three PICs, one with 4 slots, another with 3 and one with 2. That's all I did for today. 4 hours.

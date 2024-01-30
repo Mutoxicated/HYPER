@@ -16,6 +16,7 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     private Vector3 slotPos;
     private Vector3 alteredPos;
+    private Slot[] slotsToIgnore;
 
     public void SetDragState(bool state){
         dragged = state;
@@ -26,7 +27,23 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         }
     }
 
+    public void SetIgnoredSlots(Slot[] slots){
+        slotsToIgnore = slots;
+    }
+
+    private bool ValidSlot(Slot sl){
+        if (slotsToIgnore == null) return true;
+        foreach (Slot slot in slotsToIgnore){
+            if (slot == null) continue;
+            if (slot == sl){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void GetNotified(Slot slot, SlotOccupant so){
+        if (!ValidSlot(slot)) return;
         newSlot = slot;
         newSlotsSO = so;
         if (newSlot == null){
@@ -42,6 +59,7 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         slotPos = alteredPos;
         transform.position = slotPos;
         slot.SetSO(this);
+        transform.SetParent(slot.transform,true);
         this.slot = slot;
     }
 
@@ -86,6 +104,7 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             slotPos = alteredPos;
             transform.position = slotPos;
             slot.SetSO(this);
+            transform.SetParent(slot.transform,true);
             newSlotFound = false;
             newSlot = null;
             newSlotsSO = null;

@@ -58,8 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7aa8c8a5a6824a4c9f290c0831375ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sp: {fileID: 8260986312177372349}
   numericals:
   - pierces
   numericalIncrements:
   - 0.01
   shieldAmount: -1
+  shieldStep: -1

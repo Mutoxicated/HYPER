@@ -26,6 +26,19 @@ public class RunData
     public List<PopulativeInfo> enemyPassives = new List<PopulativeInfo>(){
         new PopulativeInfo("bla",1)
     };
+    public List<PassiveItemInfo> passiveSlotsFilled = new List<PassiveItemInfo>(4){
+        null,null,null,null,null
+    };
+
+    public List<PassiveItemInfo> PICVierPassiveItems = new List<PassiveItemInfo>(){
+        null,null,null,null
+    };
+    public List<PassiveItemInfo> PICTriPassiveItems = new List<PassiveItemInfo>(){
+        null,null,null
+    };
+    public List<PassiveItemInfo> PICDuoPassiveItems = new List<PassiveItemInfo>(){
+        null,null
+    };
     
     //player related
     public int money;    
@@ -37,6 +50,7 @@ public class RunData
     public int maxEquipment;
     public List<string> activeClassItems = null;
     public List<SuperPassive> activeSuperPassives = null;
+    public Stats.numericalDict superPassiveIterations = new Stats.numericalDict();
     
     //platform generation related
     public int[] generationCycle = null;

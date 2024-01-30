@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class InjectPlayer : MonoBehaviour
 {
+    [SerializeField] private SuperPassive sp;
     [SerializeField] private bool random;
     [SerializeField] private string[] bacteria;
     [SerializeField] private float[] population;
@@ -56,12 +57,16 @@ public class InjectPlayer : MonoBehaviour
         }
     }
 
-    private void Develop(){
+    private void Step(int num){
         if (chance < 100f)
-            chance += chanceStep;
+            chance += chanceStep*num;
         for (int i = 0; i < population.Length; i++){
-            population[i] += populationStep[i];
+            population[i] += populationStep[i]*num;
         }
         ApplyEffect();
+    }
+
+    private void Start(){
+        sp.subs.Add(Step);
     }
 }

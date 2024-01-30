@@ -6,7 +6,7 @@ using UnityEngine;
 public class StandardRound : MonoBehaviour, IRound
 {
     public static readonly float initEnemySpawnInterval = 4f;
-    public static readonly float initDuration = 3f;
+    public static readonly float initDuration = 1f;
     public static readonly float initDifficultyMod = 4f;
 
     public Difficulty diff;

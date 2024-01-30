@@ -42,16 +42,21 @@ public class TeleportToScene : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "ArenaV2" && sceneName == "MainMenu")
             return;
         EquipmentManager.UpdateRunDataEquipment();
+        PIC.PICVier.GetPIM().UpdateFilledSlots(sceneName);
+        SuperPassivePool.UpdateRunData();
         if (sceneName =="MainMenu"){
+            PIC.PICVier.GetPIM().SetRandomState(false);
             EquipmentManager.RevertAllEquipment();
+            SuperPassivePool.Clear();
         }
         RunDataSave.rData.conditionals = playerStats.conditionals;
         RunDataSave.rData.numericals = playerStats.numericals;
         RunDataSave.rData.shields = playerStats.shields;
         RunDataSave.rData.money = PlayerInfo.GetMoney();
         PassivePool.UpdateRunDataPassives();
+        PIC.SetCurrentPIIS();
+        PIC.UpdateRunDatas();
         RunDataSave.UpdateJsonData();
-        
     }
 
     private void UpdateRunDataOnQuit(){
@@ -62,7 +67,11 @@ public class TeleportToScene : MonoBehaviour
         RunDataSave.rData.numericals = playerStats.numericals;
         RunDataSave.rData.shields = playerStats.shields;
         RunDataSave.rData.money = PlayerInfo.GetMoney();
+        SuperPassivePool.UpdateRunData();
         PassivePool.UpdateRunDataPassives();
+        PIC.PICVier.GetPIM().UpdateFilledSlots(sceneName);
+        PIC.SetCurrentPIIS();
+        PIC.UpdateRunDatas();
         RunDataSave.UpdateJsonData();
     }
 

@@ -88,6 +88,14 @@ public class Difficulty : MonoBehaviour
         RunDataSave.rData.rounds = rounds;
     }
 
+    private void DevelopSuperPassives(){
+        SuperPassivePool.DevelopPassiveByName("JUICE");
+        SuperPassivePool.DevelopPassiveByName("POTION");
+        SuperPassivePool.DevelopPassiveByName("FLASH_DRIVE");
+        SuperPassivePool.DevelopPassiveByName("GEE");
+        SuperPassivePool.DevelopPassiveByName("Ferocity");
+    }
+
     private void Awake(){
         rounds = RunDataSave.rData.rounds;
         roundFinished = false;
@@ -96,5 +104,9 @@ public class Difficulty : MonoBehaviour
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
         player = GameObject.FindWithTag("Player").transform;
         utils = GameObject.FindWithTag("ExtraUtils").GetComponent<ExtraUtils>();
+    }
+
+    private void Start(){
+        DevelopSuperPassives();
     }
 }
