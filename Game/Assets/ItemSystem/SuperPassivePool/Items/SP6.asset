@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemName: Anavatmys
+  description: Bombs are initially 0% more effective. +0.8% every round..
   nameColor: {r: 0.58908796, g: 0.1568627, b: 0.9529412, a: 1}
   itemImage: {fileID: 21300000, guid: 79142548ff01fa54280f94f0ee7b9c08, type: 3}

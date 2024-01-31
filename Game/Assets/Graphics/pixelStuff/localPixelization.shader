@@ -11,7 +11,7 @@ Shader "Custom/localPixelization"
 
         SubShader
     {
-        Tags{ "Queue" = "AlphaTest" }
+        Tags{ "Queue" = "AlphaTest" "RenderType" = "Transparency" }
         LOD 200
         Lighting Off
         Blend SrcAlpha OneMinusSrcAlpha
@@ -62,7 +62,7 @@ Shader "Custom/localPixelization"
         }
         ZWrite Off
         Cull Off
-        GrabPass{ "_GrabTexture" }
+        GrabPass{ "_GrabTransparentTexture" }
         Pass
         {
             CGPROGRAM
@@ -102,19 +102,19 @@ Shader "Custom/localPixelization"
             }
 
             sampler2D _MainTex;
-            Texture2D _GrabTexture;
+            Texture2D _GrabTransparentTexture;
             SamplerState point_clamp_sampler;
             fixed4 _Color;
 
             float4 frag(v2f IN) : SV_Target
             {
                 float2 steppedUV = IN.uv.xy / IN.uv.w;
-                fixed4 beforeColor = _GrabTexture.Sample(point_clamp_sampler, steppedUV);
+                fixed4 beforeColor = _GrabTransparentTexture.Sample(point_clamp_sampler, steppedUV);
                 float thing = _PixelSize / _ScreenParams.xy / _ScreenParams.w;
                 steppedUV /= thing;
                 steppedUV = round(steppedUV);
                 steppedUV *= thing;
-                fixed4 col = _GrabTexture.Sample(point_clamp_sampler, steppedUV);
+                fixed4 col = _GrabTransparentTexture.Sample(point_clamp_sampler, steppedUV);
                 fixed4 finalColor;// = (distance(_Color, col) < 1.3) ? _Color : col;
                 if (distance(_Color, col) < 0.1) {
                     finalColor = _Color;

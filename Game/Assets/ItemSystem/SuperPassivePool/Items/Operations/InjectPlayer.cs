@@ -15,10 +15,6 @@ public class InjectPlayer : MonoBehaviour
     [SerializeField,Range(0f,100f)] private float chance;
     [SerializeField,Range(0f,10f)] private float chanceStep;
 
-    private int[] cachedPopulations = new int[]{
-        0,0,0,0,0,0,0,0,0,0,0
-    };
-
     private void AddBacteriaWithPopulation(string bacteria, int population){
         for (int i = 0; i < population; i++){
             PlayerInfo.GetPH().immuneSystem.injector.AddBacteria(bacteria);
@@ -37,21 +33,17 @@ public class InjectPlayer : MonoBehaviour
         return Mathf.FloorToInt(num);
     }
 
-    private void ApplyEffect(){
-
+    private void ApplyEffect(Scene scene, LoadSceneMode lsm){
+        if (scene.name == "MainMenu" | scene.name == "Interoid") return;
         for (int i = 0; i < bacteria.Length; i++){
-            int populationToAdd = Processed(population[i])-cachedPopulations[i];
-            if (populationToAdd == 0) continue;
             if (!random){
 
                 if (UnityEngine.Random.Range(0f,101f) <= chance){
-                    cachedPopulations[i] = Processed(population[i]);
-                    AddBacteriaWithPopulation(bacteria[i], populationToAdd);
+                    AddBacteriaWithPopulation(bacteria[i], Processed(population[i]));
                 }
             }else{
                 if (UnityEngine.Random.Range(0f,101f) <= chance){
-                    cachedPopulations[i] = Processed(population[i]);
-                    AddRandomBacteria(populationToAdd);
+                    AddRandomBacteria(Processed(population[i]));
                 }
             }
         }
@@ -63,10 +55,14 @@ public class InjectPlayer : MonoBehaviour
         for (int i = 0; i < population.Length; i++){
             population[i] += populationStep[i]*num;
         }
-        ApplyEffect();
     }
 
     private void Start(){
+        SceneManager.sceneLoaded += ApplyEffect;
         sp.subs.Add(Step);
+    }
+
+    private void OnDestroy(){
+        SceneManager.sceneLoaded -= ApplyEffect;
     }
 }

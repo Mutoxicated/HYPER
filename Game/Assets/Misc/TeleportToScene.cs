@@ -39,8 +39,11 @@ public class TeleportToScene : MonoBehaviour
             ScorePopupPool.spp.RetrieveAllPopups();
             PublicPools.RetrieveAllObjectsToPools();
         }
-        if (SceneManager.GetActiveScene().name == "ArenaV2" && sceneName == "MainMenu")
+        PIC.PICVier.GetPIM().SetRandomState(false);
+        if (SceneManager.GetActiveScene().name == "ArenaV2" && sceneName == "MainMenu"){
+            SuperPassivePool.Clear();
             return;
+        }
         EquipmentManager.UpdateRunDataEquipment();
         PIC.PICVier.GetPIM().UpdateFilledSlots(sceneName);
         SuperPassivePool.UpdateRunData();
@@ -54,8 +57,11 @@ public class TeleportToScene : MonoBehaviour
         RunDataSave.rData.shields = playerStats.shields;
         RunDataSave.rData.money = PlayerInfo.GetMoney();
         PassivePool.UpdateRunDataPassives();
-        PIC.SetCurrentPIIS();
-        PIC.UpdateRunDatas();
+        PIC.LockAllCurrentSlots(sceneName);
+        if (sceneName != "Interoid"){
+            PIC.SetCurrentPIIS();
+            PIC.UpdateRunDatas();
+        }
         RunDataSave.UpdateJsonData();
     }
 
@@ -70,6 +76,7 @@ public class TeleportToScene : MonoBehaviour
         SuperPassivePool.UpdateRunData();
         PassivePool.UpdateRunDataPassives();
         PIC.PICVier.GetPIM().UpdateFilledSlots(sceneName);
+        PIC.LockAllCurrentSlots(sceneName);
         PIC.SetCurrentPIIS();
         PIC.UpdateRunDatas();
         RunDataSave.UpdateJsonData();

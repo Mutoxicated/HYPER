@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class PlayerStatModifier : MonoBehaviour
 {
@@ -12,19 +12,16 @@ public class PlayerStatModifier : MonoBehaviour
     [SerializeField] private float shieldAmount = -1;
     [SerializeField] private float shieldStep = -1;
 
-    private int shieldsAdded = 0;
-
-    private void GiveShields(){
-        if (shieldAmount < 0) return;
-        shieldAmount += shieldStep;
-        int shieldsToAdd = Mathf.RoundToInt(shieldAmount)-shieldsAdded;
-        if (shieldsToAdd == 0) return;
-        shieldsAdded = Mathf.RoundToInt(shieldAmount);
-        PlayerInfo.GetGun().stats.AddShield(shieldsToAdd);
+    private void GiveShields(Scene scene, LoadSceneMode lsm){
+        if (scene.name == "MainMenu" | scene.name == "Interoid")
+            return;
+        PlayerInfo.GetGun().stats.AddShield(Mathf.RoundToInt(shieldAmount));
     }
 
     private void Increment(int num){
-        GiveShields();
+        if (shieldAmount < 0){
+            shieldAmount += shieldStep;
+        }
         if (numericals.Length == 0)
             return;
         for (int i = 0; i < numericals.Length; i++)
@@ -35,6 +32,11 @@ public class PlayerStatModifier : MonoBehaviour
 
     private void Start()
     {
+        SceneManager.sceneLoaded += GiveShields;
         sp.subs.Add(Increment);
+    }
+
+    private void OnDestroy(){
+        SceneManager.sceneLoaded -= GiveShields;
     }
 }

@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemName: Juice
+  description: Gives X tasty ally bacteria every round, where X is initially 0 and
+    increases by 0.15 every round.
   nameColor: {r: 0.8113208, g: 0.4477572, b: 0.65770507, a: 1}
   itemImage: {fileID: 21300000, guid: fb9fe1e83792d6f409a38b20c8710e7d, type: 3}

@@ -30,13 +30,13 @@ public class RunData
         null,null,null,null,null
     };
 
-    public List<PassiveItemInfo> PICVierPassiveItems = new List<PassiveItemInfo>(){
+    public List<PICSlot> PICVierPassiveItems = new List<PICSlot>(){
         null,null,null,null
     };
-    public List<PassiveItemInfo> PICTriPassiveItems = new List<PassiveItemInfo>(){
+    public List<PICSlot> PICTriPassiveItems = new List<PICSlot>(){
         null,null,null
     };
-    public List<PassiveItemInfo> PICDuoPassiveItems = new List<PassiveItemInfo>(){
+    public List<PICSlot> PICDuoPassiveItems = new List<PICSlot>(){
         null,null
     };
     

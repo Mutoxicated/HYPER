@@ -1149,3 +1149,7 @@ All of randomness in the game (I think) is now governed by the seed of the run. 
 ## Day 234 thru 235
 
 The Passive Item Structure is fully implemented now and the super passives (some of them, at least) are funcional and their iterations are saved. There are three PICs, one with 4 slots, another with 3 and one with 2. That's all I did for today. 4 hours.
+
+## Day 236
+
+Completely implemented the PIC Structure!!! There's just one bug that I have to fix, and it's really weird.

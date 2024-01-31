@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemName: Flash Drive
+  description: Shield pickups give X amount of extra shields, where X is initially
+    0 and increases by 0.05 every time you get that pickup.
   nameColor: {r: 0.9528302, g: 0.41236016, b: 0.15730685, a: 1}
   itemImage: {fileID: 21300000, guid: 99d9fcdc1e4bacb4e9aba40ecbf4d33f, type: 3}

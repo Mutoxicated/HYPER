@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemName: Linkage
+  description: Bullets become +X% more effective for that round, where X is initally
+    0 and increases by +5% every time you complete a platform objective.
   nameColor: {r: 0.41554838, g: 0.9529412, b: 0.1568627, a: 1}
   itemImage: {fileID: 21300000, guid: 200aaf82ed87fd942a57a7488dd02c6c, type: 3}

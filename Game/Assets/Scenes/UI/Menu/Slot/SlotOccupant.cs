@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,10 +14,11 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     
     private bool dragged = false;
     private bool newSlotFound = false;
+    private bool die = false;
 
     private Vector3 slotPos;
     private Vector3 alteredPos;
-    private Slot[] slotsToIgnore;
+    private List<Slot> slotsToIgnore = new List<Slot>();
 
     public void SetDragState(bool state){
         dragged = state;
@@ -28,7 +30,7 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     }
 
     public void SetIgnoredSlots(Slot[] slots){
-        slotsToIgnore = slots;
+        slotsToIgnore = slots.ToList();
     }
 
     private bool ValidSlot(Slot sl){
@@ -51,6 +53,17 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             return;
         }
         newSlotFound = true;
+    }
+
+    public void GetNotifiedToDie(bool state){
+        if (!ValidSlot(slot)) return;
+        die = state;
+    }
+
+    public bool isValid(SlotOccupant so){
+        if (slotsToIgnore.Count == so.slotsToIgnore.Count)
+            return true;
+        else return false;
     }
 
     public void UpdateSlot(Slot slot){
@@ -88,15 +101,26 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         UpdatePos(eventData.pointerCurrentRaycast.worldPosition);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public void OnEndDrag(PointerEventData eventData)//TO-DO: Fix slot bug where the slot may not update to null when swapping or changing place
     {
+        if (die){
+            Destroy(gameObject);
+        }
         if (!newSlotFound){
             transform.position = slotPos;
         }else if (newSlotFound){
-
-            slot.SetSO(null);
             if (newSlotsSO != null){
+                if (!newSlotsSO.isValid(this)){
+                    newSlot = null;
+                    newSlotsSO = null;
+                    newSlotFound = false;
+                    transform.position = slotPos;
+                    return;
+                }
+                slot.SetSO(null);
                 newSlotsSO.UpdateSlot(slot);
+            }else{
+                slot.SetSO(null);
             }
             slot = newSlot;
             alteredPos = slot.transform.position;

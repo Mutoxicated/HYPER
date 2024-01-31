@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 7
   m_EditorClassIdentifier: 
   item: {fileID: -8643496922600783546, guid: ac3ae64f2c4982343a44fc561a83af58, type: 3}
-  itemName: Prey Mechanic
+  itemName: Prey
+  description: 
   nameColor: {r: 0.6117647, g: 0.3372549, b: 0.41062212, a: 1}
   itemImage: {fileID: 21300000, guid: 537a8de204699934c8756902e1d47317, type: 3}

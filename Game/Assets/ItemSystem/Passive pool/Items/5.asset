@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 5
   m_EditorClassIdentifier: 
   item: {fileID: -8643496922600783546, guid: 653e53c61979d5443afccb80afba9016, type: 3}
-  itemName: Otherworldly Rock
+  itemName: Alien Rock
+  description: 
   nameColor: {r: 0, g: 0.6415094, b: 0.081444226, a: 1}
   itemImage: {fileID: 21300000, guid: 7f97fa67d124bc642a0d581661627fb5, type: 3}

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemName: Exposure
-  nameColor: {r: 0.41554838, g: 0.9529412, b: 0.1568627, a: 1}
+  description: Shield health increases by 0.5% every time you get hit.
+  nameColor: {r: 0.93840605, g: 1, b: 0.5990566, a: 1}
   itemImage: {fileID: 21300000, guid: c35557aa33bd94142b1d60699672ca9c, type: 3}

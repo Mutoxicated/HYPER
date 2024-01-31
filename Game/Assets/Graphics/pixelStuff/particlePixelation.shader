@@ -9,7 +9,7 @@ Shader "Custom/particlePixelation"
 
         SubShader
         {
-            Tags{ "Queue" = "Transparent+1000" }
+            Tags{ "Queue" = "Transparent+1000" "RenderType" = "Transparency"  }
             LOD 200
             Blend SrcAlpha OneMinusSrcAlpha
             ZWrite Off

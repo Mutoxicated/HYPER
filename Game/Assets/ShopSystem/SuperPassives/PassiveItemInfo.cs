@@ -7,6 +7,7 @@ public class PassiveItemInfo : ScriptableObject
 {
     public PassiveItem item;
     public string itemName;
+    public string description;
     public Color nameColor;
     public Sprite itemImage;
 }

@@ -22,7 +22,8 @@ public class PassiveItemPresenter : MonoBehaviour
         return currentPassive;
     }
 
-    public void SetTitle(string text){
-        //title.text = text;
+    public void SetTitle(string text,Color color){
+        title.text = text;
+        title.color = color;
     }
 }

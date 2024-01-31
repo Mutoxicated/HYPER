@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemName: Conart
+  description: +1% increased chance (every round) for a platform objective to give
+    you permanent shields.
   nameColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   itemImage: {fileID: 21300000, guid: d4083b99cc039f647b993b474b4dcf23, type: 3}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -8643496922600783546}
   - component: {fileID: 640912790695918200}
   m_Layer: 0
-  m_Name: PREY_MECHANIC
+  m_Name: PREY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

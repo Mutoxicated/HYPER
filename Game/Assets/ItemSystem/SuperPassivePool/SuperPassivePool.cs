@@ -36,8 +36,11 @@ public class SuperPassivePool : MonoBehaviour
     }
 
     private void Awake(){
-        GetSPs();
         DontDestroyOnLoad(transform.root);
+    }
+
+    private void Start(){
+        GetSPs();
     }
 
     public static int GetSuperPassiveCount(){

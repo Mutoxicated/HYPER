@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemName: Potion
+  description: Gives X amount of 5 random bacteria every round, where X is initially
+    0 and increases by 0.2 every round.
   nameColor: {r: 1, g: 0, b: 0.029372692, a: 1}
   itemImage: {fileID: 21300000, guid: 80a51599b55cad44882876d73b4c5094, type: 3}

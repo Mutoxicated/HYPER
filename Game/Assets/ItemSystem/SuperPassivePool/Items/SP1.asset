@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemName: Peer To Peer
+  description: Increases piercing stat by +0.1% every time you hit an enemy.
   nameColor: {r: 0.7169812, g: 0.6429555, b: 0.5647918, a: 1}
   itemImage: {fileID: 21300000, guid: 3f96baacd9cf72044af654ec8ce2ba69, type: 3}

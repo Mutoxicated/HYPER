@@ -5,6 +5,17 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
+[Serializable]
+public class PICSlot{
+    public PassiveItemInfo pii;
+    public bool locked = false;
+
+    public PICSlot(PassiveItemInfo pii, bool locked){
+        this.pii = pii;
+        this.locked = locked;
+    }
+}
+
 public class PIC : MonoBehaviour
 {
     public static PIC PICVier;
@@ -12,6 +23,8 @@ public class PIC : MonoBehaviour
     public static PIC PICDuo;
 
     [SerializeField] private PassiveItemManager pim;
+    [SerializeField] private TMP_Text itemName;
+    [SerializeField] private TMP_Text description;
     [SerializeField] private Image cspImage;
     [SerializeField] private TMP_Text iterations;
     [SerializeField] private Slot[] slots; 
@@ -22,7 +35,7 @@ public class PIC : MonoBehaviour
     private SuperPassive currentSuperPassive;
     private Sprite empty;
 
-    private List<PassiveItemInfo> currentPiis = new List<PassiveItemInfo>();
+    private List<PICSlot> currentPiis = new List<PICSlot>();
     private List<SlotOccupant> oldSlotOccupants = new List<SlotOccupant>();
     private int index = 0;
 
@@ -39,6 +52,16 @@ public class PIC : MonoBehaviour
         PICDuo.SetCurrentPiis();
     }
 
+    public static void LockAllCurrentSlots(string sceneName){
+        if (sceneName != "Interoid") return;
+        PICVier.LockSlots();
+        PICTri.LockSlots();
+        PICDuo.LockSlots();
+    }
+
+    public Slot[] GetSlots(){
+        return slots;
+    }
 
     public PassiveItemManager GetPIM(){
         return pim;
@@ -53,11 +76,11 @@ public class PIC : MonoBehaviour
                 continue;
             }
             Debug.Log("PASSIVE NAME: "+pim.GetPassiveItemInfoByPassiveName(slots[i].GetSO().pip.GetCurrentPassive().gameObject.name).name);
-            currentPiis[i] = pim.GetPassiveItemInfoByPassiveName(slots[i].GetSO().pip.GetCurrentPassive().gameObject.name);
+            currentPiis[i].pii = pim.GetPassiveItemInfoByPassiveName(slots[i].GetSO().pip.GetCurrentPassive().gameObject.name);
         }
     }
 
-    public List<PassiveItemInfo> GetCurrentPIIs(){
+    public List<PICSlot> GetCurrentPICSlots(){
         return currentPiis;
     }
 
@@ -74,6 +97,14 @@ public class PIC : MonoBehaviour
         }  
     }
 
+    public void LockSlots(){
+        foreach (PICSlot ps in currentPiis){
+            if (ps != null){
+                ps.locked = true;
+            }
+        }
+    }
+
     private void RegenerateSlots(){
         if (slots.Length == 4){
             currentPiis = RunDataSave.rData.PICVierPassiveItems;
@@ -85,14 +116,17 @@ public class PIC : MonoBehaviour
             Debug.Log("Uhhhh slots length doesnt match up. Slot count: "+slots.Length);
         }   
         for (int i = 0; i < slots.Length; i++){
-            if (currentPiis[i] == null){
+            if (currentPiis[i].pii == null){
                 Destroy(slots[i].GetSO().gameObject);
                 slots[i].SetSO(null);
                 continue;
+            }else{
+                if (currentPiis[i].locked)
+                    slots[i].GetSO().SetIgnoredSlots(GetPIM().GetSlots());
             }
-            slots[i].GetSO().pip.SetImageSprite(currentPiis[i].itemImage);
-            slots[i].GetSO().pip.SetTitle(currentPiis[i].itemName);
-            slots[i].GetSO().pip.SetCurrentPassive(currentPiis[i].item);
+            slots[i].GetSO().pip.SetImageSprite(currentPiis[i].pii.itemImage);
+            slots[i].GetSO().pip.SetTitle(currentPiis[i].pii.itemName,currentPiis[i].pii.nameColor);
+            slots[i].GetSO().pip.SetCurrentPassive(currentPiis[i].pii.item);
         }
     }
 
@@ -144,6 +178,8 @@ public class PIC : MonoBehaviour
                 cspImage.sprite = empty;
                 if (iterations.gameObject.activeSelf)
                     iterations.gameObject.SetActive(false);
+                itemName.text = "";
+                description.text = "";
                 return;
             }else{
                 if (slot.GetSO() != oldSlotOccupants[index]){
@@ -160,20 +196,26 @@ public class PIC : MonoBehaviour
 
         //Debug.Log("Number got initially: "+number);
 
-        if (number > SuperPassivePool.GetSuperPassiveCount()){
-            float times = Mathf.Floor(number/SuperPassivePool.GetSuperPassiveCount());
-            number -= SuperPassivePool.GetSuperPassiveCount()*times;
+        if (number > SuperPassivePool.GetSuperPassiveCount()-1){
+            float times = Mathf.Floor(number/(SuperPassivePool.GetSuperPassiveCount()-1));
+            number -= (SuperPassivePool.GetSuperPassiveCount()-1)*times;
         }
 
         Debug.Log("Number got post-processing: "+number);
 
         currentSuperPassive = SuperPassivePool.GetPassiveByIndex(Mathf.RoundToInt(number));
+        Debug.Log(currentSuperPassive);
+        if (currentSuperPassive == null) return;
         if (!currentSuperPassive.GetDevelopState()){
             currentSuperPassive.SetDevelopState(true);
         }
         Debug.Log("CSP: "+currentSuperPassive);
-        cspImage.sprite = GetPassiveInfoByName(currentSuperPassive.gameObject.name).itemImage;
+        PassiveItemInfo pii = GetPassiveInfoByName(currentSuperPassive.gameObject.name);
+        cspImage.sprite = pii.itemImage;
         iterations.text = "x"+currentSuperPassive.GetIterations();
+        itemName.text = pii.itemName;
+        itemName.color = pii.nameColor;
+        description.text = pii.description;
         if (!iterations.gameObject.activeSelf)
             iterations.gameObject.SetActive(true);
         //Debug.Log("Current Super Passive:" + Mathf.RoundToInt(number));
