@@ -14,6 +14,8 @@ public enum PlatformObjectiveType{
 
 public class PlatformObjective : MonoBehaviour
 {
+    public static float shieldChance = 15f;
+
     private static List<GameObject> instances = new List<GameObject>();
     public static readonly Vector3 initPlatScale = new Vector3(72f,2f,72f);
 
@@ -35,6 +37,10 @@ public class PlatformObjective : MonoBehaviour
     private int currentTouches = 0;
     private GameObject instance;
     private Color currentColor = Color.white;
+
+    public static void ResetShieldChance(){
+        shieldChance = 15f;
+    }
 
     private void InstatiateObjectivePrefab(GameObject prefab){
         instance = Instantiate(prefab,transform,true);

@@ -607,10 +607,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1360994f2ae04180c6f603252af7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updater: 0
   incrementer: 0
   passives: []
   stats: {fileID: 3690289086005728931}
-  entityType: 1
   myPassiveItems: []
 --- !u!1001 &54051678337214928
 PrefabInstance:
@@ -1324,10 +1324,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 5631984431857358991}
+        m_TargetAssemblyTypeName: PassivePool, Assembly-CSharp
+        m_MethodName: RecyclePassiveItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   ObjectsToDestroy:
   - {fileID: 4829517248446311806}
   ChildrenToDetach:
   - {fileID: 5712452414405635189}
+  regen: 0.12
   immunityDuration: 1
   rate: 1.215
   hitScore: 30
@@ -1405,6 +1418,7 @@ MonoBehaviour:
   priority: 000000000200000000000000
   entity: {fileID: 0}
   maxHealth: 250
+  range: 100
   maxShields: 0
   shieldhealth: 50
   conditionals:
@@ -1491,6 +1505,7 @@ MonoBehaviour:
     - maxHealthModifier
     - size
     - focus
+    - regen
     _keys:
     - permaShields
     - moveSpeed
@@ -1516,6 +1531,7 @@ MonoBehaviour:
     - maxHealthModifier
     - size
     - focus
+    - regen
     _values:
     - 0
     - 1
@@ -1524,8 +1540,8 @@ MonoBehaviour:
     - 1
     - 1
     - 1
-    - 15
-    - 15
+    - 5
+    - 5
     - 1
     - 25
     - 0
@@ -1536,8 +1552,9 @@ MonoBehaviour:
     - 1
     - 0
     - 0
-    - 100
+    - 1
     - 999
+    - 1
     - 1
     - 1
     - 1

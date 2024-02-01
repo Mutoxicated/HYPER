@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] private GameObject[] ChildrenToDetach;
     [Space]
     [Header("General")]
+    [SerializeField] private float regen;
     [SerializeField] private float immunityDuration;
     [SerializeField,Range(0.5f,2f)] private float rate = 0.05f;
     [SerializeField] private int hitScore;
@@ -22,6 +23,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [HideInInspector] public float t = 0f;
     [HideInInspector] public bool immune = false;
     private float immunityTime;
+    private float time;
 
     private void OnEnable(){
         Difficulty.enemies.Add(gameObject);
@@ -40,6 +42,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         else
         {
             immune = false;
+        }
+        time += Time.deltaTime;
+        if (time >= 0.1f){
+            time = 0f;
+            stats.numericals["health"] += regen;
         }
         stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"],0,stats.maxHealth* stats.numericals["maxHealthModifier"]);
         if (stats.numericals["health"] < 0)
@@ -79,17 +86,21 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }
     }
 
+    private bool ChanceFailed(string name){
+        return Random.Range(0f,101f) >= Mathf.Lerp(0f,100f,stats.numericals[name]);
+    }
+
     private bool EvaluateDamageIntake(Stats senderStats, float intake){
         if (senderStats == null){
-            if (Random.Range(0f,100f) > stats.numericals["bacteriaBlockChance"])
-                stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+            if (ChanceFailed("bacteriaBlockChance"))
+                stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
             else {
                 Debug.Log("blocked");
                 return false;
             }
             return true;
         }else if (senderStats == stats){
-            stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+            stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
             return true;
         }
         if (stats.type == EntityType.ORGANIC){
@@ -97,8 +108,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }else{
             intake*= senderStats.numericals["damageNO"];
         }
-        if (Random.Range(0f,100f) > stats.numericals["enemyBlockChance"]){
-            stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+        if (ChanceFailed("enemyBlockChance")){
+            stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
             if (stats.shields.Count > 0){
                 if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
                     stats.shields.RemoveAt(stats.shields.Count-1);
@@ -205,7 +216,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
                 stats.shields.RemoveAt(stats.shields.Count-1);
         }
-        stats.numericals["health"] -= intake / (stats.shields.Count+stats.numericals["permaShields"] + 1);
+        stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
         t += strength;
         healthBar?.Activate();
         if (stats.numericals["health"] <= 0)

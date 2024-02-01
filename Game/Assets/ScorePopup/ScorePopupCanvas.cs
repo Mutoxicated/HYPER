@@ -20,10 +20,15 @@ public class ScorePopupCanvas : MonoBehaviour
     }
 
     public void PopScore(int score, float duration, float yInc){
-        ScorePopupPool.spp.GetObject(scoreSpawnPoint,score,duration, yInc);
+        ScorePopupPool.spp.GetObject(scoreSpawnPoint,score,duration,yInc);
         hasScorePopups = true;
     }
 
+    public void PopShield(int shields, float duration, float yInc){
+        var popup = ScorePopupPool.spp.GetObject(scoreSpawnPoint,shields,duration,yInc);
+        popup.SetColor(Color.yellow);
+        hasScorePopups = true;
+    }
 
     public bool HasScorePopups(){
         return hasScorePopups;

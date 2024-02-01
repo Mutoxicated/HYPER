@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4773750240115967692}
   - component: {fileID: 8260986312177372349}
+  - component: {fileID: 7524180122736567539}
   m_Layer: 0
   m_Name: ANAVATMYS
   m_TagString: Untagged
@@ -45,3 +46,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 5
+--- !u!114 &7524180122736567539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648513131151534847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee03d0bb50b9cc443a826d6f5a895f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sp: {fileID: 8260986312177372349}
+  shieldAmountStep: -1
+  healthAmountStep: -1
+  bombAmountStep: 0.008

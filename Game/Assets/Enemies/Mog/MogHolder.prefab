@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1360994f2ae04180c6f603252af7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updater: 0
   incrementer: 0
   passives: []
   stats: {fileID: 3567053016198788532}
@@ -100,6 +101,38 @@ PrefabInstance:
       propertyPath: ObjectsToDestroy.Array.data[0]
       value: 
       objectReference: {fileID: 1949178425995186798}
+    - target: {fileID: 3035522439509438840, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035522439509438840, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035522439509438840, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 464012442390308668}
+    - target: {fileID: 3035522439509438840, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035522439509438840, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RecyclePassiveItems
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035522439509438840, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PassivePool, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035522439509438840, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035522439509438840, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4056052035369469482, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -149,8 +182,12 @@ PrefabInstance:
       value: Mog
       objectReference: {fileID: 0}
     - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: range
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: numericals.isExpanded
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: priority.Array.data[1]
@@ -161,8 +198,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: numericals._keys.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: numericals._values.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: numericals._keys.Array.data[24]
+      value: regen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: numericals._keyValues.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: numericals._values.Array.data[7]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: numericals._values.Array.data[8]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: numericals._values.Array.data[19]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: numericals._values.Array.data[24]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: numericals._keyValues.Array.data[24]
+      value: regen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: numericals.reorderableList.isExpanded
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9019684535734031051, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: health

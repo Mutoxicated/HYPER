@@ -7,6 +7,8 @@ using RotaryHeart.Lib.SerializableDictionary;
 
 public class bullet : MonoBehaviour
 {
+    public static float bulletEffectiveness = 1f;
+
     [SerializeField] private Stats bStats;
     [SerializeField] private Immunity immuneSystem;
     [SerializeField] private Rigidbody rb;
@@ -22,6 +24,11 @@ public class bullet : MonoBehaviour
     private Vector3 initialScale = Vector3.zero;
 
     private Injector injector;
+
+    public static void ResetBulletEffectiveness(){
+        bulletEffectiveness = 1f;
+    }
+
     private void Awake()
     {
         injector = GetComponent<Injector>();
@@ -34,7 +41,7 @@ public class bullet : MonoBehaviour
     }
 
     private float CombinedStat(string name){
-        return PlayerInfo.GetGun().stats.numericals[name]*bStats.numericals[name];
+        return PlayerInfo.GetGun().stats.numericals[name]+bStats.numericals[name]-1f;
     }
 
     private void OnEnable()

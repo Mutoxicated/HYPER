@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Intimidation
   description: "Enemies\u2019 passive items become X% weaker, where X is calculated
     using your money bonus you got the previous round. The amount of impact that
-    this effect has and is initially 0%, but increases +0.8% every round + Y%, which
+    this effect has and is initially 0%, but increases +0.6% every round + Y%, which
     is determined by how well you performed the last round."
   nameColor: {r: 0.6320754, g: 0.40285382, b: 0.38461193, a: 1}
   itemImage: {fileID: 21300000, guid: 8529466993e19a44e9dd9b742ab49ffe, type: 3}

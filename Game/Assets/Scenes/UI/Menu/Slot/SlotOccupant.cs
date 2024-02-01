@@ -50,6 +50,7 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         newSlotsSO = so;
         if (newSlot == null){
             newSlotFound = false;
+            newSlotsSO = null;
             return;
         }
         newSlotFound = true;
@@ -101,9 +102,10 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         UpdatePos(eventData.pointerCurrentRaycast.worldPosition);
     }
 
-    public void OnEndDrag(PointerEventData eventData)//TO-DO: Fix slot bug where the slot may not update to null when swapping or changing place
+    public void OnEndDrag(PointerEventData eventData)
     {
         if (die){
+            slot.SetSO(null);
             Destroy(gameObject);
         }
         if (!newSlotFound){

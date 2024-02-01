@@ -27,6 +27,7 @@ public class Stats : MonoBehaviour
     [HideInInspector] public Transform entity;
 
     public float maxHealth;
+    public float range = 28f;
     [SerializeField] private float maxShields;
     [SerializeField] private float shieldhealth = 50f;
     
@@ -63,11 +64,13 @@ public class Stats : MonoBehaviour
         {"damageO",1f},
         {"enemyBlockChance",0f},
         {"bacteriaBlockChance",0f},
-        {"range",28f},
+        {"range",1f},
         {"health", 999f},
         {"maxHealthModifier", 1f},
         {"size",1f},
-        {"focus",1f}
+        {"focus",1f},
+        {"regen",1f},
+        {"allyDefense",1f}
     };
 
     public numericalDict numericals = new numericalDict();
@@ -125,6 +128,7 @@ public class Stats : MonoBehaviour
             PlayerInfo.SetShields(shields);
             PlayerInfo.SetConditionals(conditionals);
             PlayerInfo.SetNumericals(numericals);
+            numericals["health"] = maxHealth*numericals["maxHealthModifier"];
             return;
         }
         foreach (string key in conditionalsPrototype.Keys){
@@ -138,7 +142,7 @@ public class Stats : MonoBehaviour
         for (int i = 0; i < maxShields;i++){
             shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
         }
-        numericals["health"] = maxHealth;
+        numericals["health"] = maxHealth*numericals["maxHealthModifier"];
     }
 
     private void Update(){
@@ -194,7 +198,7 @@ public class Stats : MonoBehaviour
     private bool EvaluatePriorityLayer(DeathFor objective){
         if (objective == DeathFor.PLAYER){
             if (PlayerInfo.GetPlayer() != null){
-                if (Vector3.Distance(PlayerInfo.GetPlayer().transform.position,transform.position) > numericals["range"])
+                if (Vector3.Distance(PlayerInfo.GetPlayer().transform.position,transform.position) > range*numericals["range"])
                     entity = null;
                 else
                     entity = PlayerInfo.GetPlayer().transform;
@@ -203,7 +207,7 @@ public class Stats : MonoBehaviour
             return !IsEntityNull();
         }
         if (objective == DeathFor.ENEMIES){
-            GameObject go = Difficulty.FindClosestEnemy(transform,numericals["range"]);
+            GameObject go = Difficulty.FindClosestEnemy(transform,range*numericals["range"]);
             if (go == null){
                 //Debug.Log("pass");
                 entity = null;

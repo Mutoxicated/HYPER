@@ -22,7 +22,7 @@ public class PassiveItemManager : MonoBehaviour
     }
 
     public PassiveItemInfo GetPassiveItemInfoByPassiveName(string name){
-        Debug.Log("Getting PII by Passive Name, name give: "+ name);
+        //Debug.Log("Getting PII by Passive Name, name given: "+ name);
         foreach (PassiveItemInfo pii in passiveItemInfos){
             if (pii.itemName.ToUpper().Replace(" ","_") == name){
                 return pii;
@@ -37,7 +37,7 @@ public class PassiveItemManager : MonoBehaviour
         if (RunDataSave.rData.passiveSlotsFilled.Count == 5)
             RunDataSave.rData.passiveSlotsFilled = new List<PassiveItemInfo>(){null,null,null,null};
         for (int i = 0; i < slots.Length; i++){
-            Debug.Log("Passive slot: "+slots[i].GetSO());
+            //Debug.Log("Passive slot: "+slots[i].GetSO());
             if (slots[i].GetSO() == null)
                 RunDataSave.rData.passiveSlotsFilled[i] = null;
             else

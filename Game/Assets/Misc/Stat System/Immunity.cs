@@ -86,7 +86,7 @@ public class Immunity : MonoBehaviour
             {
                 //bacterias[bacKey].DamageGoodBacteria();
                 if (bacterias[bacKey].immunitySide == ImmunitySide.ALLY ){
-                    died = bacterias[bacKey].Degrade(immunityDamage*0.1f*stats.numericals["hostility"]);
+                    died = bacterias[bacKey].Degrade(immunityDamage*0.1f*stats.numericals["hostility"]*stats.numericals["allyDefense"]);
                 }
                 else if (bacterias[bacKey].character == BacteriaCharacter.POSITIVE){
                     died = bacterias[bacKey].Degrade(immunityDamage*0.4f*stats.numericals["hostility"]);

@@ -8,6 +8,7 @@ public class Derust : MonoBehaviour
     [SerializeField] private Renderer rend;
     [SerializeField] private ScorePopupCanvas spc;
     [SerializeField] private int scoreToGive = 2500;
+    [SerializeField] private int shieldToGive = 4;
 
     private float yOff;
     private Vector2 offset;
@@ -30,6 +31,10 @@ public class Derust : MonoBehaviour
         if (!Difficulty.roundFinished){
             spc.PopScore(scoreToGive,3f,0f);
             PlayerInfo.AddScore(scoreToGive);
+            if (Random.Range(0f,101f) <= PlatformObjective.shieldChance){
+                spc.PopShield(shieldToGive,4f,0f);
+                PlayerInfo.GetGun().stats.AddShield(scoreToGive);
+            }
         }
         spc.Die();
         for (int i = 0; i < transform.parent.childCount;i++){

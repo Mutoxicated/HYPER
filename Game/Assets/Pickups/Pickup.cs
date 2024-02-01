@@ -12,6 +12,7 @@ public enum PICKUP_TYPE {
 
 public class Pickup : MonoBehaviour
 {
+    private static float bombModifier = 1f;
     private static float shieldModifier = 1f;
     private static float healthModifier = 1f;
 
@@ -29,6 +30,16 @@ public class Pickup : MonoBehaviour
     private List<Material> mats = new List<Material>();
 
     private Color color;
+
+    public static void ResetMods(){
+        shieldModifier = 1f;
+        healthModifier = 1f;
+        bombModifier = 1f;
+    }
+
+    public static void StepBombMod(float num){
+        bombModifier += num;
+    }
 
     public static void StepShieldMod(float num){
         shieldModifier += num;

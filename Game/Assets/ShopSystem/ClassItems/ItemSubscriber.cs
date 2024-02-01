@@ -53,12 +53,12 @@ public class ItemSubscriber : MonoBehaviour
     }
 
     public void ItemTaken(){
-        if (PlayerInfo.GetMoney() < currentItem.cost)
+        if (PlayerInfo.GetMoney() < shop.Processed(currentItem.cost))
             return;
         bool success = PlayerInfo.GetIP().AddItem(currentItem);
         if (!success)
             return;
-        PlayerInfo.SetMoney(-currentItem.cost);
+        PlayerInfo.SetMoney(-shop.Processed(currentItem.cost));
         gameObject.SetActive(false);
         currScale = initScale;
         scalableObj.transform.localScale = currScale;

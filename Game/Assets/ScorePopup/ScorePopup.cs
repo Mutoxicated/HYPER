@@ -16,6 +16,7 @@ public class ScorePopup : MonoBehaviour
     private float yInc = initYInc;
     private float time = 0f;
     private Vector3 alteredPos;
+    private Color defaultColor = Color.white;
     private Color alteredCol;
     private float t;
 
@@ -25,11 +26,18 @@ public class ScorePopup : MonoBehaviour
         time = 0f;
     }
 
+    private void OnEnable(){
+        if (defaultColor == Color.white){
+            defaultColor = txt.color;
+        }
+    }
+
     private void Update(){
         time += Time.deltaTime;
         if (time >= duration){
             gameObject.SetActive(false);
             trans.localPosition = Vector3.zero;
+            txt.color = defaultColor;
             ScorePopupPool.spp.ReturnObject(this);
             return;
         }
@@ -50,6 +58,10 @@ public class ScorePopup : MonoBehaviour
 
     public void SetDuration(float duration){
         this.duration = duration;
+    }
+
+    public void SetColor(Color color){
+        txt.color = color;
     }
 
     public void SetYInc(float yInc){

@@ -1153,3 +1153,7 @@ The Passive Item Structure is fully implemented now and the super passives (some
 ## Day 236
 
 Completely implemented the PIC Structure!!! There's just one bug that I have to fix, and it's really weird.
+
+## Day 237
+
+I *think* I fixed the bug I was talking about. Also added all the passive items and made every super passive functional. I will call it a day.

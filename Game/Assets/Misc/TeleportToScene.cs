@@ -33,6 +33,15 @@ public class TeleportToScene : MonoBehaviour
         Application.quitting -= UpdateRunDataOnQuit;
     }
 
+    private void UpdateMisc(){
+        Pickup.ResetMods();
+        bullet.ResetBulletEffectiveness();
+        SuperPassivePool.Clear();
+        PassivePool.ResetEffectiveness();
+        PlatformObjective.ResetShieldChance();
+        ItemShop.ResetCheapness();
+    }
+
     public void SwitchScene(){
         PlayerInfo.GetPH().immuneSystem.RecycleBacteria();
         if (sceneName != "MainMenu"){
@@ -41,7 +50,7 @@ public class TeleportToScene : MonoBehaviour
         }
         PIC.PICVier.GetPIM().SetRandomState(false);
         if (SceneManager.GetActiveScene().name == "ArenaV2" && sceneName == "MainMenu"){
-            SuperPassivePool.Clear();
+            UpdateMisc();
             return;
         }
         EquipmentManager.UpdateRunDataEquipment();
@@ -50,7 +59,7 @@ public class TeleportToScene : MonoBehaviour
         if (sceneName =="MainMenu"){
             PIC.PICVier.GetPIM().SetRandomState(false);
             EquipmentManager.RevertAllEquipment();
-            SuperPassivePool.Clear();
+            UpdateMisc();
         }
         RunDataSave.rData.conditionals = playerStats.conditionals;
         RunDataSave.rData.numericals = playerStats.numericals;

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PassivePool : MonoBehaviour
 {
+    public static float effectivenessMod = 1f;
+
     public static PassivePool pp;
     public static List<PopulativeInfo> enemyItems = new List<PopulativeInfo>();
 
@@ -14,6 +16,10 @@ public class PassivePool : MonoBehaviour
     [SerializeField] private PassiveItemInfo[] passives;
     public Stats stats;
     public List<PassiveItem> myPassiveItems = new List<PassiveItem>();
+
+    public static void ResetEffectiveness(){
+        effectivenessMod = 1f;
+    }
 
     public void RecyclePassiveItems(){
         foreach(PassiveItem item in myPassiveItems){

@@ -46,8 +46,8 @@ public class SuperPassive : MonoBehaviour
         return iterations;
     }
 
-    private void Develop(){
-        Debug.Log(gameObject.name+" DEVELOPED!!");
+    public void Develop(){
+        //Debug.Log(gameObject.name+" DEVELOPED!!");
         iterations++;
     }
 

@@ -11,6 +11,7 @@ public class SimonSays : MonoBehaviour
     [SerializeField] private GameObject holder;
     [SerializeField] private Pad[] pads;
     [SerializeField] private int scoreToGive = 6000;
+    [SerializeField] private int shieldToGive = 3;
     [SerializeField] private ScorePopupCanvas spc;
     [SerializeField] private TMP_Text turn;
     public OnInterval dieInterval;
@@ -134,6 +135,10 @@ public class SimonSays : MonoBehaviour
         if (!Difficulty.roundFinished){
             spc.PopScore(scoreToGive,4f,0f);
             PlayerInfo.AddScore(scoreToGive);
+            if (Random.Range(0f,101f) <= PlatformObjective.shieldChance){
+                spc.PopShield(shieldToGive,4f,0f);
+                PlayerInfo.GetGun().stats.AddShield(scoreToGive);
+            }
         }
         spc.transform.position = new Vector3(transform.position.x,transform.position.y+yOff,transform.position.z);
         spc.transform.localRotation = Quaternion.identity;

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ItemShop : MonoBehaviour
 {
+    public static float cheapnessMod = 1f;
+
     public static int dynamiteRestoreCost = 15;
     public static int dynamiteAddCost = 7;
     public static int rerollCost = 3;
@@ -28,11 +30,15 @@ public class ItemShop : MonoBehaviour
         GetRandomGunEquipment(2);
     }
 
+    public static void ResetCheapness(){
+        cheapnessMod = 1f;
+    }
+
     private bool ValidateCost(int cost){
-        if (PlayerInfo.GetMoney() < cost){
+        if (PlayerInfo.GetMoney() < Processed(cost)){
             return false;
         }
-        PlayerInfo.SetMoney(-cost);
+        PlayerInfo.SetMoney(-Processed(cost));
         return true;
     }
 
@@ -53,6 +59,11 @@ public class ItemShop : MonoBehaviour
             es.UpdateItem();
         }
     }
+
+    public int Processed(float num){
+        return Mathf.RoundToInt(num*cheapnessMod);
+    }
+
     public void Reroll(){
         if (ValidateCost(rerollCost))
             GetRandomItems(3);

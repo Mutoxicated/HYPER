@@ -10,7 +10,7 @@ public class Trap : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private OnInterval durationInterval;
     [SerializeField] private OnInterval sphereDieInterval;
-    [SerializeField] private int scoreToGive = 4000;
+    [SerializeField] private int scoreToGive = 1000;
     [SerializeField] private float damage = 20f;
     [SerializeField] private float damageInterval = 0.5f;
     [SerializeField] private OnInterval damageOnInterval;

@@ -70,9 +70,9 @@ public class PIC : MonoBehaviour
     public void SetCurrentPiis(){
         for (int i = 0; i < slots.Length; i++){
             Debug.Log("SETTING PIIS THROUGH SLOTS");
-            Debug.Log(slots[i].GetSO());
+            //Debug.Log(slots[i].GetSO()+ " contains: "+);
             if (slots[i].GetSO() == null) {
-                currentPiis.Add(null);
+                currentPiis[i].pii = null;
                 continue;
             }
             Debug.Log("PASSIVE NAME: "+pim.GetPassiveItemInfoByPassiveName(slots[i].GetSO().pip.GetCurrentPassive().gameObject.name).name);
@@ -99,7 +99,7 @@ public class PIC : MonoBehaviour
 
     public void LockSlots(){
         foreach (PICSlot ps in currentPiis){
-            if (ps != null){
+            if (ps.pii != null){
                 ps.locked = true;
             }
         }
@@ -201,7 +201,7 @@ public class PIC : MonoBehaviour
             number -= (SuperPassivePool.GetSuperPassiveCount()-1)*times;
         }
 
-        Debug.Log("Number got post-processing: "+number);
+        //Debug.Log("Number got post-processing: "+number);
 
         currentSuperPassive = SuperPassivePool.GetPassiveByIndex(Mathf.RoundToInt(number));
         Debug.Log(currentSuperPassive);
@@ -209,7 +209,7 @@ public class PIC : MonoBehaviour
         if (!currentSuperPassive.GetDevelopState()){
             currentSuperPassive.SetDevelopState(true);
         }
-        Debug.Log("CSP: "+currentSuperPassive);
+        //Debug.Log("CSP: "+currentSuperPassive);
         PassiveItemInfo pii = GetPassiveInfoByName(currentSuperPassive.gameObject.name);
         cspImage.sprite = pii.itemImage;
         iterations.text = "x"+currentSuperPassive.GetIterations();

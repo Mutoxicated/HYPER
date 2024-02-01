@@ -21,7 +21,7 @@ public class ScorePopupPool : MonoBehaviour
         }
     }
 
-    public void GetObject(Transform parent, int score, float duration){
+    public ScorePopup GetObject(Transform parent, int score, float duration){
         if (inactivePopups.Count == 0){
             GameObject instance = Instantiate(scorePopupPrefab, parent.position,parent.rotation);
             instance.transform.SetParent(parent,false);
@@ -30,17 +30,20 @@ public class ScorePopupPool : MonoBehaviour
             popup.SetText(score);
             popup.SetDuration(duration);
             activePopups.Add(popup);
+            return popup;
         }else{
+            var popup = inactivePopups[0];
             inactivePopups[0].gameObject.transform.SetParent(parent,false);
             inactivePopups[0].transform.rotation = parent.rotation;
             inactivePopups[0].SetText(score);
             inactivePopups[0].SetDuration(duration);
             inactivePopups[0].gameObject.SetActive(true);
             AddAndRemove(inactivePopups[0],activePopups,inactivePopups);
+            return popup;
         }
     }
 
-    public void GetObject(Transform parent, int score, float duration, float yInc){
+    public ScorePopup GetObject(Transform parent, int score, float duration, float yInc){
         if (inactivePopups.Count == 0){
             GameObject instance = Instantiate(scorePopupPrefab, parent.position,parent.rotation);
             instance.transform.SetParent(parent,false);
@@ -50,7 +53,9 @@ public class ScorePopupPool : MonoBehaviour
             popup.SetDuration(duration);
             popup.SetYInc(yInc);
             activePopups.Add(popup);
+            return popup;
         }else{
+            var popup = inactivePopups[0];
             inactivePopups[0].gameObject.transform.SetParent(parent,false);
             inactivePopups[0].transform.rotation = parent.rotation;
             inactivePopups[0].gameObject.SetActive(true);
@@ -58,6 +63,7 @@ public class ScorePopupPool : MonoBehaviour
             inactivePopups[0].SetDuration(duration);
             inactivePopups[0].SetYInc(yInc);
             AddAndRemove(inactivePopups[0],activePopups,inactivePopups);
+            return popup;
         }
     }
 

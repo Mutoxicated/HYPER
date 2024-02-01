@@ -61,9 +61,9 @@ public class SuperPassivePool : MonoBehaviour
 
     public static void DevelopPassiveByName(string name){
         if (!superPassives.ContainsKey(name)) return;
-        Debug.Log(name+" is developing. "+superPassives[name].GetDevelopState());
+        //Debug.Log(name+" is developing. "+superPassives[name].GetDevelopState());
         if (superPassives[name].GetDevelopState()){
-            superPassives[name].gameObject.SendMessage("Develop");
+            superPassives[name].Develop();
         }
     }
 }

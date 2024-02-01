@@ -24,12 +24,12 @@ public class TargetEvents : MonoBehaviour
             return;
         }
         dist = Vector3.Distance(transform.position,stats.entity.position);
-        if (dist <= stats.numericals["range"]){
+        if (dist <= stats.range*stats.numericals["range"]){
             CallTargetRange(true);
             inRange = true;
             switch2 = true;
                     
-        }else if (dist > stats.numericals["range"]){
+        }else if (dist > stats.range*stats.numericals["range"]){
             CallTargetRange(false);
             inRange = false;
         }
@@ -43,21 +43,21 @@ public class TargetEvents : MonoBehaviour
                 return;
             }
             dist = Vector3.Distance(transform.position,stats.entity.position);
-            if (dist <= stats.numericals["range"] && !switch2){
+            if (dist <= stats.range*stats.numericals["range"] && !switch2){
                 CallTargetRange(true);
                 inRange = true;
                 switch2 = true;
                 
-            }else if (dist > stats.numericals["range"] && switch2){
+            }else if (dist > stats.range*stats.numericals["range"] && switch2){
                 CallTargetRange(false);
                 inRange = false;
                 switch2 = false;
             }
             if (inRange){
-                if (dist <= stats.numericals["range"]*0.5f && !switch1){
+                if (dist <= stats.range*stats.numericals["range"]*0.5f && !switch1){
                     CallCloseRange(true);
                     switch1 = true;
-                }else if (dist > stats.numericals["range"]*0.5f && switch1){
+                }else if (dist > stats.range*stats.numericals["range"]*0.5f && switch1){
                     CallCloseRange(false);
                     switch1 = false;
                 }
@@ -90,21 +90,21 @@ public class TargetEvents : MonoBehaviour
                 return;
             }
             dist = Vector3.Distance(transform.position,stats.entity.position);
-            if (dist <= stats.numericals["range"] && !switch2){
+            if (dist <= stats.range*stats.numericals["range"] && !switch2){
                 CallTargetRange(true);
                 inRange = true;
                 switch2 = true;
                 
-            }else if (dist > stats.numericals["range"] && switch2){
+            }else if (dist > stats.range*stats.numericals["range"] && switch2){
                 CallTargetRange(false);
                 inRange = false;
                 switch2 = false;
             }
             if (inRange){
-                if (dist <= stats.numericals["range"]*0.65f && !switch1){
+                if (dist <= stats.range*stats.numericals["range"]*0.65f && !switch1){
                     CallCloseRange(true);
                     switch1 = true;
-                }else if (dist > stats.numericals["range"]*0.65f && switch1){
+                }else if (dist > stats.range*stats.numericals["range"]*0.65f && switch1){
                     CallCloseRange(false);
                     switch1 = false;
                 }

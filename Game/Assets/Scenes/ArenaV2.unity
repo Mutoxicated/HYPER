@@ -2303,6 +2303,7 @@ MonoBehaviour:
   priority: 000000000000000000000000
   entity: {fileID: 0}
   maxHealth: 0
+  range: 28
   maxShields: 0
   shieldhealth: 50
   conditionals:
@@ -3495,6 +3496,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: PassiveIncrementer
       objectReference: {fileID: 0}
+    - target: {fileID: 4401519402080011350, guid: fb320a6f657564e40952f896abdaf5a9, type: 3}
+      propertyPath: passives.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401519402080011350, guid: fb320a6f657564e40952f896abdaf5a9, type: 3}
+      propertyPath: passives.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: a9d4e2e1327a66c44bc8da6d436e4019, type: 2}
+    - target: {fileID: 4401519402080011350, guid: fb320a6f657564e40952f896abdaf5a9, type: 3}
+      propertyPath: passives.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: ed7e81436eb349b4b89eaeaaa03a5337, type: 2}
+    - target: {fileID: 4401519402080011350, guid: fb320a6f657564e40952f896abdaf5a9, type: 3}
+      propertyPath: passives.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d06f8d0de84c6e4ca5cc30e02ce788e, type: 2}
+    - target: {fileID: 4401519402080011350, guid: fb320a6f657564e40952f896abdaf5a9, type: 3}
+      propertyPath: passives.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a653cf9c63fce3499174947b306d685, type: 2}
+    - target: {fileID: 4401519402080011350, guid: fb320a6f657564e40952f896abdaf5a9, type: 3}
+      propertyPath: passives.Array.data[13]
+      value: 
+      objectReference: {fileID: 11400000, guid: fc9929aa296b10c4bb10d67cc3afd01e, type: 2}
     - target: {fileID: 8836744069888620310, guid: fb320a6f657564e40952f896abdaf5a9, type: 3}
       propertyPath: m_RootOrder
       value: 0

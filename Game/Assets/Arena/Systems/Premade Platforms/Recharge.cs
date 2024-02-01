@@ -15,6 +15,7 @@ public class Recharge : MonoBehaviour
     [SerializeField] private OnInterval durationInterval;
     [SerializeField] private OnInterval sphereDieInterval;
     [SerializeField] private int scoreToGive = 4000;
+    [SerializeField] private int shieldToGive = 2;
 
     private Vector3 initScale;
     private Vector3 alteredScale;
@@ -77,6 +78,10 @@ public class Recharge : MonoBehaviour
         if (!Difficulty.roundFinished){
             spc.PopScore(scoreToGive,4f,0f);
             PlayerInfo.AddScore(scoreToGive);
+            if (Random.Range(0f,101f) <= PlatformObjective.shieldChance){
+                spc.PopShield(shieldToGive,4f,0f);
+                PlayerInfo.GetGun().stats.AddShield(scoreToGive);
+            }
         }
         sphereDieInterval.enabled = true;
     }

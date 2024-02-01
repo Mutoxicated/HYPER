@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca1360994f2ae04180c6f603252af7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updater: 0
+  incrementer: 0
+  passives: []
   stats: {fileID: 4950074896820588784}
-  entityType: 1
   myPassiveItems: []
 --- !u!1 &5725198740932932340
 GameObject:
@@ -132,6 +134,54 @@ PrefabInstance:
       propertyPath: onParry.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
       objectReference: {fileID: 4998289807964076718}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: range
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals.isExpanded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals._keys.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals._values.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals._keys.Array.data[24]
+      value: regen
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals._keyValues.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals._values.Array.data[7]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals._values.Array.data[8]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals._values.Array.data[19]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals._values.Array.data[24]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals._keyValues.Array.data[24]
+      value: regen
+      objectReference: {fileID: 0}
+    - target: {fileID: 970851751731316767, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
+      propertyPath: numericals.reorderableList.isExpanded
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1505947228412035310, guid: 7498ed507168ef24080dc25ae0d83afc, type: 3}
       propertyPath: m_Name
       value: MISSILE

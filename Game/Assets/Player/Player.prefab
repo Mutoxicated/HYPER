@@ -862,6 +862,7 @@ MonoBehaviour:
   infoIsScore: 0
   reactionSpeed: 2.07
   hitReaction: 1
+  regen: 0.05
 --- !u!136 &7127821129873079633
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1054,9 +1055,10 @@ MonoBehaviour:
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   type: 0
-  objective: 0
+  priority: 000000000000000000000000
   entity: {fileID: 0}
   maxHealth: 700
+  range: 28
   maxShields: 4
   shieldhealth: 50
   conditionals:
@@ -1143,6 +1145,7 @@ MonoBehaviour:
     - maxHealthModifier
     - size
     - focus
+    - regen
     _keys:
     - permaShields
     - moveSpeed
@@ -1168,6 +1171,7 @@ MonoBehaviour:
     - maxHealthModifier
     - size
     - focus
+    - regen
     _values:
     - 0
     - 1
@@ -1188,8 +1192,9 @@ MonoBehaviour:
     - 1
     - 0
     - 0
-    - 28
+    - 1
     - 999
+    - 1
     - 1
     - 1
     - 1
