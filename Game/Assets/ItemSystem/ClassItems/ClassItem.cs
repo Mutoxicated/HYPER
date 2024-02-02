@@ -4,7 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public enum Class {
+public enum ClassHierarchy{
+    Starter,
+    Synergized,
+    HYPER
+}
+
+[Serializable]
+public enum classType {
     //STARTER CLASSES \/
     Evocus,
     Magicka,
@@ -27,7 +34,7 @@ public enum Class {
     Dione,
     Mentor,
     Lizzard,
-    Hephaestus,
+    Hra,
     Baller,
     Avatar,
     Kappa_Lanista,
@@ -43,7 +50,7 @@ public enum ItemType {
 public class ClassItem : MonoBehaviour
 {
     [SerializeField] private ItemType itemType;
-    [SerializeField] private List<Class> classes = new List<Class>();//classes the class item is in
+    [SerializeField] private List<classType> classes = new List<classType>();//classes the class item is in
 
     [SerializeField] private bool reApplyEffectsOnSceneChange = true;
 
@@ -51,7 +58,7 @@ public class ClassItem : MonoBehaviour
         return reApplyEffectsOnSceneChange;
     }
 
-    public List<Class> GetClasses(){
+    public List<classType> GetClasses(){
         return classes;
     }
 }

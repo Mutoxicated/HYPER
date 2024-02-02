@@ -40,6 +40,7 @@ public class TeleportToScene : MonoBehaviour
         PassivePool.ResetEffectiveness();
         PlatformObjective.ResetShieldChance();
         ItemShop.ResetCheapness();
+        ClassSystem.Reset();
     }
 
     public void SwitchScene(){

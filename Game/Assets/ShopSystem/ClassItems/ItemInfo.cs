@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using RotaryHeart.Lib.SerializableDictionary;
+using System;
 
 public class ItemInfo : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class ItemInfo : MonoBehaviour
     private string classesCombined;
     private ItemSubscriber currentIShovering;
 
-    private void classStringBuilder(List<Class> classes){
+    private void classStringBuilder(List<classType> classes){
         classesCombined = "";
         for (int i = 0; i < classes.Count; i++){
             if (i == 0){
