@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BobInformation
   direction: {x: 0, y: 1, z: 0}
   minmaxSpeed: {x: 55, y: 80}
+  toTarget: 1

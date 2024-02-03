@@ -332,7 +332,6 @@ public class Movement : MonoBehaviour
     }
 
     private void CollisionDamage(Collision collision){
-        camShake.Shake();
         collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(250f*stats.numericals["damage"],stats,ref shields,1f,0);
     }
     
@@ -353,6 +352,7 @@ public class Movement : MonoBehaviour
             groundSlam.transform.position = point.point;
             groundSlam.Play();
             movementState = MovementState.WALKING;
+            camShake.Shake(0.1f);
             if (collision.collider.gameObject.tag == "Enemy")
             {
                 CollisionDamage(collision);

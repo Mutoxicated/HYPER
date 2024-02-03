@@ -71,7 +71,7 @@ public class TargetEvents : MonoBehaviour
     private void CallCloseRange(bool state){
         if (targetInCloseRange.GetPersistentEventCount() != 0){
             targetInCloseRange.Invoke(state);
-            Debug.Log("Target at same Y Level: " + state);
+            Debug.Log("Target In Close Range: " + state);
         }
     }
 

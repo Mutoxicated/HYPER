@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class Battery {
@@ -24,7 +25,9 @@ public class Battery {
         return flooredCells;
     }
 
-
+    public float GetUnflooredCells(){
+        return currentCells;
+    }
 
     public Battery(int cellAmount){
         this.cellAmount = cellAmount;
@@ -44,19 +47,30 @@ public class Class : MonoBehaviour
     };
 
     [SerializeField] private ClassInfo identity;
+    [SerializeField] private List<BatteryDresser> bds = new List<BatteryDresser>();
+    [SerializeField] private Image image;
 
     private List<Battery> batteries = new List<Battery>();
     private int totalCells;
+    private Transform parent;
 
     private void Awake(){
         int index = (int)identity.hierarchy;
         for (int i = 0; i < batteryAmountOfClass[index]; i++){
+            totalCells += cellAmountOfClass[index];
             batteries.Add(new Battery(cellAmountOfClass[index]));
         }
+        image.sprite = identity.image;
+        parent = transform.parent.transform;
     }
 
     public ClassInfo PapersPlease(){
         return identity;
+    }
+
+    public void GoBackToParent(){
+        transform.SetParent(parent,true);
+        transform.localPosition = Vector3.zero;
     }
 
     public int IncreaseBattery(){
@@ -65,6 +79,7 @@ public class Class : MonoBehaviour
                 continue;
             }
             batteries[i].Increase(maxItemsOfClass[(int)identity.hierarchy]/totalCells);
+            bds[i].Increase(batteries[i].GetCurrentCells());
             return (batteries[i].GetCurrentCells() == batteries[i].cellAmount) ? batteries[i].cellAmount : -1;
         }
         return -1;
@@ -80,7 +95,37 @@ public class Class : MonoBehaviour
                 cellAmount = batteries[i].cellAmount;
             }
             batteries[i].Increase(-maxItemsOfClass[(int)identity.hierarchy]/totalCells);
+            bds[i].Increase(batteries[i].GetCurrentCells());
         }
         return cellAmount;
+    }
+
+    public void PendBattery(){
+        for (int i = 0; i < batteries.Count; i++){
+            if (batteries[i].GetCurrentCells() == batteries[i].cellAmount){
+                continue;
+            }
+            if (bds[i].GetPending()) continue;
+            float hypotheticalIncrease = batteries[i].GetUnflooredCells()+maxItemsOfClass[(int)identity.hierarchy]/totalCells;
+            bds[i].SetPending(batteries[i].GetCurrentCells(),Mathf.FloorToInt(hypotheticalIncrease),false);
+        }
+    }
+
+    public void PendBatteryDecrease(){
+        for (int i = 0; i < batteries.Count; i++){
+            if (batteries[i].GetCurrentCells() == batteries[i].cellAmount){
+                continue;
+            }
+            if (bds[i].GetPending()) continue;
+            float hypotheticalDecrease = batteries[i].GetUnflooredCells()-maxItemsOfClass[(int)identity.hierarchy]/totalCells;
+            bds[i].SetPending(Mathf.FloorToInt(hypotheticalDecrease),batteries[i].GetCurrentCells(),true);
+        }
+    }
+
+    public void UnpendBattery(){
+        for (int i = 0; i < bds.Count; i++){
+            if (bds[i].GetPending())
+                bds[i].DeactivatePending();
+        }
     }
 }

@@ -7,9 +7,13 @@ public class ItemPool : MonoBehaviour
     [SerializeField] private List<GameObject> prefabs = new List<GameObject>();
     private static List<GameObject> classItems = new List<GameObject>();
 
-    private void Awake(){
+    public static void ResetClassItems(){
         classItems.Clear();
-        RegenerateItems();
+    }
+
+    private void Awake(){
+        if (classItems.Count == 0)
+            RegenerateItems();
         PlayerInfo.SetIP(this);
     }
 
@@ -28,6 +32,7 @@ public class ItemPool : MonoBehaviour
 
         foreach (string name in RunDataSave.rData.activeClassItems){
             classItems.Add(Instantiate(FindPrefabByName(name)));
+            
         }
     }
 

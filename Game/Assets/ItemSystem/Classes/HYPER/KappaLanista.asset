@@ -15,4 +15,4 @@ MonoBehaviour:
   _classType: 22
   hierarchy: 2
   color: {r: 0.58431375, g: 0, b: 0, a: 1}
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 186a0e48e4f56a644bf37161f91702d7, type: 3}

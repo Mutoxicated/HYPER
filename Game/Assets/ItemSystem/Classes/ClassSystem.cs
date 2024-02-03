@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClassSystem : MonoBehaviour
 {
-    private static Dictionary<classType, Class> classDict = new Dictionary<classType, Class>();
+    public static Dictionary<classType, Class> classDict = new Dictionary<classType, Class>();
     private static float starterEffectivenessMod = 1f;
     private static float synergizedEffectivenessMod = 1f;
     private static float HYPEREffectivenessMod = 1f;

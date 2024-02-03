@@ -11,11 +11,13 @@ public class ItemInfo : MonoBehaviour
 
     [SerializeField] private TMP_Text classInfo;
     [SerializeField] private TMP_Text description;
+    [SerializeField] private Transform[] classPlacements;
 
     private string classesCombined;
     private ItemSubscriber currentIShovering;
+    private List<classType> classes = new List<classType>();
 
-    private void classStringBuilder(List<classType> classes){
+    private void classStringBuilder(){
         classesCombined = "";
         for (int i = 0; i < classes.Count; i++){
             if (i == 0){
@@ -24,6 +26,18 @@ public class ItemInfo : MonoBehaviour
                 classesCombined += ", ";
                 classesCombined += classes[i].ToString();
             }
+            ClassSystem.classDict[classes[i]].gameObject.SetActive(true);
+            ClassSystem.classDict[classes[i]].transform.SetParent(classPlacements[i].transform,true);
+            ClassSystem.classDict[classes[i]].transform.localPosition = Vector3.zero;
+            ClassSystem.classDict[classes[i]].PendBattery();
+        }
+    }
+
+    private void UnpendClasses(){
+        for (int i = 0; i < classes.Count; i++){
+            ClassSystem.classDict[classes[i]].gameObject.SetActive(false);
+            ClassSystem.classDict[classes[i]].GoBackToParent();
+            ClassSystem.classDict[classes[i]].UnpendBattery();
         }
     }
     
@@ -33,7 +47,8 @@ public class ItemInfo : MonoBehaviour
                 if (!i.gameObject.activeSelf)
                     continue;
                 if (i.hovering){
-                    classStringBuilder(i.currentItem.item.GetClasses());
+                    classes = i.currentItem.item.GetClasses();
+                    classStringBuilder();
                     classInfo.text = "Contained in: "+classesCombined;
                     description.text = i.currentItem.description;
                     currentIShovering = i;
@@ -45,6 +60,7 @@ public class ItemInfo : MonoBehaviour
         }else{
             if (!currentIShovering.hovering){
                 currentIShovering = null;
+                UnpendClasses();
             }
         }
     }

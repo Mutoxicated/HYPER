@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public enum ClassHierarchy{
@@ -53,6 +54,29 @@ public class ClassItem : MonoBehaviour
     [SerializeField] private List<classType> classes = new List<classType>();//classes the class item is in
 
     [SerializeField] private bool reApplyEffectsOnSceneChange = true;
+
+    public void IncreaseClassesBattery(){
+        foreach (classType ct in classes){
+            ClassSystem.IncrementClassBattery(ct);
+        }
+    }
+
+    private void SceneCheck(Scene scene, LoadSceneMode lsm){
+        if (scene.name == "MainMenu"){
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        SceneManager.sceneLoaded += SceneCheck;
+        DontDestroyOnLoad(transform);
+        IncreaseClassesBattery();
+    }
+
+    private void OnDestroy(){
+        SceneManager.sceneLoaded -= SceneCheck;
+    }
 
     public bool ReApply(){
         return reApplyEffectsOnSceneChange;

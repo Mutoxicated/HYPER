@@ -6,4 +6,5 @@ using UnityEngine;
 public class BobInformation : ScriptableObject {
     public Vector3 direction;
     public Vector2 minmaxSpeed;
+    public bool toTarget = false;
 }

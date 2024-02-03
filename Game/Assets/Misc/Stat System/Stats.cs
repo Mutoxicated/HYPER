@@ -25,6 +25,7 @@ public class Stats : MonoBehaviour
     [SerializeField] private DeathFor[] priority = new DeathFor[3];
     private DeathFor currentLayer;
     [HideInInspector] public Transform entity;
+    [HideInInspector] public Transform entityForever;
 
     public float maxHealth;
     public float range = 28f;
@@ -200,8 +201,10 @@ public class Stats : MonoBehaviour
             if (PlayerInfo.GetPlayer() != null){
                 if (Vector3.Distance(PlayerInfo.GetPlayer().transform.position,transform.position) > range*numericals["range"])
                     entity = null;
-                else
+                else{
                     entity = PlayerInfo.GetPlayer().transform;
+                    entityForever = PlayerInfo.GetPlayer().transform;;
+                }
             }   
             else entity = null;
             return !IsEntityNull();
@@ -213,12 +216,14 @@ public class Stats : MonoBehaviour
                 entity = null;
             }else{
                 entity = go.transform;
+                entityForever = go.transform;
             }
             return !IsEntityNull();
         }
         if (objective == DeathFor.PLAYER_FOREVER){
             if (PlayerInfo.GetPlayer() != null){
                 entity = PlayerInfo.GetPlayer().transform;
+                entityForever = PlayerInfo.GetPlayer().transform;
             }   
             else entity = null;
             return !IsEntityNull();
@@ -230,6 +235,7 @@ public class Stats : MonoBehaviour
                 entity = null;
             }else{
                 entity = go.transform;
+                entityForever = go.transform;
             }
             return !IsEntityNull();
         }

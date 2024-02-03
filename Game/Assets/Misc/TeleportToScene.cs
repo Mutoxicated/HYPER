@@ -41,6 +41,7 @@ public class TeleportToScene : MonoBehaviour
         PlatformObjective.ResetShieldChance();
         ItemShop.ResetCheapness();
         ClassSystem.Reset();
+        ItemPool.ResetClassItems();
     }
 
     public void SwitchScene(){

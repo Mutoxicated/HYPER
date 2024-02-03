@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   classes: 02000000
-  reApplyEffectsOnSceneChange: 0
+  reApplyEffectsOnSceneChange: 1
 --- !u!114 &-8701548534503801209
 MonoBehaviour:
   m_ObjectHideFlags: 0

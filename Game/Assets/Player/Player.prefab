@@ -752,12 +752,12 @@ MonoBehaviour:
   dashSpeed: 25.67
   gravityForce: 22.02
   jumpForce: 18
-  airMultiplier: 0.436
+  airMultiplier: 0.307
   launchForce: 9
   maxJumps: 3
   maxBounces: 1
   disableLaunch: 0
-  airdrag: 1.441
+  airdrag: 0.844
   launchInterval: {fileID: 8042353175293637678}
   lockInterval: {fileID: 3848314848283858412}
   slamJumpInterval: {fileID: 0}
