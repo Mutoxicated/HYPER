@@ -7,9 +7,13 @@ using UnityEngine.UI;
 public class TextColor : MonoBehaviour
 {
     [SerializeField] private TMP_Text text;
+    [SerializeField] private Image imageReceiver;
     [SerializeField] private Image image;
     
     private void Update(){
-        text.color = image.color;
+        if (text == null)
+            imageReceiver.color = image.color;
+        else
+            text.color = image.color;
     }
 }

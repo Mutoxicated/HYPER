@@ -1165,3 +1165,7 @@ Started making the class system. It's really cool how it works, because it encou
 ## Day 239
 
 Will have to remake Mog. Made alllll the classes today and they also show up in the item info. Very cool.
+
+## Day 240
+
+I'm pretty much done with the full funcionality of the shop system. Tomorrow I will remake the mog and I will also make the zorretox enemy.

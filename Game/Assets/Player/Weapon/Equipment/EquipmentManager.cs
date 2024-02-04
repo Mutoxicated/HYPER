@@ -98,4 +98,32 @@ public class EquipmentManager : MonoBehaviour
         item.SetPopulation(Mathf.RoundToInt(Mathf.Clamp(population,0,maxPopulation)));
         return true; 
     }
+
+    public void RemoveEquip(Equipment equipment){
+        PopulativeItem item = null;
+        foreach (PopulativeItem it in equips){
+            if (it.name == equipment.name)
+                item = it;
+        }
+        if (item == null){
+            Debug.Log("No equipment with that name found.");
+            return;
+        }
+        if (item.GetPopulation() > 1){
+            item.AddPopulation(-1);
+            return;
+        }
+        if (item.gameObject.activeSelf){
+            item.gameObject.SetActive(false);
+            return;
+        }
+    }
+
+    public PopulativeItem GetPIByEquipment(Equipment equip){
+        foreach (PopulativeItem it in equips){
+            if (it.name == equip.name)
+                return it;
+        }
+        return null;
+    }
 }

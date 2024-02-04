@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class ItemShop : MonoBehaviour
 {
+    public static float sellMultiplier = 0.5f;
     public static float cheapnessMod = 1f;
+    public static float expensiveMod = 1f;
 
     public static int dynamiteRestoreCost = 15;
     public static int dynamiteAddCost = 7;
@@ -32,6 +34,8 @@ public class ItemShop : MonoBehaviour
 
     public static void ResetCheapness(){
         cheapnessMod = 1f;
+        expensiveMod = 1f;
+        sellMultiplier = 1f;
     }
 
     private bool ValidateCost(int cost){
@@ -61,7 +65,7 @@ public class ItemShop : MonoBehaviour
     }
 
     public int Processed(float num){
-        return Mathf.RoundToInt(num*cheapnessMod);
+        return Mathf.RoundToInt(num*cheapnessMod*expensiveMod);
     }
 
     public void Reroll(){

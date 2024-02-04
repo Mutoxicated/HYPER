@@ -7,29 +7,22 @@ using System;
 
 public class ItemInfo : MonoBehaviour
 {
-    [SerializeField] private List<ItemSubscriber> its = new List<ItemSubscriber>();
-
-    [SerializeField] private TMP_Text classInfo;
+    [SerializeField] private TMP_Text nameInfo;
     [SerializeField] private TMP_Text description;
     [SerializeField] private Transform[] classPlacements;
 
-    private string classesCombined;
-    private ItemSubscriber currentIShovering;
     private List<classType> classes = new List<classType>();
+    private Item cachedItem;
 
-    private void classStringBuilder(){
-        classesCombined = "";
+    private void ClassUpdate(ItemSubscriber iss){
         for (int i = 0; i < classes.Count; i++){
-            if (i == 0){
-                classesCombined += classes[i].ToString();
-            }else{
-                classesCombined += ", ";
-                classesCombined += classes[i].ToString();
-            }
             ClassSystem.classDict[classes[i]].gameObject.SetActive(true);
             ClassSystem.classDict[classes[i]].transform.SetParent(classPlacements[i].transform,true);
             ClassSystem.classDict[classes[i]].transform.localPosition = Vector3.zero;
-            ClassSystem.classDict[classes[i]].PendBattery();
+            if (iss.IsBeingSold())
+                ClassSystem.classDict[classes[i]].PendBatteryDecrease();
+            else
+                ClassSystem.classDict[classes[i]].PendBattery();
         }
     }
 
@@ -40,28 +33,34 @@ public class ItemInfo : MonoBehaviour
             ClassSystem.classDict[classes[i]].UnpendBattery();
         }
     }
+
+    public Item GetCurrentCachedItem(){
+        return cachedItem;
+    }
     
-    private void Update(){
-        if (currentIShovering == null){
-            foreach (ItemSubscriber i in its){
-                if (!i.gameObject.activeSelf)
-                    continue;
-                if (i.hovering){
-                    classes = i.currentItem.item.GetClasses();
-                    classStringBuilder();
-                    classInfo.text = "Contained in: "+classesCombined;
-                    description.text = i.currentItem.description;
-                    currentIShovering = i;
-                    return;
-                }
-            }
-            classInfo.text = "";
-            description.text = "";
+    public void UpdateInfo(ItemSubscriber iss, Item item){
+        if (cachedItem == null){
+            cachedItem = item;
+        }
+
+        if (iss == null){
+            if (cachedItem != item)
+                return;
+            cachedItem = null;
+            nameInfo.text = "";
+            description.text = "Description: ";
+            UnpendClasses();
         }else{
-            if (!currentIShovering.hovering){
-                currentIShovering = null;
-                UnpendClasses();
+            classes = iss.currentItem.item.GetClasses();
+            ClassUpdate(iss);
+            
+            nameInfo.text = iss.currentItem.itemName;
+            nameInfo.color = iss.currentItem.nameColor;
+            description.text = "Description: "+ iss.currentItem.description;
+            if (iss.IsBeingSold()){
+                description.text += " Selling at "+iss.currentItem.cost*ItemShop.sellMultiplier+".";
             }
         }
     }
+    
 }

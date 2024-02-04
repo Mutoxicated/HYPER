@@ -36,7 +36,7 @@ public class ItemPool : MonoBehaviour
         }
     }
 
-    private GameObject FindGoFromItem(Item item){
+    public GameObject FindGoFromItem(Item item){
         string goName = item.name.Replace("A","");
         foreach (GameObject ci in classItems){
             if (ci.name.Replace("(Clone)","") == goName){

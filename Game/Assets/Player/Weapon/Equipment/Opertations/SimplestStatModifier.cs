@@ -64,7 +64,7 @@ public class SimplestStatModifier : MonoBehaviour
                 stats.numericals[numericals[i]] += numericalIncrements[i]*(populationMod-1)*EquipmentManager.effectivenessMod;
             }
             effectApplied = true;
-            Debug.Log("effect applied!");
+            //Debug.Log("effect applied!");
         }
 
         private void OnDisable()

@@ -75,6 +75,9 @@ public class ClassItem : MonoBehaviour
     }
 
     private void OnDestroy(){
+        foreach (classType ct in classes){
+            ClassSystem.DecrementClassBattery(ct);
+        }
         SceneManager.sceneLoaded -= SceneCheck;
     }
 

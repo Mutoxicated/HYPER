@@ -7,9 +7,12 @@ using UnityEngine.EventSystems;
 
 public class ItemSubscriber : MonoBehaviour
 {
+    [SerializeField] private bool beingSold;
+    [SerializeField] private ItemSorter iss;
+    [SerializeField] private ItemInfo ii;
     [SerializeField] private ItemShop shop;
     [SerializeField] private int index;
-    [HideInInspector] public Item currentItem;
+    public Item currentItem;
     [Space]
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text cost;
@@ -27,16 +30,24 @@ public class ItemSubscriber : MonoBehaviour
         initScale = scalableObj.transform.localScale;
         maxScale = initScale*1.1f;
         currScale = initScale;
+        if (beingSold)
+            DressItem();
+    }
+
+    private void DressItem(){
+        image.sprite = currentItem.itemImage;
     }
 
     public void UpdateItem(){
-        if (!gameObject.activeSelf)
+        if (!gameObject.activeSelf && !beingSold)
             gameObject.SetActive(true);
         currentItem = shop.currentItems[index];
-        title.text = currentItem.itemName;
-        title.color = currentItem.nameColor;
+        if (!beingSold){
+            title.text = currentItem.itemName;
+            title.color = currentItem.nameColor;
+            cost.text = shop.Processed(currentItem.cost).ToString()+"*";
+        }
         image.sprite = currentItem.itemImage;
-        cost.text = currentItem.cost.ToString()+"*";
     }
 
     private void Update(){
@@ -50,6 +61,12 @@ public class ItemSubscriber : MonoBehaviour
 
     public void IsHovering(bool state){
         hovering = state;
+        if (state){
+            ii.UpdateInfo(this,currentItem);
+        }else{
+            if (ii.GetCurrentCachedItem() == currentItem)
+                ii.UpdateInfo(null,currentItem);
+        }
     }
 
     public void ItemTaken(){
@@ -63,5 +80,31 @@ public class ItemSubscriber : MonoBehaviour
         currScale = initScale;
         scalableObj.transform.localScale = currScale;
         hovering = false;
+        ii.UpdateInfo(null,currentItem);
+    }
+
+    public void ItemRetrieved(){
+        PlayerInfo.GetIP().RemoveItem(currentItem);
+
+        PlayerInfo.SetMoney(shop.Processed(currentItem.cost*ItemShop.sellMultiplier));
+        gameObject.SetActive(false);
+        iss.Structure();
+        currScale = initScale;
+        scalableObj.transform.localScale = currScale;
+        hovering = false;
+        ii.UpdateInfo(null,currentItem);
+    }
+
+    public bool IsBeingSold(){
+        return beingSold;
+    }
+
+    public bool DetectExistenceInShop(){
+        if (PlayerInfo.GetIP().FindGoFromItem(currentItem) != null){
+            gameObject.SetActive(true);
+            return true;
+        }
+        gameObject.SetActive(false);
+        return false;
     }
 }

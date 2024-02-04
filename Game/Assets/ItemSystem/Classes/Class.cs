@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,6 +50,7 @@ public class Class : MonoBehaviour
     [SerializeField] private ClassInfo identity;
     [SerializeField] private List<BatteryDresser> bds = new List<BatteryDresser>();
     [SerializeField] private Image image;
+    [SerializeField] private TMP_Text className;
 
     private List<Battery> batteries = new List<Battery>();
     private int totalCells;
@@ -62,6 +64,8 @@ public class Class : MonoBehaviour
         }
         image.sprite = identity.image;
         parent = transform.parent.transform;
+        className.text = identity.name;
+        className.color = identity.color;
     }
 
     public ClassInfo PapersPlease(){
@@ -87,7 +91,7 @@ public class Class : MonoBehaviour
 
     public int DecreaseBattery(){
         int cellAmount = -1;
-        for (int i = batteries.Count-1; i >= 0; i++){
+        for (int i = batteries.Count-1; i >= 0; i--){
             if (batteries[i].GetCurrentCells() == 0){
                 continue;
             }
