@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnInterval : MonoBehaviour
+public class OnInterval : ExtraBehaviour
 {
     [SerializeField] private Stats stats;
     [SerializeField] private string specialTag = "Untagged";

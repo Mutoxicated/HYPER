@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoTo : MonoBehaviour
+public class GoTo : ExtraBehaviour
 {
     [SerializeField] private Stats stats;
+    [SerializeField] private bool useEntityForever;
     [SerializeField] private Rigidbody rb;
     [SerializeField,Range(3f,40f)] private float speed;
     [SerializeField] private float randomnessScale;
@@ -13,6 +14,7 @@ public class GoTo : MonoBehaviour
     [SerializeField] private bool useInterval;
     [SerializeField] private Vector3 axisMultiplier = new Vector3(1f,1f,1f);
     private Vector3 toEntity = Vector3.zero;
+    private Transform entity;
 
     private float moveSpeedMod;
     
@@ -53,14 +55,21 @@ public class GoTo : MonoBehaviour
     }
 
     private void GetDirection(){
-        stats.FindEntity();
-        //Debug.Log(stats.numericals["range"]);
-        if (stats.entity == null){
+        if (!useEntityForever){
             stats.FindEntity();
+            //Debug.Log(stats.numericals["range"]);
+            if (stats.entity == null){
+                stats.FindEntity();
+                entity = stats.entity;
+            }
+            if (stats.entity == null)
+                return;
+        }else{
+            entity = stats.entityForever;
+            if (entity == null)
+                return;
         }
-        if (stats.entity == null)
-            return;
-        toEntity = stats.entity.position - transform.position;
+        toEntity = entity.position - transform.position;
         toEntity.Normalize();
         toEntity.x *= axisMultiplier.x;
         toEntity.y *= axisMultiplier.y;

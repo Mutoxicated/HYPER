@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Mog
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1949178425995186798, guid: db9ea1e65278c844db6537a6c268e5d4, type: 3}
-  importance: 3
+  importance: 1
+  priority: 0

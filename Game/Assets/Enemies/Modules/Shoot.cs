@@ -46,4 +46,37 @@ public class Shoot : MonoBehaviour
             }
         }
     }
+
+    public void ShootPrefabState(bool state)
+    {
+        if (!state) return;
+        if (objectPool != null)
+        {
+            instance = objectPool.UseObject(transformRef.position,transformRef.rotation, out instantiated);
+            if (instantiated){
+                var rts = instance.GetComponent<ReturnToSender>();
+                rts.localPool = objectPool;
+                rts.isPublic = false;
+                var inj = instance.GetComponent<Injector>();
+                inj.injectorToInheritFrom = injector;
+                inj.InheritInjector(injector);
+            }
+        }
+        else
+        {
+            if (PublicPools.pools.ContainsKey(bulletPrefab.name)){
+                instance = PublicPools.pools[bulletPrefab.name].UseObject(transformRef.position, transformRef.rotation);
+            }else{
+                instance = Instantiate(bulletPrefab, transformRef.position, transformRef.rotation);
+            //instance.SetActive(true);
+            }
+            if (inheritInjector){
+                cachedInjector = instance.GetComponent<Injector>();
+                cachedInjector?.InheritInjector(injector);
+                if (inheritPriority){
+                    cachedInjector.immuneSystem.stats.SetPriority(injector.immuneSystem.stats.GetPriority());
+                }
+            }
+        }
+    }
 }

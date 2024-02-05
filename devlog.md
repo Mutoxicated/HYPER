@@ -1169,3 +1169,7 @@ Will have to remake Mog. Made alllll the classes today and they also show up in 
 ## Day 240
 
 I'm pretty much done with the full funcionality of the shop system. Tomorrow I will remake the mog and I will also make the zorretox enemy.
+
+## Day 241 
+
+Made the basic mechanisms of the Zorretox enemy, remade Mog. Zorretox is not really that deadly as of now but tomorrow he will be >:)

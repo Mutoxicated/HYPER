@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EWalk : MonoBehaviour
+public class EWalk : ExtraBehaviour
 {
     [SerializeField] private Stats stats;
     [SerializeField] private Rigidbody rb;
@@ -22,6 +22,7 @@ public class EWalk : MonoBehaviour
     private Quaternion rotation;
     private float lerp;
     private bool lookToWalk = true;
+    private bool attemptMade = false;
 
     private void ChangeDirection(){
         float ry = Random.Range(0f,360f);
@@ -31,6 +32,9 @@ public class EWalk : MonoBehaviour
     private void ValidateDirection(){
         if (!fd.isGrounded){
             rotation *= Quaternion.Euler(0f,180f,0f);
+            attemptMade = true;
+        }else{
+            attemptMade = false;
         }
     }
 
@@ -40,6 +44,10 @@ public class EWalk : MonoBehaviour
     }
 
     public void Rest(){
+        if (!fd.isGrounded){
+            walkInterval.enabled = true;
+            return;
+        }
         restInterval.enabled = true;
         ChangeDirection();
         ChangeLerp();
@@ -61,8 +69,8 @@ public class EWalk : MonoBehaviour
     private void Update(){
         if (walkInterval.enabled != true)
             return;
-        if (!fd.isGrounded){
-            Rest();
+        if (!fd.isGrounded && !attemptMade){
+            Walk();
         }
     }
 

@@ -15,6 +15,7 @@ public class Immunity : MonoBehaviour
     public Injector injector;
     public float immunityAttackRate = 1f;
     public float immunityDamage = 10f;
+    [SerializeField] private BacteriaType[] specialImmunities;
     [HideInInspector]
     public Dictionary<string,Bacteria> bacterias = new Dictionary<string,Bacteria>();
     private float t;
@@ -23,6 +24,16 @@ public class Immunity : MonoBehaviour
     private void OnEnable(){
         if (stats == null)
             stats = GetComponent<Stats>();
+    }
+
+    private void CheckSpecialImmunities(Bacteria bac){
+        if (specialImmunities.Length == 0) return;
+        foreach (BacteriaType bt in specialImmunities){
+            if (bac.type == bt){
+                bac.Instagib();
+                return;
+            }
+        }
     }
 
     private void CheckOrganicImmunities(Bacteria bac){
@@ -60,6 +71,7 @@ public class Immunity : MonoBehaviour
         //Debug.Log("Notified of bacteria "+bacteria.name+ ".");
         CheckOrganicImmunities(bacteria);
         CheckNonOrganicImmunities(bacteria);
+        CheckSpecialImmunities(bacteria);
         if (!bacterias.ContainsKey(bacteria.name))
             bacterias.Add(bacteria.name,bacteria);
     }
