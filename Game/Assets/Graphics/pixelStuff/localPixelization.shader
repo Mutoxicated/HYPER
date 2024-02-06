@@ -111,11 +111,13 @@ Shader "Custom/localPixelization"
                 float2 steppedUV = IN.uv.xy / IN.uv.w;
                 fixed4 beforeColor = _GrabTransparentTexture.Sample(point_clamp_sampler, steppedUV);
                 float thing = _PixelSize / _ScreenParams.xy / _ScreenParams.w;
+                float ogAlpha = _Color.a;
                 steppedUV /= thing;
                 steppedUV = round(steppedUV);
                 steppedUV *= thing;
                 fixed4 col = _GrabTransparentTexture.Sample(point_clamp_sampler, steppedUV);
                 fixed4 finalColor;// = (distance(_Color, col) < 1.3) ? _Color : col;
+                
                 if (distance(_Color, col) < 0.1) {
                     finalColor = _Color;
                 }

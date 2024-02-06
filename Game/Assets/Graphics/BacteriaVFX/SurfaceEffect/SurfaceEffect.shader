@@ -1,5 +1,7 @@
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 Shader "Custom/SurfaceEffect"
 {
     Properties
@@ -16,6 +18,8 @@ Shader "Custom/SurfaceEffect"
         _Saturation("Saturation", Range(0, 2)) = 1
 
         _ClampAlphaValue("ClampAlpha", Range(0,1)) = 1
+        _Texture1AlphaMod("Texture1AlphaMod",Range(0,2)) = 1
+        _Texture2AlphaMod("Texture2AlphaMod",Range(0,6)) = 1
 
         _Extension("Extension", Range(1,2)) = 1.2
     }
@@ -57,6 +61,8 @@ Shader "Custom/SurfaceEffect"
                 float _Saturation;
                 float _ClampAlphaValue;
                 float _Extension;
+                float _Texture1AlphaMod;
+                float _Texture2AlphaMod;
 
                 v2f vert(appdata v)
                 {
@@ -71,7 +77,7 @@ Shader "Custom/SurfaceEffect"
 
                     o.vertex = UnityObjectToClipPos(v.vertex);
                     o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                    o.uv2 = TRANSFORM_TEX(v.uv,_NoiseTexture1);
+                    o.uv2 = TRANSFORM_TEX(v.uv,_NoiseTexture1);          
                     o.uv3 = TRANSFORM_TEX(v.uv,_NoiseTexture2);
                     return o;
                 }
@@ -99,8 +105,14 @@ Shader "Custom/SurfaceEffect"
                     startColor.rgb = _MainColor.rgb;
                     float4 hsbColor = applyHSBEffect(startColor);
                     float alpha = tex2D(_NoiseTexture1,i.uv2);
+                    alpha = abs(1-alpha);
+                    alpha *= _Texture1AlphaMod;
+                    alpha = clamp(alpha,0,1);
+                    alpha = abs(1-alpha);
                     hsbColor.a = alpha*_ClampAlphaValue;
                     float nAlpha = tex2D(_NoiseTexture2,i.uv3);
+                    nAlpha *= _Texture2AlphaMod;
+                    nAlpha = clamp(nAlpha,0,1);
                     nAlpha = abs(1-nAlpha);
                     hsbColor.a *= nAlpha;
                     return hsbColor;

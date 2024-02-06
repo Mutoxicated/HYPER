@@ -1173,3 +1173,7 @@ I'm pretty much done with the full funcionality of the shop system. Tomorrow I w
 ## Day 241 
 
 Made the basic mechanisms of the Zorretox enemy, remade Mog. Zorretox is not really that deadly as of now but tomorrow he will be >:)
+
+## Day 242
+
+Made him teleport and fixed the bug on the Walk script. Didn't have time for his attack mechanic.

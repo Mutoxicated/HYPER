@@ -10,6 +10,9 @@ public class Launcher : MonoBehaviour
     [SerializeField] private Collider coll;
     [SerializeField] private float speed;
 
+    private Vector3 toEntity;
+    private Transform entity;
+
     private void Awake(){
         FindMovement();
     }
@@ -22,6 +25,30 @@ public class Launcher : MonoBehaviour
     private void Start()
     {
         rb.velocity = transform.forward * speed;
+    }
+
+    public void SetEntity(Transform entity){
+        this.entity = entity;
+    }
+
+    private void GetDirection(){
+        if (entity == null){
+            return;
+        }
+
+        toEntity = entity.position - transform.position;      
+        toEntity.Normalize();
+    }
+
+    private void Go(){
+        if (entity == null) return;
+        rb.velocity = Vector3.Lerp(rb.velocity, toEntity * speed, Time.deltaTime*10f);
+    }
+
+    private void Update()
+    {
+        GetDirection();
+        Go();
     }
 
     private void SettleMagnet(Collision collision){

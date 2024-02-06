@@ -61,6 +61,10 @@ public class OnInterval : ExtraBehaviour
         this.t = t;
     }
 
+    public float GetInterval(){
+        return interval;
+    }
+
     public void ChangeInterval(float interval)
     {
         this.interval = interval;

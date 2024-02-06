@@ -58,18 +58,17 @@ public class GoTo : ExtraBehaviour
         if (!useEntityForever){
             stats.FindEntity();
             //Debug.Log(stats.numericals["range"]);
-            if (stats.entity == null){
-                stats.FindEntity();
-                entity = stats.entity;
-            }
-            if (stats.entity == null)
-                return;
+            entity = stats.entity;
         }else{
             entity = stats.entityForever;
             if (entity == null)
                 return;
         }
-        toEntity = entity.position - transform.position;
+        if (entity == null){
+            toEntity = transform.forward;
+        }else{
+            toEntity = entity.position - transform.position;
+        }
         toEntity.Normalize();
         toEntity.x *= axisMultiplier.x;
         toEntity.y *= axisMultiplier.y;

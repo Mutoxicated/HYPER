@@ -21,7 +21,7 @@ public class CameraInteractive : MonoBehaviour
         if (movement.movementState == MovementState.SLIDING && once)
         {
             once = false;
-            Debug.Log("la");
+            //Debug.Log("la");
             transform.localPosition = slidePos;
         }
         else if (movement.movementState == MovementState.WALKING && !once)

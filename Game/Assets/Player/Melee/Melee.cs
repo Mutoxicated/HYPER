@@ -83,7 +83,10 @@ public class Melee : MonoBehaviour
             bool hit = Physics.SphereCast(ray.origin,0.01f, ray.direction, out hitInfo, 10000f, layerMask);
             if (hit){
                 animator.Play("Launch");
-                Instantiate(launchPrefab, launchPoint.position,GunShooter.GetAccurateRotation(cam,launchPoint));
+                GameObject instance = Instantiate(launchPrefab, launchPoint.position,GunShooter.GetAccurateRotation(cam,launchPoint));
+                if (hitInfo.collider.gameObject.layer == 8){
+                    instance.GetComponent<Launcher>().SetEntity(hitInfo.collider.gameObject.transform);
+                }
             }
         }
         if (punchInput.GetInputDown() && isIdle && !punching && once)

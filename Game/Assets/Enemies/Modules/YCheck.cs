@@ -14,14 +14,19 @@ public class YCheck : MonoBehaviour
 
     void Start()
     {
-        Physics.RaycastNonAlloc(transform.position,Vector3.down,hits,Mathf.Infinity,layermask);
+        transform.position = VerifyPos(transform.position);
+    }
 
-        float yDistance = Mathf.Abs(transform.position.y - hits[0].point.y);
+    public Vector3 VerifyPos(Vector3 pos){
+        Physics.RaycastNonAlloc(pos,Vector3.down,hits,Mathf.Infinity,layermask);
 
-        Debug.Log("Hit point y: "+hits[0].point.y);
+        float yDistance = Mathf.Abs(pos.y - hits[0].point.y);
+
+        //Debug.Log("Hit point y: "+hits[0].point.y);
         if (yDistance < distanceCheck)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + Random.Range(minY, maxY),transform.position.z);
+            return new Vector3(pos.x, pos.y + Random.Range(minY, maxY),pos.z);
         }
+        return pos;
     }
 }

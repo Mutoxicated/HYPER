@@ -13,6 +13,7 @@ public class PlatformInfo {
 
     public Vector3 mainPosition;
     public Vector3 mainScale;
+    public Vector3[] spawnPoints;
 }
 
 public class PlatformGenerator : MonoBehaviour
@@ -98,7 +99,10 @@ public class PlatformGenerator : MonoBehaviour
 
     private PlatformInfo FindNeighborPlatformRelative(PlatformInfo relativePlat, PlatformInfo blacklistedPlat){
         float currentDist = 999999f;
-        PlatformInfo closestPlat = oldPlatformData[SeedGenerator.random.Next(0,oldPlatformData.Count-1)];
+        PlatformInfo closestPlat;
+        if (oldPlatformData.Count != 0)
+            closestPlat = oldPlatformData[SeedGenerator.random.Next(0,oldPlatformData.Count-1)];
+        else closestPlat = unusedPlatforms[SeedGenerator.random.Next(0,unusedPlatforms.Count-1)];
         foreach (PlatformInfo plat in oldPlatformData){
             if (plat == blacklistedPlat)
                 continue;
@@ -122,6 +126,39 @@ public class PlatformGenerator : MonoBehaviour
             flattenedPos.y = 0f;
             relativePlat.mainPosition.y = 0f;
             float dist = Vector3.Distance(flattenedPos,relativePlat.mainPosition);
+            if (currentDist > dist){
+                currentDist = dist;
+                closestPlat = plat;
+            }
+        }
+        return closestPlat;
+    }
+
+    private PlatformInfo FindNeighborPlatformRelative(Vector3 pos, PlatformInfo blacklistedPlat){
+        float currentDist = 999999f;
+        PlatformInfo closestPlat;
+        if (oldPlatformData.Count != 0)
+            closestPlat = oldPlatformData[0];
+        else closestPlat = unusedPlatforms[0];
+        foreach (PlatformInfo plat in oldPlatformData){
+            if (plat == blacklistedPlat)
+                continue;
+            Vector3 flattenedPos = plat.mainPosition;
+            flattenedPos.y = 0f;
+            pos.y = 0f;
+            float dist = Vector3.Distance(flattenedPos,pos);
+            if (currentDist > dist){
+                currentDist = dist;
+                closestPlat = plat;
+            }
+        }
+        foreach (PlatformInfo plat in unusedPlatforms){
+            if (plat == blacklistedPlat)
+                continue;
+            Vector3 flattenedPos = plat.mainPosition;
+            flattenedPos.y = 0f;
+            pos.y = 0f;
+            float dist = Vector3.Distance(flattenedPos,pos);
             if (currentDist > dist){
                 currentDist = dist;
                 closestPlat = plat;
@@ -300,6 +337,15 @@ public class PlatformGenerator : MonoBehaviour
             unusedPlatforms.Remove(plat);
         if (!oldPlatformData.Contains(plat))
             oldPlatformData.Add(plat);
+    }
+
+    public List<PlatformInfo> GetNearbyPlatforms(Vector3 position){
+        PlatformInfo mainPlatform = FindNeighborPlatformRelative(position,null);
+        List<PlatformInfo> neighboringPlatforms = new List<PlatformInfo>();
+        neighboringPlatforms.Add(FindNeighborPlatformRelative(mainPlatform,mainPlatform));
+        neighboringPlatforms.Add(FindNeighborPlatformRelative(mainPlatform,neighboringPlatforms[0]));
+        neighboringPlatforms.Add(FindNeighborPlatformRelative(mainPlatform,neighboringPlatforms[1]));
+        return neighboringPlatforms;
     }
 
     public void GeneratePlatforms(){
