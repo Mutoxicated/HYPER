@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 1018938956534847861}
   - component: {fileID: 1018938956534847858}
   - component: {fileID: 1018938956534847859}
-  m_Layer: 0
+  - component: {fileID: 5397667125011505524}
+  - component: {fileID: 9155131437677022182}
+  m_Layer: 11
   m_Name: Ooze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +99,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.6, y: 2.19, z: 0.1}
   m_Center: {x: -0.029533386, y: -0.026251977, z: 0.100823}
+--- !u!114 &5397667125011505524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018938956534847857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82685bed41d63d4d9ffc5ea5ce57402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 1018938956534847858}
+  meshFilter: {fileID: 1018938956534847861}
+  minMaxRadius: {x: 0.1, y: 0.3}
+  minMaxSpeed: {x: -0.11, y: 0.11}
+  lifetimeSeconds: 15
+  bacName: RADIATION
+  populationMod: 1.87
+--- !u!114 &9155131437677022182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018938956534847857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df73a3cfe7b9d343819bb2f968452b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matIndex: 0
+  color: {r: 0, g: 0.509434, b: 0.003995621, a: 1}
 --- !u!1 &1018938958022461427
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,8 +141,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1018938958022461426}
-  m_Layer: 0
-  m_Name: OozeHolder
+  m_Layer: 11
+  m_Name: OOZE_SLO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

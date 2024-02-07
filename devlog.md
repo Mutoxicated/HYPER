@@ -1177,3 +1177,7 @@ Made the basic mechanisms of the Zorretox enemy, remade Mog. Zorretox is not rea
 ## Day 242
 
 Made him teleport and fixed the bug on the Walk script. Didn't have time for his attack mechanic.
+
+## Day 243
+
+Zorretox has been fully made and is fully functional!!! Also fixed some really stupid bugs regarding the immune system, injector and the IDamagable system.

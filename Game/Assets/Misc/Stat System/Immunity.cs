@@ -69,11 +69,7 @@ public class Immunity : MonoBehaviour
     public void NotifySystem(Bacteria bacteria)
     {
         //Debug.Log("Notified of bacteria "+bacteria.name+ ".");
-        CheckOrganicImmunities(bacteria);
-        CheckNonOrganicImmunities(bacteria);
-        CheckSpecialImmunities(bacteria);
-        if (!bacterias.ContainsKey(bacteria.name))
-            bacterias.Add(bacteria.name,bacteria);
+        AddBacteria(bacteria);
     }
 
     public void RecycleBacteria()
@@ -83,6 +79,42 @@ public class Immunity : MonoBehaviour
         foreach (var bac in bacterias.Values.ToArray())
         {
             bac.Instagib();
+        }
+    }
+
+    public Bacteria AddBacteria(Bacteria bac){
+        CheckOrganicImmunities(bac);
+        CheckNonOrganicImmunities(bac);
+        CheckSpecialImmunities(bac);
+        if (!bac.gameObject.activeSelf) return null;
+        if (!PublicPools.pools.ContainsKey(bac.name))
+            return null;
+        if (bacterias.ContainsKey(bac.name)){
+            bacterias[bac.name].BacteriaIn();
+            return bacterias[bac.name];
+        }else{
+            bacterias.Add(bac.name,bac);
+            return bac;
+        }
+    }
+
+    public Bacteria AddBacteria(string bacName){
+        if (!PublicPools.pools.ContainsKey(bacName))
+            return null;
+        if (bacterias.ContainsKey(bacName)){
+            bacterias[bacName].BacteriaIn();
+            return bacterias[bacName];
+        }else{
+            Bacteria bac = PublicPools.pools[bacName].SendObject(gameObject).GetComponent<Bacteria>();
+            CheckOrganicImmunities(bac);
+            CheckNonOrganicImmunities(bac);
+            CheckSpecialImmunities(bac);
+            if (bacterias.ContainsKey(bacName)){
+                bacterias[bacName].BacteriaIn();
+                return bacterias[bacName];
+            }
+            bacterias.Add(bac.name,bac);
+            return bac;
         }
     }
 
@@ -104,6 +136,7 @@ public class Immunity : MonoBehaviour
                     died = bacterias[bacKey].Degrade(immunityDamage*0.4f*stats.numericals["hostility"]);
                 } else
                 {
+                    //Debug.Log("degradation process: Damage-->"+immunityDamage+", Hostility-->"+stats.numericals["hostility"]);
                     died = bacterias[bacKey].Degrade(immunityDamage*stats.numericals["hostility"]);
                 }
                 if (died)

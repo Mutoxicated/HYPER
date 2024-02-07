@@ -179,9 +179,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     private bool EvaluateDamageIntake(Stats senderStats, float intake){
-        if (stats == null){//if stat is null that means its a bacteria
+        if (senderStats == null){//if stat is null that means its a bacteria
             if (ChanceFailed("bacteriaBlockChance"))
-                stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
+                stats.numericals["health"] -= intake / Mathf.FloorToInt((stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1)*0.5f);
             else return false;
             return true;
         }
@@ -290,21 +290,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
                 continue;
             if (cacheInstances){
                 Bacteria instancedBac;
-                if (immuneSystem.bacterias.ContainsKey(bac.name.Replace("_ALLY",""))){
-                    instancedBac = immuneSystem.bacterias[bac.name.Replace("_ALLY","")];
-                    immuneSystem.bacterias[bac.name.Replace("_ALLY","")].BacteriaIn();
-                }else{
-                    instancedBac= PublicPools.pools[bac.name.Replace("_ALLY","")].SendObject(gameObject).GetComponent<Bacteria>();
-                }
+                instancedBac = immuneSystem.AddBacteria(bac.name.Replace("_ALLY",""));
                 instancedBac.injectorCachedFrom = injector;
                 injector.cachedInstances.Add(instancedBac);
             }
             else{
-                if (immuneSystem.bacterias.ContainsKey(bac.name.Replace("_ALLY",""))){
-                    immuneSystem.bacterias[bac.name.Replace("_ALLY","")].BacteriaIn();
-                }else{
-                    PublicPools.pools[bac.name.Replace("_ALLY","")].SendObject(gameObject);
-                }
+                immuneSystem.AddBacteria(bac.name.Replace("_ALLY",""));
             }
             Debug.Log(bac.gameObject.name);
         }

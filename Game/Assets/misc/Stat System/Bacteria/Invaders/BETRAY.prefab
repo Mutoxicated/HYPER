@@ -71,8 +71,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bac: {fileID: 5780903243261917723}
-  changeObjective: 1
-  objective: 1
+  changePriority: 0
+  priority: 000000000000000000000000
   conditionals: []
   conditionalValues: 
   numericals: []
@@ -99,7 +99,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 755329516e80ef9498451da6e8995588, type: 2}
+  - {fileID: 2100000, guid: 9d047c6ef52a19046903929faab8a38e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

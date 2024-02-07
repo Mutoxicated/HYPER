@@ -24,8 +24,10 @@ public class Injector : MonoBehaviour
     [HideInInspector] public List<Bacteria> cachedInstances = new List<Bacteria>();
     // TODO: Make it spawn invader bacteria the same way TakeInjector does it (because it will create complications with the population of the bacteria)
     private void OnEnable(){
-        foreach (var bac in bacteriaPools){
-            PublicPools.pools[bac].SendObject(immuneSystem.gameObject);
+        if (immuneSystem != null){
+            foreach (var bac in bacteriaPools){
+                PublicPools.pools[bac].SendObject(immuneSystem.gameObject);
+            }
         }
         if (injectorToInheritFrom != null){
             //Debug.Log(gameObject.name + " inherited from " + injectorToInheritFrom.gameObject.name);
@@ -42,6 +44,8 @@ public class Injector : MonoBehaviour
         chance = injector.chance;
         injectEnabled = injector.injectEnabled;
         type = injector.type;
+        if (injector.immuneSystem == null)
+            return;
         foreach(var bac in injector.immuneSystem.bacterias.Values){
             if (bac.character == BacteriaCharacter.NEGATIVE && bac.immunitySide == ImmunitySide.INVADER)
                 continue;
@@ -56,11 +60,25 @@ public class Injector : MonoBehaviour
     }
 
     public void AddBacteria(string name){
-        PublicPools.pools[name].SendObject(immuneSystem.gameObject);
+        if (immuneSystem == null)
+            return;
+        immuneSystem.AddBacteria(name);
+    }
+
+    public void AddBacterias(string name, int amount){
+        if (immuneSystem == null)
+            return;
+        if (!PublicPools.pools.ContainsKey(name))
+            return;
+        for (int i = 0; i < amount; i++){
+            immuneSystem.AddBacteria(name);
+        }
     }
 
     public void RemoveBacteria(string name)
     {
+        if (immuneSystem != null)
+            return;
         foreach (var bac in immuneSystem.bacterias.Values.ToArray()){
             if (bac.gameObject.name == name){
                 bac.Instagib();
