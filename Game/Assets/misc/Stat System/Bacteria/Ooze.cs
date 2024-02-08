@@ -31,8 +31,12 @@ public class Ooze : MonoBehaviour
     private Injector inject;
     private float timeColliding;
     private float lifetime;
+    private Vector3 initScale = Vector3.zero;
 
     private void OnEnable(){
+        if (initScale == Vector3.zero){
+            initScale = transform.localScale;
+        }
         lifetime = lifetimeSeconds;
         time = 0f;
         timeColliding = 0f;
@@ -68,7 +72,7 @@ public class Ooze : MonoBehaviour
             currentModifiedVert = ogVertices[i];
             currentModifiedVert.x += Mathf.Cos(angles[i])*radiuses[i];
             currentModifiedVert.y += Mathf.Sin(angles[i])*radiuses[i];
-            vertices[i] = currentModifiedVert*t*tStart;
+            vertices[i] = currentModifiedVert;
             angles[i] += speeds[i]*Mathf.Deg2Rad;
         }
         mesh.SetVertices(vertices);
@@ -84,6 +88,7 @@ public class Ooze : MonoBehaviour
         }
         tStart = Mathf.InverseLerp(0f,0.4f,time);
         tStart = Mathf.Clamp01(tStart);
+        transform.localScale = initScale*t*tStart;
         MoveVertices();
         time += Time.deltaTime;
         t = Mathf.InverseLerp(lifetime,lifetime*0.6f,time);

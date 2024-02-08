@@ -1417,6 +1417,7 @@ MonoBehaviour:
   type: 0
   priority: 000000000200000000000000
   entity: {fileID: 0}
+  entityForever: {fileID: 0}
   maxHealth: 250
   range: 100
   maxShields: 0
@@ -1581,8 +1582,7 @@ MonoBehaviour:
   injectorToInheritFrom: {fileID: 0}
   injectorsToInherit:
   - {fileID: 5913539186443205512}
-  bacteriaPools:
-  - WARDED_ALLY
+  bacteriaPools: []
   allyBacterias: []
   cachedInstances: []
 --- !u!114 &4829517246456464743
@@ -1717,6 +1717,7 @@ MonoBehaviour:
   injector: {fileID: 3782803558214053804}
   immunityAttackRate: 0.5
   immunityDamage: 7
+  specialImmunities: 
 --- !u!23 &6108132308293817020 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}

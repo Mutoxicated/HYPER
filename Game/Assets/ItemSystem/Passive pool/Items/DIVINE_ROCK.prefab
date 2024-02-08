@@ -67,7 +67,7 @@ MonoBehaviour:
   numericals:
   - enemyBlockChance
   initialNumericalIncrements:
-  - 3
+  - 0.001
   numericalIncrements:
-  - 0.45
+  - 0.005
   populationMod: 0

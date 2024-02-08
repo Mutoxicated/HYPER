@@ -41,8 +41,9 @@ public class ItemSubscriber : MonoBehaviour
     public void UpdateItem(){
         if (!gameObject.activeSelf && !beingSold)
             gameObject.SetActive(true);
-        currentItem = shop.currentItems[index];
+        currentItem = shop.currentItems[index].item;
         if (!beingSold){
+            gameObject.SetActive(shop.currentItems[index].GetActive());
             title.text = currentItem.itemName;
             title.color = currentItem.nameColor;
             cost.text = shop.Processed(currentItem.cost).ToString()+"*";
@@ -77,6 +78,7 @@ public class ItemSubscriber : MonoBehaviour
             return;
         PlayerInfo.SetMoney(-shop.Processed(currentItem.cost));
         gameObject.SetActive(false);
+        shop.currentItems[index].SetActive(false);
         currScale = initScale;
         scalableObj.transform.localScale = currScale;
         hovering = false;

@@ -180,8 +180,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private bool EvaluateDamageIntake(Stats senderStats, float intake){
         if (senderStats == null){//if stat is null that means its a bacteria
-            if (ChanceFailed("bacteriaBlockChance"))
-                stats.numericals["health"] -= intake / Mathf.FloorToInt((stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1)*0.5f);
+            if (ChanceFailed("bacteriaBlockChance")){
+                stats.numericals["health"] -= intake / Mathf.Clamp(Mathf.FloorToInt((stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1)*0.5f),1f,999999999f);
+            }
             else return false;
             return true;
         }

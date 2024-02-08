@@ -34,6 +34,10 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (Difficulty.roundFinished){
+            Die(null);
+            return;
+        }
         if (immunityTime < immunityDuration)
         {
             immunityTime += Time.deltaTime;
@@ -123,10 +127,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         Difficulty.enemies.Remove(gameObject);
     }
 
-    private void OnDestroy(){
-        OnDeath.RemoveAllListeners();
-    }
-
     private void PopScore(int score, float duration){
         if (spc != null)
             spc.PopScore(score, duration);
@@ -141,8 +141,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void Die(Stats senderStats){
         if (stats.conditionals["explosive"] && Random.Range(0f,100f) <= stats.numericals["explosionChance"]){
-                PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position,Quaternion.identity);
-            }
+            PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position,Quaternion.identity);
+        }
         Detach();
         if (senderStats == null){
             OnDeath.Invoke(transform);
@@ -153,6 +153,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             }
             OnDeath.Invoke(senderStats.transform);
         }
+        OnDeath.RemoveAllListeners();
         DestroyStuff();
     }
 

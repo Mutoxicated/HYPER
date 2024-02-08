@@ -29,9 +29,7 @@ namespace BacteriaOperations{
         public void InfectHost(){
             if (Random.Range(0f,100f) > chance * (Mathf.Ceil(bac.population*0.1f))*populationMod)
                 return;
-            foreach (string bacName in bacterias){
-                PublicPools.pools[bacName].SendObject(transform.parent.gameObject);
-            }
+            PublicPools.pools[bacterias[Random.Range(0,bacterias.Length-1)]].SendObject(transform.parent.gameObject);
         }
 
         public void AbsoluteInfectHost(Transform tran){

@@ -34,8 +34,8 @@ public class Sequence : MonoBehaviour
             spawns++;
             for (int i = 0; i < spawners.Count; i++)
             {
-                GameObject instance = Instantiate(diff.enemyPool[Random.Range(0, diff.enemyPool.Count)], spawners[i].coords, spawners[i].rotation);
-                entities.Add(instance);
+                //GameObject instance = Instantiate(diff.enemyPool[Random.Range(0, diff.enemyPool.Count)], spawners[i].coords, spawners[i].rotation);
+                //entities.Add(instance);
             }
         }
         if (spawns >= diff.entitySpawnerPopulation)

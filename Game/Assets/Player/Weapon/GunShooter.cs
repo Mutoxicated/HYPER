@@ -107,45 +107,45 @@ public class GunShooter : MonoBehaviour
 
     private void Double(string bulletPool, Vector3 pos, Quaternion rotation)
     {
-        rotation *= Quaternion.Euler(new Vector3(0f, -2.5f*stats.numericals["focus"], 0f));
+        rotation *= Quaternion.Euler(new Vector3(0f, -1.5f*stats.numericals["focus"], 0f));
         for (int i = 0; i < 2; i++)
         {
             rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
             SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 5*stats.numericals["focus"], 0f));
+            rotation *= Quaternion.Euler(new Vector3(0f, 3*stats.numericals["focus"], 0f));
         }
     }
 
     private void Triple(string bulletPool, Vector3 pos, Quaternion rotation)
     {
-        rotation *= Quaternion.Euler(new Vector3(0f, -5*stats.numericals["focus"], 0f));
+        rotation *= Quaternion.Euler(new Vector3(0f, -4*stats.numericals["focus"], 0f));
         for (int i = 0; i < 3; i++)
         {
             rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
             SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 5*stats.numericals["focus"], 0f));
+            rotation *= Quaternion.Euler(new Vector3(0f, 4*stats.numericals["focus"], 0f));
         }
     }
 
     private void Quadruple(string bulletPool, Vector3 pos, Quaternion rotation)
     {
-        rotation *= Quaternion.Euler(new Vector3(0f, -7.5f*stats.numericals["focus"], 0f));
+        rotation *= Quaternion.Euler(new Vector3(0f, -6f*stats.numericals["focus"], 0f));
         for (int i = 0; i < 4; i++)
         {
             rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
             SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 4.6875f*stats.numericals["focus"], 0f));//3.75f-7.5f
+            rotation *= Quaternion.Euler(new Vector3(0f, 3.75f*stats.numericals["focus"], 0f));//3.75f-7.5f
         }
     }
 
     private void Quintuple(string bulletPool, Vector3 pos, Quaternion rotation)
     {
-        rotation *= Quaternion.Euler(new Vector3(0f, -10f*stats.numericals["focus"], 0f));
+        rotation *= Quaternion.Euler(new Vector3(0f, -8.5f*stats.numericals["focus"], 0f));
         for (int i = 0; i < 5; i++)
         {
             rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
             SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 5f*stats.numericals["focus"], 0f));
+            rotation *= Quaternion.Euler(new Vector3(0f, 3.4f*stats.numericals["focus"], 0f));
         }
     }
 

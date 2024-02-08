@@ -36,10 +36,11 @@ public class EquipSubscriber : MonoBehaviour
         if (beingSold){
             return;
         }
-        image.sprite = shop.currentEquips[index].symbol;
-        eqName.text = shop.currentEquips[index].name;
+        gameObject.SetActive(shop.currentEquips[index].GetActive());
+        image.sprite = shop.currentEquips[index].equip.symbol;
+        eqName.text = shop.currentEquips[index].equip.name;
         eqName.text = eqName.text.Replace("_",":");
-        cost.text = shop.Processed(shop.currentEquips[index].cost).ToString()+"*";
+        cost.text = shop.Processed(shop.currentEquips[index].equip.cost).ToString()+"*";
     }
 
     private void Update(){
@@ -53,12 +54,13 @@ public class EquipSubscriber : MonoBehaviour
     }
 
     public void EquipTaken(){
-        if (PlayerInfo.GetMoney() < shop.Processed(shop.currentEquips[index].cost))
+        if (PlayerInfo.GetMoney() < shop.Processed(shop.currentEquips[index].equip.cost))
             return;
-        bool success = EquipmentManager.eq.AddEquipment(shop.currentEquips[index]);
+        bool success = EquipmentManager.eq.AddEquipment(shop.currentEquips[index].equip);
         if (!success)
             return;
-        PlayerInfo.SetMoney(-shop.currentEquips[index].cost);
+        PlayerInfo.SetMoney(-shop.currentEquips[index].equip.cost);
+        shop.currentEquips[index].SetActive(false);
         gameObject.SetActive(false);
     }
 

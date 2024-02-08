@@ -20,6 +20,7 @@ public class RunData
     //run
     public int seed = -1;
     public int rounds = 0;
+    public bool moneyBonusGot = false;
     public string[] goodChosenBacteria;
     public string[] badChosenBacteria;
     public bool getPassives = true;
@@ -39,6 +40,9 @@ public class RunData
     public List<PICSlot> PICDuoPassiveItems = new List<PICSlot>(){
         null,null
     };
+    
+    public List<DisabableItem> currentShopItems = new List<DisabableItem>();
+    public List<DisabableItem> currentShopEquips = new List<DisabableItem>();
     
     //player related
     public int money;    

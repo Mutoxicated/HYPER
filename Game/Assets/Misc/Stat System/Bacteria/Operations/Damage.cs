@@ -14,7 +14,7 @@ namespace BacteriaOperations{
 
         public void DamageEntity()
         {
-            if (exponential)
+            if (!exponential)
                 cachedDamageable.TakeDamage(damage*bac.population,null, ref _, 0.1f, hurtScreenIndex);
             else
                 cachedDamageable.TakeDamage(damage*(bac.population*Mathf.Clamp(bac.population*0.5f,1,10000)),null, ref _, 0.1f, hurtScreenIndex);

@@ -89,6 +89,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7927257064283318184}
     m_Modifications:
+    - target: {fileID: 1038957879150562804, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: walkLerp
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2214615832805349555, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 191
@@ -135,12 +139,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101598432576710176, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: speed
-      value: 19.5
+      value: 28.3
       objectReference: {fileID: 0}
     - target: {fileID: 3101598432576710176, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: useEntityForever
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3181302055640026049, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: injector
+      value: 
+      objectReference: {fileID: 8144975003108545048}
     - target: {fileID: 4056052035369469482, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -189,6 +197,10 @@ PrefabInstance:
       propertyPath: stats
       value: 
       objectReference: {fileID: 3567053016198788532}
+    - target: {fileID: 4056052035369469485, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: m_Drag
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4056052035369469495, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: m_Name
       value: Mog
@@ -197,6 +209,22 @@ PrefabInstance:
       propertyPath: range
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: maxShields
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: shieldhealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 1406129636473073463, guid: c0d7eb2368f05ad47b960aede68cee10, type: 3}
     - target: {fileID: 5864196316227636094, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
       propertyPath: numericals.isExpanded
       value: 1
@@ -413,7 +441,8 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 5386638547124703154}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4446238605748869175, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
 --- !u!114 &3567053016198788532 stripped
 MonoBehaviour:
@@ -459,6 +488,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7a5bd713bbffa4d8bb4e526f47c75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5532454396538942731 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3181302055640026049, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+  m_PrefabInstance: {fileID: 6980993574920044234}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6082652998885325823 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3785438247793100085, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}
+  m_PrefabInstance: {fileID: 6980993574920044234}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8144975003108545048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6082652998885325823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccd3a0430197e141925f941c4d6635d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  immuneSystem: {fileID: 5532454396538942731}
+  bodyParts: []
+  injectEnabled: 1
+  chance: 100
+  type: 0
+  injectorToInheritFrom: {fileID: 0}
+  injectorsToInherit: []
+  bacteriaPools: []
+  allyBacterias: []
+  cachedInstances: []
 --- !u!4 &6388502845269096672 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4056052035369469482, guid: 2cbf9c039a389224e9d0668df971a352, type: 3}

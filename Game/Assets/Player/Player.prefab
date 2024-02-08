@@ -1039,6 +1039,7 @@ MonoBehaviour:
   injector: {fileID: 3299174636754850061}
   immunityAttackRate: 0.5
   immunityDamage: 10
+  specialImmunities: 
 --- !u!114 &8108540779480057966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,9 +1058,10 @@ MonoBehaviour:
   type: 0
   priority: 000000000000000000000000
   entity: {fileID: 0}
+  entityForever: {fileID: 0}
   maxHealth: 700
   range: 28
-  maxShields: 4
+  maxShields: 0
   shieldhealth: 50
   conditionals:
     reorderableList:

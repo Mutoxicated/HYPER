@@ -20,7 +20,8 @@ public class Difficulty : MonoBehaviour
     public int entitySpawnerPopulation = 1;
     public float allyBacteriaChance = 100f;
 
-    public List<GameObject> enemyPool;
+    public List<EnemyInfo> enemyPool;
+    public Dictionary<int, List<GameObject>> organizedEnemyPool = new Dictionary<int, List<GameObject>>();
 
     public static GameObject FindClosestEnemy(Transform trans, float distTol)
     {
@@ -96,11 +97,28 @@ public class Difficulty : MonoBehaviour
         SuperPassivePool.DevelopPassiveByName("Ferocity");
     }
 
+    private void OrganizeEnemyPool(){
+        foreach (EnemyInfo ei in enemyPool){
+            if (!organizedEnemyPool.ContainsKey(ei.importance)){
+                organizedEnemyPool.Add(ei.importance,new List<GameObject>(){ei.enemyPrefab});
+            }else{
+                organizedEnemyPool[ei.importance].Add(ei.enemyPrefab);
+            }
+        }
+    }
+
+    public void DestroyAll(){
+        foreach (GameObject enemy in enemies.ToArray()){
+            Destroy(enemy);
+        }
+    }
+
     private void Awake(){
+        OrganizeEnemyPool();
         rounds = RunDataSave.rData.rounds;
         roundFinished = false;
         asymT = rounds/(rounds+300);
-        linearT = (4f)*rounds;
+        linearT = Mathf.Clamp(0.5f*rounds,1f,Mathf.Infinity);
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
         player = GameObject.FindWithTag("Player").transform;
         utils = GameObject.FindWithTag("ExtraUtils").GetComponent<ExtraUtils>();

@@ -118,7 +118,7 @@ MonoBehaviour:
   minMaxSpeed: {x: -0.11, y: 0.11}
   lifetimeSeconds: 15
   bacName: RADIATION
-  populationMod: 1.87
+  populationMod: 0.9
 --- !u!114 &9155131437677022182
 MonoBehaviour:
   m_ObjectHideFlags: 0

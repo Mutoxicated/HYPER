@@ -107,6 +107,7 @@ public class Stats : MonoBehaviour
                 for (int i = 0; i < maxShields;i++){
                     shields.Add(new Shield(shieldhealth*numericals["shieldHealthModifier"],false));
                 }
+                numericals["health"] = maxHealth*numericals["maxHealthModifier"];
             }else{
                 conds = RunDataSave.rData.conditionals;
                 nums = RunDataSave.rData.numericals;
@@ -122,14 +123,13 @@ public class Stats : MonoBehaviour
                     else
                         numericals[key] = nums[key];
                 }
-
+                PlayerInfo.SetMoneyAbsolute(RunDataSave.rData.money);
                 shields = RunDataSave.rData.shields.ToList();
             }   
 
             PlayerInfo.SetShields(shields);
             PlayerInfo.SetConditionals(conditionals);
             PlayerInfo.SetNumericals(numericals);
-            numericals["health"] = maxHealth*numericals["maxHealthModifier"];
             return;
         }
         foreach (string key in conditionalsPrototype.Keys){

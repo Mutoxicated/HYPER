@@ -1181,3 +1181,7 @@ Made him teleport and fixed the bug on the Walk script. Didn't have time for his
 ## Day 243
 
 Zorretox has been fully made and is fully functional!!! Also fixed some really stupid bugs regarding the immune system, injector and the IDamagable system.
+
+## Day 244
+
+Tweaks and bug fixes. Also implemented the money bonus. Main fix of the day: The item shop now remembers what you items and equipment you bought, meaning it wont show that item/equipment again when reloading the game.

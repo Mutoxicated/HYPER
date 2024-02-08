@@ -199,9 +199,9 @@ MonoBehaviour:
   fd: {fileID: 6304063379863187360}
   walkInterval: {fileID: 2766956054474489987}
   restInterval: {fileID: 6459042079083162440}
-  walkLerp: 5
+  walkLerp: 2.5
   walkLerpminmaxcale: {x: 0, y: 0}
-  restIntervalTime: 0.05
+  restIntervalTime: 0.1
   restIntervalminmaxScale: {x: 0, y: 0}
 --- !u!54 &3906946314393254630
 Rigidbody:
@@ -10680,7 +10680,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 58431351571447360, guid: 3b165420a3aa26947a3001fcaed03757, type: 3}
       propertyPath: maxHealth
-      value: 700
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 58431351571447360, guid: 3b165420a3aa26947a3001fcaed03757, type: 3}
       propertyPath: maxShields
@@ -10688,7 +10688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 58431351571447360, guid: 3b165420a3aa26947a3001fcaed03757, type: 3}
       propertyPath: shieldhealth
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 891144035526736331, guid: 3b165420a3aa26947a3001fcaed03757, type: 3}
       propertyPath: m_Layer

@@ -1,7 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+[Serializable]
+public class DisabableItem{
+    public Item item;
+    public Equipment equip;
+    public bool activeSelf = true;
+
+    public void SetActive(bool state){
+        activeSelf = state;
+    }
+
+    public bool GetActive(){
+        return activeSelf;
+    }
+
+    public DisabableItem(Item item){
+        this.item = item;
+    }
+
+    public DisabableItem(Equipment equip){
+        this.equip = equip;
+    }
+}
 
 public class ItemShop : MonoBehaviour
 {
@@ -14,11 +39,14 @@ public class ItemShop : MonoBehaviour
     public static int rerollCost = 3;
     public static int restoreCost = 20;
 
+    private static bool getRunData = true;
+    public static ItemShop IS;
+
     [SerializeField] private List<Item> items = new List<Item>();
     [SerializeField] private List<Equipment> equipments = new List<Equipment>();
 
-    [HideInInspector] public List<Item> currentItems = new List<Item>();
-    [HideInInspector] public List<Equipment> currentEquips = new List<Equipment>();
+    [HideInInspector] public List<DisabableItem> currentItems = new List<DisabableItem>();
+    [HideInInspector] public List<DisabableItem> currentEquips = new List<DisabableItem>();
     private List<Item> modifiableItems = new List<Item>();
     private List<Equipment> modifiableEquips = new List<Equipment>();
 
@@ -28,14 +56,49 @@ public class ItemShop : MonoBehaviour
 
     void Start()
     {
+        IS = this;
+        currentItems.Clear();
+        currentEquips.Clear();
+        Debug.Log("get run data? "+getRunData);
+        if (RunDataSave.rData.currentShopEquips.Count == 0){
+            Randomize();
+        }else{
+            if (!getRunData){
+                Randomize();
+                return;
+            }
+            RegenerateItems();
+        }
+    }
+
+    private void RegenerateItems(){
+        currentItems = RunDataSave.rData.currentShopItems;
+        foreach (ItemSubscriber es in itemSubs){
+            es.UpdateItem();
+        }
+        currentEquips = RunDataSave.rData.currentShopEquips;
+        foreach (EquipSubscriber es in equipSubs){
+            es.UpdateEquipment();
+        }
+        getRunData = false;
+    }
+
+    public static void UpdateCurrentItems(){
+        RunDataSave.rData.currentShopItems = IS.currentItems;
+        RunDataSave.rData.currentShopEquips = IS.currentEquips;
+    }
+
+    private void Randomize(){
         GetRandomItems(3);
         GetRandomGunEquipment(2);
+        getRunData = false;
     }
 
     public static void ResetCheapness(){
         cheapnessMod = 1f;
         expensiveMod = 1f;
         sellMultiplier = 1f;
+        getRunData = true;
     }
 
     private bool ValidateCost(int cost){
@@ -48,14 +111,13 @@ public class ItemShop : MonoBehaviour
 
     private void GetRandomItems(int amount){
         modifiableItems = items.ToArray().ToList();
-        currentItems.Clear();
         int rn = 0;
         for (int i = 0; i <  items.Count;i++){
             if (i > amount-1)
                 break;
             rn = SeedGenerator.random.Next(0,modifiableItems.Count);
             Debug.Log(rn);
-            currentItems.Add(modifiableItems[rn]);
+            currentItems.Add(new DisabableItem(modifiableItems[rn]));
             modifiableItems.Remove(modifiableItems[rn]);
         }
         
@@ -75,14 +137,13 @@ public class ItemShop : MonoBehaviour
 
     private void GetRandomGunEquipment(int amount){
         modifiableEquips = equipments.ToArray().ToList();
-        currentEquips.Clear();
         int rn = 0;
         for (int i = 0; i < equipments.Count;i++){
             if (i > amount-1)
                 break;
             rn = SeedGenerator.random.Next(0,modifiableEquips.Count);
             Debug.Log(rn);
-            currentEquips.Add(modifiableEquips[rn]);
+            currentEquips.Add(new DisabableItem(modifiableEquips[rn]));
             modifiableEquips.Remove(modifiableEquips[rn]);
         }
         

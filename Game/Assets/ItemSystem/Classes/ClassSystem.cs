@@ -19,7 +19,6 @@ public class ClassSystem : MonoBehaviour
     }
 
     private void Awake(){
-        DontDestroyOnLoad(gameObject);
         if (classDict.Count != 0) return;
         foreach (Class _class in classes){
             classDict.Add(_class.PapersPlease()._classType,_class);
@@ -38,11 +37,13 @@ public class ClassSystem : MonoBehaviour
     }
 
     public static void IncrementClassBattery(classType _classType){
+        if (!classDict.ContainsKey(_classType)) return;
         int cellAmount = classDict[_classType].IncreaseBattery();
         EvaluateBoost(classDict[_classType].PapersPlease().hierarchy, cellAmount);
     }
 
     public static void DecrementClassBattery(classType _classType){
+        if (!classDict.ContainsKey(_classType)) return;
         int cellAmount = classDict[_classType].DecreaseBattery();
         EvaluateBoost(classDict[_classType].PapersPlease().hierarchy, cellAmount);
     }

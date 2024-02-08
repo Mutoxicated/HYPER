@@ -48,9 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diff: {fileID: 0}
-  wavePrefab: {fileID: 8514395769281492769, guid: 278429702ac3b714f824764d1157bfba, type: 3}
   beamInstance: {fileID: 0}
-  roundText: []
+  roundText: {fileID: 0}
+  enemySpawnInterval: 3
+  duration: 27
   spawnInterval: {fileID: 4772959095499585195}
   durationInterval: {fileID: 638814871690188541}
 --- !u!114 &4772959095499585195
@@ -76,7 +77,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4692834473444519190}
         m_TargetAssemblyTypeName: StandardRound, Assembly-CSharp
-        m_MethodName: SpawnEnemy
+        m_MethodName: SpawnEnemyInterval
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

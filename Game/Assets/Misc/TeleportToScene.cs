@@ -40,8 +40,8 @@ public class TeleportToScene : MonoBehaviour
         PassivePool.ResetEffectiveness();
         PlatformObjective.ResetShieldChance();
         ItemShop.ResetCheapness();
-        ClassSystem.Reset();
         ItemPool.ResetClassItems();
+        ClassSystem.Reset();
     }
 
     public void SwitchScene(){
@@ -54,6 +54,9 @@ public class TeleportToScene : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "ArenaV2" && sceneName == "MainMenu"){
             UpdateMisc();
             return;
+        }
+        if (SceneManager.GetActiveScene().name == "ArenaV2" && sceneName == "Interoid"){
+            MoneyBonus.SetMoneyBonusGot(false);
         }
         EquipmentManager.UpdateRunDataEquipment();
         PIC.PICVier.GetPIM().UpdateFilledSlots(sceneName);
@@ -70,6 +73,7 @@ public class TeleportToScene : MonoBehaviour
         PassivePool.UpdateRunDataPassives();
         PIC.LockAllCurrentSlots(sceneName);
         if (sceneName != "Interoid"){
+            ItemShop.UpdateCurrentItems();
             PIC.SetCurrentPIIS();
             PIC.UpdateRunDatas();
         }
@@ -88,6 +92,7 @@ public class TeleportToScene : MonoBehaviour
         PassivePool.UpdateRunDataPassives();
         PIC.PICVier.GetPIM().UpdateFilledSlots(sceneName);
         PIC.LockAllCurrentSlots(sceneName);
+        ItemShop.UpdateCurrentItems();
         PIC.SetCurrentPIIS();
         PIC.UpdateRunDatas();
         RunDataSave.UpdateJsonData();
