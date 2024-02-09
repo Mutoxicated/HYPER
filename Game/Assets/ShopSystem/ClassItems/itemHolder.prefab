@@ -61,6 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa6d3f126f392b4d9fccdcc51167b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beingSold: 0
+  iss: {fileID: 0}
+  ii: {fileID: 0}
   shop: {fileID: 0}
   index: 0
   currentItem: {fileID: 0}
@@ -200,7 +203,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -13.4613}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -299,7 +302,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 14.4
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

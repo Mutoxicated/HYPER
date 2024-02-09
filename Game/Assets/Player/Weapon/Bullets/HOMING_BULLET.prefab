@@ -134,7 +134,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.49999997
+  m_Radius: 0.6
   m_Height: 1.6
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.3}
@@ -190,6 +190,7 @@ MonoBehaviour:
   injector: {fileID: 2944045812284909553}
   immunityAttackRate: 1
   immunityDamage: 10
+  specialImmunities: 
 --- !u!114 &-8766207620506296604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +209,9 @@ MonoBehaviour:
   type: 0
   priority: 010000000100000001000000
   entity: {fileID: 0}
+  entityForever: {fileID: 0}
   maxHealth: 100
+  range: 28
   maxShields: 0
   shieldhealth: 50
   conditionals:
@@ -398,6 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: -8766207620506296604}
+  useEntityForever: 0
   rb: {fileID: 1549946323395533653}
   speed: 40
   randomnessScale: 1

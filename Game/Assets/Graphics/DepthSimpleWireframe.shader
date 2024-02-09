@@ -9,7 +9,7 @@ Shader "Custom/DepthQuadWireframe"
         _Intact("Intact Range", float) = 0
     }
 
-        SubShader
+    SubShader
     {
         Tags {"RenderType" = "Transparent" "Queue" = "AlphaTest"}
         LOD 100
@@ -218,7 +218,7 @@ Shader "Custom/DepthQuadWireframe"
                 return fixed4(_WireframeBackColour.r, _WireframeBackColour.g, _WireframeBackColour.b, _WireframeBackColour.a*clamp(alpha*abs(_Intact-1),0,1));
             }
             ENDCG
-            }
+        }
     }
     Fallback "Diffuse"
 }

@@ -8031,20 +8031,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '                       are evaluated based on how well you performed that
-    round. For some rounds, great performance means getting lot''s of score, while
-    for others it could be how fast you were at, for example, destroying the pillars
-    on the Cataclysm Round.'
+  m_text: '                                         are evaluated based on how well
+    you performed that round. For some rounds, great performance means getting lot
+    of score, while for others it could be how fast you were at, for example, destroying
+    the pillars on the Cataclysm Round.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bf6e6d13e432ba8468230c20d9e90132, type: 2}
-  m_sharedMaterial: {fileID: -9095539044233618618, guid: bf6e6d13e432ba8468230c20d9e90132, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 810b13b1cd1ac4944b187456baf8de95, type: 2}
+  m_sharedMaterial: {fileID: -6692340508686086325, guid: 810b13b1cd1ac4944b187456baf8de95, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294914580
-  m_fontColor: {r: 0.07843137, g: 0.19599228, b: 1, a: 1}
+    rgba: 2315190274
+  m_fontColor: {r: 0.0060977936, g: 0, b: 1, a: 0.5372549}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -8061,8 +8061,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8071,7 +8071,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 10
+  m_characterSpacing: 5
   m_wordSpacing: 0
   m_lineSpacing: 20
   m_lineSpacingMax: 0
@@ -11968,7 +11968,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5
+  m_fontSize: 3.7
   m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -21426,8 +21426,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Money bonuses
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bf6e6d13e432ba8468230c20d9e90132, type: 2}
-  m_sharedMaterial: {fileID: -9095539044233618618, guid: bf6e6d13e432ba8468230c20d9e90132, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 810b13b1cd1ac4944b187456baf8de95, type: 2}
+  m_sharedMaterial: {fileID: -6692340508686086325, guid: 810b13b1cd1ac4944b187456baf8de95, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21451,8 +21451,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -21461,7 +21461,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 10
+  m_characterSpacing: 5
   m_wordSpacing: 0
   m_lineSpacing: 20
   m_lineSpacingMax: 0
@@ -36520,7 +36520,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5
+  m_fontSize: 3.7
   m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -47375,6 +47375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc078f5ca6290eb4aa73055cca5678b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: {fileID: 273113163}
 --- !u!4 &1805665379
 Transform:
   m_ObjectHideFlags: 0

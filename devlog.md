@@ -1185,3 +1185,7 @@ Zorretox has been fully made and is fully functional!!! Also fixed some really s
 ## Day 244
 
 Tweaks and bug fixes. Also implemented the money bonus. Main fix of the day: The item shop now remembers what you items and equipment you bought, meaning it wont show that item/equipment again when reloading the game.
+
+## Day 245 
+
+Got sick so I didn't do much. Will work more on refining the theory design part of the game, as that doesn't require me to sit in a chair. I will just lay on my bed with my warm blanket and type and think stuff.
