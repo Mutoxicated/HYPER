@@ -1189,3 +1189,7 @@ Tweaks and bug fixes. Also implemented the money bonus. Main fix of the day: The
 ## Day 245 
 
 Got sick so I didn't do much. Will work more on refining the theory design part of the game, as that doesn't require me to sit in a chair. I will just lay on my bed with my warm blanket and type and think stuff.
+
+## Day 246
+
+Even more sick than yesterday. I'm thinking less about HYPER and more about OVERDRIVE now.
