@@ -1193,3 +1193,7 @@ Got sick so I didn't do much. Will work more on refining the theory design part 
 ## Day 246
 
 Even more sick than yesterday. I'm thinking less about HYPER and more about OVERDRIVE now.
+
+## Day 247
+
+Still sick. Better than yesterday though.
