@@ -1197,3 +1197,19 @@ Even more sick than yesterday. I'm thinking less about HYPER and more about OVER
 ## Day 247
 
 Still sick. Better than yesterday though.
+
+## Day 248
+
+Still sick. Vomited a little. Will be good in 2 days prolly.
+
+## Day 249
+
+Getting better.
+
+## Day 250
+
+Im good now, I think.
+
+## Day 251
+
+Ok tomorrow I will start development again.
