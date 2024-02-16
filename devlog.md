@@ -1213,3 +1213,7 @@ Im good now, I think.
 ## Day 251
 
 Ok tomorrow I will start development again.
+
+## Day 252
+
+Tried to migrate to the new Input System. Some things are confusing.

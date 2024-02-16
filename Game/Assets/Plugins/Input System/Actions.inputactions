@@ -2,56 +2,328 @@
     "name": "Actions",
     "maps": [
         {
-            "name": "LaunchOut",
-            "id": "acf8ed68-4e8b-421f-9155-ce9560a6ecf5",
+            "name": "WASD",
+            "id": "5116c59e-df45-4633-9a74-25de8028ded5",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "ws",
+                    "type": "Value",
+                    "id": "40f3fd54-01b4-4360-8632-850cb17a4f77",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ad",
                     "type": "Button",
-                    "id": "62394bae-3da6-4bbc-a229-aca8c2d9e528",
+                    "id": "126ac8bb-4f3e-4b12-b049-945cbbaf97c3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "d6d53a3d-74c1-46ce-8e83-765bf697212b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ws",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "bba95645-f0ac-4288-a897-d5ea62240a1b",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ws",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "ef66593d-1474-464b-971d-d7b40a4f504f",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ws",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "f23b7763-fd9a-46bc-ae50-c191172609d3",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ad",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "2bf1c834-4ee3-4444-8eb0-3bd2a3a89827",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ad",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "9cc13c52-771e-4385-a356-364f093a0249",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ad",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Abilities",
+            "id": "61189763-4118-4908-a009-2a8d9444d979",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "1a24f514-5ee7-462d-aaf9-70442bca6ebd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LaunchOut",
+                    "type": "Button",
+                    "id": "ffbb2a00-21bd-4d47-8d13-c764635a1807",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LaunchIn",
+                    "type": "Button",
+                    "id": "f83c79e9-510d-4891-a5b6-0e18be9f925f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Punch",
+                    "type": "Button",
+                    "id": "d1e19c83-2637-412b-8840-ae57848564c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Throw",
+                    "type": "Button",
+                    "id": "ba9ff580-91b2-48d5-b947-86c983c005dc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SlideSlam",
+                    "type": "Button",
+                    "id": "705848f4-4241-4480-8d22-da6bc0ef68e8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "e4612fea-b921-4ba4-b05c-409da8ed8e88",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "12450d40-3507-461a-a3b2-ad7b157aa51c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "5429c62b-2a51-40ee-b1fc-fbeb61bdf7df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "443ed628-0e19-4822-842c-66be1c61ce9f",
-                    "path": "<Keyboard>/e",
+                    "id": "2dd49ac6-423d-40e7-861f-8cd43b80255b",
+                    "path": "<Keyboard>/#(E)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aaa16187-4e59-4c2c-be3d-1971bccaebe3",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LaunchOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45f14d8d-9e39-47d2-80c0-3f671f7d1d1e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LaunchIn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c1f0782a-0711-4050-9906-ce78dddb01e6",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Punch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c912e36-5fc8-4522-9eb5-d911145b26c4",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02fa8b67-0624-4b9e-afc8-0cec97eccbd0",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SlideSlam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "310a3e57-01c0-4f40-9c2e-d053e979e9e8",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "feca3bef-ba90-41e7-8d46-78bd074728c1",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bcee87c2-2e6f-4b57-960b-0101a191ce7b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         },
         {
-            "name": "Interact",
-            "id": "6aab18b6-acf8-47b8-bdfc-e46d4f7eb201",
+            "name": "Basic",
+            "id": "2b76b61c-f854-4948-a398-9257cc3e404d",
             "actions": [
                 {
-                    "name": "interact",
+                    "name": "Shoot",
                     "type": "Button",
-                    "id": "6b3debd5-c280-4581-aa5d-feeb56b33685",
+                    "id": "c1328a5f-787f-4415-8728-d5d73a27bb1d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ExtraShoot",
+                    "type": "Button",
+                    "id": "83007750-a240-4bf3-8de7-7167ce695f50",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "19e8fdf3-89a0-48d2-8201-d3467bebbbc8",
-                    "path": "<Keyboard>/t",
+                    "id": "f3a99945-7498-482a-9ed8-f85752438a91",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "interact",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf6688c5-d261-4bef-88b0-48fa4c44a522",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExtraShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

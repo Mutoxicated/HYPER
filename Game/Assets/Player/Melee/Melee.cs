@@ -18,9 +18,6 @@ public class Melee : MonoBehaviour
     [SerializeField] private GameObject launchPrefab;
     [SerializeField] private AudioSource punchSFX;
 
-    private ButtonInput launchInput = new ButtonInput("LaunchMagnet");
-    private ButtonInput throwInput = new ButtonInput("Throw");
-    private ButtonInput punchInput = new ButtonInput("Melee");
     private Camera cam;
     private bool once = true;
     private bool punching = false;
@@ -32,6 +29,8 @@ public class Melee : MonoBehaviour
     private float t;
     private Collider[] colls;
     private Ray ray;
+
+    private Actions actions;
 
     private bool Punch()
     {
@@ -66,19 +65,23 @@ public class Melee : MonoBehaviour
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
     }
 
+    private void OnEnable(){
+        actions = new Actions();
+        actions.Abilities.Throw.Enable();
+        actions.Abilities.LaunchOut.Enable();
+        actions.Abilities.Punch.Enable();
+    }
+
     private void Update()
     {
         isIdle = animator.GetCurrentAnimatorStateInfo(0).IsName("Nun");//nun is idle btw
-        launchInput.Update();
-        throwInput.Update();
-        punchInput.Update();
-        if (throwInput.GetInputDown() && isIdle && stats.numericals["capacitor1"] > 0f)
+        if (actions.Abilities.Throw.WasPerformedThisFrame() && isIdle && stats.numericals["capacitor1"] > 0f)
         {
             stats.numericals["capacitor1"] -= 1f;
             animator.Play("Throw");
             Instantiate(TNTPrefab, throwPoint.position,GunShooter.GetAccurateRotation(cam,throwPoint)*TNTPrefab.transform.rotation);
             //stats.ModifyIncrementalStat("capacitor1", -1);
-        }if (launchInput.GetInputDown() && isIdle && Launcher.playerMovement.sender == null && Launcher.playerMovement.stamina.GetCurrentStamina() > 100f){
+        }if (actions.Abilities.LaunchOut.WasPerformedThisFrame() && isIdle && Launcher.playerMovement.sender == null && Launcher.playerMovement.stamina.GetCurrentStamina() > 100f){
             ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2,0));
             bool hit = Physics.SphereCast(ray.origin,0.01f, ray.direction, out hitInfo, 10000f, layerMask);
             if (hit){
@@ -89,7 +92,7 @@ public class Melee : MonoBehaviour
                 }
             }
         }
-        if (punchInput.GetInputDown() && isIdle && !punching && once)
+        if (actions.Abilities.Punch.WasPerformedThisFrame() && isIdle && !punching && once)
         {
             punchSFX.Play();
             once = false;

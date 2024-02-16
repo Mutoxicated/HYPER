@@ -16,10 +16,6 @@ public class Interactable : MonoBehaviour
 
     private Actions actions;
 
-    private void Awake(){
-        actions = new Actions();
-    }
-
     private void RayHitLogic(){
         if (interacter == null){
             rayHit = false;
@@ -30,11 +26,11 @@ public class Interactable : MonoBehaviour
         }else{
             rayHit = false;
         }
-
     }
 
     private void OnEnable(){
-        actions.Interact.Enable();
+        actions = new Actions();
+        actions.Abilities.Enable();
     }
 
     private void Update(){
@@ -42,13 +38,17 @@ public class Interactable : MonoBehaviour
         if (rayHit){
             once = true;
             popup.ActivatePopup();
-            popup.AlterPopupText("Press ["+(actions.Interact.interact.bindings[0].path[actions.Interact.interact.bindings[0].path.Length-1]+"]").ToUpper());
-            if (actions.Interact.interact.WasPerformedThisFrame()){
+            actions.FindAction("LaunchOut").Disable();//doesnt work
+            actions.FindAction("Interact").Enable();
+            popup.AlterPopupText("Press ["+(actions.Abilities.Interact.bindings[0].path[actions.Abilities.Interact.bindings[0].path.Length-2]+"]").ToUpper());
+            if (actions.Abilities.Interact.WasPressedThisFrame()){
                 onInput.Invoke();
             }
         }else if (!rayHit && once) {
             once = false;
             popup.DeactivatePopup();
+            actions.FindAction("LaunchOut").Enable();
+            actions.FindAction("Interact").Disable();
         }
     }
 }

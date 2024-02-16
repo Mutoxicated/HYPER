@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -19,6 +20,9 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private Vector3 slotPos;
     private Vector3 alteredPos;
     private List<Slot> slotsToIgnore = new List<Slot>();
+
+    private bool updatePos = false;
+    private Vector3 mousePos;
 
     public void SetDragState(bool state){
         dragged = state;
@@ -85,6 +89,13 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         slotPos = transform.position;
     }
 
+    private void Update(){
+        if (!updatePos) return;
+        mousePos = Mouse.current.position.ReadValue();
+        mousePos.z = (transform.position.x-Camera.main.transform.position.z)*0.07f;
+        UpdatePos(Camera.main.ScreenToWorldPoint(mousePos));
+    }
+
     private void UpdatePos(Vector3 wPos){
         alteredPos = wPos;
         alteredPos.x = transform.position.x;
@@ -94,16 +105,18 @@ public class SlotOccupant : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void OnBeginDrag(PointerEventData eventData)
     {
         SetDragState(true);
-        UpdatePos(eventData.pointerCurrentRaycast.worldPosition);
+        updatePos = true;
+        //UpdatePos(eventData.pointerCurrentRaycast.worldPosition);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        UpdatePos(eventData.pointerCurrentRaycast.worldPosition);
+        //UpdatePos(eventData.pointerCurrentRaycast.worldPosition);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        updatePos = false;
         if (die){
             slot.SetSO(null);
             Destroy(gameObject);

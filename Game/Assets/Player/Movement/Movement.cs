@@ -54,11 +54,6 @@ public class Movement : MonoBehaviour
     private Vector3 slideDirection = Vector3.zero;
     public ContactPoint point;
 
-    private ButtonInput jumpInput = new ButtonInput("Jump");
-    private ButtonInput dashInput = new ButtonInput("Dash");
-    private ButtonInput slideInput = new ButtonInput("Slide");
-    private ButtonInput launchInInput = new ButtonInput("LaunchIn");
-
     [HideInInspector] public Vector3 launchPoint;
     [HideInInspector] public bool airborne = true;
     [HideInInspector] public GameObject sender;
@@ -72,6 +67,8 @@ public class Movement : MonoBehaviour
     private float moveX, moveZ;
     private CameraShake camShake;
     private int shields;
+
+    private Actions actions;
 
     public void ChangeState(int ms)
     {
@@ -97,6 +94,11 @@ public class Movement : MonoBehaviour
         this.sender = sender;
     }
 
+    private void GetMoveAxis(){
+        moveX = actions.WASD.ad.ReadValue<float>() * walkSpeed;
+        moveZ = actions.WASD.ws.ReadValue<float>() * walkSpeed;
+    }
+
     private void Move()
     {
         //Debug.Log(movementState);
@@ -111,8 +113,7 @@ public class Movement : MonoBehaviour
         }
         else 
         {
-            moveX = Input.GetAxisRaw("Horizontal") * walkSpeed;
-            moveZ = Input.GetAxisRaw("Vertical") * walkSpeed;
+            GetMoveAxis();
             Vector3 flatForward = camHolder.forward;
             flatForward.y = 0f;
 
@@ -123,8 +124,7 @@ public class Movement : MonoBehaviour
         //walking
         if (movementState == MovementState.WALKING)
         {
-            moveX = Input.GetAxisRaw("Horizontal") * walkSpeed;
-            moveZ = Input.GetAxisRaw("Vertical") * walkSpeed;
+            GetMoveAxis();
             Vector3 flatForward = camHolder.forward;
             flatForward.y = 0f;
 
@@ -169,7 +169,7 @@ public class Movement : MonoBehaviour
     {
         if (stamina.GetCurrentStamina() < 75f)
             return;
-        if (launchInInput.GetInputDown())
+        if (actions.Abilities.LaunchIn.WasPressedThisFrame())
         {
             ability.LaunchIn(launchPoint, launchForce * stats.numericals["moveSpeed"]);
             movementState = MovementState.BOUNCING;
@@ -184,6 +184,8 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+        actions = new Actions();
+        actions.Enable();
         camShake = GetComponent<CameraShake>();
         rb.drag = airdrag;
         ability = new MoveAbilities(rb);
@@ -193,16 +195,12 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         //Debug.Log(airborne);
-        jumpInput.Update();
-        dashInput.Update();
-        slideInput.Update();
-        launchInInput.Update();
         if (!point.Equals(null))//this check covers specifically the enemies when they die while you are in contact with them
         {
             if (point.otherCollider == null)
                 airborne = true;
         }
-        if (jumpInput.GetInputDown() && currentJumps <= maxJumps)
+        if (actions.Abilities.Jump.WasPressedThisFrame() && currentJumps <= maxJumps)
         {
             if (movementState == MovementState.LOCKED)
             {
@@ -237,7 +235,7 @@ public class Movement : MonoBehaviour
             }
             return;
         }
-        if (dashInput.GetInputDown() && stamina.GetCurrentStamina() > 50f)
+        if (actions.Abilities.Dash.WasPressedThisFrame() && stamina.GetCurrentStamina() > 50f)
         {
             dash.transform.position = transform.position;
             if (moveDirection != Vector3.zero)
@@ -265,7 +263,7 @@ public class Movement : MonoBehaviour
             crouchReleased = false;
             return;
         }
-        if (slideInput.GetInputDown() && movementState != MovementState.LOCKED)
+        if (actions.Abilities.SlideSlam.WasPressedThisFrame() && movementState != MovementState.LOCKED)
         {
             uponSlide = true;
             if (!airborne && crouchReleased && point.normal.y >= 0.9f) 
@@ -284,7 +282,7 @@ public class Movement : MonoBehaviour
                 momentumWindow.ResetEventless();
             }
         }
-        if (slideInput.GetInput())
+        if (actions.Abilities.SlideSlam.IsPressed())
         {
             crouchReleased = false;
         }
