@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3114140308920952880
 Transform:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bac: {fileID: 5780903243261917723}
-  changePriority: 0
+  changePriority: 1
   priority: 000000000000000000000000
   conditionals: []
   conditionalValues: 

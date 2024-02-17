@@ -11,6 +11,7 @@ public enum MovementState
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] private PlayerInputContext pic;
     [Header("Speeds")]
     [SerializeField, Range(40f,85f)] private float walkSpeed;
     [SerializeField, Range(12f,24f)] private float slideSpeed = 19f;
@@ -68,8 +69,6 @@ public class Movement : MonoBehaviour
     private CameraShake camShake;
     private int shields;
 
-    private Actions actions;
-
     public void ChangeState(int ms)
     {
         movementState = (MovementState)ms;
@@ -95,8 +94,8 @@ public class Movement : MonoBehaviour
     }
 
     private void GetMoveAxis(){
-        moveX = actions.WASD.ad.ReadValue<float>() * walkSpeed;
-        moveZ = actions.WASD.ws.ReadValue<float>() * walkSpeed;
+        moveX = pic.GetHorizontal() * walkSpeed;
+        moveZ = pic.GetVertical() * walkSpeed;
     }
 
     private void Move()
@@ -169,7 +168,7 @@ public class Movement : MonoBehaviour
     {
         if (stamina.GetCurrentStamina() < 75f)
             return;
-        if (actions.Abilities.LaunchIn.WasPressedThisFrame())
+        if (pic.WasPressedThisFrame("LaunchIn"))
         {
             ability.LaunchIn(launchPoint, launchForce * stats.numericals["moveSpeed"]);
             movementState = MovementState.BOUNCING;
@@ -184,8 +183,6 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        actions = new Actions();
-        actions.Enable();
         camShake = GetComponent<CameraShake>();
         rb.drag = airdrag;
         ability = new MoveAbilities(rb);
@@ -200,7 +197,7 @@ public class Movement : MonoBehaviour
             if (point.otherCollider == null)
                 airborne = true;
         }
-        if (actions.Abilities.Jump.WasPressedThisFrame() && currentJumps <= maxJumps)
+        if (pic.WasPressedThisFrame("Jump") && currentJumps <= maxJumps)
         {
             if (movementState == MovementState.LOCKED)
             {
@@ -235,7 +232,7 @@ public class Movement : MonoBehaviour
             }
             return;
         }
-        if (actions.Abilities.Dash.WasPressedThisFrame() && stamina.GetCurrentStamina() > 50f)
+        if (pic.WasPressedThisFrame("Dash") && stamina.GetCurrentStamina() > 50f)
         {
             dash.transform.position = transform.position;
             if (moveDirection != Vector3.zero)
@@ -263,7 +260,7 @@ public class Movement : MonoBehaviour
             crouchReleased = false;
             return;
         }
-        if (actions.Abilities.SlideSlam.WasPressedThisFrame() && movementState != MovementState.LOCKED)
+        if (pic.WasPressedThisFrame("SlideSlam") && movementState != MovementState.LOCKED)
         {
             uponSlide = true;
             if (!airborne && crouchReleased && point.normal.y >= 0.9f) 
@@ -282,7 +279,7 @@ public class Movement : MonoBehaviour
                 momentumWindow.ResetEventless();
             }
         }
-        if (actions.Abilities.SlideSlam.IsPressed())
+        if (pic.IsPressed("SlideSlam"))
         {
             crouchReleased = false;
         }

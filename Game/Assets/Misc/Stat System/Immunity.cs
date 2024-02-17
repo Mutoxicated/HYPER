@@ -11,6 +11,7 @@ public enum EntityType
 
 public class Immunity : MonoBehaviour
 {
+    [SerializeField] private BacteriaAlertGUI bagui;
     public Stats stats;
     public Injector injector;
     public float immunityAttackRate = 1f;
@@ -82,6 +83,11 @@ public class Immunity : MonoBehaviour
         }
     }
 
+    private void AlertBagui(Bacteria bac, int pop){
+        if (bagui != null)
+            bagui.AlertSystem(bac,pop);
+    }
+
     public Bacteria AddBacteria(Bacteria bac){
         CheckOrganicImmunities(bac);
         CheckNonOrganicImmunities(bac);
@@ -91,6 +97,7 @@ public class Immunity : MonoBehaviour
             return null;
         if (bacterias.ContainsKey(bac.name)){
             bacterias[bac.name].BacteriaIn();
+            AlertBagui(bac,bacterias[bac.name].population);
             return bacterias[bac.name];
         }else{
             bacterias.Add(bac.name,bac);
@@ -103,12 +110,15 @@ public class Immunity : MonoBehaviour
             return null;
         if (bacterias.ContainsKey(bacName)){
             bacterias[bacName].BacteriaIn();
+            AlertBagui(bacterias[bacName],bacterias[bacName].population);
             return bacterias[bacName];
         }else{
             Bacteria bac = PublicPools.pools[bacName].SendObject(gameObject).GetComponent<Bacteria>();
             CheckOrganicImmunities(bac);
             CheckNonOrganicImmunities(bac);
             CheckSpecialImmunities(bac);
+            if (!bac.gameObject.activeSelf) return null;
+            AlertBagui(bac,bac.population);
             if (bacterias.ContainsKey(bacName)){
                 bacterias[bacName].BacteriaIn();
                 return bacterias[bacName];
@@ -141,7 +151,10 @@ public class Immunity : MonoBehaviour
                 }
                 if (died)
                 {
+                    AlertBagui(bacterias[bacKey],-1);
                     bacterias.Remove(bacKey);
+                }else{
+                    AlertBagui(bacterias[bacKey],bacterias[bacKey].population);
                 }
             }
         }

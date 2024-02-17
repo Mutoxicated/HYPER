@@ -4,12 +4,17 @@ using TMPro;
 using UnityEngine;
 
 namespace BacteriaOperations{
+    public enum PriorityChangeType{
+        OPPOSITE,
+        OPPOSITE_FOREVER
+    }
+
     public class StatModifier : MonoBehaviour
     {
         [SerializeField] private Bacteria bac;
 
         [SerializeField] private bool changePriority;
-        [SerializeField] private DeathFor[] priority = new DeathFor[3];
+        [SerializeField] private PriorityChangeType[] priority = new PriorityChangeType[3];
 
         [SerializeField] private string[] conditionals;
         [SerializeField] private bool[] conditionalValues;
@@ -51,6 +56,25 @@ namespace BacteriaOperations{
             return false;
         }
 
+        private DeathFor ChangePriority(DeathFor df, PriorityChangeType pct){
+            if (df == DeathFor.PLAYER | df == DeathFor.PLAYER_FOREVER){
+                if (pct == PriorityChangeType.OPPOSITE_FOREVER){
+                    return DeathFor.ENEMIES_FOREVER;
+                }else{
+                    return DeathFor.ENEMIES;
+                }
+            }else if (df == DeathFor.ENEMIES | df == DeathFor.ENEMIES_FOREVER){
+                if (pct == PriorityChangeType.OPPOSITE_FOREVER){
+                    return DeathFor.PLAYER_FOREVER;
+                }else{
+                    return DeathFor.PLAYER;
+                }
+            }else if (df == DeathFor.PLATFORMS){
+                return DeathFor.ENEMIES;
+            }
+            return DeathFor.ENEMIES;
+        }
+
         private void OnEnable()
         {
             if (EdgeCasesPresent())
@@ -60,7 +84,9 @@ namespace BacteriaOperations{
             // }
             if (changePriority){
                 cachedPriority = bac.immuneSystem.stats.GetPriority();
-                bac.immuneSystem.stats.SetPriority(priority);
+                for (int i = 0; i < priority.Length; i++){
+                    bac.immuneSystem.stats.SetPriorityLayer(i, ChangePriority(bac.immuneSystem.stats.GetPriorityLayer(i),priority[i]));
+                }
             }
             populationMod = bac.population;
             ChangeConditionals();

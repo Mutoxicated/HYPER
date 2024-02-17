@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class Interactable : MonoBehaviour
 {
+    [SerializeField] private PlayerInputContext pic;
     [SerializeField] private Interacter interacter;
     [SerializeField] private GUIPopup popup;
     [SerializeField] private UnityEvent onInput = new UnityEvent();
@@ -23,6 +24,7 @@ public class Interactable : MonoBehaviour
         }
         if (interacter.GetGoHit() == gameObject) {
             rayHit = true;
+            interacter.SetHittingInteractable(true);
         }else{
             rayHit = false;
         }
@@ -38,17 +40,14 @@ public class Interactable : MonoBehaviour
         if (rayHit){
             once = true;
             popup.ActivatePopup();
-            actions.FindAction("LaunchOut").Disable();//doesnt work
-            actions.FindAction("Interact").Enable();
-            popup.AlterPopupText("Press ["+(actions.Abilities.Interact.bindings[0].path[actions.Abilities.Interact.bindings[0].path.Length-2]+"]").ToUpper());
-            if (actions.Abilities.Interact.WasPressedThisFrame()){
+            popup.AlterPopupText("Press ["+(actions.Abilities.LaunchOut_Interact.bindings[0].path[actions.Abilities.LaunchOut_Interact.bindings[0].path.Length-2]+"]").ToUpper());
+            if (pic.WasPressedThisFrame("LaunchOut_Interact")){
                 onInput.Invoke();
             }
         }else if (!rayHit && once) {
             once = false;
             popup.DeactivatePopup();
-            actions.FindAction("LaunchOut").Enable();
-            actions.FindAction("Interact").Disable();
+            interacter.SetHittingInteractable(false);
         }
     }
 }

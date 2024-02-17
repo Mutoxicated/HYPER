@@ -1217,3 +1217,7 @@ Ok tomorrow I will start development again.
 ## Day 252
 
 Tried to migrate to the new Input System. Some things are confusing.
+
+## Day 253
+
+Made the Bacteria Alert System. Also fully migrated to the Input System. I also added some extra functionality on the shop where you can hit Esc and it will act as if you hit the back button of the current panel. 

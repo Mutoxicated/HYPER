@@ -56,7 +56,7 @@ public class StandardRound : MonoBehaviour, IRound
 
     private void GetRando(){
         if (rando == 0){
-            rando = SeedGenerator.random.Next(2,Mathf.RoundToInt(currentValue));
+            rando = SeedGenerator.random.Next(2,Mathf.RoundToInt(Mathf.Clamp(currentValue,2,9999999)));
         }
         if (!diff.organizedEnemyPool.ContainsKey(rando)){
             rando--;

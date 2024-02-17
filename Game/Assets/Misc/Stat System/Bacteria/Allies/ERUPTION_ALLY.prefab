@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   immunitySide: 0
-  character: 1
+  character: 0
   injectorCachedFrom: {fileID: 0}
   _particleSys: {fileID: 0}
   interval: {fileID: 0}
@@ -198,8 +198,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  dontResetTime: 0
   chance: 100
   interval: 0.9
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls: []

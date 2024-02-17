@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   immunitySide: 1
-  character: 0
+  character: 1
   injectorCachedFrom: {fileID: 0}
   _particleSys: {fileID: -7325725379374107165}
   interval: {fileID: 0}
@@ -72,8 +72,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bac: {fileID: 5780903243261917723}
-  changeObjective: 0
-  objective: 0
+  changePriority: 0
+  priority: 000000000000000000000000
   conditionals: []
   conditionalValues: 
   numericals:

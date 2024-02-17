@@ -328,6 +328,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &20194251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7324126756486377396, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
+  m_PrefabInstance: {fileID: 428264400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &38086322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7616467683431527754, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
@@ -714,6 +719,14 @@ PrefabInstance:
     - target: {fileID: 4177914415260335034, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_fontSize
       value: 24.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433578982610304779, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706170027066770793, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5045427927316204368, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: arrow
@@ -3453,7 +3466,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1836058111174717658, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
   m_PrefabInstance: {fileID: 428264400}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 20194251}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8241068d54c209943b2c710960a3ae00, type: 3}
@@ -4109,6 +4122,10 @@ PrefabInstance:
       propertyPath: healthBarBackImg
       value: 
       objectReference: {fileID: 428264408}
+    - target: {fileID: 483805684006066793, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 20194251}
     - target: {fileID: 1827139654470346249, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
       propertyPath: dash
       value: 
@@ -4197,6 +4214,10 @@ PrefabInstance:
       propertyPath: onInterval.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 2017626629}
+    - target: {fileID: 8166220741375504981, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: bagui
+      value: 
+      objectReference: {fileID: 2038644459}
     - target: {fileID: 8166220741375504981, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
       propertyPath: injector
       value: 
@@ -4325,6 +4346,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2038644459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3625309221089736827, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
+  m_PrefabInstance: {fileID: 428264400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7af10e19aa6b7945b42530e3b197256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2073889670

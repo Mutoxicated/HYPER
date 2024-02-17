@@ -120,16 +120,7 @@ public partial class @Actions : IInputActionCollection2, IDisposable
             ""id"": ""61189763-4118-4908-a009-2a8d9444d979"",
             ""actions"": [
                 {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""1a24f514-5ee7-462d-aaf9-70442bca6ebd"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LaunchOut"",
+                    ""name"": ""LaunchOut_Interact"",
                     ""type"": ""Button"",
                     ""id"": ""ffbb2a00-21bd-4d47-8d13-c764635a1807"",
                     ""expectedControlType"": ""Button"",
@@ -204,23 +195,12 @@ public partial class @Actions : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""2dd49ac6-423d-40e7-861f-8cd43b80255b"",
-                    ""path"": ""<Keyboard>/#(E)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""aaa16187-4e59-4c2c-be3d-1971bccaebe3"",
                     ""path"": ""<Keyboard>/#(E)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LaunchOut"",
+                    ""action"": ""LaunchOut_Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -360,8 +340,7 @@ public partial class @Actions : IInputActionCollection2, IDisposable
         m_WASD_ad = m_WASD.FindAction("ad", throwIfNotFound: true);
         // Abilities
         m_Abilities = asset.FindActionMap("Abilities", throwIfNotFound: true);
-        m_Abilities_Interact = m_Abilities.FindAction("Interact", throwIfNotFound: true);
-        m_Abilities_LaunchOut = m_Abilities.FindAction("LaunchOut", throwIfNotFound: true);
+        m_Abilities_LaunchOut_Interact = m_Abilities.FindAction("LaunchOut_Interact", throwIfNotFound: true);
         m_Abilities_LaunchIn = m_Abilities.FindAction("LaunchIn", throwIfNotFound: true);
         m_Abilities_Punch = m_Abilities.FindAction("Punch", throwIfNotFound: true);
         m_Abilities_Throw = m_Abilities.FindAction("Throw", throwIfNotFound: true);
@@ -473,8 +452,7 @@ public partial class @Actions : IInputActionCollection2, IDisposable
     // Abilities
     private readonly InputActionMap m_Abilities;
     private IAbilitiesActions m_AbilitiesActionsCallbackInterface;
-    private readonly InputAction m_Abilities_Interact;
-    private readonly InputAction m_Abilities_LaunchOut;
+    private readonly InputAction m_Abilities_LaunchOut_Interact;
     private readonly InputAction m_Abilities_LaunchIn;
     private readonly InputAction m_Abilities_Punch;
     private readonly InputAction m_Abilities_Throw;
@@ -486,8 +464,7 @@ public partial class @Actions : IInputActionCollection2, IDisposable
     {
         private @Actions m_Wrapper;
         public AbilitiesActions(@Actions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Interact => m_Wrapper.m_Abilities_Interact;
-        public InputAction @LaunchOut => m_Wrapper.m_Abilities_LaunchOut;
+        public InputAction @LaunchOut_Interact => m_Wrapper.m_Abilities_LaunchOut_Interact;
         public InputAction @LaunchIn => m_Wrapper.m_Abilities_LaunchIn;
         public InputAction @Punch => m_Wrapper.m_Abilities_Punch;
         public InputAction @Throw => m_Wrapper.m_Abilities_Throw;
@@ -504,12 +481,9 @@ public partial class @Actions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_AbilitiesActionsCallbackInterface != null)
             {
-                @Interact.started -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnInteract;
-                @LaunchOut.started -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnLaunchOut;
-                @LaunchOut.performed -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnLaunchOut;
-                @LaunchOut.canceled -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnLaunchOut;
+                @LaunchOut_Interact.started -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnLaunchOut_Interact;
+                @LaunchOut_Interact.performed -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnLaunchOut_Interact;
+                @LaunchOut_Interact.canceled -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnLaunchOut_Interact;
                 @LaunchIn.started -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnLaunchIn;
                 @LaunchIn.performed -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnLaunchIn;
                 @LaunchIn.canceled -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnLaunchIn;
@@ -535,12 +509,9 @@ public partial class @Actions : IInputActionCollection2, IDisposable
             m_Wrapper.m_AbilitiesActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-                @LaunchOut.started += instance.OnLaunchOut;
-                @LaunchOut.performed += instance.OnLaunchOut;
-                @LaunchOut.canceled += instance.OnLaunchOut;
+                @LaunchOut_Interact.started += instance.OnLaunchOut_Interact;
+                @LaunchOut_Interact.performed += instance.OnLaunchOut_Interact;
+                @LaunchOut_Interact.canceled += instance.OnLaunchOut_Interact;
                 @LaunchIn.started += instance.OnLaunchIn;
                 @LaunchIn.performed += instance.OnLaunchIn;
                 @LaunchIn.canceled += instance.OnLaunchIn;
@@ -614,8 +585,7 @@ public partial class @Actions : IInputActionCollection2, IDisposable
     }
     public interface IAbilitiesActions
     {
-        void OnInteract(InputAction.CallbackContext context);
-        void OnLaunchOut(InputAction.CallbackContext context);
+        void OnLaunchOut_Interact(InputAction.CallbackContext context);
         void OnLaunchIn(InputAction.CallbackContext context);
         void OnPunch(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);

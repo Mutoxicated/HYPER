@@ -19,10 +19,10 @@ public class MoneyBonus : MonoBehaviour
     }
 
     private void Start(){
+        money.text = moneyBonus+"* !!!";
         if (RunDataSave.rData.moneyBonusGot)
             return;
         PlayerInfo.SetMoney(moneyBonus);
-        money.text = moneyBonus+"* !!!";
         SetMoneyBonusGot(true);
     }
 }

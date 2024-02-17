@@ -192,6 +192,14 @@ public class Stats : MonoBehaviour
         this.priority = priority;
     }
 
+    public void SetPriorityLayer(int index, DeathFor df){
+        priority[index] = df;
+    }
+
+    public DeathFor GetPriorityLayer(int index){
+        return priority[index];
+    }
+
     public void OverrideTopPriority(int index){
         priority[0] = (DeathFor)index;
     }

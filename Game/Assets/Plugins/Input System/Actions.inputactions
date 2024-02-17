@@ -98,16 +98,7 @@
             "id": "61189763-4118-4908-a009-2a8d9444d979",
             "actions": [
                 {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "1a24f514-5ee7-462d-aaf9-70442bca6ebd",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "LaunchOut",
+                    "name": "LaunchOut_Interact",
                     "type": "Button",
                     "id": "ffbb2a00-21bd-4d47-8d13-c764635a1807",
                     "expectedControlType": "Button",
@@ -182,23 +173,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "2dd49ac6-423d-40e7-861f-8cd43b80255b",
-                    "path": "<Keyboard>/#(E)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "aaa16187-4e59-4c2c-be3d-1971bccaebe3",
                     "path": "<Keyboard>/#(E)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LaunchOut",
+                    "action": "LaunchOut_Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

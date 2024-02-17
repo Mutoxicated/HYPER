@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 14
   immunitySide: 1
-  character: 0
+  character: 1
   injectorCachedFrom: {fileID: 0}
   _particleSys: {fileID: 0}
   interval: {fileID: 0}

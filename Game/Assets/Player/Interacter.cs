@@ -10,9 +10,18 @@ public class Interacter : MonoBehaviour
     private GameObject goHit;
 
     private RaycastHit hit;
+    private bool hittingInteractable;
 
     public GameObject GetGoHit(){
         return goHit;
+    }
+
+    public void SetHittingInteractable(bool state){
+        hittingInteractable = state;
+    }
+
+    public bool GetHittingInteractable(){
+        return hittingInteractable;
     }
 
     private void Update(){

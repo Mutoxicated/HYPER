@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 8108540779480057966}
+  pic: {fileID: 483805684006066793}
   layerMask:
     serializedVersion: 2
     m_Bits: 1793
@@ -746,6 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d08c654f1e489b449b0a5f8aa361c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pic: {fileID: 483805684006066793}
   walkSpeed: 75.7
   slideSpeed: 19.84
   slamSpeed: 54
@@ -1035,6 +1037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bagui: {fileID: 0}
   stats: {fileID: 8108540779480057966}
   injector: {fileID: 3299174636754850061}
   immunityAttackRate: 0.5
@@ -2428,6 +2431,7 @@ GameObject:
   - component: {fileID: 7862258471834061820}
   - component: {fileID: 8605636085867929451}
   - component: {fileID: 4938294995006289281}
+  - component: {fileID: 483805684006066793}
   m_Layer: 0
   m_Name: CamHolder
   m_TagString: Untagged
@@ -2545,6 +2549,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 1827139654470346249}
   slidePos: {x: 0, y: -0.5, z: 0}
+--- !u!114 &483805684006066793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395529677905364782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da217a0b8e942e4cb522da1f4ef0db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  interacter: {fileID: 0}
 --- !u!1 &8407429241445348203
 GameObject:
   m_ObjectHideFlags: 0

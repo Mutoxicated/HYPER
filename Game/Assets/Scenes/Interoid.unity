@@ -512,6 +512,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120c7d52f88dd5a4f918d807785ac331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &16733254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7324126756486377396, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
+  m_PrefabInstance: {fileID: 1741174975}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &17145747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2530,11 +2535,11 @@ MonoBehaviour:
   gradient:
   - serializedVersion: 2
     key0: {r: 4, g: 0.8677106, b: 0, a: 1}
-    key1: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 0.6039216, g: 0.13333334, b: 0, a: 1}
     key2: {r: 4, g: 0.8677106, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0.6039216, g: 0.13333334, b: 0, a: 0}
     key4: {r: 4, g: 0.8677106, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0.6039216, g: 0.13333334, b: 0, a: 0}
     key6: {r: 4, g: 0.8677106, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 11998
@@ -3551,7 +3556,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1836058111174717658, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
   m_PrefabInstance: {fileID: 1741174975}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 16733254}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8241068d54c209943b2c710960a3ae00, type: 3}
@@ -3783,7 +3788,7 @@ MonoBehaviour:
   gradient:
   - serializedVersion: 2
     key0: {r: 4, g: 0.8677106, b: 0, a: 1}
-    key1: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 0.6039216, g: 0.13333334, b: 0, a: 1}
     key2: {r: 4, g: 0.8677106, b: 0, a: 0}
     key3: {r: 4, g: 0.8677106, b: 0, a: 0}
     key4: {r: 4, g: 0.8677106, b: 0, a: 0}
@@ -4673,6 +4678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2383f87957b8fce4b8371dfb55b63669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pic: {fileID: 257438133}
   interacter: {fileID: 1550960479}
   popup: {fileID: 1702336106}
   onInput:
@@ -5115,6 +5121,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256049355}
   m_CullTransparentMesh: 1
+--- !u!114 &257438133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 483805684006066793, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+  m_PrefabInstance: {fileID: 565528438}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550960478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da217a0b8e942e4cb522da1f4ef0db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &260220110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7680,6 +7697,7 @@ GameObject:
   - component: {fileID: 447017466}
   - component: {fileID: 447017465}
   - component: {fileID: 447017464}
+  - component: {fileID: 447017467}
   m_Layer: 0
   m_Name: X
   m_TagString: Untagged
@@ -7814,6 +7832,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447017462}
   m_CullTransparentMesh: 1
+--- !u!114 &447017467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447017462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e554fba3b7efef54287c528c8fa0932d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pic: {fileID: 257438133}
+  ia:
+    m_Name: Ia
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: f9ea8066-abca-428c-9a92-c17e53f14318
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fadb5e5c-28ef-42d0-8b7e-6020be47397f
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ia
+      m_Flags: 0
+    m_Flags: 0
+  optionalButton: {fileID: 447017464}
+  onInput:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &447739176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10316,6 +10368,14 @@ PrefabInstance:
       propertyPath: healthBarBackImg
       value: 
       objectReference: {fileID: 1741174979}
+    - target: {fileID: 483805684006066793, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 16733254}
+    - target: {fileID: 483805684006066793, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: interacter
+      value: 
+      objectReference: {fileID: 1550960479}
     - target: {fileID: 1827139654470346249, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
       propertyPath: dash
       value: 
@@ -10432,6 +10492,10 @@ PrefabInstance:
       propertyPath: numericals.reorderableList.isExpanded
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8166220741375504981, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
+      propertyPath: bagui
+      value: 
+      objectReference: {fileID: 2046665948}
     - target: {fileID: 8166220741375504981, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
       propertyPath: injector
       value: 
@@ -11749,6 +11813,7 @@ GameObject:
   - component: {fileID: 670728335}
   - component: {fileID: 670728334}
   - component: {fileID: 670728333}
+  - component: {fileID: 670728336}
   m_Layer: 0
   m_Name: X
   m_TagString: Untagged
@@ -11883,6 +11948,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670728331}
   m_CullTransparentMesh: 1
+--- !u!114 &670728336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670728331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e554fba3b7efef54287c528c8fa0932d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pic: {fileID: 257438133}
+  ia:
+    m_Name: Ia
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: f9ea8066-abca-428c-9a92-c17e53f14318
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fadb5e5c-28ef-42d0-8b7e-6020be47397f
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ia
+      m_Flags: 0
+    m_Flags: 0
+  optionalButton: {fileID: 670728333}
+  onInput:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &673912854
 GameObject:
   m_ObjectHideFlags: 0
@@ -21995,13 +22094,13 @@ MonoBehaviour:
   useMaterialValues: 00000000
   gradient:
   - serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
+    key0: {r: 0.6039216, g: 0.13333334, b: 0, a: 1}
     key1: {r: 4, g: 0.8677106, b: 0, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
+    key2: {r: 0.6039216, g: 0.13333334, b: 0, a: 0}
     key3: {r: 4, g: 0.8677106, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0.6039216, g: 0.13333334, b: 0, a: 0}
     key5: {r: 4, g: 0.8677106, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0.6039216, g: 0.13333334, b: 0, a: 0}
     key7: {r: 4, g: 0.8677106, b: 0, a: 0}
     ctime0: 2064
     ctime1: 5805
@@ -33243,6 +33342,7 @@ GameObject:
   - component: {fileID: 1273212110}
   - component: {fileID: 1273212109}
   - component: {fileID: 1273212108}
+  - component: {fileID: 1273212111}
   m_Layer: 0
   m_Name: X
   m_TagString: Untagged
@@ -33377,6 +33477,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273212106}
   m_CullTransparentMesh: 1
+--- !u!114 &1273212111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273212106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e554fba3b7efef54287c528c8fa0932d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pic: {fileID: 257438133}
+  ia:
+    m_Name: Ia
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: f9ea8066-abca-428c-9a92-c17e53f14318
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fadb5e5c-28ef-42d0-8b7e-6020be47397f
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ia
+      m_Flags: 0
+    m_Flags: 0
+  optionalButton: {fileID: 1273212108}
+  onInput:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1275251007
 GameObject:
   m_ObjectHideFlags: 0
@@ -35086,11 +35220,11 @@ MonoBehaviour:
   gradient:
   - serializedVersion: 2
     key0: {r: 4, g: 0.8677106, b: 0, a: 1}
-    key1: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 0.60456365, g: 0.13294071, b: 0, a: 1}
     key2: {r: 4, g: 0.8677106, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0.6039216, g: 0.13333334, b: 0, a: 0}
     key4: {r: 4, g: 0.8677106, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0.6039216, g: 0.13333334, b: 0, a: 0}
     key6: {r: 4, g: 0.8677106, b: 0, a: 0}
     key7: {r: 4, g: 0.8677106, b: 0, a: 0}
     ctime0: 21286
@@ -37406,6 +37540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2383f87957b8fce4b8371dfb55b63669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pic: {fileID: 257438133}
   interacter: {fileID: 1550960479}
   popup: {fileID: 1702336106}
   onInput:
@@ -46246,6 +46381,10 @@ PrefabInstance:
       propertyPath: gradient.key0.a
       value: 0.1254902
       objectReference: {fileID: 0}
+    - target: {fileID: 957606820785044069, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1679794072974575274, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -46496,7 +46635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3790309396005371068, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3897855637561208691, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_IsActive
@@ -46509,6 +46648,10 @@ PrefabInstance:
     - target: {fileID: 4177914415260335034, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_fontSize
       value: 24.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433578982610304779, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4706170027066770793, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_RootOrder
@@ -46909,6 +47052,7 @@ GameObject:
   - component: {fileID: 1781232532}
   - component: {fileID: 1781232531}
   - component: {fileID: 1781232530}
+  - component: {fileID: 1781232533}
   m_Layer: 0
   m_Name: X
   m_TagString: Untagged
@@ -47043,6 +47187,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781232528}
   m_CullTransparentMesh: 1
+--- !u!114 &1781232533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781232528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e554fba3b7efef54287c528c8fa0932d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pic: {fileID: 257438133}
+  ia:
+    m_Name: Ia
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: f9ea8066-abca-428c-9a92-c17e53f14318
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fadb5e5c-28ef-42d0-8b7e-6020be47397f
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ia
+      m_Flags: 0
+    m_Flags: 0
+  optionalButton: {fileID: 1781232530}
+  onInput:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1794059598
 GameObject:
   m_ObjectHideFlags: 0
@@ -49256,6 +49434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2383f87957b8fce4b8371dfb55b63669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pic: {fileID: 257438133}
   interacter: {fileID: 1550960479}
   popup: {fileID: 1702336106}
   onInput:
@@ -57375,6 +57554,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035572265}
   m_CullTransparentMesh: 1
+--- !u!114 &2046665948 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3625309221089736827, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
+  m_PrefabInstance: {fileID: 1741174975}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7af10e19aa6b7945b42530e3b197256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2047915538
 GameObject:
   m_ObjectHideFlags: 0
@@ -58364,6 +58554,7 @@ GameObject:
   - component: {fileID: 2100238157}
   - component: {fileID: 2100238156}
   - component: {fileID: 2100238155}
+  - component: {fileID: 2100238158}
   m_Layer: 0
   m_Name: X
   m_TagString: Untagged
@@ -58510,6 +58701,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100238153}
   m_CullTransparentMesh: 1
+--- !u!114 &2100238158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100238153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e554fba3b7efef54287c528c8fa0932d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pic: {fileID: 257438133}
+  ia:
+    m_Name: Ia
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: f9ea8066-abca-428c-9a92-c17e53f14318
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fadb5e5c-28ef-42d0-8b7e-6020be47397f
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ia
+      m_Flags: 0
+    m_Flags: 0
+  optionalButton: {fileID: 2100238155}
+  onInput:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2104223016
 GameObject:
   m_ObjectHideFlags: 0
