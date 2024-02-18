@@ -30,7 +30,7 @@ public class Immunity : MonoBehaviour
     private void CheckSpecialImmunities(Bacteria bac){
         if (specialImmunities.Length == 0) return;
         foreach (BacteriaType bt in specialImmunities){
-            if (bac.type == bt){
+            if (bac.ID.type == bt){
                 bac.Instagib();
                 return;
             }
@@ -42,7 +42,7 @@ public class Immunity : MonoBehaviour
             return;
         if (bac.immunitySide == ImmunitySide.ALLY)
             return;
-        switch (bac.type) {
+        switch (bac.ID.type) {
             case BacteriaType.RAIN:
                 bac.Instagib();
                 break;
@@ -58,7 +58,7 @@ public class Immunity : MonoBehaviour
             return;
         if (bac.immunitySide == ImmunitySide.ALLY)
             return;
-        switch (bac.type) {
+        switch (bac.ID.type) {
             case BacteriaType.POISON:
                 bac.Instagib();
                 break;
@@ -88,6 +88,11 @@ public class Immunity : MonoBehaviour
             bagui.AlertSystem(bac,pop);
     }
 
+    private void AlertBaguiNew(Bacteria bac){
+        if (bagui != null)
+            bagui.AlertNew(bac);
+    }
+
     public Bacteria AddBacteria(Bacteria bac){
         CheckOrganicImmunities(bac);
         CheckNonOrganicImmunities(bac);
@@ -101,6 +106,7 @@ public class Immunity : MonoBehaviour
             return bacterias[bac.name];
         }else{
             bacterias.Add(bac.name,bac);
+            AlertBaguiNew(bac);
             return bac;
         }
     }
@@ -114,16 +120,6 @@ public class Immunity : MonoBehaviour
             return bacterias[bacName];
         }else{
             Bacteria bac = PublicPools.pools[bacName].SendObject(gameObject).GetComponent<Bacteria>();
-            CheckOrganicImmunities(bac);
-            CheckNonOrganicImmunities(bac);
-            CheckSpecialImmunities(bac);
-            if (!bac.gameObject.activeSelf) return null;
-            AlertBagui(bac,bac.population);
-            if (bacterias.ContainsKey(bacName)){
-                bacterias[bacName].BacteriaIn();
-                return bacterias[bacName];
-            }
-            bacterias.Add(bac.name,bac);
             return bac;
         }
     }
@@ -142,7 +138,7 @@ public class Immunity : MonoBehaviour
                 if (bacterias[bacKey].immunitySide == ImmunitySide.ALLY ){
                     died = bacterias[bacKey].Degrade(immunityDamage*0.1f*stats.numericals["hostility"]*stats.numericals["allyDefense"]);
                 }
-                else if (bacterias[bacKey].character == BacteriaCharacter.POSITIVE){
+                else if (bacterias[bacKey].ID.character == BacteriaCharacter.POSITIVE){
                     died = bacterias[bacKey].Degrade(immunityDamage*0.4f*stats.numericals["hostility"]);
                 } else
                 {

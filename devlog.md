@@ -1221,3 +1221,7 @@ Tried to migrate to the new Input System. Some things are confusing.
 ## Day 253
 
 Made the Bacteria Alert System. Also fully migrated to the Input System. I also added some extra functionality on the shop where you can hit Esc and it will act as if you hit the back button of the current panel. 
+
+## Day 254
+
+Implemented the Feed System. No it does not have to do with food consumption. It's a notification system that pretty much tells you about certain things

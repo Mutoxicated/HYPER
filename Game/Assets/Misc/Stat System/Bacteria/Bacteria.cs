@@ -41,9 +41,8 @@ public enum BacteriaCharacter // This means: Generally does it negatively impact
 
 public class Bacteria : MonoBehaviour
 {
-    public BacteriaType type;
     public ImmunitySide immunitySide;
-    public BacteriaCharacter character;
+    public BacteriaInfo ID;
     [HideInInspector] public Injector injectorCachedFrom;
     [SerializeField] private ParticleSystem _particleSys;
     [SerializeField] private OnInterval interval;
@@ -137,7 +136,7 @@ public class Bacteria : MonoBehaviour
 
     public void DamageGoodBacteria()
     {
-        if (character == BacteriaCharacter.POSITIVE)
+        if (ID.character == BacteriaCharacter.POSITIVE)
             return;
         if (immunitySide == ImmunitySide.ALLY)
             return;
@@ -145,7 +144,7 @@ public class Bacteria : MonoBehaviour
             return;
         foreach (var bac in immuneSystem.bacterias.Values.ToArray())
         {
-            if (bac.character == BacteriaCharacter.POSITIVE)
+            if (bac.ID.character == BacteriaCharacter.POSITIVE)
             {
                 bac.Degrade(damage);
             }

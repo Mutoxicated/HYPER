@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BacteriaAlertGUI : MonoBehaviour
 {
+    [SerializeField] private Feed feed;
     [SerializeField] private Transform[] positivePlacements;
     [SerializeField] private Transform[] negativePlacements;
     [SerializeField] private BacElement[] bacels;
@@ -66,12 +67,35 @@ public class BacteriaAlertGUI : MonoBehaviour
         }
     }
 
+    public void AlertNew(Bacteria bac){
+        if (bac.immunitySide == ImmunitySide.INVADER){
+                feed.Message(rtColorToHex(bac.ID.color)+bac.ID.type.ToString()+"<color=#FFFFFF> invaded!");
+            }else{
+                feed.Message(rtColorToHex(bac.ID.color)+bac.ID.type.ToString()+"<color=#FFFFFF> allied!");
+        }
+    }
+
     public void AlertSystem(Bacteria bac, int population){
-        if (bac.character == BacteriaCharacter.NEGATIVE){
+        if (bac.ID.character == BacteriaCharacter.NEGATIVE){
             AddToCurrents(currentNegatives,bac,population);
         }else{
             AddToCurrents(currentPositives,bac,population);
         }
         DressDictionaries();
+    }
+
+    public string DecToHex(int value){
+        return value.ToString("X2");
+    }
+
+    public string floatNormToHex(float value){
+        return DecToHex(Mathf.RoundToInt(value*255f));
+    }
+
+    public string rtColorToHex(Color color){
+        string r = floatNormToHex(color.r);
+        string g = floatNormToHex(color.g);
+        string b = floatNormToHex(color.b);
+        return "<color=#"+r+g+b+">";
     }
 }

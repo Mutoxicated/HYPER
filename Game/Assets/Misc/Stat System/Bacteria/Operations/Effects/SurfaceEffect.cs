@@ -63,7 +63,7 @@ public class SurfaceEffect : MonoBehaviour
 
     private void OnEnable(){
         if (mat == null)
-            mat = Instantiate(Resources.Load<Material>(@"Materials/"+bac.type.ToString()));
+            mat = Instantiate(Resources.Load<Material>(@"Materials/"+bac.ID.type.ToString()));
         AddEffect();
         if (randomizeDirection){
             direction.x = Random.Range(-2f,2f);

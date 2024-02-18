@@ -47,9 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e959ee966f74b408dbbced808307ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 12
   immunitySide: 1
-  character: 0
+  ID: {fileID: 11400000, guid: a4b582d8382bac248bf1728fc2830224, type: 2}
   injectorCachedFrom: {fileID: 0}
   _particleSys: {fileID: 0}
   interval: {fileID: 0}
@@ -71,8 +70,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bac: {fileID: 5780903243261917723}
-  changeObjective: 0
-  objective: 0
+  changePriority: 0
+  priority: 000000000000000000000000
   conditionals:
   - stunned
   conditionalValues: 01

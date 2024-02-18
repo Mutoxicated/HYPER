@@ -37,7 +37,9 @@ public class PlayerInputContext : MonoBehaviour
     }
 
     public bool LaunchOutWasPressed(){
-        if (interacter.GetHittingInteractable()) return false;
+        if (interacter != null){
+            if (interacter.GetHittingInteractable()) return false;
+        }
         return actions.Abilities.LaunchOut_Interact.WasPressedThisFrame();
     }
 

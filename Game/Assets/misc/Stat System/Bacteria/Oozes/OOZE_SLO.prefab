@@ -116,8 +116,8 @@ MonoBehaviour:
   minMaxRadius: {x: 0.1, y: 0.3}
   minMaxSpeed: {x: -0.11, y: 0.11}
   lifetimeSeconds: 15
-  bacName: RADIATION
-  populationMod: 1.87
+  bacName: SLOTH
+  populationMod: 0.92
 --- !u!114 &9155131437677022182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 0
-  color: {r: 0, g: 0.509434, b: 0.003995621, a: 1}
+  color: {r: 0.49056602, g: 0.31823605, b: 0.27999285, a: 1}
 --- !u!1 &1018938958022461427
 GameObject:
   m_ObjectHideFlags: 0

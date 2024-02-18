@@ -47,7 +47,7 @@ public class Injector : MonoBehaviour
         if (injector.immuneSystem == null)
             return;
         foreach(var bac in injector.immuneSystem.bacterias.Values){
-            if (bac.character == BacteriaCharacter.NEGATIVE && bac.immunitySide == ImmunitySide.INVADER)
+            if (bac.ID.character == BacteriaCharacter.NEGATIVE && bac.immunitySide == ImmunitySide.INVADER)
                 continue;
             for (int i = 0; i < bac.population; i++){
                 PublicPools.pools[bac.gameObject.name].SendObject(immuneSystem.gameObject);

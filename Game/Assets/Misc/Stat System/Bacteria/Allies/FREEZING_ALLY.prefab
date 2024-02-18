@@ -50,9 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e959ee966f74b408dbbced808307ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 6
   immunitySide: 0
-  character: 0
+  ID: {fileID: 11400000, guid: 0b4defee8d3e32a4a95a13966906e1e5, type: 2}
   injectorCachedFrom: {fileID: 0}
   _particleSys: {fileID: 0}
   interval: {fileID: 0}
@@ -91,8 +90,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: fx
+  dontResetTime: 0
   chance: 100
   interval: 1.5
+  minMaxInterval: {x: 0, y: 0}
   onInterval:
     m_PersistentCalls:
       m_Calls: []
