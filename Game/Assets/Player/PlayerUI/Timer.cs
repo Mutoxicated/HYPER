@@ -23,6 +23,7 @@ public class Timer : MonoBehaviour
     private void Update(){
         time += Time.deltaTime;
         if (time >= 1f){
+            RunDataSave.rData.runTimeSeconds++;
             seconds++;
             if (seconds == 60){
                 seconds = 0;

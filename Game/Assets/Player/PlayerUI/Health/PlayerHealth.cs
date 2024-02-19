@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 
@@ -17,6 +18,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] public Immunity immuneSystem;
     [Header("World Objects")]
     [SerializeField] private GameObject[] playerObjects;
+    [Header("General")]
+    [SerializeField] private UnityEvent OnDeath = new UnityEvent();
     [Header("UI")]
     [SerializeField] private Gradient healthBarGradient;
     [SerializeField] private Gradient playerHitGradient;
@@ -270,8 +273,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
         if (stats.numericals["health"] <= 0)
         {
-            //RecycleBacteria(); 
-            //death(insane)
+            OnDeath.Invoke();
         }
         if (stats.numericals["health"] >= 0f)
             return 0f;

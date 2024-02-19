@@ -1224,4 +1224,8 @@ Made the Bacteria Alert System. Also fully migrated to the Input System. I also 
 
 ## Day 254
 
-Implemented the Feed System. No it does not have to do with food consumption. It's a notification system that pretty much tells you about certain things
+Implemented the Feed System. No it does not have to do with food consumption. It's a notification system that pretty much tells you about certain things.
+
+## Day 255
+
+Made an actual item sorter! And it works pretty darn well ngl. Started making the death screen, will finish it tomorrow.
