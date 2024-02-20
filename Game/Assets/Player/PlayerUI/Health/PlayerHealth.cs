@@ -225,8 +225,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
         if (stats.numericals["health"] <= 0)
         {
-            //RecycleBacteria(); 
-            //death(insane)
+            OnDeath.Invoke();
         }
         if (stats.numericals["health"] >= 0f)
             return 0f;
@@ -248,8 +247,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
         if (stats.numericals["health"] <= 0)
         {
-            //RecycleBacteria(); 
-            //death(insane)
+            OnDeath.Invoke();
         }
         if (stats.numericals["health"] >= 0f)
             return 0f;

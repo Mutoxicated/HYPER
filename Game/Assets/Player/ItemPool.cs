@@ -5,10 +5,14 @@ using UnityEngine;
 public class ItemPool : MonoBehaviour
 {
     [SerializeField] private List<GameObject> prefabs = new List<GameObject>();
-    private static List<GameObject> classItems = new List<GameObject>();
+    private static List<ClassItem> classItems = new List<ClassItem>();
 
     public static void ResetClassItems(){
         classItems.Clear();
+    }
+
+    public static List<ClassItem> GetClassItems(){
+        return classItems;
     }
 
     private void Awake(){
@@ -31,16 +35,16 @@ public class ItemPool : MonoBehaviour
         if (RunDataSave.rData.activeClassItems.Count == 0) return;
 
         foreach (string name in RunDataSave.rData.activeClassItems){
-            classItems.Add(Instantiate(FindPrefabByName(name)));
+            classItems.Add(Instantiate(FindPrefabByName(name)).GetComponent<ClassItem>());
             
         }
     }
 
-    public GameObject FindGoFromItem(Item item){
+    public ClassItem FindClassItemFromItem(Item item){
         string goName = item.name.Replace("A","");
-        foreach (GameObject ci in classItems){
-            if (ci.name.Replace("(Clone)","") == goName){
-                return ci.gameObject;
+        foreach (ClassItem ci in classItems){
+            if (ci.gameObject.name.Replace("(Clone)","") == goName){
+                return ci;
             }
         }
         return null;
@@ -67,24 +71,24 @@ public class ItemPool : MonoBehaviour
 
     public bool AddItem(Item item){
         Debug.Log("Added an item");
-        GameObject go = FindGoFromItem(item);
-        if (go != null)
+        ClassItem ci = FindClassItemFromItem(item);
+        if (ci != null)
             return false;
         GameObject prefab = FindPrefabFromItem(item);
         if (prefab != null){
             GameObject instance = Instantiate(prefab);
             AddItemToData(item.name.Replace("A",""));
-            classItems.Add(instance);
+            classItems.Add(instance.GetComponent<ClassItem>());
         }
         return true;
     }
 
     public void RemoveItem(Item item){
-        GameObject go = FindGoFromItem(item);
-        if (go != null){
-            classItems.Remove(go);
+        ClassItem ci = FindClassItemFromItem(item);
+        if (ci != null){
+            classItems.Remove(ci);
             RemoveItemFromData(item.name.Replace("A",""));
-            Destroy(go);
+            Destroy(ci.gameObject);
         }
     }
 }

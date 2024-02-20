@@ -7,9 +7,10 @@ public class ActualItemSorter : MonoBehaviour
     [SerializeField] private Transform[] Width;
     [SerializeField] private Transform[] Height;
 
-    [SerializeField] private Transform[] items;
+    [SerializeField] private List<Transform> items = new List<Transform>();
     [SerializeField] private Vector2 direction;
 
+    [SerializeField] private float scaleMod = 1f;
     [SerializeField] private float radiusReference = 3.5f;
     [SerializeField] private float maxSize = 8f;
 
@@ -28,7 +29,6 @@ public class ActualItemSorter : MonoBehaviour
     private Vector3 alteredPos;
     private Vector3 initScale;
 
-
     private void FindSmallestLineGenerationAvailable(){
 
         if (recursionCount > limit){
@@ -42,7 +42,7 @@ public class ActualItemSorter : MonoBehaviour
         Debug.Log("Line Gen:"+lineGeneration+",Y increment:"+yIncrement);
         columnGeneration = Mathf.FloorToInt(widthAvailable/yIncrement);
         maxItemsGenerationable = lineGeneration*columnGeneration;
-        if (items.Length > maxItemsGenerationable){
+        if (items.Count > maxItemsGenerationable){
             lineGeneration++;
             recursionCount++;
             FindSmallestLineGenerationAvailable();
@@ -64,17 +64,17 @@ public class ActualItemSorter : MonoBehaviour
     private void SortItem(int lineIndex,int columnIndex, int itemIndex){
         items[itemIndex].position = Height[1].position;
 
-        alteredPos = items[itemIndex].position;
+        alteredPos = items[itemIndex].localPosition;
 
         //apply offset
-        alteredPos.x += direction.x*(yIncrement*0.5f);
-        alteredPos.y += direction.y*(yIncrement*0.5f);
+        alteredPos.x += direction.x*(yIncrement*0.5f)*scaleMod;
+        alteredPos.y += direction.y*(yIncrement*0.5f)*scaleMod;
 
         //apply offset based on current line index and current column index
-        alteredPos.x += direction.x*(yIncrement*(columnIndex-1));
-        alteredPos.y += direction.y*(yIncrement*(lineIndex-1));
+        alteredPos.x += direction.x*(yIncrement*(columnIndex-1))*scaleMod;
+        alteredPos.y += direction.y*(yIncrement*(lineIndex-1))*scaleMod;
 
-        items[itemIndex].position = alteredPos;
+        items[itemIndex].localPosition = alteredPos;
 
         float t = Mathf.InverseLerp(0f,radiusReference,yIncrement*0.5f);
         items[itemIndex].localScale = initScale*t*scaleOffset;
@@ -83,7 +83,7 @@ public class ActualItemSorter : MonoBehaviour
     private void SortItems(){
         int currentline = 1;
         int currentColumn = 1;
-        for (int i = 0; i < items.Length; i++){
+        for (int i = 0; i < items.Count; i++){
             SortItem(currentline,currentColumn,i);
             currentColumn++;
             if (currentColumn > columnGeneration){
@@ -91,5 +91,9 @@ public class ActualItemSorter : MonoBehaviour
                 currentColumn = 1;
             }
         }
+    }
+
+    public void AddItem(Transform trans){
+        items.Add(trans);
     }
 }

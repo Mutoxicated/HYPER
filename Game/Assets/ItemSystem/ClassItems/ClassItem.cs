@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [Serializable]
 public enum ClassHierarchy{
@@ -52,6 +53,7 @@ public class ClassItem : MonoBehaviour
 {
     [SerializeField] private ItemType itemType;
     [SerializeField] private List<classType> classes = new List<classType>();//classes the class item is in
+    [SerializeField] private Image image;
 
     [SerializeField] private bool reApplyEffectsOnSceneChange = true;
 
@@ -87,5 +89,9 @@ public class ClassItem : MonoBehaviour
 
     public List<classType> GetClasses(){
         return classes;
+    }
+
+    public void UIMode(bool state){
+        image.enabled = state;
     }
 }

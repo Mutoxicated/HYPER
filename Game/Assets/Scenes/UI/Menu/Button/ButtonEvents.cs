@@ -23,4 +23,8 @@ public class ButtonEvents : MonoBehaviour
     public void UpdateRunInfo(){
         RunDataSave.UpdateData();
     }
+
+    public void DeleteRunInfo(){
+        RunDataSave.RemoveData();
+    }
 }

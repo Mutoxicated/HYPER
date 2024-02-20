@@ -1229,3 +1229,7 @@ Implemented the Feed System. No it does not have to do with food consumption. It
 ## Day 255
 
 Made an actual item sorter! And it works pretty darn well ngl. Started making the death screen, will finish it tomorrow.
+
+## Day 256
+
+Almost finsished the death screen, just didn't have time today because I slept after school.

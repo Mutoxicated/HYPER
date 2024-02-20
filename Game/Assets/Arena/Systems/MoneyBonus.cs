@@ -12,6 +12,7 @@ public class MoneyBonus : MonoBehaviour
 
     public static void SetMoneyBonus(int num){
         moneyBonus = num;
+        moneyBonus = RunDataSave.rData.moneyBonus;
     }
 
     public static void SetMoneyBonusGot(bool state){
@@ -19,6 +20,11 @@ public class MoneyBonus : MonoBehaviour
     }
 
     private void Start(){
+        if (RunDataSave.rData.moneyBonus < 0){
+            RunDataSave.rData.moneyBonus = moneyBonus;
+        }else{
+            moneyBonus = RunDataSave.rData.moneyBonus;
+        }
         money.text = moneyBonus+"* !!!";
         if (RunDataSave.rData.moneyBonusGot)
             return;

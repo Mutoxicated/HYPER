@@ -21,6 +21,7 @@ public class RunData
     public int seed = -1;
     public int rounds = 0;
     public int runTimeSeconds = 0;
+    public int moneyBonus = -1;
     public bool moneyBonusGot = false;
     public string[] goodChosenBacteria;
     public string[] badChosenBacteria;
