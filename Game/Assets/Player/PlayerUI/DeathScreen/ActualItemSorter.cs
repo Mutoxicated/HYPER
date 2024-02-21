@@ -50,9 +50,10 @@ public class ActualItemSorter : MonoBehaviour
     }
 
     private void OnEnable(){
+        if (items.Count == 0) return;
         initScale = items[0].localScale;
-        heightAvailable = Height[1].position.y-Height[0].position.y;
-        widthAvailable = Width[1].position.x-Width[0].position.x;
+        heightAvailable = Height[1].localPosition.y-Height[0].localPosition.y;
+        widthAvailable = Width[1].localPosition.x-Width[0].localPosition.x;
 
         Debug.Log("HeightAvail: "+heightAvailable+", WidthAvail: "+widthAvailable);
 
@@ -80,7 +81,7 @@ public class ActualItemSorter : MonoBehaviour
         items[itemIndex].localScale = initScale*t*scaleOffset;
     }
 
-    private void SortItems(){
+    public void SortItems(){
         int currentline = 1;
         int currentColumn = 1;
         for (int i = 0; i < items.Count; i++){
@@ -95,5 +96,16 @@ public class ActualItemSorter : MonoBehaviour
 
     public void AddItem(Transform trans){
         items.Add(trans);
+    }
+
+    public void PrepareValues(){
+        if (items.Count == 0) return;
+        initScale = items[0].localScale;
+        heightAvailable = Height[1].localPosition.y-Height[0].localPosition.y;
+        widthAvailable = Width[1].localPosition.x-Width[0].localPosition.x;
+
+        Debug.Log("HeightAvail: "+heightAvailable+", WidthAvail: "+widthAvailable);
+
+        FindSmallestLineGenerationAvailable();
     }
 }

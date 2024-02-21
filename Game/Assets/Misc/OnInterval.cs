@@ -7,6 +7,7 @@ public class OnInterval : ExtraBehaviour
 {
     [SerializeField] private Stats stats;
     [SerializeField] private string specialTag = "Untagged";
+    [SerializeField] private bool useUnscaledTime;
     [SerializeField] private bool dontResetTime;
     [SerializeField, Range(0, 100)] private int chance = 100;
     [SerializeField] private float interval;
@@ -20,6 +21,7 @@ public class OnInterval : ExtraBehaviour
     [HideInInspector]
     public float time = 0f;
     [HideInInspector] public bool isPlaying;
+    private float deltaTime;
 
     public void ResetEarly()//this is stupid but oh well lol
     {
@@ -85,14 +87,17 @@ public class OnInterval : ExtraBehaviour
 
     private void Update()
     {
-        if (Time.timeScale == 0f)
-            return;
         if (!isPlaying)
             return;
+        if (useUnscaledTime){
+            deltaTime = Time.unscaledDeltaTime;
+        }else{
+            deltaTime = Time.deltaTime;
+        }
         if (useStats)
-            time += Time.deltaTime * stats.numericals["rate"];
+            time += deltaTime * stats.numericals["rate"];
         else
-            time += Time.deltaTime;
+            time += deltaTime;
         //Debug.Log(time);
         if (time >= interval)
         {

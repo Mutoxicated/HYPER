@@ -54,9 +54,20 @@ public class DeathScreen : MonoBehaviour
             ci.transform.localRotation = Quaternion.identity;
             ci.transform.localScale *= 0.1f;
             ci.transform.localPosition = Vector3.zero;
+            ci.gameObject.SetActive(false);
             ais.AddItem(ci.transform);
         }
         ais.enabled = true;
     }
 
+    public void ActivateItems(){
+        cis = ItemPool.GetClassItems();
+        foreach (ClassItem ci in cis){
+            ci.gameObject.SetActive(true);
+        }
+    }
+
+    public void SetTimeScale(float t){
+        Time.timeScale = t;
+    }
 }

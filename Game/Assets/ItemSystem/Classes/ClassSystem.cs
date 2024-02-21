@@ -15,7 +15,7 @@ public class ClassSystem : MonoBehaviour
         starterEffectivenessMod = 1f;
         synergizedEffectivenessMod = 1f;
         HYPEREffectivenessMod = 1f;
-        classDict.Clear(); 
+        classDict = new Dictionary<classType, Class>();
     }
 
     private void Awake(){

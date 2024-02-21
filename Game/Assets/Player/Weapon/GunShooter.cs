@@ -51,6 +51,8 @@ public class GunShooter : MonoBehaviour
     private ButtonInput fire2Input = new ButtonInput("Fire2");
     public Scroll scroll = new Scroll(0, 5);
 
+    private bool locked = false;
+
     public int GetWeaponTypeInt()
     {
         return index;
@@ -220,30 +222,32 @@ public class GunShooter : MonoBehaviour
     {
         if (Time.timeScale == 0f)
             return;
-        WeaponLogic();
-        fireInput.Update();
-        fire2Input.Update();
-        if (fireInput.GetInput() && readyToShoot)
-        {
-            ShootState(weapons[scroll.index].recoilModifier*stats.numericals["rate"]);
-            OnShootEvent.Invoke(weapons[scroll.index].fireRate*weapons[scroll.index].modifier);
-            shootMethods[index](weapons[scroll.index].bulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
-            t = weapons[scroll.index].fireRate*stats.numericals["rate"];
-        }
-        if (fire2Input.GetInput() && readyToShoot && weapons[scroll.index].extra)
-        {
-            ShootState(weapons[scroll.index].extraRecoilModifier*stats.numericals["rate"]);
-            OnShootEvent.Invoke(weapons[scroll.index].extraFireRate*weapons[scroll.index].modifier);
-            shootMethods[index](weapons[scroll.index].extraBulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
-            t = weapons[scroll.index].extraFireRate*stats.numericals["rate"];
-        }
+        if (!locked){
+            WeaponLogic();
+            fireInput.Update();
+            fire2Input.Update();
+            if (fireInput.GetInput() && readyToShoot)
+            {
+                ShootState(weapons[scroll.index].recoilModifier*stats.numericals["rate"]);
+                OnShootEvent.Invoke(weapons[scroll.index].fireRate*weapons[scroll.index].modifier);
+                shootMethods[index](weapons[scroll.index].bulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
+                t = weapons[scroll.index].fireRate*stats.numericals["rate"];
+            }
+            if (fire2Input.GetInput() && readyToShoot && weapons[scroll.index].extra)
+            {
+                ShootState(weapons[scroll.index].extraRecoilModifier*stats.numericals["rate"]);
+                OnShootEvent.Invoke(weapons[scroll.index].extraFireRate*weapons[scroll.index].modifier);
+                shootMethods[index](weapons[scroll.index].extraBulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
+                t = weapons[scroll.index].extraFireRate*stats.numericals["rate"];
+            }
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-        {
-            scroll.Increase();
-        }else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-        {
-            scroll.Decrease();
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+            {
+                scroll.Increase();
+            }else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            {
+                scroll.Decrease();
+            }
         }
         
         transform.localPosition = Vector3.Lerp(transform.localPosition, defaultPos, Time.deltaTime*lerpSpeed);
@@ -281,6 +285,6 @@ public class GunShooter : MonoBehaviour
     }
 
     public void IsLocked(bool state){
-        this.enabled = !state;
+        locked = state;
     }
 }

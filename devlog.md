@@ -1233,3 +1233,7 @@ Made an actual item sorter! And it works pretty darn well ngl. Started making th
 ## Day 256
 
 Almost finsished the death screen, just didn't have time today because I slept after school.
+
+## Day 257
+
+Alright, I finished the Death Screen. I will now start focusing on the ACTUAL content of the gameplay (let's goo).
