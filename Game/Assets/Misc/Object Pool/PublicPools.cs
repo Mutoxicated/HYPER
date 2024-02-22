@@ -21,13 +21,7 @@ public class PublicPools : MonoBehaviour
 
     public static void RetrieveAllObjectsToPools(){
         foreach (var poolname in pools.Keys){
-            foreach (Transform trans in pools[poolname].transform){
-                if (trans == null)
-                    continue;
-                if (!trans.gameObject.activeSelf)
-                    continue;
-                pools[poolname].ReattachImmediate(trans.gameObject);
-            }
+            pools[poolname].ReattachAll();
         }
     }
 

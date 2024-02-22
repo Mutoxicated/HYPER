@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class ObjectPoolManager : MonoBehaviour
     public bool enableOnUse = true;
     public bool enableOnInstance = true;
     public GameObject prefab;
+
+    private List<GameObject> outsideGos = new List<GameObject>();
 
     private void Start()
     {
@@ -28,6 +31,7 @@ public class ObjectPoolManager : MonoBehaviour
         if (transform.childCount == 0){
             prefab.SetActive(false);
             var instance = Instantiate(prefab);
+            outsideGos.Add(instance);
             instance.transform.SetParent(receiver.transform, false);
             instance.name = poolID;
             if (enableOnUse)
@@ -35,6 +39,7 @@ public class ObjectPoolManager : MonoBehaviour
             return instance;
         }else{
             var instance = transform.GetChild(0).gameObject;
+            outsideGos.Add(instance);
             instance.transform.SetParent(receiver.transform, false);
             if (enableOnUse)
                 instance.SetActive(true);
@@ -47,6 +52,7 @@ public class ObjectPoolManager : MonoBehaviour
         if (transform.childCount == 0)
         {
             var instance = Instantiate(prefab, position, rotation);
+            outsideGos.Add(instance);
             if (enableOnInstance)
                 instance.SetActive(true);
             instance.transform.SetParent(transform.parent, false);
@@ -56,6 +62,7 @@ public class ObjectPoolManager : MonoBehaviour
         else
         {
             var instance = transform.GetChild(0).gameObject;
+            outsideGos.Add(instance);
             instance.transform.SetParent(transform.parent, false);
             instance.transform.position = position;
             instance.transform.rotation = rotation;
@@ -70,6 +77,7 @@ public class ObjectPoolManager : MonoBehaviour
         if (transform.childCount == 0)
         {
             var instance = Instantiate(prefab, position, rotation);
+            outsideGos.Add(instance);
             if (enableOnInstance)
                 instance.SetActive(true);
             instance.name = poolID;
@@ -79,6 +87,7 @@ public class ObjectPoolManager : MonoBehaviour
         else
         {
             var instance = transform.GetChild(0).gameObject;
+            outsideGos.Add(instance);
             instance.transform.SetParent(null, false);
             instance.transform.position = position;
             instance.transform.rotation = rotation;
@@ -100,6 +109,11 @@ public class ObjectPoolManager : MonoBehaviour
 
     public void ReattachImmediate(GameObject package)
     {
+        if (package == null){
+            Debug.Log("Null found on "+gameObject.name);
+            return;
+        }
+        outsideGos.Remove(package);
         if (package.activeSelf)
             package.SetActive(false);
         package.transform.SetParent(transform, false);
@@ -107,7 +121,18 @@ public class ObjectPoolManager : MonoBehaviour
 
     public void Reattach(GameObject package)
     {
+        if (package == null){
+            Debug.Log("Null found on "+gameObject.name);
+            return;
+        }
+        outsideGos.Remove(package);
         if (gameObject.activeSelf)
             StartCoroutine(ReceiveObject(package));
+    }
+
+    public void ReattachAll(){
+        foreach (GameObject go in outsideGos.ToArray()){
+            ReattachImmediate(go);
+        }
     }
 }

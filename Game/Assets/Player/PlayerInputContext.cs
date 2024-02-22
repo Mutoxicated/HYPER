@@ -9,6 +9,8 @@ public class PlayerInputContext : MonoBehaviour
 
     private Actions actions;
 
+    private bool wasdIsPressed;
+
     public bool PauseMenuActive(){
         return pauseMenu.activeSelf;
     }
@@ -34,6 +36,22 @@ public class PlayerInputContext : MonoBehaviour
 
     public float GetVertical(){
         return actions.WASD.ws.ReadValue<float>();
+    }
+
+    public bool GetWASDIsPressed(){
+        if (actions.WASD.ad.IsPressed()){
+            wasdIsPressed = true;
+            return wasdIsPressed;
+        }else{
+            wasdIsPressed = false;
+        }
+        if (actions.WASD.ws.IsPressed()){
+            wasdIsPressed = true;
+            return wasdIsPressed;
+        }else{
+            wasdIsPressed = false;
+        }
+        return wasdIsPressed;
     }
 
     public bool LaunchOutWasPressed(){

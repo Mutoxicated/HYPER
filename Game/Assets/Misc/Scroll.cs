@@ -36,6 +36,10 @@ public class Scroll
         }
     }
 
+    public int GetMaxIndex(){
+        return maxIndex;
+    }
+
     public void AlterMaxIndex(int maxI)
     {
         maxIndex = maxI;

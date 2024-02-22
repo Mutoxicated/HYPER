@@ -12,14 +12,19 @@ public class MoneyBonus : MonoBehaviour
 
     public static void SetMoneyBonus(int num){
         moneyBonus = num;
-        moneyBonus = RunDataSave.rData.moneyBonus;
+        RunDataSave.rData.moneyBonus = moneyBonus;
     }
 
     public static void SetMoneyBonusGot(bool state){
         RunDataSave.rData.moneyBonusGot = state;
     }
 
+    public static int GetMoneyBonus(){
+        return moneyBonus;
+    }
+
     private void Start(){
+        Debug.Log("Getting the money bonus from data, reading: "+RunDataSave.rData.moneyBonus);
         if (RunDataSave.rData.moneyBonus < 0){
             RunDataSave.rData.moneyBonus = moneyBonus;
         }else{

@@ -84,6 +84,7 @@ public class Ooze : MonoBehaviour
     private void Update(){
         if (time > lifetime){
             gameObject.SetActive(false);
+            PublicPools.pools[bacName].ReattachImmediate(gameObject);
             return;
         }
         tStart = Mathf.InverseLerp(0f,0.4f,time);

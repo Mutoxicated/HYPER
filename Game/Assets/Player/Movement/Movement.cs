@@ -43,9 +43,13 @@ public class Movement : MonoBehaviour
     [SerializeField] private ParticleSystem slide;
     [SerializeField] private ParticleSystem lockEffect;
 
+    [Header("SFX")]
+    [SerializeField] private AudioSource[] footSteps;
+    [SerializeField] private AudioSource dashSFX;
+
     [Header("Misc")]
     [SerializeField] private float slamJumpForceRate;
-    [SerializeField] private Stats stats;
+    public Stats stats;
     [SerializeField] private Transform camHolder;
     public StaminaControl stamina;
     [SerializeField] private Rigidbody rb;
@@ -68,6 +72,9 @@ public class Movement : MonoBehaviour
     private float moveX, moveZ;
     private CameraShake camShake;
     private int shields;
+    private float velocityT;
+
+    private float time;
 
     public void ChangeState(int ms)
     {
@@ -126,6 +133,15 @@ public class Movement : MonoBehaviour
             GetMoveAxis();
             Vector3 flatForward = camHolder.forward;
             flatForward.y = 0f;
+            if (!airborne){
+                time += Time.deltaTime;
+                if (time > 0.4f*stats.numericals["moveSpeed"] && pic.GetWASDIsPressed()){
+                    footSteps[Random.Range(0,footSteps.Length)].Play();
+                    time = 0f;
+                }
+            }else{
+                time = 0f;
+            }
 
             moveDirection = flatForward.normalized * moveZ + camHolder.right * moveX;
             if (!airborne)
@@ -235,10 +251,11 @@ public class Movement : MonoBehaviour
         if (pic.WasPressedThisFrame("Dash") && stamina.GetCurrentStamina() > 50f)
         {
             dash.transform.position = transform.position;
+            dashSFX.Play();
+            dash.Play();
             if (moveDirection != Vector3.zero)
             {
                 dash.transform.rotation = Quaternion.LookRotation(moveDirection.normalized);
-                dash.Play();
                 if (momentumWindow.enabled | lockInterval.enabled)
                     ability.Dash(moveDirection.normalized, ability.speed+2f);
                 else
@@ -247,7 +264,6 @@ public class Movement : MonoBehaviour
             else
             {
                 dash.transform.rotation = camHolder.rotation;
-                dash.Play();
                 if (momentumWindow.enabled | lockInterval.enabled)
                     ability.Dash(camHolder.forward, ability.speed+2f);
                 else

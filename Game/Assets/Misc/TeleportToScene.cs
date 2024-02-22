@@ -45,6 +45,7 @@ public class TeleportToScene : MonoBehaviour
     }
 
     public void SwitchScene(){
+        PlayerInfo.SetScore(0);
         PlayerInfo.GetPH().immuneSystem.RecycleBacteria();
         if (sceneName != "MainMenu"){
             ScorePopupPool.spp.RetrieveAllPopups();
@@ -70,6 +71,7 @@ public class TeleportToScene : MonoBehaviour
         RunDataSave.rData.numericals = playerStats.numericals;
         RunDataSave.rData.shields = playerStats.shields;
         RunDataSave.rData.money = PlayerInfo.GetMoney();
+        RunDataSave.rData.moneyBonus = MoneyBonus.GetMoneyBonus();
         PassivePool.UpdateRunDataPassives();
         PIC.LockAllCurrentSlots(sceneName);
         if (sceneName != "Interoid"){

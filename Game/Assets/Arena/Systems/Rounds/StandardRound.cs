@@ -118,6 +118,7 @@ public class StandardRound : MonoBehaviour, IRound
     public void EvaluateMoneyBonus(){
         int money = 0;
         money = Mathf.RoundToInt(PlayerInfo.GetScore()/600);
+        Debug.Log("Money Bonus: "+money);
         MoneyBonus.SetMoneyBonus(money);
     }
 }
