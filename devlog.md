@@ -1237,3 +1237,7 @@ Almost finsished the death screen, just didn't have time today because I slept a
 ## Day 257
 
 Alright, I finished the Death Screen. I will now start focusing on the ACTUAL content of the gameplay (let's goo).
+
+## Day 258
+
+Added some SFX for movement. Fixed some really stupid things. The object pool managers were not actually reattaching all the objects back to the parent, which could lead to loss of objects when switching scenes. There was also a stupid bug with the money bonus. That's all for today. I kinda suck at making sounds lol but I will get better.
