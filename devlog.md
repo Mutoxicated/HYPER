@@ -1241,3 +1241,11 @@ Alright, I finished the Death Screen. I will now start focusing on the ACTUAL co
 ## Day 258
 
 Added some SFX for movement. Fixed some really stupid things. The object pool managers were not actually reattaching all the objects back to the parent, which could lead to loss of objects when switching scenes. There was also a stupid bug with the money bonus. That's all for today. I kinda suck at making sounds lol but I will get better.
+
+## Day 259 thru 278
+
+Soo I got caught up in a side project. I finished it now and honestly I'm glad I did it because it kind of opened my eyes in the programming world. After I finish this game I already have lots of other projects ready to be started. I'm pretty excited about them.
+
+So as a kind of warm-up to get back on track, I just made some ambient sounds for Interoid and have been working on the theme for it. I also improved some movement sounds cuz they sounded awful.
+
+Also started the first music piece of the OST! It's for the Interoid, so obviously it has to be ambient and mysterious.

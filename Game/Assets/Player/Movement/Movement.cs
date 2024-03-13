@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
     [Header("Speeds")]
     [SerializeField, Range(40f,85f)] private float walkSpeed;
     [SerializeField, Range(12f,24f)] private float slideSpeed = 19f;
-    [SerializeField, Range(32f, 54f)] private float slamSpeed = 16f;
+    [SerializeField, Range(32f, 70f)] private float slamSpeed = 16f;
     [SerializeField, Range(18f, 30f)] private float dashSpeed = 25f;
 
     [Header("Forces")]
@@ -46,6 +46,11 @@ public class Movement : MonoBehaviour
     [Header("SFX")]
     [SerializeField] private AudioSource[] footSteps;
     [SerializeField] private AudioSource dashSFX;
+    [SerializeField] private AudioSource jumpSFX;
+    [SerializeField] private AudioSource falling;
+    [SerializeField] private AudioSource impact;
+    [SerializeField] private AudioSource smallImpact;
+    [SerializeField] private AudioSource lockSFX;
 
     [Header("Misc")]
     [SerializeField] private float slamJumpForceRate;
@@ -133,14 +138,15 @@ public class Movement : MonoBehaviour
             GetMoveAxis();
             Vector3 flatForward = camHolder.forward;
             flatForward.y = 0f;
+            if (!pic.GetWASDIsPressed()){
+                time = 0f;
+            }
             if (!airborne){
                 time += Time.deltaTime;
                 if (time > 0.4f*stats.numericals["moveSpeed"] && pic.GetWASDIsPressed()){
                     footSteps[Random.Range(0,footSteps.Length)].Play();
                     time = 0f;
                 }
-            }else{
-                time = 0f;
             }
 
             moveDirection = flatForward.normalized * moveZ + camHolder.right * moveX;
@@ -224,6 +230,7 @@ public class Movement : MonoBehaviour
             if (readyToJump)
             {
                 currentJumps++;
+                jumpSFX.Play();
                 if (!momentumWindow.enabled)
                     ability.Jump(point, jumpForce);
                 else if (momentumWindow.enabled && stamina.GetCurrentStamina() > 40f){
@@ -241,6 +248,9 @@ public class Movement : MonoBehaviour
                 ability.speed = rb.velocity.magnitude;
                 stamina.ReduceStamina(50f);
                 lockEffect.Play();
+                lockSFX.Play();
+                if (falling.isPlaying)
+                    falling.Stop();
                 if (slide.isPlaying)
                     slide.Stop();
                 movementState = MovementState.LOCKED;
@@ -253,6 +263,8 @@ public class Movement : MonoBehaviour
             dash.transform.position = transform.position;
             dashSFX.Play();
             dash.Play();
+            if (falling.isPlaying)
+                    falling.Stop();
             if (moveDirection != Vector3.zero)
             {
                 dash.transform.rotation = Quaternion.LookRotation(moveDirection.normalized);
@@ -289,6 +301,8 @@ public class Movement : MonoBehaviour
             }
             if (airborne && crouchReleased && stamina.GetCurrentStamina() >= 25f)
             {
+                if (!falling.isPlaying)
+                    falling.Play();
                 lockInterval.ResetEarly();
                 movementState = MovementState.SLAMMING;
                 stamina.ReduceStamina(25f);
@@ -358,6 +372,8 @@ public class Movement : MonoBehaviour
         launchInterval.ResetEarly();
         if (movementState == MovementState.SLAMMING)
         {
+            falling.Stop();
+            impact.Play();
             momentumWindow.ResetEventless();
             momentumWindow.enabled = true;
             groundSlam.transform.position = point.point;
@@ -371,6 +387,7 @@ public class Movement : MonoBehaviour
         }
         if (movementState != MovementState.BOUNCING)
             return;
+        smallImpact.Play();
         if (sender != null){
             Destroy(sender);
         }

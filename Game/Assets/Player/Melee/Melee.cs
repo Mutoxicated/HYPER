@@ -18,6 +18,7 @@ public class Melee : MonoBehaviour
     [SerializeField] private GameObject TNTPrefab;
     [SerializeField] private GameObject launchPrefab;
     [SerializeField] private AudioSource punchSFX;
+    [SerializeField] private AudioSource throwSFX;
 
     private Camera cam;
     private bool once = true;
@@ -78,6 +79,7 @@ public class Melee : MonoBehaviour
             bool hit = Physics.SphereCast(ray.origin,0.01f, ray.direction, out hitInfo, 10000f, layerMask);
             if (hit){
                 animator.Play("Launch");
+                throwSFX.Play();
                 GameObject instance = Instantiate(launchPrefab, launchPoint.position,GunShooter.GetAccurateRotation(cam,launchPoint));
                 if (hitInfo.collider.gameObject.layer == 8){
                     instance.GetComponent<Launcher>().SetEntity(hitInfo.collider.gameObject.transform);
