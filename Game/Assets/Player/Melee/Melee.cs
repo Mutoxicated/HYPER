@@ -19,6 +19,7 @@ public class Melee : MonoBehaviour
     [SerializeField] private GameObject launchPrefab;
     [SerializeField] private AudioSource punchSFX;
     [SerializeField] private AudioSource throwSFX;
+    [SerializeField] private AudioSource tntThrowSFX;
 
     private Camera cam;
     private bool once = true;
@@ -72,6 +73,7 @@ public class Melee : MonoBehaviour
         {
             stats.numericals["capacitor1"] -= 1f;
             animator.Play("Throw");
+            tntThrowSFX.Play();
             Instantiate(TNTPrefab, throwPoint.position,GunShooter.GetAccurateRotation(cam,throwPoint)*TNTPrefab.transform.rotation);
             //stats.ModifyIncrementalStat("capacitor1", -1);
         }if (pic.LaunchOutWasPressed() && isIdle && Launcher.playerMovement.sender == null && Launcher.playerMovement.stamina.GetCurrentStamina() > 100f){

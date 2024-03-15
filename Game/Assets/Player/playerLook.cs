@@ -22,16 +22,16 @@ public class playerLook : MonoBehaviour
             AlterLookRotation(alterToRotation);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Time.timeScale == 0f)
             return;
-        rotationX -= Input.GetAxis("Mouse Y") * Time.deltaTime * (sensY * 100f);
-        rotationY += Input.GetAxis("Mouse X") * Time.deltaTime * (sensX * 100f);
+        rotationX -= Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * (sensY * 100f);
+        rotationY += Input.GetAxis("Mouse X") * Time.fixedDeltaTime * (sensX * 100f);
         //clamp it so that cam cant freely move
         rotationX = Mathf.Clamp(rotationX, -89f, 89f);
         lookRotation = Quaternion.Euler(rotationX, rotationY, 0f);
-        transform.rotation = lookRotation;
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.fixedDeltaTime*37f);
 
         if (Input.GetMouseButtonDown(0)){
             Cursor.lockState = CursorLockMode.Locked;

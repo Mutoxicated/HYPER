@@ -8,7 +8,7 @@ using UnityEngine;
 public class StandardRound : MonoBehaviour, IRound
 {
     public static readonly float initEnemySpawnInterval = 3.5f;
-    public static readonly float initDuration = 12f;
+    public static readonly float initDuration = 4f;
     public static readonly float initDifficultyMod = 4f;
     public static readonly float initValue = 5;
 

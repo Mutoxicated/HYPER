@@ -16,7 +16,7 @@ public class PlatformObjective : MonoBehaviour
 {
     public static float shieldChance = 15f;
 
-    private static List<GameObject> instances = new List<GameObject>();
+    private List<GameObject> instances = new List<GameObject>();
     public static readonly Vector3 initPlatScale = new Vector3(72f,2f,72f);
 
     private static readonly Color normalColor = new Color(0.5f,0.5f,0.5f,1f);
@@ -118,10 +118,12 @@ public class PlatformObjective : MonoBehaviour
         }
     }
 
-    public static void RevertObjectives(){
+    public void RevertObjective(){
+        SetPot(PlatformObjectiveType.NONE);
         foreach (GameObject instance in instances){
             Destroy(instance);
         }
+        instances.Clear();
     }
 
     private void OnCollisionEnter(Collision collision){

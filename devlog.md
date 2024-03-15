@@ -1249,3 +1249,7 @@ Soo I got caught up in a side project. I finished it now and honestly I'm glad I
 So as a kind of warm-up to get back on track, I just made some ambient sounds for Interoid and have been working on the theme for it. I also improved some movement sounds cuz they sounded awful.
 
 Also started the first music piece of the OST! It's for the Interoid, so obviously it has to be ambient and mysterious.
+
+## Day 279 & 280
+
+Finished the movement SFX. Now I will start making the class items. I'm thinking that I'll make the items be more useful in certain conditions, and I'll have a sort of "condition report" system that alerts the player of some upcoming conditions that will happen, so that the player will have to adapt to them by changing his items. This could give another layer of strategy in the game, because the only sort of deep layer that existed right now was the long-term layer. Now there will be the short-term layer, given that these upcoming conditions will happen in about 3 or 5 rounds from the last condition change.

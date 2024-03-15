@@ -51,6 +51,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private AudioSource impact;
     [SerializeField] private AudioSource smallImpact;
     [SerializeField] private AudioSource lockSFX;
+    [SerializeField] private AudioSource slideSFX;
 
     [Header("Misc")]
     [SerializeField] private float slamJumpForceRate;
@@ -174,6 +175,8 @@ public class Movement : MonoBehaviour
             slide.transform.rotation = Quaternion.LookRotation(slideDirection);
             if (!slide.isPlaying)
                 slide.Play();
+            if (!slideSFX.isPlaying) 
+                slideSFX.Play();
             ability.Slide(slideDirection, ability.speed+2f);
             return;
         }
@@ -253,6 +256,8 @@ public class Movement : MonoBehaviour
                     falling.Stop();
                 if (slide.isPlaying)
                     slide.Stop();
+                if (slideSFX.isPlaying) 
+                    slideSFX.Stop();
                 movementState = MovementState.LOCKED;
                 lockInterval.enabled = true;
             }
@@ -334,6 +339,8 @@ public class Movement : MonoBehaviour
             return;
         if (slide.isPlaying)
             slide.Stop();
+        if (slideSFX.isPlaying) 
+            slideSFX.Stop();
         movementState = MovementState.WALKING;
     }
 

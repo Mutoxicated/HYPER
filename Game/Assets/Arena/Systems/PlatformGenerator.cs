@@ -30,11 +30,11 @@ public class PlatformGenerator : MonoBehaviour
     private static float simoners = 0;
     private static float derusters = 1;
 
-    private static float currentsleepers = 0;
-    private static float currenttrappers = 0;
-    private static float currentrechargers = 0;
-    private static float currentsimoners = 0;
-    private static float currentderusters = 0;
+    private static int currentsleepers = 0;
+    private static int currenttrappers = 0;
+    private static int currentrechargers = 0;
+    private static int currentsimoners = 0;
+    private static int currentderusters = 0;
 
     public static PlatformGenerator PG;
     [Header("Generation Settings")]
@@ -375,28 +375,26 @@ public class PlatformGenerator : MonoBehaviour
         }
     }
 
-    private bool GiveObjective(ref float currentOf, PlatformObjectiveType pot, PlatformObjective po){
-        if (currentOf <= 0f){
-            currentOf = 0f;
+    private bool GiveObjective(ref int currentOf, PlatformObjectiveType pot, PlatformObjective po){
+        if (currentOf <= 0){
             return false;
         }
         currentOf--;
         if (SeedGenerator.random.Next(0,100) <= chance){
             po.SetPot(pot);
-        }else{
+        }/*else{
             currentOf += Mathf.RoundToInt(SeedGenerator.NextFloat(minMaxRandomness.x,minMaxRandomness.y));
-        }
+        }*/
         return true;
     }
 
     private void ClearObjectives(){
         foreach (PlatformObjective po in objectives){
-            po.SetPot(PlatformObjectiveType.NONE);
+            po.RevertObjective();
         }
     }
 
     private void ApplyObjectivesToPlatforms(){
-        ClearObjectives();
         currentderusters = Mathf.RoundToInt(derusters);
         currentrechargers = Mathf.RoundToInt(rechargers);
         currentsimoners = Mathf.RoundToInt(simoners);
@@ -484,6 +482,8 @@ public class PlatformGenerator : MonoBehaviour
         platformsHolder.SetActive(state);
         if (state){
             ApplyObjectivesToPlatforms();
+        }else {
+            ClearObjectives();
         }
     }
 }
