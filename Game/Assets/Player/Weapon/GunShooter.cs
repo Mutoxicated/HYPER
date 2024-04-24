@@ -11,12 +11,11 @@ public class GunShooter : MonoBehaviour
 {
     public enum Echelon
     {
-        SINGULARITY,
-        DOUBLE_STANDARD,
-        CERBERUS,
-        TETRIPLEX,
-        CINCOS,
-        IMPOSSIBLE
+        SINGLE,
+        DOUBLE,
+        TRIPLE,
+        QUADRUPLE,
+        NA
     }
 
     [SerializeField] public Stats stats;
@@ -34,7 +33,9 @@ public class GunShooter : MonoBehaviour
     [SerializeField] private Vector3 recoilPosition;
     [SerializeField] private Quaternion recoilRotation;
     [SerializeField] private float lerpSpeed;
-    [SerializeField] private Echelon weaponType;
+    [SerializeField,Range(1f,30f)] private float angle = 30f;
+    [SerializeField] private Weapon[] echelonWeapons = new Weapon[3];
+    private Echelon weaponType;
 
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
 
@@ -43,19 +44,27 @@ public class GunShooter : MonoBehaviour
     private bool running = false;
     private ButtonInput fireInput = new ButtonInput("Fire1");
 
-    public delegate void Methods(string bulletPool, Vector3 pos, Quaternion rotation);
-    private Methods[] shootMethods;
-    private int index;
+    private int weaponIndex;
+    private int altWeaponIndex {
+        get {
+                if (weaponIndex == 1) {
+                    return 1;
+                }
+                return weaponIndex-1;
+            }
+        set {altWeaponIndex = value;}
+    }
+    private int currentWeaponIndex;
 
     [HideInInspector] public UnityEvent<float> OnShootEvent = new UnityEvent<float>();
     private ButtonInput fire2Input = new ButtonInput("Fire2");
-    public Scroll scroll = new Scroll(0, 5);
+    public Scroll scroll = new Scroll(0, 2);
 
     private bool locked = false;
 
     public int GetWeaponTypeInt()
     {
-        return index;
+        return weaponIndex;
     }
 
     private void Recoil(float recoilMod)
@@ -83,7 +92,6 @@ public class GunShooter : MonoBehaviour
         running = true;
     }
 
-    //rotation point from firepoint to the crosshair
     public static Quaternion GetAccurateRotation(Camera cam, Transform firepoint)
     {
         RaycastHit hit;
@@ -101,53 +109,21 @@ public class GunShooter : MonoBehaviour
     {
         PublicPools.pools[bulletPool].UseObject(pos,rotation);
     }
-    private void Single(string bulletPool, Vector3 pos, Quaternion rotation)
-    {
-        rotation *= Quaternion.Euler(new Vector3(0, 0, 0));
-        SpawnBullet(bulletPool, pos, rotation);
-    }
 
-    private void Double(string bulletPool, Vector3 pos, Quaternion rotation)
+    private void Shoot(string bulletPool, Vector3 pos, Quaternion rotation)
     {
-        rotation *= Quaternion.Euler(new Vector3(0f, -1.5f*stats.numericals["focus"], 0f));
-        for (int i = 0; i < 2; i++)
+        rotation *= Quaternion.Euler(new Vector3(0f, -angle*stats.numericals["focus"]/2f,0f));
+        for (int i = 0; i < currentWeaponIndex; i++)
         {
+            rotation *= Quaternion.Euler(new Vector3(0f, angle*stats.numericals["focus"]/(currentWeaponIndex+1), 0f));
             rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
             SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 3*stats.numericals["focus"], 0f));
         }
-    }
 
-    private void Triple(string bulletPool, Vector3 pos, Quaternion rotation)
-    {
-        rotation *= Quaternion.Euler(new Vector3(0f, -4*stats.numericals["focus"], 0f));
-        for (int i = 0; i < 3; i++)
-        {
-            rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
-            SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 4*stats.numericals["focus"], 0f));
-        }
-    }
-
-    private void Quadruple(string bulletPool, Vector3 pos, Quaternion rotation)
-    {
-        rotation *= Quaternion.Euler(new Vector3(0f, -6f*stats.numericals["focus"], 0f));
-        for (int i = 0; i < 4; i++)
-        {
-            rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
-            SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 3.75f*stats.numericals["focus"], 0f));//3.75f-7.5f
-        }
-    }
-
-    private void Quintuple(string bulletPool, Vector3 pos, Quaternion rotation)
-    {
-        rotation *= Quaternion.Euler(new Vector3(0f, -8.5f*stats.numericals["focus"], 0f));
-        for (int i = 0; i < 5; i++)
-        {
-            rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
-            SpawnBullet(bulletPool, pos, rotation);
-            rotation *= Quaternion.Euler(new Vector3(0f, 3.4f*stats.numericals["focus"], 0f));
+        if (currentWeaponIndex == altWeaponIndex) {
+            currentWeaponIndex = weaponIndex;
+        }else {
+            currentWeaponIndex = altWeaponIndex;
         }
     }
 
@@ -199,23 +175,23 @@ public class GunShooter : MonoBehaviour
     }
 
     private void Awake(){
-        if (RunDataSave.rData.echelonType == Echelon.IMPOSSIBLE){
+        if (RunDataSave.rData.echelonType == Echelon.NA){
             RunDataSave.rData.echelonType = PlayerInfo.GetEchelon();
             weaponType = PlayerInfo.GetEchelon();
         }else{
-            weaponType = RunDataSave.rData.echelonType;
+            weaponType = RunDataSave.rData.echelonType;   
         }
 
+        weaponIndex = (int)weaponType+1;
+        currentWeaponIndex = weaponIndex;
         PlayerInfo.SetGun(this);
     }
 
     private void Start()
     {
         scroll.AlterMaxIndex(weapons.Count-1);
-        shootMethods = new Methods[] { Single, Double, Triple, Quadruple, Quintuple };
         defaultPos = transform.localPosition;
         defaultRot = transform.localRotation;
-        index = (int)weaponType;
     }
 
     private void Update()
@@ -230,14 +206,13 @@ public class GunShooter : MonoBehaviour
             {
                 ShootState(weapons[scroll.index].recoilModifier*stats.numericals["rate"]);
                 OnShootEvent.Invoke(weapons[scroll.index].fireRate*weapons[scroll.index].modifier);
-                shootMethods[index](weapons[scroll.index].bulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
+                Shoot(weapons[scroll.index].bulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
                 t = weapons[scroll.index].fireRate*stats.numericals["rate"];
-            }
-            if (fire2Input.GetInput() && readyToShoot && weapons[scroll.index].extra)
+            }else if (fire2Input.GetInput() && readyToShoot && weapons[scroll.index].extra)
             {
                 ShootState(weapons[scroll.index].extraRecoilModifier*stats.numericals["rate"]);
                 OnShootEvent.Invoke(weapons[scroll.index].extraFireRate*weapons[scroll.index].modifier);
-                shootMethods[index](weapons[scroll.index].extraBulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
+                Shoot(weapons[scroll.index].extraBulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
                 t = weapons[scroll.index].extraFireRate*stats.numericals["rate"];
             }
 

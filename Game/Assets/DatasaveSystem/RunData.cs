@@ -48,7 +48,7 @@ public class RunData
     
     //player related
     public int money;    
-    public GunShooter.Echelon echelonType = GunShooter.Echelon.IMPOSSIBLE;
+    public GunShooter.Echelon echelonType = GunShooter.Echelon.NA;
     public List<Shield> shields = null;
     public Stats.conditionalDict conditionals = new Stats.conditionalDict();
     public Stats.numericalDict numericals = new Stats.numericalDict();

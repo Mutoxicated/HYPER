@@ -105,6 +105,12 @@ MonoBehaviour:
   playerRB: {fileID: 0}
   shooter: {fileID: 6701970974289007521}
   movement: {fileID: 0}
+  pic: {fileID: 0}
+  gunHolder: {fileID: 0}
+  walkInterval: {fileID: 0}
+  interval: 0
+  zMax: 0
+  yLow: 0
   xThreshold: 2
   zThreshold: 2
   yThreshold: 1.9
@@ -133,7 +139,11 @@ MonoBehaviour:
   recoilPosition: {x: 0, y: 0, z: -0.5}
   recoilRotation: {x: 0, y: -0.38268346, z: 0, w: 0.9238795}
   lerpSpeed: 12
-  weaponType: 0
+  angle: 3.8
+  echelonWeapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   weapons: []
   OnShootEvent:
     m_PersistentCalls:

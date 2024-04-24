@@ -21763,6 +21763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 926148595}
   - component: {fileID: 926148596}
+  - component: {fileID: 926148597}
   m_Layer: 0
   m_Name: PlatformGenerator
   m_TagString: Untagged
@@ -21807,8 +21808,21 @@ MonoBehaviour:
   mainPlat: {fileID: 1849135328250760642, guid: 8b00f65ed38e707419d8d2062e3981c8, type: 3}
   randomPlatformProps: []
   poles: []
+  pe: {fileID: 926148597}
   platformActive: 0
   platformsHolder: {fileID: 1468588358}
+--- !u!114 &926148597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926148594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfd7b8cef0857d4c8067b686ace8a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &927033543
 GameObject:
   m_ObjectHideFlags: 0

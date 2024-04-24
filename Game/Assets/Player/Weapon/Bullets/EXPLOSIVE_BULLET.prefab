@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bagui: {fileID: 0}
   stats: {fileID: -8766207620506296604}
   injector: {fileID: 2944045812284909553}
   immunityAttackRate: 1
@@ -378,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f4862032fca6c458c9255e1f571696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bStats: {fileID: -8766207620506296604}
+  bulletStats: {fileID: -8766207620506296604}
   immuneSystem: {fileID: -4579046777407666088}
   rb: {fileID: 1549946323395533653}
   speed: 40
@@ -401,6 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  useUnscaledTime: 0
   dontResetTime: 1
   chance: 100
   interval: 0.01

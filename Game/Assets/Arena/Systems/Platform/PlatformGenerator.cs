@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Security.Cryptography;
 using System.Linq;
 using System;
 
@@ -18,24 +17,6 @@ public class PlatformInfo {
 
 public class PlatformGenerator : MonoBehaviour
 {
-    private static readonly float inc1 = 0.1f;
-    private static readonly float inc2 = 0.05f;
-    private static readonly float inc3 = 0.125f;
-    private static readonly Vector2 minMaxRandomness = new Vector2(-2f,2f);
-    private static readonly float chance = 100f;
-
-    private static float sleepers = 0;
-    private static float trappers = 0;
-    private static float rechargers = 0;
-    private static float simoners = 0;
-    private static float derusters = 1;
-
-    private static int currentsleepers = 0;
-    private static int currenttrappers = 0;
-    private static int currentrechargers = 0;
-    private static int currentsimoners = 0;
-    private static int currentderusters = 0;
-
     public static PlatformGenerator PG;
     [Header("Generation Settings")]
     [SerializeField] private float Yoffset;
@@ -52,6 +33,7 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField] private GameObject[] poles;
     [Space]
     [Header("Misc")]
+    [SerializeField] private PlatformEnhancer pe;
     [SerializeField] private bool platformActive;
     [SerializeField] private GameObject platformsHolder;
 
@@ -59,8 +41,7 @@ public class PlatformGenerator : MonoBehaviour
     private int extraLowerPlatformChance;
     private Scroll cycle;
 
-    private List<PlatformInfo> oldPlatformData = new List<PlatformInfo>(){
-    };
+    private List<PlatformInfo> oldPlatformData = new List<PlatformInfo>(){};
 
     private List<PlatformInfo> unusedPlatforms = new List<PlatformInfo>(){
         new PlatformInfo(new Vector3(-67,-10,-106),new Vector3(70,2,70)),
@@ -73,25 +54,6 @@ public class PlatformGenerator : MonoBehaviour
         new Vector3(71,-10,-110),
         new Vector3(0,0,0)
     };
-
-    private List<PlatformObjective> objectives = new List<PlatformObjective>();
-
-    private void ShuffleObjectives(IList<PlatformObjective> list)
-    {
-        RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
-        int n = list.Count;
-        while (n > 1)
-        {
-            byte[] box = new byte[1];
-            do provider.GetBytes(box);
-            while (!(box[0] < n * (byte.MaxValue / n)));
-            int k = (box[0] % n);
-            n--;
-            PlatformObjective value = list[k];
-            list[k] = list[n];
-            list[n] = value;
-        }
-    }
 
     private PlatformInfo FindPlatform(){
         return unusedPlatforms[0];
@@ -302,7 +264,7 @@ public class PlatformGenerator : MonoBehaviour
     private void RegeneratePlatform(Vector3 position, Vector3 scale){
         GameObject pHolder = Instantiate(platformHolder,position,Quaternion.identity);
         GameObject main = Instantiate(mainPlat,position,Quaternion.identity);
-        objectives.Add(main.GetComponent<PlatformObjective>());
+        pe.GetObjective(main.GetComponent<PlatformObjective>());
         pHolder.transform.SetParent(platformsHolder.transform,true);
         main.transform.localScale = scale;
         main.transform.parent = pHolder.transform;
@@ -316,7 +278,7 @@ public class PlatformGenerator : MonoBehaviour
             }
             GameObject pHolder = Instantiate(platformHolder,positions[i],Quaternion.identity);
             GameObject main = Instantiate(mainPlat,positions[i],Quaternion.identity);
-            objectives.Add(main.GetComponent<PlatformObjective>());
+            pe.GetObjective(main.GetComponent<PlatformObjective>());
             pHolder.transform.SetParent(platformsHolder.transform,true);
             main.transform.localScale = scales[i];
             main.transform.parent = pHolder.transform;
@@ -341,8 +303,9 @@ public class PlatformGenerator : MonoBehaviour
 
     public List<PlatformInfo> GetNearbyPlatforms(Vector3 position){
         PlatformInfo mainPlatform = FindNeighborPlatformRelative(position,null);
-        List<PlatformInfo> neighboringPlatforms = new List<PlatformInfo>();
-        neighboringPlatforms.Add(FindNeighborPlatformRelative(mainPlatform,mainPlatform));
+        List<PlatformInfo> neighboringPlatforms = new List<PlatformInfo>{
+            FindNeighborPlatformRelative(mainPlatform, mainPlatform)
+        };
         neighboringPlatforms.Add(FindNeighborPlatformRelative(mainPlatform,neighboringPlatforms[0]));
         neighboringPlatforms.Add(FindNeighborPlatformRelative(mainPlatform,neighboringPlatforms[1]));
         return neighboringPlatforms;
@@ -373,58 +336,6 @@ public class PlatformGenerator : MonoBehaviour
             generationCycle[n] = generationCycle[k];
             generationCycle[k] = temp;
         }
-    }
-
-    private bool GiveObjective(ref int currentOf, PlatformObjectiveType pot, PlatformObjective po){
-        if (currentOf <= 0){
-            return false;
-        }
-        currentOf--;
-        if (SeedGenerator.random.Next(0,100) <= chance){
-            po.SetPot(pot);
-        }/*else{
-            currentOf += Mathf.RoundToInt(SeedGenerator.NextFloat(minMaxRandomness.x,minMaxRandomness.y));
-        }*/
-        return true;
-    }
-
-    private void ClearObjectives(){
-        foreach (PlatformObjective po in objectives){
-            po.RevertObjective();
-        }
-    }
-
-    private void ApplyObjectivesToPlatforms(){
-        currentderusters = Mathf.RoundToInt(derusters);
-        currentrechargers = Mathf.RoundToInt(rechargers);
-        currentsimoners = Mathf.RoundToInt(simoners);
-        currentsleepers = Mathf.RoundToInt(sleepers);
-        currenttrappers = Mathf.RoundToInt(trappers);
-        List<PlatformObjective> shuffledObjectives = objectives.ToList();
-        //Debug.Log("before: "+shuffledObjectives.Count);
-        ShuffleObjectives(shuffledObjectives);
-        //Debug.Log("after: "+shuffledObjectives.Count);
-        foreach (PlatformObjective po in shuffledObjectives){//im a monster
-            if (GiveObjective(ref currentderusters,PlatformObjectiveType.DERUST,po))
-                continue;
-            if (GiveObjective(ref currentrechargers,PlatformObjectiveType.RECHARGE,po))
-                continue;
-            if (GiveObjective(ref currentsimoners,PlatformObjectiveType.SIMON_SAYS,po))
-                continue;
-            if (GiveObjective(ref currentsleepers,PlatformObjectiveType.SLEEP,po))
-                continue;
-            if (GiveObjective(ref currenttrappers,PlatformObjectiveType.TRAP,po))
-                continue;
-            return;
-        }
-    }
-
-    private void Progress(){
-        sleepers += inc1;
-        trappers += inc2;
-        rechargers += inc3;
-        simoners += inc2;
-        derusters += inc1;
     }
 
     private void Start(){
@@ -476,14 +387,14 @@ public class PlatformGenerator : MonoBehaviour
             maxPlatforms = generationCycle[cycle.index];
             GeneratePlatforms();
             cycle.Increase();
-            Progress();
+            pe.Progress();
             UpdateRunDataPlatforms();
         }
         platformsHolder.SetActive(state);
         if (state){
-            ApplyObjectivesToPlatforms();
+            pe.ApplyObjectivesToPlatforms();
         }else {
-            ClearObjectives();
+            pe.ClearObjectives();
         }
     }
 }

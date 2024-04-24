@@ -4491,15 +4491,13 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: SINGULARITY
+    - m_Text: SINGLE
       m_Image: {fileID: 0}
-    - m_Text: DOUBLE_STANDARD
+    - m_Text: DOUBLE
       m_Image: {fileID: 0}
-    - m_Text: CERBERUS
+    - m_Text: TRIPLE
       m_Image: {fileID: 0}
-    - m_Text: TETRIPLEX
-      m_Image: {fileID: 0}
-    - m_Text: CINCOS
+    - m_Text: QUADRUPLE
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

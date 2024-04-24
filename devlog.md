@@ -1253,3 +1253,13 @@ Also started the first music piece of the OST! It's for the Interoid, so obvious
 ## Day 279 & 280
 
 Finished the movement SFX. Now I will start making the class items. I'm thinking that I'll make the items be more useful in certain conditions, and I'll have a sort of "condition report" system that alerts the player of some upcoming conditions that will happen, so that the player will have to adapt to them by changing his items. This could give another layer of strategy in the game, because the only sort of deep layer that existed right now was the long-term layer. Now there will be the short-term layer, given that these upcoming conditions will happen in about 3 or 5 rounds from the last condition change.
+
+## Day 320 
+
+It's been quite some time, lol. 
+
+Me and some buddies have been making a programming language, I started focusing on school, got into reading books and comics. Sometimes I feel like I'm all over the place. I will finish this game by the end of summer, that is for sure. When exactly? I don't know. Does that mean the game won't be developed further after release? Of course not.
+
+So, now that I can look at the game again with a pair of fresh eyes, I saw a design problem. It was the fact that my game's movement is very volatile, which does not go well with aim precision, which my game sort of enforces. I thought of adding more mechanics in the movement to fix it (like a slowmo maybe), but there's already a lot of movement mechanics and it doesn't feel like fixing anymore. I decided to change the gun system a little bit. Now, the gun can shoot in a 1:2, 2:3 and 3:4, instead of only shooting 1, 2, 3, 4 or 5 bullets only. 
+
+I might change the bullets as well. Maybe I'll stretch them on the y axis spherically. At the end of the day I don't want this game to be a precision shooter, but more so a dopamine haven.

@@ -9,7 +9,7 @@ public class bullet : MonoBehaviour
 {
     public static float bulletEffectiveness = 1f;
 
-    [SerializeField] private Stats bStats;
+    [SerializeField] private Stats bulletStats;
     [SerializeField] private Immunity immuneSystem;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
@@ -32,8 +32,8 @@ public class bullet : MonoBehaviour
     private void Awake()
     {
         injector = GetComponent<Injector>();
-        damage = damage / (PlayerInfo.GetGun().GetWeaponTypeInt() + 1);//damage is equally shared with all of the bullets
-        bStats.numericals["moveSpeed"] = bStats.numericals["moveSpeed"] / ((PlayerInfo.GetGun().GetWeaponTypeInt() + 1)*0.5f);
+        damage = damage / (PlayerInfo.GetGun().GetWeaponTypeInt() + 1);
+        bulletStats.numericals["moveSpeed"] = bulletStats.numericals["moveSpeed"] / ((PlayerInfo.GetGun().GetWeaponTypeInt() + 1)*0.5f);
     }
 
     private float ClampedT(){
@@ -41,7 +41,7 @@ public class bullet : MonoBehaviour
     }
 
     private float CombinedStat(string name){
-        return PlayerInfo.GetGun().stats.numericals[name]+bStats.numericals[name]-1f;
+        return PlayerInfo.GetGun().stats.numericals[name]+bulletStats.numericals[name]-1f;
     }
 
     private void OnEnable()
@@ -103,7 +103,7 @@ public class bullet : MonoBehaviour
         }
         //Debug.Log(other.gameObject.name);
         var damageable = other.gameObject.GetComponent<IDamageable>();
-        damageable?.TakeDamage(damage * CombinedStat("damage"), bStats,1f,0);
+        damageable?.TakeDamage(damage * CombinedStat("damage"), bulletStats,1f,0);
         if (injector != null)
         {
             damageable?.TakeInjector(injector,false);

@@ -8,7 +8,8 @@ using UnityEngine;
 public class StandardRound : MonoBehaviour, IRound
 {
     public static readonly float initEnemySpawnInterval = 3.5f;
-    public static readonly float initDuration = 4f;
+    public static readonly float initEnemySpawnIntervalDecrease = 0.1f;
+    public static readonly float initDuration = 14f;
     public static readonly float initDifficultyMod = 4f;
     public static readonly float initValue = 5;
 
@@ -24,7 +25,6 @@ public class StandardRound : MonoBehaviour, IRound
 
     private float value = initValue;
     private float currentValue = initValue;
-    private int intervalsHappened = 0;
     private int rando = 0;
 
     private void Awake(){
@@ -70,7 +70,6 @@ public class StandardRound : MonoBehaviour, IRound
             rando = 0;
             return;
         }
-        intervalsHappened++;
 
         GetRando();
 
@@ -116,7 +115,7 @@ public class StandardRound : MonoBehaviour, IRound
     }
 
     public void EvaluateMoneyBonus(){
-        int money = 0;
+        int money;
         money = Mathf.RoundToInt(PlayerInfo.GetScore()/600);
         Debug.Log("Money Bonus: "+money);
         MoneyBonus.SetMoneyBonus(money);

@@ -138,7 +138,7 @@ public static class PlayerInfo
         return echelon;
     }
 
-    public static void SetEchelon(int ind){
-        echelon = (GunShooter.Echelon)ind;
+    public static void SetEchelon(int index){
+        echelon = (GunShooter.Echelon)index;
     }
 }
