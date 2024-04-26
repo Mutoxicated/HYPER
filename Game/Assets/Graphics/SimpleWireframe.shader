@@ -8,6 +8,10 @@ Shader "Custom/QuadWireframe"
         _WireframeAliasing("Wireframe aliasing", float) = 1.5
         _Intact("Intact Range", float) = 0
 
+        _prevNormal("Previous Normal", Vector) = (999.0,999.0,999.0, 1.0)
+        _prevP2("Previous P2", Vector) = (999.0,999.0,999.0, 1.0)
+        _prevP1("Previous P1", Vector) = (999.0,999.0,999.0, 1.0)
+
        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Integer) = 2
     }
 
@@ -57,6 +61,9 @@ Shader "Custom/QuadWireframe"
             float _Intact;
             sampler2D _BaseMap;
             float4 _BaseMap_ST;
+            float4 _prevNormal;
+            float4 _prevP1;
+            float4 _prevP2;
 
             v2f vert(appdata v)
             {
@@ -72,6 +79,18 @@ Shader "Custom/QuadWireframe"
                 return o;
             }
 
+            inline float3 getNormal(float3 p1, float3 p2, float3 p3) {
+                float3 A = p2-p1;
+                float3 B = p3-p1;
+                float3 N = float3(0.0,0.0,0.0);
+
+                N[0] = A[1]*B[2] - A[2]*B[1];
+                N[1] = A[2]*B[0] - A[0]*B[2];
+                N[2] = A[0]*B[1] - A[1]*B[0];
+
+                return N;
+            }
+
             // This applies the barycentric coordinates to each vertex in a triangle.
             [maxvertexcount(3)]
             void geom(triangle v2f IN[3], inout TriangleStream<g2f> triStream) {
@@ -79,7 +98,7 @@ Shader "Custom/QuadWireframe"
                 float edgeLengthY = length(IN[0].vertex - IN[2].vertex);
                 float edgeLengthZ = length(IN[0].vertex - IN[1].vertex);
                 float3 modifier = float3(0.0, 0.0, 0.0);
-                // We're fine using if statments it's a trivial function.
+                
                 if ((edgeLengthX > edgeLengthY) && (edgeLengthX > edgeLengthZ)) {
                     modifier = float3(1.0, 0.0, 0.0);
                 }
@@ -100,6 +119,19 @@ Shader "Custom/QuadWireframe"
                 o.pos = UnityObjectToClipPos(IN[2].vertex);
                 o.barycentric = float3(0.0, 0.0, 1.0) + modifier;
                 triStream.Append(o);
+
+                _prevNormal.xyz = getNormal(IN[0].vertex,IN[1].vertex,IN[2].vertex);
+
+                //third
+                _prevNormal.w = IN[2].vertex.x;
+                _prevP1.w = IN[2].vertex.y;
+                _prevP2.w = IN[2].vertex.z;
+
+                //second
+                _prevP2.xyz = IN[1].vertex;
+
+                //first
+                _prevP1.xyz = IN[0].vertex;                
             }
 
             fixed4 _WireframeBackColour;

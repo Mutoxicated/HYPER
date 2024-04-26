@@ -12,8 +12,6 @@ public class Weapon : ScriptableObject
   public float fireRate;//in seconds
   public float modifier;
 
-  public bool extra;
-  public string extraBulletPool;
-  public float extraRecoilModifier;
-  public float extraFireRate;
+  public bool extraEnabled;
+  public Weapon extra;
 }

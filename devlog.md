@@ -1263,3 +1263,11 @@ Me and some buddies have been making a programming language, I started focusing 
 So, now that I can look at the game again with a pair of fresh eyes, I saw a design problem. It was the fact that my game's movement is very volatile, which does not go well with aim precision, which my game sort of enforces. I thought of adding more mechanics in the movement to fix it (like a slowmo maybe), but there's already a lot of movement mechanics and it doesn't feel like fixing anymore. I decided to change the gun system a little bit. Now, the gun can shoot in a 1:2, 2:3 and 3:4, instead of only shooting 1, 2, 3, 4 or 5 bullets only. 
 
 I might change the bullets as well. Maybe I'll stretch them on the y axis spherically. At the end of the day I don't want this game to be a precision shooter, but more so a dopamine haven.
+
+## Day 321
+
+Tried experimenting with the quad wireframe shader. I'm planning on making it foolproof. I already got a bunch of ideas on how to do this, but we'll see.
+
+## Day 322
+
+Will be doing some optimizations to improve graphics performance. Forgot to commit yesterday lol.

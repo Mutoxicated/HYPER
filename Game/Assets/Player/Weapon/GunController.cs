@@ -8,6 +8,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private Movement movement;
     [SerializeField] private PlayerInputContext pic;
     [SerializeField] private Transform gunHolder;
+    [SerializeField] private Transform anchor;
 
     [Header("Walk Variables")]
     [SerializeField] private OnInterval walkInterval;
@@ -57,7 +58,7 @@ public class GunController : MonoBehaviour
         if (!movement.airborne)
             point.y = 0f;
         point.z = move_z;
-        transform.localPosition = Vector3.Lerp(transform.localPosition, point, Time.deltaTime * snapiness);
+        anchor.localPosition = Vector3.Lerp(anchor.localPosition, point, Time.deltaTime * snapiness);
 
         gunHolder.transform.localPosition = Vector3.Lerp(gunHolder.transform.localPosition,points[scroll.index],Time.deltaTime*movement.stats.numericals["moveSpeed"]*6f);
 

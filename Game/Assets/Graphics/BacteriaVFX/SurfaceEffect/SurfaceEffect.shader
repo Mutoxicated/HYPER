@@ -7,6 +7,7 @@ Shader "Custom/SurfaceEffect"
     Properties
     {
         _MainTex("MainTexture", 2D) = "black" {}
+        _Rounded("Rounded", Int) = 0
         [HDR] _MainColor("MainColor",Color) = (1,1,1,1)
         
         _NoiseTexture1("NoiseTexture1",2D) = "white" {}
@@ -63,6 +64,7 @@ Shader "Custom/SurfaceEffect"
                 float _Extension;
                 float _Texture1AlphaMod;
                 float _Texture2AlphaMod;
+                int _Rounded;
 
                 v2f vert(appdata v)
                 {
@@ -76,9 +78,12 @@ Shader "Custom/SurfaceEffect"
                     v.vertex = vert + center.xyz;
 
                     o.vertex = UnityObjectToClipPos(v.vertex);
-                    o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                    o.uv2 = TRANSFORM_TEX(v.uv,_NoiseTexture1);          
+                    
+                    o.uv2 = TRANSFORM_TEX(v.uv,_NoiseTexture1);
                     o.uv3 = TRANSFORM_TEX(v.uv,_NoiseTexture2);
+                    if (_Rounded == 1) {
+                        o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                    }
                     return o;
                 }
                 inline float3 applyHue(float3 aColor, float aHue)
@@ -101,20 +106,22 @@ Shader "Custom/SurfaceEffect"
                 }
                 fixed4 frag(v2f i) : SV_Target
                 {
-                    float4 startColor = tex2D(_MainTex, i.uv);
-                    startColor.rgb = _MainColor.rgb;
-                    float4 hsbColor = applyHSBEffect(startColor);
-                    float alpha = tex2D(_NoiseTexture1,i.uv2);
-                    alpha = abs(1-alpha);
-                    alpha *= _Texture1AlphaMod;
-                    alpha = clamp(alpha,0,1);
-                    alpha = abs(1-alpha);
-                    hsbColor.a = alpha*_ClampAlphaValue;
-                    float nAlpha = tex2D(_NoiseTexture2,i.uv3);
-                    nAlpha *= _Texture2AlphaMod;
-                    nAlpha = clamp(nAlpha,0,1);
-                    nAlpha = abs(1-nAlpha);
-                    hsbColor.a *= nAlpha;
+                    float4 hsbColor = applyHSBEffect(_MainColor);
+                    float alpha1 = tex2D(_NoiseTexture1,i.uv2);
+                    alpha1 = abs(1-alpha1);
+                    alpha1 *= _Texture1AlphaMod;
+                    alpha1 = clamp(alpha1,0,1);
+                    alpha1 = abs(1-alpha1);
+                    hsbColor.a = alpha1*_ClampAlphaValue;
+                    float alpha2 = tex2D(_NoiseTexture2,i.uv3);
+                    alpha2 *= _Texture2AlphaMod;
+                    alpha2 = clamp(alpha2,0,1);
+                    alpha2 = abs(1-alpha2);
+                    hsbColor.a *= alpha2;
+                    if (_Rounded == 1) {
+                        float4 startColor = tex2D(_MainTex, i.uv);
+                        hsbColor.a *= startColor.a;
+                    }
                     return hsbColor;
                 }
                 ENDCG

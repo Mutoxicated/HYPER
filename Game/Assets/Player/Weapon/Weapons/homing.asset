@@ -17,7 +17,5 @@ MonoBehaviour:
   recoilModifier: 1.5
   fireRate: 0.4
   modifier: 0
-  extra: 0
-  extraBulletPool: NORMAL_BULLET
-  extraRecoilModifier: 1
-  extraFireRate: 1.4
+  extraEnabled: 0
+  extra: {fileID: 11400000}

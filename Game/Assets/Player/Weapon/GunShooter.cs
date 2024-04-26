@@ -18,7 +18,8 @@ public class GunShooter : MonoBehaviour
         NA
     }
 
-    [SerializeField] public Stats stats;
+    public Stats stats;
+    [SerializeField] private Transform anchor;
     [SerializeField] private Transform firepoint;
     [SerializeField] private Camera cam;
     private Vector3 defaultPos;
@@ -69,7 +70,7 @@ public class GunShooter : MonoBehaviour
 
     private void Recoil(float recoilMod)
     {
-        transform.localPosition += recoilPosition*recoilMod*stats.numericals["focus"];
+        anchor.localPosition += recoilPosition*recoilMod*stats.numericals["focus"];
         Quaternion modifiedRotation = recoilRotation;
         if (modifiedRotation.x != 0) {
             modifiedRotation.x = modifiedRotation.x * recoilMod*stats.numericals["focus"];
@@ -80,7 +81,7 @@ public class GunShooter : MonoBehaviour
         if (modifiedRotation.z != 0) {
             modifiedRotation.z = modifiedRotation.z * recoilMod*stats.numericals["focus"];
         }
-        transform.localRotation *= modifiedRotation;
+        anchor.localRotation *= modifiedRotation;
     }
 
     private void ShootState(float rcMod)
@@ -110,7 +111,7 @@ public class GunShooter : MonoBehaviour
         PublicPools.pools[bulletPool].UseObject(pos,rotation);
     }
 
-    private void Shoot(string bulletPool, Vector3 pos, Quaternion rotation)
+    private void ShootBullet(string bulletPool, Vector3 pos, Quaternion rotation)
     {
         rotation *= Quaternion.Euler(new Vector3(0f, -angle*stats.numericals["focus"]/2f,0f));
         for (int i = 0; i < currentWeaponIndex; i++)
@@ -190,8 +191,15 @@ public class GunShooter : MonoBehaviour
     private void Start()
     {
         scroll.AlterMaxIndex(weapons.Count-1);
-        defaultPos = transform.localPosition;
-        defaultRot = transform.localRotation;
+        defaultPos = anchor.localPosition;
+        defaultRot = anchor.localRotation;
+    }
+
+    private void Shoot(Weapon weapon) {
+        ShootState(weapon.recoilModifier*stats.numericals["rate"]);
+        OnShootEvent.Invoke(weapon.fireRate*weapon.modifier);
+        ShootBullet(weapon.bulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
+        t = weapon.fireRate*stats.numericals["rate"];
     }
 
     private void Update()
@@ -204,29 +212,25 @@ public class GunShooter : MonoBehaviour
             fire2Input.Update();
             if (fireInput.GetInput() && readyToShoot)
             {
-                ShootState(weapons[scroll.index].recoilModifier*stats.numericals["rate"]);
-                OnShootEvent.Invoke(weapons[scroll.index].fireRate*weapons[scroll.index].modifier);
-                Shoot(weapons[scroll.index].bulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
-                t = weapons[scroll.index].fireRate*stats.numericals["rate"];
-            }else if (fire2Input.GetInput() && readyToShoot && weapons[scroll.index].extra)
+                Shoot(weapons[scroll.index]);
+            }
+            else if (fire2Input.GetInput() && readyToShoot && weapons[scroll.index].extraEnabled)
             {
-                ShootState(weapons[scroll.index].extraRecoilModifier*stats.numericals["rate"]);
-                OnShootEvent.Invoke(weapons[scroll.index].extraFireRate*weapons[scroll.index].modifier);
-                Shoot(weapons[scroll.index].extraBulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
-                t = weapons[scroll.index].extraFireRate*stats.numericals["rate"];
+                Shoot(weapons[scroll.index].extra);
             }
 
             if (Input.GetAxis("Mouse ScrollWheel") > 0f)
             {
                 scroll.Increase();
-            }else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
             {
                 scroll.Decrease();
             }
         }
         
-        transform.localPosition = Vector3.Lerp(transform.localPosition, defaultPos, Time.deltaTime*lerpSpeed);
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, defaultRot, Time.deltaTime * lerpSpeed);
+        anchor.localPosition = Vector3.Lerp(anchor.localPosition, defaultPos, Time.deltaTime*lerpSpeed);
+        anchor.localRotation = Quaternion.Lerp(anchor.localRotation, defaultRot, Time.deltaTime * lerpSpeed);
 
         if (!running)
             return;

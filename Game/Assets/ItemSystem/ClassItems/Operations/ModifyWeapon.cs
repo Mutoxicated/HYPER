@@ -46,7 +46,7 @@ public class ModifyWeapon : MonoBehaviour
                 wp.modifier = 0;
             }
             if (modifyExtra){
-                wp.extra = boolModifer;
+                wp.extraEnabled = boolModifer;
             }
         }
     }
@@ -63,7 +63,7 @@ public class ModifyWeapon : MonoBehaviour
                 wp.modifier = 0;
             }
             if (modifyExtra){
-                wp.extra = boolModifer;
+                wp.extraEnabled = boolModifer;
             }
         }
     }
@@ -85,7 +85,7 @@ public class ModifyWeapon : MonoBehaviour
                 wp.modifier -= modifier;
             }
             if (modifyExtra){
-                wp.extra = !boolModifer;
+                wp.extraEnabled = !boolModifer;
             }
         }
     }

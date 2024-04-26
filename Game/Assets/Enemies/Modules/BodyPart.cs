@@ -5,6 +5,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class BodyPart : MonoBehaviour
 {
+    public bool particle;
     public Renderer _renderer;
     public HitGradient hitGradient;
     

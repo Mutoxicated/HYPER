@@ -28,6 +28,9 @@ public class SurfaceEffect : MonoBehaviour
             materials.Add(mat);
             part._renderer.materials = materials.ToArray();
             mats.Add(part._renderer.materials[part._renderer.materials.Length-1]);
+            if (part.particle) {
+                mats[mats.Count].SetInt("_Rounded",1);
+            }
         }
     }
 

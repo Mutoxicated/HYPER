@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: spaceParticle
-  m_Shader: {fileID: 4800000, guid: eb37944dadcd3d94a8be9fb0bbfdcbc5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 991b95ca3fdfffd459d89c1c43e7cf4a, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 0

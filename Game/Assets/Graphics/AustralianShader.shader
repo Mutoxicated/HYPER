@@ -45,8 +45,8 @@ Shader "Hidden/AustralianShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 modifiedUV = i.uv;
-                //modifiedUV.y = abs(1-modifiedUV.y);
-                fixed4 col = tex2D(_MainTex, i.uv);
+                modifiedUV.y = abs(1-modifiedUV.y);
+                fixed4 col = tex2D(_MainTex, modifiedUV);
                 
                 return col;
             }
