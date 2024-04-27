@@ -30,7 +30,10 @@ public class GunShooter : MonoBehaviour
     [SerializeField] private ParticleSystem particle;
     [Space]
     [Header("Gun Settings")]
+    [SerializeField] private Gradient exhaustGradient;
+    [SerializeField] private float coolingRate;
     [SerializeField] private AudioSource shootSFX;
+    [SerializeField, Range(0.01f, 0.5f)] private float fireRate;
     [SerializeField] private Vector3 recoilPosition;
     [SerializeField] private Quaternion recoilRotation;
     [SerializeField] private float lerpSpeed;
@@ -42,7 +45,11 @@ public class GunShooter : MonoBehaviour
 
     private bool readyToShoot = true;
     private float t = 0f;
-    private bool running = false;
+    private float exhaustT = 0f;
+    private float exhaustStep = 0.05f;
+    private bool onCooldown;
+    private Renderer gunScrewRenderer;
+    private bool running;
     private ButtonInput fireInput = new ButtonInput("Fire1");
 
     private int weaponIndex;
@@ -66,6 +73,14 @@ public class GunShooter : MonoBehaviour
     public int GetWeaponTypeInt()
     {
         return weaponIndex;
+    }
+
+    public Weapon GetCurrentWeapon() {
+        return weapons[scroll.index];
+    }
+
+    public bool isOnCooldown() {
+        return onCooldown;
     }
 
     private void Recoil(float recoilMod)
@@ -186,6 +201,8 @@ public class GunShooter : MonoBehaviour
         weaponIndex = (int)weaponType+1;
         currentWeaponIndex = weaponIndex;
         PlayerInfo.SetGun(this);
+
+        gunScrewRenderer = gunScrew.GetComponent<Renderer>();
     }
 
     private void Start()
@@ -196,10 +213,15 @@ public class GunShooter : MonoBehaviour
     }
 
     private void Shoot(Weapon weapon) {
+        exhaustT += exhaustStep*weapon.recoilModifier;
+        if (exhaustT >= 1f) {
+            exhaustT = 1f;
+            onCooldown = true;
+        }
         ShootState(weapon.recoilModifier*stats.numericals["rate"]);
-        OnShootEvent.Invoke(weapon.fireRate*weapon.modifier);
+        OnShootEvent.Invoke(fireRate*weapon.fireRateModifier);
         ShootBullet(weapon.bulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
-        t = weapon.fireRate*stats.numericals["rate"];
+        t = fireRate*weapon.fireRateModifier*stats.numericals["rate"];
     }
 
     private void Update()
@@ -210,15 +232,15 @@ public class GunShooter : MonoBehaviour
             WeaponLogic();
             fireInput.Update();
             fire2Input.Update();
-            if (fireInput.GetInput() && readyToShoot)
+            if (fireInput.GetInput() && readyToShoot && !onCooldown)
             {
                 Shoot(weapons[scroll.index]);
             }
-            else if (fire2Input.GetInput() && readyToShoot && weapons[scroll.index].extraEnabled)
+            else if (weapons[scroll.index].extraEnabled && fire2Input.GetInput() && readyToShoot && !onCooldown)
             {
                 Shoot(weapons[scroll.index].extra);
             }
-
+            
             if (Input.GetAxis("Mouse ScrollWheel") > 0f)
             {
                 scroll.Increase();
@@ -231,6 +253,16 @@ public class GunShooter : MonoBehaviour
         
         anchor.localPosition = Vector3.Lerp(anchor.localPosition, defaultPos, Time.deltaTime*lerpSpeed);
         anchor.localRotation = Quaternion.Lerp(anchor.localRotation, defaultRot, Time.deltaTime * lerpSpeed);
+
+        exhaustT -= coolingRate*Time.deltaTime*stats.numericals["rate"];
+        if (exhaustT < 0f) {
+            exhaustT = 0f;
+        }
+        if (exhaustT < 0.5f && onCooldown) {
+            onCooldown = false;
+        } 
+
+        gunScrewRenderer.materials[1].color = exhaustGradient.Evaluate(exhaustT);
 
         if (!running)
             return;

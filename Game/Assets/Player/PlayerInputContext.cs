@@ -25,6 +25,11 @@ public class PlayerInputContext : MonoBehaviour
         return actions.FindAction(name).WasPerformedThisFrame();
     }
 
+    public bool WasReleasedThisFrame(string name) {
+        if (pauseMenu.activeSelf) return false;
+        return actions.FindAction(name).WasReleasedThisFrame();
+    }
+
     public bool IsPressed(string name){
         if (pauseMenu.activeSelf) return false;
         return actions.FindAction(name).IsPressed();

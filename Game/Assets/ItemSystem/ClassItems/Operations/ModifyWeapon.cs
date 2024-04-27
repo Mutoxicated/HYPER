@@ -39,11 +39,11 @@ public class ModifyWeapon : MonoBehaviour
         foreach (Weapon wp in wps){
             //Debug.Log("wp: "+wp);
             if (modifyFireRate){
-                wp.modifier += modifier;
+                wp.fireRateModifier += modifier;
             }
-            if (wp.modifier < 0){
-                modifier = modifier - wp.modifier;
-                wp.modifier = 0;
+            if (wp.fireRateModifier < 0){
+                modifier = modifier - wp.fireRateModifier;
+                wp.fireRateModifier = 0;
             }
             if (modifyExtra){
                 wp.extraEnabled = boolModifer;
@@ -56,11 +56,11 @@ public class ModifyWeapon : MonoBehaviour
         foreach (Weapon wp in wps){
             //Debug.Log("wp: "+wp);
             if (modifyFireRate){
-                wp.modifier += modifier;
+                wp.fireRateModifier += modifier;
             }
-            if (wp.modifier < 0){
-                modifier = modifier - wp.modifier;
-                wp.modifier = 0;
+            if (wp.fireRateModifier < 0){
+                modifier = modifier - wp.fireRateModifier;
+                wp.fireRateModifier = 0;
             }
             if (modifyExtra){
                 wp.extraEnabled = boolModifer;
@@ -82,7 +82,7 @@ public class ModifyWeapon : MonoBehaviour
             return;
         foreach (Weapon wp in wps){
             if (modifyFireRate){
-                wp.modifier -= modifier;
+                wp.fireRateModifier -= modifier;
             }
             if (modifyExtra){
                 wp.extraEnabled = !boolModifer;

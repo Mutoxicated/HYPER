@@ -1,7 +1,3 @@
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-
 Shader "Custom/SurfaceEffect"
 {
     Properties
@@ -69,14 +65,8 @@ Shader "Custom/SurfaceEffect"
                 v2f vert(appdata v)
                 {
                     v2f o;
-                    float4 center = float4(0,0,0,0);
-                    
-                    float3 vert = v.vertex - center.xyz;
 
-                    vert *= _Extension;
-
-                    v.vertex = vert + center.xyz;
-
+                    v.vertex *= _Extension;
                     o.vertex = UnityObjectToClipPos(v.vertex);
                     
                     o.uv2 = TRANSFORM_TEX(v.uv,_NoiseTexture1);

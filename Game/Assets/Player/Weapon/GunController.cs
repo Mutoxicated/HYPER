@@ -38,14 +38,41 @@ public class GunController : MonoBehaviour
     private bool reversing = false;
     private Vector3[] points = new Vector3[3];
 
+    private bool once;
+    private bool once2 = true;
+
     private void Start()
     {
         scroll.AlterIndex(1);
         gunScrew = transform.GetChild(0);
-        shooter.OnShootEvent.AddListener(RotateScrew);
         points[0] = new Vector3(0f,yLow,-zMax);
         points[1] = new Vector3(0f,0f,0f);
         points[2] = new Vector3(0f,yLow,zMax);
+    }
+
+    private void RotateGunScrew() {
+        if (shooter.isOnCooldown()) {
+            angle -= 10f;
+            once2 = false;
+            return;
+        }
+        if (!once2) {
+            angle -= angle % 73f;
+            once2 = true;
+            once = true;
+        }
+        if (pic.IsPressed("Shoot") || (pic.IsPressed("ExtraShoot") && shooter.GetCurrentWeapon().extraEnabled)) {
+            once = false;
+            angle += 10f;
+        }else {
+            if (!once) {
+                angle = gunScrew.localEulerAngles.z;
+                Debug.Log(angle);
+                Debug.Log(angle % 73f);
+                angle += 73f-angle % 73f;
+                once = true;
+            }
+        }
     }
 
     private void Update()
@@ -67,7 +94,7 @@ public class GunController : MonoBehaviour
         if (pic.GetWASDIsPressed() && !walkInterval.enabled){
             walkInterval.enabled = true;
         }
-
+        RotateGunScrew();
         gunScrew.localRotation = Quaternion.Lerp(
             gunScrew.localRotation,
             Quaternion.AngleAxis(angle, new Vector3(0f, 0f, 1f)),
@@ -92,10 +119,5 @@ public class GunController : MonoBehaviour
                 scroll.Increase();
             }
         }
-    }
-
-    private void RotateScrew(float fr)
-    {
-        angle += 90f;
     }
 }

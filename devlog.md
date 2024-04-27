@@ -1271,3 +1271,7 @@ Tried experimenting with the quad wireframe shader. I'm planning on making it fo
 ## Day 322
 
 Will be doing some optimizations to improve graphics performance. Forgot to commit yesterday lol.
+
+## Day 323
+
+Surface Effect works with bullets now. The gun now will have an exhaustion meter and will cooldown when it overheats, temporarily disallowing you from firing. Will add a gun equipment that will make the cooldown smaller.
