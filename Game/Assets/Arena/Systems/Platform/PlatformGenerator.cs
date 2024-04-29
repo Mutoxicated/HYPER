@@ -5,12 +5,14 @@ using System;
 
 [Serializable]
 public class PlatformInfo {
-    public PlatformInfo(Vector3 mainPosition,Vector3 mainScale){
+    public PlatformInfo(Vector3 mainPosition,Vector3 mainScale, Quaternion rotation){
         this.mainPosition = mainPosition;
         this.mainScale = mainScale;
+        this.rotation = rotation;
     }
 
     public Vector3 mainPosition;
+    public Quaternion rotation;
     public Vector3 mainScale;
     public Vector3[] spawnPoints;
 }
@@ -44,9 +46,9 @@ public class PlatformGenerator : MonoBehaviour
     private List<PlatformInfo> oldPlatformData = new List<PlatformInfo>(){};
 
     private List<PlatformInfo> unusedPlatforms = new List<PlatformInfo>(){
-        new PlatformInfo(new Vector3(-67,-10,-106),new Vector3(70,2,70)),
-        new PlatformInfo(new Vector3(71,-10,-110),new Vector3(55,2,40)),
-        new PlatformInfo(new Vector3(0,0,0),new Vector3(40,2,40))
+        new PlatformInfo(new Vector3(-67,-10,-106),new Vector3(70,2,70), Quaternion.identity),
+        new PlatformInfo(new Vector3(71,-10,-110),new Vector3(55,2,40), Quaternion.identity),
+        new PlatformInfo(new Vector3(0,0,0),new Vector3(70,2,70), Quaternion.identity)
     };
 
     List<Vector3> preInstantiatedPlatformPositions = new List<Vector3>(){
@@ -261,8 +263,8 @@ public class PlatformGenerator : MonoBehaviour
         return scales;
     }
 
-    private void RegeneratePlatform(Vector3 position, Vector3 scale){
-        GameObject pHolder = Instantiate(platformHolder,position,Quaternion.identity);
+    private void RegeneratePlatform(Vector3 position, Vector3 scale, Quaternion rotation){
+        GameObject pHolder = Instantiate(platformHolder,position,rotation);
         GameObject main = Instantiate(mainPlat,position,Quaternion.identity);
         pe.GetObjective(main.GetComponent<PlatformObjective>());
         pHolder.transform.SetParent(platformsHolder.transform,true);
@@ -277,13 +279,18 @@ public class PlatformGenerator : MonoBehaviour
                 continue;
             }
             GameObject pHolder = Instantiate(platformHolder,positions[i],Quaternion.identity);
-            GameObject main = Instantiate(mainPlat,positions[i],Quaternion.identity);
+            GameObject main;
+            if (SeedGenerator.NextFloat(0f,10f) < 2f) {
+                main = Instantiate(mainPlat,positions[i],Quaternion.Euler(0f,SeedGenerator.NextFloat(0,359),0f));
+            }else {
+                main = Instantiate(mainPlat,positions[i],Quaternion.identity);
+            }
             pe.GetObjective(main.GetComponent<PlatformObjective>());
             pHolder.transform.SetParent(platformsHolder.transform,true);
             main.transform.localScale = scales[i];
             main.transform.parent = pHolder.transform;
             //DontDestroyOnLoad(pHolder);
-            unusedPlatforms.Add(new PlatformInfo(positions[i],scales[i]));
+            unusedPlatforms.Add(new PlatformInfo(positions[i],scales[i], main.transform.rotation));
             amountCreated++;
             if (amountCreated >= cap){
                 return;
@@ -364,13 +371,13 @@ public class PlatformGenerator : MonoBehaviour
         foreach (PlatformInfo pi in oldPlatformData){
             if (!PositionIsValid(pi.mainPosition))
                 continue;
-            RegeneratePlatform(pi.mainPosition,pi.mainScale);
+            RegeneratePlatform(pi.mainPosition,pi.mainScale, pi.rotation);
         }
 
         foreach (PlatformInfo pi in unusedPlatforms){
             if (!PositionIsValid(pi.mainPosition))
                 continue;
-            RegeneratePlatform(pi.mainPosition,pi.mainScale);
+            RegeneratePlatform(pi.mainPosition,pi.mainScale, pi.rotation);
         }
     }
 

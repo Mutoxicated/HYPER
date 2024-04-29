@@ -254,11 +254,11 @@ public class GunShooter : MonoBehaviour
         anchor.localPosition = Vector3.Lerp(anchor.localPosition, defaultPos, Time.deltaTime*lerpSpeed);
         anchor.localRotation = Quaternion.Lerp(anchor.localRotation, defaultRot, Time.deltaTime * lerpSpeed);
 
-        exhaustT -= coolingRate*Time.deltaTime*stats.numericals["rate"];
         if (exhaustT < 0f) {
             exhaustT = 0f;
         }
-        if (exhaustT < 0.5f && onCooldown) {
+        exhaustT -= coolingRate*(1f*Mathf.Lerp(1f,0.5f,exhaustT))*Time.deltaTime*stats.numericals["rate"];
+        if (exhaustT < 0.4f && onCooldown) {
             onCooldown = false;
         } 
 

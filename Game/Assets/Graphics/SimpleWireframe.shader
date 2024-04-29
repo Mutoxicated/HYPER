@@ -8,10 +8,6 @@ Shader "Custom/QuadWireframe"
         _WireframeAliasing("Wireframe aliasing", float) = 1.5
         _Intact("Intact Range", float) = 0
 
-        _prevNormal("Previous Normal", Vector) = (999.0,999.0,999.0, 1.0)
-        _prevP2("Previous P2", Vector) = (999.0,999.0,999.0, 1.0)
-        _prevP1("Previous P1", Vector) = (999.0,999.0,999.0, 1.0)
-
        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Integer) = 2
     }
 
@@ -120,18 +116,18 @@ Shader "Custom/QuadWireframe"
                 o.barycentric = float3(0.0, 0.0, 1.0) + modifier;
                 triStream.Append(o);
 
-                _prevNormal.xyz = getNormal(IN[0].vertex,IN[1].vertex,IN[2].vertex);
+                // _prevNormal.xyz = getNormal(IN[0].vertex,IN[1].vertex,IN[2].vertex);
 
-                //third
-                _prevNormal.w = IN[2].vertex.x;
-                _prevP1.w = IN[2].vertex.y;
-                _prevP2.w = IN[2].vertex.z;
+                // //third
+                // _prevNormal.w = IN[2].vertex.x;
+                // _prevP1.w = IN[2].vertex.y;
+                // _prevP2.w = IN[2].vertex.z;
 
-                //second
-                _prevP2.xyz = IN[1].vertex;
+                // //second
+                // _prevP2.xyz = IN[1].vertex;
 
-                //first
-                _prevP1.xyz = IN[0].vertex;                
+                // //first
+                // _prevP1.xyz = IN[0].vertex;                
             }
 
             fixed4 _WireframeBackColour;

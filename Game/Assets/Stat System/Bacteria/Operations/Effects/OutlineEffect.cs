@@ -37,6 +37,7 @@ public class OutlineEffect : MonoBehaviour {
     [SerializeField, HideInInspector]
     private List<ListVector3> bakeValues = new List<ListVector3>();
     private Material outlineFillMaterial;
+    private Material roundedOutlineMaterial;
     private List<Material> mats = new List<Material>();
     private float t;
 
@@ -47,18 +48,22 @@ public class OutlineEffect : MonoBehaviour {
         foreach(var part in bac.immuneSystem.injector.bodyParts){
             if (!part.outlineEffectable)
                 continue;
-            // Retrieve or generate smooth normals
-            LoadSmoothNormals(part);
             var materials = part._renderer.sharedMaterials.ToList();
-            materials.Add(outlineFillMaterial);
+            if (part.particle) {
+                materials.Add(roundedOutlineMaterial);
+            }else {
+                LoadSmoothNormals(part);
+                materials.Add(outlineFillMaterial);
+            }
             part._renderer.materials = materials.ToArray();
             mats.Add(part._renderer.materials[part._renderer.materials.Length-1]);
         }
     }
 
     void Awake() {
-
+        //Bake();
         outlineFillMaterial = Instantiate(Resources.Load<Material>(@"Materials/Outline"));
+        roundedOutlineMaterial = Instantiate(Resources.Load<Material>(@"Materials/RoundedOutline"));
     }
 
     private void CalculateT(){
@@ -181,9 +186,14 @@ public class OutlineEffect : MonoBehaviour {
         mesh.subMeshCount++;
         mesh.SetTriangles(mesh.triangles, mesh.subMeshCount - 1);
     }
+
     void UpdateMaterialProperties() {
         foreach (var mat in mats){
-            mat.SetFloat("_OutlineWidth", outlineWidth);
+            if (mat.HasFloat("_OutlineWidth")) {
+                mat.SetFloat("_OutlineWidth", outlineWidth);
+            }else {
+                mat.SetFloat("_Extension", outlineWidth);
+            }
         }
     }
 }

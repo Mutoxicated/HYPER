@@ -52,20 +52,25 @@ public class GunController : MonoBehaviour
 
     private void RotateGunScrew() {
         if (shooter.isOnCooldown()) {
+            //Debug.Log("is on cooldown");
             angle -= 10f;
             once2 = false;
             return;
         }
-        if (!once2) {
+        if (!once2 && !shooter.isOnCooldown()) {
+            //Debug.Log("no longer on cooldown");
+            angle = gunScrew.localEulerAngles.z;
             angle -= angle % 73f;
             once2 = true;
             once = true;
         }
         if (pic.IsPressed("Shoot") || (pic.IsPressed("ExtraShoot") && shooter.GetCurrentWeapon().extraEnabled)) {
+            //Debug.Log("is pressed");
             once = false;
             angle += 10f;
         }else {
             if (!once) {
+                //Debug.Log("no longer pressed");
                 angle = gunScrew.localEulerAngles.z;
                 Debug.Log(angle);
                 Debug.Log(angle % 73f);

@@ -166,7 +166,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  coolingRate: 0.18
+  coolingRate: 0.2
   shootSFX: {fileID: 2650675614034399949}
   fireRate: 0
   recoilPosition: {x: 0, y: 0, z: -0.5}

@@ -1275,3 +1275,7 @@ Will be doing some optimizations to improve graphics performance. Forgot to comm
 ## Day 323
 
 Surface Effect works with bullets now. The gun now will have an exhaustion meter and will cooldown when it overheats, temporarily disallowing you from firing. Will add a gun equipment that will make the cooldown smaller.
+
+## Day 324 & 325
+
+Made platforms have a small chance of rotating randomly, tweaked the gun settings, fixed a bug. TOMORROW I ADD CONTENT.

@@ -4848,6 +4848,18 @@ PrefabInstance:
       propertyPath: weapons.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: cdaebeb401c682249b40b54811ae16bd, type: 2}
+    - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
+      propertyPath: exhaustGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
+      propertyPath: exhaustGradient.key1.g
+      value: 0.88550174
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701970974289007521, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
+      propertyPath: exhaustGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6701970974289007535, guid: d003161213d62474f845d4ca985e9c3a, type: 3}
       propertyPath: pic
       value: 

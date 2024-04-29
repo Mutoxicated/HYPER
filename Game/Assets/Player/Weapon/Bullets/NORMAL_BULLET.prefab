@@ -288,7 +288,7 @@ MonoBehaviour:
   particle: 1
   _renderer: {fileID: -6542272723525545674}
   hitGradient: {fileID: 0}
-  surfaceEffectable: 1
+  surfaceEffectable: 0
   outlineEffectable: 1
   colorEffectable: 1
   matIndex: 0

@@ -1,7 +1,8 @@
-Shader "Custom/SpriteV2"{
+Shader "Custom/SpriteExtended"{
 	Properties{
 		[HDR] [MainColor] _Color("Tint", Color) = (0, 0, 0, 1)
 		_MainTex("Texture", 2D) = "white" {}
+		_Extension("Extension", Float) = 1.2
 	}
 
 		SubShader{
@@ -27,6 +28,7 @@ Shader "Custom/SpriteV2"{
 				float4 _MainTex_ST;
 
 				fixed4 _Color;
+				float _Extension;
 
 				struct appdata {
 					float4 vertex : POSITION;
@@ -42,6 +44,7 @@ Shader "Custom/SpriteV2"{
 
 				v2f vert(appdata v) {
 					v2f o;
+					v.vertex *= _Extension*0.9f;
 					o.position = UnityObjectToClipPos(v.vertex);
 					o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 					o.color = v.color;

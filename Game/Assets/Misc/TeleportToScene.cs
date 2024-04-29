@@ -42,6 +42,7 @@ public class TeleportToScene : MonoBehaviour
         ItemShop.ResetCheapness();
         ItemPool.ResetClassItems();
         ClassSystem.Reset();
+        Difficulty.rounds = 0;
     }
 
     public void SwitchScene(){
