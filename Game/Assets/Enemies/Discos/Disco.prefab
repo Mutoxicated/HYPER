@@ -318,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 3690289086005728931}
   specialTag: Untagged
+  useUnscaledTime: 0
   dontResetTime: 0
   chance: 100
   interval: 8
@@ -483,6 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 3690289086005728931}
   specialTag: Untagged
+  useUnscaledTime: 0
   dontResetTime: 0
   chance: 100
   interval: 8
@@ -1151,15 +1153,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.8329844
+      value: 2.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.8329842
+      value: 2.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.8329842
+      value: 2.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1200,6 +1202,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 8339f9856514ed44cb9f0fa5bb66d50a, type: 3}
       propertyPath: m_Materials.Array.size
@@ -1393,6 +1399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed8dca4d62edf5499997fb41445ad01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: 0
   _renderer: {fileID: 6108132308293817020}
   hitGradient: {fileID: 7244245088063053167}
   surfaceEffectable: 1
@@ -1713,6 +1720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bagui: {fileID: 0}
   stats: {fileID: 3690289086005728931}
   injector: {fileID: 3782803558214053804}
   immunityAttackRate: 0.5
@@ -1829,6 +1837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed8dca4d62edf5499997fb41445ad01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: 0
   _renderer: {fileID: 6108132307414458040}
   hitGradient: {fileID: 7244245088063053167}
   surfaceEffectable: 0

@@ -46,6 +46,7 @@ public class PlatformObjective : MonoBehaviour
         instance = Instantiate(prefab,transform,true);
         instances.Add(instance);
         instance.transform.position = transform.position;
+        instance.transform.rotation = transform.rotation;
     }
 
     private void SetColor(Color color){

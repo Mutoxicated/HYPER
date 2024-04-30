@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IRound 
 {
-    void ProgressDifficulty();
+    void UpdateDifficulty();
     void EvaluateMoneyBonus();
 }

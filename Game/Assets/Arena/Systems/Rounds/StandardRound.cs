@@ -11,7 +11,7 @@ public class StandardRound : MonoBehaviour, IRound
     public static readonly float initEnemySpawnIntervalDecrease = 0.1f;
     public static readonly float initDuration = 14f;
     public static readonly float initDifficultyMod = 4f;
-    public static readonly float initValue = 5;
+    public static readonly float initValue = 13;
 
     public Difficulty diff;
     public GameObject beamInstance;
@@ -24,8 +24,11 @@ public class StandardRound : MonoBehaviour, IRound
     [SerializeField] private OnInterval durationInterval;
 
     private float value = initValue;
-    private float currentValue = initValue;
-    private int rando = 0;
+    private float currentValue;
+
+    public void IncrementCurrentValue() {
+        currentValue += 0.25f;
+    }
 
     private void Awake(){
         Difficulty.StepRound();
@@ -33,68 +36,38 @@ public class StandardRound : MonoBehaviour, IRound
 
     private void Start(){
         roundText.text = Difficulty.rounds.ToString();
-        ProgressDifficulty();
-        spawnInterval.ChangeInterval(enemySpawnInterval);
+        currentValue = value;
+        UpdateDifficulty();
+        spawnInterval.ChangeMinMaxInterval(new Vector2(
+            spawnInterval.MinMax.x+enemySpawnInterval, 
+            spawnInterval.MinMax.y+enemySpawnInterval));
+
+        spawnInterval.RandomizeInterval();
         durationInterval.ChangeInterval(duration);
         PreSpawnEnemies();
     }
 
-    public void SpawnEnemyExtra(){
-        int key = diff.organizedEnemyPool.ElementAt(SeedGenerator.random.Next(0,diff.organizedEnemyPool.Count)).Key;
+    public void SpawnEnemy(){
+        if (currentValue <= 0f) {
+            return;
+        } 
+        int key = diff.GetRandomEnemyListKey();
+        currentValue -= key;
         Instantiate(diff.organizedEnemyPool[key][SeedGenerator.random.Next(0,diff.organizedEnemyPool[key].Count)],
                     Difficulty.spawnPoints[SeedGenerator.random.Next(0,Difficulty.spawnPoints.Count)].transform.position, 
                     Quaternion.identity);
     }
 
-    private void SpawnEnemy(int former, int latter){
-        for (int i = 0; i < former; i++){
-            Instantiate(diff.organizedEnemyPool[latter][SeedGenerator.random.Next(0,diff.organizedEnemyPool[latter].Count)],
-                Difficulty.spawnPoints[SeedGenerator.random.Next(0,Difficulty.spawnPoints.Count)].transform.position, 
-                Quaternion.identity);
-        }
-    }
-
-    private void GetRando(){
-        if (rando == 0){
-            rando = SeedGenerator.random.Next(2,Mathf.RoundToInt(Mathf.Clamp(currentValue,2,9999999)));
-        }
-        if (!diff.organizedEnemyPool.ContainsKey(rando)){
-            rando--;
-            GetRando();
-        }
-    }
-
-    public void SpawnEnemyInterval(){
-        if (rando == -1){
-            currentValue = value;
-            rando = 0;
-            return;
-        }
-
-        GetRando();
-
-        int remainder = Mathf.FloorToInt(Mathf.RoundToInt(currentValue)%rando);
-        int former = Mathf.FloorToInt(Mathf.RoundToInt(currentValue)/rando);
-
-        if (SeedGenerator.random.Next(0,100) >= 50){
-            SpawnEnemy(former,rando);
-        }else{
-            SpawnEnemy(former,rando);
-        }
-        SpawnEnemy(remainder,1);
-        currentValue -= value/2f;
-        rando = 0;
-
-        if (currentValue <= 0f){
-            currentValue = 0f;
-            rando = -1;
-        }
+    public void SpawnEnemies() {
+        
     }
 
     public void PreSpawnEnemies(){
-        int spawnAmount = Mathf.RoundToInt(duration/enemySpawnInterval);
+        int platformCount = PlatformGenerator.PG.GetPlatformCount();
+        Debug.Log(platformCount);
+        int spawnAmount = Mathf.CeilToInt(platformCount*diff.asymT);
         for (int i = 0; i < spawnAmount; i++){
-            SpawnEnemyExtra();
+            SpawnEnemy();
         }
     }
 
@@ -107,7 +80,7 @@ public class StandardRound : MonoBehaviour, IRound
         Destroy(gameObject);
     }
 
-    public void ProgressDifficulty()
+    public void UpdateDifficulty()
     {
         enemySpawnInterval = Mathf.Lerp(initEnemySpawnInterval,initEnemySpawnInterval*initDifficultyMod,diff.asymT);
         duration = initDuration*diff.linearT;

@@ -11,6 +11,8 @@ public class Difficulty : MonoBehaviour
     public static List<GameObject> enemies = new List<GameObject>();
     public static ExtraUtils utils;
     public static List<GameObject> spawnPoints = new List<GameObject>();
+    public static readonly float difficultyScale = 1f;
+    public static readonly float startOffset = 2f;
 
     public float linearT = 1f;
     public float asymT = 0f;
@@ -22,6 +24,7 @@ public class Difficulty : MonoBehaviour
 
     public List<EnemyInfo> enemyPool;
     public Dictionary<int, List<GameObject>> organizedEnemyPool = new Dictionary<int, List<GameObject>>();
+    public List<int> enemyListKeys = new List<int>();
 
     public static GameObject FindClosestEnemy(Transform trans, float distTol)
     {
@@ -89,6 +92,10 @@ public class Difficulty : MonoBehaviour
         RunDataSave.rData.rounds = rounds;
     }
 
+    public int GetRandomEnemyListKey() {
+        return enemyListKeys[(int)SeedGenerator.NextFloat(0,enemyListKeys.Count-1)];
+    }
+
     private void DevelopSuperPassives(){
         SuperPassivePool.DevelopPassiveByName("JUICE");
         SuperPassivePool.DevelopPassiveByName("POTION");
@@ -101,6 +108,7 @@ public class Difficulty : MonoBehaviour
         foreach (EnemyInfo ei in enemyPool){
             if (!organizedEnemyPool.ContainsKey(ei.importance)){
                 organizedEnemyPool.Add(ei.importance,new List<GameObject>(){ei.enemyPrefab});
+                enemyListKeys.Add(ei.importance);
             }else{
                 organizedEnemyPool[ei.importance].Add(ei.enemyPrefab);
             }
@@ -117,9 +125,9 @@ public class Difficulty : MonoBehaviour
         OrganizeEnemyPool();
         rounds = RunDataSave.rData.rounds;
         roundFinished = false;
-        asymT = rounds/(rounds+300);
+        asymT = startOffset+Mathf.Sqrt(rounds/0.2f) * difficultyScale;
         //Debug.Log("rounds: "+rounds);
-        linearT = 1+(2-1)*(rounds-1);
+        linearT = startOffset+rounds*0.2f * difficultyScale;
         //Debug.Log("linearT: "+linearT);
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
         player = GameObject.FindWithTag("Player").transform;

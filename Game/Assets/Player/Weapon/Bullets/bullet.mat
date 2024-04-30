@@ -8,13 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Bullet
-  m_Shader: {fileID: 4800000, guid: 6440b2a38c2d5494f8bee1ce2d062327, type: 3}
+  m_Shader: {fileID: 4800000, guid: 55ca7e4a5790dd84d878e7550d3ca62e, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3501
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:

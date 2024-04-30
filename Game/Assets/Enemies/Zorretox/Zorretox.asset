@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Zorretox
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 852020573511567642, guid: 96e7c687131fc194cb88c9330a076695, type: 3}
-  importance: 3
+  importance: 4
   priority: 1

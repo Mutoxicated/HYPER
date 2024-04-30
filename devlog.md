@@ -1279,3 +1279,7 @@ Surface Effect works with bullets now. The gun now will have an exhaustion meter
 ## Day 324 & 325
 
 Made platforms have a small chance of rotating randomly, tweaked the gun settings, fixed a bug. TOMORROW I ADD CONTENT.
+
+## Day 326
+
+OK TOMORROW I ADD CONTENT.

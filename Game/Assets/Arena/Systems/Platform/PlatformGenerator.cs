@@ -46,9 +46,9 @@ public class PlatformGenerator : MonoBehaviour
     private List<PlatformInfo> oldPlatformData = new List<PlatformInfo>(){};
 
     private List<PlatformInfo> unusedPlatforms = new List<PlatformInfo>(){
-        new PlatformInfo(new Vector3(-67,-10,-106),new Vector3(70,2,70), Quaternion.identity),
-        new PlatformInfo(new Vector3(71,-10,-110),new Vector3(55,2,40), Quaternion.identity),
-        new PlatformInfo(new Vector3(0,0,0),new Vector3(70,2,70), Quaternion.identity)
+        new PlatformInfo(new Vector3(-67,-10,-106),new Vector3(70,3,70), Quaternion.identity),
+        new PlatformInfo(new Vector3(71,-10,-110),new Vector3(55,4,40), Quaternion.identity),
+        new PlatformInfo(new Vector3(0,0,0),new Vector3(70,5,70), Quaternion.identity)
     };
 
     List<Vector3> preInstantiatedPlatformPositions = new List<Vector3>(){
@@ -56,6 +56,10 @@ public class PlatformGenerator : MonoBehaviour
         new Vector3(71,-10,-110),
         new Vector3(0,0,0)
     };
+
+    public int GetPlatformCount() {
+        return unusedPlatforms.Count+oldPlatformData.Count;
+    }
 
     private PlatformInfo FindPlatform(){
         return unusedPlatforms[0];

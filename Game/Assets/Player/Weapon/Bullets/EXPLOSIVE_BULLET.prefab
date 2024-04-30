@@ -301,7 +301,7 @@ MonoBehaviour:
   _renderer: {fileID: -1327462825947292613}
   hitGradient: {fileID: 0}
   surfaceEffectable: 1
-  outlineEffectable: 1
+  outlineEffectable: 0
   colorEffectable: 1
   matIndex: 0
 --- !u!114 &775047400170272233

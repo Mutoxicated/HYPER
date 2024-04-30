@@ -13,7 +13,7 @@ Shader "Custom/QuadWireframe"
 
         SubShader
     {
-        Tags {"RenderType" = "Transparent" "Queue" = "AlphaTest"}
+        Tags {"RenderType" = "Transparent" "Queue" = "Transparent"}
         LOD 100
 
 
@@ -114,20 +114,7 @@ Shader "Custom/QuadWireframe"
                 triStream.Append(o);
                 o.pos = UnityObjectToClipPos(IN[2].vertex);
                 o.barycentric = float3(0.0, 0.0, 1.0) + modifier;
-                triStream.Append(o);
-
-                // _prevNormal.xyz = getNormal(IN[0].vertex,IN[1].vertex,IN[2].vertex);
-
-                // //third
-                // _prevNormal.w = IN[2].vertex.x;
-                // _prevP1.w = IN[2].vertex.y;
-                // _prevP2.w = IN[2].vertex.z;
-
-                // //second
-                // _prevP2.xyz = IN[1].vertex;
-
-                // //first
-                // _prevP1.xyz = IN[0].vertex;                
+                triStream.Append(o);                
             }
 
             fixed4 _WireframeBackColour;

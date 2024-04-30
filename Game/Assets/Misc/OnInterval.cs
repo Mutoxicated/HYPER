@@ -23,6 +23,12 @@ public class OnInterval : ExtraBehaviour
     [HideInInspector] public bool isPlaying;
     private float deltaTime;
 
+    public Vector2 MinMax {
+        get {
+            return minMaxInterval;
+        }
+    }
+
     public void ResetEarly()//this is stupid but oh well lol
     {
         ResetInterval();
@@ -72,12 +78,20 @@ public class OnInterval : ExtraBehaviour
         this.interval = interval;
     }
 
-    private void OnEnable()
-    {
-        //Debug.Log(gameObject.name);
+    public void ChangeMinMaxInterval(Vector2 newMinMaX) {
+        minMaxInterval = newMinMaX;
+    }
+
+    public void RandomizeInterval() {
         if (minMaxInterval != Vector2.zero){
             interval = Random.Range(minMaxInterval.x,minMaxInterval.y);
         }
+    }
+
+    private void OnEnable()
+    {
+        //Debug.Log(gameObject.name);
+        RandomizeInterval();
         time = 0f;
         t = 0f;
         isPlaying = true;

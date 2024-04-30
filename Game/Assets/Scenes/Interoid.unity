@@ -19538,6 +19538,7 @@ Transform:
   m_LocalScale: {x: 0.7142857, y: -160, z: 0.7142857}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 821184462}
   - {fileID: 1999474803}
   - {fileID: 1241669894}
   m_Father: {fileID: 1165190936}
@@ -19646,7 +19647,7 @@ GameObject:
   - component: {fileID: 821184462}
   - component: {fileID: 821184463}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: beam_ambience
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19659,13 +19660,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821184461}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.51, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3418125, z: 0}
+  m_LocalScale: {x: 1.4000001, y: -0.0062499996, z: 1.4000001}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1165190936}
-  m_RootOrder: 7
+  m_Father: {fileID: 820872955}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &821184463
 AudioSource:
@@ -21798,12 +21799,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456d507721dd45547bcfe16f87884861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Yoffset: 8
-  minMaxPlatformXScale: {x: 30, y: 80}
-  minMaxPlatformYScale: {x: 1, y: 4}
-  platformZScaleOffset: 3.39
+  Yoffset: 10
+  minMaxPlatformXScale: {x: 65, y: 100}
+  minMaxPlatformYScale: {x: 2, y: 6}
+  platformZScaleOffset: 3.37
   distTolerance: 8.62
-  generationCycle: 01000000010000000100000001000000010000000200000001000000010000000200000001000000010000000100000001000000
+  generationCycle: 01000000010000000100000001000000010000000200000001000000010000000200000002000000010000000100000001000000
   platformHolder: {fileID: 790167100816406624, guid: 756ef2494007ec24dab872c18e5e44d3, type: 3}
   mainPlat: {fileID: 1849135328250760642, guid: 8b00f65ed38e707419d8d2062e3981c8, type: 3}
   randomPlatformProps: []
@@ -32161,7 +32162,6 @@ Transform:
   - {fileID: 1947860577}
   - {fileID: 1146857864}
   - {fileID: 1738680527}
-  - {fileID: 821184462}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -33228,11 +33228,11 @@ Transform:
   m_GameObject: {fileID: 1241669893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.35, y: 1, z: 1.35}
+  m_LocalScale: {x: 1.35, y: 2.750576, z: 1.35}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 820872955}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1241669895
 BoxCollider:
@@ -57515,7 +57515,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 820872955}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1999474804
 MonoBehaviour:
