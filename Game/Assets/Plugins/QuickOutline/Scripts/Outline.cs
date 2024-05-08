@@ -45,7 +45,7 @@ public class Outline : MonoBehaviour {
   private Material outlineFillMaterial;
 
   void Awake() {
-
+    ClearData();
     // Cache renderer
     _renderer = GetComponent<Renderer>();
 

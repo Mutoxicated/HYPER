@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  useUnscaledTime: 0
   dontResetTime: 0
   chance: 100
   interval: 1.5
@@ -136,6 +137,7 @@ GameObject:
   - component: {fileID: 8685187364037099256}
   - component: {fileID: 1978312097079249106}
   - component: {fileID: 3279131436173867593}
+  - component: {fileID: 5187751367600881771}
   m_Layer: 6
   m_Name: Cylinder
   m_TagString: bullets
@@ -237,6 +239,22 @@ CapsuleCollider:
   m_Height: 0.72
   m_Direction: 2
   m_Center: {x: -0.00040635467, y: 0.018938882, z: -0.00007165968}
+--- !u!114 &5187751367600881771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3012147047492929063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c07327e6f487af44bfb15a4d353c403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshFilter: {fileID: 5840057994389205090}
+  sensitivity: 0.1
+  drawLines: 0
+  onlyTriangles: 0
 --- !u!1 &7054202548123418680
 GameObject:
   m_ObjectHideFlags: 0

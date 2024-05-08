@@ -6,7 +6,6 @@ public class TeleportEffect : MonoBehaviour
 {
     [SerializeField] private LineRenderer liner;
     [SerializeField,Min(2)] private int vertexAmount;
-    [SerializeField,Range(1f,8f)] private float scaleFactor = 1f;
 
     private List<Vector3> positions = new List<Vector3>();
     private Vector3 position = Vector3.zero;

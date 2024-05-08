@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -10,11 +9,11 @@ public class PlatformEnhancer : MonoBehaviour
     [SerializeField] private static readonly float inc3 = 0.125f;
     [SerializeField, Range(0f,100f)] private static readonly float chance = 100f;
 
-    [SerializeField] private static float sleepers = 0;
-    [SerializeField] private static float trappers = 0;
-    [SerializeField] private static float rechargers = 0;
-    [SerializeField] private static float simoners = 0;
-    [SerializeField] private static float derusters = 1;
+    public static float sleepers = 0;
+    public static float trappers = 0;
+    public static float rechargers = 0;
+    public static float simoners = 0;
+    public static float derusters = 0;
 
     private static int currentsleepers = 0;
     private static int currenttrappers = 0;

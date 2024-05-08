@@ -45,7 +45,7 @@ public enum classType {
 }
 [Serializable]
 public enum ItemType {
-    PASSIVE,
+    ACTIVE,
     WEAPON
 }
 

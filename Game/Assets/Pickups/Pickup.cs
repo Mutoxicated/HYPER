@@ -68,9 +68,9 @@ public class Pickup : MonoBehaviour
     private void LateUpdate(){
         if (durationInterval.enabled){
             foreach (Material mat in mats){
-                color = mat.GetColor("_WireframeBackColour");
+                color = mat.color;
                 color.a = Mathf.Abs(durationInterval.t-1);
-                mat.SetColor("_WireframeBackColour",color);
+                mat.color = color;
             }
         }
     }

@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
-  classes: 0300000002000000
+  classes: 03000000
   image: {fileID: 3850826116398302471}
   reApplyEffectsOnSceneChange: 1
 --- !u!114 &-274159152374026974

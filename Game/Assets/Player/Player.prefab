@@ -830,6 +830,46 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1522246966675399817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3413549198341926217}
+  - component: {fileID: 1152191700792942932}
+  m_Layer: 0
+  m_Name: aaa
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3413549198341926217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522246966675399817}
+  m_LocalRotation: {x: -0, y: 0.6454243, z: -0, w: 0.7638243}
+  m_LocalPosition: {x: 1.2931817, y: -0.5761862, z: 1.6923896}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1827139654470346252}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1152191700792942932
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522246966675399817}
+  m_Mesh: {fileID: -1550514412580984892, guid: fbf657ab448b0254b82cebfee5cdcdcb, type: 3}
 --- !u!1 &1556596221451769291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +1420,7 @@ Transform:
   - {fileID: 1987462775687559841}
   - {fileID: 4622922393275157160}
   - {fileID: 2437717592109989180}
+  - {fileID: 3413549198341926217}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -80.395, z: 0}
@@ -3990,6 +4031,7 @@ GameObject:
   - component: {fileID: 6308996754726332579}
   - component: {fileID: 8132760323535755006}
   - component: {fileID: 4911115193345478870}
+  - component: {fileID: 4063871140454552811}
   m_Layer: 3
   m_Name: Cube.002
   m_TagString: Untagged
@@ -4100,7 +4142,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matIndex: 1
-  color: {r: 0, g: 4, b: 0.627451, a: 1}
+  color: {r: 0, g: 1.9999998, b: 0.3141361, a: 1}
+--- !u!114 &4063871140454552811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7897016974113696127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c07327e6f487af44bfb15a4d353c403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshFilter: {fileID: 0}
+  sensitivity: 0.1
+  onlyTriangles: 0
 --- !u!1 &7956828334144187769
 GameObject:
   m_ObjectHideFlags: 0

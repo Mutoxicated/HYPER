@@ -84,6 +84,7 @@ MonoBehaviour:
   - {fileID: 4094787885110946468}
   - {fileID: 9026680739544001833}
   scoreToGive: 6000
+  shieldToGive: 3
   spc: {fileID: 5375573560206603087}
   turn: {fileID: 3472526239982017391}
   dieInterval: {fileID: 3973325560370524684}
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: die
+  useUnscaledTime: 0
   dontResetTime: 0
   chance: 100
   interval: 0.4
@@ -224,7 +226,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3d96a8e96360a2b4baebb860bc77c3af, type: 2}
-  - {fileID: 2100000, guid: faaa325337eda674eb7d833191ce2384, type: 2}
+  - {fileID: 2100000, guid: a08bfef4bce6d8f439f3b68ceb6206d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -340,7 +342,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3d96a8e96360a2b4baebb860bc77c3af, type: 2}
-  - {fileID: 2100000, guid: faaa325337eda674eb7d833191ce2384, type: 2}
+  - {fileID: 2100000, guid: a08bfef4bce6d8f439f3b68ceb6206d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

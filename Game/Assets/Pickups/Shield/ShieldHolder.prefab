@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  useUnscaledTime: 0
+  dontResetTime: 0
   chance: 100
   interval: 0.5
   minMaxInterval: {x: 0, y: 0}
@@ -125,7 +127,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3704ba03054c10d48a122755552a4bc2, type: 2}
+  - {fileID: 2100000, guid: 1e12daa8933f40d4b8c06e45e07b179d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -191,7 +193,6 @@ MonoBehaviour:
   pickup: 0
   duration: 13
   durationInterval: {fileID: 5762586568327915413}
-  sfx: {fileID: 473405794101329163}
   ps: {fileID: 911448292373854527}
   interval: {fileID: 3622639118947284613}
   rends:
@@ -211,6 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Expirtation
+  useUnscaledTime: 0
+  dontResetTime: 0
   chance: 100
   interval: 13
   minMaxInterval: {x: 0, y: 0}
@@ -694,11 +697,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04e0b1f16198d0e41ad3f9a91acbb962, type: 3}
---- !u!82 &473405794101329163 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5355028427852983041, guid: 04e0b1f16198d0e41ad3f9a91acbb962, type: 3}
-  m_PrefabInstance: {fileID: 5530703966554215946}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &911448292373854522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4640709349962592048, guid: 04e0b1f16198d0e41ad3f9a91acbb962, type: 3}

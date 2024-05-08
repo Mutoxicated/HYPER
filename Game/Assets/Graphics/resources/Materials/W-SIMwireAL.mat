@@ -20,14 +20,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: wireframeMat2
-  m_Shader: {fileID: 4800000, guid: 53e3da19f46cb444fbf2f4e608573667, type: 3}
+  m_Name: W-SIMwireAL
+  m_Shader: {fileID: 4800000, guid: 50d1d05daf2c1f44e8b2cbeb2bad924c, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -129,7 +129,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _WireframeAliasing: 1.5
+    - _WireframeAliasing: 0.7
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
@@ -137,6 +137,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WireframeBackColour: {r: 4, g: 0, b: 0, a: 1}
+    - _WireframeBackColour: {r: 0, g: 0.0050117606, b: 0.101960786, a: 1}
+    - _WireframeColor: {r: 0, g: 0.028937358, b: 0.6603774, a: 1}
     - _WireframeFrontColour: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

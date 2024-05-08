@@ -1283,3 +1283,17 @@ Made platforms have a small chance of rotating randomly, tweaked the gun setting
 ## Day 326
 
 OK TOMORROW I ADD CONTENT.
+
+## Day 327 thru 334
+
+So I didn't really add content, because I was met with some unity problems and at the same time I was trying to figure out how to make an actually aesthetically pleasing wireframe shader (spoiler: I figured it out).
+
+I won't go into detail here about how I made it, you can check the [unity forum](https://forum.unity.com/threads/how-to-render-only-the-connected-lines-of-a-mesh.1586523/) where it all started.
+
+So, since this required a csharp script and a shader, I initially started changing almost all of the objects from all the scenes. I quickly (and by quickly i mean halfway in the process, which is in fact not that quickly) realized, however, that most objects were made in such a way that adapted to the problem that I had just fixed (inconsistent wireframes due to how the wireframe shader used to work before this revelation). So most of the objects didn't even need this advanced wireframe shading technique. 
+
+In some cases, in fact, the old wireframe shader yielded better results, though in some other cases the new wireframe shader outperformed the old one. So I decided to keep both of them and use the one that would be appropriate for the situation (this also has the upside of increasing performance, because you can choose the simpler and less expensive method if you have a simple mesh).
+
+So anyway, it took me about a week to not just make it, but to actually figure out a viable technique for this. Of course though, this method doesn't come without some drawbacks. Firstly, it's more expensive (the shader is actually faster than the simple wireframe shader, because it doesn't have any if checks, the script is the problem, which means that it's only a problem at instatiation time if there are multiple objects in the scene with this script). Secondly, there must be no shared vertices. This is because of how the method works and how it abuses the geometry center to not draw lines of a triangle.
+
+These aren't really huge problems though. Anyway that's all for now.

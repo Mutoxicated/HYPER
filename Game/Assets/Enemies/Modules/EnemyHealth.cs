@@ -147,6 +147,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (senderStats == null){
             OnDeath.Invoke(transform);
         }else{
+            if (senderStats.gameObject.tag == "bullets") {
+                PlayerEvents.EnemyBulletKill.Invoke(transform.position, transform.rotation);
+            }
             if (senderStats.gameObject.tag == "Player" | senderStats.gameObject.tag == "bullets"){
                 PlayerInfo.AddScore(deathScore);
                 PopScore(deathScore,1.2f);

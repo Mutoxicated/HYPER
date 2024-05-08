@@ -4,6 +4,7 @@ Shader "Custom/WireframeTest"
     {
         [HDR] [MainColor] _WireframeColor("Wireframe color", color) = (1.0, 1.0, 1.0, 1.0)
         _WireframeAliasing("Wireframe aliasing", float) = 1.5
+        _Intact("Intact Range", float) = 0
 
        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Integer) = 2
     }
@@ -52,9 +53,6 @@ Shader "Custom/WireframeTest"
             }
 
             float _Intact;
-            float4 _prevNormal;
-            float4 _prevP1;
-            float4 _prevP2;
 
             v2f vert(appdata v) {
                 v2f o;
@@ -73,16 +71,16 @@ Shader "Custom/WireframeTest"
 
                 g2f o;
                 o.pos = UnityObjectToClipPos(IN[0].vertex);
-                o.barycentric = float3(1.0,0.0,0.0);
+                o.barycentric = IN[0].color;
                 o.color = IN[0].color;
                 triStream.Append(o);
                 o.pos = UnityObjectToClipPos(IN[1].vertex);
                 o.color = IN[1].color;
-                o.barycentric = float3(0.0,1.0,0.0);
+                o.barycentric = IN[1].color;
                 triStream.Append(o);
                 o.pos = UnityObjectToClipPos(IN[2].vertex);
                 o.color = IN[2].color;
-                o.barycentric = float3(0.0,0.0,1.0);
+                o.barycentric = IN[2].color;
                 triStream.Append(o);                
             }
 
@@ -90,10 +88,6 @@ Shader "Custom/WireframeTest"
             float _WireframeAliasing;
 
             fixed4 frag(g2f i) : SV_Target {
-                float total = i.color.r+i.color.g+i.color.b;
-                if (total >= 1.92 && total < 2.1) {
-                    return float4(0,0,0,0);
-                }
                 // Calculate the unit width based on triangle size.
                 float3 unitWidth = fwidth(i.barycentric);
                 // Alias the line a bit.
@@ -101,7 +95,7 @@ Shader "Custom/WireframeTest"
                 // Use the coordinate closest to the edge.
                 float alpha = 1 - min(aliased.x, min(aliased.y, aliased.z));
 
-                return fixed4(_WireframeColor.r, _WireframeColor.g, _WireframeColor.b, _WireframeColor.a*alpha);
+                return fixed4(_WireframeColor.r, _WireframeColor.g, _WireframeColor.b, _WireframeColor.a*clamp(alpha*abs(_Intact-1),0,1));
             }
             ENDCG
             }

@@ -29,7 +29,6 @@ public class Ooze : MonoBehaviour
     private float tStart;
 
     private Injector inject;
-    private float timeColliding;
     private float lifetime;
     private Vector3 initScale = Vector3.zero;
 
@@ -39,7 +38,6 @@ public class Ooze : MonoBehaviour
         }
         lifetime = lifetimeSeconds;
         time = 0f;
-        timeColliding = 0f;
         t = 0f;
         population = Mathf.CeilToInt(0.10f*Difficulty.rounds*populationMod);
         mat = meshRenderer.material;

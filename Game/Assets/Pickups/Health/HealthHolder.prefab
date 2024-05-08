@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  useUnscaledTime: 0
+  dontResetTime: 0
   chance: 100
   interval: 0.5
   minMaxInterval: {x: 0, y: 0}
@@ -125,7 +127,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3704ba03054c10d48a122755552a4bc2, type: 2}
+  - {fileID: 2100000, guid: 1e12daa8933f40d4b8c06e45e07b179d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -191,7 +193,6 @@ MonoBehaviour:
   pickup: 1
   duration: 15
   durationInterval: {fileID: 7271577902489558755}
-  sfx: {fileID: 5510618818841023206}
   ps: {fileID: 911448292373854527}
   interval: {fileID: 3622639118947284613}
   rends:
@@ -211,6 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Expirtation
+  useUnscaledTime: 0
+  dontResetTime: 0
   chance: 100
   interval: 13
   minMaxInterval: {x: 0, y: 0}
