@@ -6,7 +6,8 @@ using UnityEngine;
 public enum EntityType
 {
     ORGANIC,
-    NON_ORGANIC
+    NON_ORGANIC,
+    SOUL
 }
 
 public class Immunity : MonoBehaviour

@@ -12,7 +12,7 @@ Shader "Custom/particlePixelation"
             Tags{ "Queue" = "AlphaTest+1000" "RenderType" = "Transparency"  }
             LOD 200
             Blend SrcAlpha OneMinusSrcAlpha
-            ZWrite Off
+            ZWrite On
             Cull Back
 
             Pass{

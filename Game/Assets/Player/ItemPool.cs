@@ -15,6 +15,18 @@ public class ItemPool : MonoBehaviour
         return classItems;
     }
 
+    public static List<ClassItem> GetClassItemsFromHierarchy(ClassHierarchy classHierarchy) {
+        List<ClassItem> filteredItems = new List<ClassItem>();
+
+        foreach (var item in classItems) {
+            if (item.classHierarchy == classHierarchy) {
+                filteredItems.Add(item);
+            }
+        }
+
+        return filteredItems;
+    }
+
     private void Awake(){
         if (classItems.Count == 0)
             RegenerateItems();
@@ -72,13 +84,17 @@ public class ItemPool : MonoBehaviour
     public bool AddItem(Item item){
         Debug.Log("Added an item");
         ClassItem ci = FindClassItemFromItem(item);
-        if (ci != null)
+        if (ci != null){
+            Debug.LogError("Item was bought but it already exists in item pool.");
             return false;
+        }
         GameObject prefab = FindPrefabFromItem(item);
         if (prefab != null){
             GameObject instance = Instantiate(prefab);
             AddItemToData(item.name.Replace("A",""));
             classItems.Add(instance.GetComponent<ClassItem>());
+        }else {
+            Debug.LogError("Couldn't find prefab from item");
         }
         return true;
     }

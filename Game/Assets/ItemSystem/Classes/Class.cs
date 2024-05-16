@@ -73,8 +73,22 @@ public class Class : MonoBehaviour
     }
 
     public void GoBackToParent(){
+        gameObject.SetActive(false);
         transform.SetParent(parent,true);
         transform.localPosition = Vector3.zero;
+    }
+
+    public void GoTo(Transform trans) {
+        gameObject.SetActive(true);
+        transform.SetParent(trans,true);
+        transform.localPosition = Vector3.zero;
+    }
+    public void GoTo(Vector3 pos, bool local) {
+        gameObject.SetActive(true);
+        if (local) 
+            transform.localPosition = pos;
+        else
+            transform.position = pos;
     }
 
     public int IncreaseBattery(){

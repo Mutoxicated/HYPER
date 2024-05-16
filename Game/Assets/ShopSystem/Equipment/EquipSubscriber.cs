@@ -40,7 +40,7 @@ public class EquipSubscriber : MonoBehaviour
         image.sprite = shop.currentEquips[index].equip.symbol;
         eqName.text = shop.currentEquips[index].equip.name;
         eqName.text = eqName.text.Replace("_",":");
-        cost.text = shop.Processed(shop.currentEquips[index].equip.cost).ToString()+"*";
+        cost.text = ItemShop.Processed(shop.currentEquips[index].equip.cost).ToString()+"*";
     }
 
     private void Update(){
@@ -54,7 +54,7 @@ public class EquipSubscriber : MonoBehaviour
     }
 
     public void EquipTaken(){
-        if (PlayerInfo.GetMoney() < shop.Processed(shop.currentEquips[index].equip.cost))
+        if (PlayerInfo.GetMoney() < ItemShop.Processed(shop.currentEquips[index].equip.cost))
             return;
         bool success = EquipmentManager.eq.AddEquipment(shop.currentEquips[index].equip);
         if (!success)

@@ -72,8 +72,8 @@ public class GunController : MonoBehaviour
             if (!once) {
                 //Debug.Log("no longer pressed");
                 angle = gunScrew.localEulerAngles.z;
-                Debug.Log(angle);
-                Debug.Log(angle % 73f);
+                //Debug.Log(angle);
+                //Debug.Log(angle % 73f);
                 angle += 73f-angle % 73f;
                 once = true;
             }
@@ -82,6 +82,8 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
+        if (shooter.GetIsLocked())
+            return;
         move_x = Mathf.Clamp(pic.GetVertical() * xMultiplier, -xThreshold, xThreshold);
         move_z = Mathf.Clamp(pic.GetHorizontal() * zMultiplier, -zThreshold, zThreshold);
         //point = new Vector3(-move_x, Mathf.Clamp(-playerRB.velocity.normalized.y, -yThreshold, yThreshold), -move_z);

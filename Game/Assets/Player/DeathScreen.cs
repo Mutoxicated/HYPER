@@ -49,11 +49,7 @@ public class DeathScreen : MonoBehaviour
         //info
         cis = ItemPool.GetClassItems();
         foreach (ClassItem ci in cis){
-            ci.UIMode(true);
-            ci.transform.SetParent(transform,true);
-            ci.transform.localRotation = Quaternion.identity;
-            ci.transform.localScale *= 0.1f;
-            ci.transform.localPosition = Vector3.zero;
+            ci.EnableUIMode(transform);
             ci.gameObject.SetActive(false);
             ais.AddItem(ci.transform);
         }

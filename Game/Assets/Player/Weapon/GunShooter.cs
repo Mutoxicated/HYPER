@@ -298,4 +298,8 @@ public class GunShooter : MonoBehaviour
     public void IsLocked(bool state){
         locked = state;
     }
+
+    public bool GetIsLocked() {
+        return locked;
+    }
 }

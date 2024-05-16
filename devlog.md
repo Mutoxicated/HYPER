@@ -1297,3 +1297,16 @@ In some cases, in fact, the old wireframe shader yielded better results, though 
 So anyway, it took me about a week to not just make it, but to actually figure out a viable technique for this. Of course though, this method doesn't come without some drawbacks. Firstly, it's more expensive (the shader is actually faster than the simple wireframe shader, because it doesn't have any if checks, the script is the problem, which means that it's only a problem at instatiation time if there are multiple objects in the scene with this script). Secondly, there must be no shared vertices. This is because of how the method works and how it abuses the geometry center to not draw lines of a triangle.
 
 These aren't really huge problems though. Anyway that's all for now.
+
+## Day 335 thru 342
+
+Started reimagining the ui for the main terminal (where the item, equipment shop, as well as the Passice Item Chain Structure and the Player Inventory exist) and specifically the Player Inventory UI. I basically wanted to combine the classes with the items so that they're all in one screen. Of course, I cannot have everything appearing on one screen, it would be wayyy too much, so I had to get creative.
+
+Then I got the idea of maybe showing the classes as cards and making the interactable so that when you press on one, a window will pop up showing all items in that class. That sounded pretty good to me, since I already display classes as cards, I just need to make them interactable, which isn't very hard to do. Unfortunately I didn't have time today to make them interactable, but I did end up making the placements of the classes.
+
+Here's how it currently looks like:
+![alt text](image-1.png)
+
+The little squares next to each card are the cells of it. The rows correspond to the batteries that are subdivided into cells. Once a battery is filled, that class will get a boost, as well as all the classes located one class hierarchy below.
+
+Will try to implement the interactability tomorrow.

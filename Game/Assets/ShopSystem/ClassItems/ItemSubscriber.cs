@@ -7,8 +7,6 @@ using UnityEngine.EventSystems;
 
 public class ItemSubscriber : MonoBehaviour
 {
-    [SerializeField] private bool beingSold;
-    [SerializeField] private ItemSorter iss;
     [SerializeField] private ItemInfo ii;
     [SerializeField] private ItemShop shop;
     [SerializeField] private int index;
@@ -30,24 +28,15 @@ public class ItemSubscriber : MonoBehaviour
         initScale = scalableObj.transform.localScale;
         maxScale = initScale*1.1f;
         currScale = initScale;
-        if (beingSold)
-            DressItem();
-    }
-
-    private void DressItem(){
-        image.sprite = currentItem.itemImage;
     }
 
     public void UpdateItem(){
-        if (!gameObject.activeSelf && !beingSold)
+        if (!gameObject.activeSelf)
             gameObject.SetActive(true);
         currentItem = shop.currentItems[index].item;
-        if (!beingSold){
-            gameObject.SetActive(shop.currentItems[index].GetActive());
-            title.text = currentItem.itemName;
-            title.color = currentItem.nameColor;
-            cost.text = shop.Processed(currentItem.cost).ToString()+"*";
-        }
+        title.text = currentItem.itemName;
+        title.color = currentItem.nameColor;
+        cost.text = ItemShop.Processed(currentItem.cost).ToString()+"*";
         image.sprite = currentItem.itemImage;
     }
 
@@ -71,12 +60,12 @@ public class ItemSubscriber : MonoBehaviour
     }
 
     public void ItemTaken(){
-        if (PlayerInfo.GetMoney() < shop.Processed(currentItem.cost))
+        if (PlayerInfo.GetMoney() < ItemShop.Processed(currentItem.cost))
             return;
         bool success = PlayerInfo.GetIP().AddItem(currentItem);
         if (!success)
             return;
-        PlayerInfo.SetMoney(-shop.Processed(currentItem.cost));
+        PlayerInfo.SetMoney(-ItemShop.Processed(currentItem.cost));
         gameObject.SetActive(false);
         shop.currentItems[index].SetActive(false);
         currScale = initScale;
@@ -88,17 +77,12 @@ public class ItemSubscriber : MonoBehaviour
     public void ItemRetrieved(){
         PlayerInfo.GetIP().RemoveItem(currentItem);
 
-        PlayerInfo.SetMoney(shop.Processed(currentItem.cost*ItemShop.sellMultiplier));
+        PlayerInfo.SetMoney(ItemShop.Processed(currentItem.cost*ItemShop.sellMultiplier));
         gameObject.SetActive(false);
-        iss.Structure();
         currScale = initScale;
         scalableObj.transform.localScale = currScale;
         hovering = false;
         ii.UpdateInfo(null,currentItem);
-    }
-
-    public bool IsBeingSold(){
-        return beingSold;
     }
 
     public bool DetectExistenceInShop(){

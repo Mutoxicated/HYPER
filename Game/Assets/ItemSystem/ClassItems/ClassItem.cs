@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,37 +26,36 @@ public enum classType {
     Alpha_Lanista,
     Sagacita,
     Elementum,
-    Sigma_Lanista,
     //HYPER CLASSES \/
     Mooner,
     Xenia,
     Omega_Lanista,
     Artemis,
     Zeus,
-    Hekate,
     Dione,
     Mentor,
     Lizzard,
     Hra,
-    Baller,
     Avatar,
-    Kappa_Lanista,
-    Grinder,
-    Lambda_Lanista
 }
 [Serializable]
 public enum ItemType {
     ACTIVE,
-    WEAPON
+    PASSIVE
 }
 
 public class ClassItem : MonoBehaviour
 {
+    public Item itemInfo;
+    [SerializeField] private InfoBoxPopper ibp;
     [SerializeField] private ItemType itemType;
+    public ClassHierarchy classHierarchy;
     [SerializeField] private List<classType> classes = new List<classType>();//classes the class item is in
     [SerializeField] private Image image;
 
     [SerializeField] private bool reApplyEffectsOnSceneChange = true;
+    [HideInInspector] public AddItemsToSorter aits;
+    [HideInInspector] public bool sellable = false;
 
     public void IncreaseClassesBattery(){
         foreach (classType ct in classes){
@@ -91,7 +91,38 @@ public class ClassItem : MonoBehaviour
         return classes;
     }
 
-    public void UIMode(bool state){
-        image.enabled = state;
+    public void Sell() {
+        if (!sellable) 
+        {
+            Debug.Log("Not sellable ("+gameObject.name+").", gameObject);
+            return;
+        };
+        PlayerInfo.SetMoney(ItemShop.Processed(itemInfo.cost*ItemShop.sellMultiplier));
+        aits.RemoveItem(this);
+        if (ibp.popped) {
+            InfoBox.ib.UnpopBox();
+        }
+        sellable = false;
+    }
+
+    public void SellMode(bool state) {
+        sellable = state;
+    }
+
+    public void EnableUIMode(Transform trans){
+        transform.SetParent(trans,true);
+        transform.localRotation = Quaternion.identity;
+        transform.localScale *= 0.1f;
+        transform.localPosition = Vector3.zero;
+        image.enabled = true;
+    }
+
+    public void DisableUIMode(){
+        image.enabled = false;
+        transform.localRotation = Quaternion.identity;
+        transform.localScale *= 10f;
+        transform.localPosition = Vector3.zero;
+        transform.SetParent(null,true);
+        DontDestroyOnLoad(transform);
     }
 }

@@ -11,6 +11,7 @@ public class ActualItemSorter : MonoBehaviour
     [SerializeField] private Vector2 direction;
 
     [SerializeField] private float scaleMod = 1f;
+    [SerializeField] private float transformScaleMod = 1f;
     [SerializeField] private float radiusReference = 3.5f;
     [SerializeField] private float maxSize = 8f;
 
@@ -50,14 +51,11 @@ public class ActualItemSorter : MonoBehaviour
     }
 
     private void OnEnable(){
-        if (items.Count == 0) return;
-        initScale = items[0].localScale;
-        heightAvailable = Height[1].localPosition.y-Height[0].localPosition.y;
-        widthAvailable = Width[1].localPosition.x-Width[0].localPosition.x;
+        if (items.Count == 0)
+            return;
+        PrepareValues();
 
-        Debug.Log("HeightAvail: "+heightAvailable+", WidthAvail: "+widthAvailable);
-
-        FindSmallestLineGenerationAvailable();
+        //Debug.Log("HeightAvail: "+heightAvailable+", WidthAvail: "+widthAvailable);
 
         SortItems();
     }
@@ -78,7 +76,17 @@ public class ActualItemSorter : MonoBehaviour
         items[itemIndex].localPosition = alteredPos;
 
         float t = Mathf.InverseLerp(0f,radiusReference,yIncrement*0.5f);
-        items[itemIndex].localScale = initScale*t*scaleOffset;
+        items[itemIndex].localScale = initScale*t*scaleOffset*transformScaleMod;
+    }
+
+    public void RevertItemScaling() {
+        foreach (var item in items) {
+            item.localScale = initScale;
+        }
+    }
+
+    public void RevertItemScaling(Transform trans) {
+        trans.localScale = initScale;
     }
 
     public void SortItems(){
@@ -96,6 +104,14 @@ public class ActualItemSorter : MonoBehaviour
 
     public void AddItem(Transform trans){
         items.Add(trans);
+    }
+
+    public void RemoveItem(Transform trans) {
+        items.Remove(trans);
+    }
+
+    public void ClearItems() {
+        items.Clear();
     }
 
     public void PrepareValues(){

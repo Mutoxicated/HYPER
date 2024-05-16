@@ -11,11 +11,14 @@ public class ClassSystem : MonoBehaviour
 
     [SerializeField] private List<Class> classes = new List<Class>();
 
+    public static List<Class> ClassList = new List<Class>();
+
     public static void Reset(){
         starterEffectivenessMod = 1f;
         synergizedEffectivenessMod = 1f;
         HYPEREffectivenessMod = 1f;
-        classDict = new Dictionary<classType, Class>();
+        classDict.Clear();
+        ClassList.Clear();
     }
 
     private void Awake(){
@@ -23,6 +26,7 @@ public class ClassSystem : MonoBehaviour
         foreach (Class _class in classes){
             classDict.Add(_class.PapersPlease()._classType,_class);
         }
+        ClassList = classes;
     }
 
     private static void EvaluateBoost(ClassHierarchy hierarchy, int cellAmount){

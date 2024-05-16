@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class ShopMat : MonoBehaviour
 {
-    private GameObject[] GUI;
+    [SerializeField] private GameObject[] GUI;
 
     [SerializeField] private TransformLerper tl;
     [SerializeField] private TransformLerper tl2;
-    [SerializeField] private GameObject text;
+    [SerializeField] private GameObject waitingScreen;
     [SerializeField] private GameObject mainMenu;
 
     private Rigidbody rb;
 
     private void Start(){
         Debug.Log("Hppp.");
-        GUI = GameObject.FindGameObjectsWithTag("GUI");
         tl.SetTrans(PlayerInfo.GetCam().transform);
         tl2.SetTrans(PlayerInfo.GetCam().transform);
         tl2.SetTransToLerpTo(PlayerInfo.GetCam().transform.parent);
@@ -29,7 +28,7 @@ public class ShopMat : MonoBehaviour
     private void Lock(){
         tl.EnableTransformLerper();
         PlayerIsLocked(true);
-        text.SetActive(false);
+        waitingScreen.SetActive(false);
         mainMenu.SetActive(true);
         PlayerInfo.GetMovement().enabled = false;
         foreach (GameObject go in GUI){
@@ -39,7 +38,7 @@ public class ShopMat : MonoBehaviour
 
     public void Unlock(){
         tl2.EnableTransformLerper();
-        text.SetActive(true);
+        waitingScreen.SetActive(true);
         mainMenu.SetActive(false);
     }
 

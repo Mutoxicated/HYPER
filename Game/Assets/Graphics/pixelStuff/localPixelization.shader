@@ -60,9 +60,10 @@ Shader "Custom/localPixelization"
 
             ENDCG
         }
-        ZWrite Off
-        Cull Off
         GrabPass{ "_GrabTransparentTexture" }
+        ZWrite Off
+        Cull Back
+        Blend Off
         Pass
         {
             CGPROGRAM

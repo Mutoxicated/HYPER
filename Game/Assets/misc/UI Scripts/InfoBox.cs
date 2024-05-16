@@ -13,11 +13,14 @@ public class InfoBox : MonoBehaviour
     private float zOffset = -10f;
     private Vector3 alteredPos;
 
-    public void PopBox(Vector3 pos, string title, string description){
-        this.title.text = title;
-        this.description.text ="Description: "+description;
+    public void UpdateInfo(Item item) {
+        title.text = item.itemName;
+        title.color = item.nameColor;
+        description.text = "Description: "+item.description;
+    }
 
-        transform.parent.transform.position = pos;
+    public void PopBox(Vector2 pointerPos){
+        transform.parent.transform.position = Camera.main.ScreenToWorldPoint(pointerPos);
         alteredPos = transform.parent.transform.localPosition;
         alteredPos.z = zOffset;
         transform.parent.transform.localPosition = alteredPos;
@@ -25,11 +28,7 @@ public class InfoBox : MonoBehaviour
         transform.parent.gameObject.SetActive(true);
     }
 
-    public void PopBox(Vector3 pos, Color titleColor, string title, string description){
-        this.title.text = title;
-        this.title.color = titleColor;
-        this.description.text = "Description: "+description;
-
+    public void PopBox(Vector3 pos){
         transform.parent.transform.position = pos;
         alteredPos = transform.parent.transform.localPosition;
         alteredPos.z = zOffset;

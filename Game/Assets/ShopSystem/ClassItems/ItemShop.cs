@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -59,7 +60,7 @@ public class ItemShop : MonoBehaviour
         IS = this;
         currentItems.Clear();
         currentEquips.Clear();
-        Debug.Log("get run data? "+getRunData);
+        // Debug.Log("get run data? "+getRunData);
         if (RunDataSave.rData.currentShopEquips.Count == 0){
             Randomize();
         }else{
@@ -73,8 +74,11 @@ public class ItemShop : MonoBehaviour
 
     private void RegenerateItems(){
         currentItems = RunDataSave.rData.currentShopItems;
+        int index = 0;
         foreach (ItemSubscriber es in itemSubs){
             es.UpdateItem();
+            es.gameObject.SetActive(currentItems[index].GetActive());
+            index++;
         }
         currentEquips = RunDataSave.rData.currentShopEquips;
         foreach (EquipSubscriber es in equipSubs){
@@ -110,6 +114,7 @@ public class ItemShop : MonoBehaviour
     }
 
     private void GetRandomItems(int amount){
+        currentItems.Clear();
         modifiableItems = items.ToArray().ToList();
         int rn = 0;
         for (int i = 0; i <  items.Count;i++){
@@ -126,13 +131,15 @@ public class ItemShop : MonoBehaviour
         }
     }
 
-    public int Processed(float num){
+    public static int Processed(float num){
         return Mathf.RoundToInt(num*cheapnessMod*expensiveMod);
     }
 
     public void Reroll(){
         if (ValidateCost(rerollCost))
             GetRandomItems(3);
+        else 
+            Debug.Log("Not enough money.");
     }
 
     private void GetRandomGunEquipment(int amount){

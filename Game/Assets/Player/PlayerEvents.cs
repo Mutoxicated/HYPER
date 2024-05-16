@@ -6,9 +6,13 @@ using UnityEngine.Events;
 
 public static class PlayerEvents 
 {
+    public delegate void Event(Vector3 pos, Quaternion rot);
+
     public static void Flush() {
         EnemyBulletKill = null;
     }
 
-    public static UnityEvent<Vector3, Quaternion> EnemyBulletKill = new UnityEvent<Vector3, Quaternion>();
+    public static void Empty(Vector3 pos, Quaternion rot) { }
+
+    public static Event EnemyBulletKill = new Event(Empty);
 }
