@@ -29,11 +29,11 @@ public class Outline : MonoBehaviour {
   [SerializeField, Range(0f, 20f),Tooltip("For line thickness consistency between this and wireframes, 1.05 is recommended.")]
   private float outlineWidth = 2f;
 
-  [Header("Optional")]
+  //[Header("Optional")]
 
-  [SerializeField, Tooltip("Precompute enabled: Per-vertex calculations are performed in the editor and serialized with the object. "
-  + "Precompute disabled: Per-vertex calculations are performed at runtime in Awake(). This may cause a pause for large meshes.")]
-  private bool precomputeOutline;
+  //[SerializeField, Tooltip("Precompute enabled: Per-vertex calculations are performed in the editor and serialized with the object. "
+  //+ "Precompute disabled: Per-vertex calculations are performed at runtime in Awake(). This may cause a pause for large meshes.")]
+  //private bool precomputeOutline;
 
   [SerializeField, HideInInspector]
   private List<Mesh> bakeKeys = new List<Mesh>();
@@ -53,6 +53,7 @@ public class Outline : MonoBehaviour {
 
     outlineFillMaterial.name = "OutlineFill (Instance)";
 
+    Bake();
     // Retrieve or generate smooth normals
     LoadSmoothNormals();
 
@@ -77,16 +78,16 @@ public class Outline : MonoBehaviour {
 
   void OnValidate() {
 
-    // Clear cache when baking is disabled or corrupted
-    if (!precomputeOutline && bakeKeys.Count != 0 || bakeKeys.Count != bakeValues.Count) {
-      bakeKeys.Clear();
-      bakeValues.Clear();
-    }
+    // // Clear cache when baking is disabled or corrupted
+    // if (!precomputeOutline && bakeKeys.Count != 0 || bakeKeys.Count != bakeValues.Count) {
+    //   bakeKeys.Clear();
+    //   bakeValues.Clear();
+    // }
 
-    // Generate smooth normals when baking is enabled
-    if (precomputeOutline && bakeKeys.Count == 0) {
-      Bake();
-    }
+    // // Generate smooth normals when baking is enabled
+    // if (precomputeOutline && bakeKeys.Count == 0) {
+    //   Bake();
+    // }
   }
 
 
@@ -108,16 +109,13 @@ public class Outline : MonoBehaviour {
 
   void Bake() {
 
-    // Generate smooth normals for each mesh
-    var bakedMeshes = new HashSet<Mesh>();
-
     var meshFilter = GetComponent<MeshFilter>();
 
-      // Serialize smooth normals
-      var smoothNormals = SmoothNormals(meshFilter.sharedMesh);
+    // Serialize smooth normals
+    var smoothNormals = SmoothNormals(meshFilter.mesh);
 
-      bakeKeys.Add(meshFilter.sharedMesh);
-      bakeValues.Add(new ListVector3() { data = smoothNormals });
+    bakeKeys.Add(meshFilter.mesh);
+    bakeValues.Add(new ListVector3() { data = smoothNormals });
     
   }
 
@@ -127,17 +125,17 @@ public class Outline : MonoBehaviour {
     var meshFilter = GetComponent<MeshFilter>();
 
       // Retrieve or generate smooth normals
-      var index = bakeKeys.IndexOf(meshFilter.sharedMesh);
-      var smoothNormals = (index >= 0) ? bakeValues[index].data : SmoothNormals(meshFilter.sharedMesh);
+      var index = bakeKeys.IndexOf(meshFilter.mesh);
+      var smoothNormals = (index >= 0) ? bakeValues[index].data : SmoothNormals(meshFilter.mesh);
 
       // Store smooth normals in UV3
-      meshFilter.sharedMesh.SetUVs(3, smoothNormals);
+      meshFilter.mesh.SetUVs(3, smoothNormals);
 
       // Combine submeshes
       var renderer = meshFilter.GetComponent<Renderer>();
 
       if (renderer != null) {
-        CombineSubmeshes(meshFilter.sharedMesh, renderer.sharedMaterials);
+        CombineSubmeshes(meshFilter.mesh, renderer.sharedMaterials);
       }
     
 
@@ -161,6 +159,9 @@ public class Outline : MonoBehaviour {
 
     // Copy normals to a new list
     var smoothNormals = new List<Vector3>(mesh.normals);
+
+    if (smoothNormals.Count == 0)
+      return smoothNormals;
 
     // Average normals for grouped vertices
     foreach (var group in groups) {

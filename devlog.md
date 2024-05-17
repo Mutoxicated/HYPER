@@ -1310,3 +1310,11 @@ Here's how it currently looks like:
 The little squares next to each card are the cells of it. The rows correspond to the batteries that are subdivided into cells. Once a battery is filled, that class will get a boost, as well as all the classes located one class hierarchy below.
 
 Will try to implement the interactability tomorrow.
+
+## Day 343
+
+Made class cards interactable. Haven't yet made the items appear and stuff but will do that tomorrow. I also (half) fixed (the other half tomorrow) a build-related problem regarding the outline script. For some reason, unity does not calculate the normals of an imported mesh on build when setting the normals in the import settings to "Calculate". It's stupid but oh well.
+
+I made some slight improvements to the wireframe shader, where now the further away an object is, the thinner the wireframe lines become. It makes far away objects actually look far away.
+
+I'm gonna fully fix the normals bug and fully implement the showing of the class items tomorrow.

@@ -5321,7 +5321,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 1}
   outlineWidth: 2
-  precomputeOutline: 1
   bakeKeys:
   - {fileID: 8155765629141027734, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
   bakeValues:
@@ -22954,7 +22953,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.1882353, g: 0.1882353, b: 0.1882353, a: 1}
   outlineWidth: 2
-  precomputeOutline: 1
   bakeKeys:
   - {fileID: -5518553633264409321, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
   bakeValues:
@@ -23805,7 +23803,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 1}
   outlineWidth: 2
-  precomputeOutline: 1
   bakeKeys:
   - {fileID: 8155765629141027734, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
   bakeValues:
@@ -28820,7 +28817,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
   outlineWidth: 2
-  precomputeOutline: 1
   bakeKeys:
   - {fileID: 7454171102033758545, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
   bakeValues:
@@ -35041,7 +35037,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.1882353, g: 0.1882353, b: 0.1882353, a: 1}
   outlineWidth: 2
-  precomputeOutline: 1
   bakeKeys:
   - {fileID: -5518553633264409321, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
   bakeValues:
@@ -36442,7 +36437,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
   outlineWidth: 2
-  precomputeOutline: 1
   bakeKeys:
   - {fileID: 7454171102033758545, guid: 3eb6b20193e1fc64299e70610b386226, type: 3}
   bakeValues:
@@ -40202,99 +40196,8 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.31132078, g: 0.12482201, b: 0.12482201, a: 1}
   outlineWidth: 8.25
-  precomputeOutline: 1
-  bakeKeys:
-  - {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
-  bakeValues:
-  - data:
-    - {x: -0.85065114, y: -0.44721365, z: -0.27639234}
-    - {x: -0.57206136, y: -0.7071067, z: -0.415627}
-    - {x: -0.41562682, y: -0.70710677, z: -0.5720615}
-    - {x: -0.21850787, y: -0.70710677, z: -0.6724985}
-    - {x: 0, y: -0.70710677, z: -0.70710677}
-    - {x: 0.21850811, y: -0.70710677, z: -0.6724985}
-    - {x: 0.41562706, y: -0.70710677, z: -0.5720613}
-    - {x: 0.5720615, y: -0.70710677, z: -0.41562685}
-    - {x: 0.6724985, y: -0.70710677, z: -0.21850792}
-    - {x: 0.8944272, y: -0.4472136, z: 0}
-    - {x: 0.6724985, y: -0.70710677, z: 0.21850805}
-    - {x: 0.57206136, y: -0.70710677, z: 0.41562703}
-    - {x: 0.41562688, y: -0.70710677, z: 0.5720615}
-    - {x: 0.21850798, y: -0.70710677, z: 0.6724985}
-    - {x: 0, y: -0.70710677, z: 0.70710677}
-    - {x: -0.21850806, y: -0.70710677, z: 0.6724985}
-    - {x: -0.41562694, y: -0.70710677, z: 0.5720614}
-    - {x: -0.5720614, y: -0.70710677, z: 0.41562694}
-    - {x: -0.6724985, y: -0.70710677, z: 0.21850798}
-    - {x: -0.8944272, y: -0.4472136, z: 0}
-    - {x: -0.85065114, y: 0.44721365, z: -0.27639234}
-    - {x: -0.57206136, y: 0.7071067, z: -0.415627}
-    - {x: -0.41562682, y: 0.70710677, z: -0.5720615}
-    - {x: -0.21850787, y: 0.70710677, z: -0.6724985}
-    - {x: 0, y: 0.70710677, z: -0.70710677}
-    - {x: 0.21850811, y: 0.70710677, z: -0.6724985}
-    - {x: 0.41562706, y: 0.70710677, z: -0.5720613}
-    - {x: 0.5720615, y: 0.70710677, z: -0.41562685}
-    - {x: 0.6724985, y: 0.70710677, z: -0.21850792}
-    - {x: 0.8944272, y: 0.4472136, z: 0}
-    - {x: 0.6724985, y: 0.70710677, z: 0.21850805}
-    - {x: 0.57206136, y: 0.70710677, z: 0.41562703}
-    - {x: 0.41562688, y: 0.70710677, z: 0.5720615}
-    - {x: 0.21850798, y: 0.70710677, z: 0.6724985}
-    - {x: 0, y: 0.70710677, z: 0.70710677}
-    - {x: -0.21850806, y: 0.70710677, z: 0.6724985}
-    - {x: -0.41562694, y: 0.70710677, z: 0.5720614}
-    - {x: -0.5720614, y: 0.70710677, z: 0.41562694}
-    - {x: -0.6724985, y: 0.70710677, z: 0.21850798}
-    - {x: -0.8944272, y: 0.4472136, z: 0}
-    - {x: 0, y: -1, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 0.8944272, y: -0.4472136, z: 0}
-    - {x: 0.8944272, y: 0.4472136, z: 0}
-    - {x: -0.8944272, y: -0.4472136, z: 0}
-    - {x: -0.8944272, y: 0.4472136, z: 0}
-    - {x: -0.85065114, y: 0.44721365, z: -0.27639234}
-    - {x: -0.85065114, y: -0.44721365, z: -0.27639234}
-    - {x: -0.57206136, y: -0.7071067, z: -0.415627}
-    - {x: -0.85065114, y: -0.44721365, z: -0.27639234}
-    - {x: -0.41562682, y: -0.70710677, z: -0.5720615}
-    - {x: -0.21850787, y: -0.70710677, z: -0.6724985}
-    - {x: 0, y: -0.70710677, z: -0.70710677}
-    - {x: 0.21850811, y: -0.70710677, z: -0.6724985}
-    - {x: 0.41562706, y: -0.70710677, z: -0.5720613}
-    - {x: 0.5720615, y: -0.70710677, z: -0.41562685}
-    - {x: 0.6724985, y: -0.70710677, z: -0.21850792}
-    - {x: 0.8944272, y: -0.4472136, z: 0}
-    - {x: 0.6724985, y: -0.70710677, z: 0.21850805}
-    - {x: 0.57206136, y: -0.70710677, z: 0.41562703}
-    - {x: 0.41562688, y: -0.70710677, z: 0.5720615}
-    - {x: 0.21850798, y: -0.70710677, z: 0.6724985}
-    - {x: 0, y: -0.70710677, z: 0.70710677}
-    - {x: -0.21850806, y: -0.70710677, z: 0.6724985}
-    - {x: -0.41562694, y: -0.70710677, z: 0.5720614}
-    - {x: -0.5720614, y: -0.70710677, z: 0.41562694}
-    - {x: -0.6724985, y: -0.70710677, z: 0.21850798}
-    - {x: -0.8944272, y: -0.4472136, z: 0}
-    - {x: -0.85065114, y: 0.44721365, z: -0.27639234}
-    - {x: -0.57206136, y: 0.7071067, z: -0.415627}
-    - {x: -0.41562682, y: 0.70710677, z: -0.5720615}
-    - {x: -0.21850787, y: 0.70710677, z: -0.6724985}
-    - {x: 0, y: 0.70710677, z: -0.70710677}
-    - {x: 0.21850811, y: 0.70710677, z: -0.6724985}
-    - {x: 0.41562706, y: 0.70710677, z: -0.5720613}
-    - {x: 0.5720615, y: 0.70710677, z: -0.41562685}
-    - {x: 0.6724985, y: 0.70710677, z: -0.21850792}
-    - {x: 0.8944272, y: 0.4472136, z: 0}
-    - {x: 0.6724985, y: 0.70710677, z: 0.21850805}
-    - {x: 0.57206136, y: 0.70710677, z: 0.41562703}
-    - {x: 0.41562688, y: 0.70710677, z: 0.5720615}
-    - {x: 0.21850798, y: 0.70710677, z: 0.6724985}
-    - {x: 0, y: 0.70710677, z: 0.70710677}
-    - {x: -0.21850806, y: 0.70710677, z: 0.6724985}
-    - {x: -0.41562694, y: 0.70710677, z: 0.5720614}
-    - {x: -0.5720614, y: 0.70710677, z: 0.41562694}
-    - {x: -0.6724985, y: 0.70710677, z: 0.21850798}
-    - {x: -0.8944272, y: 0.4472136, z: 0}
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &1874598300 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5798706023258461801, guid: 6d3282f0d2d50fb49b2265b70c67fc25, type: 3}
@@ -41521,7 +41424,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
   outlineWidth: 8.25
-  precomputeOutline: 1
   bakeKeys:
   - {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   bakeValues:
@@ -42887,15 +42789,9 @@ MonoBehaviour:
   m_ShowToolkit: 0
   m_ShowCustomSorter: 0
   breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles:
-  - assemblyQualifiedName: EdgeDetect_BeforeTransparent, Assembly-CSharp-firstpass,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_BeforeStackBundles:
-  - assemblyQualifiedName: EdgeDetect_BeforeStack, Assembly-CSharp-firstpass, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  m_AfterStackBundles:
-  - assemblyQualifiedName: EdgeDetect_AfterStack, Assembly-CSharp-firstpass, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!114 &2006926804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46501,11 +46397,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7136820527826350712, guid: b338cd9943faa514a8bf068fc4c37a30, type: 3}
       propertyPath: bakeKeys.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7136820527826350712, guid: b338cd9943faa514a8bf068fc4c37a30, type: 3}
       propertyPath: bakeValues.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7136820527826350712, guid: b338cd9943faa514a8bf068fc4c37a30, type: 3}
       propertyPath: bakeKeys.Array.data[0]

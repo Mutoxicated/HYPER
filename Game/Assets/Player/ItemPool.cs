@@ -82,14 +82,13 @@ public class ItemPool : MonoBehaviour
     }
 
     public bool AddItem(Item item){
-        Debug.Log("Added an item");
         ClassItem ci = FindClassItemFromItem(item);
         if (ci != null){
-            Debug.LogError("Item was bought but it already exists in item pool.");
             return false;
         }
         GameObject prefab = FindPrefabFromItem(item);
         if (prefab != null){
+            Debug.Log("Added an item");
             GameObject instance = Instantiate(prefab);
             AddItemToData(item.name.Replace("A",""));
             classItems.Add(instance.GetComponent<ClassItem>());

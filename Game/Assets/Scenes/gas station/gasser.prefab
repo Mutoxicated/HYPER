@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6051168275857877936}
   - component: {fileID: 1513911819682230817}
   - component: {fileID: 2223883896554251213}
+  - component: {fileID: 8038640456270555816}
   m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
@@ -100,6 +101,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matIndex: 1
   color: {r: 1, g: 0.30419827, b: 0.23921567, a: 0}
+--- !u!114 &8038640456270555816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462863162710282272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c07327e6f487af44bfb15a4d353c403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshFilter: {fileID: 6051168275857877936}
+  sensitivity: 0.1
+  onlyTriangles: 0
 --- !u!1 &519767024537266260
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +179,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3d96a8e96360a2b4baebb860bc77c3af, type: 2}
-  - {fileID: 2100000, guid: faaa325337eda674eb7d833191ce2384, type: 2}
+  - {fileID: 2100000, guid: a08bfef4bce6d8f439f3b68ceb6206d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -298,7 +314,6 @@ MonoBehaviour:
   stencilIndex: 2
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 0.7
-  precomputeOutline: 1
   bakeKeys:
   - {fileID: -7387706064836869012, guid: e1091bf9eb378fc46b42923c8906ea8c, type: 3}
   bakeValues:
@@ -5409,6 +5424,7 @@ GameObject:
   - component: {fileID: 6304001706028105696}
   - component: {fileID: 589746441516251133}
   - component: {fileID: 790471621281842380}
+  - component: {fileID: 4253145041064503457}
   m_Layer: 0
   m_Name: Handle2
   m_TagString: Untagged
@@ -5497,6 +5513,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matIndex: 1
   color: {r: 0.2783019, g: 1, b: 0.33669275, a: 0}
+--- !u!114 &4253145041064503457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753933826797883861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c07327e6f487af44bfb15a4d353c403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshFilter: {fileID: 6304001706028105696}
+  sensitivity: 0.1
+  onlyTriangles: 0
 --- !u!1 &1266560520769175308
 GameObject:
   m_ObjectHideFlags: 0
@@ -5628,7 +5659,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3d96a8e96360a2b4baebb860bc77c3af, type: 2}
-  - {fileID: 2100000, guid: faaa325337eda674eb7d833191ce2384, type: 2}
+  - {fileID: 2100000, guid: a08bfef4bce6d8f439f3b68ceb6206d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5763,7 +5794,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 0.7
-  precomputeOutline: 1
   bakeKeys:
   - {fileID: 2534964839176971238, guid: e1091bf9eb378fc46b42923c8906ea8c, type: 3}
   bakeValues:
@@ -11026,7 +11056,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3d96a8e96360a2b4baebb860bc77c3af, type: 2}
-  - {fileID: 2100000, guid: faaa325337eda674eb7d833191ce2384, type: 2}
+  - {fileID: 2100000, guid: a08bfef4bce6d8f439f3b68ceb6206d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11074,6 +11104,7 @@ GameObject:
   - component: {fileID: 3800007160935455264}
   - component: {fileID: 4736198609889117951}
   - component: {fileID: 5123139591176475813}
+  - component: {fileID: 7550997070472414693}
   m_Layer: 0
   m_Name: main
   m_TagString: Untagged
@@ -11161,3 +11192,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matIndex: 1
   color: {r: 0.29803923, g: 1.654902, b: 2, a: 0}
+--- !u!114 &7550997070472414693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446074022115975764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c07327e6f487af44bfb15a4d353c403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshFilter: {fileID: 3800007160935455264}
+  sensitivity: 0.1
+  onlyTriangles: 0

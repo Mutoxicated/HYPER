@@ -8,6 +8,7 @@ public class ERotate : MonoBehaviour
     [SerializeField, Range(0.001f,20f)] private float lerpSpeed;
     [SerializeField] private Quaternion toRotation;
     [SerializeField] private bool randomRotation = true;
+    [SerializeField] private bool local;
     private float time;
 
     private void Start()
@@ -31,6 +32,9 @@ public class ERotate : MonoBehaviour
             toRotation = Random.rotation;
             time = 0;
         }
-        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime*lerpSpeed);
+        if (local)
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, toRotation, Time.deltaTime*lerpSpeed);
+        else
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime*lerpSpeed);
     }
 }

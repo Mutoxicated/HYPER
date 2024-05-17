@@ -63,6 +63,10 @@ Shader "Custom/Outline Fill" {
         fixed4 color : COLOR;
       };
 
+      inline float invLerp(float a,float b,float v) {
+        return (v-a)/(b-a);
+      }
+
       uniform fixed4 _OutlineColor;
       uniform float _OutlineWidth;
 
@@ -74,14 +78,20 @@ Shader "Custom/Outline Fill" {
         float3 viewPosition = UnityObjectToViewPos(input.vertex);
         float3 viewNormal = normalize(mul((float3x3)UNITY_MATRIX_IT_MV, normal));
 
-        output.position = UnityViewToClipPos(viewPosition + viewNormal * -clamp(viewPosition.z,-7,1) * _OutlineWidth / 100.0);
+        float3 worldPos = mul(unity_ObjectToWorld, input.vertex);
+        float3 diff = abs(_WorldSpaceCameraPos-worldPos);
+        float camDist = (diff.x+diff.y+diff.z)*0.333f;
+        camDist = invLerp(1400,200,camDist);
+        camDist = clamp(camDist,0.5,1);
+
+        output.position = UnityViewToClipPos(viewPosition + viewNormal * -clamp(viewPosition.z,-7,1) * _OutlineWidth * camDist / 100.0);
         output.color = _OutlineColor;
 
         return output;
       }
 
       fixed4 frag(v2f input) : SV_Target {
-        return input.color;
+        return input.color ;
       }
       ENDCG
     }

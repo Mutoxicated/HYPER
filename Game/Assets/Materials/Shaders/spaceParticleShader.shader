@@ -11,6 +11,8 @@ Shader "Custom/SpaceParticle"
         LOD 100
         Blend SrcAlpha OneMinusSrcAlpha
         ZWrite Off
+        ZTest Always
+
         Pass
         {
             CGPROGRAM

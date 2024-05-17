@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ActualItemSorter : MonoBehaviour
 {
-    [SerializeField] private Transform[] Width;
-    [SerializeField] private Transform[] Height;
+    [SerializeField] private Transform[] Frame;
 
     [SerializeField] private List<Transform> items = new List<Transform>();
     [SerializeField] private Vector2 direction;
@@ -61,7 +60,7 @@ public class ActualItemSorter : MonoBehaviour
     }
 
     private void SortItem(int lineIndex,int columnIndex, int itemIndex){
-        items[itemIndex].position = Height[1].position;
+        items[itemIndex].position = Frame[1].position;
 
         alteredPos = items[itemIndex].localPosition;
 
@@ -117,8 +116,8 @@ public class ActualItemSorter : MonoBehaviour
     public void PrepareValues(){
         if (items.Count == 0) return;
         initScale = items[0].localScale;
-        heightAvailable = Height[1].localPosition.y-Height[0].localPosition.y;
-        widthAvailable = Width[1].localPosition.x-Width[0].localPosition.x;
+        heightAvailable = Frame[1].localPosition.y-Frame[0].localPosition.y;
+        widthAvailable = Frame[1].localPosition.x-Frame[0].localPosition.x;
 
         Debug.Log("HeightAvail: "+heightAvailable+", WidthAvail: "+widthAvailable);
 
