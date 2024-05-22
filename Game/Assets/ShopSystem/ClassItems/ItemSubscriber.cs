@@ -86,7 +86,7 @@ public class ItemSubscriber : MonoBehaviour
     }
 
     public bool DetectExistenceInShop(){
-        if (PlayerInfo.GetIP().FindClassItemFromItem(currentItem) != null){
+        if (PlayerInfo.GetIP().FindFromItem(currentItem, ItemPool.enabledItems) != null){
             gameObject.SetActive(true);
             return true;
         }

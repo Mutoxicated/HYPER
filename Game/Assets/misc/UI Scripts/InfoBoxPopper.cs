@@ -5,10 +5,13 @@ using UnityEngine.InputSystem;
 public class InfoBoxPopper : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Item optionalInfo;
+    public State state = new State(ClassItem.Empty);
 
-    [SerializeField] public bool popped;
+    [HideInInspector] public bool popped;
 
     public void OnPointerEnter(PointerEventData pointerEventData) {
+        if (!enabled) return;
+        state.Invoke(true);
         InfoBox.ib.UpdateInfo(optionalInfo);
         Vector2 mousePos = Mouse.current.position.ReadValue();
         // Debug.Log(mousePos);
@@ -19,6 +22,8 @@ public class InfoBoxPopper : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     public void OnPointerExit(PointerEventData eventData) {
+        if (!enabled && !popped) return;
+        state.Invoke(false);
         InfoBox.ib.UnpopBox();
         popped = false;
     }

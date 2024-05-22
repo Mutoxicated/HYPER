@@ -10,4 +10,5 @@ public class ClassInfo : ScriptableObject
     public ClassHierarchy hierarchy;
     public Color color = Color.white;
     public Sprite image;
+    public string desc;
 }

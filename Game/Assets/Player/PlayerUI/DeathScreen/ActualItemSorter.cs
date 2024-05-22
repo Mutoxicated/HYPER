@@ -7,7 +7,7 @@ public class ActualItemSorter : MonoBehaviour
     [SerializeField] private Transform[] Frame;
 
     [SerializeField] private List<Transform> items = new List<Transform>();
-    [SerializeField] private Vector2 direction;
+    [SerializeField] private Vector2 direction = new Vector2(1,-1);
 
     [SerializeField] private float scaleMod = 1f;
     [SerializeField] private float transformScaleMod = 1f;
@@ -35,11 +35,13 @@ public class ActualItemSorter : MonoBehaviour
             return;
         }
         yIncrement = heightAvailable/lineGeneration;
+        yIncrement = Mathf.Abs(yIncrement);
         if (yIncrement > maxSize){
             yIncrement = maxSize;
         }
+        //Debug.Log("yIncrement: "+yIncrement);
 
-        Debug.Log("Line Gen:"+lineGeneration+",Y increment:"+yIncrement);
+        //Debug.Log("Line Gen:"+lineGeneration+",Y increment:"+yIncrement);
         columnGeneration = Mathf.FloorToInt(widthAvailable/yIncrement);
         maxItemsGenerationable = lineGeneration*columnGeneration;
         if (items.Count > maxItemsGenerationable){
@@ -60,22 +62,23 @@ public class ActualItemSorter : MonoBehaviour
     }
 
     private void SortItem(int lineIndex,int columnIndex, int itemIndex){
-        items[itemIndex].position = Frame[1].position;
+        items[itemIndex].position = Frame[0].position;
 
         alteredPos = items[itemIndex].localPosition;
 
-        //apply offset
-        alteredPos.x += direction.x*(yIncrement*0.5f)*scaleMod;
-        alteredPos.y += direction.y*(yIncrement*0.5f)*scaleMod;
+        //apply scaling
+        float t = Mathf.InverseLerp(0f,radiusReference,Mathf.Abs(yIncrement*0.5f));
+        items[itemIndex].localScale = initScale*t*scaleOffset*transformScaleMod;
+        //Debug.Log("Scale: "+items[itemIndex].localScale.x);
+        //apply scalling offset
+        alteredPos.x += direction.x*(yIncrement*0.5f);
+        alteredPos.y += direction.y*(yIncrement*0.5f);
 
         //apply offset based on current line index and current column index
-        alteredPos.x += direction.x*(yIncrement*(columnIndex-1))*scaleMod;
-        alteredPos.y += direction.y*(yIncrement*(lineIndex-1))*scaleMod;
+        alteredPos.x += direction.x*yIncrement*(columnIndex-1)*scaleMod;
+        alteredPos.y += direction.y*yIncrement*(lineIndex-1)*scaleMod;
 
         items[itemIndex].localPosition = alteredPos;
-
-        float t = Mathf.InverseLerp(0f,radiusReference,yIncrement*0.5f);
-        items[itemIndex].localScale = initScale*t*scaleOffset*transformScaleMod;
     }
 
     public void RevertItemScaling() {
@@ -119,7 +122,7 @@ public class ActualItemSorter : MonoBehaviour
         heightAvailable = Frame[1].localPosition.y-Frame[0].localPosition.y;
         widthAvailable = Frame[1].localPosition.x-Frame[0].localPosition.x;
 
-        Debug.Log("HeightAvail: "+heightAvailable+", WidthAvail: "+widthAvailable);
+        //Debug.Log("HeightAvail: "+heightAvailable+", WidthAvail: "+widthAvailable);
 
         FindSmallestLineGenerationAvailable();
     }

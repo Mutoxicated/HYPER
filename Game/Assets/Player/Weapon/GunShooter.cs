@@ -224,6 +224,10 @@ public class GunShooter : MonoBehaviour
         t = fireRate*weapon.fireRateModifier*stats.numericals["rate"];
     }
 
+    private void OnDisable() {
+        OnShootEvent.RemoveAllListeners();
+    }
+
     private void Update()
     {
         if (Time.timeScale == 0f)

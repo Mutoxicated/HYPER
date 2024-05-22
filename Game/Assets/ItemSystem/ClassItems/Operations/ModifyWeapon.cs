@@ -68,14 +68,23 @@ public class ModifyWeapon : MonoBehaviour
         }
     }
 
-    private void Start(){
-        ApplyEffect();
-        if (ci.ReApply())
-            SceneManager.sceneLoaded += ApplyEffect;
-       
+    private void Start() {
+        ci.state += State;
     }
 
-    private void OnDestroy(){
+    private void OnDestroy() {
+        ci.state -= State;
+    }
+
+    private void State(bool state){
+        if (state) {
+            ApplyEffect();
+            if (ci.ReApply())
+                SceneManager.sceneLoaded += ApplyEffect;
+            return;
+        }
+
+       
         if (ci.ReApply())
             SceneManager.sceneLoaded -= ApplyEffect;
         if (wps.Count == 0)

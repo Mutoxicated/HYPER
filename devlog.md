@@ -1318,3 +1318,7 @@ Made class cards interactable. Haven't yet made the items appear and stuff but w
 I made some slight improvements to the wireframe shader, where now the further away an object is, the thinner the wireframe lines become. It makes far away objects actually look far away.
 
 I'm gonna fully fix the normals bug and fully implement the showing of the class items tomorrow.
+
+## Day 344 thru 348
+
+Shop system is done! The content adding begins tomorrow.

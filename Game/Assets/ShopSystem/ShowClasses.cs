@@ -20,6 +20,7 @@ public class ShowClasses : MonoBehaviour
     private float hyperStep;
 
     private Vector3 curPos;
+    private bool alreadyShowed;
 
     private void Awake() {
         starterStep = starterXLength/4;
@@ -35,12 +36,13 @@ public class ShowClasses : MonoBehaviour
         foreach (var _class in classes) {
             _class.transform.SetParent(anchor, true);
             _class.GoTo(curPos, true);
-            _class.transform.localScale = _class.transform.localScale*scaleOffset;
+            if (!alreadyShowed)
+                _class.transform.localScale = _class.transform.localScale*scaleOffset;
             curPos.x += hierarchyStep;
         }
     }
 
-    private void OnEnable() {
+    public void Show() {
         var starters = ClassSystem.ClassList.GetRange(0, 4);
         var synergizers = ClassSystem.ClassList.GetRange(4, 5);
         var hypers = ClassSystem.ClassList.GetRange(9, 10);
@@ -48,6 +50,11 @@ public class ShowClasses : MonoBehaviour
         SetupClassHierarchy(starters, starterXLength, starterStep, 0);
         SetupClassHierarchy(synergizers, synergizedXLength, synergizedStep, 1);
         SetupClassHierarchy(hypers, hyperXLength, hyperStep, 2);
+        alreadyShowed = true;
+    }
+
+    private void OnEnable() {
+        Show();
     }
 
     private void OnDisable() {
@@ -55,5 +62,6 @@ public class ShowClasses : MonoBehaviour
             _class.transform.localScale = _class.transform.localScale/scaleOffset;
             _class.GoBackToParent();
         }
+        alreadyShowed = false;
     }
 }

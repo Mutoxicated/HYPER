@@ -71,7 +71,7 @@ public class ItemShop : MonoBehaviour
             RegenerateItems();
         }
     }
-
+    
     private void RegenerateItems(){
         currentItems = RunDataSave.rData.currentShopItems;
         int index = 0;

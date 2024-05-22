@@ -69,13 +69,13 @@ public class PIC : MonoBehaviour
 
     public void SetCurrentPiis(){
         for (int i = 0; i < slots.Length; i++){
-            Debug.Log("SETTING PIIS THROUGH SLOTS");
+            //Debug.Log("SETTING PIIS THROUGH SLOTS");
             //Debug.Log(slots[i].GetSO()+ " contains: "+);
             if (slots[i].GetSO() == null) {
                 currentPiis[i].pii = null;
                 continue;
             }
-            Debug.Log("PASSIVE NAME: "+pim.GetPassiveItemInfoByPassiveName(slots[i].GetSO().pip.GetCurrentPassive().gameObject.name).name);
+            //Debug.Log("PASSIVE NAME: "+pim.GetPassiveItemInfoByPassiveName(slots[i].GetSO().pip.GetCurrentPassive().gameObject.name).name);
             currentPiis[i].pii = pim.GetPassiveItemInfoByPassiveName(slots[i].GetSO().pip.GetCurrentPassive().gameObject.name);
         }
     }

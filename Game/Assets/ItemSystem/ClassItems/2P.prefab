@@ -32,13 +32,13 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -60,6 +60,7 @@ MonoBehaviour:
   classHierarchy: 0
   classes: 03000000
   image: {fileID: 3850826116398302471}
+  unlockedImage: {fileID: 21300000, guid: 3a21ab37efeb8a84d81ac4b854ff7d6c, type: 3}
   reApplyEffectsOnSceneChange: 1
   aits: {fileID: 0}
   sellable: 0
@@ -109,7 +110,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3a21ab37efeb8a84d81ac4b854ff7d6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7a8e7ed2b2d4e91458e09fa7d5fec436, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

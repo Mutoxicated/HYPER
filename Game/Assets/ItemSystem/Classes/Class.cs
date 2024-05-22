@@ -52,6 +52,7 @@ public class Class : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private TMP_Text className;
 
+    [HideInInspector] public List<ClassItem> classItems = new List<ClassItem>();
     private List<Battery> batteries = new List<Battery>();
     private int totalCells;
     private Transform parent;
@@ -113,7 +114,9 @@ public class Class : MonoBehaviour
                 cellAmount = batteries[i].cellAmount;
             }
             batteries[i].Increase(-maxItemsOfClass[(int)identity.hierarchy]/totalCells);
-            bds[i].Increase(batteries[i].GetCurrentCells());
+            var cells = batteries[i].GetCurrentCells();
+            Debug.Log("["+identity._classType+"] "+"cells: "+cells);
+            bds[i].Decrease(cells);
         }
         return cellAmount;
     }
@@ -126,17 +129,19 @@ public class Class : MonoBehaviour
             if (bds[i].GetPending()) continue;
             float hypotheticalIncrease = batteries[i].GetUnflooredCells()+maxItemsOfClass[(int)identity.hierarchy]/totalCells;
             bds[i].SetPending(batteries[i].GetCurrentCells(),Mathf.FloorToInt(hypotheticalIncrease),false);
+            return;
         }
     }
 
     public void PendBatteryDecrease(){
-        for (int i = 0; i < batteries.Count; i++){
-            if (batteries[i].GetCurrentCells() == batteries[i].cellAmount){
+        for (int i = batteries.Count-1; i >= 0; i--){
+            if (batteries[i].GetCurrentCells() == 0){
                 continue;
             }
             if (bds[i].GetPending()) continue;
             float hypotheticalDecrease = batteries[i].GetUnflooredCells()-maxItemsOfClass[(int)identity.hierarchy]/totalCells;
             bds[i].SetPending(Mathf.FloorToInt(hypotheticalDecrease),batteries[i].GetCurrentCells(),true);
+            return;
         }
     }
 
@@ -145,5 +150,9 @@ public class Class : MonoBehaviour
             if (bds[i].GetPending())
                 bds[i].DeactivatePending();
         }
+    }
+
+    public void OpenClassInfo() {
+        ClassInfoUI.ciui.Open(identity._classType, transform.position);
     }
 }

@@ -16,3 +16,5 @@ MonoBehaviour:
   hierarchy: 0
   color: {r: 0.41037738, g: 0.5867804, b: 1, a: 1}
   image: {fileID: 21300000, guid: 7c19ad7c82f7a534e885638f21c3522c, type: 3}
+  desc: The <color=#0045FF>Magicka<color=#FFFFFF> has both weapons and passive items
+    alike. Although not very strong, they can synergize really well.

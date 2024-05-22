@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class ItemPool : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> prefabs = new List<GameObject>();
-    private static List<ClassItem> classItems = new List<ClassItem>();
+    [SerializeField] private List<ClassItem> classObjects = new List<ClassItem>();
+
+    [HideInInspector] public static List<ClassItem> enabledItems = new List<ClassItem>();
 
     public static void ResetClassItems(){
-        classItems.Clear();
+        enabledItems.Clear();
     }
 
     public static List<ClassItem> GetClassItems(){
-        return classItems;
+        return PlayerInfo.GetIP().classObjects;
     }
+
+    public void AddItemsToClasses() {
+        foreach (var item in classObjects) {
+            //Debug.Log("Item: "+item.itemInfo.itemName);
+            foreach (var _class in item.Classes) {
+                //Debug.Log(" Class: "+_class);
+                ClassSystem.classDict[_class].classItems.Add(item);
+            }
+        }
+    }
+
 
     public static List<ClassItem> GetClassItemsFromHierarchy(ClassHierarchy classHierarchy) {
         List<ClassItem> filteredItems = new List<ClassItem>();
 
-        foreach (var item in classItems) {
+        foreach (var item in PlayerInfo.GetIP().classObjects) {
             if (item.classHierarchy == classHierarchy) {
                 filteredItems.Add(item);
             }
@@ -28,7 +40,7 @@ public class ItemPool : MonoBehaviour
     }
 
     private void Awake(){
-        if (classItems.Count == 0)
+        if (enabledItems.Count == 0)
             RegenerateItems();
         PlayerInfo.SetIP(this);
     }
@@ -47,34 +59,25 @@ public class ItemPool : MonoBehaviour
         if (RunDataSave.rData.activeClassItems.Count == 0) return;
 
         foreach (string name in RunDataSave.rData.activeClassItems){
-            classItems.Add(Instantiate(FindPrefabByName(name)).GetComponent<ClassItem>());
-            
+            ClassItem ci = FindObjectByName(name);
+            ci.Enable();
+            enabledItems.Add(ci);
         }
     }
 
-    public ClassItem FindClassItemFromItem(Item item){
+    public ClassItem FindFromItem(Item item, List<ClassItem> list){
         string goName = item.name.Replace("A","");
-        foreach (ClassItem ci in classItems){
-            if (ci.gameObject.name.Replace("(Clone)","") == goName){
+        foreach (ClassItem ci in list){
+            if (ci.gameObject.name == goName){
                 return ci;
             }
         }
         return null;
     }
 
-    private GameObject FindPrefabFromItem(Item item){
-        string goName = item.name.Replace("A","");
-        foreach (GameObject g in prefabs){
-            if (g.name == goName){
-                return g;
-            }
-        }
-        return null;
-    }
-
-    private GameObject FindPrefabByName(string name){
-        foreach (GameObject g in prefabs){
-            if (g.name == name){
+    private ClassItem FindObjectByName(string name){
+        foreach (ClassItem g in classObjects){
+            if (g.gameObject.name == name){
                 return g;
             }
         }
@@ -82,28 +85,28 @@ public class ItemPool : MonoBehaviour
     }
 
     public bool AddItem(Item item){
-        ClassItem ci = FindClassItemFromItem(item);
+        ClassItem ci = FindFromItem(item, enabledItems);
         if (ci != null){
             return false;
         }
-        GameObject prefab = FindPrefabFromItem(item);
-        if (prefab != null){
-            Debug.Log("Added an item");
-            GameObject instance = Instantiate(prefab);
+        ClassItem go = FindFromItem(item, classObjects);
+        if (go != null){
+            Debug.Log("Enabled item "+item.itemName);
             AddItemToData(item.name.Replace("A",""));
-            classItems.Add(instance.GetComponent<ClassItem>());
+            go.Enable();
+            enabledItems.Add(go.GetComponent<ClassItem>());
         }else {
-            Debug.LogError("Couldn't find prefab from item");
+            Debug.LogError("Couldn't find class object from item");
         }
         return true;
     }
 
     public void RemoveItem(Item item){
-        ClassItem ci = FindClassItemFromItem(item);
+        ClassItem ci = FindFromItem(item, enabledItems);
         if (ci != null){
-            classItems.Remove(ci);
+            enabledItems.Remove(ci);
             RemoveItemFromData(item.name.Replace("A",""));
-            Destroy(ci.gameObject);
+            ci.Disable();
         }
     }
 }

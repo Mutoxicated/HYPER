@@ -16,3 +16,5 @@ MonoBehaviour:
   hierarchy: 0
   color: {r: 1, g: 0.93989503, b: 0, a: 1}
   image: {fileID: 21300000, guid: 3fe8039c0e1ae174393d76048aae2395, type: 3}
+  desc: The <color=#FFFF00>Bravery<color=#FFFFFF> class provides mostly defensive
+    upgrades and passive items. It values defense over offense.

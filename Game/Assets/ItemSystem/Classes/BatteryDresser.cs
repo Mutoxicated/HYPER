@@ -44,7 +44,7 @@ public class BatteryDresser : MonoBehaviour
     public void Increase(int index){
         if (pending) DeactivatePending();
         for (int i = index-1; i >= 0; i--){
-            Debug.Log("Batt"+i);
+            //Debug.Log("Batt"+i);
             cellsOrdered[i].sprite = fullCell;
         }
     }

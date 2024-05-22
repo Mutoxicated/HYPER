@@ -40,9 +40,11 @@ public class GunController : MonoBehaviour
 
     private bool once;
     private bool once2 = true;
+    private float rotationMod = 1f;
 
     private void Start()
     {
+        shooter.OnShootEvent.AddListener(UpdateRotationMod);
         scroll.AlterIndex(1);
         gunScrew = transform.GetChild(0);
         points[0] = new Vector3(0f,yLow,-zMax);
@@ -50,10 +52,14 @@ public class GunController : MonoBehaviour
         points[2] = new Vector3(0f,yLow,zMax);
     }
 
+    private void UpdateRotationMod(float mod) {
+        rotationMod = mod;
+    }
+
     private void RotateGunScrew() {
         if (shooter.isOnCooldown()) {
             //Debug.Log("is on cooldown");
-            angle -= 10f;
+            angle -= 10f*rotationMod;
             once2 = false;
             return;
         }
@@ -67,7 +73,7 @@ public class GunController : MonoBehaviour
         if (pic.IsPressed("Shoot") || (pic.IsPressed("ExtraShoot") && shooter.GetCurrentWeapon().extraEnabled)) {
             //Debug.Log("is pressed");
             once = false;
-            angle += 10f;
+            angle += 10f*rotationMod;
         }else {
             if (!once) {
                 //Debug.Log("no longer pressed");
@@ -105,7 +111,7 @@ public class GunController : MonoBehaviour
         gunScrew.localRotation = Quaternion.Lerp(
             gunScrew.localRotation,
             Quaternion.AngleAxis(angle, new Vector3(0f, 0f, 1f)),
-            Time.deltaTime * 11);
+            Time.deltaTime * 7 * rotationMod);
     }
 
     public void NextWalkIteration(){
