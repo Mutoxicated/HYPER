@@ -1,23 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Numerical;
 
 public class SimpleStatModifier : MonoBehaviour
 {
     [SerializeField] private PassiveItem item;
 
-    [SerializeField] private string[] conditionals;
+    [SerializeField] private Conditional[] conditionals;
     [SerializeField] private bool[] conditionalValues;
 
-    [SerializeField] private string[] numericals;
+    [SerializeField] private Numerical[] numericals;
     [SerializeField] private float[] initialNumericalIncrements;
     [SerializeField] private float[] numericalIncrements;
 
     [HideInInspector] public int populationMod;
 
-    private Dictionary<string, float> limitations = new Dictionary<string, float>(){
-        {"bacteriaBlockChance",0.5f},
-        {"enemyBlockChance",0.5f},
+    private Dictionary<Numerical, float> limitations = new Dictionary<Numerical, float>(){
+        {BACTERIA_BLOCK_CHANCE,0.5f},
+        {ENEMY_BLOCK_CHANCE,0.5f},
     };
 
     private void ChangeConditionals()

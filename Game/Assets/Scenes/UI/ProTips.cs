@@ -8,8 +8,7 @@ public class ProTips : MonoBehaviour
     [SerializeField] private TMP_Text text;
 
     private string[] tips = {
-        "Use your gun to shoot!",
-        "AHAHAHHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA"
+        "Use your gun to shoot!"
     };
 
     private void OnEnable(){

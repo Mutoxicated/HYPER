@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
 
 [Serializable]
@@ -14,6 +15,9 @@ public class PopulativeInfo{
         this.population = population;
     }
 }
+
+[Serializable] 
+public class SerializableDict : SerializableDictionaryBase<string,float> {};
 
 public class RunData 
 {
@@ -56,7 +60,7 @@ public class RunData
     public int maxEquipment;
     public List<string> activeClassItems = null;
     public List<SuperPassive> activeSuperPassives = null;
-    public Stats.numericalDict superPassiveIterations = new Stats.numericalDict();
+    public SerializableDict superPassiveIterations = new SerializableDict();
     
     //platform generation related
     public int[] generationCycle = null;

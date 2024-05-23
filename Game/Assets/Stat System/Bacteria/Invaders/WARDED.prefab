@@ -73,10 +73,9 @@ MonoBehaviour:
   bac: {fileID: 5780903243261917723}
   changePriority: 0
   priority: 000000000000000000000000
-  conditionals: []
+  conditionals: 
   conditionalValues: 
-  numericals:
-  - permaShields
+  numericals: 17000000
   numericalIncrements:
   - 1
   populationMod: 0
@@ -4944,3 +4943,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: -7325725379374107165}
+  _as: {fileID: 0}

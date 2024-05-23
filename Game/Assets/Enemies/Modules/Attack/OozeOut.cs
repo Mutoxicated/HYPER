@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Numerical;
 
 public class OozeOut : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class OozeOut : MonoBehaviour
 
     private void Start(){
         var emission = ps.emission;
-        emission.rateOverTimeMultiplier = stats.numericals["rate"];
+        emission.rateOverTimeMultiplier = stats.numericals[RATE];
     }
 
     private void OnParticleCollision(GameObject other){

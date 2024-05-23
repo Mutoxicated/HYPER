@@ -16,6 +16,15 @@ public class ItemPool : MonoBehaviour
         return PlayerInfo.GetIP().classObjects;
     }
 
+    public static bool Contains(Item item) {
+        foreach (var ci in enabledItems) {
+            if (ci.itemInfo.itemName == item.itemName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void AddItemsToClasses() {
         foreach (var item in classObjects) {
             //Debug.Log("Item: "+item.itemInfo.itemName);
@@ -25,7 +34,6 @@ public class ItemPool : MonoBehaviour
             }
         }
     }
-
 
     public static List<ClassItem> GetClassItemsFromHierarchy(ClassHierarchy classHierarchy) {
         List<ClassItem> filteredItems = new List<ClassItem>();

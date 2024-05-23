@@ -72,13 +72,9 @@ MonoBehaviour:
   bac: {fileID: 3374969051011129745}
   changePriority: 0
   priority: 000000000000000000000000
-  conditionals: []
+  conditionals: 
   conditionalValues: 
-  numericals:
-  - moveSpeed
-  - rate
-  - attackSpeed
-  - shootSpeed
+  numericals: 03000000050000000d0000000e000000
   numericalIncrements:
   - 0.1
   - 0.1

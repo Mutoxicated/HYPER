@@ -129,6 +129,7 @@ public class ClassItem : MonoBehaviour
         if (ibp.popped) {
             InfoBox.ib.UnpopBox();
         }
+        ibp.enabled = false;
         SellMode(false);
     }
 

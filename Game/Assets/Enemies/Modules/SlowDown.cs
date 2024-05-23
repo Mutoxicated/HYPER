@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static Numerical;
 
 public class SlowDown : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class SlowDown : MonoBehaviour
 
     private void Update()
     {
-        currentSpeed = Mathf.Lerp(maxSpeed * stats.GetNum("moveSpeed"), slowDownSpeed * stats.GetNum("moveSpeed"), onInterval.t);
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, currentSpeed * stats.GetNum("moveSpeed"));
+        currentSpeed = Mathf.Lerp(maxSpeed * stats.GetNum(MOVE_SPEED), slowDownSpeed * stats.GetNum(MOVE_SPEED), onInterval.t);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, currentSpeed * stats.GetNum(MOVE_SPEED));
     }
 }

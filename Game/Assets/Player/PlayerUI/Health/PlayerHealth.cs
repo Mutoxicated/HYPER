@@ -1,9 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static Numerical;
 
 
 public class PlayerHealth : MonoBehaviour, IDamageable
@@ -97,7 +97,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void Start()//Player colors dont update on scene switch
     {
         initialScale = healthBar.localScale;
-        healthT = stats.numericals["health"] / stats.maxHealth*stats.numericals["maxHealthModifier"];
+        healthT = stats.numericals[HEALTH] / stats.maxHealth*stats.numericals[MAX_HEALTH_MODIFIER];
         currentT = healthT;
         sumText.text = Mathf.Round(healthT*100f).ToString() + '%';
         healthBar.localScale = new Vector3(Mathf.Clamp(initialScale.x * healthT,0.0002f,initialScale.x),healthBar.localScale.y, healthBar.localScale.z);
@@ -121,18 +121,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         time += Time.deltaTime;
         if (time >= 0.1f){
             time = 0f;
-            stats.numericals["health"] += regen;
+            stats.numericals[HEALTH] += regen;
         }
         if (infoIsScore){
             info.text = PlayerInfo.GetScore().ToString();
         }else{
             info.text = PlayerInfo.GetMoney().ToString()+"*";
         }
-        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"],0,stats.maxHealth*stats.numericals["maxHealthModifier"]);
-        if (stats.numericals["health"] <= 0f){
-            stats.numericals["health"] = 0f;
+        stats.numericals[HEALTH] = Mathf.Clamp(stats.numericals[HEALTH],0,stats.maxHealth*stats.numericals[MAX_HEALTH_MODIFIER]);
+        if (stats.numericals[HEALTH] <= 0f){
+            stats.numericals[HEALTH] = 0f;
             healthT = 0f;
-        } else healthT = stats.numericals["health"] / stats.maxHealth*stats.numericals["maxHealthModifier"];
+        } else healthT = stats.numericals[HEALTH] / stats.maxHealth*stats.numericals[MAX_HEALTH_MODIFIER];
         if (currentT != healthT)
         {
             currentT = Mathf.Lerp(currentT, healthT, Time.deltaTime*3f);
@@ -160,7 +160,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     
     private void EvaluateShields()
     {
-        float allShields = stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]);
+        float allShields = stats.shields.Count+Mathf.RoundToInt(stats.numericals[PERMA_SHIELDS]);
         if (allShields == 0)
         {
             shieldsText.color = Color.red;
@@ -177,26 +177,26 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         shieldsText.text = allShields.ToString();
     }
 
-    private bool ChanceFailed(string name){
+    private bool ChanceFailed(Numerical name){
         return Random.Range(0f,101f) >= Mathf.Lerp(0f,100f,stats.numericals[name]);
     }
 
     private bool EvaluateDamageIntake(Stats senderStats, float intake){
         if (senderStats == null){//if stat is null that means its a bacteria
-            if (ChanceFailed("bacteriaBlockChance")){
-                stats.numericals["health"] -= intake / Mathf.Clamp(Mathf.FloorToInt((stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1)*0.5f),1f,999999999f);
+            if (ChanceFailed(BACTERIA_BLOCK_CHANCE)) {
+                stats.numericals[HEALTH] -= intake / Mathf.Clamp(Mathf.FloorToInt((stats.shields.Count+Mathf.RoundToInt(stats.numericals[PERMA_SHIELDS]) + 1)*0.5f),1f,999999999f);
             }
             else return false;
             return true;
         }
         if (stats.type == EntityType.ORGANIC){
-            intake*= senderStats.numericals["damageO"];
+            intake*= senderStats.numericals[DAMAGE_O];
         }else{
-            intake*= senderStats.numericals["damageNO"];
+            intake*= senderStats.numericals[DAMAGE_NO];
         }
 
-        if (ChanceFailed("enemyBlockChance")){
-            stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
+        if (ChanceFailed(ENEMY_BLOCK_CHANCE)){
+            stats.numericals[HEALTH] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals[PERMA_SHIELDS]) + 1);
             if (stats.shields.Count > 0){
                 if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
                     stats.shields.RemoveAt(stats.shields.Count-1);
@@ -207,7 +207,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     public void TakeHealth(float intake, int shield){
-        stats.numericals["health"] += intake;
+        stats.numericals[HEALTH] += intake;
         stats.AddShield(shield);
     }
 
@@ -223,14 +223,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         shieldOut = 0;
         playerColor = healthBarGradient.Evaluate(healthT);
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
-        if (stats.numericals["health"] <= 0)
+        if (stats.numericals[HEALTH] <= 0)
         {
             OnDeath.Invoke();
         }
-        if (stats.numericals["health"] >= 0f)
+        if (stats.numericals[HEALTH] >= 0f)
             return 0f;
         else
-            return stats.numericals["health"];
+            return stats.numericals[HEALTH];
     }
 
     public float TakeDamage(float intake, Stats senderStats, float arb, int index)
@@ -245,19 +245,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         EvaluateShields();
         playerColor = healthBarGradient.Evaluate(healthT);
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
-        if (stats.numericals["health"] <= 0)
+        if (stats.numericals[HEALTH] <= 0)
         {
             OnDeath.Invoke();
         }
-        if (stats.numericals["health"] >= 0f)
+        if (stats.numericals[HEALTH] >= 0f)
             return 0f;
         else
-            return stats.numericals["health"];
+            return stats.numericals[HEALTH];
     }
 
     public float TakeDamage(float intake, float arb, int index)
     {
-        stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
+        stats.numericals[HEALTH] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals[PERMA_SHIELDS]) + 1);
         if (stats.shields.Count > 0){
             if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
                 stats.shields.RemoveAt(stats.shields.Count-1);
@@ -269,21 +269,21 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         EvaluateShields();
         playerColor = healthBarGradient.Evaluate(healthT);
         playerHitGradient = ChangeGradientColor(playerHitGradient, playerColor);
-        if (stats.numericals["health"] <= 0)
+        if (stats.numericals[HEALTH] <= 0)
         {
             OnDeath.Invoke();
         }
-        if (stats.numericals["health"] >= 0f)
+        if (stats.numericals[HEALTH] >= 0f)
             return 0f;
         else
-            return stats.numericals["health"];
+            return stats.numericals[HEALTH];
     }
 
     public void TakeInjector(Injector injector, bool cacheInstances)
     {
         if (injector.type == injectorType.ENEMIES)
             return;
-        if (stats.numericals["health"] <= 0f)
+        if (stats.numericals[HEALTH] <= 0f)
             return;
         foreach (var bac in injector.allyBacterias)
         {

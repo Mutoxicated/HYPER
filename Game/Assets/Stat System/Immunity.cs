@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Numerical;
 
 public enum EntityType
 {
@@ -137,14 +137,14 @@ public class Immunity : MonoBehaviour
             {
                 //bacterias[bacKey].DamageGoodBacteria();
                 if (bacterias[bacKey].immunitySide == ImmunitySide.ALLY ){
-                    died = bacterias[bacKey].Degrade(immunityDamage*0.1f*stats.numericals["hostility"]*stats.numericals["allyDefense"]);
+                    died = bacterias[bacKey].Degrade(immunityDamage*0.1f*stats.numericals[HOSTILITY]*stats.numericals[ALLY_DEFENSE]);
                 }
                 else if (bacterias[bacKey].ID.character == BacteriaCharacter.POSITIVE){
-                    died = bacterias[bacKey].Degrade(immunityDamage*0.4f*stats.numericals["hostility"]);
+                    died = bacterias[bacKey].Degrade(immunityDamage*0.4f*stats.numericals[HOSTILITY]);
                 } else
                 {
-                    //Debug.Log("degradation process: Damage-->"+immunityDamage+", Hostility-->"+stats.numericals["hostility"]);
-                    died = bacterias[bacKey].Degrade(immunityDamage*stats.numericals["hostility"]);
+                    //Debug.Log("degradation process: Damage-->"+immunityDamage+", Hostility-->"+stats.numericals[HOSTILITY]);
+                    died = bacterias[bacKey].Degrade(immunityDamage*stats.numericals[HOSTILITY]);
                 }
                 if (died)
                 {

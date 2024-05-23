@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
+using static Numerical;
+using static Conditional;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
@@ -50,11 +52,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         time += Time.deltaTime;
         if (time >= 0.1f){
             time = 0f;
-            stats.numericals["health"] += regen;
+            stats.numericals[HEALTH] += regen;
         }
-        stats.numericals["health"] = Mathf.Clamp(stats.numericals["health"],0,stats.maxHealth* stats.numericals["maxHealthModifier"]);
-        if (stats.numericals["health"] < 0)
-            stats.numericals["health"] = 0f;
+        stats.numericals[HEALTH] = Mathf.Clamp(stats.numericals[HEALTH],0,stats.maxHealth* stats.numericals[MAX_HEALTH_MODIFIER]);
+        if (stats.numericals[HEALTH] < 0)
+            stats.numericals[HEALTH] = 0f;
         t = Mathf.Clamp01(t - rate*Time.deltaTime);
     }
 
@@ -85,35 +87,35 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
 
     private void Parry(GameObject sender){
-        if (Random.Range(0f,100f) <= stats.numericals["parryChance"]){
+        if (Random.Range(0f,100f) <= stats.numericals[PARRY_CHANCE]){
             sender.GetComponent<IParriable>()?.Parry(gameObject,Vector3.zero);
         }
     }
 
-    private bool ChanceFailed(string name){
+    private bool ChanceFailed(Numerical name){
         return Random.Range(0f,101f) >= Mathf.Lerp(0f,100f,stats.numericals[name]);
     }
 
     private bool EvaluateDamageIntake(Stats senderStats, float intake){
         if (senderStats == null){
-            if (ChanceFailed("bacteriaBlockChance"))
-                stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
+            if (ChanceFailed(BACTERIA_BLOCK_CHANCE))
+                stats.numericals[HEALTH] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals[PERMA_SHIELDS]) + 1);
             else {
                 Debug.Log("blocked");
                 return false;
             }
             return true;
         }else if (senderStats == stats){
-            stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
+            stats.numericals[HEALTH] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals[PERMA_SHIELDS]) + 1);
             return true;
         }
         if (stats.type == EntityType.ORGANIC){
-            intake*= senderStats.numericals["damageO"];
+            intake *= senderStats.numericals[DAMAGE_O];
         }else{
-            intake*= senderStats.numericals["damageNO"];
+            intake *= senderStats.numericals[DAMAGE_NO];
         }
-        if (ChanceFailed("enemyBlockChance")){
-            stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
+        if (ChanceFailed(ENEMY_BLOCK_CHANCE)){
+            stats.numericals[HEALTH] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals[PERMA_SHIELDS]) + 1);
             if (stats.shields.Count > 0){
                 if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
                     stats.shields.RemoveAt(stats.shields.Count-1);
@@ -140,7 +142,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
 
     public void Die(Stats senderStats){
-        if (stats.conditionals["explosive"] && Random.Range(0f,100f) <= stats.numericals["explosionChance"]){
+        if (stats.conditionals[EXPLOSIVE] && Random.Range(0f,100f) <= stats.numericals[EXPLOSION_CHANCE]){
             PublicPools.pools[stats.explosionPrefab.name].UseObject(transform.position,Quaternion.identity);
         }
         Detach();
@@ -161,7 +163,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
 
     public void TakeHealth(float intake, int shield){
-        stats.numericals["health"] += intake;
+        stats.numericals[HEALTH] += intake;
         stats.AddShield(shield);
     }
 
@@ -179,14 +181,14 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }
         t += strength;
         healthBar?.Activate();
-        if (stats.numericals["health"] <= 0)
+        if (stats.numericals[HEALTH] <= 0)
         {
             Die(senderStats);
         }
-        if (stats.numericals["health"] >= 0f)
+        if (stats.numericals[HEALTH] >= 0f)
             return 0f;
         else
-            return stats.numericals["health"];
+            return stats.numericals[HEALTH];
     }
     
     public float TakeDamage(float intake, Stats senderStats, float strength, int _)
@@ -202,14 +204,14 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }
         t += strength;
         healthBar?.Activate();
-        if (stats.numericals["health"] <= 0)
+        if (stats.numericals[HEALTH] <= 0)
         {
             Die(senderStats);
         }
-        if (stats.numericals["health"] >= 0f)
+        if (stats.numericals[HEALTH] >= 0f)
             return 0f;
         else
-            return stats.numericals["health"];
+            return stats.numericals[HEALTH];
     }
 
     public float TakeDamage(float intake, float strength, int _)
@@ -220,17 +222,17 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             if (stats.shields[stats.shields.Count-1].TakeDamage(intake) <= 0f)
                 stats.shields.RemoveAt(stats.shields.Count-1);
         }
-        stats.numericals["health"] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals["permaShields"]) + 1);
+        stats.numericals[HEALTH] -= intake / (stats.shields.Count+Mathf.RoundToInt(stats.numericals[PERMA_SHIELDS]) + 1);
         t += strength;
         healthBar?.Activate();
-        if (stats.numericals["health"] <= 0)
+        if (stats.numericals[HEALTH] <= 0)
         {
             Die(null);
         }
-        if (stats.numericals["health"] >= 0f)
+        if (stats.numericals[HEALTH] >= 0f)
             return 0f;
         else
-            return stats.numericals["health"];
+            return stats.numericals[HEALTH];
     }
 
     public void TakeInjector(Injector injector, bool cacheInstances)
@@ -239,7 +241,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (injector.type == injectorType.PLAYER)
             return;
         //Debug.Log("injector was fine.");
-        if (stats.numericals["health"] <= 0)
+        if (stats.numericals[HEALTH] <= 0)
             return;
         //Debug.Log("health was fine.");
         foreach (var bac in injector.allyBacterias)

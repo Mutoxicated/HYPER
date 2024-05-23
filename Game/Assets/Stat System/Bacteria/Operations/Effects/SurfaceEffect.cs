@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Conditional;
 
 public class SurfaceEffect : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class SurfaceEffect : MonoBehaviour
     private void AddEffect(){
         if (sineWave != null)
             sineWave.enabled = true;
-        bac.immuneSystem.stats.conditionals["surfaceFXED"] = true;
+        bac.immuneSystem.stats.conditionals[SURFACE_FXED] = true;
         foreach(var part in bac.immuneSystem.injector.bodyParts){
             if (!part.surfaceEffectable)
                 continue;
@@ -80,7 +80,7 @@ public class SurfaceEffect : MonoBehaviour
         if (sineWave != null)
             sineWave.enabled = false;
         RevertTextureOffset();
-        bac.immuneSystem.stats.conditionals["surfaceFXED"] = false;
+        bac.immuneSystem.stats.conditionals[SURFACE_FXED] = false;
         for (int i = 0; i < bac.immuneSystem.injector.bodyParts.Count; i++){
               if (!bac.immuneSystem.injector.bodyParts[i].surfaceEffectable)
                 continue;

@@ -110,7 +110,7 @@ public class Outline : MonoBehaviour {
   void Bake() {
 
     var meshFilter = GetComponent<MeshFilter>();
-
+    meshFilter.mesh.RecalculateNormals();
     // Serialize smooth normals
     var smoothNormals = SmoothNormals(meshFilter.mesh);
 

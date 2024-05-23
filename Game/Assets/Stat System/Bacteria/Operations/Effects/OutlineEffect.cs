@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Conditional;
 
 [DisallowMultipleComponent]
 
@@ -44,7 +45,7 @@ public class OutlineEffect : MonoBehaviour {
     private void AddEffect(){
         if (interval != null)
             interval.enabled = true;
-        bac.immuneSystem.stats.conditionals["outlineFXED"] = true;
+        bac.immuneSystem.stats.conditionals[OUTLINE_FXED] = true;
         foreach(var part in bac.immuneSystem.injector.bodyParts){
             if (!part.outlineEffectable)
                 continue;
@@ -93,7 +94,7 @@ public class OutlineEffect : MonoBehaviour {
     void OnDisable() {
         if (interval != null)
             interval.enabled = false;
-        bac.immuneSystem.stats.conditionals["outlineFXED"] = false;
+        bac.immuneSystem.stats.conditionals[OUTLINE_FXED] = false;
         for (int i = 0; i < bac.immuneSystem.injector.bodyParts.Count; i++){
             if (!bac.immuneSystem.injector.bodyParts[i].outlineEffectable)
                 continue;

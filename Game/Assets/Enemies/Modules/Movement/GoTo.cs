@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static Numerical;
 
 public class GoTo : ExtraBehaviour
 {
@@ -58,7 +57,7 @@ public class GoTo : ExtraBehaviour
         if (!useEntityForever){
             stats.FindEntity();
             //Debug.Log(stats.numericals["range"]);
-            entity = stats.entity;
+            entity = stats.entities[0];
         }else{
             entity = stats.entityForever;
             if (entity == null)
@@ -76,7 +75,7 @@ public class GoTo : ExtraBehaviour
     }
 
     private void Go(){
-        moveSpeedMod = stats.GetNum("moveSpeed");
+        moveSpeedMod = stats.GetNum(MOVE_SPEED);
         if (!useInterval)
             rb.velocity = Vector3.Lerp(rb.velocity, toEntity * speed * moveSpeedMod, Time.deltaTime * lerpSpeed);
         else

@@ -16,10 +16,10 @@ namespace BacteriaOperations{
         [SerializeField] private bool changePriority;
         [SerializeField] private PriorityChangeType[] priority = new PriorityChangeType[3];
 
-        [SerializeField] private string[] conditionals;
+        [SerializeField] private Conditional[] conditionals;
         [SerializeField] private bool[] conditionalValues;
 
-        [SerializeField] private string[] numericals;
+        [SerializeField] private Numerical[] numericals;
         [SerializeField] private float[] numericalIncrements;
 
         [HideInInspector] public int populationMod;

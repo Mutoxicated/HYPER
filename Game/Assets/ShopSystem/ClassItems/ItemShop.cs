@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using static Numerical;
 
 [Serializable]
 public class DisabableItem{
@@ -115,19 +113,31 @@ public class ItemShop : MonoBehaviour
 
     private void GetRandomItems(int amount){
         currentItems.Clear();
-        modifiableItems = items.ToArray().ToList();
+        modifiableItems = items.ToList();
         int rn = 0;
         for (int i = 0; i <  items.Count;i++){
             if (i > amount-1)
                 break;
+            if (modifiableItems.Count == 0) {
+                break;
+            }
             rn = SeedGenerator.random.Next(0,modifiableItems.Count);
             Debug.Log(rn);
+            if (ItemPool.Contains(modifiableItems[rn])) {
+                modifiableItems.Remove(modifiableItems[rn]);
+                i--;
+                continue;
+            }
             currentItems.Add(new DisabableItem(modifiableItems[rn]));
             modifiableItems.Remove(modifiableItems[rn]);
         }
         
-        foreach (ItemSubscriber es in itemSubs){
-            es.UpdateItem();
+        for (int i = 0; i < 3; i++) {
+            if (i+1 > currentItems.Count) {
+                itemSubs[i].gameObject.SetActive(false);
+                continue;
+            }
+            itemSubs[i].UpdateItem();
         }
     }
 
@@ -149,7 +159,7 @@ public class ItemShop : MonoBehaviour
             if (i > amount-1)
                 break;
             rn = SeedGenerator.random.Next(0,modifiableEquips.Count);
-            Debug.Log(rn);
+            //Debug.Log(rn);
             currentEquips.Add(new DisabableItem(modifiableEquips[rn]));
             modifiableEquips.Remove(modifiableEquips[rn]);
         }
@@ -161,27 +171,27 @@ public class ItemShop : MonoBehaviour
 
     public void RestoreHealth(){
         if (ValidateCost(restoreCost)){
-            PlayerInfo.GetGun().stats.numericals["health"] += 9999999f;
+            PlayerInfo.GetGun().stats.numericals[HEALTH] += 9999999f;
         }
     }
 
     public void RestoreDynamite(){
-        if (PlayerInfo.GetGun().stats.numericals["capacitor1"] < PlayerInfo.GetGun().stats.numericals["maxCapacitor1"]){
+        if (PlayerInfo.GetGun().stats.numericals[CAPACITOR_1] < PlayerInfo.GetGun().stats.numericals[MAX_CAPACITOR_1]){
             if (ValidateCost(dynamiteRestoreCost)){
-                PlayerInfo.GetGun().stats.numericals["capacitor1"] = PlayerInfo.GetGun().stats.numericals["maxCapacitor1"];
+                PlayerInfo.GetGun().stats.numericals[CAPACITOR_1] = PlayerInfo.GetGun().stats.numericals[MAX_CAPACITOR_1];
             }
         }
     }
 
     public void AddDynamite(){
-        if (PlayerInfo.GetGun().stats.numericals["capacitor1"] < PlayerInfo.GetGun().stats.numericals["maxCapacitor1"]){
+        if (PlayerInfo.GetGun().stats.numericals[CAPACITOR_1] < PlayerInfo.GetGun().stats.numericals[MAX_CAPACITOR_1]){
             if (ValidateCost(dynamiteAddCost)){
-                PlayerInfo.GetGun().stats.numericals["capacitor1"]++;
+                PlayerInfo.GetGun().stats.numericals[CAPACITOR_1]++;
             }
         }else{
             if (ValidateCost(dynamiteAddCost)){
-                PlayerInfo.GetGun().stats.numericals["capacitor1"]++;
-                PlayerInfo.GetGun().stats.numericals["maxCapacitor1"]++;
+                PlayerInfo.GetGun().stats.numericals[CAPACITOR_1]++;
+                PlayerInfo.GetGun().stats.numericals[MAX_CAPACITOR_1]++;
             }
         }
     }

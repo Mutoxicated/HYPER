@@ -57,7 +57,9 @@ MonoBehaviour:
   type: 0
   priority: 000000000000000000000000
   entity: {fileID: 0}
+  entityForever: {fileID: 0}
   maxHealth: 0
+  range: 28
   maxShields: 0
   shieldhealth: 50
   conditionals:
@@ -83,18 +85,8 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
-    _keys:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
+    _keyValues: 0000000001000000020000000300000004000000
+    _keys: 0000000001000000020000000300000004000000
     _values: 0000000000
   numericals:
     reorderableList:
@@ -119,71 +111,31 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 1
-    _keyValues:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    - health
-    - maxHealthModifier
-    _keys:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    - health
-    - maxHealthModifier
+    _keyValues: 1700000002000000040000000300000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000000000001200000013000000140000001500000016000000
+    _keys: 1700000002000000040000000300000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000000000001200000013000000140000001500000016000000
     _values:
     - 0
     - 1
     - 1
     - 1
     - 1
-    - 1
-    - 1
-    - 1
+    - 5
+    - 5
     - 1
     - 25
     - 0
-    - 0
     - 1
     - 1
     - 1
     - 1
     - 0
     - 0
-    - 9999999
+    - 25
     - 999
+    - 1
+    - 1
+    - 1
+    - 1
     - 1
   shields: []
 --- !u!33 &3647291987919514252
@@ -307,6 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  useUnscaledTime: 0
   dontResetTime: 0
   chance: 100
   interval: 0.4
@@ -355,7 +308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bagui: {fileID: 0}
   stats: {fileID: 1922461336224642173}
   injector: {fileID: 5967580908633526872}
   immunityAttackRate: 1
   immunityDamage: 10
+  specialImmunities: 

@@ -7,22 +7,22 @@ public class LookTo : MonoBehaviour
     private Quaternion lookRotation = Quaternion.identity;
     private Vector3 toEntity = Vector3.zero;
 
-    private void OnEnable(){
+    private void Awake(){
         stats.FindEntity();
         //Debug.Log("enabled on: "+gameObject.name);
         GetRotation();
-        if (stats.entity != null)
+        if (stats.entities[0] != null)
             transform.rotation = lookRotation;
     }
 
     private void GetRotation(){
-        if (stats.entity == null){
+        if (stats.entities[0] == null){
             stats.FindEntity();
         }
-        if (stats.entity == null){
+        if (stats.entities[0] == null){
             return;
         }
-        toEntity = stats.entity.position - transform.position;
+        toEntity = stats.entities[0].position - transform.position;
         lookRotation = Quaternion.LookRotation(toEntity,Vector3.up);
     }
 

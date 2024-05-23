@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static Numerical;
 
 public class OnInterval : ExtraBehaviour
 {
@@ -109,7 +108,7 @@ public class OnInterval : ExtraBehaviour
             deltaTime = Time.deltaTime;
         }
         if (useStats)
-            time += deltaTime * stats.numericals["rate"];
+            time += deltaTime * stats.numericals[RATE];
         else
             time += deltaTime;
         //Debug.Log(time);

@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using static Numerical;
 
 public class TargetEvents : MonoBehaviour
 {
@@ -18,18 +17,18 @@ public class TargetEvents : MonoBehaviour
     private bool inRange = false;
 
     private void Start(){
-        if (stats.entity == null){
+        if (stats.entities[0] == null){
             CallTargetRange(false);
             inRange = false;
             return;
         }
-        dist = Vector3.Distance(transform.position,stats.entity.position);
-        if (dist <= stats.range*stats.numericals["range"]){
+        dist = Vector3.Distance(transform.position,stats.entities[0].position);
+        if (dist <= stats.range*stats.numericals[RANGE]){
             CallTargetRange(true);
             inRange = true;
             switch2 = true;
                     
-        }else if (dist > stats.range*stats.numericals["range"]){
+        }else if (dist > stats.range*stats.numericals[RANGE]){
             CallTargetRange(false);
             inRange = false;
         }
@@ -39,25 +38,25 @@ public class TargetEvents : MonoBehaviour
         t += Time.deltaTime;
         if (t >= checkInSeconds){
             t = 0f;
-            if (stats.entity == null){
+            if (stats.entities[0] == null){
                 return;
             }
-            dist = Vector3.Distance(transform.position,stats.entity.position);
-            if (dist <= stats.range*stats.numericals["range"] && !switch2){
+            dist = Vector3.Distance(transform.position,stats.entities[0].position);
+            if (dist <= stats.range*stats.numericals[RANGE] && !switch2){
                 CallTargetRange(true);
                 inRange = true;
                 switch2 = true;
                 
-            }else if (dist > stats.range*stats.numericals["range"] && switch2){
+            }else if (dist > stats.range*stats.numericals[RANGE] && switch2){
                 CallTargetRange(false);
                 inRange = false;
                 switch2 = false;
             }
             if (inRange){
-                if (dist <= stats.range*stats.numericals["range"]*0.5f && !switch1){
+                if (dist <= stats.range*stats.numericals[RANGE]*0.5f && !switch1){
                     CallCloseRange(true);
                     switch1 = true;
-                }else if (dist > stats.range*stats.numericals["range"]*0.5f && switch1){
+                }else if (dist > stats.range*stats.numericals[RANGE]*0.5f && switch1){
                     CallCloseRange(false);
                     switch1 = false;
                 }
@@ -86,25 +85,25 @@ public class TargetEvents : MonoBehaviour
         t += Time.deltaTime;
         if (t >= checkInSeconds){
             t = 0f;
-            if (stats.entity == null){
+            if (stats.entities[0] == null){
                 return;
             }
-            dist = Vector3.Distance(transform.position,stats.entity.position);
-            if (dist <= stats.range*stats.numericals["range"] && !switch2){
+            dist = Vector3.Distance(transform.position,stats.entities[0].position);
+            if (dist <= stats.range*stats.numericals[RANGE] && !switch2){
                 CallTargetRange(true);
                 inRange = true;
                 switch2 = true;
                 
-            }else if (dist > stats.range*stats.numericals["range"] && switch2){
+            }else if (dist > stats.range*stats.numericals[RANGE] && switch2){
                 CallTargetRange(false);
                 inRange = false;
                 switch2 = false;
             }
             if (inRange){
-                if (dist <= stats.range*stats.numericals["range"]*0.65f && !switch1){
+                if (dist <= stats.range*stats.numericals[RANGE]*0.65f && !switch1){
                     CallCloseRange(true);
                     switch1 = true;
-                }else if (dist > stats.range*stats.numericals["range"]*0.65f && switch1){
+                }else if (dist > stats.range*stats.numericals[RANGE]*0.65f && switch1){
                     CallCloseRange(false);
                     switch1 = false;
                 }

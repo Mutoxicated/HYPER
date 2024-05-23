@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEngine.ParticleSystem;
+using static Numerical;
 
 public class GunShooter : MonoBehaviour
 {
@@ -85,16 +82,16 @@ public class GunShooter : MonoBehaviour
 
     private void Recoil(float recoilMod)
     {
-        anchor.localPosition += recoilPosition*recoilMod*stats.numericals["focus"];
+        anchor.localPosition += recoilPosition*recoilMod*stats.numericals[FOCUS];
         Quaternion modifiedRotation = recoilRotation;
         if (modifiedRotation.x != 0) {
-            modifiedRotation.x = modifiedRotation.x * recoilMod*stats.numericals["focus"];
+            modifiedRotation.x = modifiedRotation.x * recoilMod*stats.numericals[FOCUS];
         }
         if (modifiedRotation.y != 0) {
-            modifiedRotation.y = modifiedRotation.y * recoilMod*stats.numericals["focus"];
+            modifiedRotation.y = modifiedRotation.y * recoilMod*stats.numericals[FOCUS];
         }
         if (modifiedRotation.z != 0) {
-            modifiedRotation.z = modifiedRotation.z * recoilMod*stats.numericals["focus"];
+            modifiedRotation.z = modifiedRotation.z * recoilMod*stats.numericals[FOCUS];
         }
         anchor.localRotation *= modifiedRotation;
     }
@@ -128,10 +125,10 @@ public class GunShooter : MonoBehaviour
 
     private void ShootBullet(string bulletPool, Vector3 pos, Quaternion rotation)
     {
-        rotation *= Quaternion.Euler(new Vector3(0f, -angle*stats.numericals["focus"]/2f,0f));
+        rotation *= Quaternion.Euler(new Vector3(0f, -angle*stats.numericals[FOCUS]/2f,0f));
         for (int i = 0; i < currentWeaponIndex; i++)
         {
-            rotation *= Quaternion.Euler(new Vector3(0f, angle*stats.numericals["focus"]/(currentWeaponIndex+1), 0f));
+            rotation *= Quaternion.Euler(new Vector3(0f, angle*stats.numericals[FOCUS]/(currentWeaponIndex+1), 0f));
             rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
             SpawnBullet(bulletPool, pos, rotation);
         }
@@ -218,10 +215,10 @@ public class GunShooter : MonoBehaviour
             exhaustT = 1f;
             onCooldown = true;
         }
-        ShootState(weapon.recoilModifier*stats.numericals["rate"]);
+        ShootState(weapon.recoilModifier*stats.numericals[RATE]);
         OnShootEvent.Invoke(fireRate*weapon.fireRateModifier);
         ShootBullet(weapon.bulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
-        t = fireRate*weapon.fireRateModifier*stats.numericals["rate"];
+        t = fireRate*weapon.fireRateModifier*stats.numericals[RATE];
     }
 
     private void OnDisable() {
@@ -261,7 +258,7 @@ public class GunShooter : MonoBehaviour
         if (exhaustT < 0f) {
             exhaustT = 0f;
         }
-        exhaustT -= coolingRate*(1f*Mathf.Lerp(1f,0.5f,exhaustT))*Time.deltaTime*stats.numericals["rate"];
+        exhaustT -= coolingRate*(1f*Mathf.Lerp(1f,0.5f,exhaustT))*Time.deltaTime*stats.numericals[RATE];
         if (exhaustT < 0.4f && onCooldown) {
             onCooldown = false;
         } 
@@ -270,7 +267,7 @@ public class GunShooter : MonoBehaviour
 
         if (!running)
             return;
-        t -= Time.deltaTime * stats.numericals["shootSpeed"];
+        t -= Time.deltaTime * stats.numericals[ATTACK_SPEED];
         if (t <= 0f)
         {
             readyToShoot = true;

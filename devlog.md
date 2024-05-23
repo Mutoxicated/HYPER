@@ -1322,3 +1322,7 @@ I'm gonna fully fix the normals bug and fully implement the showing of the class
 ## Day 344 thru 348
 
 Shop system is done! The content adding begins tomorrow.
+
+## Day 349
+
+Fixed many many things. Made the class system better by having some strongly defined numerical and conditional stats. I also made it so that the shop won't show items you already have. I will implement the wisp tomorrow. I will also make it so that you can't reroll if there are no items available.

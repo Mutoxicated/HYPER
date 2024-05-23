@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using static Conditional;
 
 public class EffectManager : MonoBehaviour
 {
@@ -29,11 +27,11 @@ public class EffectManager : MonoBehaviour
         // Debug.Log(transform.parent.gameObject.name+ ", outline: "+outlineEffectableAmount);
         // Debug.Log(transform.parent.gameObject.name+ ", surface: "+surfaceEffectableAmount);
         }
-        if (surfaceEffectableAmount > 0 && !bac.immuneSystem.stats.conditionals["surfaceFXED"]){
+        if (surfaceEffectableAmount > 0 && !bac.immuneSystem.stats.conditionals[SURFACE_FXED]){
             sfx.enabled = true;
-        }else if (outlineEffectableAmount > 0 && !bac.immuneSystem.stats.conditionals["outlineFXED"]){
+        }else if (outlineEffectableAmount > 0 && !bac.immuneSystem.stats.conditionals[OUTLINE_FXED]){
             ofx.enabled = true;
-        }else if (colorEffectableAmount > 0 && !bac.immuneSystem.stats.conditionals["colorFXED"]) {
+        }else if (colorEffectableAmount > 0 && !bac.immuneSystem.stats.conditionals[COLOR_FXED]) {
             cfx.enabled = true;
         }
         outlineEffectableAmount = 0;

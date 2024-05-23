@@ -1,8 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using static Numerical;
+using static Conditional;
 
 public class Laser : MonoBehaviour
 {
@@ -67,21 +66,21 @@ public class Laser : MonoBehaviour
     }
 
     private Quaternion GetRotation(){
-       return Quaternion.LookRotation(stats.entity.position - transform.position,Vector3.up);
+       return Quaternion.LookRotation(stats.entities[0].position - transform.position,Vector3.up);
     }
 
     private void OnEnable()
     {
         ClearCache();
         if (useObjective){
-            if (stats.entity == null){
+            if (stats.entities[0] == null){
                 stats.FindEntity();
             }
             
             //Debug.Log(stats.entity.gameObject.name);
             transform.rotation = GetRotation();
         }
-        pierces = stats.numericals["pierces"];
+        pierces = stats.numericals[PIERCES];
         int hitAmount = Physics.SphereCastNonAlloc(transform.position, maxWidth*0.5f, transform.TransformDirection(Vector3.forward), hits, 100f, mask, QueryTriggerInteraction.Ignore);
         hits = SortRaycasts(hits, hitAmount);
         for (int i = 0; i < hitAmount; i++)
@@ -92,16 +91,16 @@ public class Laser : MonoBehaviour
             distance = hits[i].distance;
             //Debug.Log(hits[i].collider.gameObject.name + " | " + i);
             cachedDamageables.Add(hits[i].transform.gameObject.GetComponent<IDamageable>());
-            if (stats.conditionals["explosive"]){
+            if (stats.conditionals[EXPLOSIVE]){
                 PublicPools.pools[stats.explosionPrefab.name].UseObject(hits[i].point,Quaternion.identity);
             }
-            if (cachedDamageables[Mathf.RoundToInt(Mathf.Abs(stats.numericals["pierces"]-pierces))] == null)
+            if (cachedDamageables[Mathf.RoundToInt(Mathf.Abs(stats.numericals[PIERCES]-pierces))] == null)
                 cachedLeftoverDamage.Add(0f);
             else
-                cachedLeftoverDamage.Add(cachedDamageables[Mathf.RoundToInt(Mathf.Abs(stats.numericals["pierces"]-pierces))].TakeDamage(damage, stats,ref refShield,1f,0));
+                cachedLeftoverDamage.Add(cachedDamageables[Mathf.RoundToInt(Mathf.Abs(stats.numericals[PIERCES]-pierces))].TakeDamage(damage, stats,ref refShield,1f,0));
             cachedshieldOuts.Add(refShield);
-            cachedDamageables[Mathf.RoundToInt(Mathf.Abs(stats.numericals["pierces"]-pierces))]?.TakeInjector(injector, true);
-            //Debug.Log(Mathf.RoundToInt(Mathf.Abs(stats.numericals["pierces"]-pierces)));
+            cachedDamageables[Mathf.RoundToInt(Mathf.Abs(stats.numericals[PIERCES]-pierces))]?.TakeInjector(injector, true);
+            //Debug.Log(Mathf.RoundToInt(Mathf.Abs(stats.numericals[PIERCES]-pierces)));
             if (pierces == 0f)
                 break;
             pierces -= 1;

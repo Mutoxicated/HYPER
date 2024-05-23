@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Conditional;
 
 public class ColorEffect : MonoBehaviour
 {
@@ -38,7 +38,7 @@ public class ColorEffect : MonoBehaviour
         }else{
             color = gradient.Evaluate(0);
         }
-        bac.immuneSystem.stats.conditionals["colorFXED"] = false;
+        bac.immuneSystem.stats.conditionals[COLOR_FXED] = false;
         foreach(var part in bac.immuneSystem.injector.bodyParts){
             if (!part.colorEffectable){
                 mats.Add(part._renderer.materials[part.matIndex]);//we're not gonna be accessing this, just have to add this so that the revert function works
@@ -60,7 +60,7 @@ public class ColorEffect : MonoBehaviour
     private void RevertEffect(){
         if (interval != null)
             interval.enabled = false;
-        bac.immuneSystem.stats.conditionals["colorFXED"] = false;
+        bac.immuneSystem.stats.conditionals[COLOR_FXED] = false;
         for (int i = 0; i < bac.immuneSystem.injector.bodyParts.Count; i++){
             if (!bac.immuneSystem.injector.bodyParts[i].colorEffectable)
                 continue;

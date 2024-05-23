@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using RotaryHeart.Lib.SerializableDictionary;
+using static Numerical;
 
 public class bullet : MonoBehaviour
 {
@@ -33,14 +29,14 @@ public class bullet : MonoBehaviour
     {
         injector = GetComponent<Injector>();
         damage = damage / (PlayerInfo.GetGun().GetWeaponTypeInt() + 1);
-        bulletStats.numericals["moveSpeed"] = bulletStats.numericals["moveSpeed"] / ((PlayerInfo.GetGun().GetWeaponTypeInt() + 1)*0.5f);
+        bulletStats.numericals[MOVE_SPEED] = bulletStats.numericals[MOVE_SPEED] / ((PlayerInfo.GetGun().GetWeaponTypeInt() + 1)*0.5f);
     }
 
     private float ClampedT(){
         return Mathf.Clamp(interval.t,0.6f,1f);
     }
 
-    private float CombinedStat(string name){
+    private float CombinedStat(Numerical name){
         return PlayerInfo.GetGun().stats.numericals[name]+bulletStats.numericals[name]-1f;
     }
 
@@ -52,15 +48,15 @@ public class bullet : MonoBehaviour
         if (initialScale == Vector3.zero){
             initialScale = transform.localScale;
         }
-        transform.localScale = initialScale*CombinedStat("size")*ClampedT();
-        pierces = CombinedStat("pierces");
+        transform.localScale = initialScale*CombinedStat(SIZE)*ClampedT();
+        pierces = CombinedStat(PIERCES);
         pierces = Mathf.RoundToInt(pierces*pierceModifier);
-        rb.velocity = transform.forward * speed * CombinedStat("moveSpeed");
+        rb.velocity = transform.forward * speed * CombinedStat(MOVE_SPEED);
     }
 
     private void Update()
     {
-        transform.localScale = initialScale*CombinedStat("size")*ClampedT();
+        transform.localScale = initialScale*CombinedStat(SIZE)*ClampedT();
         time += Time.deltaTime;
         if (time >= lifetime)
         {
@@ -103,7 +99,7 @@ public class bullet : MonoBehaviour
         }
         //Debug.Log(other.gameObject.name);
         var damageable = other.gameObject.GetComponent<IDamageable>();
-        damageable?.TakeDamage(damage * CombinedStat("damage"), bulletStats,1f,0);
+        damageable?.TakeDamage(damage, bulletStats,1f,0);
         if (injector != null)
         {
             damageable?.TakeInjector(injector,false);

@@ -8,10 +8,10 @@ public class SimplestStatModifier : MonoBehaviour
         [SerializeField] private Stats stats;
         [SerializeField] private PopulativeItem item;
 
-        [SerializeField] private string[] conditionals;
+        [SerializeField] private Conditional[] conditionals;
         [SerializeField] private bool[] conditionalValues;
 
-        [SerializeField] private string[] numericals;
+        [SerializeField] private Numerical[] numericals;
         [SerializeField] private float[] initialNumericalIncrements;
         [SerializeField] private float[] numericalIncrements;
 

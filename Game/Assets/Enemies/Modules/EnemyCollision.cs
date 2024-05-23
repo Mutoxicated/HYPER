@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using static Numerical;
 
 public class EnemyCollision : MonoBehaviour
 {
@@ -46,7 +44,7 @@ public class EnemyCollision : MonoBehaviour
             mod = TNT.tntEffectiveness;
         if (damageOutput > 0)
         {
-            damageable?.TakeDamage(damageOutput * stats.GetNum("damage")*mod, stats,1f,0);
+            damageable?.TakeDamage(damageOutput *mod, stats,1f,0);
         }
         Inject(damageable);
         health?.TakeDamage(damageInput,stats,1f,0);
@@ -70,7 +68,7 @@ public class EnemyCollision : MonoBehaviour
             mod = TNT.tntEffectiveness;
         if (damageOutput > 0)
         {
-            damageable?.TakeDamage(damageOutput * stats.GetNum("damage")*mod, stats, 1f, 0);
+            damageable?.TakeDamage(damageOutput *mod, stats, 1f, 0);
         }
         Inject(damageable);
         health?.TakeDamage(damageInput,stats,1f,0);

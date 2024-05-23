@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static Numerical;
 
 public class EWalk : ExtraBehaviour
 {
@@ -63,8 +62,8 @@ public class EWalk : ExtraBehaviour
     }
 
     private void Start(){
-        walkInterval.ChangeInterval(walkInterval.GetInterval()*stats.numericals["rate"]);
-        restInterval.ChangeInterval(restInterval.GetInterval()*stats.numericals["rate"]);
+        walkInterval.ChangeInterval(walkInterval.GetInterval()*stats.numericals[RATE]);
+        restInterval.ChangeInterval(restInterval.GetInterval()*stats.numericals[RATE]);
         restInterval.ChangeInterval(restIntervalTime+Random.Range(restIntervalminmaxScale.x,restIntervalminmaxScale.y));
         Rest();
     }
@@ -87,7 +86,7 @@ public class EWalk : ExtraBehaviour
         if (lookToWalk)
             transformToRotate.rotation = Quaternion.Lerp(transformToRotate.rotation,rotation,Time.fixedDeltaTime*15f*lerpSpeedMod);
         moveDirection = transformToRotate.forward;
-        rb.position = Vector3.Lerp(rb.position,rb.position+moveDirection*2f,Time.fixedDeltaTime*lerp*stats.numericals["moveSpeed"]);
+        rb.position = Vector3.Lerp(rb.position,rb.position+moveDirection*2f,Time.fixedDeltaTime*lerp*stats.numericals[MOVE_SPEED]);
     }
 
 }

@@ -49,21 +49,25 @@ public class Difficulty : MonoBehaviour
         return closest;
     }
 
-    private static GameObject[] SortGameObjects(GameObject[] objects, Transform trans)
+    private static List<GameObject> SortGameObjects(List<GameObject> objects, Transform trans, float maxDist)
     {
         GameObject temp;
         float distTemp;
-        GameObject[] sortedObjects = objects;
+        var sortedObjects = objects;
         List<float> distances = new List<float>();
 
-        foreach (GameObject go in objects){
+        foreach (GameObject go in objects.ToArray()){
             Vector3 diff = go.transform.position - trans.position;
+            if (diff.sqrMagnitude >= maxDist) {
+                objects.Remove(go);
+                continue;
+            }
             distances.Add(diff.sqrMagnitude);
         }
 
-        for (int i = 0; i <= objects.Length - 1; i++)
+        for (int i = 0; i <= objects.Count - 1; i++)
         {
-            for (int j = i + 1; j < objects.Length; j++)
+            for (int j = i + 1; j < objects.Count; j++)
             {
                 if (distances[i] > distances[j])
                 {
@@ -81,10 +85,9 @@ public class Difficulty : MonoBehaviour
         return sortedObjects;
     }
     
-    public static GameObject[] FindClosestEntities(Transform trans){
+    public static GameObject[] FindClosestEntities(Transform trans, float range){
         List<GameObject> gos = enemies;
-        gos.Add(player.gameObject);
-        return SortGameObjects(gos.ToArray(), trans);
+        return SortGameObjects(gos, trans, range).ToArray();
     }
 
     public static void StepRound(){

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Modification;
 
-public enum PICKUP_TYPE {
+public enum PickupType {
     SHIELD,
     HEALTH,
     POWERUP,
@@ -20,7 +21,7 @@ public class Pickup : MonoBehaviour
     private static float healthAmount = 50;
 
     [SerializeField] private Collider col;
-    [SerializeField] private PICKUP_TYPE pickup;
+    [SerializeField] private PickupType pickup;
     [SerializeField] private float duration;
     [SerializeField] private OnInterval durationInterval;
     [SerializeField] private GameObject ps;
@@ -88,11 +89,11 @@ public class Pickup : MonoBehaviour
         ps.SetActive(true);
         ps.transform.SetParent(null);
         switch(pickup){
-            case PICKUP_TYPE.HEALTH:
-                PlayerInfo.GetGun().stats.GetHealth(Processed(healthAmount,healthModifier));
+            case PickupType.HEALTH:
+                PlayerInfo.GetGun().stats.ModifyNumerical(Numerical.HEALTH, Processed(healthAmount,healthModifier), RELATIVE);
                 PlayerInfo.GetPH().ActivateScreen(3);
                 break;
-            case PICKUP_TYPE.SHIELD:
+            case PickupType.SHIELD:
                 PlayerInfo.GetGun().stats.AddShield(Processed(shieldAmount,shieldModifier));
                 PlayerInfo.GetPH().ActivateScreen(4);
                 break;

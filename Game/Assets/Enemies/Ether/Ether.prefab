@@ -153,6 +153,7 @@ MonoBehaviour:
   lerpSpeed: 1.61
   toRotation: {x: 0, y: 0, z: 0, w: 0}
   randomRotation: 1
+  local: 0
 --- !u!114 &1041804256555068032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,18 +628,8 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
-    _keys:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
+    _keyValues: 0000000001000000020000000300000004000000
+    _keys: 0000000001000000020000000300000004000000
     _values: 0000000000
   numericals:
     reorderableList:
@@ -647,7 +638,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 0
+      isExpanded: 1
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -662,63 +653,11 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 0
-    _keyValues:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - maxCapacitor1
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    - health
-    - maxHealthModifier
-    - size
-    - focus
-    - regen
-    _keys:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - maxCapacitor1
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    - health
-    - maxHealthModifier
-    - size
-    - focus
-    - regen
+    isExpanded: 1
+    _keyValues: 1700000002000000040000000300000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000000000001200000013000000140000001500000016000000
+    _keys: 1700000002000000040000000300000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000000000001200000013000000140000001500000016000000
     _values:
     - 0
-    - 1
-    - 1
     - 1
     - 1
     - 1
@@ -728,7 +667,6 @@ MonoBehaviour:
     - 1
     - 25
     - 0
-    - 0
     - 1
     - 1
     - 1
@@ -737,6 +675,7 @@ MonoBehaviour:
     - 0
     - 1
     - 999
+    - 1
     - 1
     - 1
     - 1

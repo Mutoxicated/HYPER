@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Numerical;
 
 public class HealthBar : MonoBehaviour
 {
@@ -51,8 +52,8 @@ public class HealthBar : MonoBehaviour
     private void Update()
     {
         if (!active) return;
-        if (health.stats.numericals["health"] != 0f)
-            t = health.stats.numericals["health"] / health.stats.maxHealth * health.stats.numericals["maxHealthModifier"];
+        if (health.stats.numericals[HEALTH] != 0f)
+            t = health.stats.numericals[HEALTH] / health.stats.maxHealth * health.stats.numericals[MAX_HEALTH_MODIFIER];
         else t = 0f;
         finalScale.x = Mathf.Lerp(0f, initialScale.x, t);
 

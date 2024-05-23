@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static Numerical;
 
 public class EMove : MonoBehaviour
 {
@@ -14,35 +13,35 @@ public class EMove : MonoBehaviour
 
     public void ResetVelocity()
     {
-        rb.velocity = rb.rotation.eulerAngles.normalized * speed * stats.GetNum("moveSpeed");
+        rb.velocity = rb.rotation.eulerAngles.normalized * speed * stats.GetNum(MOVE_SPEED);
     }
 
     void Start()
     {
-        rb.velocity = (Random.rotation * direction).normalized*speed * stats.GetNum("moveSpeed");
+        rb.velocity = (Random.rotation * direction).normalized*speed * stats.GetNum(MOVE_SPEED);
     }
 
     void Update()
     {
         if (!clampVelocity)
             return;
-        if (rb.velocity.magnitude > speed * stats.GetNum("moveSpeed"))
+        if (rb.velocity.magnitude > speed * stats.GetNum(MOVE_SPEED))
         {
-            var clampedVel = Vector3.ClampMagnitude(rb.velocity, speed * stats.GetNum("moveSpeed"));
+            var clampedVel = Vector3.ClampMagnitude(rb.velocity, speed * stats.GetNum(MOVE_SPEED));
             rb.velocity = Vector3.Lerp(rb.velocity, clampedVel, Time.deltaTime);
         }
     }
 
     public void LookToTarget(){
         stats.FindEntity();
-        if (stats.entity != null)
+        if (stats.entities[0] != null)
         {
-            direction = stats.entity.position - transform.position;
+            direction = stats.entities[0].position - transform.position;
             direction.Normalize();
 
         }else{
             direction = -direction;
         }
-        rb.velocity = direction.normalized*speed * stats.GetNum("moveSpeed");
+        rb.velocity = direction.normalized*speed * stats.GetNum(MOVE_SPEED);
     }
 }

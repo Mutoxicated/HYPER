@@ -72,20 +72,15 @@ MonoBehaviour:
   bac: {fileID: 807790550824924224}
   changePriority: 0
   priority: 000000000000000000000000
-  conditionals: []
+  conditionals: 
   conditionalValues: 
-  numericals:
-  - moveSpeed
-  - rate
-  - shootSpeed
-  - attackSpeed
-  - damage
+  numericals: 02000000030000000d0000000e00000005000000
   numericalIncrements:
-  - -0.1
-  - -0.1
-  - -0.1
-  - -0.1
-  - -0.1
+  - -0.02
+  - -0.02
+  - -0.02
+  - -0.02
+  - -0.02
   populationMod: 0
 --- !u!199 &1902631111641150005
 ParticleSystemRenderer:

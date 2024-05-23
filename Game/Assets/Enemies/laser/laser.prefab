@@ -55,9 +55,11 @@ MonoBehaviour:
   explosionPrefab: {fileID: 1406129636473073463, guid: c0d7eb2368f05ad47b960aede68cee10, type: 3}
   VFXScale: 1
   type: 0
-  objective: 0
+  priority: 000000000000000000000000
   entity: {fileID: 0}
+  entityForever: {fileID: 0}
   maxHealth: 0
+  range: 28
   maxShields: 0
   shieldhealth: 50
   conditionals:
@@ -83,19 +85,9 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
-    _keys:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
-    _values: 0000000000
+    _keyValues: 00000000
+    _keys: 00000000
+    _values: 00
   numericals:
     reorderableList:
       canAdd: 1
@@ -103,7 +95,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 0
+      isExpanded: 1
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -118,82 +110,12 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 0
-    _keyValues:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - maxCapacitor1
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    - health
-    - maxHealthModifier
-    - size
-    - focus
-    _keys:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - maxCapacitor1
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    - health
-    - maxHealthModifier
-    - size
-    - focus
+    isExpanded: 1
+    _keyValues: 00000000
+    _keys: 00000000
     _values:
-    - 0
     - 1
-    - 1
-    - 1
-    - 1
-    - 1
-    - 1
-    - 15
-    - 15
-    - 1
-    - 25
-    - 0
-    - 0
-    - 1
-    - 1
-    - 1
-    - 1
-    - 0
-    - 0
-    - 28
-    - 999
-    - 1
-    - 1
-    - 1
+  shields: []
 --- !u!33 &3647291987919514252
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -293,6 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 187228456903526656}
   specialTag: Untagged
+  useUnscaledTime: 0
   dontResetTime: 0
   chance: 100
   interval: 0.4
@@ -351,7 +274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bagui: {fileID: 0}
   stats: {fileID: 187228456903526656}
   injector: {fileID: 5967580908633526872}
   immunityAttackRate: 1
   immunityDamage: 10
+  specialImmunities: 

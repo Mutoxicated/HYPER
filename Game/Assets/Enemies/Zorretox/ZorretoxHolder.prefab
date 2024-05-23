@@ -10693,6 +10693,14 @@ PrefabInstance:
       propertyPath: shieldhealth
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 58431351571447360, guid: 3b165420a3aa26947a3001fcaed03757, type: 3}
+      propertyPath: numericals.isExpanded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 58431351571447360, guid: 3b165420a3aa26947a3001fcaed03757, type: 3}
+      propertyPath: numericals.reorderableList.isExpanded
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 891144035526736331, guid: 3b165420a3aa26947a3001fcaed03757, type: 3}
       propertyPath: m_Layer
       value: 8

@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UIElements;
+using static Numerical;
 
 public class GunController : MonoBehaviour
 {
@@ -100,9 +100,9 @@ public class GunController : MonoBehaviour
         point.z = move_z;
         anchor.localPosition = Vector3.Lerp(anchor.localPosition, point, Time.deltaTime * snapiness);
 
-        gunHolder.transform.localPosition = Vector3.Lerp(gunHolder.transform.localPosition,points[scroll.index],Time.deltaTime*movement.stats.numericals["moveSpeed"]*6f);
+        gunHolder.transform.localPosition = Vector3.Lerp(gunHolder.transform.localPosition,points[scroll.index],Time.deltaTime*movement.stats.numericals[MOVE_SPEED]*6f);
 
-        walkInterval.ChangeInterval(interval*movement.stats.numericals["moveSpeed"]);
+        walkInterval.ChangeInterval(interval*movement.stats.numericals[MOVE_SPEED]);
 
         if (pic.GetWASDIsPressed() && !walkInterval.enabled){
             walkInterval.enabled = true;

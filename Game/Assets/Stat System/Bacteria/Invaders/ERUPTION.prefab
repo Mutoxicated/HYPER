@@ -72,11 +72,9 @@ MonoBehaviour:
   bac: {fileID: 6567204345551776436}
   changePriority: 0
   priority: 000000000000000000000000
-  conditionals:
-  - explosive
+  conditionals: 00000000
   conditionalValues: 01
-  numericals:
-  - explosionChance
+  numericals: 09000000
   numericalIncrements:
   - 2
   populationMod: 0

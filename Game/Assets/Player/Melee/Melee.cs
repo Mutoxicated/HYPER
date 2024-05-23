@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static Numerical;
 
 public class Melee : MonoBehaviour
 {
@@ -69,13 +68,13 @@ public class Melee : MonoBehaviour
     private void Update()
     {
         isIdle = animator.GetCurrentAnimatorStateInfo(0).IsName("Nun");//nun is idle btw
-        if (pic.WasPressedThisFrame("Throw") && isIdle && stats.numericals["capacitor1"] > 0f)
+        if (pic.WasPressedThisFrame("Throw") && isIdle && stats.numericals[CAPACITOR_1] > 0f)
         {
-            stats.numericals["capacitor1"] -= 1f;
+            stats.numericals[CAPACITOR_1] -= 1f;
             animator.Play("Throw");
             tntThrowSFX.Play();
             Instantiate(TNTPrefab, throwPoint.position,GunShooter.GetAccurateRotation(cam,throwPoint)*TNTPrefab.transform.rotation);
-            //stats.ModifyIncrementalStat("capacitor1", -1);
+            //stats.ModifyIncrementalStat(CAPACITOR_1, -1);
         }if (pic.LaunchOutWasPressed() && isIdle && Launcher.playerMovement.sender == null && Launcher.playerMovement.stamina.GetCurrentStamina() > 100f){
             ray = cam.ScreenPointToRay(new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2,0));
             bool hit = Physics.SphereCast(ray.origin,0.01f, ray.direction, out hitInfo, 10000f, layerMask);

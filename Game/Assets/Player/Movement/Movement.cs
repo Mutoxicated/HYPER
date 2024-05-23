@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Numerical;
 
 public enum MovementState
 {
@@ -99,7 +100,7 @@ public class Movement : MonoBehaviour
     public void TriggerBounceState(Vector3 point, GameObject sender){
         if (stamina.GetCurrentStamina() < 100f)
             return;
-        ability.LaunchIn(point, launchForce * stats.numericals["moveSpeed"]);
+        ability.LaunchIn(point, launchForce * stats.numericals[MOVE_SPEED]);
         movementState = MovementState.BOUNCING;
         launchInterval.ResetEarly();
         stamina.ReduceStamina(100f);
@@ -116,7 +117,7 @@ public class Movement : MonoBehaviour
         //Debug.Log(movementState);
         if (movementState == MovementState.BOUNCING)
         {
-            rb.velocity = ability.GetBounceDir() * launchForce * stats.numericals["moveSpeed"];
+            rb.velocity = ability.GetBounceDir() * launchForce * stats.numericals[MOVE_SPEED];
             return;
         }
         if (movementState != MovementState.LOCKED && movementState != MovementState.BOUNCING)
@@ -144,7 +145,7 @@ public class Movement : MonoBehaviour
             }
             if (!airborne){
                 time += Time.deltaTime;
-                if (time > 0.4f*stats.numericals["moveSpeed"] && pic.GetWASDIsPressed()){
+                if (time > 0.4f*stats.numericals[MOVE_SPEED] && pic.GetWASDIsPressed()){
                     footSteps[Random.Range(0,footSteps.Length)].Play();
                     time = 0f;
                 }
@@ -152,9 +153,9 @@ public class Movement : MonoBehaviour
 
             moveDirection = flatForward.normalized * moveZ + camHolder.right * moveX;
             if (!airborne)
-                rb.AddForce(moveDirection * stats.numericals["moveSpeed"], ForceMode.Force);
+                rb.AddForce(moveDirection * stats.numericals[MOVE_SPEED], ForceMode.Force);
             else
-                rb.AddForce(moveDirection * airMultiplier * stats.numericals["moveSpeed"], ForceMode.Force);
+                rb.AddForce(moveDirection * airMultiplier * stats.numericals[MOVE_SPEED], ForceMode.Force);
 
             return;
         }
@@ -184,7 +185,7 @@ public class Movement : MonoBehaviour
         if (movementState == MovementState.SLAMMING)
         {
             extraJumpForce += slamJumpForceRate;
-            ability.GroundSlam(slamSpeed * stats.numericals["moveSpeed"]);
+            ability.GroundSlam(slamSpeed * stats.numericals[MOVE_SPEED]);
             ability.speed = -rb.velocity.y;
         }
     }
@@ -195,7 +196,7 @@ public class Movement : MonoBehaviour
             return;
         if (pic.WasPressedThisFrame("LaunchIn"))
         {
-            ability.LaunchIn(launchPoint, launchForce * stats.numericals["moveSpeed"]);
+            ability.LaunchIn(launchPoint, launchForce * stats.numericals[MOVE_SPEED]);
             movementState = MovementState.BOUNCING;
             launchInterval.ResetEarly();
             stamina.ReduceStamina(75f);
@@ -299,9 +300,9 @@ public class Movement : MonoBehaviour
             if (!airborne && crouchReleased && point.normal.y >= 0.9f) 
             {
                 if (momentumWindow.enabled)
-                    ability.speed = Mathf.Clamp(extraJumpForce,slideSpeed*stats.numericals["moveSpeed"],9999f);
+                    ability.speed = Mathf.Clamp(extraJumpForce,slideSpeed*stats.numericals[MOVE_SPEED],9999f);
                 else
-                    ability.speed = Mathf.Clamp(rb.velocity.magnitude,slideSpeed*stats.numericals["moveSpeed"],9999f);
+                    ability.speed = Mathf.Clamp(rb.velocity.magnitude,slideSpeed*stats.numericals[MOVE_SPEED],9999f);
                 movementState = MovementState.SLIDING;
             }
             if (airborne && crouchReleased && stamina.GetCurrentStamina() >= 25f)
@@ -364,7 +365,7 @@ public class Movement : MonoBehaviour
     }
 
     private void CollisionDamage(Collision collision){
-        collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(250f*stats.numericals["damage"],stats,ref shields,1f,0);
+        collision.collider.gameObject.GetComponent<IDamageable>().TakeDamage(250f,stats,ref shields,1f,0);
     }
     
     private void OnCollisionEnter(Collision collision)
@@ -407,7 +408,7 @@ public class Movement : MonoBehaviour
         }
         if (bounces >= maxBounces)
         {
-            rb.velocity = ability.GetBounceDir() * launchForce * stats.numericals["moveSpeed"];
+            rb.velocity = ability.GetBounceDir() * launchForce * stats.numericals[MOVE_SPEED];
             rb.drag = airdrag;
             bounces = 0;
             movementState = MovementState.WALKING;

@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerStatModifier : MonoBehaviour
 {
     [SerializeField] private SuperPassive sp;
-    [SerializeField] private string[] numericals;
+    [SerializeField] private Numerical[] numericals;
     [SerializeField] private float[] numericalIncrements;
 
     [SerializeField] private float shieldAmount = -1;
