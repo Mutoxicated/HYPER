@@ -15,6 +15,6 @@ MonoBehaviour:
   weaponSymbol: {fileID: 21300000, guid: 57384d0a164d4c640a442453df94b333, type: 3}
   bulletPool: HOMING_BULLET
   recoilModifier: 1.5
-  fireRateModifier: 4
+  fireRateModifier: 3
   extraEnabled: 0
   extra: {fileID: 11400000}

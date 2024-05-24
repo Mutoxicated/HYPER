@@ -162,6 +162,6 @@ public class ClassItem : MonoBehaviour
         transform.localScale *= 10f;
         transform.localPosition = Vector3.zero;
         transform.SetParent(null,true);
-        DontDestroyOnLoad(transform);
+        DontDestroyOnLoad(transform.root);
     }
 }

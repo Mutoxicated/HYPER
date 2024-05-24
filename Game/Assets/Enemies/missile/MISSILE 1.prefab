@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1145831262155727163}
   - component: {fileID: 970851751731316767}
   - component: {fileID: 885964833475623179}
-  - component: {fileID: 1476187494200445498}
   - component: {fileID: 6320260586745718906}
   - component: {fileID: 3601101937780428322}
   - component: {fileID: 4892048741126330248}
@@ -116,8 +115,8 @@ MonoBehaviour:
   VFXScale: 0.45
   type: 0
   priority: 000000000000000000000000
-  entity: {fileID: 0}
   maxHealth: 20
+  range: 28
   maxShields: 0
   shieldhealth: 50
   conditionals:
@@ -143,19 +142,9 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
-    _keys:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
-    _values: 0000000000
+    _keyValues: 00000000
+    _keys: 00000000
+    _values: 00
   numericals:
     reorderableList:
       canAdd: 1
@@ -179,82 +168,13 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 1
-    _keyValues:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - maxCapacitor1
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    - health
-    - maxHealthModifier
-    - size
-    - focus
-    _keys:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - maxCapacitor1
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    - health
-    - maxHealthModifier
-    - size
-    - focus
+    _keyValues: 00000000
+    _keys: 00000000
     _values:
-    - 0
-    - 1
-    - 1
-    - 1
-    - 1
-    - 1
-    - 1
-    - 15
-    - 15
-    - 1
-    - 25
-    - 0
-    - 0
-    - 1
-    - 1
-    - 1
-    - 1
-    - 0
-    - 0
-    - 120
-    - 999
-    - 1
-    - 1
     - 1
   shields: []
+  entities:
+  - {fileID: 0}
 --- !u!54 &885964833475623179
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -271,19 +191,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &1476187494200445498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505947228412035310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d3aeccbc837844a8593d6e02cbff78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  immunityDuration: 0.25
 --- !u!114 &6320260586745718906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +271,7 @@ MonoBehaviour:
   - {fileID: 1505947228412035310}
   ChildrenToDetach:
   - {fileID: 1437773228595662437}
+  regen: 0
   immunityDuration: -1
   rate: 1.834
   hitScore: 0
@@ -422,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  useUnscaledTime: 0
   dontResetTime: 0
   chance: 100
   interval: 8
@@ -483,6 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed8dca4d62edf5499997fb41445ad01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: 0
   _renderer: {fileID: 1145831262155727163}
   hitGradient: {fileID: 8676265659061354959}
   surfaceEffectable: 1
@@ -601,10 +511,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33d0cf1efadae419b73828547d4231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bagui: {fileID: 0}
   stats: {fileID: 970851751731316767}
   injector: {fileID: 1113425783129271607}
   immunityAttackRate: 1
   immunityDamage: 10
+  specialImmunities: 
 --- !u!114 &1113425783129271607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,6 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed8dca4d62edf5499997fb41445ad01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: 0
   _renderer: {fileID: 3886099020419751836}
   hitGradient: {fileID: 0}
   surfaceEffectable: 0

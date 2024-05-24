@@ -584,7 +584,7 @@ PrefabInstance:
     - target: {fileID: 2211474658954660164, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: playerItemPool
       value: 
-      objectReference: {fileID: 2145936736}
+      objectReference: {fileID: 0}
     - target: {fileID: 2787319632090587800, guid: 65a2c5b201c9113498c70be06ae995a0, type: 3}
       propertyPath: m_text
       value: 'Score:'
@@ -2797,8 +2797,8 @@ GameObject:
   - component: {fileID: 1075948891}
   - component: {fileID: 1075948890}
   - component: {fileID: 1075948889}
-  - component: {fileID: 1075948888}
   - component: {fileID: 1075948887}
+  - component: {fileID: 1075948888}
   m_Layer: 0
   m_Name: CanvasWorld
   m_TagString: Untagged
@@ -2823,7 +2823,8 @@ MonoBehaviour:
   VFXScale: 1
   type: 0
   priority: 000000000000000000000000
-  entity: {fileID: 0}
+  entities:
+  - {fileID: 0}
   entityForever: {fileID: 0}
   maxHealth: 0
   range: 28
@@ -2852,19 +2853,9 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
-    _keys:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
-    _values: 0000000000
+    _keyValues: 00000000
+    _keys: 00000000
+    _values: 00
   numericals:
     reorderableList:
       canAdd: 1
@@ -2888,65 +2879,9 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    _keys:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
+    _keyValues: 00000000
+    _keys: 00000000
     _values:
-    - 0
-    - 1
-    - 1
-    - 1
-    - 1
-    - 1
-    - 1
-    - 1
-    - 1
-    - 25
-    - 0
-    - 0
-    - 1
-    - 1
-    - 1
-    - 1
-    - 0
-    - 0
     - 28
   shields: []
 --- !u!114 &1075948888
@@ -10579,17 +10514,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142372615}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2145936736 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7558431307675458002, guid: b03d6c6cee225b54f97864f57653b5ff, type: 3}
-  m_PrefabInstance: {fileID: 2017626624}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ecadec1aed51e846ac10a8008b3e757, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &168438270854581628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10606,6 +10530,7 @@ MonoBehaviour:
   lerpSpeed: 3.16
   toRotation: {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
   randomRotation: 0
+  local: 0
 --- !u!1 &168438270854581630
 GameObject:
   m_ObjectHideFlags: 0

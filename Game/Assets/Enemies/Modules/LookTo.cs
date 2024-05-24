@@ -23,6 +23,10 @@ public class LookTo : MonoBehaviour
             return;
         }
         toEntity = stats.entities[0].position - transform.position;
+        if (toEntity == Vector3.zero) {
+            lookRotation = Quaternion.identity;
+            return;
+        }
         lookRotation = Quaternion.LookRotation(toEntity,Vector3.up);
     }
 

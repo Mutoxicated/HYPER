@@ -145,10 +145,8 @@ MonoBehaviour:
   VFXScale: 1
   type: 0
   priority: 010000000100000001000000
-  entity: {fileID: 0}
-  entityForever: {fileID: 0}
   maxHealth: 100
-  range: 28
+  range: 40
   maxShields: 0
   shieldhealth: 50
   conditionals:
@@ -184,7 +182,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 1
+      isExpanded: 0
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -199,7 +197,7 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 1
+    isExpanded: 0
     _keyValues: 1700000002000000040000000300000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000000000001200000013000000140000001500000016000000
     _keys: 1700000002000000040000000300000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000000000001200000013000000140000001500000016000000
     _values:
@@ -219,7 +217,7 @@ MonoBehaviour:
     - 1
     - 0
     - 0
-    - 30
+    - 1
     - 999
     - 1
     - 1
@@ -227,6 +225,8 @@ MonoBehaviour:
     - 1
     - 1
   shields: []
+  entities:
+  - {fileID: 0}
 --- !u!114 &8878825627043202888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +280,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: -8766207620506296604}
-  useEntityForever: 0
   rb: {fileID: 1549946323395533653}
   speed: 40
   randomnessScale: 1

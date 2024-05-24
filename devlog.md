@@ -1326,3 +1326,13 @@ Shop system is done! The content adding begins tomorrow.
 ## Day 349
 
 Fixed many many things. Made the class system better by having some strongly defined numerical and conditional stats. I also made it so that the shop won't show items you already have. I will implement the wisp tomorrow. I will also make it so that you can't reroll if there are no items available.
+
+## Day 350
+
+Jesus, my past self really has fucked this codebase up. What do you expect from a begineer programmer who did not have little to know experience and knew nothing about certain programming practices that are just good to follow. I'm trying to fix this bug with the stats system, but i really just cannot find the source of the problem. It's so weird and it's probably hidden in some rural part of my code and has not seen the light of day since months. I really screwed myself up. But hey, that means I've improved and I'll take that as a W.
+
+Lil programming tangent incoming: I really like interfaces. The idea of them is really cool because it allows you to generalize when you want things to be generalized, yet (not true in every language) it also allows to be more specific when you have to. I'm really dickriding go's interfaces but those aren't without their own flaws. For example, it's not possible in go to modify the value that it itself holds with enough depth. You could have the interface implement setters and stuff, but that's still flawed, because you can't actually mutate the value that exists in ther variable's address.
+
+Interfaces in go are made like so: They have the list of implemented functions and the value of the struct that implements those functions. This way, you can call the functions from the interface value and it would work. HOWEVER, if you want to change the value it contains, the conversion from the interface to the struct creates a NEW COPY of the struct. This means that whatever you change in the converted struct, doesn't pass onto the interface value struct. If you could get a pointer to the address in memory of that struct that the interface holds, it would be really nice. For now, we just have to reassign the interface that converted struct copy.
+
+Anyway tomorrow I'm gonna fix the bug.

@@ -1,5 +1,12 @@
 using UnityEngine;
 using static Numerical;
+using static GunScrewState;
+
+enum GunScrewState {
+    PRESSED,
+    NOT_PRESSED,
+    COOLDOWN,
+}
 
 public class GunController : MonoBehaviour
 {
@@ -42,6 +49,8 @@ public class GunController : MonoBehaviour
     private bool once2 = true;
     private float rotationMod = 1f;
 
+    private float requiredLerp = 1f;
+
     private void Start()
     {
         shooter.OnShootEvent.AddListener(UpdateRotationMod);
@@ -56,34 +65,59 @@ public class GunController : MonoBehaviour
         rotationMod = mod;
     }
 
-    private void RotateGunScrew() {
+    private GunScrewState RotateGunScrew() {
         if (shooter.isOnCooldown()) {
             //Debug.Log("is on cooldown");
-            angle -= 10f*rotationMod;
+            angle -= 5f;
             once2 = false;
-            return;
+            return COOLDOWN;
         }
         if (!once2 && !shooter.isOnCooldown()) {
             //Debug.Log("no longer on cooldown");
-            angle = gunScrew.localEulerAngles.z;
+            angle = gunScrew.eulerAngles.z;
             angle -= angle % 73f;
             once2 = true;
             once = true;
+            return NOT_PRESSED;
         }
         if (pic.IsPressed("Shoot") || (pic.IsPressed("ExtraShoot") && shooter.GetCurrentWeapon().extraEnabled)) {
             //Debug.Log("is pressed");
             once = false;
-            angle += 10f*rotationMod;
+            angle += 5f*rotationMod;
+            return PRESSED;
         }else {
             if (!once) {
                 //Debug.Log("no longer pressed");
-                angle = gunScrew.localEulerAngles.z;
+                angle = gunScrew.eulerAngles.z;
                 //Debug.Log(angle);
                 //Debug.Log(angle % 73f);
                 angle += 73f-angle % 73f;
                 once = true;
             }
+            return NOT_PRESSED;
         }
+    }
+
+    private float InverseLerp(float a, float b, float value) {
+        if (a == b) {
+            return 0f;
+        }
+        return (value - a) / (b - a);
+    }
+
+    private void PullRotation() {
+        float normalAngle;
+        if (angle == 360f) {
+            normalAngle = 360f;
+        }else {
+            normalAngle = angle % 360f;
+        }
+        //Debug.Log("Angle: "+normalAngle+", AAngle: "+gunScrew.eulerAngles.z);
+        requiredLerp = Mathf.Abs(gunScrew.eulerAngles.z-normalAngle)/360f;
+        if (requiredLerp < 1f) {
+            requiredLerp = 1f;
+        }
+        requiredLerp = Mathf.Sqrt(requiredLerp)*3f;
     }
 
     private void Update()
@@ -107,11 +141,18 @@ public class GunController : MonoBehaviour
         if (pic.GetWASDIsPressed() && !walkInterval.enabled){
             walkInterval.enabled = true;
         }
-        RotateGunScrew();
+        
+        //relation ship: gunScrew.localEulerAngles and 
+        if (RotateGunScrew() == NOT_PRESSED) {
+            requiredLerp = 1f;
+        }else {
+            PullRotation();
+        }
+
         gunScrew.localRotation = Quaternion.Lerp(
             gunScrew.localRotation,
             Quaternion.AngleAxis(angle, new Vector3(0f, 0f, 1f)),
-            Time.deltaTime * 7 * rotationMod);
+            Time.deltaTime * 7 * requiredLerp);
     }
 
     public void NextWalkIteration(){

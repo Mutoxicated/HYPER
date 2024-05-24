@@ -66,7 +66,6 @@ public class GunShooter : MonoBehaviour
     public Scroll scroll = new Scroll(0, 2);
 
     private bool locked = false;
-
     public int GetWeaponTypeInt()
     {
         return weaponIndex;
@@ -210,13 +209,13 @@ public class GunShooter : MonoBehaviour
     }
 
     private void Shoot(Weapon weapon) {
-        exhaustT += exhaustStep*weapon.recoilModifier;
+        exhaustT += exhaustStep*weapon.recoilModifier*Mathf.Sqrt(weapon.fireRateModifier);
         if (exhaustT >= 1f) {
             exhaustT = 1f;
             onCooldown = true;
         }
         ShootState(weapon.recoilModifier*stats.numericals[RATE]);
-        OnShootEvent.Invoke(fireRate*weapon.fireRateModifier);
+        OnShootEvent.Invoke(Mathf.Sqrt(5f/weapon.fireRateModifier*0.1f));
         ShootBullet(weapon.bulletPool, firepoint.position, GetAccurateRotation(cam,firepoint));
         t = fireRate*weapon.fireRateModifier*stats.numericals[RATE];
     }

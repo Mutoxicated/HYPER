@@ -56,13 +56,15 @@ public class Difficulty : MonoBehaviour
         var sortedObjects = objects;
         List<float> distances = new List<float>();
 
+        //Debug.Log("Distances:");
         foreach (GameObject go in objects.ToArray()){
             Vector3 diff = go.transform.position - trans.position;
-            if (diff.sqrMagnitude >= maxDist) {
+            if (diff.magnitude >= maxDist) {
                 objects.Remove(go);
                 continue;
             }
-            distances.Add(diff.sqrMagnitude);
+            //Debug.Log("     "+diff.magnitude);
+            distances.Add(diff.magnitude);
         }
 
         for (int i = 0; i <= objects.Count - 1; i++)
@@ -125,6 +127,7 @@ public class Difficulty : MonoBehaviour
     }
 
     private void Awake(){
+        player = GameObject.FindWithTag("Player").transform;
         OrganizeEnemyPool();
         rounds = RunDataSave.rData.rounds;
         roundFinished = false;
@@ -133,7 +136,6 @@ public class Difficulty : MonoBehaviour
         linearT = startOffset+rounds*0.2f * difficultyScale;
         //Debug.Log("linearT: "+linearT);
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
-        player = GameObject.FindWithTag("Player").transform;
         utils = GameObject.FindWithTag("ExtraUtils").GetComponent<ExtraUtils>();
     }
 

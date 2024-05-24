@@ -52,19 +52,15 @@ public enum Conditional {
 [DisallowMultipleComponent]
 public class Stats : MonoBehaviour, IStatAffectable
 {
+    [Header("Extra")]
     public bool usePlayerStats;
     public GameObject explosionPrefab;
     public float VFXScale = 1f;
+
+    [Header("Settings")]
     public EntityType type;
     [SerializeField] private DeathFor[] priority = new DeathFor[3];
     private DeathFor currentLayer;
-    [HideInInspector] public List<Transform> entities = new List<Transform>() {
-        null
-    };
-    static List<Transform> Empty = new List<Transform>() {
-        null
-    };
-    [HideInInspector] public Transform entityForever;
 
     public float maxHealth;
     public float range = 28f;
@@ -73,6 +69,7 @@ public class Stats : MonoBehaviour, IStatAffectable
     
     [Serializable] public class conditionalDict : SerializableDictionaryBase<Conditional,bool> {};
     //[NonSerialized]
+    [Header("Stats")]
     private static conditionalDict conditionalsPrototype = new conditionalDict(){
         {EXPLOSIVE, false},
         {SURFACE_FXED, false},
@@ -113,12 +110,21 @@ public class Stats : MonoBehaviour, IStatAffectable
     public numericalDict numericals = new numericalDict();
 
     [HideInInspector] public List<Shield> shields = new List<Shield>();
+    private bool initiatedDictionaries = false;
+
+    [HideInInspector] public List<Transform> entities = new List<Transform>() {
+        null
+    };
+    static List<Transform> Empty = new List<Transform>() {
+        null
+    };
 
     [ContextMenu("Import scripted dictionaries")]
     private void ImportScriptedDictionaries(){
         numericals.Clear();
         numericals = numericalsPrototype;
         conditionals = conditionalsPrototype;
+        initiatedDictionaries = true;
     }
 
     private void UsePrototypes(){
@@ -130,6 +136,7 @@ public class Stats : MonoBehaviour, IStatAffectable
             if (!numericals.ContainsKey(key))
                 numericals.Add(key,numericalsPrototype[key]);
         }
+        initiatedDictionaries = true;
     }
 
     private void Awake()
@@ -190,6 +197,9 @@ public class Stats : MonoBehaviour, IStatAffectable
     }
 
     public void FindEntity(){
+        if (!initiatedDictionaries) {
+            UsePrototypes();
+        }
         if (EvaluatePriorityLayer(priority[0])){
             currentLayer = priority[0];
             return;
@@ -239,52 +249,64 @@ public class Stats : MonoBehaviour, IStatAffectable
         foreach (var go in gos) {
             entities.Add(go.transform);
         }
+        if (entities.Count == 0) {
+            ResetEntities();
+        }
     }
 
     private void ResetEntities() {
         entities = Empty;
     }
 
+    private void SetTag(string tag) {
+        if (gameObject.CompareTag("Player")) {
+            return;
+        }
+        if (!gameObject.CompareTag(tag)) {
+            gameObject.tag = tag;
+        }
+    }
+
     private bool EvaluatePriorityLayer(DeathFor objective){
         if (objective == DeathFor.PLAYER){
+            SetTag("Enemy");
             if (PlayerInfo.GetPlayer() != null){
                 if (Vector3.Distance(PlayerInfo.GetPlayer().transform.position,transform.position) > range*numericals[RANGE])
                     ResetEntities();
                 else{
                     entities[0] = PlayerInfo.GetPlayer().transform;
-                    entityForever = PlayerInfo.GetPlayer().transform;;
                 }
             }   
             else ResetEntities();
             return !IsEntityNull();
         }
         if (objective == DeathFor.ENEMIES){
+            SetTag("Untagged");
             GameObject[] gos = Difficulty.FindClosestEntities(transform,range*numericals[RANGE]);
             if (gos.Length == 0){
                 //Debug.Log("pass");
                 ResetEntities();
             }else{
                 UpdateEntities(gos);
-                entityForever = gos[0].transform;
             }
             return !IsEntityNull();
         }
         if (objective == DeathFor.PLAYER_FOREVER){
+            SetTag("Enemy");
             if (PlayerInfo.GetPlayer() != null){
                 entities[0] = PlayerInfo.GetPlayer().transform;
-                entityForever = PlayerInfo.GetPlayer().transform;
             }   
             else ResetEntities();
             return !IsEntityNull();
         }
         if (objective == DeathFor.ENEMIES_FOREVER){
+            SetTag("Untagged");
             GameObject[] gos = Difficulty.FindClosestEntities(transform,range*numericals[RANGE]);
             if (gos.Length == 0){
                 //Debug.Log("pass");
                 ResetEntities();
             }else{
                 UpdateEntities(gos);
-                entityForever = gos[0].transform;
             }
             return !IsEntityNull();
         }

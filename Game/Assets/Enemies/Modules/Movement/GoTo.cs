@@ -4,7 +4,6 @@ using static Numerical;
 public class GoTo : ExtraBehaviour
 {
     [SerializeField] private Stats stats;
-    [SerializeField] private bool useEntityForever;
     [SerializeField] private Rigidbody rb;
     [SerializeField,Range(3f,40f)] private float speed;
     [SerializeField] private float randomnessScale;
@@ -54,15 +53,8 @@ public class GoTo : ExtraBehaviour
     }
 
     private void GetDirection(){
-        if (!useEntityForever){
-            stats.FindEntity();
-            //Debug.Log(stats.numericals["range"]);
-            entity = stats.entities[0];
-        }else{
-            entity = stats.entityForever;
-            if (entity == null)
-                return;
-        }
+        stats.FindEntity();
+        entity = stats.entities[0];
         if (entity == null){
             toEntity = transform.forward;
         }else{
