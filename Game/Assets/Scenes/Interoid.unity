@@ -10398,6 +10398,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ccd56e124e10ea44fa7ab77187a89d39, type: 2}
   currentItems: []
   currentEquips: []
+  reroll: {fileID: 2106363243}
   itemSubs:
   - {fileID: 801011488}
   - {fileID: 1188058014}
@@ -55435,8 +55436,6 @@ MonoBehaviour:
   VFXScale: 1
   type: 0
   priority: 000000000000000000000000
-  entity: {fileID: 0}
-  entityForever: {fileID: 0}
   maxHealth: 0
   range: 28
   maxShields: 0
@@ -55464,8 +55463,8 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues: []
-    _keys: []
+    _keyValues: 
+    _keys: 
     _values: 
   numericals:
     reorderableList:
@@ -55490,10 +55489,12 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues: []
-    _keys: []
+    _keyValues: 
+    _keys: 
     _values: []
   shields: []
+  entities:
+  - {fileID: 0}
 --- !u!114 &1933658580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58276,7 +58277,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9767891, g: 1, b: 0.3820755, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9764706, g: 1, b: 0.38039216, a: 1}
-    m_DisabledColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+    m_DisabledColor: {r: 0.5754717, g: 0.4180138, b: 0, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.05
   m_SpriteState:

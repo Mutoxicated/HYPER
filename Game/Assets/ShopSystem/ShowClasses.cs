@@ -22,10 +22,18 @@ public class ShowClasses : MonoBehaviour
     private Vector3 curPos;
     private bool alreadyShowed;
 
+    private List<Class> starters;
+    private List<Class> synergizers;
+    private List<Class> hypers;
+
     private void Awake() {
         starterStep = starterXLength/4;
         synergizedStep = synergizedXLength/5;
         hyperStep = hyperXLength/10;
+
+        starters = ClassSystem.ClassList.GetRange(0, 4);
+        synergizers = ClassSystem.ClassList.GetRange(4, 5);
+        hypers = ClassSystem.ClassList.GetRange(9, 10);
     }
 
     private void SetupClassHierarchy(List<Class> classes,float hierarchyLength, float hierarchyStep, int line) {
@@ -34,19 +42,14 @@ public class ShowClasses : MonoBehaviour
         curPos.y -= lineSpacing*line;
 
         foreach (var _class in classes) {
-            _class.transform.SetParent(anchor, true);
+            _class.GoTo(anchor);
             _class.GoTo(curPos, true);
-            if (!alreadyShowed)
-                _class.transform.localScale = _class.transform.localScale*scaleOffset;
+            _class.transform.localScale = _class.transform.localScale*scaleOffset;
             curPos.x += hierarchyStep;
         }
     }
 
     public void Show() {
-        var starters = ClassSystem.ClassList.GetRange(0, 4);
-        var synergizers = ClassSystem.ClassList.GetRange(4, 5);
-        var hypers = ClassSystem.ClassList.GetRange(9, 10);
-
         SetupClassHierarchy(starters, starterXLength, starterStep, 0);
         SetupClassHierarchy(synergizers, synergizedXLength, synergizedStep, 1);
         SetupClassHierarchy(hypers, hyperXLength, hyperStep, 2);
@@ -54,7 +57,8 @@ public class ShowClasses : MonoBehaviour
     }
 
     private void OnEnable() {
-        Show();
+        if (!alreadyShowed)
+            Show();
     }
 
     private void OnDisable() {

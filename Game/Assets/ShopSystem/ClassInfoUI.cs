@@ -23,7 +23,7 @@ public class ClassInfoUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Open(classType classType, Vector3 pos) {
+    public void Open(Class _class, Vector3 pos) {
         if (open) {
             Close();
         }
@@ -33,7 +33,8 @@ public class ClassInfoUI : MonoBehaviour
         curPos.z = Mathf.Clamp(pos.z,-21.4f,-18.9f);
         gameObject.transform.position = curPos;
 
-        currentClass = ClassSystem.classDict[classType];
+        currentClass = _class;
+        currentClass.Interactable(false);
         Debug.Log("Class has "+currentClass.classItems.Count+" items.");
         foreach (var classItem in currentClass.classItems) {
             classItem.EnableUIMode(canvas);
@@ -54,7 +55,9 @@ public class ClassInfoUI : MonoBehaviour
         if (!open) return;
         open = false;
         currentClass.transform.localScale /= scaling;
-        inventory.Show();
+        currentClass.GoBackToParent();
+        currentClass.GoBackToPos();
+        currentClass.Interactable(true);
         gameObject.SetActive(false);
         
         ais.RevertItemScaling();

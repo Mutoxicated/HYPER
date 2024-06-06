@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ClassSystem : MonoBehaviour
 {
+    private static ClassSystem CS;
     public static Dictionary<classType, Class> classDict = new Dictionary<classType, Class>();
     private static float starterEffectivenessMod = 1f;
     private static float synergizedEffectivenessMod = 1f;
@@ -22,11 +23,17 @@ public class ClassSystem : MonoBehaviour
     }
 
     private void Awake(){
-        if (classDict.Count != 0) return;
-        foreach (Class _class in classes){
-            classDict.Add(_class.PapersPlease()._classType, _class);
+        if (CS != null && CS != this){
+            Destroy(gameObject);
         }
-        ClassList = classes;
+        else {
+            CS = this;
+            if (classDict.Count != 0) return;
+            foreach (Class _class in classes){
+                classDict.Add(_class.PapersPlease()._classType, _class);
+            }
+            ClassList = classes;
+        }
     }
 
     private void Start() {

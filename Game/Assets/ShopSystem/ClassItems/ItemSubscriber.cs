@@ -65,20 +65,10 @@ public class ItemSubscriber : MonoBehaviour
         bool success = PlayerInfo.GetIP().AddItem(currentItem);
         if (!success)
             return;
+        ItemShop.IS.CheckItemsLeft();
         PlayerInfo.SetMoney(-ItemShop.Processed(currentItem.cost));
         gameObject.SetActive(false);
         shop.currentItems[index].SetActive(false);
-        currScale = initScale;
-        scalableObj.transform.localScale = currScale;
-        hovering = false;
-        ii.UpdateInfo(null,currentItem);
-    }
-
-    public void ItemRetrieved(){
-        PlayerInfo.GetIP().RemoveItem(currentItem);
-
-        PlayerInfo.SetMoney(ItemShop.Processed(currentItem.cost*ItemShop.sellMultiplier));
-        gameObject.SetActive(false);
         currScale = initScale;
         scalableObj.transform.localScale = currScale;
         hovering = false;

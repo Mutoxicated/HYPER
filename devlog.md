@@ -1336,3 +1336,7 @@ Lil programming tangent incoming: I really like interfaces. The idea of them is 
 Interfaces in go are made like so: They have the list of implemented functions and the value of the struct that implements those functions. This way, you can call the functions from the interface value and it would work. HOWEVER, if you want to change the value it contains, the conversion from the interface to the struct creates a NEW COPY of the struct. This means that whatever you change in the converted struct, doesn't pass onto the interface value struct. If you could get a pointer to the address in memory of that struct that the interface holds, it would be really nice. For now, we just have to reassign the interface that converted struct copy.
 
 Anyway tomorrow I'm gonna fix the bug.
+
+## Day 351 thru 363
+
+Have been studying for exams these 13 days. I have two more and then I'll be able to focus on HYPER. Today has been just a lot of bug fixing. I still haven't fixed the bug with the homing bullet, i'll see about that some other time.

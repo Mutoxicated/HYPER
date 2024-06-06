@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using static Numerical;
 
 [Serializable]
@@ -50,6 +51,7 @@ public class ItemShop : MonoBehaviour
     private List<Equipment> modifiableEquips = new List<Equipment>();
 
     [Header("Scene-related")]
+    [SerializeField] private Button reroll;
     [SerializeField] private List<ItemSubscriber> itemSubs = new List<ItemSubscriber>();
     [SerializeField] private List<EquipSubscriber> equipSubs = new List<EquipSubscriber>();
 
@@ -143,6 +145,14 @@ public class ItemShop : MonoBehaviour
 
     public static int Processed(float num){
         return Mathf.RoundToInt(num*cheapnessMod*expensiveMod);
+    }
+
+    public void CheckItemsLeft() {
+        if (ItemPool.enabledItems.Count == items.Count) {
+            reroll.interactable = false;
+        }else if (!reroll.interactable) {
+            reroll.interactable = true;
+        }
     }
 
     public void Reroll(){

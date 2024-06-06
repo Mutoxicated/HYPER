@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemPool : MonoBehaviour
 {
+    private static ItemPool IP;
     [SerializeField] private List<ClassItem> classObjects = new List<ClassItem>();
 
     [HideInInspector] public static List<ClassItem> enabledItems = new List<ClassItem>();
@@ -48,9 +49,15 @@ public class ItemPool : MonoBehaviour
     }
 
     private void Awake(){
-        if (enabledItems.Count == 0)
-            RegenerateItems();
-        PlayerInfo.SetIP(this);
+        if (IP != null && IP != this){
+            Destroy(gameObject);
+        }
+        else {
+            if (enabledItems.Count == 0)
+                RegenerateItems();
+            IP = this;
+            PlayerInfo.SetIP(IP);
+        }
     }
 
     public static void AddItemToData(string itemName){

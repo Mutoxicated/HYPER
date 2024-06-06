@@ -55,16 +55,21 @@ public class Class : MonoBehaviour
     [HideInInspector] public List<ClassItem> classItems = new List<ClassItem>();
     private List<Battery> batteries = new List<Battery>();
     private int totalCells;
-    private Transform parent;
+    private Stack<Transform> parents = new Stack<Transform>();
+    private Stack<(bool Local, Vector3 Pos)> positions = new Stack<(bool, Vector3)>();
+
+    private Button button;
 
     private void Awake(){
+        if (!button) {
+            button = image.transform.GetComponent<Button>();
+        }
         int index = (int)identity.hierarchy;
         for (int i = 0; i < batteryAmountOfClass[index]; i++){
             totalCells += cellAmountOfClass[index];
             batteries.Add(new Battery(cellAmountOfClass[index]));
         }
         image.sprite = identity.image;
-        parent = transform.parent.transform;
         className.text = identity.name;
         className.color = identity.color;
     }
@@ -73,18 +78,35 @@ public class Class : MonoBehaviour
         return identity;
     }
 
-    public void GoBackToParent(){
-        gameObject.SetActive(false);
+    public void Interactable(bool state) {
+        button.interactable = state;
+    }
+
+    public void GoBackToParent() {
+        var parent = parents.Pop();
+        Debug.Log(gameObject.name+" is going back to "+parent.gameObject.name);
+        gameObject.SetActive(true);
         transform.SetParent(parent,true);
         transform.localPosition = Vector3.zero;
     }
 
+    public void GoBackToPos() {
+        var posInfo = positions.Pop();
+        if (posInfo.Local) {
+            transform.localPosition = posInfo.Pos;
+        }else {
+            transform.position = posInfo.Pos;
+        }
+    }
+
     public void GoTo(Transform trans) {
+        parents.Push(transform.parent);
         gameObject.SetActive(true);
         transform.SetParent(trans,true);
         transform.localPosition = Vector3.zero;
     }
     public void GoTo(Vector3 pos, bool local) {
+        positions.Push((local, pos));
         gameObject.SetActive(true);
         if (local) 
             transform.localPosition = pos;
@@ -153,6 +175,6 @@ public class Class : MonoBehaviour
     }
 
     public void OpenClassInfo() {
-        ClassInfoUI.ciui.Open(identity._classType, transform.position);
+        ClassInfoUI.ciui.Open(this, transform.position);
     }
 }

@@ -66,14 +66,20 @@ public class ClassItem : MonoBehaviour
     public static void Empty(bool state) {}
     public static void Empty(ClassItem transform) {}
 
+    private Transform ogTransform;
+
     public List<classType> Classes {
         get { return classes; }
     }
 
     private void SceneCheck(Scene scene, LoadSceneMode lsm){
-        if (scene.name == "MainMenu"){
+        if (scene.name == "MainMenu" && gameObject){
             Destroy(gameObject);
         }
+    }
+
+    public void Start() {
+        ogTransform = transform.parent;
     }
 
     public void Enable()
@@ -125,6 +131,7 @@ public class ClassItem : MonoBehaviour
         };
         PlayerInfo.SetMoney(ItemShop.Processed(itemInfo.cost*ItemShop.sellMultiplier));
         PlayerInfo.GetIP().RemoveItem(itemInfo);
+        ItemShop.IS.CheckItemsLeft();
         
         if (ibp.popped) {
             InfoBox.ib.UnpopBox();
@@ -161,7 +168,7 @@ public class ClassItem : MonoBehaviour
         transform.localRotation = Quaternion.identity;
         transform.localScale *= 10f;
         transform.localPosition = Vector3.zero;
-        transform.SetParent(null,true);
+        transform.SetParent(ogTransform,true);
         DontDestroyOnLoad(transform.root);
     }
 }
