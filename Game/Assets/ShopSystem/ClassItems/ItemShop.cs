@@ -98,7 +98,7 @@ public class ItemShop : MonoBehaviour
         getRunData = false;
     }
 
-    public static void ResetCheapness(){
+    public static void Reset(){
         cheapnessMod = 1f;
         expensiveMod = 1f;
         sellMultiplier = 1f;

@@ -39,8 +39,8 @@ public class TeleportToScene : MonoBehaviour
         SuperPassivePool.Clear();
         PassivePool.ResetEffectiveness();
         PlatformObjective.ResetShieldChance();
-        ItemShop.ResetCheapness();
-        ItemPool.ResetClassItems();
+        ItemShop.Reset();
+        ItemPool.Reset();
         ClassSystem.Reset();
         Difficulty.rounds = 0;
     }

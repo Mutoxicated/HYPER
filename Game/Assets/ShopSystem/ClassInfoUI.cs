@@ -44,7 +44,7 @@ public class ClassInfoUI : MonoBehaviour
         ais.PrepareValues();
         ais.SortItems();
 
-        currentClass.GoTo(classHolder);
+        currentClass.GoTo(classHolder, Vector3.zero, true);
         currentClass.transform.localScale *= scaling;
         classDesc.text = currentClass.PapersPlease().desc;
         
@@ -55,8 +55,7 @@ public class ClassInfoUI : MonoBehaviour
         if (!open) return;
         open = false;
         currentClass.transform.localScale /= scaling;
-        currentClass.GoBackToParent();
-        currentClass.GoBackToPos();
+        currentClass.GoBack();
         currentClass.Interactable(true);
         gameObject.SetActive(false);
         

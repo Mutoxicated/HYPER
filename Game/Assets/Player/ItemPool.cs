@@ -9,8 +9,12 @@ public class ItemPool : MonoBehaviour
 
     [HideInInspector] public static List<ClassItem> enabledItems = new List<ClassItem>();
 
-    public static void ResetClassItems(){
+    public static void Reset(){
+        foreach (var item in enabledItems) {
+            item.Disable();
+        }
         enabledItems.Clear();
+        IP = null;
     }
 
     public static List<ClassItem> GetClassItems(){
@@ -53,11 +57,14 @@ public class ItemPool : MonoBehaviour
             Destroy(gameObject);
         }
         else {
-            if (enabledItems.Count == 0)
-                RegenerateItems();
             IP = this;
             PlayerInfo.SetIP(IP);
         }
+    }
+
+    private void Start() {
+        if (enabledItems.Count == 0)
+            RegenerateItems();
     }
 
     public static void AddItemToData(string itemName){
@@ -71,11 +78,13 @@ public class ItemPool : MonoBehaviour
     }
 
     private void RegenerateItems(){
+        Debug.Log("Regenerating Items.");
         if (RunDataSave.rData.activeClassItems.Count == 0) return;
-
+        Debug.Log("Passed one check");
         foreach (string name in RunDataSave.rData.activeClassItems){
             ClassItem ci = FindObjectByName(name);
             ci.Enable();
+            Debug.Log("Enabled "+name);
             enabledItems.Add(ci);
         }
     }

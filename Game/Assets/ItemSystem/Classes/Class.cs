@@ -82,15 +82,12 @@ public class Class : MonoBehaviour
         button.interactable = state;
     }
 
-    public void GoBackToParent() {
+    public void GoBack() {
         var parent = parents.Pop();
-        Debug.Log(gameObject.name+" is going back to "+parent.gameObject.name);
         gameObject.SetActive(true);
         transform.SetParent(parent,true);
         transform.localPosition = Vector3.zero;
-    }
 
-    public void GoBackToPos() {
         var posInfo = positions.Pop();
         if (posInfo.Local) {
             transform.localPosition = posInfo.Pos;
@@ -99,19 +96,20 @@ public class Class : MonoBehaviour
         }
     }
 
-    public void GoTo(Transform trans) {
+    public void GoTo(Transform trans, Vector3 pos, bool local) {
+        positions.Push((true, transform.localPosition));
         parents.Push(transform.parent);
+
         gameObject.SetActive(true);
         transform.SetParent(trans,true);
         transform.localPosition = Vector3.zero;
-    }
-    public void GoTo(Vector3 pos, bool local) {
-        positions.Push((local, pos));
+
         gameObject.SetActive(true);
         if (local) 
             transform.localPosition = pos;
         else
             transform.position = pos;
+        
     }
 
     public int IncreaseBattery(){

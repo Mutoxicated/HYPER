@@ -1340,3 +1340,9 @@ Anyway tomorrow I'm gonna fix the bug.
 ## Day 351 thru 363
 
 Have been studying for exams these 13 days. I have two more and then I'll be able to focus on HYPER. Today has been just a lot of bug fixing. I still haven't fixed the bug with the homing bullet, i'll see about that some other time.
+
+## Day 364 thru 371
+
+Exams ended yesterday. I can finally focus on HYPER now. I calculated all the time i will spent working on hyper this summer, it is about 364 hours. 365 hours of music, sfx, enemy, item creation as well as polishing. It might sound like a lot, but if i do this right it will be just enough time. 
+
+Fixed some bugs today.

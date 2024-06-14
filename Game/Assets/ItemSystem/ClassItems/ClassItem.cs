@@ -53,7 +53,7 @@ public class ClassItem : MonoBehaviour
     [SerializeField] private InfoBoxPopper ibp;
     [SerializeField] private ItemType itemType;
     public ClassHierarchy classHierarchy;
-    [SerializeField] private List<classType> classes = new List<classType>();//classes the class item is in
+    [SerializeField] private List<classType> classes = new List<classType>();//classes the item belongs to
     [SerializeField] private Image image;
     [SerializeField] private Sprite unlockedImage;
 
@@ -84,6 +84,9 @@ public class ClassItem : MonoBehaviour
 
     public void Enable()
     {
+        if (image.sprite == unlockedImage) {
+            return;
+        }
         state.Invoke(true);
         lockedImage = image.sprite;
         image.sprite = unlockedImage;

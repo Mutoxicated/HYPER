@@ -42,8 +42,7 @@ public class ShowClasses : MonoBehaviour
         curPos.y -= lineSpacing*line;
 
         foreach (var _class in classes) {
-            _class.GoTo(anchor);
-            _class.GoTo(curPos, true);
+            _class.GoTo(anchor, curPos, true);
             _class.transform.localScale = _class.transform.localScale*scaleOffset;
             curPos.x += hierarchyStep;
         }
@@ -64,7 +63,7 @@ public class ShowClasses : MonoBehaviour
     private void OnDisable() {
         foreach (var _class in ClassSystem.ClassList) {
             _class.transform.localScale = _class.transform.localScale/scaleOffset;
-            _class.GoBackToParent();
+            _class.GoBack();
         }
         alreadyShowed = false;
     }

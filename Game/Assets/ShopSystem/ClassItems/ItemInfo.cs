@@ -16,14 +16,14 @@ public class ItemInfo : MonoBehaviour
 
     private void ClassUpdate(ItemSubscriber iss){
         for (int i = 0; i < classes.Count; i++){
-            ClassSystem.classDict[classes[i]].GoTo(classPlacements[i].transform);
+            ClassSystem.classDict[classes[i]].GoTo(classPlacements[i].transform, Vector3.zero, true);
             ClassSystem.classDict[classes[i]].PendBattery();
         }
     }
 
     private void UnpendClasses(){
         for (int i = 0; i < classes.Count; i++){
-            ClassSystem.classDict[classes[i]].GoBackToParent();
+            ClassSystem.classDict[classes[i]].GoBack();
             ClassSystem.classDict[classes[i]].UnpendBattery();
         }
     }

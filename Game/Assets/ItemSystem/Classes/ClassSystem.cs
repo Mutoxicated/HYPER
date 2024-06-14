@@ -59,6 +59,7 @@ public class ClassSystem : MonoBehaviour
 
     public static void DecrementClassBattery(classType _classType){
         if (!classDict.ContainsKey(_classType)) return;
+        Debug.Log("WHAT?");
         int cellAmount = classDict[_classType].DecreaseBattery();
         EvaluateBoost(classDict[_classType].PapersPlease().hierarchy, cellAmount);
     }
