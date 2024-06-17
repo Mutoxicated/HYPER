@@ -393,9 +393,9 @@ MonoBehaviour:
   explosionPrefab: {fileID: 0}
   VFXScale: 1
   type: 0
-  priority: 000000000000000000000000
-  entity: {fileID: 0}
+  priority: 030000000300000003000000
   maxHealth: 0
+  range: 28
   maxShields: 0
   shieldhealth: 50
   conditionals:
@@ -421,19 +421,9 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
-    _keys:
-    - explosive
-    - surfaceFXED
-    - outlineFXED
-    - colorFXED
-    - stunned
-    _values: 0000000000
+    _keyValues: 00000000
+    _keys: 00000000
+    _values: 00
   numericals:
     reorderableList:
       canAdd: 1
@@ -457,82 +447,13 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 1
-    _keyValues:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - maxCapacitor1
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    - health
-    - maxHealthModifier
-    - size
-    - focus
-    _keys:
-    - permaShields
-    - moveSpeed
-    - damage
-    - hostility
-    - rate
-    - attackSpeed
-    - shootSpeed
-    - maxCapacitor1
-    - capacitor1
-    - pierces
-    - explosionChance
-    - extra
-    - confusion
-    - parryChance
-    - shieldHealthModifier
-    - damageNO
-    - damageO
-    - enemyBlockChance
-    - bacteriaBlockChance
-    - range
-    - health
-    - maxHealthModifier
-    - size
-    - focus
+    _keyValues: 00000000
+    _keys: 00000000
     _values:
-    - 0
-    - 1
-    - 1
-    - 1
-    - 1
-    - 1
-    - 1
-    - 15
-    - 15
-    - 1
-    - 25
-    - 0
-    - 0
-    - 1
-    - 1
-    - 1
-    - 1
-    - 0
-    - 0
-    - 9999999
-    - 999
-    - 1
-    - 1
     - 1
   shields: []
+  entities:
+  - {fileID: 0}
 --- !u!114 &1964637975499389572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   specialTag: Untagged
+  useUnscaledTime: 0
   dontResetTime: 0
   chance: 100
   interval: 5
@@ -813,7 +735,6 @@ MonoBehaviour:
   stencilIndex: 1
   outlineColor: {r: 4, g: 4, b: 4, a: 1}
   outlineWidth: 1.5
-  precomputeOutline: 1
   bakeKeys:
   - {fileID: -5495902117074765545, guid: afe58833742e13541b36773ab36f31e5, type: 3}
   bakeValues:

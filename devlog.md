@@ -1346,3 +1346,26 @@ Have been studying for exams these 13 days. I have two more and then I'll be abl
 Exams ended yesterday. I can finally focus on HYPER now. I calculated all the time i will spent working on hyper this summer, it is about 364 hours. 365 hours of music, sfx, enemy, item creation as well as polishing. It might sound like a lot, but if i do this right it will be just enough time. 
 
 Fixed some bugs today.
+
+## Day 372 thru 374
+
+Made a more organized schedule, now I know how much time I will spend on each thing and how much free time I have. 
+
+I'm not going to continue this project. I don't think it is worth it at this point. The codebase is too much of a mess, due to my previous stupidities, there was no prototype to confirm the gameplay's entertainment and simply put: after a year of working on it, I can say I have learned so much about game development and how carefully and methodically it has to be approached to be able to finish one on a commercial level. I will say again that I made some really stupid mistakes. A year of messy development was led by clueless stubborness and iron-like determination to make it happen. Throughout this year I have changed a lot, and so has my love for game dev. It's been more and more of a downfall. I wouldn't think that bad though. That means the balance shifted. I have diluted my interest to all sorts of areas, from rhapsodies to academic analysis to story writing to programming to computer architecture through physics. Hitherto I have been trying to make it happen, but I don't think it's worth it anymore.
+
+Here's all my mistakes:
+1. Not starting with a prototype. Prototypes let you know if the direction you're going is even a viable direction. In prototypes your only focus is the gameplay. I started the game with the graphics and then the gameplay, because I had such a strong vision for it. 
+2. Not caring enough about the architecture. I think sometimes I was just saying to myself "Eh, we can do this for now and we'll fix it later". That never happened. There were many times where I would find a bug that seemed to come out of nowhere, only to find out that my past self left a system unfinished. Sometimes I would begin to refactor a system and not even finish it. 
+3. Spend most of my time on premature optimization. Don't do it. There are general coding principles you should follow, but those are acquired through experience and learning. If you feel like you have to, then you actually should shift focus on building the architecture of the codebase. Thinking that way will allow for optimizations later down the line, because you have a clearer image of the codebase as a whole.
+4. Not learning my engine of choice enough. If you're going to use a game engine, you should know all of its quirks.
+5. Not keeping the game simple. Always expanding on it with more and more stuff.
+  
+Regarding (4), and more of as a general advice, some things cannot be learn fast. You have to work in that area for a long time. You still have to make a game though, so it is the bestest of the best to start by making a small game and slowly increase the size. 
+
+I started by making a small multiplayer game. I abandoned it, however, because I thought steam doesn't provide free game servers . I was not researched enough in this area, because even if it didn't, there are tons more server providers like Unity Relay, Photon, etc. 
+
+I initially started my 2nd project small, though I focused more on graphics rather than the gameplay. Therefore no prototype was made. I cannot emphasize these 4 previous points enough: DON'T MAKE THE SAME MISTAKES I DID -- else you will end like me, having to make this tough decision. It's a tough decision because, up to this point, I've developed somewhat of a bond with it. I'm really proud of the fact that I actually started game development. It got me in all sorts of places that I both wanted to go to and didn't expect. In the end what I care about is the fact that I started it and I let it lead me where it did. Of course everybody else cares about the end -- the product -- and yes I did want to make this game for the money and that hasn't and won't change, but I also wanted to make it for the journey. I had no idea of the path that I was taking; and honestly that's the amazing part. You look back and you say "Damn, I changed so much since then". 
+
+Anyway, I will start another game. It will be multiplayer. Called Hyper 2 (don't ask where the 1st one is). Small in size but replayable at heart. Will finish by the end of summer as if it's either life or death. This was such a fun project, and there are definitely some debris and scraps that I will reuse in the next game, like most of the graphics components.
+
+To whoever is and has kept up with this devlog, even in the slightest, thanks for passing by, even for just a little bit of time. Expect a new repo.

@@ -269,6 +269,7 @@ public class Stats : MonoBehaviour, IStatAffectable
 
     private bool EvaluatePriorityLayer(DeathFor objective){
         if (objective == DeathFor.PLAYER){
+            Debug.Log(gameObject.name+" got PLAYER");
             SetTag("Enemy");
             if (PlayerInfo.GetPlayer() != null){
                 if (Vector3.Distance(PlayerInfo.GetPlayer().transform.position,transform.position) > range*numericals[RANGE])
@@ -281,6 +282,7 @@ public class Stats : MonoBehaviour, IStatAffectable
             return !IsEntityNull();
         }
         if (objective == DeathFor.ENEMIES){
+            Debug.Log(gameObject.name+" got ENEMIES");
             SetTag("Untagged");
             GameObject[] gos = Difficulty.FindClosestEntities(transform,range*numericals[RANGE]);
             if (gos.Length == 0){
@@ -292,6 +294,7 @@ public class Stats : MonoBehaviour, IStatAffectable
             return !IsEntityNull();
         }
         if (objective == DeathFor.PLAYER_FOREVER){
+            Debug.Log(gameObject.name+" got PLAYER_FOREVER");
             SetTag("Enemy");
             if (PlayerInfo.GetPlayer() != null){
                 entities[0] = PlayerInfo.GetPlayer().transform;
@@ -300,6 +303,7 @@ public class Stats : MonoBehaviour, IStatAffectable
             return !IsEntityNull();
         }
         if (objective == DeathFor.ENEMIES_FOREVER){
+            Debug.Log(gameObject.name+" got ENEMIES_FOREVER");
             SetTag("Untagged");
             GameObject[] gos = Difficulty.FindClosestEntities(transform,range*numericals[RANGE]);
             if (gos.Length == 0){

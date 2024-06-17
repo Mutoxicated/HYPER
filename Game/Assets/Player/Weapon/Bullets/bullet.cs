@@ -20,6 +20,7 @@ public class bullet : MonoBehaviour
     private Vector3 initialScale = Vector3.zero;
 
     private Injector injector;
+    private Transform player;
 
     public static void ResetBulletEffectiveness(){
         bulletEffectiveness = 1f;
@@ -52,12 +53,14 @@ public class bullet : MonoBehaviour
         pierces = CombinedStat(PIERCES);
         pierces = Mathf.RoundToInt(pierces*pierceModifier);
         rb.velocity = transform.forward * speed * CombinedStat(MOVE_SPEED);
+        player = PlayerInfo.GetPlayer().transform;
     }
 
     private void Update()
     {
         transform.localScale = initialScale*CombinedStat(SIZE)*ClampedT();
         time += Time.deltaTime;
+        transform.rotation = Quaternion.LookRotation(transform.position-player.position);
         if (time >= lifetime)
         {
             immuneSystem.RecycleBacteria();

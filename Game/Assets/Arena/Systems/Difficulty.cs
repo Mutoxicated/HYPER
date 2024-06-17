@@ -88,7 +88,7 @@ public class Difficulty : MonoBehaviour
     }
     
     public static GameObject[] FindClosestEntities(Transform trans, float range){
-        List<GameObject> gos = enemies;
+        List<GameObject> gos = enemies.ToList();
         return SortGameObjects(gos, trans, range).ToArray();
     }
 
